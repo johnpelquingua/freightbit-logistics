@@ -53,8 +53,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Company<span class="asterisk_red"></span></label>
+                            <div class="form-group" style="display:none;">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px; display:none;">Company<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-9">
                                     <s:textfield disabled="true" required="true" name="user.companyName" cssClass="userAddForm form-control"
@@ -190,36 +190,42 @@
             if (this.value == "ADMIN") {
                 $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
                 $("#permissionsSelected-1").prop("checked", true);
+                $("#addUser_user_companyName").hide();
             } else {
                 /*$("#customerCodeTextBox").prop("disabled", true).prop("required", false);*/
                 $("#permissionsSelected-1").prop("checked", false).prop("disabled", false);
             } if (this.value == "INLAND FREIGHT OFFICER") {
                 $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
                 $("#permissionsSelected-4").prop("checked", true);
+                $("#addUser_user_companyName").hide();
             } else {
                 /*$("#customerCodeTextBox").prop("disabled", true).prop("required", false);*/
                 $("#permissionsSelected-4").prop("checked", false).prop("disabled", false);
             } if (this.value == "FREIGHT OPERATIONS OFFICER") {
                 $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
                 $("#permissionsSelected-5").prop("checked", true);
+                $("#addUser_user_companyName").hide();
             } else {
                 /*$("#customerCodeTextBox").prop("disabled", true).prop("required", false);*/
                 $("#permissionsSelected-5").prop("checked", false).prop("disabled", false);
             } if (this.value == "FREIGHT OPERATIONS SPECIALIST") {
                 $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
                 $("#permissionsSelected-6").prop("checked", true);
+                $("#addUser_user_companyName").hide();
             } else {
                 /*$("#customerCodeTextBox").prop("disabled", true).prop("required", false);*/
                 $("#permissionsSelected-6").prop("checked", false).prop("disabled", false);
             } if (this.value == "FREIGHT DOCUMENTS SPECIALIST") {
                 $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
                 $("#permissionsSelected-7").prop("checked", true);
+                $("#addUser_user_companyName").hide();
             } else {
                 /*$("#customerCodeTextBox").prop("disabled", true).prop("required", false);*/
                 $("#permissionsSelected-7").prop("checked", false).prop("disabled", false);
             } if (this.value == "SALES OFFICER") {
                 $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
                 $("#permissionsSelected-8").prop("checked", true);
+                $("#addUser_user_companyName").hide();
             } else {
                 /*$("#customerCodeTextBox").prop("disabled", true).prop("required", false);*/
                 $("#permissionsSelected-8").prop("checked", false).prop("disabled", false);
@@ -231,6 +237,8 @@
             if (this.value == "REGULAR CUSTOMER") {
                 $("#customerCodeTextBox").prop("disabled", false).prop("required", true);
                 $("#permissionsSelected-2").prop("checked", true);
+                $("#addUser_user_companyName").hide(); //remove ERNEST in company textfield when role is regular customer
+
             } else {
                /* $("#customerCodeTextBox").prop("disabled", true).prop("required", false);*/
                 $("#permissionsSelected-2").prop("checked", false).prop("disabled", false);
@@ -238,6 +246,7 @@
             } if (this.value == "CUSTOMER RELATIONS DEPARTMENT") {
                 $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
                 $("#permissionsSelected-3").prop("checked", true);
+                $("#addUser_user_companyName").hide();
             } else {
                 /*$("#customerCodeTextBox").prop("disabled", true).prop("required", false);*/
                 $("#permissionsSelected-3").prop("checked", false).prop("disabled", false);
