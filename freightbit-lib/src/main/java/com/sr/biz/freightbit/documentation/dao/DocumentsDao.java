@@ -47,6 +47,8 @@ public interface DocumentsDao {
 
     public List<Documents> findDocumentNameVendorCodeOrderId(String documentName, String vendorCode, Integer referenceId);
 
+    public Documents findDocumentAndId(String documentName, Integer orderItemId);
+
     public List<Documents> findDocumentNameAndId(String documentName, Integer orderItemId);
 
     public List<Documents> findAllFreightDocuments(Integer referenceId);
@@ -57,6 +59,6 @@ public interface DocumentsDao {
 
     public List<Documents> findDocumentsByAging(Integer aging);
 
-    public List<Documents> findEIRAndRefId (String documentName, Integer referenceId, String referenceTable);
+    public Documents findEIRAndRefId (String documentName, Integer referenceId, String referenceTable);
 
 }

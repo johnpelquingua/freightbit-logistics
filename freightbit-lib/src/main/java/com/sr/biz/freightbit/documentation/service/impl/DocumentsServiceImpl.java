@@ -116,6 +116,11 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
+    public Documents findDocumentAndId(String documentName, Integer referenceId){
+        return documentsDao.findDocumentAndId(documentName, referenceId);
+    }
+
+    @Override
     public List<Documents> findDocumentNameAndId(String documentName, Integer referenceId){
         return documentsDao.findDocumentNameAndId(documentName, referenceId);
     }
@@ -137,7 +142,7 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
-    public List<Documents> findEIRAndRefId(String documentName, Integer referenceId, String referenceTable){
+    public Documents findEIRAndRefId(String documentName, Integer referenceId, String referenceTable){
         return documentsDao.findEIRAndRefId(documentName, referenceId, referenceTable );
     }
 }

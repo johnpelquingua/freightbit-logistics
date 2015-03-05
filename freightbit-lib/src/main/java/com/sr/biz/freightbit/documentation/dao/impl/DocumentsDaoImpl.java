@@ -367,6 +367,26 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
+    public Documents findDocumentAndId(String documentName, Integer referenceId) {
+
+        log.debug("Finding Document ....");
+        try {
+            log.debug("Finding Document");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.referenceId = :referenceId");
+            query.setParameter("documentName", documentName);
+            query.setParameter("referenceId", referenceId);
+            List<Documents> results = (List<Documents>) query.list();
+            if (results != null && results.size() > 0) {
+                return results.get(0);
+            }
+            return null;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+    @Override
     public List<Documents> findDocumentNameAndId(String documentName, Integer referenceId) {
 
         log.debug("Finding Document ....");
@@ -441,7 +461,7 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
-    public List<Documents> findEIRAndRefId (String documentName, Integer referenceId, String referenceTable){
+    public Documents findEIRAndRefId (String documentName, Integer referenceId, String referenceTable){
 
         log.debug("Finding Document ....");
         try {
@@ -451,7 +471,10 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
             query.setParameter("referenceId", referenceId);
             query.setParameter("referenceTable", referenceTable);
             List<Documents> results = (List<Documents>) query.list();
-            return results;
+            if (results != null && results.size() > 0) {
+                return results.get(0);
+            }
+            return null;
         } catch (Exception e) {
             log.error("Finding documents failed");
             throw e;

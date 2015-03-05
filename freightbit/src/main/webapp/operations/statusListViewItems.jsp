@@ -274,20 +274,12 @@
 <div class="modal fade" id="updateContainerDetails" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body">
                 <div id="containerInput">
-                    <%--<label id="actualLabel" class="control-label header">Actual Date/Time: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate" />
-                    </div>--%>
                 </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>

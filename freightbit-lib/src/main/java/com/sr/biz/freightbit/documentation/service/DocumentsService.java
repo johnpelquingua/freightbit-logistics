@@ -43,6 +43,8 @@ public interface DocumentsService {
 
     public List<Documents> findDocumentNameVendorCodeOrderId(String documentName, String vendorCode, Integer referenceId);
 
+    public Documents findDocumentAndId(String documentName, Integer referenceId);
+
     public List<Documents> findDocumentNameAndId(String documentName, Integer referenceId);
 
     public List<Documents> findAllFreightDocuments(Integer referenceId);
@@ -51,7 +53,7 @@ public interface DocumentsService {
 
     public void deleteDocument(Documents documents);
 
-    public List<Documents> findEIRAndRefId(String documentName, Integer referenceId, String referenceTable);
+    public Documents findEIRAndRefId(String documentName, Integer referenceId, String referenceTable);
 
     public List<Documents> findDocumentsByAging(Integer aging);
 

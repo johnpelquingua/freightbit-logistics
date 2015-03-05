@@ -3573,8 +3573,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
             addActionMessage("Container cannot be deleted. One or more booking is associated with it");
             return "error";
         }else{
-            containerService.deleteContainer(containerEntity);
-        }
+            List <Documents> documentListing = documentsService.findAllFreightDocuments(containerIdParam);
+
+            for(Documents documentElem : documentListing){
+                documentsService.deleteDocument(documentElem);
+            }
+
+            containerService.deleteContainer(containerEntity);        }
 
         return SUCCESS;
     }
@@ -3635,15 +3640,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setContainerSize(entity.getContainerSize());
         formBean.setContainerType(entity.getContainerType());
         formBean.setEirType(entity.getEirType());
-        formBean.setSealNumber(entity.getSealNumber());
         formBean.setVanLocation(entity.getVanLocation());
         formBean.setLadenEmpty(entity.getLadenEmpty());
         formBean.setReceiptNumber(entity.getReceiptNumber());
-        formBean.setLadenEmpty(entity.getLadenEmpty());
         formBean.setForkliftOperator(entity.getForkliftOperator());
         formBean.setOperationsDept(entity.getOperationsDept());
         formBean.setContainerStatus(entity.getContainerStatus());
         formBean.setSealNumber(entity.getSealNumber());
+        formBean.setBulletSeal(entity.getBulletSeal());
+        formBean.setShippingSeal(entity.getShippingSeal());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
@@ -3659,20 +3664,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 docName = "EQUIPMENT INTERCHANGE RECEIPT 2";
             }
 
-            List<Documents> documentList = documentsService.findEIRAndRefId(docName,entity.getContainerId(),"CONTAINERS");
+            Documents documentElem = documentsService.findEIRAndRefId(docName,entity.getContainerId(),"CONTAINERS");
 
-            if(documentList != null){
+            if(documentElem != null){
                 formBean.setDocumentCheck("AVAILABLE");
-                for(Documents documentElem : documentList ){
-                    formBean.setDocumentId(documentElem.getDocumentId());
-                }
+                formBean.setDocumentId(documentElem.getDocumentId());
             }
         }
 
         return formBean;
     }
 
-    private Container   transformContainerToEntityBean(ContainerBean formBean){
+    private Container transformContainerToEntityBean(ContainerBean formBean){
 
         Container entity = new Container();
         /*Client client = clientService.findClientById(getClientId().toString());
@@ -3694,6 +3697,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setPlateNumber(formBean.getPlateNumber());
         entity.setDriver(formBean.getDriver());
         entity.setSealNumber(formBean.getSealNumber());
+        entity.setBulletSeal(formBean.getBulletSeal());
+        entity.setShippingSeal(formBean.getShippingSeal());
         entity.setOrderNumber(formBean.getOrderNumber());
         entity.setRemarks(formBean.getRemarks());
         entity.setLadenEmpty(formBean.getLadenEmpty());
@@ -3704,9 +3709,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setContainerNumber(formBean.getContainerNumber());
         entity.setContainerSize(formBean.getContainerSize());
         entity.setContainerType(formBean.getContainerType());
-        entity.setSealNumber(formBean.getSealNumber());
         entity.setLadenEmpty(formBean.getLadenEmpty());
-        entity.setSealNumber(formBean.getSealNumber());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setModifiedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimestamp(new Date());
@@ -3760,6 +3763,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Container containerEntity  = transformContainerToEntityBean(container);
         containerEntity.setContainerStatus("GATE OUT");
         containerService.updateContainer(containerEntity);
+
+        Documents eir1Entity = documentsService.findDocumentAndId("EQUIPMENT INTERCHANGE RECEIPT 1",containerEntity.getContainerId());
+
+        eir1Entity.setDocumentName(DocumentsConstants.EQUIPMENT_INTERCHANGE_RECEIPT_2);
+
+        documentsService.updateDocument(eir1Entity);
+
         return SUCCESS;
     }
 
@@ -4604,6 +4614,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             documentsService.addDocuments(documentEntity);
 
             // Add EIR 1 DOCUMENT END
+
         }catch(ContainerAlreadyExistsException e) {
             addFieldError("container.containerId", getText("err.container.already.exist"));
             return INPUT;

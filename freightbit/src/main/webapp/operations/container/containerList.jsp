@@ -125,6 +125,11 @@
                                                 </s:param>
                                             </a>
                                         </s:elseif>
+                                        <s:elseif test="#attr.container.containerStatus == 'GATE OUT'">
+                                            <a id="print-icon" href="#" onclick="generateReport(${container.documentId},'${container.eirType}');">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        </s:elseif>
                                     </display:column>
                                 </td>
                             </display:table>
@@ -153,20 +158,7 @@
                     </div>
                 </div>
             </div>
-            <%--<div class="panel-footer">--%>
-                <%--<span class="pull-left">--%>
-                    <%--<tr>--%>
-                    <%--<td><label>LEGEND:</label></td>--%>
-                    <%--<td><i class='fa fa-pencil'></i> Edit</td>--%>
-                    <%--<td><i class='fa fa-trash-o' ></i> Delete</td>--%>
-                    <%--<td><i class='fa fa-info-circle' ></i> Information</td>--%>
-                    <%--<td><i class='fa fa-print' ></i> Print EIR Form</td>--%>
-                    <%--<s:if test="#attr.container.containerStatus == 'FINAL'">--%>
-                        <%--<td><i class='fa fa-sign-out' ></i> Gate Out</td>--%>
-                    <%--</s:if>--%>
-                    <%--</tr>--%>
-                <%--</span>--%>
-            <%--</div>--%>
+
         </div>
     </div>
 </div>
@@ -174,15 +166,11 @@
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body">
                 <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>
@@ -218,7 +206,6 @@
                 this.document.title = "Equipment Interchange Receipt 1";
             }
         }else{
-            alert(1);
             var win = window.open('documentations/generateEIR2RequestReport?documentIdParam=' + documentId, 'eir2', 'width=910,height=800');
             win.onload = function () {
                 this.document.title = "Equipment Interchange Receipt 2";

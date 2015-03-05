@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Clarence C. Victoria
-  Date: 11/17/2014
-  Time: 10:48 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
@@ -53,6 +46,18 @@
                 <s:textfield required="true" name="container.sealNumber" cssClass="form-control" id="container.sealNumber" />
               </div>
             </div>
+              <div class="form-group">
+                  <label class="col-lg-4 control-label" style="padding-top:0px;">Bullet Seal: </label>
+                  <div class="col-lg-7" >
+                      <s:textfield required="true" name="container.bulletSeal" cssClass="form-control" id="bulletSeal"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Seal: </label>
+                  <div class="col-lg-7" >
+                      <s:textfield required="true" name="container.shippingSeal" cssClass="form-control" id="shippingSeal"/>
+                  </div>
+              </div>
             <div class="pull-right">
                 <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
               <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Save"/>

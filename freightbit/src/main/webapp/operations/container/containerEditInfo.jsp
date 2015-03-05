@@ -31,6 +31,9 @@
               <s:hidden name="container.modifiedTimestamp" value="%{container.modifiedTimestamp}"/>
               <s:hidden name="container.eirType" value="%{container.eirType}"/>
               <s:hidden name="container.containerStatus" value="%{container.containerStatus}"/>
+              <s:hidden name="container.gateOutTime" value="%{container.gateOutTime}"/>
+              <s:hidden name="container.bulletSeal" value="%{container.bulletSeal}"/>
+              <s:hidden name="container.shippingSeal" value="%{container.shippingSeal}"/>
 
                   <div class="form-group">
                       <label class="col-lg-2 control-label" style="padding-top:0px;">Container Van Number: <span class="asterisk_red"></span></label>
