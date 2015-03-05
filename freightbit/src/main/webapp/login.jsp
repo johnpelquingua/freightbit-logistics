@@ -86,7 +86,7 @@
             developed and designed by: <a href="http://www.solutionsresource.com" rel="license">Solutions Resource Inc.</a>
             </div>
             <div id="svnrev">
-            version 2015.e752ae1
+            version 2015.3c10be0s
                 <!-- GIT ID: ${buildNumber} -->
             </div>
         </div>

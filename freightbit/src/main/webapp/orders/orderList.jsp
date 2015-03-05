@@ -114,8 +114,10 @@
                                             <s:url var="deleteOrderUrl" action="deleteOrder">
                                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                             </s:url>
-                                            <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
-                                            </s:a>
+                                            <sec:authorize access="hasAnyRole('ROLE_ADMIN'">
+                                                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
+                                                </s:a>
+                                            </sec:authorize>
                                             <i class="fa fa-trash-o deleteBookingIcon table-action-icons"></i>
                                         </s:if>
                                     </sec:authorize>
