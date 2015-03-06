@@ -47,9 +47,9 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Item Code<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.itemCode" id="itemCode" required="true" cssClass="form-control" maxLength="15"
-                                             pattern="[A-Z0-9]+" title="Item Code should not contain special characters"
-                                             onkeypress="return alphaKeyOnly(event)" tabindex="2"/>
+                                <s:textfield name="item.itemCode" id="itemCode" required="true" cssClass="form-control" maxLength="25"
+                                             pattern="[a-zA-Z0-9]+" title="Item Code should not contain special characters"
+                                             tabindex="2"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
@@ -145,9 +145,9 @@
         $("#item_srp").maskMoney();
     });
 
-    $("#itemCode").keyup(function(){
+    /*$("#itemCode").keyup(function(){
         this.value=this.value.toUpperCase();
-    });
+    });*/
 
 
     /*function alphaKeyOnly(evt)

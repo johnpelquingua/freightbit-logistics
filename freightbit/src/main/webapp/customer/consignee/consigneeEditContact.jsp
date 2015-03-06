@@ -236,7 +236,7 @@
                                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span></label>
                                                 <div class="col-lg-10" >
                                                     <s:textfield cssClass="form-control" placeholder="(+639XX) XXX-XXXX" name="consigneeContact.mobile"
-                                                                 maxLength="18" required="true" id="contact_mobile" pattern=".{14,}"
+                                                                 maxLength="18" required="true" id="contact_mobile" pattern=".{18,}"
                                                                  title="Mobile number should contain 11 digits."/>
                                                 </div>
                                             </div>

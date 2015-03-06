@@ -38,7 +38,7 @@
                     <div class="col-lg-9">
                         <s:textfield placeholder="Alphanumeric input only e.g. a-z, A-Z, 0-9" cssClass="form-control voyageNumber" required="true"
                                      name="vesselSchedule.voyageNumber" maxlength="10" title="Voyage Number will only accept alphanumeric input only e.g. a-z, A-Z, 0-9"
-                                     pattern="[a-zA-Z0-9]+"/>
+                                     pattern="[a-zA-Z0-9\-]+"/>
                     </div>
                 </div>
 

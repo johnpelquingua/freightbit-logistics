@@ -763,7 +763,8 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.itemCode" id="item_itemCode" required="true"
-                                             cssClass="form-control addItemInput" maxLength="10" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
+                                             cssClass="form-control addItemInput" maxLength="25"
+                                             pattern="[a-zA-Z0-9]+" title="Item Code should not contain special characters"/>
                             </div>
 
                         </div>
