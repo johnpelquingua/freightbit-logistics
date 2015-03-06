@@ -52,8 +52,8 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.itemCode" id="itemCode" required="true" cssStyle="width: 140%"
-                                             cssClass="addItemInput form-control" maxLength="15" pattern="[A-Z0-9]+"
-                                             title="Item Code should not contain special characters" onkeypress="return alphaKeyOnly(event)" tabindex="2"/>
+                                             cssClass="addItemInput form-control" maxLength="15" pattern="[a-zA-Z0-9]+"
+                                             title="Item Code should not contain special characters" tabindex="2"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
@@ -171,9 +171,9 @@
             return false;
         }
     });*/
-    $("#itemCode").keyup(function(){
+    /*$("#itemCode").keyup(function(){
         this.value=this.value.toUpperCase();
-    });
+    });*/
 
     function isNumberKey(evt)
     {

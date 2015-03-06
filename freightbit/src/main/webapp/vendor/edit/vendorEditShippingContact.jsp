@@ -95,7 +95,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile" maxLength="18"
-                                         id="shipping_mobile" pattern=".{18,}"
+                                         id="shipping_mobile" pattern=".{18,}" required="true"
                                          title="Mobile number should contain 11 digits." />
                             </div>
                         </div>
