@@ -404,6 +404,29 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
+    public List<Documents> findAllContainerDocuments(Integer referenceId) {
+
+        List<String> documentNameList = new ArrayList<>();
+
+        documentNameList.add("EQUIPMENT INTERCHANGE RECEIPT 1");
+        documentNameList.add("EQUIPMENT INTERCHANGE RECEIPT 2");
+
+        log.debug("Finding Document ....");
+
+        try {
+            log.debug("Finding Document");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = (:documentNameList) and d.referenceId = :referenceId");
+            query.setParameter("referenceId", referenceId);
+            query.setParameterList("documentNameList", documentNameList);
+            List<Documents> results = (List<Documents>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+    @Override
     public List<Documents> findAllFreightDocuments(Integer referenceId) {
 
         List<String> documentNameList = new ArrayList<>();

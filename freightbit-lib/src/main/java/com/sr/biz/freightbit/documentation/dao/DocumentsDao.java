@@ -51,6 +51,8 @@ public interface DocumentsDao {
 
     public List<Documents> findDocumentNameAndId(String documentName, Integer orderItemId);
 
+    public List<Documents> findAllContainerDocuments(Integer referenceId);
+
     public List<Documents> findAllFreightDocuments(Integer referenceId);
 
     public Documents findDocumentNameAndOrderId(String documentName, Integer orderItemId);

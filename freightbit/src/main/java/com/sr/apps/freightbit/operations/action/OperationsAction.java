@@ -3573,13 +3573,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
             addActionMessage("Container cannot be deleted. One or more booking is associated with it");
             return "error";
         }else{
-            List <Documents> documentListing = documentsService.findAllFreightDocuments(containerIdParam);
 
-            for(Documents documentElem : documentListing){
-                documentsService.deleteDocument(documentElem);
+            if(containerEntity.getEirType().equals("EIR FORM 1")){
+                Documents documentEIR1 = documentsService.findEIRAndRefId("EQUIPMENT INTERCHANGE RECEIPT 1",containerIdParam,"CONTAINERS");
+                documentsService.deleteDocument(documentEIR1);
+            }else{
+                Documents documentEIR2 = documentsService.findEIRAndRefId("EQUIPMENT INTERCHANGE RECEIPT 2",containerIdParam,"CONTAINERS");
+                documentsService.deleteDocument(documentEIR2);
             }
 
-            containerService.deleteContainer(containerEntity);        }
+            containerService.deleteContainer(containerEntity);
+        }
 
         return SUCCESS;
     }
