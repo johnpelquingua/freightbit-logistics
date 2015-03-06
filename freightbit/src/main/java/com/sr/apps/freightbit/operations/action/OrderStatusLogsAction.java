@@ -42,6 +42,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private List<Parameters> seaFreightLCLList = new ArrayList<Parameters>();
     private List<Parameters> seaFreightList = new ArrayList<Parameters>();
     private List<String> allFreightStatusList = new ArrayList<String>();
+    private List<Parameters> containerList = new ArrayList<Parameters>();
     private CommonUtils commonUtils = new CommonUtils();
     private ContainerBean container = new ContainerBean();
     private OrderItemsBean orderItem = new OrderItemsBean();
@@ -69,6 +70,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         inlandFreightList = parameterService.getParameterMap(ParameterConstants.INLAND_FREIGHT);
         seaFreightLCLList = parameterService.getParameterMap(ParameterConstants.SEA_FREIGHT_LCL);
         seaFreightList = parameterService.getParameterMap(ParameterConstants.SEA_FREIGHT);
+        containerList = parameterService.getParameterMap(ParameterConstants.CONTAINER_SIZE);
     }
 
     private Integer getClientId() {
@@ -754,6 +756,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public String loadContainerDetails() {
         OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdParam);
         orderItem = transformToOrderItemFormBean(orderItemEntity);
+        order.setServiceRequirement(orderService.findOrdersById(orderItemEntity.getOrderId()).getServiceRequirement());
 
         if(orderItemEntity.getContainerId() != null){
             container.setContainerId(orderItemEntity.getContainerId());
@@ -765,20 +768,24 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public String updateContainerDetails() throws Exception {
         Map sessionAttributes = ActionContext.getContext().getSession();
         OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdParam);
+        Orders orderEntity = orderService.findOrdersById(orderItemEntity.getOrderId());
+        order.setServiceRequirement(orderEntity.getServiceRequirement());
 
         Container containerEntity = transformContainerToEntityBean(container);
         if(orderItemEntity.getNameSize().equals("10 FOOTER") || orderItemEntity.getNameSize().equals("20 FOOTER") || orderItemEntity.getNameSize().equals("40 STD FOOTER") || orderItemEntity.getNameSize().equals("40 HC FOOTER")){
             containerEntity.setContainerSize(orderItemEntity.getNameSize());
+        }else{
+            containerEntity.setContainerSize(container.getContainerSize());
         }
+
         containerEntity.setContainerStatus("FROM SHIPMENT MONITORING");
         containerEntity.setShipping(vendorService.findVendorByVendorCode(orderItemEntity.getVendorSea()).getVendorName());
         containerEntity.setEirType("NONE");
+        containerEntity.setPortCode(orderEntity.getDestinationPort());
         containerService.updateContainer(containerEntity);
 
         orderItemEntity.setContainerId(containerEntity.getContainerId());
         operationsService.updateOrderItem(orderItemEntity);
-
-        Orders orderEntity = orderService.findOrdersById(orderItemEntity.getOrderId());
 
         sessionAttributes.put("orderItemIdParam", orderItemIdParam);
         sessionAttributes.put("orderIdParam", orderEntity.getOrderId());
@@ -942,6 +949,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public OrderItemsBean transformToOrderItemFormBean(OrderItems entity) {
+
         OrderStatusLogs statusLogsEntity = orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId());
         OrderStatusLogs timeLogsEntity = orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId());
 
@@ -970,14 +978,22 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             formBean.setSealNumber(containerNumEntity.getSealNumber());
             formBean.setBulletSeal(containerNumEntity.getBulletSeal());
             formBean.setShippingSeal(containerNumEntity.getShippingSeal());
+            formBean.setContainerSize(containerNumEntity.getContainerSize());
         }
         else{
-            formBean.setContainerNumber("NONE");
+            Orders orderEntity = orderService.findOrdersById(operationsService.findOrderItemById(entity.getOrderItemId()).getOrderId());
+
+            if(orderEntity.getServiceRequirement().equals("FULL CONTAINER LOAD")){
+                formBean.setContainerSize(operationsService.findOrderItemById(entity.getOrderItemId()).getNameSize());
+            }/*else{
+                formBean.setContainerSize("NONE");
+            }*/
+
+            /*formBean.setContainerNumber("NONE");
             formBean.setSealNumber("NONE");
             formBean.setBulletSeal("NONE");
-            formBean.setShippingSeal("NONE");
+            formBean.setShippingSeal("NONE");*/
         }
-
         return formBean;
     }
 
@@ -1221,5 +1237,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setVendorService(VendorService vendorService) {
         this.vendorService = vendorService;
+    }
+
+    public List<Parameters> getContainerList() {
+        return containerList;
+    }
+
+    public void setContainerList(List<Parameters> containerList) {
+        this.containerList = containerList;
     }
 }

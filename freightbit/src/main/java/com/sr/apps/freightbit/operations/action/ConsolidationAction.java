@@ -15,6 +15,7 @@ import com.sr.biz.freightbit.operations.entity.Container;
 import com.sr.biz.freightbit.operations.service.ContainerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
+import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import org.apache.commons.lang3.StringUtils;
@@ -44,7 +45,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
 	private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItemsBeans = new ArrayList<OrderItemsBean>();
-    private List<OrderItemsBean> orderItemsBeansUnderContainer = new ArrayList<OrderItemsBean>();
+    private List<OrderItemsBean> orderItemsInsideContainer = new ArrayList<OrderItemsBean>();
 	private List<ContainerBean> orderItems = new ArrayList<ContainerBean>();
 	private List<ContainerBean> containers = new ArrayList<ContainerBean>();
 
@@ -66,6 +67,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
     private List<Parameters> containerSearchList = new ArrayList<Parameters>();
 
     private String[] check;
+
 	@Override
 	public void prepare() throws Exception {
         containerSearchList = parameterService.getParameterMap(ParameterConstants.CONTAINER_SEARCH);
@@ -85,7 +87,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
 
         for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
-            orderItemsBeansUnderContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
+            orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
         }
 
         return SUCCESS;
@@ -155,7 +157,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
             }
 
             for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
-                orderItemsBeansUnderContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
+                orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
             }
 
             return "CONSOLIDATED";
@@ -193,7 +195,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
             containerList = containerService.findAllContainer();
         }
             for (Container containerElem : containerList) {
-                if(!containerElem.getContainerStatus().equals("FROM SHIPMENT MONITORING")){
+                if(containerElem.getContainerStatus().equals("OPEN") || containerElem.getContainerStatus().equals("CONSOLIDATED") || containerElem.getContainerStatus().equals("FINAL")){
                     containers.add(transformContainerToFormBean(containerElem));
                 }
             }
@@ -220,7 +222,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
             }
 
             for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
-                orderItemsBeansUnderContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
+                orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
             }
 
             return "CONSOLIDATED";
@@ -248,29 +250,40 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
     public String viewConsolidationItemList() {
         Map sessionAttributes = ActionContext.getContext().getSession();
+
         sessionAttributes.put("containerSizeParam", containerSizeParam);
         sessionAttributes.put("containerIdParam", containerIdParam);
         sessionAttributes.put("containerStatusParam", containerStatusParam);
 
-        List<OrderItems> orderItems = new ArrayList<OrderItems>();
-        List<OrderItems> orderItemsUnderContainer = new ArrayList<OrderItems>();
-
-        orderItems = orderService.findAllOrderItemLCL();
-        orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
+        /*List<OrderItems> orderItems = orderService.findAllOrderItemLCL();*/
+        List<Orders> orders = orderService.findOrdersByCriteria("serviceRequirement","LESS CONTAINER LOAD",getClientId());
+        List<OrderItems> orderItemsInsideContainerList = orderService.findAllOrderItemsByContainerId(containerIdParam);
 
         if ("CONSOLIDATED".equals(sessionAttributes.get("containerStatusParam"))) {
-            for (OrderItems orderItemElem : orderItems) {
+            /*for (OrderItems orderItemElem : orderItems) {
                 orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+            }*/
+            for(Orders orderElem : orders){
+                List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
+                for(OrderItems orderItemElem : orderItemList ){
+                    orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                }
             }
 
-            for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
-                orderItemsBeansUnderContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
+            for (OrderItems orderItemsInsideContainerElem : orderItemsInsideContainerList) {
+                orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsInsideContainerElem));
             }
 
             return "CONSOLIDATED";
         } else {
-            for (OrderItems orderItemElem : orderItems) {
+            /*for (OrderItems orderItemElem : orderItems) {
                 orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+            }*/
+            for(Orders orderElem : orders){
+                List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
+                for(OrderItems orderItemElem : orderItemList ){
+                    orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                }
             }
             return SUCCESS;
         }
@@ -353,6 +366,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setLadenEmpty(entity.getLadenEmpty());
         formBean.setForkliftOperator(entity.getForkliftOperator());
         formBean.setOperationsDept(entity.getOperationsDept());
+        formBean.setPortCode(entity.getPortCode());
 
         /*if("CONSOLIDATED".equals(entity.getContainerStatus())) {
             formBean.setContainerStatus("CONSOLIDATED");
@@ -610,11 +624,11 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         this.containerStatusParam = containerStatusParam;
     }
 
-    public List<OrderItemsBean> getOrderItemsBeansUnderContainer() {
-        return orderItemsBeansUnderContainer;
+    public List<OrderItemsBean> getOrderItemsInsideContainer() {
+        return orderItemsInsideContainer;
     }
 
-    public void setOrderItemsBeansUnderContainer(List<OrderItemsBean> orderItemsBeansUnderContainer) {
-        this.orderItemsBeansUnderContainer = orderItemsBeansUnderContainer;
+    public void setOrderItemsInsideContainer(List<OrderItemsBean> orderItemsInsideContainer) {
+        this.orderItemsInsideContainer = orderItemsInsideContainer;
     }
 }

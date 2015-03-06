@@ -14,30 +14,53 @@
           <s:form action="updateContainerDetails" theme="bootstrap" cssClass="form-horizontal" >
           <s:hidden name="orderItemIdParam" value="%{orderItem.orderItemId}" />
           <s:hidden name="container.containerId" value="%{container.containerId}" />
+          <s:hidden value="%{order.serviceRequirement}" />
           <div class="form-group">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Container Number: </label>
             <div class="col-lg-7" >
               <s:textfield required="true" name="container.containerNumber" value="%{orderItem.containerNumber}" cssClass="form-control" id="containerNumber"/>
             </div>
           </div>
-            <div class="form-group">
-              <label class="col-lg-4 control-label" style="padding-top:0px;">Seal Number: </label>
-              <div class="col-lg-7" >
-                <s:textfield required="true" name="container.sealNumber" value="%{orderItem.sealNumber}" cssClass="form-control" id="sealNumber"/>
-              </div>
+          <div class="form-group">
+            <label class="col-lg-4 control-label" style="padding-top:0px;">Container Size: </label>
+            <div class="col-lg-7" >
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                    <span>
+                      <s:textfield name="container.containerSize" value="%{orderItem.containerSize}" cssClass="form-control" id="containerSize" readonly="true"/>
+                    </span>
+                </s:if>
+                <s:else>
+                  <s:select cssClass="form-control containerSizeDropdown"
+                            id="container_containerSize"
+                            name="container.containerSize"
+                            list="containerList"
+                            listKey="key"
+                            listValue="value"
+                            emptyOption="true"
+                            required="true"
+                            value="%{orderItem.containerSize}"
+                          />
+                </s:else>
             </div>
-            <div class="form-group">
-              <label class="col-lg-4 control-label" style="padding-top:0px;">Bullet Seal: </label>
-              <div class="col-lg-7" >
-                <s:textfield required="true" name="container.bulletSeal" value="%{orderItem.bulletSeal}" cssClass="form-control" id="bulletSeal"/>
-              </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-4 control-label" style="padding-top:0px;">Seal Number: </label>
+            <div class="col-lg-7" >
+              <s:textfield required="true" name="container.sealNumber" value="%{orderItem.sealNumber}" cssClass="form-control" id="sealNumber"/>
             </div>
-            <div class="form-group">
-              <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Seal: </label>
-              <div class="col-lg-7" >
-                <s:textfield required="true" name="container.shippingSeal" value="%{orderItem.shippingSeal}" cssClass="form-control" id="shippingSeal"/>
-              </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-4 control-label" style="padding-top:0px;">Bullet Seal: </label>
+            <div class="col-lg-7" >
+              <s:textfield required="true" name="container.bulletSeal" value="%{orderItem.bulletSeal}" cssClass="form-control" id="bulletSeal"/>
             </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Seal: </label>
+            <div class="col-lg-7" >
+              <s:textfield required="true" name="container.shippingSeal" value="%{orderItem.shippingSeal}" cssClass="form-control" id="shippingSeal"/>
+            </div>
+          </div>
           <div class="pull-right">
             <button type="button" class="btn btn-danger" data-dismiss="modal">
               Cancel

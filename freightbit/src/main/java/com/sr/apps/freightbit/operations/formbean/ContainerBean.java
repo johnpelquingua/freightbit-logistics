@@ -4,9 +4,6 @@ import com.sr.biz.freightbit.core.entity.Client;
 
 import java.util.Date;
 
-/**
- * Created by Clarence C. Victoria on 11/4/2014.
- */
 public class ContainerBean {
 
     private Integer containerId;
@@ -32,7 +29,6 @@ public class ContainerBean {
     private String containerSize;
     private String containerType;
     private String containerStatus;
-
     private String sealNumber;
     private String bulletSeal;
     private String shippingSeal;
@@ -40,11 +36,10 @@ public class ContainerBean {
     private String ladenEmpty;
     private String forkliftOperator;
     private String operationsDept;
-
     private String containerSearchCriteria;
     private String containerKeyword;
-
     private String eirType;
+    private String portCode;
     // for documents link on container list view
     private String DocumentCheck;
     private Integer documentId;
@@ -52,10 +47,10 @@ public class ContainerBean {
     public ContainerBean() {
     }
 
-    public ContainerBean(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String containerType, String containerSearchCriteria, String containerKeyword) {
+    public ContainerBean(String orderNumber, Integer containerId, Client clientId, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String containerStatus, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String forkliftOperator, String operationsDept, String containerSearchCriteria, String containerKeyword, String eirType, String portCode, String documentCheck, Integer documentId) {
+        this.orderNumber = orderNumber;
         this.containerId = containerId;
         this.clientId = clientId;
-        this.eirType = eirType;
         this.eirNumber = eirNumber;
         this.receiptNumber = receiptNumber;
         this.gateInTime = gateInTime;
@@ -65,7 +60,6 @@ public class ContainerBean {
         this.plateNumber = plateNumber;
         this.vanNumber = vanNumber;
         this.driver = driver;
-        this.orderNumber = orderNumber;
         this.remarks = remarks;
         this.vanTo = vanTo;
         this.vanFrom = vanFrom;
@@ -75,17 +69,21 @@ public class ContainerBean {
         this.modifiedTimestamp = modifiedTimestamp;
         this.containerNumber = containerNumber;
         this.containerSize = containerSize;
+        this.containerType = containerType;
         this.containerStatus = containerStatus;
-        this.forkliftOperator = forkliftOperator;
-        this.operationsDept = operationsDept;
-        this.containerSize = containerType;
-        this.containerSize = sealNumber;
+        this.sealNumber = sealNumber;
         this.bulletSeal = bulletSeal;
         this.shippingSeal = shippingSeal;
-        this.containerSize = vanLocation;
-        this.containerSize = ladenEmpty;
+        this.vanLocation = vanLocation;
+        this.ladenEmpty = ladenEmpty;
+        this.forkliftOperator = forkliftOperator;
+        this.operationsDept = operationsDept;
         this.containerSearchCriteria = containerSearchCriteria;
         this.containerKeyword = containerKeyword;
+        this.eirType = eirType;
+        this.portCode = portCode;
+        DocumentCheck = documentCheck;
+        this.documentId = documentId;
     }
 
     public Integer getContainerId() {
@@ -95,7 +93,6 @@ public class ContainerBean {
     public void setContainerId(Integer containerId) {
         this.containerId = containerId;
     }
-
 
     public Client getClientId() {
         return clientId;
@@ -367,5 +364,13 @@ public class ContainerBean {
 
     public void setDocumentCheck(String documentCheck) {
         DocumentCheck = documentCheck;
+    }
+
+    public String getPortCode() {
+        return portCode;
+    }
+
+    public void setPortCode(String portCode) {
+        this.portCode = portCode;
     }
 }

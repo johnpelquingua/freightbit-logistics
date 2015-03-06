@@ -53,10 +53,12 @@
                                    style="empty-cells: hide;margin-top: 15px;">
                         <%--Booking Date--%>
                         <s:hidden name="container.eirNumber" value="%{container.eirNumber}"/>
-                        <tr><td><display:column property="containerNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
+                        <tr><td><display:column property="containerNumber" title="Container Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td></tr>
-                        <tr><td><display:column property="containerSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
+                        <tr><td><display:column property="containerSize" title="Container Size <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td></tr>
+                        <tr><td><display:column property="portCode" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td></tr>
                         <tr><td><display:column property="containerStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td></tr>
 

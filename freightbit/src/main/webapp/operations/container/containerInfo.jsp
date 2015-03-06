@@ -41,7 +41,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Container Details</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Container Information</h3>
                 <span class="pull-right">
 
                     <s:url var="editContainerUrl" action="loadEditFormPage">

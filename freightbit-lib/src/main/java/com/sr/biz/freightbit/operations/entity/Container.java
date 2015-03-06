@@ -1,9 +1,5 @@
 package com.sr.biz.freightbit.operations.entity;
 
-/**
- * Created by Clarence C. Victoria on 11/3/2014.
- */
-
 import com.sr.biz.freightbit.core.entity.Client;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -44,11 +40,13 @@ public class Container implements Serializable{
     private String containerStatus;
     private String forkliftOperator;
     private String operationsDept;
+    private String portCode;
 
     public Container() {
     }
 
-    public Container(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String containerStatus, String forkliftOperator, String operationsDept) {
+    public Container(String plateNumber, Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String containerStatus, String forkliftOperator, String operationsDept, String portCode) {
+        this.plateNumber = plateNumber;
         this.containerId = containerId;
         this.clientId = clientId;
         this.eirType = eirType;
@@ -58,7 +56,6 @@ public class Container implements Serializable{
         this.gateOutTime = gateOutTime;
         this.shipping = shipping;
         this.trucking = trucking;
-        this.plateNumber = plateNumber;
         this.vanNumber = vanNumber;
         this.driver = driver;
         this.orderNumber = orderNumber;
@@ -80,6 +77,7 @@ public class Container implements Serializable{
         this.containerStatus = containerStatus;
         this.forkliftOperator = forkliftOperator;
         this.operationsDept = operationsDept;
+        this.portCode = portCode;
     }
 
     @Id
@@ -356,7 +354,7 @@ public class Container implements Serializable{
     }
 
     @Column(name = "eirType")
-         public String getEirType() {
+    public String getEirType() {
         return eirType;
     }
 
@@ -364,4 +362,12 @@ public class Container implements Serializable{
         this.eirType = eirType;
     }
 
+    @Column(name = "portCode")
+    public String getPortCode() {
+        return portCode;
+    }
+
+    public void setPortCode(String portCode) {
+        this.portCode = portCode;
+    }
 }

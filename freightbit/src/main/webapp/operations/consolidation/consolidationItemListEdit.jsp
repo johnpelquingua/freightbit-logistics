@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Clarence C. Victoria
-  Date: 11/4/2014
-  Time: 11:12 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -108,7 +101,7 @@
 
             <div class="panel-body">
                 <div class="table-responsive">
-                    <display:table id="orderItemsUnderContainer" name="orderItemsBeansUnderContainer" requestURI="viewConsolidationItemList.action"
+                    <display:table id="orderItemsInsideContainer" name="orderItemsInsideContainer" requestURI="viewConsolidationItemList.action"
                                    class="containerItems table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <td><display:column property="nameSize" title="Item Name <i class='fa fa-sort' />" class="tb-font-black"

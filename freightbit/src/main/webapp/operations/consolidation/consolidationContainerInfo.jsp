@@ -13,9 +13,9 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Customer</li>
-            <li class="active"><a href="<s:url action='viewContainerList' />"> Container List </a>
+            <li class="active"><a href="<s:url action='viewConsolidationContainerList' />"> Container List </a>
             </li>
-            <li class="active"> EIR Form Information</li>
+            <li class="active"> Container Information</li>
         </ol>
 
     </div>
@@ -43,7 +43,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> EIR Form</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Container Information</h3>
                 <span class="pull-right">
                     <s:url var="editContainerUrl" action="loadEditFormPage">
                         <s:param name="containerIdParam"
@@ -57,7 +57,7 @@
                         <s:if test="#attr.container.containerStatus == 'OPEN' || #attr.container.containerStatus == 'CONSOLIDATED' || #attr.container.containerStatus == 'FINAL'">
                         <s:a href="%{editContainerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
                              title="Edit this EIR Form">
-                            <i class="fa fa-pencil"></i> Edit EIR Form
+                            <i class="fa fa-pencil"></i> Edit Container
                         </s:a>
                         </s:if>
                     </sec:authorize>
@@ -77,7 +77,7 @@
 
                                     <div class="col-lg-12">
 
-                                        <table class="table table-user-information profile" style="margin-top: 10px;">
+                                        <table class="table table-user-information profile" style="margin-top: 0px; margin-bottom: 0px;">
                                             <tbody>
                                             <tr>
                                                 <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Container Number:</td>
@@ -162,7 +162,7 @@
             </div>
             <div class="panel-footer">
                 <span class="pull-right">
-                    <a href="viewConsolidationContainerList" class="btn btn-default" id ="groups-btn">Back to Consolidation Container Lists</a>
+                    <a href="viewConsolidationContainerList" class="btn btn-danger" id ="groups-btn"><i class="fa fa-chevron-left"></i> Back to Consolidation Container Lists</a>
                 </span>
             </div>
         </div>

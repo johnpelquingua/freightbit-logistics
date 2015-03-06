@@ -68,6 +68,8 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="shipping" title="Shipping Line <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+                                <td><display:column property="portCode" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
                                 <td><display:column property="gateInTime" title="Gate In <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="gateOutTime" title="Gate Out <i class='fa fa-sort' />" class="tb-font-black"
@@ -194,12 +196,11 @@
 
 <script>
     function generateReport(documentId,documentName) {
-        /*alert(documentId);
-        alert(documentName);*/
         /*var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Booking Request Form";
         }*/
+
         if(documentName == 'EIR FORM 1'){
             var win = window.open('documentations/generateEIR1RequestReport?documentIdParam=' + documentId, 'eir1', 'width=910,height=800');
             win.onload = function () {
@@ -214,8 +215,8 @@
     }
 
     $(document).ready(function(){
-        initTimestampAbbrev('containerTable', 4);
-        initTimestampAbbrev('containerTable', 5);
+        /*initTimestampAbbrev('containerTable', 4);
+        initTimestampAbbrev('containerTable', 5);*/
         actionConfirmation($('.deleteContainerIcon'), $('.confirmContainerDeleteModalBtn'), $('#deleteContainerModal'));
     });
 </script>

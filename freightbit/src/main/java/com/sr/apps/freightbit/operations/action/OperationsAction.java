@@ -3577,7 +3577,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             if(containerEntity.getEirType().equals("EIR FORM 1")){
                 Documents documentEIR1 = documentsService.findEIRAndRefId("EQUIPMENT INTERCHANGE RECEIPT 1",containerIdParam,"CONTAINERS");
                 documentsService.deleteDocument(documentEIR1);
-            }else{
+            }else if(containerEntity.getEirType().equals("EIR FORM 2")){
                 Documents documentEIR2 = documentsService.findEIRAndRefId("EQUIPMENT INTERCHANGE RECEIPT 2",containerIdParam,"CONTAINERS");
                 documentsService.deleteDocument(documentEIR2);
             }
@@ -3657,6 +3657,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setModifiedBy(entity.getModifiedBy());
+        formBean.setPortCode(entity.getPortCode());
 
         // FOR EIR 1 and 2 DOCUMENTS
         if(!entity.getEirType().equals("NONE")){
@@ -3718,6 +3719,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setModifiedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimestamp(new Date());
         entity.setModifiedTimestamp(new Date());
+        entity.setPortCode(formBean.getPortCode());
 
         if ("CONSOLIDATED".equals(formBean.getContainerStatus())) {
             entity.setContainerStatus("CONSOLIDATED");
@@ -3734,6 +3736,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String editContainer() throws Exception {
         validateOnSubmit(container);
         if (hasActionErrors()) {
+            return INPUT;
+        }
+
+        List <OrderItems> orderItemListing = operationsService.findAllOrderItemsWithContainer(container.getContainerId());
+
+        if(orderItemListing.size() > 0){
+            clearErrorsAndMessages();
+            addActionMessage("Container cannot be edited. One or more booking is associated with it");
             return INPUT;
         }
 

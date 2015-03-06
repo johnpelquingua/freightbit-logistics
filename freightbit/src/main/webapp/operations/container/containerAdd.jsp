@@ -78,6 +78,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Port Code: <span class="asterisk_red"></span></label>
+                            <div class="col-lg-9" >
+                                <s:select cssClass="containerInput form-control"
+                                          id="container_portCode" name="container.portCode" list="portsList" listKey="key"
+                                          listValue="value" required="true"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
                                 <s:textfield required="true"
