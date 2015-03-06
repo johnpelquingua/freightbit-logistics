@@ -1805,7 +1805,9 @@
 
                     <label>Voyage Number<span class="asterisk_red"></span></label>
 
-                    <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
+                    <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber" required="true"
+                                 maxlength="10" title="Voyage Number will only accept alphanumeric input only e.g. a-z, A-Z, 0-9"
+                                 pattern="[a-zA-Z0-9]+"/>
 
                     <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
 
