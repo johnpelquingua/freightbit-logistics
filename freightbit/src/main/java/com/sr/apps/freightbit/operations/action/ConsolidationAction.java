@@ -11,6 +11,8 @@ import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.documentation.entity.Documents;
+import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.operations.entity.Container;
 import com.sr.biz.freightbit.operations.service.ContainerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
@@ -42,6 +44,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	private Integer nameSizeParam;
 	private Integer vendorId;
     private String containerStatusParam;
+    private String containerPortCodeParam;
 
 	private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItemsBeans = new ArrayList<OrderItemsBean>();
@@ -63,6 +66,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	private CommonUtils commonUtils;
 	private ContainerService containerService;
     private VendorService vendorService;
+    private DocumentsService documentsService;
 
     private List<Parameters> containerSearchList = new ArrayList<Parameters>();
 
@@ -74,8 +78,8 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
     }
 
     public String viewConsolidationContainerInfo() {
-        Container containerEntity = new Container();
-        containerEntity = containerService.findContainerById(containerIdParam);
+
+        Container containerEntity = containerService.findContainerById(containerIdParam);
         container = transformContainerToFormBean(containerEntity);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -83,8 +87,8 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         sessionAttributes.put("containerIdParam", containerIdParam);
         sessionAttributes.put("containerStatusParam", containerStatusParam);
 
-        List<OrderItems> orderItemsUnderContainer = new ArrayList<OrderItems>();
-        orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
+        /*List<OrderItems> orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));*/
+        List<OrderItems> orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId(containerIdParam);
 
         for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
             orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
@@ -109,15 +113,23 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
 	public String updateStatusOfContainers() {
 
-		Map sessionAttributes = ActionContext.getContext().getSession();
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER ID " + containerIdParam);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER SIZE " + containerSizeParam);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER STATUS " + containerStatusParam);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER PORT CODE " + containerPortCodeParam);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>ORDER ITEM ID " + orderItemIdParam);
 
-		Integer containerId = (Integer) sessionAttributes.get("containerIdParam");
+		/*Map sessionAttributes = ActionContext.getContext().getSession();*/
+
+		Integer containerId = containerIdParam;
 
         List<Integer> itemId = new ArrayList<Integer>();
+        Container containerEntity = new Container();
 
         if (check == null) {
 
             return INPUT;
+
         } else {
 
             for (String everyItemId : check) {
@@ -125,7 +137,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
             }
 
             //shows container id
-            Container containerEntity = containerService.findContainerById(containerId);
+            containerEntity = containerService.findContainerById(containerId);
 
             //change status to FULL LOAD
             containerEntity.setContainerStatus("CONSOLIDATED");
@@ -137,21 +149,50 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
                 operationsService.updateOrderItem(updateItem);
             }
 
-            List<Container> containerList = new ArrayList<Container>();
-            containerList = containerService.findAllContainer();
+            /*List<Container> containerList = containerService.findAllContainer();
 
             for (Container containerElem : containerList) {
                 containers.add(transformContainerToFormBean(containerElem));
-            }
+            }*/
         }
 
-        List<OrderItems> orderItems = new ArrayList<OrderItems>();
-        List<OrderItems> orderItemsUnderContainer = new ArrayList<OrderItems>();
+        List<Orders> orders = orderService.findOrdersByLCLAndDestination("LESS CONTAINER LOAD", containerPortCodeParam);
+        List<OrderItems> orderItemsInsideContainerList = orderService.findAllOrderItemsByContainerId(containerIdParam);
 
-        orderItems = orderService.findAllOrderItemLCL();
-        orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
+        if ("CONSOLIDATED".equals(containerEntity.getContainerStatus()) || "FINAL".equals(containerEntity.getContainerStatus())) {
+            for(Orders orderElem : orders){
+                List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
+                for(OrderItems orderItemElem : orderItemList ){
+                    if(orderItemElem.getContainerId() == null || orderItemElem.getContainerId() == 0){
+                        orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    }
+                }
+            }
+            for (OrderItems orderItemsInsideContainerElem : orderItemsInsideContainerList) {
+                orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsInsideContainerElem));
+            }
 
-        if ("CONSOLIDATED".equals(sessionAttributes.get("containerStatusParam"))) {
+            return "CONSOLIDATED";
+
+        } else {
+            for(Orders orderElem : orders){
+                List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
+                for(OrderItems orderItemElem : orderItemList ){
+                    if(orderItemElem.getContainerId() == null || orderItemElem.getContainerId() == 0){
+                        orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    }
+                }
+            }
+            return SUCCESS;
+        }
+
+         /*orderItems = new ArrayList<OrderItems>();
+         orderItemsUnderContainer = new ArrayList<OrderItems>();*/
+
+        /*List<OrderItems> orderItems = orderService.findAllOrderItemLCL();
+        List<OrderItems> orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));*/
+
+        /*if ("CONSOLIDATED".equals(sessionAttributes.get("containerStatusParam"))) {
             for (OrderItems orderItemElem : orderItems) {
                 orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
             }
@@ -166,7 +207,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
                 orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
             }
             return SUCCESS;
-        }
+        }*/
 	}
 
     public String updateStatusOfContainersError() {
@@ -203,18 +244,50 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
     }
 
     public String removeItemOnContainer() {
-        OrderItems orderItemEntity = new OrderItems();
-        orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemIdParam);
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER ID " + containerIdParam);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER SIZE " + containerSizeParam);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER STATUS " + containerStatusParam);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER PORT CODE " + containerPortCodeParam);
+
+        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemIdParam);
         orderItemEntity.setContainerId(null);
         operationsService.updateOrderItem(orderItemEntity);
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
+        /*Map sessionAttributes = ActionContext.getContext().getSession();*/
 
-        List<OrderItems> orderItems = new ArrayList<OrderItems>();
-        List<OrderItems> orderItemsUnderContainer = new ArrayList<OrderItems>();
+        List<Orders> orders = orderService.findOrdersByLCLAndDestination("LESS CONTAINER LOAD", containerPortCodeParam);
+        List<OrderItems> orderItemsInsideContainerList = orderService.findAllOrderItemsByContainerId(containerIdParam);
 
-        orderItems = orderService.findAllOrderItemLCL();
-        orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
+        if ("CONSOLIDATED".equals(containerStatusParam) || "FINAL".equals(containerStatusParam) ) {
+            for(Orders orderElem : orders){
+                List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
+                for(OrderItems orderItemElem : orderItemList ){
+                    if(orderItemElem.getContainerId() == null || orderItemElem.getContainerId() == 0){
+                        orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    }
+                }
+            }
+            for (OrderItems orderItemsInsideContainerElem : orderItemsInsideContainerList) {
+                orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsInsideContainerElem));
+            }
+
+            return "CONSOLIDATED";
+
+        } else {
+            for(Orders orderElem : orders){
+                List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
+                for(OrderItems orderItemElem : orderItemList ){
+                    if(orderItemElem.getContainerId() == null || orderItemElem.getContainerId() == 0){
+                        orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    }
+                }
+            }
+            return SUCCESS;
+        }
+
+        /*List<OrderItems> orderItems = orderService.findAllOrderItemLCL();
+        List<OrderItems> orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
 
         if ("CONSOLIDATED".equals(sessionAttributes.get("containerStatusParam"))) {
             for (OrderItems orderItemElem : orderItems) {
@@ -231,8 +304,8 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
                 orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
             }
             return SUCCESS;
-        }
-//        return SUCCESS;
+        }*/
+
     }
 
     public String getColumnFilter() {
@@ -254,40 +327,38 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         sessionAttributes.put("containerSizeParam", containerSizeParam);
         sessionAttributes.put("containerIdParam", containerIdParam);
         sessionAttributes.put("containerStatusParam", containerStatusParam);
+        sessionAttributes.put("containerPortCodeParam", containerPortCodeParam);
 
-        /*List<OrderItems> orderItems = orderService.findAllOrderItemLCL();*/
-        List<Orders> orders = orderService.findOrdersByCriteria("serviceRequirement","LESS CONTAINER LOAD",getClientId());
+        /*List<Orders> orders = orderService.findOrdersByCriteria("serviceRequirement","LESS CONTAINER LOAD",getClientId());*/
+        List<Orders> orders = orderService.findOrdersByLCLAndDestination("LESS CONTAINER LOAD", containerPortCodeParam);
         List<OrderItems> orderItemsInsideContainerList = orderService.findAllOrderItemsByContainerId(containerIdParam);
 
-        if ("CONSOLIDATED".equals(sessionAttributes.get("containerStatusParam"))) {
-            /*for (OrderItems orderItemElem : orderItems) {
-                orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
-            }*/
+        if ("CONSOLIDATED".equals(containerStatusParam) || "FINAL".equals(containerStatusParam)) {
             for(Orders orderElem : orders){
                 List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
                 for(OrderItems orderItemElem : orderItemList ){
-                    orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    if(orderItemElem.getContainerId() == null || orderItemElem.getContainerId() == 0){
+                        orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    }
                 }
             }
-
             for (OrderItems orderItemsInsideContainerElem : orderItemsInsideContainerList) {
                 orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsInsideContainerElem));
             }
 
             return "CONSOLIDATED";
+
         } else {
-            /*for (OrderItems orderItemElem : orderItems) {
-                orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
-            }*/
             for(Orders orderElem : orders){
                 List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
                 for(OrderItems orderItemElem : orderItemList ){
-                    orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    if(orderItemElem.getContainerId() == null || orderItemElem.getContainerId() == 0){
+                        orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    }
                 }
             }
             return SUCCESS;
         }
-
     }
 
     public String loadConsolidationContainerSearch() {
@@ -383,6 +454,25 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
             formBean.setContainerSize(null);
             formBean.setContainerStatus(null);
         }
+
+        // FOR EIR 1 and 2 DOCUMENTS
+        if(!entity.getEirType().equals("NONE")){
+            String docName;
+
+            if(entity.getEirType().equals("EIR FORM 1")){
+                docName = "EQUIPMENT INTERCHANGE RECEIPT 1";
+            }else{
+                docName = "EQUIPMENT INTERCHANGE RECEIPT 2";
+            }
+
+            Documents documentElem = documentsService.findEIRAndRefId(docName,entity.getContainerId(),"CONTAINERS");
+
+            if(documentElem != null){
+                formBean.setDocumentCheck("AVAILABLE");
+                formBean.setDocumentId(documentElem.getDocumentId());
+            }
+        }
+
         return formBean;
     }
 
@@ -630,5 +720,21 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
     public void setOrderItemsInsideContainer(List<OrderItemsBean> orderItemsInsideContainer) {
         this.orderItemsInsideContainer = orderItemsInsideContainer;
+    }
+
+    public DocumentsService getDocumentsService() {
+        return documentsService;
+    }
+
+    public void setDocumentsService(DocumentsService documentsService) {
+        this.documentsService = documentsService;
+    }
+
+    public String getContainerPortCodeParam() {
+        return containerPortCodeParam;
+    }
+
+    public void setContainerPortCodeParam(String containerPortCodeParam) {
+        this.containerPortCodeParam = containerPortCodeParam;
     }
 }

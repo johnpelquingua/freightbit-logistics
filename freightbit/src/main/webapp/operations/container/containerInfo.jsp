@@ -57,7 +57,7 @@
                         </s:a>
 
                         <s:if test="#attr.container.containerStatus != 'FROM SHIPMENT MONITORING'">
-                            <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${container.documentId},'${container.eirType}')"> <i class="fa fa-print"></i> Print Booking</a>
+                            <a class="btn btn-info" title="Print Equipment Interchange Receipt" href="#" onclick="generateReport(${container.documentId},'${container.eirType}')"> <i class="fa fa-print"></i> Print Equipment Interchange Receipt</a>
                         </s:if>
 
                     <%--</sec:authorize>--%>

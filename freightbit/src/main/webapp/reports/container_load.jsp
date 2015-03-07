@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
@@ -162,7 +163,7 @@
             <!--FTL STATISTICS END -->
             <!-- END OF EDIT -->
         </div>
-        <%--<script src="./jquery.js"></script>
+        &lt;%&ndash;<script src="./jquery.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script>
 
@@ -219,4 +220,5 @@
                 var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
             }
-        </script>--%>
+        </script>&ndash;%&gt;
+--%>

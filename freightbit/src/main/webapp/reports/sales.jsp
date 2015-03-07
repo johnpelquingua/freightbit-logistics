@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
@@ -197,7 +198,7 @@
             });
 
         </script>
-        <%--<script type="text/javascript">
+        &lt;%&ndash;<script type="text/javascript">
             google.load("visualization", "1", {packages: ["corechart"]});
             google.setOnLoadCallback(drawChart);
             function drawChart() {
@@ -217,4 +218,4 @@
                 chart.draw(data, options);
             }
         </script>
---%>
+&ndash;%&gt;--%>

@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
@@ -9,7 +10,7 @@
     <script src="./jquery.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY5btBzW_s-TajCW-arvjYbUJzVJTmen8&sensor=false">
     </script>
-    <%--<script>
+    &lt;%&ndash;<script>
         function initialize() {
             var mapProp = {
                 center: new google.maps.LatLng(14.5833, 120.9667),
@@ -36,14 +37,14 @@
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
-    </script>--%>
+    </script>&ndash;%&gt;
 
     <script>
 
     </script>
 </head>
 
-<%--
+&lt;%&ndash;
 <div id="googleMap" style="width:1366px; height: 500px;"></div>
 <br>
 
@@ -51,7 +52,8 @@
 
     <h1><a href="#" id="minimize">minimize</a></h1>
 </div>
+&ndash;%&gt;
+
+
+
 --%>
-
-
-

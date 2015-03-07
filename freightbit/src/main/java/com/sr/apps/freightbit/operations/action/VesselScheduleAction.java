@@ -76,7 +76,6 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
             entity.setCreatedTimestamp(new Date());
             entity.setModifiedBy(commonUtils.getUserNameFromSession());
             entity.setModifiedTimestamp(new Date());
-        System.out.println("<-------------------------------------------" + entity.getVoyageNumber());
             vesselSchedulesService.addVesselSchedule(entity);
         } catch (Exception e) {
             addFieldError("vesselSchedule.voyageNumber", "Voyage Number already exists");

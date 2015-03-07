@@ -224,6 +224,22 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         return orders;
     }
 
+    @Override
+    public List<Orders> findOrdersByLCLAndDestination(String serviceRequirement, String destinationPort) {
+        Log.debug("finding Orders instance by Order Number");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = :serviceRequirement and o.destinationPort = :destinationPort order by createdTimestamp desc");
+            query.setParameter("serviceRequirement", serviceRequirement);
+            query.setParameter("destinationPort", destinationPort);
+            List<Orders> results = (List<Orders>) query.list();
+            Log.debug("find by Order successful, result size: " + results.size());
+            return results;
+        }catch(RuntimeException re){
+            Log.error("find by order failed", re);
+            throw re;
+        }
+    }
+
     /**
      * @param clientId
      * @param companyCode 3-character companyCode (eg., NTY, MTY)

@@ -525,8 +525,8 @@ function seaFreightLclComputation(tableClass, wellTotalWeight, wellTotalVolume){
     var lclCheckBox = $('.'+tableClass+' tbody tr td input[type="checkbox"]');
 
     lclCheckBox.change(function(){
-        var weight = parseFloat($(this).closest('tr').find('td').eq(10).text()),
-            volume = parseFloat($(this).closest('tr').find('td').eq(11).text()),
+        var weight = parseFloat($(this).closest('tr').find('td').eq(9).text()),
+            volume = parseFloat($(this).closest('tr').find('td').eq(10).text()),
             wellContentWt = $('#'+wellTotalWeight),
             wellContentVol = $('#'+wellTotalVolume);
 
@@ -585,30 +585,30 @@ function firstRecommendation(weight, volume){
     }
 
     if(hc40 != 0){
-        recommendation = '<p>'+hc40+' - 40 FOOTER HC CONTAINERS</p>';
+        recommendation = '<p>'+hc40+' - 40 FOOTER HC CONTAINER(S)</p>';
     }
 
     if(std40 != 0){
         if(recommendation == 'NONE'){
-            recommendation = '<p>'+std40+' - 40 FOOTER STD CONTAINERS</p>';
+            recommendation = '<p>'+std40+' - 40 FOOTER STD CONTAINER(S)</p>';
         }else {
-            recommendation = recommendation + '<p>'+std40+' - 40 FOOTER STD CONTAINERS</p>';
+            recommendation = recommendation + '<p>'+std40+' - 40 FOOTER STD CONTAINER(S)</p>';
         }
     }
 
     if(foot20 != 0){
         if(recommendation == 'NONE'){
-            recommendation = '<p>'+foot20+' - 20 FOOTER CONTAINERS</p>';
+            recommendation = '<p>'+foot20+' - 20 FOOTER CONTAINER(S)</p>';
         }else {
-            recommendation = recommendation + '<p>'+foot20+' - 20 FOOTER CONTAINERS</p>';
+            recommendation = recommendation + '<p>'+foot20+' - 20 FOOTER CONTAINER(S)</p>';
         }
     }
 
     if(foot10 != 0){
         if(recommendation == 'NONE'){
-            recommendation = '<p>'+foot10+' - 10 FOOTER CONTAINERS</p>';
+            recommendation = '<p>'+foot10+' - 10 FOOTER CONTAINER(S)</p>';
         }else {
-            recommendation = recommendation + '<p>'+foot10+' - 10 FOOTER CONTAINERS</p>';
+            recommendation = recommendation + '<p>'+foot10+' - 10 FOOTER CONTAINER(S)</p>';
         }
     }
 

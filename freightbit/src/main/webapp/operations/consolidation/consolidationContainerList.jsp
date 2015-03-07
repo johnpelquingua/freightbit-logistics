@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Clarence C. Victoria
-  Date: 11/4/2014
-  Time: 11:12 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
@@ -51,7 +44,6 @@
                                    requestURI="viewConsolidationContainerList.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="empty-cells: hide;margin-top: 15px;">
-                        <%--Booking Date--%>
                         <s:hidden name="container.eirNumber" value="%{container.eirNumber}"/>
                         <tr><td><display:column property="containerNumber" title="Container Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td></tr>
@@ -63,11 +55,12 @@
                                             style="text-align: center;"> </display:column></td></tr>
 
                         <tr></tr><td><display:column title="Action">
-                            <s:if test="#attr.container.containerStatus == 'OPEN' || #attr.container.containerStatus == 'CONSOLIDATED'">
+                            <s:if test="#attr.container.containerStatus == 'OPEN' || #attr.container.containerStatus == 'CONSOLIDATED' || #attr.container.containerStatus == 'FINAL'">
                             <s:url var="viewConsolidationItemListUrl" action="viewConsolidationItemList">
                                 <s:param name="containerIdParam" value="%{#attr.container.containerId}"></s:param>
                                 <s:param name="containerSizeParam" value="%{#attr.container.containerSize}"></s:param>
                                 <s:param name="containerStatusParam" value="%{#attr.container.containerStatus}"></s:param>
+                                <s:param name="containerPortCodeParam" value="%{#attr.container.portCode}"></s:param>
                             </s:url>
                             <s:a href="%{viewConsolidationItemListUrl}" title="Consolidate Items" rel="tooltip"><i class="fa fa-cubes"></i></s:a>
                             </s:if>
@@ -106,15 +99,11 @@
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body" style="padding: 0px;">
                 <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>
@@ -147,6 +136,7 @@
         });
 
     }
+
     var rows = document.getElementsByTagName('tr');
     for (var i=0;i<rows.length;i++) {
         var t = rows[i].innerText || rows[i].textContent;

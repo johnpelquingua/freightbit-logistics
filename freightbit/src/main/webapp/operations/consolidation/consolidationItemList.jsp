@@ -10,8 +10,9 @@
             </span>
         </legend>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
-            <li class="active"> Available Item List </li>
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='viewConsolidationContainerList' />"> Consolidation Container List </a></li>
+            <li class="active"> Container Information</li>
         </ol>
 
     </div>
@@ -38,6 +39,11 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
 
+            <%--<s:textfield value="%{containerIdParam}" />
+            <s:textfield value="%{containerSizeParam}" />
+            <s:textfield value="%{containerStatusParam}" />
+            <s:textfield value="%{containerPortCodeParam}" />--%>
+
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-list"></i> Available Item List</h3>
             </div>
@@ -47,6 +53,11 @@
                 <div class="table-responsive">
 
                     <s:form action="updateStatusOfContainers" theme="bootstrap">
+
+                        <s:hidden name="containerIdParam" value="%{containerIdParam}"></s:hidden>
+                        <s:hidden name="containerSizeParam" value="%{containerSizeParam}"></s:hidden>
+                        <s:hidden name="containerStatusParam" value="%{containerStatusParam}"></s:hidden>
+                        <s:hidden name="containerPortCodeParam" value="%{containerPortCodeParam}"></s:hidden>
 
                         <div style="box-shadow: 3px 3px 3px #888888; position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 80%; margin-top: 25.5em; margin-left: -1.4em;  z-index: 100;">
                             Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
@@ -92,6 +103,53 @@
             </div>
         </div>
         </s:form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> Container Items</h3>
+            </div>
+
+            <%--<s:textfield value="%{containerIdParam}" />
+            <s:textfield value="%{containerSizeParam}" />
+            <s:textfield value="%{containerStatusParam}" />
+            <s:textfield value="%{containerPortCodeParam}" />--%>
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <display:table id="orderItemsInsideContainer" name="orderItemsInsideContainer" requestURI="viewConsolidationItemList.action"
+                                   class="containerItems table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   style="margin-top: 15px;">
+                        <td><display:column property="nameSize" title="Item Name <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="orderNum" title="Order Number <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="weight" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="volume" title="Volume (cbm) <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="port" title="Port <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column title="Action">
+                            <s:url var="removeItemOnContainerUrl" action="removeItemOnContainer">
+                                <s:param name="containerIdParam" value="%{containerIdParam}"></s:param>
+                                <s:param name="containerSizeParam" value="%{containerSizeParam}"></s:param>
+                                <s:param name="containerStatusParam" value="%{containerStatusParam}"></s:param>
+                                <s:param name="containerPortCodeParam" value="%{containerPortCodeParam}"></s:param>
+                                <s:param name="orderItemIdParam" value="%{#attr.orderItemsInsideContainer.orderItemId}"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{removeItemOnContainerUrl}" rel="tooltip" title ="Delete Container Item(s)" onclick="return confirm('Do you really want to delete?');">
+                                <i class="fa fa-times"></i> Remove
+                            </s:a>
+                        </display:column></td>
+                    </display:table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

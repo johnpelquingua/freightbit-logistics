@@ -35,6 +35,8 @@ public interface OrderDao {
 
     public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId);
 
+    public List<Orders> findOrdersByLCLAndDestination(String serviceRequirement, String destinationPort);
+
     public Integer findNextBookingNo(Integer clientId, String companyCode);
 
     List <Orders> findDuplicateOrderByOrderCode(String orderNumber, Integer orderId);

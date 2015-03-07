@@ -15,7 +15,7 @@
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> <a href="<s:url action='../operations/viewContainerList' />"> Container Management </a></li>
-            <li class="active"> Container List </li>
+            <li class="active"> Add Container </li>
         </ol>
     </div>
 </div>

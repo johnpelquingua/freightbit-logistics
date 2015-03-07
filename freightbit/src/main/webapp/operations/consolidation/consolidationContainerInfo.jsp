@@ -12,9 +12,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Customer</li>
-            <li class="active"><a href="<s:url action='viewConsolidationContainerList' />"> Container List </a>
-            </li>
+            <li class="active"><a href="<s:url action='viewConsolidationContainerList' />"> Consolidation Container List </a></li>
             <li class="active"> Container Information</li>
         </ol>
 
@@ -29,6 +27,7 @@
         </div>
     </div>
 </s:if>
+
 <s:if test="hasActionErrors()">
    <div class="col-lg-12">
 	   <div class="alert alert-errors">
@@ -61,7 +60,7 @@
                         </s:a>
                         </s:if>
                     </sec:authorize>
-                    <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${container.documentId},'${container.eirType}')"> <i class="fa fa-print"></i> Print Booking</a>
+                    <a class="btn btn-info" title="Print Equipment Interchange Receipt" href="#" onclick="generateReport(${container.documentId},'${container.eirType}')"> <i class="fa fa-print"></i> Print Equipment Interchange Receipt</a>
                 </span>
             </div>
 
@@ -117,6 +116,7 @@
                                             </tr>
                                             </tbody>
                                             <s:set name="containerId" value="%{container.containerId}" scope="session"/>
+                                            <%--<s:textfield value="%{container.eirType}" />--%>
                                         </table>
 
                                     </div>

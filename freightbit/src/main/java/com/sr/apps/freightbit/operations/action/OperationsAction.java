@@ -77,6 +77,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private String scheduleExists;
     private String originConfirmFlag;
     private String destinationConfirmFlag;
+    private String containerNumberPlaceHolder;
 
     private List<Parameters> truckTypeList = new ArrayList<Parameters>();
     private List<Parameters> containerSearchList = new ArrayList<Parameters>();
@@ -2465,15 +2466,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    /*public String orderConsolidate(){
-
-        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC " + checkLCL);
-
-        dummyMsg = checkLCL;
-
-        return SUCCESS;
-    }*/
-
     public String setLCLBulkSchedule(){
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -2485,6 +2477,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         String str = checkLCL;
 
         ArrayList aList = new ArrayList(Arrays.asList(str.split(",")));
+
+        Container containerEntity = new Container();
 
         for(int i=0; i<aList.size(); i++){
             System.out.println(" ---------------------------> " + aList.get(i));
@@ -2516,10 +2510,35 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 operationsService.updateOrderItem(orderItemElem);
             }
+        }
+
+        // function will add a consolidated new placeholder container for the order items selected begin
+
+        Vendor vendorEntity = vendorService.findVendorById(vendorIdParam);
+        VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam);
+        // Containers created in planning will have the vendorName and Voyage number combined as placeholder for container Number
+        containerEntity.setContainerNumber(vendorEntity.getVendorName() + " - " + vesselScheduleEntity.getVoyageNumber());
+        containerEntity.setContainerStatus("CONSOLIDATED");
+        containerEntity.setShipping(vendorEntity.getVendorName());
+        containerEntity.setEirType("NONE");
+        containerEntity.setPortCode(vesselScheduleEntity.getDestinationPort());
+        containerService.updateContainer(containerEntity);
+
+        for(int i=0; i<aList.size(); i++){
+
+            Integer OrderIdHolder = Integer.parseInt(aList.get(i).toString());
+
+            List<OrderItems> orderItemEntity = operationsService.findAllOrderItemsByOrderId(OrderIdHolder);
+
+            for(OrderItems orderItemElem : orderItemEntity){
+
+                orderItemElem.setContainerId(containerEntity.getContainerId()); // Container Id will be saved for all order items under order id
+                operationsService.updateOrderItem(orderItemElem);
+            }
 
         }
 
-
+        // function will add a consolidated new placeholder container for the order items selected end
 
         return SUCCESS;
     }
@@ -5428,5 +5447,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setOriginConfirmFlag(String originConfirmFlag) {
         this.originConfirmFlag = originConfirmFlag;
+    }
+
+    public String getContainerNumberPlaceHolder() {
+        return containerNumberPlaceHolder;
+    }
+
+    public void setContainerNumberPlaceHolder(String containerNumberPlaceHolder) {
+        this.containerNumberPlaceHolder = containerNumberPlaceHolder;
     }
 }
