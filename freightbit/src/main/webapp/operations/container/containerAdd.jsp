@@ -63,28 +63,28 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Shipping Line: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Voyage - Vendor - Destination: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
                                 <s:select cssClass="containerInput form-control"
                                           id="container.shipping"
                                           name="container.shipping"
-                                          list="vendorShippingList"
-                                          listKey="vendorName"
-                                          listValue="vendorName"
+                                          list="vesselScheduleList"
+                                          listKey="voyageNumber"
+                                          listValue="voyageVendorDestination"
                                           emptyOption="true"
                                           required="true"
                                         />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <%--<div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Port Code: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
                                 <s:select cssClass="containerInput form-control"
                                           id="container_portCode" name="container.portCode" list="portsList" listKey="key"
                                           listValue="value" required="true"/>
                             </div>
-                        </div>
+                        </div>--%>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>

@@ -91,6 +91,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
 
         for (VesselSchedules vesselScheduleElem : vesselSchedulesEntityList) {
             vesselSchedules.add(transformToFormBean(vesselScheduleElem));
+
         }
         clearErrorsAndMessages();
         addActionMessage("Success! Vessel Schedule has been added.");

@@ -121,6 +121,11 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
+    public Documents findManifestAndTableAndRefId(String documentName, String referenceTable, Integer referenceId){
+        return documentsDao.findManifestAndTableAndRefId(documentName, referenceTable, referenceId);
+    }
+
+    @Override
     public List<Documents> findDocumentNameAndId(String documentName, Integer referenceId){
         return documentsDao.findDocumentNameAndId(documentName, referenceId);
     }

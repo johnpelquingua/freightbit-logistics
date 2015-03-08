@@ -78,6 +78,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private ProformaBillOfLadingReportService proformaBillOfLadingReportService;
     private EquipmentInterchangeReceipt1ReportService equipmentInterchangeReceipt1ReportService;
     private EquipmentInterchangeReceipt2ReportService equipmentInterchangeReceipt2ReportService;
+    private ConsolidationManifestReportService consolidationManifestReportService;
     private CustomerService customerService;
     private OrderService orderService;
     private ClientService clientService;
@@ -876,6 +877,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         /*ARCHIVE DOCUMENTS TABLE VIEW*/
         for (Documents documentElem : archiveEntityList) {
             archiveDocuments.add(transformDocumentsToFormBean(documentElem));
+
         }
 
         return SUCCESS;
@@ -2968,6 +2970,41 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     }
 
+    // Equipment Consolidation Manifest
+    public String generateConsolidationManifestReport(){
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        String containerId = (documentEntity.getReferenceId()).toString();
+
+        Map<String, String> params = new HashMap();
+        params.put("documentId", documentIdParam.toString());
+        params.put("containerId", containerId);
+
+        ByteArrayOutputStream byteArray = null;
+        BufferedOutputStream responseOut = null;
+
+        try{
+            // Create an output filename
+            final File outputFile = new File("Consolidation Manifest.pdf");
+            // Generate the report
+            MasterReport report = consolidationManifestReportService.generateReport(params);
+
+            HttpServletResponse response = ServletActionContext.getResponse();
+            responseOut = new BufferedOutputStream(response.getOutputStream());
+            byteArray = new ByteArrayOutputStream();
+
+            boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+            byteArray.writeTo(responseOut);
+
+            byteArray.close();
+            responseOut.close();
+
+        }catch(Exception re){
+            re.printStackTrace();
+        }
+        return null;
+    }
+
     public OrderBean transformOrdersToFormBean(Orders entity) {
         OrderBean formBean = new OrderBean();
         formBean.setOrderId(entity.getOrderId());
@@ -3750,5 +3787,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setFinalInboundTrackingNumber(String finalInboundTrackingNumber) {
         this.finalInboundTrackingNumber = finalInboundTrackingNumber;
+    }
+
+    public void setConsolidationManifestReportService(ConsolidationManifestReportService consolidationManifestReportService) {
+        this.consolidationManifestReportService = consolidationManifestReportService;
     }
 }

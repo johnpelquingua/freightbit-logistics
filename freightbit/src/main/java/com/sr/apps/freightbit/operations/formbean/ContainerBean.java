@@ -43,12 +43,14 @@ public class ContainerBean {
     // for documents link on container list view
     private String DocumentCheck;
     private Integer documentId;
+    private String documentManifestCheck;
+    private Integer documentManifestId;
 
     public ContainerBean() {
     }
 
-    public ContainerBean(String orderNumber, Integer containerId, Client clientId, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String containerStatus, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String forkliftOperator, String operationsDept, String containerSearchCriteria, String containerKeyword, String eirType, String portCode, String documentCheck, Integer documentId) {
-        this.orderNumber = orderNumber;
+    public ContainerBean(String remarks, Integer containerId, Client clientId, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String containerStatus, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String forkliftOperator, String operationsDept, String containerSearchCriteria, String containerKeyword, String eirType, String portCode, String documentCheck, Integer documentId, String documentManifestCheck, Integer documentManifestId) {
+        this.remarks = remarks;
         this.containerId = containerId;
         this.clientId = clientId;
         this.eirNumber = eirNumber;
@@ -60,7 +62,7 @@ public class ContainerBean {
         this.plateNumber = plateNumber;
         this.vanNumber = vanNumber;
         this.driver = driver;
-        this.remarks = remarks;
+        this.orderNumber = orderNumber;
         this.vanTo = vanTo;
         this.vanFrom = vanFrom;
         this.createdBy = createdBy;
@@ -84,6 +86,8 @@ public class ContainerBean {
         this.portCode = portCode;
         DocumentCheck = documentCheck;
         this.documentId = documentId;
+        this.documentManifestCheck = documentManifestCheck;
+        this.documentManifestId = documentManifestId;
     }
 
     public Integer getContainerId() {
@@ -372,5 +376,21 @@ public class ContainerBean {
 
     public void setPortCode(String portCode) {
         this.portCode = portCode;
+    }
+
+    public String getDocumentManifestCheck() {
+        return documentManifestCheck;
+    }
+
+    public void setDocumentManifestCheck(String documentManifestCheck) {
+        this.documentManifestCheck = documentManifestCheck;
+    }
+
+    public Integer getDocumentManifestId() {
+        return documentManifestId;
+    }
+
+    public void setDocumentManifestId(Integer documentManifestId) {
+        this.documentManifestId = documentManifestId;
     }
 }

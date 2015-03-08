@@ -45,6 +45,8 @@ public interface DocumentsService {
 
     public Documents findDocumentAndId(String documentName, Integer referenceId);
 
+    public Documents findManifestAndTableAndRefId(String documentName, String referenceTable, Integer referenceId);
+
     public List<Documents> findDocumentNameAndId(String documentName, Integer referenceId);
 
     public List<Documents> findAllContainerDocuments(Integer referenceId);

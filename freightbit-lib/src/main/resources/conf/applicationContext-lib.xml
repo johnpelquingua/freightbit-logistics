@@ -167,9 +167,11 @@
     <bean id="equipmentInterchangeReceipt1ReportService" class="com.sr.biz.freightbit.documentation.service.impl.EquipmentInterchangeReceipt1ReportServiceImpl"/>
 
     <bean id="equipmentInterchangeReceipt2ReportService" class="com.sr.biz.freightbit.documentation.service.impl.EquipmentInterchangeReceipt2ReportServiceImpl"/>
-    <!--for changing-->
+
     <bean id="proformaBillOfLadingReportService" class="com.sr.biz.freightbit.documentation.service.impl.ProformaBillOfLadingReportServiceImpl"/>
-    <!--for changing-->
+
+    <bean id="consolidationManifestReportService" class="com.sr.biz.freightbit.documentation.service.impl.ConsolidationManifestReportServiceImpl"/>
+
     <bean id="calendarService" class="com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
         <property name="orderDao" ref="orderDao"/>
     </bean>

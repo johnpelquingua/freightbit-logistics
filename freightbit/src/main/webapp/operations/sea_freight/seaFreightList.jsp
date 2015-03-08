@@ -376,7 +376,7 @@
                 <div class="modal-body">
                     <div id="consolidatedModalDiv"> <%--Area where input fields will appear--%> </div>
                 </div>
-            <div class="modal-footer" style="margin-top: 35px;" >
+            <div class="modal-footer" style="margin-top: 100px;" >
                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div>

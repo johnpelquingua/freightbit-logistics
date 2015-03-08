@@ -778,8 +778,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             containerEntity.setContainerSize(container.getContainerSize());
         }
 
-        containerEntity.setContainerStatus("CONSOLIDATED");
-        containerEntity.setShipping(vendorService.findVendorByVendorCode(orderItemEntity.getVendorSea()).getVendorName());
+        containerEntity.setContainerStatus("FROM SHIPMENT MONITORING");
+        /*containerEntity.setShipping(vendorService.findVendorByVendorCode(orderItemEntity.getVendorSea()).getVendorName());*/
+        containerEntity.setShipping(orderItemEntity.getVesselScheduleId()); // vessel schedule will be saved here
         containerEntity.setEirType("NONE");
         containerEntity.setPortCode(orderEntity.getDestinationPort());
         containerService.updateContainer(containerEntity);

@@ -104,6 +104,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 //    private List<VesselScheduleBean> currentVesselSchedules = new ArrayList<VesselScheduleBean>();
     private List<ContainerBean> containers = new ArrayList<ContainerBean>();
     private List<DocumentsBean> documents = new ArrayList<DocumentsBean>();
+    private List<VesselScheduleBean> vesselScheduleList = new ArrayList<VesselScheduleBean>();
 
     private List<Vendor> vendorShippingList = new ArrayList<Vendor>();
     private List<Vendor> vendorShippingListClass = new ArrayList<Vendor>();
@@ -2519,7 +2520,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // Containers created in planning will have the vendorName and Voyage number combined as placeholder for container Number
         containerEntity.setContainerNumber(vendorEntity.getVendorName() + " - " + vesselScheduleEntity.getVoyageNumber());
         containerEntity.setContainerStatus("CONSOLIDATED");
-        containerEntity.setShipping(vendorEntity.getVendorName());
+        containerEntity.setShipping(vesselScheduleEntity.getVoyageNumber());
         containerEntity.setEirType("NONE");
         containerEntity.setPortCode(vesselScheduleEntity.getDestinationPort());
         containerService.updateContainer(containerEntity);
@@ -3549,10 +3550,20 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
 //    -----------------CONSOLIDATION MODULE-------------------------
 
-
-
     public String loadAddFormPage() {
+        filterVesselSchedule();
         return SUCCESS;
+    }
+
+    public VesselScheduleBean transformToVesselSchedule(VesselSchedules entity) {
+        VesselScheduleBean formBean = new VesselScheduleBean();
+
+        formBean.setVesselScheduleId(entity.getVesselScheduleId());
+        formBean.setVoyageNumber(entity.getVoyageNumber());
+        Vendor vendorEntity = vendorService.findVendorByVendorCode(entity.getVendorCode());
+        formBean.setVoyageVendorDestination(entity.getVoyageNumber() + " - " + vendorEntity.getVendorName() + " - " + entity.getDestinationPort() );
+
+        return formBean;
     }
 
     public String loadQRFormPage(){ return SUCCESS; }
@@ -3715,6 +3726,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setGateInTime(formBean.getGateInTime());
         entity.setGateOutTime(formBean.getGateOutTime());
         entity.setShipping(formBean.getShipping());
+        VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(formBean.getShipping());
+        entity.setPortCode(vesselScheduleEntity.getDestinationPort()); // to save the destination port
         entity.setVanNumber(formBean.getVanNumber());
         entity.setVanLocation(formBean.getVanLocation());
         entity.setTrucking(formBean.getTrucking());
@@ -3738,7 +3751,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setModifiedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimestamp(new Date());
         entity.setModifiedTimestamp(new Date());
-        entity.setPortCode(formBean.getPortCode());
 
         if ("CONSOLIDATED".equals(formBean.getContainerStatus())) {
             entity.setContainerStatus("CONSOLIDATED");
@@ -3831,7 +3843,39 @@ public class OperationsAction extends ActionSupport implements Preparable {
         container = transformContainerToFormBean(containerEntity);
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("containerId", container.getContainerId());
+
+        filterVesselSchedule();
+
         return SUCCESS;
+    }
+
+    public void filterVesselSchedule(){
+
+        List <VesselSchedules> vesselSchedules = vesselSchedulesService.findAllVesselSchedules();
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        Date dateWithoutTime = cal.getTime();
+
+        for(VesselSchedules vesselScheduleElem : vesselSchedules){
+            String dateString = vesselScheduleElem.getDepartureDate();
+            SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+            try {
+
+                Date departureDate = formatter.parse(dateString);
+
+                if(dateWithoutTime.before(departureDate) || dateWithoutTime.equals(departureDate) ){
+                    vesselScheduleList.add(transformToVesselSchedule(vesselScheduleElem));
+                }
+
+            }catch(ParseException e){
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public String loadCheckoutFormPage() {
@@ -5455,5 +5499,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setContainerNumberPlaceHolder(String containerNumberPlaceHolder) {
         this.containerNumberPlaceHolder = containerNumberPlaceHolder;
+    }
+
+    public List<VesselScheduleBean> getVesselScheduleList() {
+        return vesselScheduleList;
+    }
+
+    public void setVesselScheduleList(List<VesselScheduleBean> vesselScheduleList) {
+        this.vesselScheduleList = vesselScheduleList;
     }
 }

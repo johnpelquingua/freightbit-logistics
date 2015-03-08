@@ -245,11 +245,6 @@
         <put-attribute name="body" value="/operations/consolidation/consolidationItemListEdit.jsp"/>
     </definition>
 
-    <!--<definition name="operations.consolidationContainerSearch.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Consolidation Container Search"/>
-        <put-attribute name="body" value="/operations/consolidation/consolidationContainerSearch.jsp"/>
-    </definition>-->
-
     <definition name="operations.consolidationContainerInfo.tiles" extends="baseLayout">
         <put-attribute name="title" value="Consolidation Container Info"/>
         <put-attribute name="body" value="/operations/consolidation/consolidationContainerInfo.jsp"/>
@@ -692,10 +687,6 @@
 
     <!-- ORDER module tiles Begin-->
 
-    <!--<definition name="orders.booking-search.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Search Booking"/>
-        <put-attribute name="body" value="/orders/orderSearch.jsp"/>
-    </definition>-->
     <definition name="orders.booking-list.tiles" extends="baseLayout">
         <put-attribute name="title" value="Booking List"/>
         <put-attribute name="body" value="/orders/orderList.jsp"/>

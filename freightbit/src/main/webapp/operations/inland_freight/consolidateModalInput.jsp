@@ -2,15 +2,6 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%--<s:textfield cssClass="consolidateModalTextfield" />--%>
-
-<%--<div class="form-group col-lg-12">
-    <label class="col-lg-3 control-label" style="padding-top:0px; margin-bottom: 10px;">Container Number Placeholder : </label>
-    <div class="col-lg-9" >
-        <s:textfield required="true" cssClass="form-control placeholder_Textfield" id="containerNumber"/>
-    </div>
-</div>--%>
-
 <div class="form-group col-lg-12">
     <div class="consolidateLoadingDiv center-text">
       Pulling up Schedules. Please Wait.<br/>

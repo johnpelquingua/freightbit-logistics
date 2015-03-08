@@ -8,9 +8,12 @@ import com.sr.apps.freightbit.operations.formbean.OperationsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
+import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.operations.entity.Container;
@@ -23,10 +26,7 @@ import com.sr.biz.freightbit.vendor.service.VendorService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ConsolidationAction extends ActionSupport implements Preparable {
 
@@ -67,6 +67,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	private ContainerService containerService;
     private VendorService vendorService;
     private DocumentsService documentsService;
+    private ClientService clientService;
 
     private List<Parameters> containerSearchList = new ArrayList<Parameters>();
 
@@ -172,6 +173,9 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
                 orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsInsideContainerElem));
             }
 
+            Container containerNewEntity = containerService.findContainerById(containerIdParam);
+            container = transformContainerToFormBean(containerEntity);
+
             return "CONSOLIDATED";
 
         } else {
@@ -183,6 +187,10 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
                     }
                 }
             }
+
+            Container containerNewEntity = containerService.findContainerById(containerIdParam);
+            container = transformContainerToFormBean(containerEntity);
+
             return SUCCESS;
         }
 
@@ -243,12 +251,76 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String removeItemOnContainer() {
+    public String createConsolidationReport(){
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER ID " + containerIdParam);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER SIZE " + containerSizeParam);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER STATUS " + containerStatusParam);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>CONTAINER PORT CODE " + containerPortCodeParam);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + containerIdParam );
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + containerSizeParam );
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + containerStatusParam );
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + containerPortCodeParam );
+
+        Documents documentManifest = documentsService.findManifestAndTableAndRefId("CONSOLIDATION MANIFEST","CONTAINERS",containerIdParam);
+
+        if(documentManifest == null){
+
+            // Consolidation Form will be created under pending documents start
+
+            Documents documentEntity = new Documents();
+            Client client = clientService.findClientById(getClientId().toString());
+            documentEntity.setClient(client);
+            documentEntity.setDocumentName(DocumentsConstants.CONSOLIDATION_MANIFEST);
+            documentEntity.setReferenceId(containerIdParam);
+            documentEntity.setReferenceTable("CONTAINERS");
+            documentEntity.setCreatedDate(new Date());
+            documentEntity.setDocumentStatus("FROM CONSOLIDATION");
+            documentEntity.setDocumentProcessed(0);
+            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            documentEntity.setVendorCode("ELC");
+            documentsService.addDocuments(documentEntity);
+
+            // Consolidation Form will be created under pending documents end
+
+        }
+
+        List<Orders> orders = orderService.findOrdersByLCLAndDestination("LESS CONTAINER LOAD", containerPortCodeParam);
+        List<OrderItems> orderItemsInsideContainerList = orderService.findAllOrderItemsByContainerId(containerIdParam);
+
+        if ("CONSOLIDATED".equals(containerStatusParam) || "FINAL".equals(containerStatusParam)) {
+            for(Orders orderElem : orders){
+                List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
+                for(OrderItems orderItemElem : orderItemList ){
+                    if(orderItemElem.getContainerId() == null || orderItemElem.getContainerId() == 0){
+                        orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    }
+                }
+            }
+            for (OrderItems orderItemsInsideContainerElem : orderItemsInsideContainerList) {
+                orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsInsideContainerElem));
+            }
+
+            Container containerEntity = containerService.findContainerById(containerIdParam);
+            container = transformContainerToFormBean(containerEntity);
+
+            return "CONSOLIDATED";
+
+        } else {
+            for(Orders orderElem : orders){
+                List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(orderElem.getOrderId());
+                for(OrderItems orderItemElem : orderItemList ){
+                    if(orderItemElem.getContainerId() == null || orderItemElem.getContainerId() == 0){
+                        orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                    }
+                }
+            }
+
+            Container containerEntity = containerService.findContainerById(containerIdParam);
+            container = transformContainerToFormBean(containerEntity);
+
+            return SUCCESS;
+        }
+
+    }
+
+    public String removeItemOnContainer() {
 
         OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemIdParam);
         orderItemEntity.setContainerId(null);
@@ -346,6 +418,9 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
                 orderItemsInsideContainer.add(transformToOrderItemFormBean(orderItemsInsideContainerElem));
             }
 
+            Container containerEntity = containerService.findContainerById(containerIdParam);
+            container = transformContainerToFormBean(containerEntity);
+
             return "CONSOLIDATED";
 
         } else {
@@ -357,6 +432,10 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
                     }
                 }
             }
+
+            Container containerEntity = containerService.findContainerById(containerIdParam);
+            container = transformContainerToFormBean(containerEntity);
+
             return SUCCESS;
         }
     }
@@ -471,6 +550,13 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
                 formBean.setDocumentCheck("AVAILABLE");
                 formBean.setDocumentId(documentElem.getDocumentId());
             }
+        }
+
+        Documents documentManifest = documentsService.findManifestAndTableAndRefId("CONSOLIDATION MANIFEST","CONTAINERS",entity.getContainerId());
+
+        if(documentManifest != null){
+            formBean.setDocumentManifestCheck("YES");
+            formBean.setDocumentManifestId(documentManifest.getDocumentId());
         }
 
         return formBean;
@@ -737,4 +823,10 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
     public void setContainerPortCodeParam(String containerPortCodeParam) {
         this.containerPortCodeParam = containerPortCodeParam;
     }
+
+    public void setClientService(ClientService clientService) {
+        this.clientService = clientService;
+    }
+
+
 }

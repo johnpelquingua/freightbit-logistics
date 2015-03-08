@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -105,7 +106,24 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Container Items</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Container Items </h3>
+
+                <div class="btn-toolbar pull-right">
+                    <s:hidden value="%{container.documentManifestCheck}" />
+                    <s:if test=" #attr.container.documentManifestCheck == 'YES' ">
+                        <a class="btn btn-info" title="Print Consolidation Manifest" onclick="generateReport(${container.documentManifestId},'CONSOLIDATION MANIFEST')"> <i class="fa fa-print"></i> Print Consolidation Manifest</a>
+                    </s:if>
+                    <s:else>
+                        <a class="btn btn-info" title="Create Consolidation Manifest" href="<s:url action='createConsolidationReport' >
+                        <s:param name="containerIdParam" value="%{containerIdParam}"></s:param>
+                        <s:param name="containerSizeParam" value="%{containerSizeParam}"></s:param>
+                        <s:param name="containerStatusParam" value="%{containerStatusParam}"></s:param>
+                        <s:param name="containerPortCodeParam" value="%{containerPortCodeParam}"></s:param>
+                        </s:url>" >
+                            <i class="fa fa-file-text-o"></i> Create Consolidation Manifest</a>
+                    </s:else>
+
+                </div>
             </div>
 
             <%--<s:textfield value="%{containerIdParam}" />
@@ -154,4 +172,11 @@
         initValidationScript('CONSO_EDIT');
     });
     // AUTHORED BY Jan Sarmiento -- END
+
+    function generateReport(documentId,documentName) {
+        var win = window.open('documentations/generateConsolidationManifestReport?documentIdParam=' + documentId, 'consolidationManifest', 'width=910,height=800');
+        win.onload = function () {
+            this.document.title = "Consolidation Manifest";
+        }
+    }
 </script>

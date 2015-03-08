@@ -291,6 +291,7 @@
             $('.itemListing').hide();
             $('.cargoDetailsTableDiv').append('<h4 style="padding-bottom: -10px"><i class="fa fa-warning " style="color: red;"></i> No cargo/container found!</h4><i>Please make sure that the information of the booking is correct</i>');
         }
+
         // Adding of Rates and displaying it in Total Rates
 //        var tbl = document.getElementById("orderItems");
 //        if (tbl != null) {

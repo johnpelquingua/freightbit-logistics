@@ -25,4 +25,6 @@ public class DocumentsConstants {
     public final static String AUTHORIZATION_TO_WITHDRAW = "AUTHORIZATION TO WITHDRAW";
     public final static String EQUIPMENT_INTERCHANGE_RECEIPT_1 = "EQUIPMENT INTERCHANGE RECEIPT 1";
     public final static String EQUIPMENT_INTERCHANGE_RECEIPT_2 = "EQUIPMENT INTERCHANGE RECEIPT 2";
+    public final static String CONSOLIDATION_MANIFEST = "CONSOLIDATION MANIFEST";
+    public final static String CARGO_TAG = "CARGO TAG";
 }

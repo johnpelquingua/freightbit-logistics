@@ -79,7 +79,7 @@
             <result name="success" type="tiles">operations.statusListItems.tiles</result>
         </action>
 
-        <action name="viewStatusListItemsNullError" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
+        <action name="loadContainerDetailsNullError" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="viewStatusListItemsNullError">
             <result name="success" type="tiles">operations.statusListItems.tiles</result>
         </action>
@@ -701,6 +701,11 @@
             <result name="success" type="redirect">viewConsolidationContainerList</result>
         </action>
 
+        <action name="createConsolidationReport" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="createConsolidationReport">
+            <result name="success" type="tiles">operations.consolidationItemList.tiles</result>
+            <result name="CONSOLIDATED" type="tiles">operations.consolidationItemListEdit.tiles</result>
+        </action>
+
         <!--CONSOLIDATION-->
 
         <!--DOCUMENTS PAGE-->
@@ -835,6 +840,16 @@
         </action>
         <!--Release Order-->
         <action name="generateReleaseOrderReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateReleaseOrderReport">
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+        <!--Consolidation Manifest-->
+        <action name="generateConsolidationManifestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateConsolidationManifestReport">
             <result name="success" type="redirect">viewPlainDocuments</result>
             <result name="download" type="stream">
                 <param name="contentDisposition">attachment;filename="${fileName}"</param>
