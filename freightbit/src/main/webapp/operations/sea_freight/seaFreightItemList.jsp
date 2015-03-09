@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="row">
     <div class="col-lg-12">
@@ -224,7 +225,9 @@
                                                     style="text-align: center;"> </display:column></td>
 
                                 <td><display:column title="Action">
+
                                     <s:if test="#attr.orderItem.status=='ON GOING'">
+
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -237,8 +240,11 @@
                                              title="Show Information">
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
+
                                     </s:if>
+
                                     <s:elseif test="#attr.orderItem.status=='PLANNING 1'">
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
                                         <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -251,7 +257,7 @@
                                              title="Set Schedule">
                                             <i class="fa fa-tasks"></i>
                                         </s:a>
-
+                                        </sec:authorize>
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -264,8 +270,11 @@
                                              title="Show Information">
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
+
                                     </s:elseif>
+
                                     <s:else>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
                                         <%--<s:url var="viewEditSeaFreightUrl" action="viewEditSeaFreight">--%>
                                         <s:url var="viewEditSeaFreightUrl" action="viewFreightPlanning"> <%--will be redirected to sea freight planning on edit--%>
                                             <s:param name="orderItemIdParam"
@@ -276,7 +285,7 @@
                                              title="Edit Schedule">
                                             <i class="fa fa-tasks"></i>
                                         </s:a>
-
+                                        </sec:authorize>
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -289,6 +298,7 @@
                                              title="Show Information">
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
+
                                     </s:else>
 
                                     <%--<s:url var="createdDocumentsSeaUrl" action="createdDocumentsSea">--%>
@@ -306,13 +316,13 @@
                             </tr>
                         </display:table>
                             <div class="pull-right">
-
+                                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
                                 <s:submit cssClass="btn btn-primary" value="Set Vessel Schedule"
                                           onclick="deleteText()"></s:submit>
 
                                 <s:submit cssClass="btn btn-success" value="Edit Vessel Schedule"
                                           onclick="addText()"></s:submit>
-
+                                </sec:authorize>
                             </div>
                         </s:form>
                     </div>
@@ -341,6 +351,7 @@
         </div>
 
         <div class="pull-right">
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
             <s:url var="createdDocumentsSeaUrl" action="createdDocumentsSea">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId"></s:param>
@@ -351,12 +362,12 @@
                  title="Create Freight Document(s)">
                 Create Freight Document(s)
             </s:a>
-
+            </sec:authorize>
             <a href="viewSeaFreightList" class="btn btn-danger" id ="groups-btn">
                 <i class="fa fa-chevron-left"></i>
                 Back to Freight Plan : Orders
             </a>
-
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId">
@@ -367,7 +378,7 @@
                  title="Go to Documents Page">
                 Proceed to Documents page <i class="fa fa-chevron-right"></i>
             </s:a>
-            <%--<a href="#" class="btn btn-default">Go to Documents page</a>--%>
+            </sec:authorize>
         </div>
     </div>
 </div>

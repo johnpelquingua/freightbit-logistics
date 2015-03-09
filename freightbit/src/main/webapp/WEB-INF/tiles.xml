@@ -35,11 +35,6 @@
         <put-attribute name="body" value="/operations/vesselScheduleEdit.jsp"/>
     </definition>
 
-    <!--<definition name="operations.vesselScheduleSearch.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Search Vessel Schedule"/>
-        <put-attribute name="body" value="/operations/vesselScheduleSearch.jsp"/>
-    </definition>-->
-
     <definition name="operations.vesselScheduleList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Vessel Schedule List"/>
         <put-attribute name="body" value="/operations/vesselSchedulesList.jsp"/>
