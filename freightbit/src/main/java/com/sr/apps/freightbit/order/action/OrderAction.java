@@ -877,6 +877,26 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderEntity.setOrderStatus("CANCELLED");
         orderService.updateOrder(orderEntity);
 
+        List<OrderItems> orderItemListing = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+        for(int i=0; i < orderItemListing.size(); i++){
+            orderItemListing.get(i).setVendorSea("");
+            orderItemListing.get(i).setVendorOrigin("");
+            orderItemListing.get(i).setVendorDestination("");
+            orderItemListing.get(i).setVesselScheduleId("");
+            orderItemListing.get(i).setDriverOrigin("");
+            orderItemListing.get(i).setDriverDestination("");
+            orderItemListing.get(i).setTruckOrigin("");
+            orderItemListing.get(i).setTruckDestination("");
+            orderItemListing.get(i).setFinalPickupDate("");
+            orderItemListing.get(i).setFinalDeliveryDate("");
+            orderItemListing.get(i).setContainerId(null);
+            orderService.updateItemListing(orderItemListing.get(i));
+        }
+
+        List<Documents> documentEntityListing = documentsService.findDocumentsByOrderId(orderIdParam);
+        for(int j=0; j < documentEntityListing.size(); j++){
+            documentsService.deleteDocument(documentEntityListing.get(j));
+        }
 //        Documents bookingRequestFormEntity = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
 //        documentsService.deleteDocument(bookingRequestFormEntity);
 
