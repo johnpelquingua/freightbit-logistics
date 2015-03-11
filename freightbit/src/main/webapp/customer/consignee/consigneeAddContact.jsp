@@ -130,6 +130,15 @@
                     <div class="col-lg-12">
                         <div class="panel panel-primary">
 
+                            <s:if test="hasActionMessages()">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-success">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                        <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+                                    </div>
+                                </div>
+                            </s:if>
+
                             <div class="panel-heading">
                                 <h3 class="panel-title" >
                                     <i class="fa fa-plus"></i> Add Contact Person

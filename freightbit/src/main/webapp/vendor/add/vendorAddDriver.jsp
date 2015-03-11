@@ -32,25 +32,15 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="addDriver" theme="bootstrap">
-                        <%--<div class="form-group">--%>
-
-                            <%--<label for="driver.driverCode" class="col-lg-2 control-label" style="padding-top:0px;">Code</label>--%>
-
-                            <%--<div class="col-lg-10">--%>
-                                <%--<s:textfield cssClass="form-control" placeholder="Driver Code" name="driver.driverCode"--%>
-                                             <%--id="driver.driverCode" required="true" />--%>
-                            <%--</div>--%>
-
-                        <%--</div>--%>
 
                         <div class="form-group">
 
                             <label for="driver.licenseNumber" class="col-lg-2 control-label" style="padding-top:0px;">License<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield cssClass="vendorAddDriverInput form-control" placeholder="AXX-XX-XXXXXX"
-                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="13" pattern=".{13,}"
-                                             title="Example:L03-12-002XXX"/>
+                                <s:textfield cssClass="vendorAddDriverInput form-control"
+                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="13" pattern="^[A-Z0-9]+$"
+                                             title="Must be Alphanumeric characters" onkeyup="this.value=this.value.toUpperCase();" />
                             </div>
 
                         </div>
@@ -120,6 +110,7 @@
                         </div>
 
                     </s:form>--%>
+
                 </div>
             </div>
 
@@ -135,26 +126,12 @@
         </div>
     </div>
 
-    <%--<div class="col-lg-2 col-lg-offset-2">
-        <div class="panel panel-primary">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li><a href="viewTruckingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="viewVendorTruckingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                <li class="active"><a href="viewDrivers"><i class="fa fa-group fa-fw"></i> Drivers</a></li>
-                <li &lt;%&ndash;class="active"&ndash;%&gt;><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
-            </ul>
-        </div>
-    </div>--%>
-
-
-
 </div>
 
 <script type="text/javascript">
     $(document).ready(function(){
         validationForm('vendorAddDriverInput', 'vendorAddDriverBtn');
-        $("#driver_licenseNumber").mask("A99-99-9999999");
+//        $("#driver_licenseNumber").mask("A99-99-9999999");
 //        $("#shipping_mobile").mask("(+63999)(999-9999)");
 //        $("#shipping_fax").mask("(999) 999-9999");
     });

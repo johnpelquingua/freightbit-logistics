@@ -863,7 +863,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderService.updateOrder(orderEntity);
 
         sessionAttributes.put("orderIdParam", orderIdParam);
-//        createReport();
 
         clearErrorsAndMessages();
         addActionMessage("Booking successfully Approved!");

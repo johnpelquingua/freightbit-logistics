@@ -459,7 +459,6 @@
                                              id="orderItem_weight_textfield"
                                              maxLength="9"
                                              required="true"
-                                             placeholder="XXXXXX.XX"
                                              pattern="\d+(\.\d{2})?" />
                             </s:else>
 

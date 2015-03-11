@@ -209,18 +209,16 @@ function isNumberKey(evt)
 $(document).ready(function() {
     $("#orderItem_rate").maskMoney();
     $("#orderItem_declaredValues").maskMoney();
-    $("#item_srp").maskMoney();
-    $("#orderItem_rate").maskMoney();
-    $("#orderItem_weight").mask('9,999,999');
-    $("#orderItem-volume").mask('9,999,999');
-//    $("#orderItemVolume").mask('9,999,999');
-    $("#orderItem_volume_textfield").mask('9,999,999');
-    $("#orderItem_declaredValues").maskMoney();
     $("#orderItem_declaredValue_textfield").maskMoney();
+    $("#item_srp").maskMoney();
+    $("#orderItem_weight").maskMoney({precision:0});
+    $("#orderItem_weight_textfield").maskMoney({precision:0});
+    $("#orderItem-volume").maskMoney({precision:0});
+    $("#orderItem_volume_textfield").maskMoney({precision:0});
 });
 
 $("#item_itemCode").keyup(function(){
-    this.value=this.value.toUpperCase();
+    this.value = this.value.toUpperCase();
 });
 
 //to get the customer id

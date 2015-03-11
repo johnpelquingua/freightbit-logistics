@@ -26,12 +26,13 @@ public class ConsigneeBean {
     private Date createdTimeStamp2;
     private String createdBy2;
     private Integer contactReferenceId;
+    private String companyName;
 
     public ConsigneeBean() {
     }
 
-    public ConsigneeBean(String addressType, Integer addressId, Integer contactId, String firstName, String middleName, String lastName, String phone, String mobile, String email, String fax, String addressLine1, String addressLine2, String city, String state, String zip, Integer referenceId1, Integer referenceId2, Date createdTimeStamp1, String createdBy1, Date createdTimeStamp2, String createdBy2, Integer contactReferenceId) {
-        this.addressType = addressType;
+    public ConsigneeBean(String fax, Integer addressId, Integer contactId, String firstName, String middleName, String lastName, String phone, String mobile, String email, String addressType, String addressLine1, String addressLine2, String city, String state, String zip, Integer referenceId1, Integer referenceId2, Date createdTimeStamp1, String createdBy1, Date createdTimeStamp2, String createdBy2, Integer contactReferenceId, String companyName) {
+        this.fax = fax;
         this.addressId = addressId;
         this.contactId = contactId;
         this.firstName = firstName;
@@ -40,7 +41,7 @@ public class ConsigneeBean {
         this.phone = phone;
         this.mobile = mobile;
         this.email = email;
-        this.fax = fax;
+        this.addressType = addressType;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.city = city;
@@ -53,6 +54,7 @@ public class ConsigneeBean {
         this.createdTimeStamp2 = createdTimeStamp2;
         this.createdBy2 = createdBy2;
         this.contactReferenceId = contactReferenceId;
+        this.companyName = companyName;
     }
 
     public String getFirstName() {
@@ -229,5 +231,13 @@ public class ConsigneeBean {
 
     public void setContactReferenceId(Integer contactReferenceId) {
         this.contactReferenceId = contactReferenceId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }

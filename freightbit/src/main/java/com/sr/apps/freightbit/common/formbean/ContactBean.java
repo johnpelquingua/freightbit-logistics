@@ -3,7 +3,6 @@ package com.sr.apps.freightbit.common.formbean;
 import java.security.Timestamp;
 import java.util.Date;
 
-
 public class ContactBean {
 
     private Integer sessionVendorId;
@@ -25,13 +24,14 @@ public class ContactBean {
     private Date modifiedTimestamp;
     private String modifiedBy;
     private String name;
-
+    private String companyName;
 
     public ContactBean() {
 
     }
 
-    public ContactBean(Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, String position, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String name) {
+    public ContactBean(String email, Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String position, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String name, String companyName) {
+        this.email = email;
         this.sessionVendorId = sessionVendorId;
         this.contactId = contactId;
         this.clientId = clientId;
@@ -44,13 +44,13 @@ public class ContactBean {
         this.phone = phone;
         this.mobile = mobile;
         this.fax = fax;
-        this.email = email;
         this.position = position;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
         this.name = name;
+        this.companyName = companyName;
     }
 
     public String getLastName() {
@@ -203,5 +203,13 @@ public class ContactBean {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }

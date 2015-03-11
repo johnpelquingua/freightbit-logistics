@@ -6,13 +6,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by Clarence C. Victoria on 5/26/14.
- */
 @Entity
 @Table(name = "contacts", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "contactId"))
 public class Contacts implements Serializable {
-    //
+
     private Integer contactId;
     private Client client;
     private String referenceTable;
@@ -30,11 +27,12 @@ public class Contacts implements Serializable {
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
+    private String companyName;
 
     public Contacts() {
     }
 
-    public Contacts(Integer contactId, Client client, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, String position, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public Contacts(Integer contactId, Client client, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, String position, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String companyName) {
         this.contactId = contactId;
         this.client = client;
         this.referenceTable = referenceTable;
@@ -52,6 +50,7 @@ public class Contacts implements Serializable {
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
+        this.companyName = companyName;
     }
 
     @Id
@@ -208,5 +207,14 @@ public class Contacts implements Serializable {
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    @Column(name = "companyName")
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }

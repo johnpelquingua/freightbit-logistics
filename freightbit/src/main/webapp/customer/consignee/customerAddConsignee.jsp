@@ -20,10 +20,8 @@
             </li>
             <li class="active">Add Consignee</li>
         </ol>
-
     </div>
 </div>
-<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-12">
@@ -36,6 +34,19 @@
             <div class="panel-body">
 
                 <s:form cssClass="form-horizontal" action="addConsignee" theme="bootstrap">
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Company Name<span class="asterisk_red"></span>
+                        </label>
+
+                        <div class="col-lg-10" >
+
+                            <s:textfield name="consignee.companyName" cssClass="form-control" id="consignee.companyName"
+                                         placeholder="Company Name" maxLength="40" required="true" style="width:95%"
+                                         pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" autofocus="true"
+                                         title="Company Name should not contain special characters."/>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>

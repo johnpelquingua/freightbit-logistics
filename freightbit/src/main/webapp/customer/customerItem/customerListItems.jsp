@@ -164,7 +164,7 @@
 
             </div>
 
-            <div class="panel-footer">
+            <%--<div class="panel-footer">
 
                <span class="pull-right">
                     <s:url var="loadAddItemUrl" action="loadAddItem">
@@ -189,7 +189,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
         </div>
     </div>

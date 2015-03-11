@@ -84,6 +84,10 @@
                                         <table class="table table-user-information" style="margin-top: 10px;">
                                             <tbody>
                                             <tr>
+                                                <td style="font-weight:Bold; font-size: 12px; border-top: none; text-align: left !important;">Company Name</td>
+                                                <td style="border-top: none; text-align: left !important;"><s:property value="consignee.companyName"/></td>
+                                            </tr>
+                                            <tr>
                                                 <td style="font-weight:Bold; font-size: 12px; border-top: none; text-align: left !important;">First Name</td>
                                                 <td style="border-top: none; text-align: left !important;"><s:property value="consignee.firstName"/></td>
                                             </tr>
@@ -155,8 +159,6 @@
                         </div>
                     </div>
                 </s:if>
-
-
 
                 <div class="row">
                     <div class="col-lg-12">
@@ -238,7 +240,7 @@
                                 </div>
                             </div>
 
-                            <div class="panel-footer">
+                            <%--<div class="panel-footer">
 
                                 <span class="pull-right">
                                     <s:url var="loadConsigneeAddContactUrl" action="loadConsigneeAddContact">
@@ -263,7 +265,7 @@
                                         </table>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
 
                         </div>
                     </div>

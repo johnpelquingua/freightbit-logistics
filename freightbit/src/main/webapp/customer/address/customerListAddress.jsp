@@ -155,34 +155,34 @@
 
             </div>
 
-            <div class="panel-footer">
+            <%--<div class="panel-footer">
 
             <span class="pull-right">
                 <s:url var="loadAddAddressUrl" action="loadAddAddress">
                     <s:param name="customerIdParam" value="customerIdParam"> </s:param>
                 </s:url>
-                    <s:a class="icon-action-link" href="%{loadAddAddressUrl}" rel="tooltip" title="New Address">
-                        <button type="button" class="btn btn-primary">
-                            <i class="fa fa-home"> </i> New Address
-                        </button>
-                    </s:a>
+                <s:a class="icon-action-link" href="%{loadAddAddressUrl}" rel="tooltip" title="New Address">
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-home"> </i> New Address
+                    </button>
+                </s:a>
             </span>
 
-                <div class="table-responsive" >
-                    <div class="col-lg-12" style="position:relative;margin-top: -28px;">
-                        <table class="col-lg-6">
-                            <tr>
-                                <td><label>Legend:</label></td>
-                                <td><i class="fa fa-pencil"></i> Edit</td>
-                                <td><i class="fa fa-trash-o"></i> Delete</td>
-                                <td><i class="fa fa-info-circle"></i> Information</td>
-                            </tr>
-                        </table>
-                    </div>
+            <div class="table-responsive" >
+                <div class="col-lg-12" style="position:relative;margin-top: -28px;">
+                    <table class="col-lg-6">
+                        <tr>
+                            <td><label>Legend:</label></td>
+                            <td><i class="fa fa-pencil"></i> Edit</td>
+                            <td><i class="fa fa-trash-o"></i> Delete</td>
+                            <td><i class="fa fa-info-circle"></i> Information</td>
+                        </tr>
+                    </table>
                 </div>
-
             </div>
 
+            </div>
+--%>
         </div>
     </div>
 

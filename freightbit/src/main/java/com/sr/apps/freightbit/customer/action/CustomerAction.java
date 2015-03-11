@@ -710,6 +710,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setMayorsPermit(entity.getMayorsPermit());
         formBean.setAaf(entity.getAaf());
         formBean.setSignatureCard(entity.getSignatureCard());
+
 //        /*Dti Checkbox*/
 //        if (entity.getDti() == 1 ){
 //            formBean.setDti(1);
@@ -1311,6 +1312,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         sessionAttributes.put("contactCodeParam", contactCodeParam);
         sessionAttributes.put("addressIdParam", addressIdParam);
+
         return SUCCESS;
     }
 
@@ -1319,6 +1321,27 @@ public class CustomerAction extends ActionSupport implements Preparable {
         validateOnSubmitContact(consigneeContact);
         if (hasFieldErrors()) {
             return INPUT;
+        }
+
+        List <Contacts> contactConsignee = customerService.findContactByConsignee(contactCodeParam, "C_CONTACT", getClientId());
+
+        if(contactConsignee.size() >= 1){
+            clearErrorsAndMessages();
+            addActionMessage("Cannot add an additional Contact Person for this Consignee");
+
+            sessionAttributes.put("contactCodeParam", contactCodeParam);
+            sessionAttributes.put("addressIdParam", addressIdParam);
+
+            Contacts contactEntity = customerService.findContactById(contactCodeParam);
+            Address addressEntity = customerService.findAddressById(addressIdParam);
+            consignee = transformToFormBeanConsignee(addressEntity, contactEntity);
+
+            List<Contacts> contactEntityList = customerService.findContactByConsignee(contactEntity.getContactId(), "C_CONTACT", getClientId());
+            for (Contacts contactElem : contactEntityList) {
+                contacts.add(transformToFormBeanContacts(contactElem));
+            }
+
+            return "contact_limit";
         }
 
         try {
@@ -1342,7 +1365,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Contacts contactEntity = customerService.findContactById(contactCodeParam);
         Address addressEntity = customerService.findAddressById(addressIdParam);
         consignee = transformToFormBeanConsignee(addressEntity, contactEntity);
-
 
         List<Contacts> contactEntityList = customerService.findContactByConsignee(contactEntity.getContactId(), "C_CONTACT", getClientId());
         for (Contacts contactElem : contactEntityList) {
@@ -1411,6 +1433,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setCreatedBy(consigneeContact.getCreatedBy());
         entity.setCreatedTimestamp(consigneeContact.getCreatedTimestamp());
         entity.setPosition(consigneeContact.getPosition());
+        entity.setCompanyName(consigneeContact.getCompanyName());
         return entity;
     }
 
@@ -1686,6 +1709,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setFax(formBean.getFax());
         entity.setCreatedTimestamp(formBean.getCreatedTimeStamp1());
         entity.setCreatedBy(formBean.getCreatedBy1());
+        entity.setCompanyName(formBean.getCompanyName());
         /*entity.setModifiedTimestamp(new Date());
         entity.setModifiedBy("admin");*/
 
@@ -1716,6 +1740,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setCreatedTimeStamp2(address.getCreatedTimestamp());
         formBean.setReferenceId2(address.getReferenceId());
         formBean.setContactReferenceId(address.getContactReferenceId());
+        formBean.setCompanyName(contact.getCompanyName());
 
         return formBean;
     }

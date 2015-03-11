@@ -37,6 +37,7 @@
         </div>
     </div>
 </s:if>
+
 <s:if test="hasActionErrors()">
    <div class="col-lg-12">
 	   <div class="alert alert-errors">
@@ -45,15 +46,6 @@
 		</div>
    </div>
 </s:if>
-
-<style>
-   /* table { table-layout: fixed; }
-    table th, table td { overflow: hidden; }
-*/
-
-
-
-</style>
 
 <div class="row">
     <div class="col-lg-12">
@@ -165,7 +157,8 @@
 
                 </div>
             </div>
-            <div class="panel-footer">
+
+            <%--<div class="panel-footer">
 
             <span class="pull-right">
                 <s:url var="loadAddContactUrl" action="loadAddCustomerContact">
@@ -178,19 +171,21 @@
                 </s:a>
             </span>
 
-                <div class="table-responsive" >
-                    <div class="col-lg-12" style="position:relative;margin-top: -28px;">
-                        <table class="col-lg-6">
-                            <tr>
-                                <td><label>Legend:</label></td>
-                                <td><i class="fa fa-pencil"></i> Edit</td>
-                                <td><i class="fa fa-trash-o"></i> Delete</td>
-                                <td><i class="fa fa-info-circle"></i> Information</td>
-                            </tr>
-                        </table>
-                    </div>
+            <div class="table-responsive" >
+                <div class="col-lg-12" style="position:relative;margin-top: -28px;">
+                    <table class="col-lg-6">
+                        <tr>
+                            <td><label>Legend:</label></td>
+                            <td><i class="fa fa-pencil"></i> Edit</td>
+                            <td><i class="fa fa-trash-o"></i> Delete</td>
+                            <td><i class="fa fa-info-circle"></i> Information</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
+
+            </div>--%>
+
         </div>
     </div>
 
@@ -212,7 +207,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     $(document).ready(function(){
