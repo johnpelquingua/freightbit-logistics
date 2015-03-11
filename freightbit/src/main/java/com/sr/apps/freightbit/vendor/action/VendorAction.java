@@ -600,10 +600,10 @@ public class VendorAction extends ActionSupport implements Preparable {
             addFieldError("truck.truckCode", "Code must numeric characters  only.");
         }
 
-        matcher = plateNumberPattern.matcher(truckBean.getPlateNumber());
+        /*matcher = plateNumberPattern.matcher(truckBean.getPlateNumber());
         if (!matcher.matches()) {
             addFieldError("truck.plateNumber", "Plate Number must be in this format: ABC-123");
-        }
+        }*/
 
         matcher = alphaNumericPattern.matcher(truckBean.getModelNumber());
         if (!matcher.matches()) {

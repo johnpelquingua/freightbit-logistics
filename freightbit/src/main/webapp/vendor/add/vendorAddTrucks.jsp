@@ -63,7 +63,7 @@
                                         <label class="col-lg-4 control-label" style="padding-top:0px;">MV File Number<span class="asterisk_red"></span></label>
 
                                         <div class="col-lg-8">
-                                            <s:textfield cssClass="vendorAddTruckInput form-control" placeholder="MV File Number" name="truck.motorVehicleNumber"
+                                            <s:textfield cssClass="vendorAddTruckInput form-control" placeholder="MV File Number" name="truck.motorVehicleNumber" onkeypress="return isNumberKey(event)"
                                                          id="truck_motorVehicleNumber" required="true" title="Input your MV File Number" />
                                         </div>
                                     </div>
@@ -109,8 +109,8 @@
                                         <label class="col-lg-4 control-label" style="padding-top:0px;">O.R. Number<span class="asterisk_red"></span></label>
 
                                         <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="O.R. Number" name="truck.officialReceipt"
-                                                         id="truck.officialReceipt" required="true" title="Please Input Valid O.R. Number"/>
+                                            <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="O.R. Number" name="truck.officialReceipt" onkeypress="return isNumberKey(event)"
+                                                         id="truck.officialReceipt" required="true" title="Please Input Valid O.R. Number" maxlength="15" pattern="[0-9]+"/>
                                         </div>
                                     </div>
 
@@ -157,8 +157,8 @@
                                         <label class="col-lg-4 control-label" style="padding-top:0px;">Year Model<span class="asterisk_red"></span></label>
 
                                         <div class="col-lg-8">
-                                            <s:textfield cssClass="vendorAddTruckInput form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear"
-                                                         id="truck.modelYear" required="true" maxLength="4" title="Example: 1999, 2012"/>
+                                            <s:textfield cssClass="vendorAddTruckInput form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear" onkeypress="return isNumberKey(event)"
+                                                         id="truck_modelYear" required="true" maxLength="4" title="Example: 1999, 2012"/>
                                         </div>
 
                                     </div>
@@ -168,8 +168,8 @@
                                         <label class="col-lg-4 control-label" style="padding-top:0px;">Gross Weight (kg.)<span class="asterisk_red"></span></label>
 
                                         <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="Gross Weight" name="truck.grossWeight"
-                                                         id="truck.grossWeight" required="true" pattern="^[0-9]*$"
+                                            <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="Gross Weight" name="truck.grossWeight" onkeypress="return isNumberKey(event)"
+                                                         id="truck_grossWeight" required="true" pattern="^[0-9]*$" maxLength="9"
                                                          title="Gross Weight will not accept letters or special characters."/>
                                         </div>
                                     </div>
@@ -179,8 +179,8 @@
                                         <label class="col-lg-4 control-label" style="padding-top:0px;">Net Weight (kg.)<span class="asterisk_red"></span></label>
 
                                         <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="Net Weight" name="truck.netWeight"
-                                                         id="truck.netWeight" required="true" pattern="^[0-9]*$"
+                                            <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="Net Weight" name="truck.netWeight" onkeypress="return isNumberKey(event)"
+                                                         id="truck_netWeight" required="true" pattern="^[0-9]*$" maxLength="9"
                                                          title="Gross Weight will not accept letters or special characters."/>
                                         </div>
                                     </div>
@@ -193,7 +193,8 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="Net Capacity" name="truck.netCapacity"
-                                                         id="truck.netCapacity" required="true"/>
+                                                         id="truck_netCapacity" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
+                                                         title="Net Capacity will not accept letters or special characters."/>
                                         </div>
                                     </div>
 
@@ -243,9 +244,24 @@
     $(document).ready(function(){
         validationForm('vendorAddTruckInput', 'vendorAddTruckBtn');
         $("#truck_motorVehicleNumber").mask("9999-99999999999");
-        $("#truck_plateNumber").mask("AAA-999");
+        $("#truck_plateNumber").mask("AAA-9999");
+        $("#truck_modelYear").mask("9999");
+        $("#truck_grossWeight").mask("999999999");
+        $("#truck_netWeight").mask("999999999");
+        $("#truck_netCapacity").mask("999999999");
 //        $("#shipping_fax").mask("(999) 999-9999");
     });
+    $("#truck_plateNumber").keyup(function(){
+        this.value=this.value.toUpperCase();
+    });
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) || (charCode == 46 && $(this).val().indexOf('.') != -1))
+            return false;
+
+        return true;
+    }
 
 
 </script>

@@ -52,7 +52,7 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.itemCode" id="itemCode" required="true" cssStyle="width: 140%"
-                                             cssClass="addItemInput form-control" maxLength="15" pattern="[a-zA-Z0-9]+"
+                                             cssClass="addItemInput form-control" maxLength="25" pattern="[a-zA-Z0-9]+"
                                              title="Item Code should not contain special characters" tabindex="2"/>
                             </div>
 

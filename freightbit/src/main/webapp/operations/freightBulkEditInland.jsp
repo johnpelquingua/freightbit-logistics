@@ -1595,7 +1595,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="e.g. ABC-123, XYZ-7890, etc." name="truck.plateNumber"
-                                     id="truck_plateNumber" required="true" />
+                                     id="truck_plateNumber" required="true" pattern=".{7,8}" title="Example: ABC-123,XYZ-7890" />
                     </div>
                 </div>
                     <%--LTO Certificate Number = code--%>
@@ -1610,7 +1610,7 @@
                 <div class="form-group">
                     <label class="col-lg-4 control-label" style="padding-top:0px;">MV File Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
-                        <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber"
+                        <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber" onkeypress="return isNumberKey(event)"
                                      id="truck_motorVehicleNumber" required="true" title="Input your MV File Number" />
                     </div>
                 </div>
@@ -1644,8 +1644,8 @@
                 <div class="form-group">
                     <label class="col-lg-4 control-label" style="padding-top:0px;">O.R. Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
-                        <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt"
-                                     id="truck_officialReceipt" required="true" title="Please Input Valid O.R. Number"/>
+                        <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt" onkeypress="return isNumberKey(event)"
+                                     id="truck_officialReceipt" required="true" title="Please Input Valid O.R. Number" maxlength="15" pattern="[0-9]+"/>
                     </div>
                 </div>
                     <%--CR Date of Issue--%>
@@ -1676,7 +1676,7 @@
                 <div class="form-group">
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Year Model<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
-                        <s:textfield cssClass="form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear"
+                        <s:textfield cssClass="form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear" onkeypress="return isNumberKey(event)"
                                      id="truck_modelYear" required="true" maxLength="4" title="Example: 1999, 2012"/>
                     </div>
                 </div>
@@ -1685,7 +1685,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Gross Weight (kg.)<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
-                                     id="truck_grossWeight" required="true" pattern="^[0-9]*$"
+                                     id="truck_grossWeight" required="true" pattern="^[0-9]*$" maxLength="9" onkeypress="return isNumberKey(event)"
                                      title="Gross Weight will not accept letters or special characters."/>
                     </div>
                 </div>
@@ -1694,7 +1694,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Net Weight (kg.)<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
-                                     id="truck_netWeight" required="true" pattern="^[0-9]*$"
+                                     id="truck_netWeight" required="true" pattern="^[0-9]*$" maxLength="9" onkeypress="return isNumberKey(event)"
                                      title="Gross Weight will not accept letters or special characters."/>
                     </div>
                 </div>
@@ -1703,7 +1703,8 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Net Capacity<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
-                                     id="truck_netCapacity" required="true"/>
+                                     id="truck_netCapacity" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
+                                     title="Net Capacity will not accept letters or special characters."/>
                     </div>
                 </div>
             </div>
@@ -1959,6 +1960,15 @@
         });
 
     });
+
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) || (charCode == 46 && $(this).val().indexOf('.') != -1))
+            return false;
+
+        return true;
+    }
 
     $("#date").datepicker({dateFormat: 'yy-dd-mm'});
 
@@ -2514,9 +2524,17 @@
     $(document).ready(function(){
 
         $("#driver_licenseNumber").mask("A99-99-9999999");
-//        $("#shipping_mobile").mask("(+63999)(999-9999)");
-//        $("#shipping_fax").mask("(999) 999-9999");
+//      $("#shipping_mobile").mask("(+63999)(999-9999)");
+//      $("#shipping_fax").mask("(999) 999-9999");
+        $("#truck_modelYear").mask("9999");
+        $("#truck_grossWeight").mask("999999999");
+        $("#truck_netWeight").mask("999999999");
+        $("#truck_netCapacity").mask("999999999");
+        $("#truck_plateNumber").mask("AAA-9999");
 
+    });
+    $("#truck_plateNumber").keyup(function(){
+        this.value=this.value.toUpperCase();
     });
 
     $(document).ready(function(){

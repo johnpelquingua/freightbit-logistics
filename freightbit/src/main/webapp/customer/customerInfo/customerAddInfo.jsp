@@ -70,7 +70,7 @@
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Website</label>
                                     <div class="col-lg-7" >
                                         <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website"
-                                                     pattern="^([_W-Ww-w-\\.])*([A-Za-z0-9]+)*(\\.[A-Za-z]{3,3})$"
+                                                     pattern="^([_W-Ww-w-\\.])*([A-Za-z0-9]+)*(\\.[A-Za-z]{3,3}*(\\.[A-Za-z]{2,3}))$"
                                                      title="Proper Format: example.com or www.example.com" />
                                     </div>
                                 </div>
