@@ -346,9 +346,9 @@ function modeAbbrev(mode){
     }else if(mode == 'PIER TO PIER' || mode == 'PORT TO PORT'){
         return 'PP';
     }else if(mode == 'PICKUP'){
-        return 'P';
+        return 'PU';
     }else if(mode == 'DELIVERY'){
-        return 'D';
+        return 'DEL';
     }else if(mode == 'INTER-WAREHOUSE'){
         return 'IW';
     }else{

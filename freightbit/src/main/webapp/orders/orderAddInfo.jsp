@@ -44,8 +44,6 @@
     </div>
 </s:if>
 
-<!-- /.row -->
-
 <div class="row">
 <div class="col-lg-12">
 <div class="panel panel-primary">
@@ -286,7 +284,7 @@
                 <fieldset class="inputs">
 
                     <legend style="text-align: left;">
-                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                             <span>
                                 Container Information
                             </span>
@@ -296,7 +294,6 @@
                                 Item Information
                             </span>
                             <div class="pull-right">
-
                                 <a data-toggle="modal" data-target="#createItem"  class="btn btn-info" id="idCustomer"> Add New Item</a>
                             </div>
                         </s:else>
@@ -305,7 +302,7 @@
                     <div class="form-group" style="padding-top: 25px;">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                                 <span>
                                     Container Quantity<span class="asterisk_red">
                                 </span>
@@ -318,7 +315,7 @@
                         </label>
 
                         <div class="col-lg-3" >
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                             <span>
                                 <s:select cssClass="form-control containerQuantityDropdown"
                                           id="orderItem_quantityFCL"
@@ -326,8 +323,7 @@
                                           list="containerQuantity"
                                           emptyOption="true"
                                           required="true"
-                                          onchange="fcl()"
-                                        />
+                                          onchange="fcl()" />
                             </span>
                             </s:if>
                             <s:else>
@@ -337,15 +333,13 @@
                                           name="orderItem.quantity"
                                           list="itemQuantity"
                                           emptyOption="true"
-                                          required="true"
-
-                                        />
+                                          required="true" />
                             </span>
                             </s:else>
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                                 <span>
                                     Container Size<span class="asterisk_red">
                                 </span>
@@ -359,7 +353,7 @@
 
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                                 <span>
                                     <s:select cssClass="form-control containerSizeDropdown"
                                               id="orderItem.nameSize"
@@ -368,8 +362,7 @@
                                               listKey="key"
                                               listValue="value"
                                               emptyOption="true"
-                                              required="true"
-                                            />
+                                              required="true" />
                                 </span>
                             </s:if>
                             <s:else>
@@ -394,7 +387,6 @@
                                 <input list="items" id="itemName" name="orderItem.nameSize" class="form-control" maxLength="30" required="true"/>
                                 <datalist id="items">
                                     <s:iterator value="customerItems">
-                                        <%--<option value=<s:property value="%{customerItemsId}" /> ><s:property value="%{itemName}" /> </option>--%>
                                         <option id=<s:property value="%{customerItemsId}" /> value=<s:property value="%{itemName}" /> />
                                     </s:iterator>
                                 </datalist>
@@ -414,8 +406,7 @@
                                          id="orderItem_rate"
                                          name="orderItem.rate"
                                          maxLength="16"
-
-                                    />
+                                         disabled="true" />
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
@@ -424,24 +415,21 @@
 
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
-                                             id="orderItem.description"
-                                        />
+                                             id="orderItem.description" />
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
                                           id="orderItem_description"
                                           list="#{orderItem_description}"
                                           value="%{orderItem_description}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem_description_textfield"
-                                             maxLength="20"
-                                        />
+                                             maxLength="20" />
                             </s:else>
 
                         </div>
@@ -455,7 +443,7 @@
                         </label>
 
                         <div class="col-lg-3" >
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.weight"
                                              id="orderItem_weight" />
@@ -465,16 +453,14 @@
                                           id="orderItem_weight"
                                           list="#{orderItem_weight}"
                                           value="%{orderItem_weight}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.weight"
                                              id="orderItem_weight_textfield"
                                              maxLength="9"
                                              required="true"
                                              placeholder="XXXXXX.XX"
-                                             pattern="\d+(\.\d{2})?"
-                                        />
+                                             pattern="\d+(\.\d{2})?" />
                             </s:else>
 
                         </div>
@@ -484,30 +470,21 @@
                         </label>
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                                 <s:textfield cssClass="form-control"
                                              id="orderItem-volume"
-                                             name="orderItem.volume"
-                                        />
+                                             name="orderItem.volume" />
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
                                           id="orderItem_volume"
                                           list="#{orderItem_volume}"
                                           value="%{orderItem_volume}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItem_volume_textfield"
-                                             required="true"
-                                        />
-                                <%--<s:textfield cssClass="form-control"--%>
-                                             <%--name="orderItem.volume"--%>
-                                             <%--id="orderItem_volume_textfield"--%>
-                                             <%--required="true"--%>
-                                             <%--pattern="\d(?:\d*\,)?\d+"--%>
-                                        <%--/>--%>
+                                             required="true" />
                             </s:else>
 
                         </div>
@@ -524,9 +501,7 @@
                                         name="orderItem.remarks"
                                         id="orderItem_remarks"
                                         cssStyle="resize: none; height: 150px;"
-                                        maxLength="255"
-
-                                    />
+                                        maxLength="255" />
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
@@ -534,25 +509,22 @@
                         </label>
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                                 <s:textfield cssClass="form-control automaticDeclaredValue"
                                              name="orderItem.declaredValue"
-                                             id="orderItem_declaredValues"
-                                        />
+                                             id="orderItem_declaredValues" />
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control automaticDeclaredValue"
                                           id="orderItem_declaredValue"
                                           list="#{orderItem_declaredValue}"
                                           value="%{orderItem_declaredValue}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
                                 <s:textfield cssClass="form-control automaticDeclaredValue"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValue_textfield"
                                              maxLength="19"
-                                             required="true"
-                                        />
+                                             required="true" />
                             </s:else>
 
                         </div>
@@ -562,7 +534,7 @@
                     <legend />
 
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
-                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                             <s:if test="order.orderStatus != 'ON GOING'">
                             <span>
                                 <s:submit name="submit" cssClass="addContainerToList btn btn-primary" id="submit_button" value="Add Container to List"/>
@@ -606,7 +578,7 @@
         <fieldset>
 
             <legend style="text-align: left;">
-                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                             <h4>
                                 Container Listing <small>(Maximum of 5 Containers)</small>
                             </h4>
@@ -629,7 +601,7 @@
                         <thead>
                         <tr class="header_center" style="background-color: #fff;">
                             <th class="tb-font-black">Quantity</th>
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                             <span>
                                 <th class="tb-font-black">Size</th>
                             </span>
@@ -1112,15 +1084,11 @@
 <div class="modal fade" id="editItemListingModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body">
                 <div id="editItemListingInput"> <%--Area where input fields will appear--%> </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>

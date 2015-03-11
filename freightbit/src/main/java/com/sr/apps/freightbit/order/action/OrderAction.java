@@ -416,7 +416,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Integer orderItemQuantityGrandTotal = orderItemQuantityTotal + orderItemEntityQuantity;
 
         // Condition where it will only allow to add 5 containers and 10 items only
-        if (orderLimit.equals("FULL CONTAINER LOAD")) {
+        if (orderLimit.equals("FULL CONTAINER LOAD") || orderLimit.equals("FULL TRUCK LOAD") ) {
             if (orderItemQuantityGrandTotal > 5) {
                 String messageFlag = "FCL_LIMIT";
                 sessionAttributes.put("messageFlag", messageFlag);
