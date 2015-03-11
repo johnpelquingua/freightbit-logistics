@@ -42,6 +42,7 @@
             <div class="tab-content">
                 <%--ORIGIN TABS--%>
                 <div class="tab-pane fade in active" id="oriTab">
+                    <center style="padding-top: 15px; padding-bottom: 10px;"><i><span style="color: red;">*</span> Service Freight Type: <b>Shipping and Trucking</b> -- and -- Service Mode: <b>Door to Door</b> / <b>Door to Pier</b> only</i></center>
                     <div class="padding-10-top">
                         <s:form action="changeTruckOrigin" theme="bootstrap">
                             <label class="col-lg-2 col-lg-offset-2 control-label">Filter by Origin :</label>
@@ -456,6 +457,7 @@
 
                 <%--DESTINATION TABS--%>
                 <div class="tab-pane fade" id="desTab">
+                    <center style="padding-top: 15px; padding-bottom: 10px;"><i><span style="color: red;">*</span> Service Freight Type: <b>Shipping and Trucking</b> -- and -- Service Mode: <b>Door to Door</b> / <b>Pier to Door</b> only</i></center>
                     <div class="padding-10-top">
                         <s:form action="changeTruckDestination" theme="bootstrap">
                             <label class="col-lg-2 col-lg-offset-2 control-label">Filter by Destination :</label>

@@ -328,7 +328,7 @@ function reqAbbrev(req){
     }else if(req == 'LESS CARGO LOAD' || req == 'LESS CONTAINER LOAD'){
         return 'LCL';
     }else if(req == 'LOOSE CARGO LOAD'){
-        return 'LCU';
+        return 'LC';
     }else if(req == 'ROLLING CARGO LOAD'){
         return 'RCU';
     }else{
@@ -346,11 +346,11 @@ function modeAbbrev(mode){
     }else if(mode == 'PIER TO PIER' || mode == 'PORT TO PORT'){
         return 'PP';
     }else if(mode == 'PICKUP'){
-        return 'PU';
+        return 'PUP';
     }else if(mode == 'DELIVERY'){
         return 'DEL';
     }else if(mode == 'INTER-WAREHOUSE'){
-        return 'IW';
+        return 'ITW';
     }else{
         return mode;
     }

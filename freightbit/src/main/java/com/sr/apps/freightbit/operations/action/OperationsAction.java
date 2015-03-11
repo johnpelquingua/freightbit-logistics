@@ -2664,7 +2664,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // For FTL Requirement
         List<Orders> ftlOrders = new ArrayList<Orders>();
-        System.out.println("+++++++++++++++++++++++++++++++++++++ " + originCityTruck );
+
         if(originCityTruck != null){
             ftlOrders = operationsService.findOrdersByOriginFTL(originCityTruck);
         }else{
@@ -3146,6 +3146,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
         if(orderItemEntity.size() >= 1){
+
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") ||
                 orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
                 if(orderItemEntity.get(0).getTruckOrigin() == null || "".equals(orderItemEntity.get(0).getTruckOrigin())){
@@ -3156,7 +3157,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     formBean.setPlateNumberOri(truckEntityOri.getPlateNumber());
                 }
             }
-            else if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR") ||
+
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR") ||
                     orderEntity.getServiceMode().equals("DELIVERY") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
                 if(orderItemEntity.get(0).getTruckDestination() == null || "".equals(orderItemEntity.get(0).getTruckDestination())){
                     formBean.setPlateNumberDes("NONE");
@@ -3167,6 +3169,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
             }
         }
+
         /*else{
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") ||
                     orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")) {
@@ -3701,6 +3704,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setModifiedBy(entity.getModifiedBy());
         formBean.setPortCode(entity.getPortCode());
+
         if(!"".equals(entity.getShipping())){
             VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(entity.getShipping());
             formBean.setVoyageVendorDestination(entity.getShipping() + " - " + vendorService.findVendorByVendorCode(vesselScheduleEntity.getVendorCode()).getVendorName() + " - " + vesselScheduleEntity.getDestinationPort());
@@ -4086,20 +4090,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String createdDocumentsSea() {
 
         // will delete all existing document and resets all freight documents begin
-
         List<Documents> freightDocuments = documentsService.findDocumentsByOrderId(orderIdParam);
 
         for (Documents freightDocumentElem : freightDocuments){
-            if(freightDocumentElem.getDocumentName().equals("PROFORMA BILL OF LADING") || freightDocumentElem.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || freightDocumentElem.getDocumentName().equals("ACCEPTANCE RECEIPT") || freightDocumentElem.getDocumentName().equals("RELEASE ORDER") ){
+            if(freightDocumentElem.getDocumentName().equals("PROFORMA BILL OF LADING")){
                 Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
                 documentsService.deleteDocument(documentEntity);
             }
         }
-
         // will delete all existing document and resets all freight documents end
 
         List<String> vendorCodeDocument = new ArrayList<String>();
-        List<String> vendorDestination = new ArrayList<String>();
+        /*List<String> vendorDestination = new ArrayList<String>();*/
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);
@@ -4117,14 +4119,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         // Destination vendors set will be stored in VendorDestination Variable
-        for (OrderItems everyItem : orderItemsList) {
-            if (vendorDestination.isEmpty()) {
-                vendorDestination.add(everyItem.getVendorDestination());
-            } else {
-                if (!vendorDestination.contains(everyItem.getVendorDestination())) {
-                    vendorDestination.add(everyItem.getVendorDestination());
-                }
-            }
+//        for (OrderItems everyItem : orderItemsList) {
+//            if (vendorDestination.isEmpty()) {
+//                vendorDestination.add(everyItem.getVendorDestination());
+//            } else {
+//                if (!vendorDestination.contains(everyItem.getVendorDestination())) {
+//                    vendorDestination.add(everyItem.getVendorDestination());
+//                }
+//            }
             /*if(everyItem.getVendorDestination() != null){
                 vendorDestination.add(everyItem.getVendorDestination()+"-"+everyItem.getOrderItemId());
             }
@@ -4135,12 +4137,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     vendorDestination.add(everyItem.getVendorDestination()+"-"+everyItem.getOrderItemId());
                 }
             }*/
-        }
+//        }
 
         List<Documents> proforma = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", orderIdParam);
-        List<Documents> withdrawAuthorization = documentsService.findDocumentNameAndId("AUTHORIZATION TO WITHDRAW", orderIdParam);
+        /*List<Documents> withdrawAuthorization = documentsService.findDocumentNameAndId("AUTHORIZATION TO WITHDRAW", orderIdParam);
         List<Documents> acceptanceReceipt = documentsService.findDocumentNameAndId("ACCEPTANCE RECEIPT", orderIdParam);
-        List<Documents> releaseOrder = documentsService.findDocumentNameAndId("RELEASE ORDER", orderIdParam);
+        List<Documents> releaseOrder = documentsService.findDocumentNameAndId("RELEASE ORDER", orderIdParam);*/
 
         for (String itemVendor : vendorCodeDocument) {
             if(itemVendor != null){ // proforma document will be created if shipping vendor is not null
@@ -4171,10 +4173,46 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     for(OrderItems orderItemsElem : orderItemsList) {
                         orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                     }
-
                 }
 
-                for (String vendorDes : vendorDestination){
+                // for creation of Authorization to withdraw for sea vendor
+                /*if(withdrawAuthorization.size() == 0){
+
+                    Documents documentEntityAuthorization = new Documents();
+
+                    Client client = clientService.findClientById(getClientId().toString());
+                    documentEntityAuthorization.setClient(client);
+
+                    documentEntityAuthorization.setDocumentName(DocumentsConstants.AUTHORIZATION_TO_WITHDRAW);
+                    documentEntityAuthorization.setReferenceId(orderEntity.getOrderId());
+                    documentEntityAuthorization.setReferenceTable("ORDERS");
+                    documentEntityAuthorization.setOrderNumber(orderEntity.getOrderNumber());
+                    documentEntityAuthorization.setCreatedDate(new Date());
+                    documentEntityAuthorization.setDocumentStatus("FROM PLANNING");
+
+                    documentEntityAuthorization.setVendorCode(itemVendor);
+
+                    if(orderEntity.getServiceMode().equals("PIER TO PIER")){
+                        documentEntityAuthorization.setOutboundStage(1);
+                        documentEntityAuthorization.setDocumentProcessed(0);
+                    }else{
+                        documentEntityAuthorization.setFinalOutboundStage(1);
+                        documentEntityAuthorization.setDocumentProcessed(2);
+                    }
+                    documentEntityAuthorization.setCreatedBy(commonUtils.getUserNameFromSession());
+
+                    documentsService.addDocuments(documentEntityAuthorization);
+
+                }else {
+                    clearErrorsAndMessages();
+                    addActionError("Authorization to Withdraw(s) already exists.");
+
+                    for(OrderItems orderItemsElem : orderItemsList) {
+                        orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                    }
+                }*/
+
+                /*for (String vendorDes : vendorDestination){
                     if(vendorDes != null){
                         if(withdrawAuthorization.size() == 0){
                             Documents documentEntityAuthorization = new Documents();
@@ -4198,8 +4236,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                                 documentEntityAuthorization.setDocumentProcessed(2);
                             }
                             documentEntityAuthorization.setCreatedBy(commonUtils.getUserNameFromSession());
-                            /*documentEntityAuthorization.setOrderItemId(Integer.parseInt(vendorDes.split("-")[1]));*/
-
+                            *//*documentEntityAuthorization.setOrderItemId(Integer.parseInt(vendorDes.split("-")[1]));*//*
                             documentsService.addDocuments(documentEntityAuthorization);
 
                         } else {
@@ -4211,9 +4248,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             }
                         }
                     }
-                }
+                }*/
 
-                if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
+                /*if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
 
                     if(acceptanceReceipt.size() == 0){
 
@@ -4243,13 +4280,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         for(OrderItems orderItemsElem : orderItemsList) {
                             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                         }
-
-//                        return INPUT;
                     }
+                }*/
 
-                }
-
-                if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
+                /*if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
 
                     if(releaseOrder.size() == 0){
 
@@ -4287,7 +4321,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         }
 
                     }
-                }
+                }*/
 
             }else{ // if no shipping vendor set will return an error message
                 clearErrorsAndMessages();
@@ -4299,8 +4333,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 return INPUT;
             }
-
-
         }
 
         clearErrorsAndMessages();

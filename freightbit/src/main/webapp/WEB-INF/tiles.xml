@@ -402,8 +402,6 @@
         <put-attribute name="body" value="/core/settings/generalSettings.jsp"/>
     </definition>
 
-
-
     <!-- CORE module tiles End-->
 
     <!-- VENDOR module tiles Begin -->

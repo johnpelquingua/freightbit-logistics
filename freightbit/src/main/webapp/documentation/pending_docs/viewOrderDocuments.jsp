@@ -1712,7 +1712,6 @@
             checkDocumentModal(documentItem,orderIdPass,checkedBox,stageParam);
         });
 
-
         /*documentsCheckbox();*/
 
 //        massCheckbox('outboundCheckBox', 'outboundTable');

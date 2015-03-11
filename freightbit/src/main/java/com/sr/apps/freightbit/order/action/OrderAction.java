@@ -879,17 +879,19 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         List<OrderItems> orderItemListing = operationsService.findAllOrderItemsByOrderId(orderIdParam);
         for(int i=0; i < orderItemListing.size(); i++){
-            orderItemListing.get(i).setVendorSea("");
-            orderItemListing.get(i).setVendorOrigin("");
-            orderItemListing.get(i).setVendorDestination("");
-            orderItemListing.get(i).setVesselScheduleId("");
-            orderItemListing.get(i).setDriverOrigin("");
-            orderItemListing.get(i).setDriverDestination("");
-            orderItemListing.get(i).setTruckOrigin("");
-            orderItemListing.get(i).setTruckDestination("");
-            orderItemListing.get(i).setFinalPickupDate("");
-            orderItemListing.get(i).setFinalDeliveryDate("");
+            orderItemListing.get(i).setVendorSea(null);
+            orderItemListing.get(i).setVendorOrigin(null);
+            orderItemListing.get(i).setVendorDestination(null);
+            orderItemListing.get(i).setVesselScheduleId(null);
+            orderItemListing.get(i).setDriverOrigin(null);
+            orderItemListing.get(i).setDriverDestination(null);
+            orderItemListing.get(i).setTruckOrigin(null);
+            orderItemListing.get(i).setTruckDestination(null);
+            orderItemListing.get(i).setFinalPickupDate(null);
+            orderItemListing.get(i).setFinalDeliveryDate(null);
             orderItemListing.get(i).setContainerId(null);
+            orderItemListing.get(i).setServiceRequirement(null);
+            orderItemListing.get(i).setStatus("CANCELLED");
             orderService.updateItemListing(orderItemListing.get(i));
         }
 
@@ -897,8 +899,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         for(int j=0; j < documentEntityListing.size(); j++){
             documentsService.deleteDocument(documentEntityListing.get(j));
         }
-//        Documents bookingRequestFormEntity = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
-//        documentsService.deleteDocument(bookingRequestFormEntity);
 
         clearErrorsAndMessages();
         addActionMessage("Booking cancelled.");

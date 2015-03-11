@@ -25,6 +25,7 @@
                     Freight Plan List
                 </h3>
             </div>
+            <center style="padding-top: 15px; padding-bottom: 10px;"><i><span style="color: red;">*</span> Service Freight Type: <b>Shipping and Trucking</b> and <b>Shipping</b> only</i></center>
             <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-bottom: 0em;">
                 <s:form action="changeOrigin" theme="bootstrap">
                     <label class="col-lg-2 control-label">Filter by Origin :</label>
@@ -404,7 +405,7 @@
                     $('.consolidateModalTextfield').val($('.consolidateModalTextfield').val()+','+itemId);
                 }
             }
-//            alert($('#consolidatedOrders').val());
+
             $.ajax({
                 url: 'getConsolidateAction',
                 async: false,

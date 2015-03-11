@@ -1838,7 +1838,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         String documentName = document.getDocumentName().toUpperCase();
 
-        if(documentName.equals("BOOKING REQUEST FORM") || documentName.equals("HOUSE WAYBILL ORIGIN") || documentName.equals("PROFORMA BILL OF LADING") || documentName.equals("HOUSE WAYBILL DESTINATION") || documentName.equals("AUTHORIZATION TO WITHDRAW") || documentName.equals("ACCEPTANCE RECEIPT") || documentName.equals("RELEASE ORDER")){
+        if(documentName.equals("BOOKING REQUEST FORM") || documentName.equals("HOUSE WAYBILL ORIGIN") || documentName.equals("PROFORMA BILL OF LADING") || documentName.equals("HOUSE WAYBILL DESTINATION")){
             clearErrorsAndMessages();
             addActionError("Document cannot be created!");
 
@@ -2072,7 +2072,229 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                 }else{
                     clearErrorsAndMessages();
-                    addActionError("No Origin vendor set!");
+                    addActionError("No Destination vendor set!");
+
+                    return INPUT;
+                }
+            }
+
+        }else if(documentName.equals("AUTHORIZATION TO WITHDRAW")){
+
+            // will delete all existing Authorization to Withdraw documents
+            for (Documents freightDocumentElem : bookingDocuments){
+                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                if(docName.equals("AUTHORIZATION TO WITHDRAW")){
+                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                    documentsService.deleteDocument(documentEntity);
+                }
+            }
+
+            // Authorization to withdraw connected to sea vendor
+            for (String seaVendor : vendorSea){
+
+                if(seaVendor != null){
+
+                    Documents documentEntity = new Documents();
+                    Client client = clientService.findClientById(getClientId().toString());
+
+                    documentEntity.setClient(client);
+                    documentEntity.setDocumentName(documentName);
+                    documentEntity.setReferenceId(document.getReferenceId());
+                    documentEntity.setReferenceTable("ORDERS");
+                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                    documentEntity.setCreatedDate(new Date());
+                    documentEntity.setVendorCode(seaVendor);
+
+                    if (documentStageParam.equals("OUTBOUND")) {
+                        documentEntity.setOutboundStage(1);
+                        documentEntity.setDocumentProcessed(0);
+                        documentEntity.setDocumentStatus("OUTBOUND");
+                    } else if (documentStageParam.equals("INBOUND")) {
+                        documentEntity.setInboundStage(1);
+                        documentEntity.setDocumentProcessed(1);
+                        documentEntity.setDocumentStatus("INBOUND");
+                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                        documentEntity.setDocumentProcessed(2);
+                        documentEntity.setFinalOutboundStage(1);
+                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                    } else {
+                        documentEntity.setFinalInboundStage(1);
+                        documentEntity.setDocumentProcessed(3);
+                        documentEntity.setDocumentStatus("FINAL INBOUND");
+                    }
+
+                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    documentEntity.setReferenceNumber(document.getReferenceNumber());
+                    documentEntity.setDocumentComments(document.getDocumentComments());
+
+                    documentsService.addDocuments(documentEntity);
+
+                }
+                else{
+                    clearErrorsAndMessages();
+                    addActionError("No Shipping vendor set!");
+
+                    return INPUT;
+                }
+
+            }
+
+            // Authorization to withdraw connected to destination vendor
+            for(String destinationVendor : vendorDestination){
+                if(destinationVendor != null){
+
+                    Documents documentEntity = new Documents();
+                    Client client = clientService.findClientById(getClientId().toString());
+
+                    documentEntity.setClient(client);
+                    documentEntity.setDocumentName(documentName);
+                    documentEntity.setReferenceId(document.getReferenceId());
+                    documentEntity.setReferenceTable("ORDERS");
+                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                    documentEntity.setCreatedDate(new Date());
+                    documentEntity.setVendorCode(destinationVendor);
+
+                    if (documentStageParam.equals("OUTBOUND")) {
+                        documentEntity.setOutboundStage(1);
+                        documentEntity.setDocumentProcessed(0);
+                        documentEntity.setDocumentStatus("OUTBOUND");
+                    } else if (documentStageParam.equals("INBOUND")) {
+                        documentEntity.setInboundStage(1);
+                        documentEntity.setDocumentProcessed(1);
+                        documentEntity.setDocumentStatus("INBOUND");
+                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                        documentEntity.setDocumentProcessed(2);
+                        documentEntity.setFinalOutboundStage(1);
+                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                    } else {
+                        documentEntity.setFinalInboundStage(1);
+                        documentEntity.setDocumentProcessed(3);
+                        documentEntity.setDocumentStatus("FINAL INBOUND");
+                    }
+
+                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    documentEntity.setReferenceNumber(document.getReferenceNumber());
+                    documentEntity.setDocumentComments(document.getDocumentComments());
+
+                    documentsService.addDocuments(documentEntity);
+
+                }else{
+                    clearErrorsAndMessages();
+                    addActionError("No Destination vendor set!");
+
+                    return INPUT;
+                }
+            }
+
+        }else if(documentName.equals("ACCEPTANCE RECEIPT")){
+
+            // will delete all existing Acceptance Receipt documents
+            for (Documents freightDocumentElem : bookingDocuments){
+                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                if(docName.equals("ACCEPTANCE RECEIPT")){
+                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                    documentsService.deleteDocument(documentEntity);
+                }
+            }
+
+            for(String seaVendor : vendorSea){
+                if(seaVendor != null){
+
+                    Documents documentEntity = new Documents();
+                    Client client = clientService.findClientById(getClientId().toString());
+
+                    documentEntity.setClient(client);
+                    documentEntity.setDocumentName(documentName);
+                    documentEntity.setReferenceId(document.getReferenceId());
+                    documentEntity.setReferenceTable("ORDERS");
+                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                    documentEntity.setCreatedDate(new Date());
+                    documentEntity.setVendorCode(seaVendor);
+
+                    if (documentStageParam.equals("OUTBOUND")) {
+                        documentEntity.setOutboundStage(1);
+                        documentEntity.setDocumentProcessed(0);
+                        documentEntity.setDocumentStatus("OUTBOUND");
+                    } else if (documentStageParam.equals("INBOUND")) {
+                        documentEntity.setInboundStage(1);
+                        documentEntity.setDocumentProcessed(1);
+                        documentEntity.setDocumentStatus("INBOUND");
+                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                        documentEntity.setDocumentProcessed(2);
+                        documentEntity.setFinalOutboundStage(1);
+                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                    } else {
+                        documentEntity.setFinalInboundStage(1);
+                        documentEntity.setDocumentProcessed(3);
+                        documentEntity.setDocumentStatus("FINAL INBOUND");
+                    }
+
+                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    documentEntity.setReferenceNumber(document.getReferenceNumber());
+                    documentEntity.setDocumentComments(document.getDocumentComments());
+
+                    documentsService.addDocuments(documentEntity);
+
+                }else{
+                    clearErrorsAndMessages();
+                    addActionError("No Shipping vendor set!");
+
+                    return INPUT;
+                }
+            }
+
+        }else if(documentName.equals("RELEASE ORDER")){
+
+            // will delete all existing Release Order documents
+            for (Documents freightDocumentElem : bookingDocuments){
+                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                if(docName.equals("RELEASE ORDER")){
+                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                    documentsService.deleteDocument(documentEntity);
+                }
+            }
+
+            for(String seaVendor : vendorSea){
+                if(seaVendor != null){
+
+                    Documents documentEntity = new Documents();
+                    Client client = clientService.findClientById(getClientId().toString());
+
+                    documentEntity.setClient(client);
+                    documentEntity.setDocumentName(documentName);
+                    documentEntity.setReferenceId(document.getReferenceId());
+                    documentEntity.setReferenceTable("ORDERS");
+                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                    documentEntity.setCreatedDate(new Date());
+                    documentEntity.setVendorCode(seaVendor);
+
+                    if (documentStageParam.equals("OUTBOUND")) {
+                        documentEntity.setOutboundStage(1);
+                        documentEntity.setDocumentProcessed(0);
+                        documentEntity.setDocumentStatus("OUTBOUND");
+                    } else if (documentStageParam.equals("INBOUND")) {
+                        documentEntity.setInboundStage(1);
+                        documentEntity.setDocumentProcessed(1);
+                        documentEntity.setDocumentStatus("INBOUND");
+                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                        documentEntity.setDocumentProcessed(2);
+                        documentEntity.setFinalOutboundStage(1);
+                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                    } else {
+                        documentEntity.setFinalInboundStage(1);
+                        documentEntity.setDocumentProcessed(3);
+                        documentEntity.setDocumentStatus("FINAL INBOUND");
+                    }
+
+                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    documentEntity.setReferenceNumber(document.getReferenceNumber());
+                    documentEntity.setDocumentComments(document.getDocumentComments());
+
+                    documentsService.addDocuments(documentEntity);
+
+                }else{
+                    clearErrorsAndMessages();
+                    addActionError("No Shipping vendor set!");
 
                     return INPUT;
                 }
@@ -2113,7 +2335,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentEntity.setDocumentComments(document.getDocumentComments());
 
             documentsService.addDocuments(documentEntity);
-
         }
 
         Map sessionAttributes = ActionContext.getContext().getSession();

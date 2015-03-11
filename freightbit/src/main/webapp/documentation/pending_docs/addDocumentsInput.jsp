@@ -7,7 +7,6 @@
         </div>
         <s:hidden value="%{order.freightType}" cssClass="serviceType"/>
         <s:hidden value="%{order.modeOfService}" cssClass="serviceMode"/>
-
         <s:hidden cssClass="originVendorFlag" value="%{originVendorFlag}" />
         <s:hidden cssClass="destinationVendorFlag" value="%{destinationVendorFlag}" />
 
@@ -34,15 +33,15 @@
 
             </div>
 
-            <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Series Number<span class="asterisk_red"></span></label>
+            <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Series Number</label>
             <div class="col-lg-8" >
-                <s:textfield cssClass="form-control modalComment" name="document.referenceNumber" style="margin-bottom: 15px !important;" required="true" />
+                    <s:textfield cssClass="form-control modalComment" name="document.referenceNumber" style="margin-bottom: 15px !important;" />
             </div>
 
             <label class="col-lg-4 control-label" style="text-align: right; clear:both;">Comments</label>
             <div class="col-lg-8" >
-                <s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
-                            id="document_documentComments" maxLength="255"/>
+                    <s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
+                                id="document_documentComments" maxLength="255"/>
             </div>
 
             <div style="clear:both;" class="modal-footer">
@@ -61,56 +60,39 @@
 <script>
     $(document).ready(function(){
 
-        $('#documentName').change(function(){
+        $('#documentName').change(function() {
+
             var documentName = $(this).val(),
-            originVendorFlag = $('.originVendorFlag').val(),
-            destinationVendorFlag = $('.destinationVendorFlag').val(),
-            referenceNumber = $('.modalComment'),
-            commentsBox = $('.modalTextArea');
+                originVendorFlag = $('.originVendorFlag').val(),
+                destinationVendorFlag = $('.destinationVendorFlag').val(),
+                referenceNumber = $('.modalComment'),
+                commentsBox = $('.modalTextArea');
 
-            switch(documentName){
-                case 'MASTER WAYBILL ORIGIN' :
-                    if(originVendorFlag = 'MULTI'){
-                        referenceNumber.prop('disabled', true);
-                        commentsBox.prop('disabled', true);
-                    }else{
-                        referenceNumber.prop('disabled', false);
-                        commentsBox.prop('disabled', false);
-                    }
-                    break;
-                case 'MASTER WAYBILL DESTINATION' :
-                    if(originVendorFlag = 'MULTI'){
-                        referenceNumber.prop('disabled', true);
-                        commentsBox.prop('disabled', true);
-                    }else{
-                        referenceNumber.prop('disabled', false);
-                        commentsBox.prop('disabled', false);
-                    }
-                    break;
-                default :
-                    referenceNumber.prop('disabled', false);
-                    commentsBox.prop('disabled', false);
-                    break;
-            }
+            switch (documentName) {
 
-            /*if(documentName = 'MASTER WAYBILL ORIGIN'){
-                if(originVendorFlag = 'MULTI'){
-                    referenceNumber.prop('disabled', true);
-                    commentsBox.prop('disabled', true);
-                }else{
-                    referenceNumber.prop('disabled', false);
-                    commentsBox.prop('disabled', false);
-                }
-            }else{
+            case 'MASTER WAYBILL ORIGIN' :
+                referenceNumber.prop('disabled', true);
+                commentsBox.prop('disabled', true);
+                break;
+
+            case 'MASTER WAYBILL DESTINATION' :
+                referenceNumber.prop('disabled', true);
+                commentsBox.prop('disabled', true);
+                break;
+
+            case 'AUTHORIZATION TO WITHDRAW' :
+                referenceNumber.prop('disabled', true);
+                commentsBox.prop('disabled', true);
+                break;
+
+            default :
                 referenceNumber.prop('disabled', false);
                 commentsBox.prop('disabled', false);
-            }*/
+                break;
+
+            }
 
         });
-
-    });
-
-    $(document).ready(function(){
 
         for(var i=0; i < $('.datalistDocuments option').size(); i++){
             if($('.datalistDocuments option').eq(i).val() == ''){
@@ -119,15 +101,19 @@
             if($('[name="documentStageParam"]').val() == 'OUTBOUND'){
                 if($('.serviceType').val() == 'SHIPPING AND TRUCKING' || $('.serviceType').val() == 'SHIPPING'){
                     if($('.serviceMode').val() == 'PIER TO DOOR' ){
-                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' ){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' ){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }else if($('.serviceMode').val() == 'DOOR TO PIER'){
-                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' ){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER'){
+                            $('.datalistDocuments option').eq(i).remove();
+                        }
+                    }else if($('.serviceMode').val() == 'PIER TO PIER'){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }else{
-                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' ){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }
@@ -144,8 +130,12 @@
                         if ($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER') {
                             $('.datalistDocuments option').eq(i).remove();
                         }
-                    }else {
+                    }else if($('.serviceMode').val() == 'DOOR TO DOOR') {
                         if ($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW') {
+                            $('.datalistDocuments option').eq(i).remove();
+                        }
+                    }else{
+                        if ($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN') {
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }
@@ -157,15 +147,19 @@
             }else if($('[name="documentStageParam"]').val() == 'FINAL OUTBOUND'){
                 if($('.serviceType').val() == 'SHIPPING AND TRUCKING' || $('.serviceType').val() == 'SHIPPING'){
                     if($('.serviceMode').val() == 'PIER TO DOOR' ){
-                        if($('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW'   ){
+                        if($('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
-                    }else if($('.serviceMode').val() == 'DOOR TO PIER' ){
-                        if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' ){
+                    }else if($('.serviceMode').val() == 'DOOR TO PIER'){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER'){
+                            $('.datalistDocuments option').eq(i).remove();
+                        }
+                    }else if($('.serviceMode').val() == 'PIER TO PIER'){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }else{
-                        if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT'){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }
