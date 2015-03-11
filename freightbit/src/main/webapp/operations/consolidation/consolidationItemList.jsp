@@ -14,7 +14,6 @@
             <li class="active"><a href="<s:url action='viewConsolidationContainerList' />"> Consolidation Container List </a></li>
             <li class="active"> Container Information</li>
         </ol>
-
     </div>
 </div>
 
@@ -26,6 +25,7 @@
         </div>
     </div>
 </s:if>
+
 <s:if test="hasActionErrors()">
    <div class="col-lg-12">
 	   <div class="alert alert-errors">
@@ -39,11 +39,6 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
 
-            <%--<s:textfield value="%{containerIdParam}" />
-            <s:textfield value="%{containerSizeParam}" />
-            <s:textfield value="%{containerStatusParam}" />
-            <s:textfield value="%{containerPortCodeParam}" />--%>
-
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-list"></i> Available Item List</h3>
             </div>
@@ -52,28 +47,12 @@
 
                 <div class="table-responsive">
 
-                    <s:form action="updateStatusOfContainers" theme="bootstrap">
+                    <s:form action="updateStatusOfContainers" theme="bootstrap" id="updateContainer">
 
                         <s:hidden name="containerIdParam" value="%{containerIdParam}"></s:hidden>
                         <s:hidden name="containerSizeParam" value="%{containerSizeParam}"></s:hidden>
                         <s:hidden name="containerStatusParam" value="%{containerStatusParam}"></s:hidden>
                         <s:hidden name="containerPortCodeParam" value="%{containerPortCodeParam}"></s:hidden>
-
-                        <div style="box-shadow: 3px 3px 3px #888888; position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 80%; margin-top: 25.5em; margin-left: -1.4em;  z-index: 100;">
-                            Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
-                            Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
-                            <div style="float: right; margin-top: -1.2em;">
-                                <button class="btn btn-success" id="submitBtn" disabled>Save</button>
-                                <button type="button" class="btn btn-danger" onclick="resetBox()">Reset</button>
-
-                                <s:url var="finalizeContainerUrl" action="finalizeContainer">
-                                    <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
-                                </s:url>
-                                <s:a id="finalBtn" cssClass="btn btn-primary disabled" href="%{finalizeContainerUrl}" title="Container Info" rel="tooltip" >Final</s:a>
-
-                                <%--<button class="btn btn-primary" id="finalBtn" disabled>Final</button>--%>
-                            </div>
-                        </div>
 
                     <display:table id="orderItems" name="orderItemsBeans"
                                    requestURI="viewConsolidationItemList.action"
@@ -97,12 +76,13 @@
                                             style="text-align: center;"> </display:column></td>
 
                     </display:table>
-                    <%--<s:hidden id="containerType" value="%{containerSizeParam}"></s:hidden>--%>
                         <input type="hidden" id="containerType" value="<c:out value='${sessionScope.containerSizeParam}'/>" />
                 </div>
+
+
             </div>
         </div>
-        </s:form>
+                    </s:form>
     </div>
 </div>
 
@@ -129,11 +109,6 @@
 
                 </div>
             </div>
-
-            <%--<s:textfield value="%{containerIdParam}" />
-            <s:textfield value="%{containerSizeParam}" />
-            <s:textfield value="%{containerStatusParam}" />
-            <s:textfield value="%{containerPortCodeParam}" />--%>
 
             <div class="panel-body">
                 <div class="table-responsive">
@@ -166,6 +141,22 @@
                     </display:table>
                 </div>
             </div>
+
+            <div style="background-color: #ECF0F1; border-radius: 5px; padding: 15px; box-shadow: inset 0 0 10px #888888;">
+                Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
+                Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
+                <div style="float: right; margin-top: -1.2em;">
+                    <button class="btn btn-success" id="submitBtn" disabled>Save</button>
+                    <button type="button" class="btn btn-danger" onclick="resetBox('CONSO_EDIT')">Reset</button>
+
+                    <s:url var="finalizeContainerUrl" action="finalizeContainer">
+                        <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
+                    </s:url>
+                    <s:a id="finalBtn" cssClass="btn btn-primary" href="%{finalizeContainerUrl}" title="Container Info" rel="tooltip" >Final</s:a>
+
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -174,6 +165,14 @@
     // AUTHORED BY Jan Sarmiento -- START
     $(document).ready(function(){
         initValidationScript('NONE');
+
+        var submitBtn = $('#submitBtn'),
+            formToSubmit = $('#updateContainer');
+
+        submitBtn.click(function() {
+            formToSubmit.submit();
+        })
+
     });
     // AUTHORED BY Jan Sarmiento -- END
 

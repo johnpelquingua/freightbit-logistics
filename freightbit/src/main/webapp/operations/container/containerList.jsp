@@ -37,7 +37,7 @@
                     <i class="fa fa-list"></i> Container Lists
                 </h3>
                 <span class="pull-right">
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_SPECIALIST', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="postAjaxHtml('loadSearchContainerPage', 'inputDiv');">
                         <i class="fa fa-search"></i> Search Container
                     </button>
@@ -70,9 +70,9 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="portCode" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="gateInTime" title="Gate In <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="strGateInTime" title="Gate In <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="gateOutTime" title="Gate Out <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="strGateOutTime" title="Gate Out <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="containerStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -88,12 +88,12 @@
                                             <s:param name="containerIdParam"
                                                      value="#attr.container.containerId"></s:param>
                                         </s:url>
-                                        <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">--%>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_SPECIALIST', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                             <s:a href="%{editContainerUrl}" class="icon-action-link" rel="tooltip"
                                                  title="Edit this Container">
                                                 <i class="fa fa-pencil"></i>
                                             </s:a>
-                                        <%--</sec:authorize>--%>
+                                        </sec:authorize>
                                         <%--</s:if>--%>
                                         <s:url var="deleteContainerUrl" action="deleteContainer">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>

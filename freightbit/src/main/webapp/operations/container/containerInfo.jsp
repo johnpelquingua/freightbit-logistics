@@ -49,7 +49,7 @@
                                  value="#attr.container.containerId"></s:param>
                     </s:url>
 
-                    <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">--%>
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_SPECIALIST', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
 
                         <s:a href="%{editContainerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
                              title="Edit this EIR Form">
@@ -60,7 +60,7 @@
                             <a class="btn btn-info" title="Print Equipment Interchange Receipt" href="#" onclick="generateReport(${container.documentId},'${container.eirType}')"> <i class="fa fa-print"></i> Print Equipment Interchange Receipt</a>
                         </s:if>
 
-                    <%--</sec:authorize>--%>
+                    </sec:authorize>
 
                 </span>
             </div>
@@ -97,11 +97,11 @@
                                             </tr>
                                             <tr>
                                                 <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Gate In:</td>
-                                                <td><s:property value="container.gateInTime"/></td>
+                                                <td><s:property value="container.strGateInTime"/></td>
                                             </tr>
                                             <tr>
                                                 <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Gate Out:</td>
-                                                <td><s:property value="container.gateOutTime"/></td>
+                                                <td><s:property value="container.strGateOutTime"/></td>
                                             </tr>
                                             <tr>
                                                 <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Receipt Number:</td>

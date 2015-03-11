@@ -3600,7 +3600,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         if(orderItemListing.size() > 0){
             clearErrorsAndMessages();
-            addActionMessage("Container cannot be deleted. One or more booking is associated with it");
+            addActionMessage("Container cannot be deleted. One or more booking and Order Item(s ) is associated with it");
+            viewContainerList();
             return "error";
         }else{
 
@@ -3661,6 +3662,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setEirNumber(entity.getEirNumber());
         formBean.setGateInTime(entity.getGateInTime());
         formBean.setGateOutTime(entity.getGateOutTime());
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+        if(entity.getGateInTime() != null){
+            Date dateGateInTime = entity.getGateInTime();
+            formBean.setStrGateInTime(formatter.format(dateGateInTime));
+        }
+
+        if(entity.getGateOutTime() != null){
+            Date dateGateOutTime = entity.getGateOutTime();
+            formBean.setStrGateOutTime(formatter.format(dateGateOutTime));
+        }
+
         formBean.setShipping(entity.getShipping());
         formBean.setTrucking(entity.getTrucking());
         formBean.setPlateNumber(entity.getPlateNumber());
@@ -3688,6 +3701,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setModifiedBy(entity.getModifiedBy());
         formBean.setPortCode(entity.getPortCode());
+        if(!"".equals(entity.getShipping())){
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(entity.getShipping());
+            formBean.setVoyageVendorDestination(entity.getShipping() + " - " + vendorService.findVendorByVendorCode(vesselScheduleEntity.getVendorCode()).getVendorName() + " - " + vesselScheduleEntity.getDestinationPort());
+        }else{
+            formBean.setVoyageVendorDestination("NONE");
+        }
 
         // FOR EIR 1 and 2 DOCUMENTS
         if(!entity.getEirType().equals("NONE")){
@@ -3726,8 +3745,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setGateInTime(formBean.getGateInTime());
         entity.setGateOutTime(formBean.getGateOutTime());
         entity.setShipping(formBean.getShipping());
-        VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(formBean.getShipping());
-        entity.setPortCode(vesselScheduleEntity.getDestinationPort()); // to save the destination port
+        if(!"".equals(formBean.getShipping())){
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(formBean.getShipping());
+            entity.setPortCode(vesselScheduleEntity.getDestinationPort()); // to save the destination port
+        }
         entity.setVanNumber(formBean.getVanNumber());
         entity.setVanLocation(formBean.getVanLocation());
         entity.setTrucking(formBean.getTrucking());
@@ -3769,25 +3790,38 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if (hasActionErrors()) {
             return INPUT;
         }
-
-        List <OrderItems> orderItemListing = operationsService.findAllOrderItemsWithContainer(container.getContainerId());
-
-        if(orderItemListing.size() > 0){
-            clearErrorsAndMessages();
-            addActionMessage("Container cannot be edited. One or more booking is associated with it");
-            return INPUT;
-        }
-
         try {
-            Container containerEntity = transformContainerToEntityBean(container);
-            containerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
-            containerEntity.setModifiedTimestamp(new Date());
-            containerService.updateContainer(containerEntity);
+            Container oldContainer = containerService.findContainerById(container.getContainerId());
+            Container newContainer = transformContainerToEntityBean(container);
+
+            if(container.getShipping().equals("")){
+                if(!"".equals(oldContainer.getShipping())){
+                    newContainer.setShipping(oldContainer.getShipping());
+                    newContainer.setPortCode(oldContainer.getPortCode());
+                }else{
+                    newContainer.setShipping("");
+                }
+            }else if(!oldContainer.getShipping().equals(newContainer.getShipping())){
+                List <OrderItems> orderItemListing = operationsService.findAllOrderItemsWithContainer(oldContainer.getContainerId());
+                if(orderItemListing.size() > 0){
+                    filterVesselSchedule();
+                    loadSuccessEditContainer();
+                    clearErrorsAndMessages();
+                    addActionMessage("Container cannot be edited. One or more booking is associated with it");
+                    return INPUT;
+                }
+            }else{
+                newContainer.setShipping(container.getShipping());
+                newContainer.setPortCode(vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(container.getShipping()).getDestinationPort());
+            }
+
+            newContainer.setModifiedBy(commonUtils.getUserNameFromSession());
+            newContainer.setModifiedTimestamp(new Date());
+            containerService.updateContainer(newContainer);
         } catch (ContainerAlreadyExistsException e) {
             addFieldError("container.containerId", getText("err.containerId.already.exist"));
             return INPUT;
         }
-
         return SUCCESS;
     }
 
@@ -3840,12 +3874,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String loadEditFormPage() {
         Container containerEntity = containerService.findContainerById(containerIdParam);
+        filterVesselSchedule();
         container = transformContainerToFormBean(containerEntity);
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("containerId", container.getContainerId());
-
-        filterVesselSchedule();
-
         return SUCCESS;
     }
 
@@ -3867,7 +3899,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 Date departureDate = formatter.parse(dateString);
 
-                if(dateWithoutTime.before(departureDate) || dateWithoutTime.equals(departureDate) ){
+                if(dateWithoutTime.before(departureDate) || dateWithoutTime.equals(departureDate)){
                     vesselScheduleList.add(transformToVesselSchedule(vesselScheduleElem));
                 }
 

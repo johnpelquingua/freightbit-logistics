@@ -189,7 +189,7 @@
                         </sec:authorize>
                     </tr>
                     </display:table>
-                            <%--<s:textfield  style="display: none" cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>--%>
+
                         <div class="pull-right">
                             <s:url var="accStatus" action="serviceAccomplishedStatus">
                                 <s:param name="orderIdParam"

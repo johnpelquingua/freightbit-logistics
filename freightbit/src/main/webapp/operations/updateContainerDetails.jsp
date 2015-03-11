@@ -46,19 +46,19 @@
           <div class="form-group">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Seal Number: </label>
             <div class="col-lg-7" >
-              <s:textfield required="true" name="container.sealNumber" value="%{orderItem.sealNumber}" cssClass="form-control" id="sealNumber"/>
+              <s:textfield name="container.sealNumber" value="%{orderItem.sealNumber}" cssClass="form-control" id="sealNumber"/>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Bullet Seal: </label>
             <div class="col-lg-7" >
-              <s:textfield required="true" name="container.bulletSeal" value="%{orderItem.bulletSeal}" cssClass="form-control" id="bulletSeal"/>
+              <s:textfield name="container.bulletSeal" value="%{orderItem.bulletSeal}" cssClass="form-control" id="bulletSeal"/>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Seal: </label>
             <div class="col-lg-7" >
-              <s:textfield required="true" name="container.shippingSeal" value="%{orderItem.shippingSeal}" cssClass="form-control" id="shippingSeal"/>
+              <s:textfield name="container.shippingSeal" value="%{orderItem.shippingSeal}" cssClass="form-control" id="shippingSeal"/>
             </div>
           </div>
           <div class="pull-right">

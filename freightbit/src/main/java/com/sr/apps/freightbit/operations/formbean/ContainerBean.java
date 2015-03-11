@@ -12,6 +12,8 @@ public class ContainerBean {
     private String receiptNumber;
     private Date gateInTime;
     private Date gateOutTime;
+    private String strGateInTime;
+    private String strGateOutTime;
     private String shipping;
     private String trucking;
     private String plateNumber;
@@ -45,24 +47,27 @@ public class ContainerBean {
     private Integer documentId;
     private String documentManifestCheck;
     private Integer documentManifestId;
+    private String voyageVendorDestination;
 
     public ContainerBean() {
     }
 
-    public ContainerBean(String remarks, Integer containerId, Client clientId, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String containerStatus, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String forkliftOperator, String operationsDept, String containerSearchCriteria, String containerKeyword, String eirType, String portCode, String documentCheck, Integer documentId, String documentManifestCheck, Integer documentManifestId) {
-        this.remarks = remarks;
+    public ContainerBean(String shipping, Integer containerId, Client clientId, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String strGateInTime, String strGateOutTime, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String containerStatus, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String forkliftOperator, String operationsDept, String containerSearchCriteria, String containerKeyword, String eirType, String portCode, String documentCheck, Integer documentId, String documentManifestCheck, Integer documentManifestId, String voyageVendorDestination) {
+        this.shipping = shipping;
         this.containerId = containerId;
         this.clientId = clientId;
         this.eirNumber = eirNumber;
         this.receiptNumber = receiptNumber;
         this.gateInTime = gateInTime;
         this.gateOutTime = gateOutTime;
-        this.shipping = shipping;
+        this.strGateInTime = strGateInTime;
+        this.strGateOutTime = strGateOutTime;
         this.trucking = trucking;
         this.plateNumber = plateNumber;
         this.vanNumber = vanNumber;
         this.driver = driver;
         this.orderNumber = orderNumber;
+        this.remarks = remarks;
         this.vanTo = vanTo;
         this.vanFrom = vanFrom;
         this.createdBy = createdBy;
@@ -88,6 +93,7 @@ public class ContainerBean {
         this.documentId = documentId;
         this.documentManifestCheck = documentManifestCheck;
         this.documentManifestId = documentManifestId;
+        this.voyageVendorDestination = voyageVendorDestination;
     }
 
     public Integer getContainerId() {
@@ -392,5 +398,29 @@ public class ContainerBean {
 
     public void setDocumentManifestId(Integer documentManifestId) {
         this.documentManifestId = documentManifestId;
+    }
+
+    public String getStrGateInTime() {
+        return strGateInTime;
+    }
+
+    public void setStrGateInTime(String strGateInTime) {
+        this.strGateInTime = strGateInTime;
+    }
+
+    public String getStrGateOutTime() {
+        return strGateOutTime;
+    }
+
+    public void setStrGateOutTime(String strGateOutTime) {
+        this.strGateOutTime = strGateOutTime;
+    }
+
+    public String getVoyageVendorDestination() {
+        return voyageVendorDestination;
+    }
+
+    public void setVoyageVendorDestination(String voyageVendorDestination) {
+        this.voyageVendorDestination = voyageVendorDestination;
     }
 }

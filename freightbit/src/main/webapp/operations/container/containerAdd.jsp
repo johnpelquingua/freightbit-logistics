@@ -42,8 +42,7 @@
                                              cssClass="containerInput form-control"
                                              id="container.containerNumber"
                                              maxlength="20"
-                                             placeholder="Enter container van number"
-                                        />
+                                             placeholder="Enter container van number" />
                             </div>
                         </div>
 
@@ -57,23 +56,20 @@
                                               listKey="key"
                                               listValue="value"
                                               emptyOption="true"
-                                              required="true"
-                                            />
+                                              required="true" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Voyage - Vendor - Destination: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Voyage - Vendor - Destination: </label>
                             <div class="col-lg-9" >
-                                <s:select cssClass="containerInput form-control"
+                                <s:select cssClass="form-control"
                                           id="container.shipping"
                                           name="container.shipping"
                                           list="vesselScheduleList"
                                           listKey="voyageNumber"
                                           listValue="voyageVendorDestination"
-                                          emptyOption="true"
-                                          required="true"
-                                        />
+                                          emptyOption="true" />
                             </div>
                         </div>
 
@@ -87,65 +83,48 @@
                         </div>--%>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Receipt Number: </label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true"
-                                             name="container.receiptNumber"
-                                             cssClass="containerInput form-control"
+                                <s:textfield name="container.receiptNumber"
+                                             cssClass="form-control"
                                              id="container.receiptNumber"
-                                             placeholder="Enter receipt number"
-                                        />
+                                             placeholder="Enter receipt number" />
                             </div>
                         </div>
-                        <%--<div id="dtBox"></div>&lt;%&ndash;This is for the datetimepicker&ndash;%&gt;--%>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Date/Time: <span class="asterisk_red"></span></label>
-                                <div class="col-lg-9" >
-                                    <s:textfield readonly="true"
-                                                 required="true"
-                                                 name="container.gateInTime"
-                                                 cssClass="containerInput form-control"
-                                                 id="gateInTime"
-                                                 placeholder="Click here to set Date/Time"
-                                            />
-                                </div>
-                                <script type="text/javascript">
-                                    $(function () {
-                                        var fromDatePickUp = $('#gateInTime');
-                                        fromDatePickUp.datetimepicker({
-                                            timeFormat: 'h:mm TT',
-                                            minDate: 0
-                                        });
-                                    });
-                                </script>
-                            </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Gate In Date/Time: </label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true"
-                                             name="container.eirNumber"
-                                             cssClass="containerInput form-control"
+                                <s:textfield readonly="true"
+                                             name="container.gateInTime"
+                                             cssClass="form-control"
+                                             id="gateInTime"
+                                             placeholder="Click here to set Date/Time" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">EIR Number: </label>
+                            <div class="col-lg-9" >
+                                <s:textfield name="container.eirNumber"
+                                             cssClass="form-control"
                                              id="container.eirNumber"
-                                             placeholder="Enter EIR number"
-                                        />
+                                             placeholder="Enter EIR number" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Van Location: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Van Location: </label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true"
-                                             name="container.vanLocation"
-                                             cssClass="containerInput form-control"
+                                <s:textfield name="container.vanLocation"
+                                             cssClass="form-control"
                                              id="container.vanLocation"
-                                             placeholder="Enter van location"
-                                        />
+                                             placeholder="Enter van location" />
                             </div>
                         </div>
                     </div>
                 </div>
-            <%--</div>--%>
+
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewContainerList" class="btn btn-danger" id ="groups-btn">Cancel</a>
@@ -160,8 +139,18 @@
 <script>
     $(document).ready(function(){
         validationForm('containerInput', 'submitBtn');
-    })
+    });
+
+    $(function () {
+        var fromDatePickUp = $('#gateInTime');
+        fromDatePickUp.datetimepicker({
+            timeFormat: 'h:mm TT',
+            minDate: 0
+        });
+    });
+
 </script>
+
 <%--
 <script>
     function finalAlter(){

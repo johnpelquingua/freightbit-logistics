@@ -43,6 +43,7 @@
               <s:hidden name="container.gateOutTime" value="%{container.gateOutTime}"/>
               <s:hidden name="container.bulletSeal" value="%{container.bulletSeal}"/>
               <s:hidden name="container.shippingSeal" value="%{container.shippingSeal}"/>
+              <s:hidden value="%{container.voyageVendorDestination}"/>
 
                   <div class="form-group">
                       <label class="col-lg-2 control-label" style="padding-top:0px;">Container Van Number: <span class="asterisk_red"></span></label>
@@ -60,13 +61,20 @@
                                     list="containerSizeList"
                                     listKey="key"
                                     listValue="value"
-                                    required="true"
-                                  />
+                                    emptyOption="true"
+                                    required="true" />
                       </div>
                   </div>
 
                   <div class="form-group">
-                      <label class="col-lg-2 control-label" style="padding-top:0px;">Voyage - Vendor - Destination: <span class="asterisk_red"></span></label>
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Current: </label>
+                      <div class="col-lg-9">
+                          <s:textfield name="container.voyageVendorDestination" cssClass="form-control" value="%{container.voyageVendorDestination}" readonly="true" />
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Voyage - Vendor - Destination: </label>
                       <div class="col-lg-9" >
                           <s:select cssClass="form-control"
                                     id="container.shipping"
@@ -74,10 +82,7 @@
                                     list="vesselScheduleList"
                                     listKey="voyageNumber"
                                     listValue="voyageVendorDestination"
-                                    value="%{container.shipping}"
-                                    emptyOption="true"
-                                    required="true"
-                                  />
+                                    emptyOption="true" />
                       </div>
                   </div>
 
@@ -91,44 +96,36 @@
                   </div>--%>
 
                   <div class="form-group">
-                      <label class="col-lg-2 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Receipt Number: </label>
                       <div class="col-lg-9" >
-                          <s:textfield required="true" name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
+                          <s:textfield name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
                       </div>
                   </div>
 
                   <div class="form-group">
-                      <label class="col-lg-2 control-label" style="padding-top:0px;">Date/Time: <span class="asterisk_red"></span></label>
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Gate In Date/Time: </label>
                       <div class="col-lg-9" >
-                          <s:textfield required="true" name="container.gateInTime" cssClass="form-control" id="gateInTime" />
+                          <s:textfield readonly="true" name="container.gateInTime" value="%{container.strGateInTime}" cssClass="form-control" id="gateInTime" />
                       </div>
-                      <script type="text/javascript">
-                          $(function () {
-                              var fromDatePickUp = $('#gateInTime');
-                              fromDatePickUp.datetimepicker({
-                                  timeFormat: 'h:mm TT',
-                                  minDate: 0
-                              });
-                          });
-                      </script>
+
                   </div>
 
                   <div class="form-group">
-                      <label class="col-lg-2 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">EIR Number: </label>
                       <div class="col-lg-9" >
-                          <s:textfield required="true" name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
+                          <s:textfield name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
                       </div>
                   </div>
 
                   <div class="form-group">
-                      <label class="col-lg-2 control-label" style="padding-top:0px;">Van Location: <span class="asterisk_red"></span></label>
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Van Location: </label>
                       <div class="col-lg-9" >
-                          <s:textfield required="true" name="container.vanLocation" cssClass="form-control" id="container.vanLocation" />
+                          <s:textfield name="container.vanLocation" cssClass="form-control" id="container.vanLocation" />
                       </div>
                   </div>
               </div>
             </div>
-        <%--</div>--%>
+
       <div class="panel-footer">
         <div class="pull-right">
           <a href="viewContainerList" class="btn btn-danger" id ="groups-btn">Cancel</a>
@@ -139,3 +136,13 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        var fromDatePickUp = $('#gateInTime');
+        fromDatePickUp.datetimepicker({
+            timeFormat: 'h:mm TT',
+            minDate: 0
+        });
+    });
+</script>
