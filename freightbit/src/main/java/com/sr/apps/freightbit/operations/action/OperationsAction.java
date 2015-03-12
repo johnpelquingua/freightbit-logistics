@@ -2664,7 +2664,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // For FTL Requirement
         List<Orders> ftlOrders = new ArrayList<Orders>();
-
+        System.out.println("+++++++++++++++++++++++++++++++++++++ " + originCityTruck );
         if(originCityTruck != null){
             ftlOrders = operationsService.findOrdersByOriginFTL(originCityTruck);
         }else{
@@ -3144,11 +3144,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }*/
 
-        Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
         if(orderItemEntity.size() >= 1){
-
-            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") ||
-                orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
                 if(orderItemEntity.get(0).getTruckOrigin() == null || "".equals(orderItemEntity.get(0).getTruckOrigin())){
                     formBean.setPlateNumberOri("NONE");
                 }
@@ -3156,10 +3152,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     Trucks truckEntityOri = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckOrigin());
                     formBean.setPlateNumberOri(truckEntityOri.getPlateNumber());
                 }
-            }
 
-            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR") ||
-                    orderEntity.getServiceMode().equals("DELIVERY") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
                 if(orderItemEntity.get(0).getTruckDestination() == null || "".equals(orderItemEntity.get(0).getTruckDestination())){
                     formBean.setPlateNumberDes("NONE");
                 }
@@ -3167,9 +3160,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     Trucks truckEntityDes = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckDestination());
                     formBean.setPlateNumberDes(truckEntityDes.getPlateNumber());
                 }
-            }
         }
-
         /*else{
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") ||
                     orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")) {

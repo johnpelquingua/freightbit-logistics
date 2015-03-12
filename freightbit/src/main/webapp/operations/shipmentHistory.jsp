@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
@@ -87,7 +88,7 @@
                     <table>
                         <tr>
                             <display:table id="orderStatusLogs" name="orderStatusLogs"
-                                           requestURI="loadItemShipmentHistory.action" pagesize="10"
+                                           requestURI="setBulkItemStatus.action" pagesize="10"
                                            class="shipmentMonitoringTable table table-striped table-hover table-bordered text-center tablesorter"
                                             style="margin-top: 15px;empty-cells: hide;">
 

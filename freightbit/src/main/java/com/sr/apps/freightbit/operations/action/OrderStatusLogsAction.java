@@ -552,11 +552,12 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             String[] checkedItemsInSession = (String[]) sessionAttributes.get("checkedItemsInSession");
             for (String checkValue : checkedItemsInSession) {
                 Integer bulkId = Integer.parseInt(checkValue);
-                OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
-                orderStatusLogsBean.setOrderItemId(bulkId);
+                OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(bulkId);
+                orderStatusLogsBean.setOrderItemId(orderItemEntity.getOrderItemId());
 
                 //Add both item's status' values in OrderStatusLogs table
                 OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
+                sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
                 orderStatusLogsEntity.setCreatedTimestamp(new Date());
                 orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 orderStatusLogsService.addStatus(orderStatusLogsEntity);
@@ -564,8 +565,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 //Status in OrderStatusLogs will be passed into OrderItems table
                 orderItemEntity.setStatus(orderStatusLogsBean.getStatus());
                 orderStatusLogsService.updateStatusOrderItem(orderItemEntity);
-
-
             }
         } catch (Exception e) {
             addActionError("Update Failed");
@@ -575,29 +574,27 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String loadSuccessSetStatus() {
-    Map sessionAttributes = ActionContext.getContext().getSession();
-    Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam")).getOrderId());
-    order = transformToOrderFormBean(orderEntity);
-    OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
-    orderItem = transformToOrderItemFormBean(orderItemEntity);
-    List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
-
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam")).getOrderId());
+        order = transformToOrderFormBean(orderEntity);
+        OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+        orderItem = transformToOrderItemFormBean(orderItemEntity);
+        List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
         for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
-        orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
+            orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
         }
         // Will show orderItem on second load without passing orderItemIdParam from table
         orderStatusLogsBean.setOrderItemId(orderItemEntity.getOrderItemId());
-
         //for filtering order status shipment list
 
-        if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
+        if (orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")) {
 
-            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
+            if (orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")) {
                 allFreightStatusList.add("PICKUP");
                 allFreightStatusList.add("POSITIONED");
             }
 
-            if(orderEntity.getServiceRequirement().equals("LESS CONTAINER LOAD")){
+            if (orderEntity.getServiceRequirement().equals("LESS CONTAINER LOAD")) {
                 allFreightStatusList.add("QUEUE FOR CONSOLIDATION");
             }
 
@@ -606,15 +603,15 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             allFreightStatusList.add("RETURNED TO ORIGIN");
             allFreightStatusList.add("ARRIVED");
 
-            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
+            if (orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")) {
                 allFreightStatusList.add("DELIVERED");
             }
 
-        }else{
-            if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+        } else {
+            if (orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")) {
                 allFreightStatusList.add("PICKUP");
                 allFreightStatusList.add("POSITIONED");
-            }else{
+            } else {
                 allFreightStatusList.add("DELIVERED");
             }
         }
@@ -625,7 +622,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("orderIdParam", orderEntity.getOrderId());
         sessionAttributes.put("orderItemIdParam", orderItemIdParam);
         return SUCCESS;
-
     }
 
     public String loadItemShipmentHistory() {

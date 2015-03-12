@@ -150,10 +150,10 @@
                                             style="text-align: center;"> </display:column>
                         </td>
 
-                        <td>
+                        <%--<td>
                             <display:column property="shippingSeal" title="Shipping Seal <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column>
-                        </td>
+                        </td>--%>
 
                         <td>
                             <display:column property="status" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
