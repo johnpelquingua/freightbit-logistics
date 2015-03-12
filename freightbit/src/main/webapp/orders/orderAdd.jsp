@@ -17,7 +17,7 @@
 </style>
 
 <script>
-    $(document).ready(function(){
+  $(document).ready(function(){
   if (window.localStorage) {
   $('.notifBox').on('click',':checkbox',function(){
   var name = this.name;
@@ -35,17 +35,13 @@
   }
   });
 
-
   $(document).ready(function () {
   $(':checkbox').each(function() {
   $(this).prop('checked',localStorage.getItem(this.name) == 'checked');
   });
   });
   }
-    });
-
-
-
+  });
 </script>
 
 <div class="row">
@@ -670,6 +666,15 @@
                     <div class="form-group">
                     <s:form action="addConsigneeBooking" cssClass="form-horizontal" theme="bootstrap">
                     <s:hidden name="consignee.referenceId1" id="consigneeAddIdHolder"/>
+                        <div class="form-group">
+                            <label class="col-lg-3" style="width: 26%;">Company Name<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9" style="width: 74%;">
+                                <s:textfield name="consignee.companyName" cssClass="form-control" id="consignee.companyName"
+                                             placeholder="Company Name" maxLength="30" required="true"
+                                             pattern="^(\s*[a-zA-Z\xD1-\xF1]+(([\'\-\+\s]\s*[a-zA-Z\xD1-\xF1])?[a-zA-Z\xD1-\xF1]*)\s*)+$"
+                                             title="Company Name should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-lg-3" style="width: 26%;">Last Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" style="width: 74%;">

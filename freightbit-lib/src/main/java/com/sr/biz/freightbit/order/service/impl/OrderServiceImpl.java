@@ -412,11 +412,12 @@ public class OrderServiceImpl implements OrderService {
      * @companyCode companyCode 3-character companyCode (eg., NTY, MTY)
      * @return next booking no. Eg, NTY-0007, MTY-0000
      */
+
     @Override
     public String findNextBookingNo(Integer clientId, String companyCode) {
         Integer nextBookingNo = orderDao.findNextBookingNo(clientId, companyCode);
         String nextBookingNoAsStr = nextBookingNo.toString();
-        int zerosToAdd = 4-nextBookingNoAsStr.length();
+        int zerosToAdd = 4 - nextBookingNoAsStr.length();
         if (zerosToAdd == 3)
             return companyCode + "-000" + nextBookingNoAsStr;
         else if (zerosToAdd == 2)

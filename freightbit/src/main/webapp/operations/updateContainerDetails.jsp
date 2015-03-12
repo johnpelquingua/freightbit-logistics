@@ -55,12 +55,12 @@
               <s:textfield name="container.bulletSeal" value="%{orderItem.bulletSeal}" cssClass="form-control" id="bulletSeal"/>
             </div>
           </div>
-          <div class="form-group">
+          <%--<div class="form-group">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Seal: </label>
             <div class="col-lg-7" >
               <s:textfield name="container.shippingSeal" value="%{orderItem.shippingSeal}" cssClass="form-control" id="shippingSeal"/>
             </div>
-          </div>
+          </div>--%>
           <div class="pull-right">
             <button type="button" class="btn btn-danger" data-dismiss="modal">
               Cancel

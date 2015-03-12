@@ -139,8 +139,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
             Items shipperItem = customerService.findItemByCustomerItemsId(itemId);
 
-            /*Items shipperItem = customerService.findItemDetailsByItemName(itemName);*/
-
             shipperItemVolumeMap.put(shipperItem.getLength() * shipperItem.getWidth() * shipperItem.getHeight(), shipperItem.getLength() * shipperItem.getWidth() * shipperItem.getHeight());
 
             shipperItemCommodityMap.put(shipperItem.getDescription(), shipperItem.getDescription());
@@ -188,14 +186,11 @@ public class OrderAction extends ActionSupport implements Preparable {
             customerEmailMap.put(customerContactInfo.getEmail(), customerContactInfo.getEmail());
             customerFaxMap.put(customerContactInfo.getFax(), customerContactInfo.getFax());
 
-//            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + customerConsigneeMa);
-
             List<Contacts> consigneeContacts = customerService.findConsigneeContactByRefIdAndType("C_CONTACT", customerID);
 
             for (int i = 0; i < consigneeContacts.size(); i++) {
                 consigneeContactMap.put(consigneeContacts.get(i).getContactId(), consigneeContacts.get(i).getFirstName() + ' ' + consigneeContacts.get(i).getMiddleName() + ' ' + consigneeContacts.get(i).getLastName());
             }
-
         }
 
         return SUCCESS;
@@ -310,7 +305,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             }
             return column;
         }
-
     }
 
     public String loadSearchBookingPage(){ return SUCCESS; }
@@ -434,7 +428,6 @@ public class OrderAction extends ActionSupport implements Preparable {
                     }
                 }
 
-
                 String messageFlag = "FCL_OK";
                 sessionAttributes.put("messageFlag", messageFlag);
             }
@@ -533,12 +526,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String createReport() {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        /*if(sessionAttributes.get("orderIdPass") != null){
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ID PASS " + (Integer) sessionAttributes.get("orderIdPass"));
-            orderIdParam = (Integer) sessionAttributes.get("orderIdPass");
-
-        }*/
-
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ID PARAM " + orderIdParam);
 
         // Booking Request Form will be created under pending documents start
@@ -557,8 +544,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setOutboundStage(1);
         documentEntity.setVendorCode("ELC");
         /*documentEntity.setDocumentType("MASTER");*/
-        documentsService.addDocuments(documentEntity);
+        String documentCode = documentsService.findNextControlNo(getClientId(), "BRF"); // BRF for Booking Request Form Document Code
+        documentEntity.setControlNumber(documentCode);
 
+        documentEntity.setReferenceNumber(documentCode.replace("BRF-",""));
+
+        documentsService.addDocuments(documentEntity);
         // Booking Request Form will be created under pending documents end
 
         // Put Order Id to Order Id session
@@ -588,29 +579,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         notificationService.addNotification(notificationEntity);*/
         // End of Add Notification
 
-
-
-        // House Bill of Lading will be created under pending documents start
-
-        /*if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
-            Documents documentEntity2 = new Documents();
-            Client client2 = clientService.findClientById(getClientId().toString());
-            documentEntity2.setClient(client2);
-            documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
-            documentEntity2.setReferenceId(orderEntity.getOrderId());
-            documentEntity2.setReferenceTable("ORDERS");
-            documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
-            documentEntity2.setCreatedDate(new Date());
-            documentEntity2.setDocumentStatus("FOR REFERENCE");
-            documentEntity2.setDocumentProcessed(0);
-            documentEntity2.setCreatedBy(commonUtils.getUserNameFromSession());
-            documentEntity2.setOutboundStage(1);
-            documentEntity2.setVendorCode("ELC");
-            documentsService.addDocuments(documentEntity2);
-        }*/
-
-        // House Bill of Lading will be created under pending documents end
-
         // To get generated Order Id
         orderIdPass = orderEntity.getOrderId();
 
@@ -619,7 +587,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         sessionAttributes.put("orderIdPass", orderIdPass);
 
         // Booking Request Form will be created under pending documents start
-
         Documents documentEntity = new Documents();
         Client client = clientService.findClientById(getClientId().toString());
         documentEntity.setClient(client);
@@ -633,17 +600,18 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
         documentEntity.setOutboundStage(1);
         documentEntity.setVendorCode("ELC");
-        /*documentEntity.setDocumentType("MASTER");*/
-        documentsService.addDocuments(documentEntity);
+        // To get the document control number
+        String documentCode = documentsService.findNextControlNo(getClientId(), "BRF"); // BRF for Booking Request Form Document Code
+        documentEntity.setControlNumber(documentCode);
 
+        documentEntity.setReferenceNumber(documentCode.replace("BRF-",""));
+
+        documentsService.addDocuments(documentEntity);
         // Booking Request Form will be created under pending documents end
 
         return SUCCESS;
     }
 
-    /*@Action(value = "/ManagersAutoCompleter1", results = {
-            @Result(type = "json", name = "success", params = {"root", "managerNames"})
-    })*/
     public String addOrderInfo() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -1055,6 +1023,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setFax(formBean.getFax());
         entity.setCreatedTimestamp(formBean.getCreatedTimeStamp1());
         entity.setCreatedBy(formBean.getCreatedBy1());
+        entity.setCompanyName(formBean.getCompanyName());
 
         return entity;
     }
@@ -1379,13 +1348,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         entity.setServiceType(formBean.getFreightType());
-
         entity.setServiceMode(formBean.getModeOfService());
         entity.setNotificationType(formBean.getNotifyBy());
         entity.setPaymentMode(formBean.getModeOfPayment());
         entity.setOriginationPort(formBean.getOriginationPort());
         entity.setDestinationPort(formBean.getDestinationPort());
-
         entity.setComments(formBean.getComments());
         /*entity.setOrderStatus(formBean.getOrderStatus());*/  // still to be updated
         if (formBean.getOrderStatus() != null) {
@@ -1715,7 +1682,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
     }
-
 
     public List<OrderBean> getOrders() {
         return orders;

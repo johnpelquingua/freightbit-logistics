@@ -3,6 +3,7 @@ package com.sr.biz.freightbit.documentation.dao.impl;
 import com.sr.biz.freightbit.documentation.dao.DocumentsDao;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.order.entity.Orders;
+import org.apache.commons.logging.Log;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -523,6 +524,27 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
             log.error("Finding documents failed");
             throw e;
         }
+    }
+
+    @Override
+    public Integer findNextControlNo(Integer clientId, String documentCode) {
+        log.debug("Getting latest series no for document [" + documentCode +"]");
+        String sql = "SELECT MAX(controlNo)+1 AS nextControlNo"
+            + " FROM (SELECT controlNumber, SUBSTRING(controlNumber, 5) AS controlNo"
+            + " FROM freightbit.documents"
+            + " WHERE clientId = :clientId"
+            + " AND controlNumber LIKE :documentCode) AS o";
+        Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
+        query.setParameter("clientId", clientId);
+        query.setParameter("documentCode", documentCode+"%");
+        List<Double> results = query.list();
+        System.out.println("results:" + results);
+        if(results != null && results.size() > 0 && results.get(0) != null){
+            System.out.println("results size: " + results.size());
+            System.out.println("results.get(o): " + results.get(0));
+            return results.get(0).intValue();
+        }
+        return 0;
     }
 
 }

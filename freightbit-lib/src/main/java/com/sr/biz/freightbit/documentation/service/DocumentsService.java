@@ -59,6 +59,8 @@ public interface DocumentsService {
 
     public Documents findEIRAndRefId(String documentName, Integer referenceId, String referenceTable);
 
+    public String findNextControlNo(Integer clientId, String documentCode);
+
     public List<Documents> findDocumentsByAging(Integer aging);
 
 

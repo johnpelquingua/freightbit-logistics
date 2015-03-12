@@ -8,7 +8,6 @@
     }
     .checkbox{
         width: 15%;
-
     }
     label.checkbox {
         margin: 0 !important;
@@ -76,7 +75,6 @@
                           value="order.freightType"
                           disabled="true"
                         />
-
             </div>
         </div>
 
@@ -652,6 +650,15 @@
                         <s:form action="addConsigneeBookingEditOrder" cssClass="form-horizontal" theme="bootstrap">
                         <s:hidden name="orderIdParam" id="orderIdHolder"/>
                         <s:hidden name="consignee.referenceId1" id="consigneeAddIdHolder"/>
+                        <div class="form-group">
+                            <label class="col-lg-3" style="width: 26%;">Company Name<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8" style="width: 74%;">
+                                <s:textfield name="consignee.companyName" cssClass="form-control" id="consignee.companyName"
+                                             placeholder="Company Name" maxLength="30" required="true"
+                                             pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                             title="Company Name should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-lg-3" style="width: 26%;">Last Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-8" style="width: 74%;">

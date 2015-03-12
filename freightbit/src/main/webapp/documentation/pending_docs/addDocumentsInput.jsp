@@ -14,7 +14,6 @@
 
             <label class="col-lg-4 control-label" style="text-align: right;">Document Name</label>
             <div class="col-lg-8">
-
                 <%--<s:textfield name="document.referenceId" value="%{orderIdParam}" />--%>
                 <%--<s:param name="orderIdParam" value="%{orderIdParam}"></s:param>--%>
                 <s:hidden name="documentStageParam" value="%{documentStageParam}" />

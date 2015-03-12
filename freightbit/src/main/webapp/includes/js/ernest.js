@@ -1210,7 +1210,8 @@ function dispatchFilterScheduleOrigin() {
             selectedDeparture,
             originVendor = $('#vendorListOrigin').val(),
             originDriver = $('#driverList').val(),
-            originTruck = $('#trucksList').val();
+            originTruck = $('#trucksList').val(),
+            serviceType = $('.serviceType').val();
 
         for (var i = 0; i < dispatchFreightTable.size(); i++) {
             var loop_schedDeparture = new Date(scheduleDeparture.eq(i).text()).setHours(0, 0, 0, 0);
@@ -1224,18 +1225,22 @@ function dispatchFilterScheduleOrigin() {
             }
         }
 
-        if (selectedDeparture >= dispatchFinalPickup.setHours(0, 0, 0, 0)) {
-            /*formToSubmit.submit();*/
+        if(serviceType != 'TRUCKING'){
+            if (selectedDeparture >= dispatchFinalPickup.setHours(0, 0, 0, 0)) {
+                /*formToSubmit.submit();*/
+                finalPickupDateBulkModal(originVendor, originDriver, originTruck, dispatchFinalPickup);
+                $('#saveDispatchPlanning').modal('show');
+            } else {
+                finalDeparture = new Date(selectedDeparture);
+                finalDeparture = finalDeparture.getUTCFullYear() + '-' + (finalDeparture.getMonth() + 1) + '-' + finalDeparture.getDate();
+                var message = 'Date must be no later than <font color="red">' + finalDeparture + '</font> <br/> Do you still wish to proceed?';
+                $('#dateWarningModalBody').empty().append(message);
+                $('#dateWarningModal').modal('show');
+            }
+        }else{
             finalPickupDateBulkModal(originVendor, originDriver, originTruck, dispatchFinalPickup);
             $('#saveDispatchPlanning').modal('show');
-        } else {
-            finalDeparture = new Date(selectedDeparture);
-            finalDeparture = finalDeparture.getUTCFullYear() + '-' + (finalDeparture.getMonth() + 1) + '-' + finalDeparture.getDate();
-            var message = 'Date must be no later than <font color="red">' + finalDeparture + '</font> <br/> Do you still wish to proceed?';
-            $('#dateWarningModalBody').empty().append(message);
-            $('#dateWarningModal').modal('show');
         }
-
     })
 }
 
@@ -1249,7 +1254,8 @@ function dispatchFilterScheduleDestination() {
             selectedArrival,
             destinationVendor = $('#vendorListDestination').val(),
             destinationDriver = $('#driverListDestination').val(),
-            destinationTruck = $('#trucksListDestination').val();
+            destinationTruck = $('#trucksListDestination').val(),
+            serviceType = $('.serviceType').val();
 
         for (var i = 0; i < dispatchFreightTable.size(); i++){
             var loop_schedArrival = new Date(scheduleArrival.eq(i).text()).setHours(0,0,0,0);
@@ -1263,17 +1269,23 @@ function dispatchFilterScheduleDestination() {
             }
         }
 
-        if(selectedArrival <= dispatchFinalDelivery.setHours(0,0,0,0)){
-            /*formToSubmit.submit();*/
+        if(serviceType != 'TRUCKING'){
+            if(selectedArrival <= dispatchFinalDelivery.setHours(0,0,0,0)){
+                /*formToSubmit.submit();*/
+                finalDeliveryDateBulkModal(destinationVendor, destinationDriver, destinationTruck, dispatchFinalDelivery);
+                $('#saveDispatchPlanning').modal('show');
+            }else{
+                finalArrival = new Date(selectedArrival);
+                finalArrival = finalArrival.getUTCFullYear() + '-' + (finalArrival.getMonth() + 1) + '-' + finalArrival.getDate();
+                var message = 'Date must be on or after <font color="red">' + finalArrival + '</font> <br/> Do you still wish to proceed?';
+                $('#dateWarningModalBodyDes').empty().append(message);
+                $('#dateWarningModalDes').modal('show');
+            }
+        }else{
             finalDeliveryDateBulkModal(destinationVendor, destinationDriver, destinationTruck, dispatchFinalDelivery);
             $('#saveDispatchPlanning').modal('show');
-        }else{
-            finalArrival = new Date(selectedArrival);
-            finalArrival = finalArrival.getUTCFullYear() + '-' + (finalArrival.getMonth() + 1) + '-' + finalArrival.getDate();
-            var message = 'Date must be on or after <font color="red">' + finalArrival + '</font> <br/> Do you still wish to proceed?';
-            $('#dateWarningModalBodyDes').empty().append(message);
-            $('#dateWarningModalDes').modal('show');
         }
+
     })
 }
 

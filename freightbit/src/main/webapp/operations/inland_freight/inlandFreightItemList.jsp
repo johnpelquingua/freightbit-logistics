@@ -190,6 +190,7 @@
                             <%--<td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
                                 <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
                             </display:column></td>--%>
+
                             <tr>
                                 <td>
                                     <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
@@ -197,7 +198,6 @@
                                                     fieldValue="%{#attr.orderItem.orderItemId}"/>
                                     </display:column>
                                 </td>
-                                    <%--Change Header based on Service Requirement--%>
 
                                 <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
                                                     class="tb-font-black"
@@ -360,7 +360,7 @@
             </s:url>
             <s:a cssClass="btn btn-primary houseWaybillOriginBtn" href="%{createdInlandDocumentUrl}" rel="tooltip"
                  title="Create Inland Document(s)">
-                Create Inland Document(s)
+                 Create Inland Document(s)
             </s:a>
 
             <a href="viewInlandFreightList" class="btn btn-danger" id ="groups-btn">

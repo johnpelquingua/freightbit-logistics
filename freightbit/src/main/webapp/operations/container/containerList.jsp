@@ -1,4 +1,4 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
+    <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <style>

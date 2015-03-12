@@ -171,7 +171,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.state" class="col-lg-2 control-label" style="padding-top:0px;">Region
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Region
                         </label>
 
                         <div class="col-lg-10" >

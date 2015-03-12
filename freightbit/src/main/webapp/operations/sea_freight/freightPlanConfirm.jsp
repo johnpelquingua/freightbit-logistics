@@ -3,15 +3,12 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <style>
-
   .pagebanner {
       display: none;
   }
-
   .pagelinks {
       display: none;
   }
-
 </style>
 
 
@@ -28,13 +25,11 @@
                        class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple"
                        style="margin-top: 15px;">
             <tr>
-
                 <td>
                     <display:column property="quantity" title="QTY <i class='fa fa-sort' />"
                                     class="tb-font-black"
                                     style="text-align: center;"></display:column>
                 </td>
-
                 <td>
                     <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                         <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
@@ -50,7 +45,7 @@
                     </s:else>
                 </td>
 
-                <td>
+                <%--<td>
                     <display:column property="containerId" title="Container Number <i class='fa fa-sort' />"
                                     class="tb-font-black"
                                     style="text-align: center;">
@@ -69,7 +64,7 @@
                                     class="tb-font-black"
                                     style="text-align: center;">
                     </display:column>
-                </td>
+                </td>--%>
 
             </tr>
 

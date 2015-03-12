@@ -39,6 +39,7 @@ public class DocumentsBean {
     private String vendorName;
     private String currentStage;
     private String nextStage;
+    private String controlNumber;
 
     public DocumentsBean() {
     }
@@ -329,5 +330,13 @@ public class DocumentsBean {
 
     public void setFinalInboundLbc(String finalInboundLbc) {
         this.finalInboundLbc = finalInboundLbc;
+    }
+
+    public String getControlNumber() {
+        return controlNumber;
+    }
+
+    public void setControlNumber(String controlNumber) {
+        this.controlNumber = controlNumber;
     }
 }

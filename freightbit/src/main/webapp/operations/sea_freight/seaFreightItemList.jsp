@@ -352,32 +352,27 @@
 
         <div class="pull-right">
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
-            <s:url var="createdDocumentsSeaUrl" action="createdDocumentsSea">
-                <s:param name="orderIdParam"
-                         value="#attr.order.orderId"></s:param>
-
-            </s:url>
-
-            <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
-                 title="Create Freight Document(s)">
-                Create Freight Document(s)
-            </s:a>
+                <s:url var="createdDocumentsSeaUrl" action="createdDocumentsSea">
+                    <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
+                </s:url>
+                <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
+                     title="Create Freight Document(s)">
+                     Create Freight Document(s)
+                </s:a>
             </sec:authorize>
             <a href="viewSeaFreightList" class="btn btn-danger" id ="groups-btn">
                 <i class="fa fa-chevron-left"></i>
                 Back to Freight Plan : Orders
             </a>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
-            <s:url var="viewDocumentListUrl" action="viewDocumentList">
-                <s:param name="orderIdParam"
-                         value="#attr.order.orderId">
-                </s:param>
-
-            </s:url>
-            <s:a cssClass="btn btn-warning" href="%{viewDocumentListUrl}" rel="tooltip"
-                 title="Go to Documents Page">
-                Proceed to Documents page <i class="fa fa-chevron-right"></i>
-            </s:a>
+                <s:url var="viewDocumentListUrl" action="viewDocumentList">
+                    <s:param name="orderIdParam"
+                             value="#attr.order.orderId">
+                    </s:param>
+                </s:url>
+                <s:a cssClass="btn btn-warning" href="%{viewDocumentListUrl}" rel="tooltip" title="Go to Documents Page">
+                    Proceed to Documents page <i class="fa fa-chevron-right"></i>
+                </s:a>
             </sec:authorize>
         </div>
     </div>

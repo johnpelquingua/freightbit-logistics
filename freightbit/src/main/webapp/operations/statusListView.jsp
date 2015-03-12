@@ -1,6 +1,13 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<style>
+    /*.header{
+        display: inline-block;
+        width: 160px;
+    }*/
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -48,37 +55,36 @@
                                    requestURI="/viewStatusList.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
-                        <%--Booking Date--%>
+
                         <td><display:column property="orderDate" title="Booking Date <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 15%; text-align: center;"> </display:column></td>
-                        <%--Order Number--%>
+                                            style="text-align: center;"> </display:column></td>
+
                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 10%; text-align: center;"> </display:column></td>
+                                            style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 15%; text-align: center;"> </display:column></td>
+                                            style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 20%; text-align: center;"> </display:column></td>
-                        <%--ORIGIN--%>
+                                            style="text-align: center;"> </display:column></td>
+
                         <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 6%; text-align: center;"> </display:column></td>
-                        <%--DESTINATION--%>
+                                            style="text-align: center;"> </display:column></td>
+
                         <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 6%; text-align: center;"> </display:column></td>
-                        <%--Freight Type--%>
+                                            style="text-align: center;"> </display:column></td>
+
                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 6%; text-align: center;"> </display:column></td>
+                                            style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="width: 8%; text-align: center;"> </display:column></td>
+                                            class="tb-font-black" style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center; width: 8%;"> </display:column></td>
+                                            style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="orderItemStatus" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center; width: 15%;"> </display:column></td>
+                                            style="text-align: center;"> </display:column></td>
 
                         <td><display:column title="Action">
                             <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
@@ -89,8 +95,6 @@
                             </s:url>
                             <s:a class="icon-action-link" href="%{viewStatusListItemsUrl}" rel="tooltip"
                                  title="Update Status">
-                                <%--<img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
-                                style="border-radius:25%;">--%>
                                 <i class="fa fa-edit"></i>
                             </s:a>
 
@@ -156,15 +160,11 @@
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body">
                 <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>

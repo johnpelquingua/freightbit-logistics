@@ -2,9 +2,6 @@ package com.sr.apps.freightbit.customer.formbean;
 
 import java.util.Date;
 
-/**
- * Created by ADMIN on 5/29/2014.
- */
 public class CustomerBean {
 
     private Integer customerId;
@@ -26,13 +23,13 @@ public class CustomerBean {
     private String modifiedBy;
     private String customerKeyword;
     private String customerSearchCriteria;
-
+    private String serviceArea;
 
     public CustomerBean() {
 
     }
 
-    public CustomerBean(Integer customerId, String customerCode, String customerName, String customerType, String website, String phone, String mobile, String fax, String email, String dti, String mayorsPermit, String aaf, String signatureCard, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String customerKeyword, String customerSearchCriteria) {
+    public CustomerBean(Integer customerId, String customerCode, String customerName, String customerType, String website, String phone, String mobile, String fax, String email, String dti, String mayorsPermit, String aaf, String signatureCard, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String customerKeyword, String customerSearchCriteria, String serviceArea) {
         this.customerId = customerId;
         this.customerCode = customerCode;
         this.customerName = customerName;
@@ -52,6 +49,7 @@ public class CustomerBean {
         this.modifiedBy = modifiedBy;
         this.customerKeyword = customerKeyword;
         this.customerSearchCriteria = customerSearchCriteria;
+        this.serviceArea = serviceArea;
     }
 
     public Integer getCustomerId() {
@@ -204,5 +202,13 @@ public class CustomerBean {
 
     public void setCustomerSearchCriteria(String customerSearchCriteria) {
         this.customerSearchCriteria = customerSearchCriteria;
+    }
+
+    public String getServiceArea() {
+        return serviceArea;
+    }
+
+    public void setServiceArea(String serviceArea) {
+        this.serviceArea = serviceArea;
     }
 }

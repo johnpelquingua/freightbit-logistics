@@ -4078,8 +4078,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
-    public String createdDocumentsSea() {
-
+    public String createdDocumentsSea(){
         // will delete all existing document and resets all freight documents begin
         List<Documents> freightDocuments = documentsService.findDocumentsByOrderId(orderIdParam);
 
@@ -4155,8 +4154,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntityProforma.setDocumentProcessed(0);
                     documentEntityProforma.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP
+                    String documentCode = documentsService.findNextControlNo(getClientId(), "PBL"); // BRF for Booking Request Form Document Code
+                    documentEntityProforma.setControlNumber(documentCode);
+
+                    documentEntityProforma.setReferenceNumber(documentCode.replace("PBL-",""));
 
                     documentsService.addDocuments(documentEntityProforma);
+
                 } else { // will prompt a message when attempting to create proforma if one was already created
                     clearErrorsAndMessages();
                     addActionError("Proforma Bill of Lading(s) already exists.");
@@ -4165,154 +4169,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                     }
                 }
-
-                // for creation of Authorization to withdraw for sea vendor
-                /*if(withdrawAuthorization.size() == 0){
-
-                    Documents documentEntityAuthorization = new Documents();
-
-                    Client client = clientService.findClientById(getClientId().toString());
-                    documentEntityAuthorization.setClient(client);
-
-                    documentEntityAuthorization.setDocumentName(DocumentsConstants.AUTHORIZATION_TO_WITHDRAW);
-                    documentEntityAuthorization.setReferenceId(orderEntity.getOrderId());
-                    documentEntityAuthorization.setReferenceTable("ORDERS");
-                    documentEntityAuthorization.setOrderNumber(orderEntity.getOrderNumber());
-                    documentEntityAuthorization.setCreatedDate(new Date());
-                    documentEntityAuthorization.setDocumentStatus("FROM PLANNING");
-
-                    documentEntityAuthorization.setVendorCode(itemVendor);
-
-                    if(orderEntity.getServiceMode().equals("PIER TO PIER")){
-                        documentEntityAuthorization.setOutboundStage(1);
-                        documentEntityAuthorization.setDocumentProcessed(0);
-                    }else{
-                        documentEntityAuthorization.setFinalOutboundStage(1);
-                        documentEntityAuthorization.setDocumentProcessed(2);
-                    }
-                    documentEntityAuthorization.setCreatedBy(commonUtils.getUserNameFromSession());
-
-                    documentsService.addDocuments(documentEntityAuthorization);
-
-                }else {
-                    clearErrorsAndMessages();
-                    addActionError("Authorization to Withdraw(s) already exists.");
-
-                    for(OrderItems orderItemsElem : orderItemsList) {
-                        orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-                    }
-                }*/
-
-                /*for (String vendorDes : vendorDestination){
-                    if(vendorDes != null){
-                        if(withdrawAuthorization.size() == 0){
-                            Documents documentEntityAuthorization = new Documents();
-
-                            Client client = clientService.findClientById(getClientId().toString());
-                            documentEntityAuthorization.setClient(client);
-
-                            documentEntityAuthorization.setDocumentName(DocumentsConstants.AUTHORIZATION_TO_WITHDRAW);
-                            documentEntityAuthorization.setReferenceId(orderEntity.getOrderId());
-                            documentEntityAuthorization.setReferenceTable("ORDERS");
-                            documentEntityAuthorization.setOrderNumber(orderEntity.getOrderNumber());
-                            documentEntityAuthorization.setCreatedDate(new Date());
-                            documentEntityAuthorization.setDocumentStatus("FROM PLANNING");
-                            documentEntityAuthorization.setVendorCode(vendorDes.split("-")[0]);
-
-                            if(orderEntity.getServiceMode().equals("PIER TO PIER")){
-                                documentEntityAuthorization.setOutboundStage(1);
-                                documentEntityAuthorization.setDocumentProcessed(0);
-                            }else{
-                                documentEntityAuthorization.setFinalOutboundStage(1);
-                                documentEntityAuthorization.setDocumentProcessed(2);
-                            }
-                            documentEntityAuthorization.setCreatedBy(commonUtils.getUserNameFromSession());
-                            *//*documentEntityAuthorization.setOrderItemId(Integer.parseInt(vendorDes.split("-")[1]));*//*
-                            documentsService.addDocuments(documentEntityAuthorization);
-
-                        } else {
-                            clearErrorsAndMessages();
-                            addActionError("Authorization to Withdraw(s) already exists.");
-
-                            for(OrderItems orderItemsElem : orderItemsList) {
-                                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-                            }
-                        }
-                    }
-                }*/
-
-                /*if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
-
-                    if(acceptanceReceipt.size() == 0){
-
-                        Documents documentEntityAcceptance = new Documents();
-
-                        Client client = clientService.findClientById(getClientId().toString());
-                        documentEntityAcceptance.setClient(client);
-
-                        documentEntityAcceptance.setDocumentName(DocumentsConstants.ACCEPTANCE_RECEIPT);
-                        documentEntityAcceptance.setReferenceId(orderEntity.getOrderId());
-                        documentEntityAcceptance.setReferenceTable("ORDERS");
-                        documentEntityAcceptance.setOrderNumber(orderEntity.getOrderNumber());
-                        documentEntityAcceptance.setCreatedDate(new Date());
-                        documentEntityAcceptance.setDocumentStatus("FROM PLANNING");
-                        documentEntityAcceptance.setVendorCode(itemVendor);
-                        documentEntityAcceptance.setOutboundStage(1);
-                        documentEntityAcceptance.setDocumentProcessed(0);
-                        documentEntityAcceptance.setCreatedBy(commonUtils.getUserNameFromSession());
-                        // orderitem id should be set in orderitemid column WIP
-
-                        documentsService.addDocuments(documentEntityAcceptance);
-
-                    }else{
-                        clearErrorsAndMessages();
-                        addActionError("Acceptance Receipt(s) already exists.");
-
-                        for(OrderItems orderItemsElem : orderItemsList) {
-                            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-                        }
-                    }
-                }*/
-
-                /*if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
-
-                    if(releaseOrder.size() == 0){
-
-                        Documents documentEntityRelease = new Documents();
-
-                        Client client = clientService.findClientById(getClientId().toString());
-                        documentEntityRelease.setClient(client);
-
-                        documentEntityRelease.setDocumentName(DocumentsConstants.RELEASE_ORDER);
-                        documentEntityRelease.setReferenceId(orderEntity.getOrderId());
-                        documentEntityRelease.setReferenceTable("ORDERS");
-                        documentEntityRelease.setOrderNumber(orderEntity.getOrderNumber());
-                        documentEntityRelease.setCreatedDate(new Date());
-                        documentEntityRelease.setDocumentStatus("FROM PLANNING");
-                        documentEntityRelease.setVendorCode(itemVendor);
-                        if(orderEntity.getServiceMode().equals("PIER TO PIER")){
-                            documentEntityRelease.setOutboundStage(1);
-                            documentEntityRelease.setDocumentProcessed(0);
-                        }else{
-                            documentEntityRelease.setFinalOutboundStage(1);
-                            documentEntityRelease.setDocumentProcessed(2);
-                        }
-                        documentEntityRelease.setCreatedBy(commonUtils.getUserNameFromSession());
-                        // orderitem id should be set in orderitemid column WIP
-
-                        documentsService.addDocuments(documentEntityRelease);
-
-                    }else{
-
-                        clearErrorsAndMessages();
-                        addActionError("Release Order(s) already exists.");
-
-                        for(OrderItems orderItemsElem : orderItemsList) {
-                            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-                        }
-
-                    }
-                }*/
 
             }else{ // if no shipping vendor set will return an error message
                 clearErrorsAndMessages();
@@ -4337,9 +4193,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String createdInlandDocument(){
-
         // will delete all existing document and resets all inland documents begin
-
         List<Documents> freightDocuments = documentsService.findDocumentsByOrderId(orderIdParam);
 
         for (Documents freightDocumentElem : freightDocuments){
@@ -4404,6 +4258,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             documentEntity.setDocumentProcessed(0);
                             documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                             // orderitem id should be set in orderitemid column WIP
+                            String documentCode = documentsService.findNextControlNo(getClientId(), "HWO"); // BRF for Booking Request Form Document Code
+                            documentEntity.setControlNumber(documentCode);
+
+                            documentEntity.setReferenceNumber(documentCode.replace("HWO-",""));
 
                             documentsService.addDocuments(documentEntity);
                         } else { // will prompt a message when attempting to create house waybill origin if one was already created
@@ -4453,6 +4311,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             documentEntity.setDocumentProcessed(2);
                             documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                             // orderitem id should be set in orderitemid column WIP
+                            String documentCode = documentsService.findNextControlNo(getClientId(), "HWD"); // BRF for Booking Request Form Document Code
+                            documentEntity.setControlNumber(documentCode);
+
+                            documentEntity.setReferenceNumber(documentCode.replace("HWD-",""));
 
                             documentsService.addDocuments(documentEntity);
                         } else {
@@ -4475,7 +4337,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         return INPUT;
                     }
                 }
-
             }
         }
 
@@ -4670,8 +4531,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
-
-//    -----------------DOCUMENTS PAGE-------------------------
 
     private String getFullName(String lastName, String firstName, String middleName) {
         StringBuilder fullName = new StringBuilder("");

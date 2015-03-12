@@ -1892,9 +1892,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                         documentEntity.setReferenceNumber(document.getReferenceNumber());
                         documentEntity.setDocumentComments(document.getDocumentComments());
+                        String documentCode = documentsService.findNextControlNo(getClientId(), "HBL"); // HBL for House Bill of Lading Form Document Code
+                        documentEntity.setControlNumber(documentCode);
+
+                        documentEntity.setReferenceNumber(documentCode.replace("HBL-",""));
 
                         documentsService.addDocuments(documentEntity);
-
 
                     }else{
                         clearErrorsAndMessages();
@@ -1951,6 +1954,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     documentEntity.setReferenceNumber(document.getReferenceNumber());
                     documentEntity.setDocumentComments(document.getDocumentComments());
+                    String documentCode = documentsService.findNextControlNo(getClientId(), "MBL"); // MBL for Master Bill of Lading Form Document Code
+                    documentEntity.setControlNumber(documentCode);
+
+                    /*documentEntity.setReferenceNumber(documentCode.replace("MBL-",""));*/
 
                     documentsService.addDocuments(documentEntity);
 
@@ -2009,6 +2016,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     documentEntity.setReferenceNumber(document.getReferenceNumber());
                     documentEntity.setDocumentComments(document.getDocumentComments());
+                    String documentCode = documentsService.findNextControlNo(getClientId(), "MWO"); // MWO for Master Waybill Origin Form Document Code
+                    documentEntity.setControlNumber(documentCode);
+
+                    /*documentEntity.setReferenceNumber(documentCode.replace("MWO-",""));*/
 
                     documentsService.addDocuments(documentEntity);
 
@@ -2067,6 +2078,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     documentEntity.setReferenceNumber(document.getReferenceNumber());
                     documentEntity.setDocumentComments(document.getDocumentComments());
+                    String documentCode = documentsService.findNextControlNo(getClientId(), "MWD"); // MWD for Master Waybill Destination Form Document Code
+                    documentEntity.setControlNumber(documentCode);
+
+                    /*documentEntity.setReferenceNumber(documentCode.replace("MWD-",""));*/
 
                     documentsService.addDocuments(documentEntity);
 
@@ -2089,8 +2104,51 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 }
             }
 
+            for(OrderItems orderItemElem : orderItemsList){
+
+                Documents documentEntity = new Documents();
+                Client client = clientService.findClientById(getClientId().toString());
+
+                documentEntity.setClient(client);
+                documentEntity.setDocumentName(documentName);
+                documentEntity.setReferenceId(document.getReferenceId());
+                documentEntity.setReferenceTable("ORDERS");
+                documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                documentEntity.setCreatedDate(new Date());
+                /*documentEntity.setVendorCode(seaVendor);*/
+
+                if (documentStageParam.equals("OUTBOUND")) {
+                    documentEntity.setOutboundStage(1);
+                    documentEntity.setDocumentProcessed(0);
+                    documentEntity.setDocumentStatus("OUTBOUND");
+                } else if (documentStageParam.equals("INBOUND")) {
+                    documentEntity.setInboundStage(1);
+                    documentEntity.setDocumentProcessed(1);
+                    documentEntity.setDocumentStatus("INBOUND");
+                } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                    documentEntity.setDocumentProcessed(2);
+                    documentEntity.setFinalOutboundStage(1);
+                    documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                } else {
+                    documentEntity.setFinalInboundStage(1);
+                    documentEntity.setDocumentProcessed(3);
+                    documentEntity.setDocumentStatus("FINAL INBOUND");
+                }
+
+                documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                documentEntity.setReferenceNumber(document.getReferenceNumber());
+                documentEntity.setDocumentComments(document.getDocumentComments());
+                documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
+                String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
+                documentEntity.setControlNumber(documentCode);
+
+                documentEntity.setReferenceNumber(documentCode.replace("ATW-",""));
+
+                documentsService.addDocuments(documentEntity);
+            }
+
             // Authorization to withdraw connected to sea vendor
-            for (String seaVendor : vendorSea){
+            /*for (String seaVendor : vendorSea){
 
                 if(seaVendor != null){
 
@@ -2126,6 +2184,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     documentEntity.setReferenceNumber(document.getReferenceNumber());
                     documentEntity.setDocumentComments(document.getDocumentComments());
+                    String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
+                    documentEntity.setControlNumber(documentCode);
+
+                    documentEntity.setReferenceNumber(documentCode.replace("ATW-",""));
 
                     documentsService.addDocuments(documentEntity);
 
@@ -2137,10 +2199,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     return INPUT;
                 }
 
-            }
+            }*/
 
             // Authorization to withdraw connected to destination vendor
-            for(String destinationVendor : vendorDestination){
+            /*for(String destinationVendor : vendorDestination){
                 if(destinationVendor != null){
 
                     Documents documentEntity = new Documents();
@@ -2175,6 +2237,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     documentEntity.setReferenceNumber(document.getReferenceNumber());
                     documentEntity.setDocumentComments(document.getDocumentComments());
+                    String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
+                    documentEntity.setControlNumber(documentCode);
+
+                    documentEntity.setReferenceNumber(documentCode.replace("ATW-",""));
 
                     documentsService.addDocuments(documentEntity);
 
@@ -2184,7 +2250,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                     return INPUT;
                 }
-            }
+            }*/
 
         }else if(documentName.equals("ACCEPTANCE RECEIPT")){
 
@@ -2232,6 +2298,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     documentEntity.setReferenceNumber(document.getReferenceNumber());
                     documentEntity.setDocumentComments(document.getDocumentComments());
+                    String documentCode = documentsService.findNextControlNo(getClientId(), "ARF"); // ARF for Acceptance Receipt Form Document Code
+                    documentEntity.setControlNumber(documentCode);
+
+                    documentEntity.setReferenceNumber(documentCode.replace("ARF-",""));
 
                     documentsService.addDocuments(documentEntity);
 
@@ -2289,6 +2359,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     documentEntity.setReferenceNumber(document.getReferenceNumber());
                     documentEntity.setDocumentComments(document.getDocumentComments());
+                    String documentCode = documentsService.findNextControlNo(getClientId(), "ROF"); // ROF for Release Order Form Document Code
+                    documentEntity.setControlNumber(documentCode);
+
+                    documentEntity.setReferenceNumber(documentCode.replace("ROF-",""));
 
                     documentsService.addDocuments(documentEntity);
 

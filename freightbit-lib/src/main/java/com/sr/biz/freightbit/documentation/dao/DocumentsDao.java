@@ -65,4 +65,5 @@ public interface DocumentsDao {
 
     public Documents findEIRAndRefId (String documentName, Integer referenceId, String referenceTable);
 
+    public Integer findNextControlNo (Integer clientId, String documentCode);
 }

@@ -1,14 +1,9 @@
 package com.sr.biz.freightbit.customer.entity;
 
-/**
- * Created by ADMIN on 5/13/14.
- */
-
 import com.sr.biz.freightbit.core.entity.Client;
 
 import javax.persistence.*;
 import java.util.Date;
-
 
 @Entity
 @Table(name = "customers", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "customerId"))
@@ -33,11 +28,12 @@ public class Customer implements java.io.Serializable {
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
+    private String serviceArea;
 
     public Customer() {
     }
 
-    public Customer(Integer customerId, Client client, String customerCode, String customerName, String customerType, String website, String phone, String mobile, String fax, String email, String dti, String mayorsPermit, String aaf, String signatureCard, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public Customer(Integer customerId, Client client, String customerCode, String customerName, String customerType, String website, String phone, String mobile, String fax, String email, String dti, String mayorsPermit, String aaf, String signatureCard, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String serviceArea) {
         this.customerId = customerId;
         this.client = client;
         this.customerCode = customerCode;
@@ -56,6 +52,7 @@ public class Customer implements java.io.Serializable {
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
+        this.serviceArea = serviceArea;
     }
 
     @Id
@@ -221,5 +218,14 @@ public class Customer implements java.io.Serializable {
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    @Column(name = "serviceArea")
+    public String getServiceArea() {
+        return serviceArea;
+    }
+
+    public void setServiceArea(String serviceArea) {
+        this.serviceArea = serviceArea;
     }
 }

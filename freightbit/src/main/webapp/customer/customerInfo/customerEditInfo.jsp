@@ -90,29 +90,29 @@
                             </div>
 
                             <div class="form-group">
-                            <label class="col-lg-5  control-label" style="padding-top:0px;">DTI / SEC</label>
-                            <div class="col-lg-7" >
-                                <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
-                                             placeholder="XXXXXXXX" maxLength="8" pattern="^[0-9]{8,}$"/>
+                                <label class="col-lg-5  control-label" style="padding-top:0px;">DTI / SEC</label>
+                                <div class="col-lg-7" >
+                                    <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
+                                                 placeholder="XXXXXXXX" maxLength="8" pattern="^[0-9]{8,}$"/>
+                                </div>
                             </div>
-                            </div>
-
 
                             <div class="form-group">
-                            <label class="col-lg-5  control-label" style="padding-top:0px;">Customer Information Sheet Number</label>
-                            <div class="col-lg-7" >
-                                <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet Number" maxLength="30"/>
-                            </div>
-
+                                <label class="col-lg-5  control-label" style="padding-top:0px;">Customer Information Sheet Number</label>
+                                <div class="col-lg-7" >
+                                    <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet Number" maxLength="30"/>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
+
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Customer Type<span class="asterisk_red"></span></label>
                                 <div class="col-lg-7" >
                                     <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span></label>
                                 <div class="col-lg-7" >
@@ -121,6 +121,7 @@
                                     title="Mobile number should contain 11 digits."/>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Fax  Number</label>
                                 <div class="col-lg-7" >
@@ -142,6 +143,7 @@
                                     <s:textfield name="customer.website" cssClass="form-control" id="customer.website"/>
                                 </div>
                             </div>--%>
+
                             <div class="form-group">
 
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Mayor's Permit Number</label>
@@ -149,17 +151,24 @@
                                     <s:textfield name="customer.mayorsPermit" cssClass="form-control" id="customer_mayorsPermit" placeholder="XX-XXXXXX" pattern=".{9,}"/>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Account Application Form Number</label>
                                 <div class="col-lg-7" >
                                     <s:textfield name="customer.aaf" cssClass="form-control" id="customer_aaf" placeholder="Account Application Form Number" maxlength="30"/>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-5  control-label" style="padding-top:0px;">Service Area</label>
+                                <div class="col-lg-7">
+                                    <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                              id="select" name="customer.serviceArea" list="portsList" listKey="key"
+                                              listValue="value" required="true"/>
+                                </div>
+                            </div>
+
                         </div>
-
-
-
-
 
                         <%--<div class="col-lg-9 col-lg-offset-2">--%>
                             <%--<div class="panel panel-info" >--%>
@@ -192,8 +201,6 @@
                                             <%--<s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Mayor's Permit"  />--%>
                                         <%--</s:else>--%>
                                     <%--</div>--%>
-
-
 
                                     <%--<div class="col-lg-4 col-lg-offset-2" >--%>
                                         <%--&lt;%&ndash;<s:property value="%{customer.aaf}" />&ndash;%&gt;--%>

@@ -6,10 +6,6 @@
     .pagebanner, .pagelinks {
         display: none;
     }
-    /*#inboundReceivedModal, #sendFinalOutbound, #finalInboundReceivedModal{
-        top:25%;
-        outline: none;
-    }*/
     .documentsCheckbox {
         cursor: pointer;
     }

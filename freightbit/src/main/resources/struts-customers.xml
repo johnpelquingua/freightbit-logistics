@@ -26,31 +26,14 @@
             <result name="success" type="tiles">customer.loadEditCustomer.tiles</result>
         </action>
 
-       <!-- <action name="loadSaveCompletePage" class="com.sr.apps.freightbit.customer.action.CustomerAction"
-                method="loadSaveCompletePage">
-            <result name="success" type="tiles">customer.customerSaveComplete.tiles</result>
-        </action>-->
-
         <action name="editItem" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerEditItem">
             <result name="success" type="tiles">customer.customerEditItem.tiles</result>
         </action>
-
-
-
-        <!--<action name="addItem" class="com.sr.apps.freightbit.customer.action.CustomerAction"
-                method="customerAddItemExecute">
-            <result name="success" type="redirect">customerAddItem</result>
-        </action>-->
 
         <action name="customerEditItem" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="customerEditItemExecute">
             <result name="success" type="redirect">customerAddItem</result>
         </action>
-
-        <!--<action name="customerAddItem" class="com.sr.apps.freightbit.customer.action.CustomerAction"
-                method="customerAddItems">
-            <result name="success" type="tiles">customer.customerAddItems.tiles</result>
-        </action>-->
 
         <action name="customerInfo" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerInfo">
             <result name="success" type="tiles">customer.customerInfo.tiles</result>

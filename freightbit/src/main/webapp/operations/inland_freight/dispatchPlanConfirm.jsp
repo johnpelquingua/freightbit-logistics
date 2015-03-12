@@ -3,23 +3,18 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <style>
-
   .pagebanner {
       display: none;
   }
-
   .pagelinks {
       display: none;
   }
-
   .dispatch-form {
       margin-bottom: 20px;
   }
-
   .control-label {
       font-weight: bold;
   }
-
 </style>
 
 
@@ -58,7 +53,7 @@
                         </s:else>
                     </td>
 
-                    <td>
+                    <%--<td>
                         <display:column property="containerId" title="Container Number <i class='fa fa-sort' />"
                                         class="tb-font-black"
                                         style="text-align: center;">
@@ -77,7 +72,7 @@
                                         class="tb-font-black"
                                         style="text-align: center;">
                         </display:column>
-                    </td>
+                    </td>--%>
 
                 </tr>
 

@@ -56,7 +56,7 @@
                     </div>
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Freight Type</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.freightType}" name="book-num"
+                        <s:textfield cssClass="form-control serviceType" value="%{order.freightType}" name="book-num"
                                      disabled="true"></s:textfield>
                     </div>
                 </div>
@@ -161,63 +161,67 @@
             </div>
         </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <i class="fa fa-anchor"></i>
-                <span class="panel-title">Freight Plan</span>
-            </div>
-            <div class="panel-body form-horizontal">
+        <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
 
-                <display:table id="orderItem" name="orderItems"
-                               requestURI="/viewSeaFreightItemList.action"
-                               class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple freightTableBulk"
-                               style="margin-top: 15px;">
-                    <tr>
-                            <%--Change Header based on Service Requirement--%>
-                        <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"></display:column>
-                        </td>
-                        <td>
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-anchor"></i>
+                    <span class="panel-title">Freight Plan</span>
+                </div>
+                <div class="panel-body form-horizontal">
+
+                    <display:table id="orderItem" name="orderItems"
+                                   requestURI="/viewSeaFreightItemList.action"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple freightTableBulk"
+                                   style="margin-top: 15px;">
+                        <tr>
+                                <%--Change Header based on Service Requirement--%>
+                            <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
                                                 class="tb-font-black"
-                                                style="text-align: center;">
-                                </display:column>
-                            </s:if>
-                            <s:else>
-                                <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
+                                                style="text-align: center;"></display:column>
+                            </td>
+                            <td>
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;">
+                                    </display:column>
+                                </s:if>
+                                <s:else>
+                                    <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;">
+                                    </display:column>
+                                </s:else>
+                            </td>
+
+                            <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
                                                 class="tb-font-black"
-                                                style="text-align: center;">
-                                </display:column>
-                            </s:else>
-                        </td>
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                            <td><display:column property="departureDate" title="Departure Date <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="departureDate" title="Departure Date <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                            <td><display:column property="arrivalDate" title="Arrival Date <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="arrivalDate" title="Arrival Date <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                        </tr>
+                    </display:table>
 
-                    </tr>
-                </display:table>
-
+                </div>
             </div>
-        </div>
+
+        </s:if>
 
         <div class="panel panel-primary">
             <div class="panel-heading">

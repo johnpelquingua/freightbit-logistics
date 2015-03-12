@@ -26,8 +26,8 @@
         <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Booking Information</h3>
         <div class="btn-toolbar pull-right">
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
-                <a class="btn btn-success" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-edit"></i> Edit Booking</a>
-                <%--<s:property value="#attr.order.documentCheck"/>--%>
+                    <a class="btn btn-success" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-edit"></i> Edit Booking</a>
+                    <%--<s:property value="#attr.order.documentCheck"/>--%>
                 <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
                     <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM')"> <i class="fa fa-print"></i> Print Booking</a>
                 </s:if>

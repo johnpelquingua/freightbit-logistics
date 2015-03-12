@@ -40,6 +40,7 @@ public class Documents implements Serializable {
     private String vendorCode;
     private Integer orderItemId;
     private Integer aging;
+    private String controlNumber;
 
     public Documents() {
     }
@@ -315,5 +316,14 @@ public class Documents implements Serializable {
 
     public void setAging(Integer aging) {
         this.aging = aging;
+    }
+
+    @Column(name = "controlNumber")
+    public String getControlNumber() {
+        return controlNumber;
+    }
+
+    public void setControlNumber(String controlNumber) {
+        this.controlNumber = controlNumber;
     }
 }

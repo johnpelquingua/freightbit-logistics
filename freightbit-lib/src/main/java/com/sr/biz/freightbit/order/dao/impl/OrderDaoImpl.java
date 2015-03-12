@@ -244,14 +244,15 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
      * @param clientId
      * @param companyCode 3-character companyCode (eg., NTY, MTY)
      */
+
     @Override
     public Integer findNextBookingNo(Integer clientId, String companyCode) {
      Log.debug("Getting latest booking no for companyCode [" + companyCode +"]");
-     String sql = "SELECT MAX(bookingNo)+1 as nextBookingNo"
+     String sql = "SELECT MAX(bookingNo)+1 AS nextBookingNo"
        + " FROM (SELECT orderNumber, SUBSTRING(orderNumber, 5) AS bookingNo"
        + " FROM freightbit.orders"
-       + " where clientId= :clientId"
-          + " and orderNumber like :companyCode) as o";
+       + " WHERE clientId = :clientId"
+       + " AND orderNumber LIKE :companyCode) AS o";
      Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
      query.setParameter("clientId", clientId);
      query.setParameter("companyCode", companyCode+"%");

@@ -155,4 +155,19 @@ public class DocumentsServiceImpl implements DocumentsService {
     public Documents findEIRAndRefId(String documentName, Integer referenceId, String referenceTable){
         return documentsDao.findEIRAndRefId(documentName, referenceId, referenceTable );
     }
+
+    @Override
+    public String findNextControlNo(Integer clientId, String documentCode) {
+        Integer nextControlNo = documentsDao.findNextControlNo(clientId, documentCode);
+        String nextControlNoAsStr = nextControlNo.toString();
+        int zerosToAdd = 5 - nextControlNoAsStr.length();
+        if(zerosToAdd == 4)
+            return  documentCode + "-0000" + nextControlNoAsStr;
+        else if(zerosToAdd == 3)
+            return  documentCode + "-000" + nextControlNoAsStr;
+        else if (zerosToAdd == 2)
+            return  documentCode + "-00" + nextControlNoAsStr;
+        else
+            return documentCode + "-0" + nextControlNoAsStr;
+    }
 }

@@ -207,8 +207,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
             addFieldError("item.height", getText("Special Characters in height is not valid"));
         }
 
-        //null
-
         if (StringUtils.isBlank(itemBean.getItemCode())) {
             addFieldError("item.itemCode", getText("err.itemCode.required"));
         }
@@ -304,7 +302,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setCreatedTimeStamp(entity.getCreatedTimeStamp());
 
         return formBean;
-
     }
 
     public Items transformToEntityBeanItem(ItemBean formBean) {
@@ -334,7 +331,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return entity;
     }
 
-
     //////////// END OF ITEMS //////////////
     // DONE WITH MODIFY and CREATE BY
 
@@ -351,7 +347,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         customer = transformToFormBean(customerEntity);
         sessionAttributes.put("customerId", customer.getCustomerId());
         return SUCCESS;
-
     }
 
     public String loadAddCustomerPage() {
@@ -364,18 +359,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         sessionAttributes.put("customerId", customer.getCustomerId());
         return SUCCESS;
     }
-
-/*    public String loadSaveCompletePage() {
-        Customer customerEntity = new Customer();
-        if (!StringUtils.isBlank(customerCodeParam))
-            customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
-        else
-            customerEntity = customerService.findCustomerById(getCustomerSessionId());
-        customer = transformToFormBean(customerEntity);
-        sessionAttributes.put("customerId", customer.getCustomerId());
-
-        return SUCCESS;
-    }*/
 
     public String searchCustomers() {
         String column = getColumnFilter();
@@ -633,7 +616,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
-
         clearErrorsAndMessages();
         addActionMessage("Success! New Customer has been added.");
         return SUCCESS;
@@ -678,7 +660,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
 //        if (!matcher.matches()){
 //            addFieldError("customer.customerName", "(Must be three (3) CAPITAL LETTERS only)");
 //        }
-
 
         if (StringUtils.isBlank(customerBean.getCustomerName())) {
             addFieldError("customer.customerName", getText("err.customerName.required"));
@@ -741,6 +722,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setServiceArea(entity.getServiceArea());
 
         return formBean;
     }
@@ -783,7 +765,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setMayorsPermit(formBean.getMayorsPermit());
         entity.setAaf(formBean.getAaf());
         entity.setSignatureCard(formBean.getSignatureCard());
-
 
 //        /*Dti Checkbox*/
 //        System.out.println("----------------------------------dti " + customer_dti + "" + formBean.getDti() + "-------------------------------------------");
@@ -831,6 +812,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        entity.setServiceArea(formBean.getServiceArea());
 
         return entity;
     }
@@ -1089,11 +1071,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Pattern pattern = Pattern.compile(PATTERN);
 //        Pattern pattern2 = Pattern.compile(PATTERN2);
 
-
         Matcher matcher1 = pattern.matcher(ratesBean.getOrigin());
         Matcher matcher2 = pattern.matcher(ratesBean.getDestination());
 //        Matcher matcher3 = pattern2.matcher(strAmount);
-
 
         if (!matcher1.matches()) {
             addFieldError("rates.origin", getText("err.regex.validation.rates"));
@@ -1278,7 +1258,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
-
 
     public String viewContacts() {
         Integer customerId = getCustomerSessionId();
@@ -1497,7 +1476,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     ////// END OF CONTACTS ///////////////
-
 
     //consignee
 
@@ -1766,7 +1744,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Integer customerId = (Integer) sessionAttributes.get("customerId");
         return customerId;
     }
-
 
     public Integer getCustomersItemIdParam() {
         return customersItemIdParam;
