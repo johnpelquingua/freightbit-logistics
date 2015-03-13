@@ -6,93 +6,88 @@ $(document).ready(function(){
 
     $('.containerSizeDropdown').change(function(){
         var declaredValField = $('.automaticDeclaredValue');
-        var quantityClearField = $('#orderItem_quantityFCL');
-        var declaredValFCL = document.getElementById('orderItem_declaredValues').value;
-        var quantityFCL = document.getElementById('orderItem_quantityFCL').value;
-
-        var totalValue = 0;
         switch($(this).val()){
             case '10 FOOTER' :
                 if (document.getElementById('orderItem_quantityFCL').value == "1") {
-                    declaredValField.val('250000.00');
+                    declaredValField.val('250,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "2") {
-                    declaredValField.val('500000.00');
+                    declaredValField.val('500,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "3") {
-                    declaredValField.val('750000.00');
+                    declaredValField.val('750,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "4") {
-                    declaredValField.val('1000000.00');
+                    declaredValField.val('1,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "5") {
-                    declaredValField.val('1250000.00');
+                    declaredValField.val('1,250,000.00');
                 }
                 else{
-                    declaredValField.val('250000.00');
+                    declaredValField.val('250,000.00');
                     document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
             case '20 FOOTER' :
                 if (document.getElementById('orderItem_quantityFCL').value == "1") {
-                    declaredValField.val('500000.00');
+                    declaredValField.val('500,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "2") {
-                    declaredValField.val('1000000.00');
+                    declaredValField.val('1,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "3") {
-                    declaredValField.val('1500000.00');
+                    declaredValField.val('1,500,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "4") {
-                    declaredValField.val('2000000.00');
+                    declaredValField.val('2,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "5") {
-                    declaredValField.val('2500000.00');
+                    declaredValField.val('2,500,000.00');
                 }
                 else{
-                    declaredValField.val('500000.00');
+                    declaredValField.val('500,000.00');
                     document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
             case '40 STD FOOTER' :
                 if (document.getElementById('orderItem_quantityFCL').value == "1") {
-                    declaredValField.val('1000000.00');
+                    declaredValField.val('1,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "2") {
-                    declaredValField.val('2000000.00');
+                    declaredValField.val('2,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "3") {
-                    declaredValField.val('3000000.00');
+                    declaredValField.val('3,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "4") {
-                    declaredValField.val('4000000.00');
+                    declaredValField.val('4,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "5") {
-                    declaredValField.val('5000000.00');
+                    declaredValField.val('5,000,000.00');
                 }
                 else{
-                    declaredValField.val('1000000.00');
+                    declaredValField.val('1,000,000.00');
                     document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
             case '40 HC FOOTER' :
                 if (document.getElementById('orderItem_quantityFCL').value == "1") {
-                    declaredValField.val('1000000.00');
+                    declaredValField.val('1,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "2") {
-                    declaredValField.val('2000000.00');
+                    declaredValField.val('2,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "3") {
-                    declaredValField.val('3000000.00');
+                    declaredValField.val('3,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "4") {
-                    declaredValField.val('4000000.00');
+                    declaredValField.val('4,000,000.00');
                 }
                 else if(document.getElementById('orderItem_quantityFCL').value == "5") {
-                    declaredValField.val('5000000.00');
+                    declaredValField.val('5,000,000.00');
                 }
                 else{
-                    declaredValField.val('1000000.00');
+                    declaredValField.val('1,000,000.00');
                     document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;

@@ -1916,56 +1916,56 @@ function showInputFields(referenceId,documentId,documentName) {
         var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId , 'Booking Request', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Booking Request Form";
-            window.location.href = '#focusHere';
+//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "HOUSE BILL OF LADING") {
         var win = window.open('documentations/generateBillofLadingReport?documentIdParam=' + documentId, 'House Bill of Lading', 'width=910,height=800');
         win.onload = function () {
             this.document.title = " House Bill of Lading";
-            window.location.href = '#focusHere';
+//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "HOUSE WAYBILL ORIGIN") {
         var win = window.open('documentations/generateHouseWayBillReport?documentIdParam=' + documentId, 'House WayBill Origin', 'width=910,height=800');
         win.onload = function () {
             this.document.title = " House Way Bill Origin";
-            window.location.href = '#focusHere';
+//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "HOUSE WAYBILL DESTINATION") {
         var win = window.open('documentations/generateHouseWayBillDestinationReport?documentIdParam=' + documentId, 'House WayBill Destination', 'width=910,height=800');
         win.onload = function () {
             this.document.title = " House Way Bill Destination";
-            window.location.href = '#focusHere';
+//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "ACCEPTANCE RECEIPT") {
         var win = window.open('documentations/generateAcceptanceReceiptReport?documentIdParam=' + documentId, 'Acceptance Receipt', 'width=910,height=800');
         win.onload = function () {
             this.document.title = " Acceptance Receipt";
-            window.location.href = '#focusHere';
+//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "AUTHORIZATION TO WITHDRAW") {
         var win = window.open('documentations/generateAuthorizationToWithdrawReport?documentIdParam=' + documentId, 'Authorization to Withdraw', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Authorization to Withdraw";
-            window.location.href = '#focusHere';
+//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "PROFORMA BILL OF LADING") {
         var win = window.open('documentations/generateProformaReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Proforma Bill of Lading";
-            window.location.href = '#focusHere';
+//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "RELEASE ORDER") {
         var win = window.open('documentations/generateReleaseOrderReport?documentIdParam=' + documentId, 'Release Order', 'width=910,height=800');
         win.onload = function() {
             this.document.title = "Release Order";
-            window.location.href = '#focusHere';
+//            window.location.href = '#focusHere';
         }
     }
 }
