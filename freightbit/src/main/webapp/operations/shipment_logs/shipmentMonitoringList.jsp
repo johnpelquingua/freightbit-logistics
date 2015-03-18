@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <style>
     /*Style for scrollable table*/
@@ -99,7 +100,7 @@
                                 <%--Service Mode--%>
                                 <td><display:column property="modeOfService" title="Service Mode <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-
+                                <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                 <td><display:column title="Action">
                                     <s:url var="viewShipmentStatusUrl" action="../operations/viewShipmentStatus">
                                         <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
@@ -108,6 +109,7 @@
                                         <i class="fa fa-play-circle"></i>
                                     </s:a>
                                 </display:column></td>
+                                    </sec:authorize>
 
                             </display:table>
 
