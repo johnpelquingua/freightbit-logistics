@@ -12,11 +12,11 @@ function fcl(){
             document.getElementById("orderItemVolume").value = '';
         }
 
-        if (containerSize == '10 FOOTER'){
+        if (containerSize == '10 FT'){
             var totalVolume = containerQuantity * 14;
-        }else if (containerSize == '20 FOOTER'){
+        }else if (containerSize == '20 FT'){
             var totalVolume = containerQuantity * 28;
-        }else if (containerSize == '40 FOOTER') {
+        }else if (containerSize == '40 FT') {
             var totalVolume = containerQuantity * 56;
         }
 
@@ -72,16 +72,16 @@ function typeValidate(){
 }
 
 function getMaxValue(type, value){
-    if(value == '10 FOOTER'){
+    if(value == '10 FT'){
         if(type == 'VOLUME'){ return 14; }
         else if(type == 'WEIGHT'){ return 9000; }
-    }else if(value == '20 FOOTER'){
+}else if(value == '20 FT'){
         if(type == 'VOLUME'){ return 28; }
         else if(type == 'WEIGHT'){ return 18000; }
-    }else if(value == '40 STD FOOTER'){
+    }else if(value == '40 STD FT'){
         if(type == 'VOLUME'){ return 56; }
         else if(type == 'WEIGHT'){ return 20000; }
-    }else if(value == '40 HC FOOTER'){
+    }else if(value == '40 HC FT'){
         if(type == 'VOLUME'){ return 78; }
         else if(type == 'WEIGHT'){ return 22000; }
     }

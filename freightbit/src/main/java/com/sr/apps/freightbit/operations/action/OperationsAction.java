@@ -668,6 +668,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 orderItems.add(transformToOrderItemFormBean(orderItemEntity));
             }
 
+            for(int x = 0; x < check.length; x++) {
+                OrderItems orderItemsListing = orderService.findOrderItemByOrderItemId(Integer.parseInt(check[x]));
+                orderItemOriginVendor.add(transformToOrderItemFormBean(orderItemsListing));
+                orderItemDestinationVendor.add(transformToOrderItemFormBean(orderItemsListing));
+            }
+
             vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
 
             vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
@@ -2186,6 +2192,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
             Trucks truckEntity = vendorService.findTrucksByTruckCode(orderItem.getTruckDestination());
             truckDestination = transformToFormBeanTrucks(truckEntity);
         }
+
+            OrderItems orderItemsListing = orderService.findOrderItemByOrderItemId(orderItem.getOrderItemId());
+            orderItemOriginVendor.add(transformToOrderItemFormBean(orderItemsListing));
+            orderItemDestinationVendor.add(transformToOrderItemFormBean(orderItemsListing));
 
         vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
 

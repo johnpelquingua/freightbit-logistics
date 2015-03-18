@@ -768,7 +768,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         order.setServiceRequirement(orderEntity.getServiceRequirement());
 
         Container containerEntity = transformContainerToEntityBean(container);
-        if(orderItemEntity.getNameSize().equals("10 FOOTER") || orderItemEntity.getNameSize().equals("20 FOOTER") || orderItemEntity.getNameSize().equals("40 STD FOOTER") || orderItemEntity.getNameSize().equals("40 HC FOOTER")){
+        if(orderItemEntity.getNameSize().equals("10 FT") || orderItemEntity.getNameSize().equals("20 FT") || orderItemEntity.getNameSize().equals("40 STD FT") || orderItemEntity.getNameSize().equals("40 HC FT")){
             containerEntity.setContainerSize(orderItemEntity.getNameSize());
         }else{
             containerEntity.setContainerSize(container.getContainerSize());

@@ -104,7 +104,7 @@
 
             <div class="panel-body">
 
-                <div class="table-responsive">
+                <div class="table-responsive" id="focusHere">
                         <s:form name="myform" action="setBulkItemStatus" theme="bootstrap" cssClass="setStatusForm">
                         <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
                         <s:hidden value="%{#attr.order.orderId}" name="orderStatusLogsBean.orderId"/>
@@ -321,4 +321,7 @@
             }
         });
      });*/
+    $( window ).load(function() {
+        window.location.href = '#focusHere';
+    });
 </script>

@@ -130,10 +130,71 @@
     </div>
 </div>
 
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-list"></i>
+        <span class="panel-title">Cargo</span>
+    </div>
+
+    <div class="panel-body form-horizontal">
+        <%--<div class="form-group">
+            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+            </s:if>
+            <s:else>
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+            </s:else>
+            <div class="col-lg-10">
+                <s:property value="orderItem.nameSize"/>
+            </div>
+        </div>--%>
+        <display:table id="currentDestinationVendor" name="orderItemDestinationVendor"
+                       requestURI="/checkItemStatusInland.action" pagesize="10"
+                       class="table table-striped table-hover table-bordered text-center tablesorter"
+                       style="margin-top: 15px;">
+
+            <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
+                                class="tb-font-black"
+                                style="text-align: center;"></display:column></td>
+
+            <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                                    style="text-align: center;"> </display:column></td>
+            </s:if>
+            <s:else>
+                <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                    style="text-align: center;"> </display:column></td>
+            </s:else>
+
+            <td><display:column property="description" title="Commodity" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+
+            <td><display:column property="vendorOriginName" title="Origin Vendor" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+
+            <td><display:column property="finalPickupDate" title="Pickup Date" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+
+            <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
+                                class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+
+            <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
+                                class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+
+            <td><display:column property="status" title="Status <i class='fa fa-sort' />"
+                                class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+
+        </display:table>
+    </div>
+</div>
+
 <s:if test="order.freightType=='TRUCKING'">
     <s:if test="order.modeOfService=='DELIVERY'">
 
-        <div class="panel panel-primary">
+        <%--<div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-list"></i>
                 <span class="panel-title">Cargo</span>
@@ -152,7 +213,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--%>
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -292,7 +353,7 @@
 <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
 <s:if test="order.modeOfService=='DOOR TO DOOR'">
 
-    <div class="panel panel-primary">
+    <%--<div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-list"></i>
             <span class="panel-title">Cargo</span>
@@ -311,7 +372,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -581,7 +642,7 @@
 </s:if>
 <s:elseif test="order.modeOfService=='PIER TO DOOR'">
 
-    <div class="panel panel-primary">
+    <%--<div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-list"></i>
             <span class="panel-title">Cargo</span>
@@ -600,7 +661,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <div class="panel panel-primary">
         <div class="panel-heading">

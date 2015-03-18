@@ -7,7 +7,7 @@ $(document).ready(function(){
     $('.containerSizeDropdown').change(function(){
         var declaredValField = $('.automaticDeclaredValue');
         switch($(this).val()){
-            case '10 FOOTER' :
+            case '10 FT' :
                 if (document.getElementById('orderItem_quantityFCL').value == "1") {
                     declaredValField.val('250,000.00');
                 }
@@ -28,7 +28,7 @@ $(document).ready(function(){
                     document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
-            case '20 FOOTER' :
+            case '20 FT' :
                 if (document.getElementById('orderItem_quantityFCL').value == "1") {
                     declaredValField.val('500,000.00');
                 }
@@ -49,7 +49,7 @@ $(document).ready(function(){
                     document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
-            case '40 STD FOOTER' :
+            case '40 STD FT' :
                 if (document.getElementById('orderItem_quantityFCL').value == "1") {
                     declaredValField.val('1,000,000.00');
                 }
@@ -70,7 +70,7 @@ $(document).ready(function(){
                     document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
-            case '40 HC FOOTER' :
+            case '40 HC FT' :
                 if (document.getElementById('orderItem_quantityFCL').value == "1") {
                     declaredValField.val('1,000,000.00');
                 }
@@ -105,19 +105,19 @@ $(document).ready(function(){
         var quantityFCL = document.getElementById('orderItem_quantityFCL').value;
         var totalValue = 0;
 
-        if (document.getElementById('orderItem.nameSize').value == "10 FOOTER") {
+        if (document.getElementById('orderItem.nameSize').value == "10 FT") {
             totalValue = quantityFCL * 250000; // compute for total value
             document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
         }
-        else if (document.getElementById('orderItem.nameSize').value == "20 FOOTER") {
+        else if (document.getElementById('orderItem.nameSize').value == "20 FT") {
             totalValue = quantityFCL * 500000; // compute for total value
             document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
         }
-        else if (document.getElementById('orderItem.nameSize').value == "40 STD FOOTER") {
+        else if (document.getElementById('orderItem.nameSize').value == "40 STD FT") {
             totalValue = quantityFCL * 1000000; // compute for total value
             document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
         }
-        else if (document.getElementById('orderItem.nameSize').value == "40 HC FOOTER") {
+        else if (document.getElementById('orderItem.nameSize').value == "40 HC FT") {
             totalValue = quantityFCL * 1000000; // compute for total value
             document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
         }
@@ -391,19 +391,19 @@ function dynamicDropdown(select, index) {
     /*To compute for total tons and weight for FCL*/
     if (sContainer.value != ''){
         switch(sContainer.value){
-            case '10 FOOTER' :
+            case '10 FT' :
                 document.getElementById("orderItem-volume").value = sQuantity.value * 14;
                 document.getElementById("orderItem_weight").value = sQuantity.value * 9000;
                 break;
-            case '20 FOOTER' :
+            case '20 FT' :
                 document.getElementById("orderItem-volume").value = sQuantity.value * 28;
                 document.getElementById("orderItem_weight").value = sQuantity.value * 18000;
                 break;
-            case '40 STD FOOTER' :
+            case '40 STD FT' :
                 document.getElementById("orderItem-volume").value = sQuantity.value * 56;
                 document.getElementById("orderItem_weight").value = sQuantity.value * 20000;
                 break;
-            case '40 HC FOOTER' :
+            case '40 HC FT' :
                 document.getElementById("orderItem-volume").value = sQuantity.value * 78;
                 document.getElementById("orderItem_weight").value = sQuantity.value * 22000;
                 break;
@@ -415,7 +415,7 @@ function dynamicDropdown(select, index) {
 //            document.getElementById("orderItemVolume").value = "";
     }
 
-    if (select.options[ index ].value === '10 FOOTER') {
+    if (select.options[ index ].value === '10 FT') {
         var containerQuantityNull = document.getElementById("orderItem.quantity").value;
         if(containerQuantityNull == '') {
             document.getElementById("orderItem_weight").value = 9000;
@@ -431,7 +431,7 @@ function dynamicDropdown(select, index) {
         }
     }
 
-    if (select.options[ index ].value === '20 FOOTER') {
+    if (select.options[ index ].value === '20 FT') {
         var containerQuantityNull = document.getElementById("orderItem.quantity").value;
         if(containerQuantityNull == '') {
             document.getElementById("orderItem_weight").value = 18000;
@@ -447,7 +447,7 @@ function dynamicDropdown(select, index) {
         }
     }
 
-    if (select.options[ index ].value === '40 STD FOOTER') {
+    if (select.options[ index ].value === '40 STD FT') {
         var containerQuantity = document.getElementById("orderItem.quantity").value;
         if(containerQuantity == '') {
             document.getElementById("orderItem_weight").value = 20000;
@@ -463,7 +463,7 @@ function dynamicDropdown(select, index) {
         }
     }
 
-    if (select.options[ index ].value === '40 HC FOOTER') {
+    if (select.options[ index ].value === '40 HC FT') {
         var containerQuantity = document.getElementById("orderItem.quantity").value;
         if(containerQuantity == '') {
             document.getElementById("orderItem_weight").value = 22000;
