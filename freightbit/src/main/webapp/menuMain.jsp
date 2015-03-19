@@ -10,21 +10,21 @@
     </sec:authorize>
 
     <!-- OPERATION -->
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_SEA_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER','ROLE_SALES')">
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_SEA_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER','ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-truck"></i> Operations <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES')">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
                     <li><a href="<s:url action='operations/viewSeaFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Freight Plan</a></li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_INLAND_FREIGHT','ROLE_SALES')">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_INLAND_FREIGHT','ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
                     <li><a href="<s:url action='operations/viewInlandFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Dispatch Plan</a></li>
                 </sec:authorize>
                 <%--<li><a href="<s:url action='operations/viewShipmentMonitoringList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>--%>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES', 'ROLE_CUSTOMER_RELATIONS')">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES', 'ROLE_CUSTOMER_RELATIONS','ROLE_DOCUMENT_SPECIALIST')">
                     <li><a href="<s:url action='operations/viewVesselSchedules' />"> <i class="fa fa-caret-right fa-fw"></i> Vessel Schedule</a></li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES')">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
                     <li><a href="<s:url action='operations/viewStatusList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>
                 </sec:authorize>
             </ul>

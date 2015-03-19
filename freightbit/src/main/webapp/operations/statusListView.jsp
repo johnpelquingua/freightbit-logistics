@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <style>
     /*.header{
@@ -85,7 +86,7 @@
 
                         <td><display:column property="orderItemStatus" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-
+                        <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                         <td><display:column title="Action">
                             <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                                 <s:param name="orderIdParam"
@@ -99,6 +100,7 @@
                             </s:a>
 
                         </display:column></td>
+                            </sec:authorize>
 
                     </display:table>
                 </div>
