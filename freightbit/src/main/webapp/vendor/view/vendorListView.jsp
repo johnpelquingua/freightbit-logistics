@@ -67,8 +67,10 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="vendorName" title="Company Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+
                                 <td><display:column property="vendorType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+
                                 <td><display:column property="vendorClass" title="Class <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="serviceArea" title="Service Area <i class='fa fa-sort' />" class="tb-font-black"
