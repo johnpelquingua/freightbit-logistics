@@ -41,6 +41,8 @@ public interface CustomerService {
 
     public List<Contacts> findContactByReferenceId(Integer customerId);
 
+    public List<Contacts> findContactsByReferenceIdOnly(Integer referenceId);
+
     public List<Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId);
 
     public List<Contacts> findContactByConsignee(Integer referenceId, String contactType, Integer clientId);

@@ -454,7 +454,7 @@
                                                     <%--</s:if>--%>
                                                     <%--Print Document--%>
                                                     <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='PROFORMA BILL OF LADING' || #attr.document.documentName=='RELEASE ORDER' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' ">
-                                                        <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                        <a id="print-icon" href="#focusHere" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                             <i class="fa fa-print"></i>
                                                         </a>
                                                     </s:if>
@@ -717,7 +717,7 @@
                                                     <%--</s:if>--%>
                                                     <%--Print Document--%>
                                                     <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='PROFORMA BILL OF LADING' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='RELEASE ORDER' ">
-                                                        <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                        <a id="print-icon" href="#focusHere" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                             <i class="fa fa-print"></i>
                                                         </a>
                                                     </s:if>
@@ -963,7 +963,7 @@
                                                 </a>
                                                 <%--Print Document--%>
                                                 <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='RELEASE ORDER' ">
-                                                    <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                    <a id="print-icon" href="#focusHere" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                         <i class="fa fa-print"></i>
                                                     </a>
                                                 </s:if>
@@ -1174,7 +1174,7 @@
                                                     </a>
                                                     <%--Print Document--%>
                                                     <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' ">
-                                                        <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                        <a id="print-icon" href="#focusHere" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                             <i class="fa fa-print"></i>
                                                         </a>
                                                     </s:if>
@@ -1313,7 +1313,7 @@
                                             </a>
                                             <%--Print Document--%>
                                             <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='RELEASE ORDER' || #attr.document.documentName=='PROFORMA BILL OF LADING' ">
-                                                <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                <a id="print-icon" href="#focusHere" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                     <i class="fa fa-print"></i>
                                                 </a>
                                             </s:if>
@@ -1858,22 +1858,16 @@ $(document).ready(function() {
         window.location.href = '#documentTab';
     }
 
-$( window ).load(function() {
-
-    /*Anchor on inbound tab click*/
-
-    if (outbound_tab == "OUTBOUND" || outbound_tab == "OUTBOUND_COMPLETE") {
-        window.location.href = '#focusHere';
-    }
-
-});
-
     processDocumentStage('.outboundTable', $('.outboundTableMainDiv'), $('.outboundTableLoadingMainDiv'), 8,9);
     processDocumentStage('.inbound_table', $('.inboundTableMainDiv'), $('.inboundTableLoadingMainDiv'), 8,9);
     processDocumentStage('.final_outbound_table', $('.finalOutboundTableMainDiv'), $('.finalOutboundTableLoadingMainDiv'), 8,9);
     processDocumentStage('.final_inbound_table', $('.finalInboundTableMainDiv'), $('.finalInboundTableLoadingMainDiv'), 8,9);
     processDocumentStage('.completeTable', $('.completeTableMainDiv'), $('.completeTableLoadingMainDiv'), 8,9);
 
+});
+
+$( window ).load(function() {
+    window.location.href = '#focusHere';
 });
 
 /*Script that will trigger input area*/
@@ -1916,56 +1910,48 @@ function showInputFields(referenceId,documentId,documentName) {
         var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId , 'Booking Request', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Booking Request Form";
-//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "HOUSE BILL OF LADING") {
         var win = window.open('documentations/generateBillofLadingReport?documentIdParam=' + documentId, 'House Bill of Lading', 'width=910,height=800');
         win.onload = function () {
-            this.document.title = " House Bill of Lading";
-//            window.location.href = '#focusHere';
+            this.document.title = "House Bill of Lading";
         }
     }
     else if (documentName == "HOUSE WAYBILL ORIGIN") {
         var win = window.open('documentations/generateHouseWayBillReport?documentIdParam=' + documentId, 'House WayBill Origin', 'width=910,height=800');
         win.onload = function () {
-            this.document.title = " House Way Bill Origin";
-//            window.location.href = '#focusHere';
+            this.document.title = "House Way Bill Origin";
         }
     }
     else if (documentName == "HOUSE WAYBILL DESTINATION") {
         var win = window.open('documentations/generateHouseWayBillDestinationReport?documentIdParam=' + documentId, 'House WayBill Destination', 'width=910,height=800');
         win.onload = function () {
-            this.document.title = " House Way Bill Destination";
-//            window.location.href = '#focusHere';
+            this.document.title = "House Way Bill Destination";
         }
     }
     else if (documentName == "ACCEPTANCE RECEIPT") {
         var win = window.open('documentations/generateAcceptanceReceiptReport?documentIdParam=' + documentId, 'Acceptance Receipt', 'width=910,height=800');
         win.onload = function () {
-            this.document.title = " Acceptance Receipt";
-//            window.location.href = '#focusHere';
+            this.document.title = "Acceptance Receipt";
         }
     }
     else if (documentName == "AUTHORIZATION TO WITHDRAW") {
         var win = window.open('documentations/generateAuthorizationToWithdrawReport?documentIdParam=' + documentId, 'Authorization to Withdraw', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Authorization to Withdraw";
-//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "PROFORMA BILL OF LADING") {
         var win = window.open('documentations/generateProformaReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Proforma Bill of Lading";
-//            window.location.href = '#focusHere';
         }
     }
     else if (documentName == "RELEASE ORDER") {
         var win = window.open('documentations/generateReleaseOrderReport?documentIdParam=' + documentId, 'Release Order', 'width=910,height=800');
         win.onload = function() {
             this.document.title = "Release Order";
-//            window.location.href = '#focusHere';
         }
     }
 }

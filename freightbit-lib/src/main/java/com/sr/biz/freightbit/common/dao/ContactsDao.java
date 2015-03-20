@@ -5,9 +5,6 @@ import com.sr.biz.freightbit.common.entity.Contacts;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Clarence C. Victoria on 5/26/14.
- */
 public interface ContactsDao {
 
     public Integer addContact(Contacts contacts);
@@ -20,8 +17,6 @@ public interface ContactsDao {
 
     public Contacts findContactById(Integer contactId);
 
-//    public List<Contacts> findAllContactsByClientId(long clientId);
-
     public List<Contacts> findDuplicateContactByNameAndId(String lastName, String firstName, Integer contactId, Integer referenceId);
 
     public Contacts findContactByReferenceTableAndId(String referenceTable, Integer referenceID);
@@ -29,6 +24,8 @@ public interface ContactsDao {
     public List<Contacts> findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType);
 
     public List<Contacts> findContactByReferenceId(Integer referenceId);
+
+    public List<Contacts> findContactsByReferenceIdOnly(Integer referenceId);
 
     public List<Contacts> findContactByLastNameAndFirstName(String lastName, String firstName);
 

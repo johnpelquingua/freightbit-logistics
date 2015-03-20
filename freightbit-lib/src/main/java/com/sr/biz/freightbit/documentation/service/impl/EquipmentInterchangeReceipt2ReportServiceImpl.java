@@ -2,6 +2,7 @@ package com.sr.biz.freightbit.documentation.service.impl;
 
 import com.sr.biz.freightbit.documentation.service.EquipmentInterchangeReceipt2ReportService;
 import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
+import org.pentaho.reporting.engine.classic.core.ClassicEngineBoot;
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.libraries.resourceloader.Resource;
@@ -22,6 +23,7 @@ public class EquipmentInterchangeReceipt2ReportServiceImpl extends ReportGenerat
             final URL reportDefinitionURL = classVar.getResource("/reports/EIR2.prpt");
 
             // Parse the report file
+            /*ClassicEngineBoot.getInstance().start();*/
             final ResourceManager resourceManager = new ResourceManager();
             final Resource directly = resourceManager.createDirectly(reportDefinitionURL, MasterReport.class);
 

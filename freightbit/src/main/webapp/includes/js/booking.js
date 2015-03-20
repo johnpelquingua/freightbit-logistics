@@ -126,13 +126,11 @@ $(document).ready(function() {
     // Customer Dropdown
     $('#customerName').change(function(event) {
         var custId = $("#customerName").val();
-        /*alert(custId);*/
 
         $.getJSON('customerAction', {
             async:false,
             customerID : custId
         },function(jsonResponse) {
-            /* alert(jsonResponse.dummyMsg);*/
             $('#ajaxResponse').text(jsonResponse.dummyMsg);
             var select = $('#shipperContact'),
                 select2 = $('#shipperAddress'),
@@ -250,7 +248,6 @@ $(document).ready(function() {
 
             // populate consignee contacts
             var consignee_Id = $("#shipperConsignee").val();
-            //alert(consignee_Id);
 
             //$.each(jsonResponse.consigneeContactMap, function(key, value) {
             //    $('<option>').val(key).text(value).appendTo(select9);
@@ -263,8 +260,8 @@ $(document).ready(function() {
                 var select4 = $('#consigneeAddress'),
                     select9 = $('#consigneeContact');
 
-                select4.find('option').remove();
-                select9.find('option').remove();
+                    select4.find('option').remove();
+                    select9.find('option').remove();
 
                 // populate consignee address
                 $.each(jsonResponse.consigneeAddressMap, function(key, value) {
@@ -272,14 +269,12 @@ $(document).ready(function() {
                     if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
 
                         if ($("#shipperConsignee").val() != '') {
-
                             $('<option>').val(key).text(value).appendTo(select4);
                             $("#consigneeAddress_textfield").val(value);
                         } else {
                             if ($("#consigneeAddress").val() != '') {
                                 $('<option>').val(null).text("").appendTo(select4);
                                 }
-                            //$('<option>').val(key).text(value).appendTo(select4);
                         }
                     }
 
@@ -835,7 +830,6 @@ $(document).ready(function(){
     $("#consignee_contact_fax").mask("(999) 999-9999");
 
     validationForm('bookingInput', 'nextBtn', 'BOOKING');
-
 });
 
 function dateSameValidation() {

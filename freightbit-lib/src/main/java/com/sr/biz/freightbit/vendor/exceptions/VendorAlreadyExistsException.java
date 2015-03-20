@@ -6,6 +6,7 @@ import com.sr.biz.freightbit.core.exceptions.ObjectAlreadyExistsException;
  * Created with IntelliJ IDEA.
  * User: johnpel
  */
+
 public class VendorAlreadyExistsException extends ObjectAlreadyExistsException {
     public VendorAlreadyExistsException(String msg) {
         super(msg);

@@ -44,9 +44,7 @@
 
         <action name="addVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVendor">
             <result name="TRUCKING" type="redirect">LoadviewVendors</result>
-
             <result name="SHIPPING" type="redirect">LoadviewVendors</result>
-            <!--<result name="success" type="redirect">viewInfoVendor</result>-->
             <result name="input" type="tiles">vendor.vendorAdd.tiles</result>
         </action>
 
@@ -149,7 +147,6 @@
                 method="loadSaveCompleteTrucks">
             <result name="success" type="tiles">vendor.viewInfoTruck.tiles</result>
         </action>-->
-
 
         <!-- vessels -->
 

@@ -41,6 +41,9 @@ public class Documents implements Serializable {
     private Integer orderItemId;
     private Integer aging;
     private String controlNumber;
+    private Integer repContact;
+    private Integer oriContact;
+    private Integer desContact;
 
     public Documents() {
     }
@@ -325,5 +328,32 @@ public class Documents implements Serializable {
 
     public void setControlNumber(String controlNumber) {
         this.controlNumber = controlNumber;
+    }
+
+    @Column(name = "repContact")
+    public Integer getRepContact() {
+        return repContact;
+    }
+
+    public void setRepContact(Integer repContact) {
+        this.repContact = repContact;
+    }
+
+    @Column(name = "oriContact")
+    public Integer getOriContact() {
+        return oriContact;
+    }
+
+    public void setOriContact(Integer oriContact) {
+        this.oriContact = oriContact;
+    }
+
+    @Column(name = "desContact")
+    public Integer getDesContact() {
+        return desContact;
+    }
+
+    public void setDesContact(Integer desContact) {
+        this.desContact = desContact;
     }
 }

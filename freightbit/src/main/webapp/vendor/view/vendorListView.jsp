@@ -80,6 +80,7 @@
 
                                         <s:url var="editVendorUrl" action="loadEditVendorPage">
                                             <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                            <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
                                              title="Edit this vendor">
@@ -88,6 +89,7 @@
 
                                         <s:url var="deleteVendorUrl" action="deleteVendor">
                                             <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                            <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
                                              title="Delete this Vendor"
@@ -97,6 +99,7 @@
 
                                         <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
                                             <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                            <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
                                              title="View Vendor Info">
@@ -132,15 +135,11 @@
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body" style="padding: 0px;">
                 <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>
@@ -191,7 +190,5 @@
                 alert('An error occurred! ' + thrownError);
             }
         });
-
     }
-
 </script>

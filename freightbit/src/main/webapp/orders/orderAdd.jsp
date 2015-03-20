@@ -98,8 +98,7 @@
                                           listKey="key"
                                           listValue="value"
                                           required="true"
-                                          emptyOption="true"
-                                        />
+                                          emptyOption="true" />
 
                             </div>
                         </div>
@@ -117,8 +116,7 @@
                                           listKey="key"
                                           listValue="value"
                                           required="true"
-                                          emptyOption="true"
-                                />
+                                          emptyOption="true" />
 
                             </div>
                         </div>
@@ -136,8 +134,7 @@
                                           listKey="key"
                                           listValue="value"
                                           required="true"
-                                          emptyOption="true"
-                                />
+                                          emptyOption="true" />
 
                             </div>
                         </div>
@@ -156,8 +153,7 @@
                                           listKey="customerId"
                                           listValue="customerName"
                                           emptyOption="true"
-                                          required="true"
-                                        />
+                                          required="true" />
 
                             </div>
 
@@ -176,8 +172,7 @@
                                           listKey="key"
                                           listValue="value"
                                           required="true"
-                                          emptyOption="true"
-                                />
+                                          emptyOption="true" />
 
                             </div>
                         </div>
@@ -191,12 +186,11 @@
                                           id="customerPhone"
                                           list="#{customerPhone}"
                                           value="%{customerPhone}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              id="customerPhone_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
 
                             <label class="col-lg-3 control-label" style="margin-top: 5px;">Mobile</label>
@@ -205,12 +199,11 @@
                                           id="customerMobile"
                                           list="#{customerMobile}"
                                           value="%{customerMobile}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              id="customerMobile_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
                         </div>
 
@@ -222,12 +215,11 @@
                                           id="customerEmail"
                                           list="#{customerEmail}"
                                           value="%{customerEmail}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              id="customerEmail_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
 
                             <label class="col-lg-3 control-label" style="margin-top: 5px;">Fax</label>
@@ -236,12 +228,11 @@
                                           id="customerFax"
                                           list="#{customerFax}"
                                           value="%{customerFax}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              id="customerFax_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
 
                         </div>

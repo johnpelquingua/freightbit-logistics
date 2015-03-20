@@ -33,6 +33,8 @@ public interface VendorService {
 
     public Vendor findVendorByVendorCode(String vendorCode);
 
+    public Vendor findErnestRecipient(String vendorCode, String serviceArea);
+
     public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId);
 
     public List<Vendor> findVendorTruckByLocation(String serviceArea);

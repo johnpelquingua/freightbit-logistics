@@ -61,7 +61,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Integer addVendor(Vendor vendor) throws VendorAlreadyExistsException {
-        if (vendorDao.findVendorByVendorCode(vendor.getVendorCode()).size() > 0)
+        if (vendorDao.findVendorByVendorCode(vendor.getVendorCode()).size() > 0 && !vendor.getVendorCode().equals("ELC"))
             throw new VendorAlreadyExistsException(vendor.getVendorCode());
         else
             return vendorDao.addVendor(vendor);
@@ -110,6 +110,14 @@ public class VendorServiceImpl implements VendorService {
 
     public Vendor findVendorByVendorCode(String vendorCode) {
         List<Vendor> result = vendorDao.findVendorByVendorCode(vendorCode);
+        if (result != null && !result.isEmpty())
+            return result.get(0);
+        return null;
+    }
+
+    @Override
+    public Vendor findErnestRecipient(String vendorCode, String serviceArea) {
+        List<Vendor> result = vendorDao.findErnestRecipient(vendorCode, serviceArea);
         if (result != null && !result.isEmpty())
             return result.get(0);
         return null;

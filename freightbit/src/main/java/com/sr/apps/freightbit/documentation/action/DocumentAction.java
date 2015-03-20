@@ -11,6 +11,8 @@ import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
+import com.sr.apps.freightbit.vendor.formbean.DriverBean;
+import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
@@ -25,6 +27,7 @@ import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
+import com.sr.biz.freightbit.vendor.entity.Driver;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
@@ -34,6 +37,7 @@ import org.apache.struts2.ServletActionContext;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;
 
+import javax.persistence.criteria.Order;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.DateFormat;
@@ -56,6 +60,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private List<DocumentsBean> billingDocuments = new ArrayList<DocumentsBean>();
     private List<DocumentsBean> confirmDocuments = new ArrayList<DocumentsBean>();
     private OrderBean order = new OrderBean();
+    private DriverBean driver = new DriverBean();
     private ContactBean contact = new ContactBean();
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private AddressBean address = new AddressBean();
@@ -63,9 +68,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private List<Integer> documentQuantity = new ArrayList<Integer>();
     private List<Parameters> documentNames = new ArrayList<Parameters>();
-//    private List<String> documentNameList = new ArrayList<String>();
+    private List<String> recipientList = new ArrayList<String>();
+    private List<Contacts> representativeList = new ArrayList<Contacts>();
+    private Contacts repContact = new Contacts();
+    private List<DriverBean> repContactsList = new ArrayList<DriverBean>();
+    private List<Contacts> shipperContacts = new ArrayList<Contacts>();
+    private List<Contacts> consigneeContacts = new ArrayList<Contacts>();
 
-    private VesselSchedulesService vesselSchedulesService;
+    /*private VesselSchedulesService vesselSchedulesService;*/
     private VendorService vendorService;
     private DocumentsService documentsService;
     private ReleaseOrderReportService releaseOrderReportService;
@@ -90,9 +100,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private Integer documentIdParam;
     public String documentStageParam;
     public String vendorCodeParam;
-    private InputStream inputStream;
+    /*private InputStream inputStream;
     private long contentLength;
-    private String fileName;
+    private String fileName;*/
     private String orderId;
     private String containerId;
     private String bookingNumber;
@@ -103,8 +113,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private Integer completeCount;
     private Integer archiveCount;
     private Integer billingCount;
-    private String originVendorFlag;
-    private String destinationVendorFlag;
+    /*private String originVendorFlag;
+    private String destinationVendorFlag;*/
+    private String vendorLocationFlag;
+    private String authorizedRecipient;
+    private String authorizedRepresentative;
 
     private List<Documents> outboundEntityList = new ArrayList<Documents>();
     private List<Documents> inboundEntityList = new ArrayList<Documents>();
@@ -134,6 +147,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private String finalInboundTrackingNumber;
     private String strReturnedFinalInbound;
     private Date dateReturnedFinalInbound; // variable to save date of documents returned for final inbound
+
+    private Map<Integer, String> representativeMap = new HashMap<Integer, String>();
+    private Map<Integer, String> repContactMap = new HashMap<Integer, String>();
+    private Integer representativeIdParam;
+    private Integer repContactIdParam;
+    private Integer shipperContactIdParam;
+    private Integer consigneeContactIdParam;
 
     @Override
     public void prepare() throws Exception{
@@ -176,8 +196,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         orderEntityList = documentsService.findAllOrdersDocumentation();
 
-//        List<Orders> orderEntityDocumentCompleteList = new ArrayList<Orders>();
-
         for(Orders orderElem : orderEntityList){
             List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
 
@@ -195,12 +213,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
 
         }
-
-//        for (Orders orderElem : orderEntityList) {
-//            if(!orderElem.getOrderStatus().equals("SERVICE ACCOMPLISHED")){
-//                orders.add(transformOrdersToFormBean(orderElem));
-//            }
-//        }
 
         return SUCCESS;
     }
@@ -241,6 +253,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     /*OUTBOUND DOCUMENTS VIEW*/
     public String viewOrderDocuments() {
+        clearErrorsAndMessages();
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         // Order ID param pass value
@@ -372,65 +385,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         // System will check if service type required document is created
         if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")) {
 
-            for (OrderItems orderItemCheck : orderItemEntityList) { // check order items under the booking number
-
-                /*for (Documents documentCheck : documentsList) { // will check all documents inside outbound stage
-
-                    if (documentCheck.getVendorCode() != null && !documentCheck.getDocumentName().equals("BOOKING REQUEST FORM") || documentCheck.getVendorCode() != null && !documentCheck.getDocumentName().equals("HOUSE BILL OF LADING")) { // will check if there are vendor codes
-                        // Will check if any documents assigned to the shipping vendor
-                        if (documentCheck.getDocumentName().equals("PROFORMA BILL OF LADING")) {
-                            if (!documentCheck.getVendorCode().equals(orderItemCheck.getVendorSea())) {
-                                clearErrorsAndMessages();
-                                addActionMessage("PROFORMA BILL OF LADING(S) MISSING!");
-                                documentTab = "OUTBOUND_MISSING";
-                            }
-                            if (documentCheck.getVendorCode() != null) {
-                                if (!documentCheck.getVendorCode().equals(orderItemCheck.getVendorSea())) {
-                                    clearErrorsAndMessages();
-                                    addActionMessage("PROFORMA BILL OF LADING NOT YET CREATED!");
-                                    documentTab = "OUTBOUND_MISSING";
-                                    break;
-                                }
-                            }
-                        } else if (orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")) {
-                            // will check if any documents assigned to the origin vendor
-
-                            if (documentCheck.getDocumentName().equals("HOUSE WAYBILL ORIGIN")) {
-
-                                if (documentCheck.getVendorCode() != null) {
-                                    if (!documentCheck.getVendorCode().equals(orderItemCheck.getVendorOrigin())) {
-                                        clearErrorsAndMessages();
-                                        addActionMessage("HOUSE WAYBILL(S) ORIGIN MISSING!");
-                                        documentTab = "OUTBOUND_MISSING";
-                                        break;
-                                    }
-                                }
-
-                            }
-
-                        } else if (orderEntity.getServiceMode().equals("PIER TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO DOOR")) {
-                            // will check if any documents assigned to the destination vendor
-                            if (documentCheck.getDocumentName().equals("HOUSE WAYBILL DESTINATION")) {
-
-                                if (documentCheck.getVendorCode() != null) {
-                                    if (!documentCheck.getVendorCode().equals(orderItemCheck.getVendorDestination())) {
-                                        clearErrorsAndMessages();
-                                        addActionMessage("HOUSE WAYBILL(S) DESTINATION MISSING!");
-                                        documentTab = "OUTBOUND_MISSING";
-                                        break;
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }*/
-
-            }
-
             List<String> vendorSea = new ArrayList<String>();
             List<String> vendorOrigin = new ArrayList<String>();
             List<String> vendorDestination = new ArrayList<String>();
@@ -511,21 +465,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
         /*INBOUND DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : inboundEntityList) {
                 inboundDocuments.add(transformDocumentsToFormBean(documentElem));
-
-//                dateReturnedInbound = documentElem.getInboundReturned(); // to show the date on form when the inbound documents returned
             }
         /*FINAL OUTBOUND DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : finalOutboundEntityList) {
                 finalOutboundDocuments.add(transformDocumentsToFormBean(documentElem));
-
-//                dateSentFinalOutbound = documentElem.getFinalOutboundSent(); // to show when was the date sent for final outbound
-//                finalOutboundTrackingNumber = documentElem.getFinalOutboundLbc(); // to show the tracking number of the
             }
         /*FINAL INBOUND DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : finalInboundEntityList) {
                 finalInboundDocuments.add(transformDocumentsToFormBean(documentElem));
-
-//                dateReturnedFinalInbound = documentElem.getFinalInboundReturned();
             }
         /*COMPLETE DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : completeEntityList) {
@@ -657,6 +604,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 //                } else if (inboundCount == checkReturnedInboundDateDocs && inboundCount == checkDocsInbound) {
 //                    documentTabInbound = "INBOUND_COMPLETE";
 //                }
+
                 if(inboundCount > 0){
                     documentTabInbound = "INBOUND_READY";
                 }else{
@@ -718,6 +666,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 //                } else {
 //                    documentTabFinalOutbound = "FINAL_OUTBOUND_STAGE";
 //                }
+
                 if(finalOutboundCount > 0){
                     documentTabFinalOutbound = "FINAL_OUTBOUND_READY";
                 }else{
@@ -786,6 +735,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 } else {
                     documentTabComplete = "COMPLETE_STAGE_INACTIVE";
                 }*/
+
                 if(documentsList.size() == checkDocsComplete && completeCount > 0) {
                     documentTabComplete = "ARCHIVE_PENDING";
                 } else if(completeCount > 0){
@@ -1096,7 +1046,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     // session pass order id
                     sessionAttributes.put("orderIdParam", documentIdEntity.getReferenceId());
                 }
-
             }
 
         }else{
@@ -1510,7 +1459,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentsService.updateDocument(documentElem);
         }
 
-
         sessionAttributes.put("orderIdParam", orderIdParam);
 
         return SUCCESS;
@@ -1547,7 +1495,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         System.out.println("Outbound count here ! " + outboundCount );
 
         sessionAttributes.put("outboundCount", outboundCount); // Puts outbound count in session before forwarding to transformDocumentsToFormBean
-
 
         for (Documents documentElem : outboundEntityList) {
             outboundDocuments.add(transformDocumentsToFormBean(documentElem));
@@ -1690,7 +1637,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 documentAcceptance.setVendorCode("ELC");
                 documentsService.addDocuments(documentAcceptance);
                 /*CREATE ACCEPTANCE RECEIPT END*/
-
             }
         }
 
@@ -1741,26 +1687,126 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
         }
 
-        if(vendorOriginCount == 1){
-            originVendorFlag = "SINGLE";
-        }else if(vendorOriginCount > 1){
-            originVendorFlag = "MULTI";
-        }else{
-            originVendorFlag = "NONE";
-        }
-
-        if(vendorDestinationCount == 1){
-            destinationVendorFlag = "SINGLE";
-        }else if(vendorDestinationCount > 1){
-            destinationVendorFlag = "MULTI";
-        }else{
-            destinationVendorFlag = "NONE";
-        }
-
         documentNames = parameterService.getParameterMap(ParameterConstants.DOCUMENT, ParameterConstants.DOCUMENT_NAME);
+
+        List <Driver> allDriverList = vendorService.findAllDrivers();
+
+        // Will filter authorized agent and Ernest based on Origin and Destination
+        if(documentStageParam.equals("OUTBOUND")){
+            Vendor ernestRecipientOri = vendorService.findErnestRecipient("ELC", orderEntity.getOriginationPort());
+            Vendor ernestRecipientDes = vendorService.findErnestRecipient("ELC", orderEntity.getDestinationPort());
+
+            vendorLocationFlag = "ORIGIN";
+
+            for (Driver driverElem : allDriverList){
+                if(driverElem.getVendorId() == ernestRecipientOri.getVendorId()){
+
+                    DriverBean formBean = new DriverBean();
+                    formBean.setDriverId(driverElem.getDriverId());
+                    formBean.setLastName(driverElem.getLastName());
+                    formBean.setFirstName(driverElem.getFirstName());
+                    formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+
+                    repContactsList.add(formBean);
+                }
+            }
+
+            for(String driverOrigin : vendorOrigin) {
+                Vendor vendorEntity = vendorService.findVendorByVendorCode(driverOrigin);
+
+                for (Driver driverElem : allDriverList) {
+
+                    if (driverElem.getVendorId() == vendorEntity.getVendorId()) {
+
+                        DriverBean formBean = new DriverBean();
+                        formBean.setDriverId(driverElem.getDriverId());
+                        formBean.setLastName(driverElem.getLastName());
+                        formBean.setFirstName(driverElem.getFirstName());
+                        Vendor insideEntity = vendorService.findVendorById(driverElem.getVendorId());
+                        formBean.setAuthorizedAgent(insideEntity.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+
+                        repContactsList.add(formBean);
+
+                    }
+
+                }
+
+            }
+
+            shipperContacts = vendorService.findContactByReferenceId(ernestRecipientOri.getVendorId());
+            consigneeContacts = vendorService.findContactByReferenceId(ernestRecipientDes.getVendorId());
+
+        }else if(documentStageParam.equals("FINAL OUTBOUND")){
+            Vendor ernestRecipientOri = vendorService.findErnestRecipient("ELC", orderEntity.getOriginationPort());
+            Vendor ernestRecipientDes = vendorService.findErnestRecipient("ELC", orderEntity.getDestinationPort());
+
+            vendorLocationFlag = "DESTINATION";
+
+            for (Driver driverElem : allDriverList){
+                if(driverElem.getVendorId() == ernestRecipientDes.getVendorId()){
+
+                    DriverBean formBean = new DriverBean();
+                    formBean.setDriverId(driverElem.getDriverId());
+                    formBean.setLastName(driverElem.getLastName());
+                    formBean.setFirstName(driverElem.getFirstName());
+                    formBean.setAuthorizedAgent(ernestRecipientDes.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+
+                    repContactsList.add(formBean);
+                }
+            }
+
+            for(String driverDestination : vendorDestination) {
+                Vendor vendorEntity = vendorService.findVendorByVendorCode(driverDestination);
+
+                for (Driver driverElem : allDriverList) {
+
+                    if (driverElem.getVendorId() == vendorEntity.getVendorId()) {
+                        DriverBean formBean = new DriverBean();
+
+                        formBean.setDriverId(driverElem.getDriverId());
+                        formBean.setDriverCode(driverElem.getDriverCode());
+                        formBean.setLicenseNumber(driverElem.getLicenseNumber());
+                        formBean.setLastName(driverElem.getLastName());
+                        formBean.setFirstName(driverElem.getFirstName());
+                        formBean.setMiddleName(driverElem.getMiddleName());
+                        formBean.setTitle(driverElem.getTitle());
+                        formBean.setStatus(driverElem.getStatus());
+                        formBean.setCreatedBy(driverElem.getCreatedBy());
+                        formBean.setCreatedTimeStamp(driverElem.getCreatedTimestamp());
+                        Vendor insideEntity = vendorService.findVendorById(driverElem.getVendorId());
+                        formBean.setAuthorizedAgent(insideEntity.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+
+                        repContactsList.add(formBean);
+
+                    }
+
+                }
+
+            }
+
+            shipperContacts = vendorService.findContactByReferenceId(ernestRecipientOri.getVendorId());
+            consigneeContacts = vendorService.findContactByReferenceId(ernestRecipientDes.getVendorId());
+        }
 
         return SUCCESS;
     }
+
+    /*public DriverBean transformToFormBeanDriver(Driver entity) {
+        DriverBean formBean = new DriverBean();
+
+        formBean.setDriverId(entity.getDriverId());
+        formBean.setDriverCode(entity.getDriverCode());
+        formBean.setLicenseNumber(entity.getLicenseNumber());
+        formBean.setLastName(entity.getLastName());
+        formBean.setFirstName(entity.getFirstName());
+        formBean.setMiddleName(entity.getMiddleName());
+        formBean.setTitle(entity.getTitle());
+        formBean.setStatus(entity.getStatus());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
+
+        return formBean;
+    }    */
 
     public String addDocument() {
 
@@ -1768,6 +1814,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + document.getReferenceNumber());
         System.out.println("dddddddddddddddddddddddddddddd" + document.getReferenceId());
         System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" + documentStageParam);
+        System.out.println("fffffffffffffffffffffffffffffff" + authorizedRecipient);
+        System.out.println("gggggggggggggggggggggggggggggg" + repContactIdParam);
+        System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh" + shipperContactIdParam);
+        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiii" + consigneeContactIdParam);
 
         List<String> vendorSea = new ArrayList<String>();
         List<String> vendorOrigin = new ArrayList<String>();
@@ -1854,7 +1904,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentsService.deleteDocument(documentEntity);
                 }
             }
-
             // Add House Bill of Lading based on number for Proforma Bill of Lading
 
                 for(String seaVendor : vendorSea){
@@ -2095,162 +2144,163 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         }else if(documentName.equals("AUTHORIZATION TO WITHDRAW")){
 
-            // will delete all existing Authorization to Withdraw documents
-            for (Documents freightDocumentElem : bookingDocuments){
-                String docName = freightDocumentElem.getDocumentName().toUpperCase();
-                if(docName.equals("AUTHORIZATION TO WITHDRAW")){
-                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
-                    documentsService.deleteDocument(documentEntity);
-                }
-            }
+            Driver contactEntity = vendorService.findDriverById(repContactIdParam);
+
+            Vendor vendorEntity = vendorService.findVendorById(contactEntity.getVendorId());
 
             for(OrderItems orderItemElem : orderItemsList){
 
-                Documents documentEntity = new Documents();
-                Client client = clientService.findClientById(getClientId().toString());
+                if(documentStageParam.equals("OUTBOUND")){
 
-                documentEntity.setClient(client);
-                documentEntity.setDocumentName(documentName);
-                documentEntity.setReferenceId(document.getReferenceId());
-                documentEntity.setReferenceTable("ORDERS");
-                documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-                documentEntity.setCreatedDate(new Date());
-                /*documentEntity.setVendorCode(seaVendor);*/
+                    if(orderItemElem.getVendorOrigin().equals(vendorEntity.getVendorCode()) || vendorEntity.getVendorCode().equals("ELC")){
 
-                if (documentStageParam.equals("OUTBOUND")) {
-                    documentEntity.setOutboundStage(1);
-                    documentEntity.setDocumentProcessed(0);
-                    documentEntity.setDocumentStatus("OUTBOUND");
-                } else if (documentStageParam.equals("INBOUND")) {
-                    documentEntity.setInboundStage(1);
-                    documentEntity.setDocumentProcessed(1);
-                    documentEntity.setDocumentStatus("INBOUND");
-                } else if (documentStageParam.equals("FINAL OUTBOUND")) {
-                    documentEntity.setDocumentProcessed(2);
-                    documentEntity.setFinalOutboundStage(1);
-                    documentEntity.setDocumentStatus("FINAL OUTBOUND");
-                } else {
-                    documentEntity.setFinalInboundStage(1);
-                    documentEntity.setDocumentProcessed(3);
-                    documentEntity.setDocumentStatus("FINAL INBOUND");
+                        // will delete ATW document if it exists
+                        for (Documents freightDocumentElem : bookingDocuments){
+                            String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                            if(docName.equals("AUTHORIZATION TO WITHDRAW")){
+                                Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+
+                                if(documentEntity != null) {
+
+                                    if (vendorEntity.getVendorCode().equals("ELC")) {
+
+                                        for (OrderItems orderItemInsideElem : orderItemsList) {
+                                            if (documentEntity.getVendorCode().equals("ELC") && documentEntity.getOrderItemId() == orderItemInsideElem.getOrderItemId() && documentEntity.getDocumentStatus().equals("OUTBOUND")) {
+                                                documentsService.deleteDocument(documentEntity);
+                                            }
+                                        }
+
+                                    } else {
+
+                                        if (documentEntity.getVendorCode().equals(orderItemElem.getVendorOrigin()) && documentEntity.getOrderItemId() == orderItemElem.getOrderItemId()) {
+                                            documentsService.deleteDocument(documentEntity);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Documents documentEntity = new Documents();
+                        Client client = clientService.findClientById(getClientId().toString());
+
+                        documentEntity.setClient(client);
+                        documentEntity.setDocumentName(documentName);
+                        documentEntity.setReferenceId(document.getReferenceId());
+                        documentEntity.setReferenceTable("ORDERS");
+                        documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                        documentEntity.setCreatedDate(new Date());
+                        documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
+                        documentEntity.setVendorCode(vendorEntity.getVendorCode());
+
+                        documentEntity.setRepContact(repContactIdParam);
+                        documentEntity.setOriContact(shipperContactIdParam);
+                        documentEntity.setDesContact(consigneeContactIdParam);
+
+                        if (documentStageParam.equals("OUTBOUND")) {
+                            documentEntity.setOutboundStage(1);
+                            documentEntity.setDocumentProcessed(0);
+                            documentEntity.setDocumentStatus("OUTBOUND");
+                        } else if (documentStageParam.equals("INBOUND")) {
+                            documentEntity.setInboundStage(1);
+                            documentEntity.setDocumentProcessed(1);
+                            documentEntity.setDocumentStatus("INBOUND");
+                        } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                            documentEntity.setDocumentProcessed(2);
+                            documentEntity.setFinalOutboundStage(1);
+                            documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                        } else {
+                            documentEntity.setFinalInboundStage(1);
+                            documentEntity.setDocumentProcessed(3);
+                            documentEntity.setDocumentStatus("FINAL INBOUND");
+                        }
+
+                        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                        documentEntity.setReferenceNumber(document.getReferenceNumber());
+                        documentEntity.setDocumentComments(document.getDocumentComments());
+                        String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
+                        documentEntity.setControlNumber(documentCode);
+
+                        documentEntity.setReferenceNumber(documentCode.replace("ATW-", ""));
+
+                        documentsService.addDocuments(documentEntity);
+                    }
+
+                }else if(documentStageParam.equals("FINAL OUTBOUND")){
+
+                    if(orderItemElem.getVendorDestination().equals(vendorEntity.getVendorCode()) || vendorEntity.getVendorCode().equals("ELC")){
+
+                        // will delete ATW document if it exists
+                        for (Documents freightDocumentElem : bookingDocuments){
+                            String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                            if(docName.equals("AUTHORIZATION TO WITHDRAW")){
+                                Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+
+                                if(documentEntity != null) {
+
+                                    if (vendorEntity.getVendorCode().equals("ELC")) {
+
+                                        for (OrderItems orderItemInsideElem : orderItemsList) {
+                                            if (documentEntity.getVendorCode().equals("ELC") && documentEntity.getOrderItemId() == orderItemInsideElem.getOrderItemId() && documentEntity.getDocumentStatus().equals("FINAL OUTBOUND")) {
+                                                documentsService.deleteDocument(documentEntity);
+                                            }
+                                        }
+
+                                    }else{
+
+                                        if (documentEntity.getVendorCode().equals(orderItemElem.getVendorDestination()) && documentEntity.getOrderItemId() == orderItemElem.getOrderItemId()) {
+                                            documentsService.deleteDocument(documentEntity);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Documents documentEntity = new Documents();
+                        Client client = clientService.findClientById(getClientId().toString());
+
+                        documentEntity.setClient(client);
+                        documentEntity.setDocumentName(documentName);
+                        documentEntity.setReferenceId(document.getReferenceId());
+                        documentEntity.setReferenceTable("ORDERS");
+                        documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                        documentEntity.setCreatedDate(new Date());
+                        documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
+                        documentEntity.setVendorCode(vendorEntity.getVendorCode());
+
+                        documentEntity.setRepContact(repContactIdParam);
+                        documentEntity.setOriContact(shipperContactIdParam);
+                        documentEntity.setDesContact(consigneeContactIdParam);
+
+                        if (documentStageParam.equals("OUTBOUND")) {
+                            documentEntity.setOutboundStage(1);
+                            documentEntity.setDocumentProcessed(0);
+                            documentEntity.setDocumentStatus("OUTBOUND");
+                        } else if (documentStageParam.equals("INBOUND")) {
+                            documentEntity.setInboundStage(1);
+                            documentEntity.setDocumentProcessed(1);
+                            documentEntity.setDocumentStatus("INBOUND");
+                        } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                            documentEntity.setDocumentProcessed(2);
+                            documentEntity.setFinalOutboundStage(1);
+                            documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                        } else {
+                            documentEntity.setFinalInboundStage(1);
+                            documentEntity.setDocumentProcessed(3);
+                            documentEntity.setDocumentStatus("FINAL INBOUND");
+                        }
+
+                        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                        documentEntity.setReferenceNumber(document.getReferenceNumber());
+                        documentEntity.setDocumentComments(document.getDocumentComments());
+                        String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
+                        documentEntity.setControlNumber(documentCode);
+
+                        documentEntity.setReferenceNumber(documentCode.replace("ATW-", ""));
+
+                        documentsService.addDocuments(documentEntity);
+                    }
                 }
-
-                documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                documentEntity.setReferenceNumber(document.getReferenceNumber());
-                documentEntity.setDocumentComments(document.getDocumentComments());
-                documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
-                String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
-                documentEntity.setControlNumber(documentCode);
-
-                documentEntity.setReferenceNumber(documentCode.replace("ATW-",""));
-
-                documentsService.addDocuments(documentEntity);
             }
-
-            // Authorization to withdraw connected to sea vendor
-            /*for (String seaVendor : vendorSea){
-
-                if(seaVendor != null){
-
-                    Documents documentEntity = new Documents();
-                    Client client = clientService.findClientById(getClientId().toString());
-
-                    documentEntity.setClient(client);
-                    documentEntity.setDocumentName(documentName);
-                    documentEntity.setReferenceId(document.getReferenceId());
-                    documentEntity.setReferenceTable("ORDERS");
-                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-                    documentEntity.setCreatedDate(new Date());
-                    documentEntity.setVendorCode(seaVendor);
-
-                    if (documentStageParam.equals("OUTBOUND")) {
-                        documentEntity.setOutboundStage(1);
-                        documentEntity.setDocumentProcessed(0);
-                        documentEntity.setDocumentStatus("OUTBOUND");
-                    } else if (documentStageParam.equals("INBOUND")) {
-                        documentEntity.setInboundStage(1);
-                        documentEntity.setDocumentProcessed(1);
-                        documentEntity.setDocumentStatus("INBOUND");
-                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
-                        documentEntity.setDocumentProcessed(2);
-                        documentEntity.setFinalOutboundStage(1);
-                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
-                    } else {
-                        documentEntity.setFinalInboundStage(1);
-                        documentEntity.setDocumentProcessed(3);
-                        documentEntity.setDocumentStatus("FINAL INBOUND");
-                    }
-
-                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                    documentEntity.setReferenceNumber(document.getReferenceNumber());
-                    documentEntity.setDocumentComments(document.getDocumentComments());
-                    String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
-                    documentEntity.setControlNumber(documentCode);
-
-                    documentEntity.setReferenceNumber(documentCode.replace("ATW-",""));
-
-                    documentsService.addDocuments(documentEntity);
-
-                }
-                else{
-                    clearErrorsAndMessages();
-                    addActionError("No Shipping vendor set!");
-
-                    return INPUT;
-                }
-
-            }*/
-
-            // Authorization to withdraw connected to destination vendor
-            /*for(String destinationVendor : vendorDestination){
-                if(destinationVendor != null){
-
-                    Documents documentEntity = new Documents();
-                    Client client = clientService.findClientById(getClientId().toString());
-
-                    documentEntity.setClient(client);
-                    documentEntity.setDocumentName(documentName);
-                    documentEntity.setReferenceId(document.getReferenceId());
-                    documentEntity.setReferenceTable("ORDERS");
-                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-                    documentEntity.setCreatedDate(new Date());
-                    documentEntity.setVendorCode(destinationVendor);
-
-                    if (documentStageParam.equals("OUTBOUND")) {
-                        documentEntity.setOutboundStage(1);
-                        documentEntity.setDocumentProcessed(0);
-                        documentEntity.setDocumentStatus("OUTBOUND");
-                    } else if (documentStageParam.equals("INBOUND")) {
-                        documentEntity.setInboundStage(1);
-                        documentEntity.setDocumentProcessed(1);
-                        documentEntity.setDocumentStatus("INBOUND");
-                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
-                        documentEntity.setDocumentProcessed(2);
-                        documentEntity.setFinalOutboundStage(1);
-                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
-                    } else {
-                        documentEntity.setFinalInboundStage(1);
-                        documentEntity.setDocumentProcessed(3);
-                        documentEntity.setDocumentStatus("FINAL INBOUND");
-                    }
-
-                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                    documentEntity.setReferenceNumber(document.getReferenceNumber());
-                    documentEntity.setDocumentComments(document.getDocumentComments());
-                    String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
-                    documentEntity.setControlNumber(documentCode);
-
-                    documentEntity.setReferenceNumber(documentCode.replace("ATW-",""));
-
-                    documentsService.addDocuments(documentEntity);
-
-                }else{
-                    clearErrorsAndMessages();
-                    addActionError("No Destination vendor set!");
-
-                    return INPUT;
-                }
-            }*/
 
         }else if(documentName.equals("ACCEPTANCE RECEIPT")){
 
@@ -2417,6 +2467,79 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    /*public String representativeAction() {
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+
+        if(authorizedRepresentative != null){
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> AUTHORIZED " + authorizedRepresentative);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DESTINATION " + vendorLocationFlag);
+            *//*System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ORDER ID " + orderIdParam);*//*
+
+            if(vendorLocationFlag.equals("ORIGIN")){
+                if(authorizedRepresentative.equals("3rd PARTY VENDORS")){
+                    List<OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+
+                    for(OrderItems orderItemElem : orderItemsList){
+                        Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorOrigin());
+
+                        List<Driver> authorizedDrivers = vendorService.findDriverByVendorId(vendorEntity.getVendorId());
+
+                        if(authorizedDrivers.size() != 0){
+                            representativeMap.put(vendorEntity.getVendorId(), vendorEntity.getVendorName());
+                        }
+                    }
+                }else{
+                    Vendor vendorEntity = vendorService.findErnestRecipient("ELC", orderEntity.getOriginationPort());
+                    if(vendorEntity != null){
+                        representativeMap.put(vendorEntity.getVendorId(), vendorEntity.getVendorName());
+                    }
+
+                }
+            }
+
+            if(vendorLocationFlag.equals("DESTINATION")){
+                if(authorizedRepresentative.equals("3rd PARTY VENDORS")){
+                    List<OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+
+                    for(OrderItems orderItemElem : orderItemsList){
+                        Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorDestination());
+
+                        List<Driver> authorizedDrivers = vendorService.findDriverByVendorId(vendorEntity.getVendorId());
+
+                        if(authorizedDrivers.size() != 0){
+                            representativeMap.put(vendorEntity.getVendorId(), vendorEntity.getVendorName());
+                        }
+                    }
+                }else{
+                    Vendor vendorEntity = vendorService.findErnestRecipient("ELC", orderEntity.getDestinationPort());
+                    if(vendorEntity != null){
+                        representativeMap.put(vendorEntity.getVendorId(), vendorEntity.getVendorName());
+                    }
+
+                }
+            }
+        }
+        return SUCCESS;
+    }*/
+
+    /*public String repContactAction() {
+
+        if(representativeIdParam != null ){
+
+            List<Driver> driverEntity = vendorService.findDriverByVendorId(representativeIdParam);
+
+            if(driverEntity != null && driverEntity.size() != 0){
+
+                for(Driver contactElem : driverEntity){
+                    repContactMap.put(contactElem.getDriverId(), contactElem.getFirstName() + " " + contactElem.getLastName());
+                }
+            }
+
+        }
+        return SUCCESS;
+    }*/
+
     public String activateFinalOutbound() {
         List<String> vendorSeaCodeList = new ArrayList<String>(); // placeholder for sea vendor codes
         List<String> vendorDestinationCodeList = new ArrayList<String>(); // placeholder for destination vendor codes
@@ -2525,17 +2648,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
         sessionAttributes.put("orderIdParam", orderIdParam);
 
         return SUCCESS;
-
     }
 
     public String activateArchive() {
         Map sessionAttributes = ActionContext.getContext().getSession();
-
-        /*Orders orderEntity = orderService.findOrdersById(orderIdParam);
-
-        orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
-
-        orderService.updateOrder(orderEntity);*/
 
         List<Documents> allDocuments = documentsService.findDocumentsByOrderId(orderIdParam);
 
@@ -2554,11 +2670,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         System.out.println(".............................CHECK WORD PASS " + checkString);
-
         System.out.println(".............................DOCUMENT ITEM " + documentItem);
-
         System.out.println(".............................ORDER ID PARAM " + orderIdParam);
-
         System.out.println(".............................STAGE PARAM " + documentStageParam);
 
         if(checkString != null){
@@ -2615,11 +2728,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String confirmDocumentModal(){
 
         System.out.println(".............................CHECK WORD PASS " + checkString);
-
         System.out.println(".............................DOCUMENT ITEM " + documentItem);
-
         System.out.println(".............................ORDER ID PARAM " + orderIdParam);
-
         System.out.println(".............................STAGE PARAM " + documentStageParam);
 
         if(checkString != null){
@@ -2647,9 +2757,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         System.out.println("------------------ORDER ID" + orderIdParam);
-
         System.out.println("------------------DATE SENT" + dateSentFinalOutbound);
-
         System.out.println("------------------TRACKING NUMBER" + finalOutboundTrackingNumber);
 
         Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
@@ -2688,7 +2796,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String dateReceivedInbound(){
 
         System.out.println("----------------------------------------date" + dateReturnedInbound);
-
         System.out.println("---------------------------------------=====" + orderIdParam);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -2724,7 +2831,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         System.out.println("ORDER ID----------------------------------" + orderIdParam);
-
         System.out.println("Date Returned final inbound----------------------------------" + dateReturnedFinalInbound);
 
         Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
@@ -2750,8 +2856,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             entity.setDocumentId(new Integer(formBean.getDocumentId()));
         }
 
-        /*Documents subEntity = documentsService.findDocumentById(formBean.getDocumentId());*/
-
         entity.setDocumentName(formBean.getDocumentName());
         entity.setReferenceId(formBean.getReferenceId());
         entity.setReferenceTable(formBean.getReferenceTable());
@@ -2776,6 +2880,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
         entity.setOrderItemId(formBean.getOrderItemId());
         entity.setAging(formBean.getAging());
         entity.setVendorCode(documentsService.findDocumentById(formBean.getDocumentId()).getVendorCode());
+        entity.setRepContact(formBean.getRepContact());
+        entity.setOriContact(formBean.getOriContact());
+        entity.setDesContact(formBean.getDesContact());
 
         return entity;
     }
@@ -2816,7 +2923,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         formBean.setAging(entity.getAging());
 
         Contacts contactShipperName = customerService.findContactById(entity.getShipperContactId());
-
         Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
 
         if (shipperName!=null) {
@@ -2943,7 +3049,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         } catch (Exception re) {
             re.printStackTrace();
         }
-
         return null;
     }
 
@@ -2978,7 +3083,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         } catch (Exception re) {
             re.printStackTrace();
         }
-
         return null;
     }
     // House Waybill Origin
@@ -3014,7 +3118,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         } catch (Exception re) {
             re.printStackTrace();
         }
-
         return null;
     }
     // House Waybill Destination
@@ -3050,7 +3153,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         } catch (Exception re) {
             re.printStackTrace();
         }
-
         return null;
     }
     // Acceptance Receipt
@@ -3084,7 +3186,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         } catch (Exception re) {
             re.printStackTrace();
         }
-
         return null;
     }
     // Release Order
@@ -3227,7 +3328,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             re.printStackTrace();
         }
         return null;
-
     }
 
     // Equipment Interchange Receipt 2
@@ -3262,7 +3362,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             re.printStackTrace();
         }
         return null;
-
     }
 
     // Equipment Consolidation Manifest
@@ -3313,7 +3412,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         //get consignee name
         Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
         formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
-        System.out.println(" agadgashasdhasfhasfhasdh " + orderService.findOrdersById(entity.getOrderId()).getServiceType() );
         if(orderService.findOrdersById(entity.getOrderId()).getServiceType().equals("TRUCKING")){
             formBean.setOriginationPort("N/A");
             formBean.setDestinationPort("N/A");
@@ -3335,8 +3433,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else{
             formBean.setDocumentCheck("ON-GOING");
         }
-
-
         return formBean;
     }
 
@@ -3368,6 +3464,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
         formBean.setDocumentComments(entity.getDocumentComments());
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setAging(entity.getAging());
+        formBean.setRepContact(entity.getRepContact());
+        formBean.setOriContact(entity.getOriContact());
+        formBean.setDesContact(entity.getDesContact());
 
         /*Integer orderItemIdPass; // Variable to store Order Item ID
         // Condition if order item id if null or not
@@ -3449,8 +3548,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return formBean;
     }
 
-
-
     private String getFullName(String lastName, String firstName, String middleName) {
         StringBuilder fullName = new StringBuilder("");
         if (StringUtils.isNotBlank(lastName)) {
@@ -3471,6 +3568,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     private String name;
+
     private String age;
 
     public String getName() {
@@ -3552,7 +3650,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.orders = orders;
     }
     
-    public InputStream getInputStream() {
+    /*public InputStream getInputStream() {
         return inputStream;
     } 
     
@@ -3562,7 +3660,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
  
     public String getFileName() {
         return fileName;
-    }
+    }*/
 
 	public String getOrderId() {
 		return orderId;
@@ -3756,9 +3854,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.check = check;
     }
 
-    public void setVesselSchedulesService(VesselSchedulesService vesselSchedulesService) {
+    /*public void setVesselSchedulesService(VesselSchedulesService vesselSchedulesService) {
         this.vesselSchedulesService = vesselSchedulesService;
-    }
+    }*/
 
     public void setVendorService(VendorService vendorService) {
         this.vendorService = vendorService;
@@ -4044,22 +4142,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.proformaBillOfLadingReportService = proformaBillOfLadingReportService;
     }
 
-    public String getDestinationVendorFlag() {
-        return destinationVendorFlag;
-    }
-
-    public void setDestinationVendorFlag(String destinationVendorFlag) {
-        this.destinationVendorFlag = destinationVendorFlag;
-    }
-
-    public String getOriginVendorFlag() {
-        return originVendorFlag;
-    }
-
-    public void setOriginVendorFlag(String originVendorFlag) {
-        this.originVendorFlag = originVendorFlag;
-    }
-
     public String getCheckString() {
         return checkString;
     }
@@ -4086,5 +4168,133 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setConsolidationManifestReportService(ConsolidationManifestReportService consolidationManifestReportService) {
         this.consolidationManifestReportService = consolidationManifestReportService;
+    }
+
+    public List<String> getRecipientList() {
+        return recipientList;
+    }
+
+    public void setRecipientList(List<String> recipientList) {
+        this.recipientList = recipientList;
+    }
+
+    public String getAuthorizedRecipient() {
+        return authorizedRecipient;
+    }
+
+    public void setAuthorizedRecipient(String authorizedRecipient) {
+        this.authorizedRecipient = authorizedRecipient;
+    }
+
+    public String getAuthorizedRepresentative() {
+        return authorizedRepresentative;
+    }
+
+    public void setAuthorizedRepresentative(String authorizedRepresentative) {
+        this.authorizedRepresentative = authorizedRepresentative;
+    }
+
+    public List<Contacts> getRepresentativeList() {
+        return representativeList;
+    }
+
+    public void setRepresentativeList(List<Contacts> representativeList) {
+        this.representativeList = representativeList;
+    }
+
+    public Contacts getRepContact() {
+        return repContact;
+    }
+
+    public void setRepContact(Contacts repContact) {
+        this.repContact = repContact;
+    }
+
+    public List<DriverBean> getRepContactsList() {
+        return repContactsList;
+    }
+
+    public void setRepContactsList(List<DriverBean> repContactsList) {
+        this.repContactsList = repContactsList;
+    }
+
+    public Map<Integer, String> getRepContactMap() {
+        return repContactMap;
+    }
+
+    public void setRepContactMap(Map<Integer, String> repContactMap) {
+        this.repContactMap = repContactMap;
+    }
+
+    public Map<Integer, String> getRepresentativeMap() {
+        return representativeMap;
+    }
+
+    public void setRepresentativeMap(Map<Integer, String> representativeMap) {
+        this.representativeMap = representativeMap;
+    }
+
+    public Integer getRepresentativeIdParam() {
+        return representativeIdParam;
+    }
+
+    public void setRepresentativeIdParam(Integer representativeIdParam) {
+        this.representativeIdParam = representativeIdParam;
+    }
+
+    public Integer getRepContactIdParam() {
+        return repContactIdParam;
+    }
+
+    public void setRepContactIdParam(Integer repContactIdParam) {
+        this.repContactIdParam = repContactIdParam;
+    }
+
+    public List<Contacts> getShipperContacts() {
+        return shipperContacts;
+    }
+
+    public void setShipperContacts(List<Contacts> shipperContacts) {
+        this.shipperContacts = shipperContacts;
+    }
+
+    public List<Contacts> getConsigneeContacts() {
+        return consigneeContacts;
+    }
+
+    public void setConsigneeContacts(List<Contacts> consigneeContacts) {
+        this.consigneeContacts = consigneeContacts;
+    }
+
+    public Integer getShipperContactIdParam() {
+        return shipperContactIdParam;
+    }
+
+    public void setShipperContactIdParam(Integer shipperContactIdParam) {
+        this.shipperContactIdParam = shipperContactIdParam;
+    }
+
+    public Integer getConsigneeContactIdParam() {
+        return consigneeContactIdParam;
+    }
+
+    public void setConsigneeContactIdParam(Integer consigneeContactIdParam) {
+        this.consigneeContactIdParam = consigneeContactIdParam;
+    }
+
+    public String getVendorLocationFlag() {
+        return vendorLocationFlag;
+    }
+
+    public void setVendorLocationFlag(String vendorLocationFlag) {
+        this.vendorLocationFlag = vendorLocationFlag;
+    }
+
+    public DriverBean getDriver() {
+        return driver;
+    }
+
+    public void setDriver(DriverBean driver) {
+        this.driver = driver;
     }
 }

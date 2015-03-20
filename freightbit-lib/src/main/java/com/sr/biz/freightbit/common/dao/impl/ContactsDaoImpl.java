@@ -1,6 +1,5 @@
 package com.sr.biz.freightbit.common.dao.impl;
 
-
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.dao.impl.UserDaoImpl;
@@ -14,10 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-/**
- * Created by Clarence C. Victoria on 5/26/14.
- */
 
 @Transactional
 public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao {
@@ -88,8 +83,6 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
     public List<Contacts> findAllContacts() {
         log.debug("finding all contacts");
         try {
-            //Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts");
-
             return getSessionFactory().getCurrentSession().createQuery("from Contacts").list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
@@ -114,21 +107,6 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
             throw re;
         }
     }
-
-//    @Override
-//    public List<Contacts> findAllContactsByClientId(long clientId) {
-//        log.debug("finding contact instance by client");
-//        try {
-//            Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts where clientId = :clientId");
-//            query.setParameter("clientId", clientId);
-//            List<Contacts> results = (List<Contacts>) query.list();
-//            log.debug("find by client id successful, result size: " + results.size());
-//            return results;
-//        } catch (RuntimeException re) {
-//            log.error("find by client id failed", re);
-//            throw re;
-//        }
-//    }
 
     @Override
     public Contacts findContactByReferenceTableAndId(String referenceTable, Integer referenceId) {
@@ -166,28 +144,23 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
             log.error("Get failed", re);
             throw re;
         }
+    }
 
-        /*List<String> typeList = new ArrayList<>();
+    @Override
+    public List<Contacts> findContactsByReferenceIdOnly(Integer referenceId) {
+        log.debug("Getting Contact instance by vendor id: " + referenceId);
 
-        typeList.add("shipper");
-        typeList.add("billTo");
-        typeList.add("solicitor");
-
-        log.debug("Finding contacts with filter");
-
-        try{
-           log.debug("Finding contacts succeeded");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts c where c.contactType in(:typeListList) and c.referenceId = :referenceId order by createdTimestamp desc");
-            query.setParameterList("typeList", typeList);
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Contacts c where c.referenceId = :referenceId");
             query.setParameter("referenceId", referenceId);
             List<Contacts> results = (List<Contacts>) query.list();
+            log.debug("Find by vendorId successful, result size: " + results.size());
             return results;
-
-        } catch (Exception e) {
-            log.error("Finding contacts failed");
-            throw e;
-        }*/
-
+        } catch (RuntimeException re) {
+            log.error("Get failed", re);
+            throw re;
+        }
     }
 
     @Override

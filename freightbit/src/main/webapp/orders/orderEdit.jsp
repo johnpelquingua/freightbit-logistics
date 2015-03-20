@@ -55,10 +55,10 @@
         </legend>
         <s:form action="editOrder" theme="bootstrap">
         <%--<s:property value="%{order.orderId}"/>--%>
-        <s:hidden name="order.orderId" id="order_orderId" value="%{order.orderId}"/>
+        <s:hidden name="order.orderId" id="order_orderId" value="%{order.orderId}" />
         <%--<s:property value="%{order.orderNumber}"/>--%>
-        <s:hidden name="order.orderNumber" value="%{order.orderNumber}"/>
-        <s:hidden name="order.orderStatus" value="%{order.orderStatus}"/>
+        <s:hidden name="order.orderNumber" value="%{order.orderNumber}" />
+        <s:hidden name="order.orderStatus" value="%{order.orderStatus}" />
         <div class="form-group">
             <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></span></label>
 
@@ -73,8 +73,7 @@
                           listKey="key"
                           listValue="value"
                           value="order.freightType"
-                          disabled="true"
-                        />
+                          disabled="true" />
             </div>
         </div>
 
@@ -92,8 +91,7 @@
                           listKey="key"
                           listValue="value"
                           disabled="true"
-                          value="order.serviceRequirement"
-                        />
+                          value="order.serviceRequirement" />
 
             </div>
         </div>
@@ -111,8 +109,7 @@
                           list="modeOfServiceList"
                           listKey="key"
                           listValue="value"
-                          value="order.modeOfService"
-                        />
+                          value="order.modeOfService" />
 
             </div>
         </div>
@@ -130,8 +127,7 @@
                           list="modeOfPaymentList"
                           listKey="key"
                           listValue="value"
-                          value="order.modeOfPayment"
-                        />
+                          value="order.modeOfPayment" />
 
             </div>
         </div>
@@ -150,8 +146,7 @@
                           emptyOption="true"
                           required="true"
                           value="order.customerId"
-                          disabled="true"
-                        />
+                          disabled="true" />
 
             </div>
 
@@ -166,13 +161,12 @@
                           id="customerPhone"
                           list="#{customerPhone}"
                           value="%{customerPhone}"
-                          style="display:none"
-                        />
+                          style="display:none" />
+
                 <s:textfield cssClass="form-control"
                              id="customerPhone_textfield"
                              value="%{customerPhone}"
-                             disabled="true"
-                        />
+                             disabled="true" />
             </div>
 
             <label class="col-lg-3 control-label" style="margin-top: 5px;">Mobile</label>
@@ -181,13 +175,12 @@
                           id="customerMobile"
                           list="#{customerMobile}"
                           value="%{customerMobile}"
-                          style="display:none"
-                        />
+                          style="display:none" />
+
                 <s:textfield cssClass="form-control"
                              id="customerMobile_textfield"
                              value="%{customerMobile}"
-                             disabled="true"
-                        />
+                             disabled="true" />
             </div>
         </div>
 
@@ -199,13 +192,12 @@
                           id="customerEmail"
                           list="#{customerEmail}"
                           value="%{customerEmail}"
-                          style="display:none"
-                        />
+                          style="display:none" />
+
                 <s:textfield cssClass="form-control"
                              id="customerEmail_textfield"
                              value="%{customerEmail}"
-                             disabled="true"
-                        />
+                             disabled="true" />
             </div>
 
             <label class="col-lg-3 control-label" style="margin-top: 5px;">Fax</label>
@@ -214,13 +206,12 @@
                           id="customerFax"
                           list="#{customerFax}"
                           value="%{customerFax}"
-                          style="display:none"
-                        />
+                          style="display:none" />
+
                 <s:textfield cssClass="form-control"
                              id="customerFax_textfield"
                              value="%{customerFax}"
-                             disabled="true"
-                        />
+                             disabled="true" />
             </div>
         </div>
 
@@ -491,7 +482,7 @@
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                          id="contact.lastName`" required="true" maxLength="30" autofocus="true"
                                          pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                         title="Last Name should not contain special characters and/or numbers."/>
+                                         title="Last Name should not contain special characters and/or numbers." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -500,7 +491,7 @@
                             <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
                                          id="contact.firstName" maxLength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
                                          title="First Name should not contain special characters and/or numbers."
-                                         required="true"/>
+                                         required="true" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -508,7 +499,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
                                          id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s\xD1-\xF1 ]+"
-                                         title="Middle Name should not contain special characters and/or numbers."/>
+                                         title="Middle Name should not contain special characters and/or numbers." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -517,7 +508,7 @@
                             <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
                                          maxLength="14" required="true" id="contact_phone"
                                          title="Phone number should contain 10 digits including local city code."
-                                         pattern=".{14}"/>
+                                         pattern=".{14}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -534,7 +525,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Email Address" name="contact.email"
                                          id="contact_email" required="true" pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{3,})$"
-                                         maxLength="50" title="Example: example@domain.com"/>
+                                         maxLength="50" title="Example: example@domain.com" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -542,7 +533,7 @@
                     <div class="col-lg-9">
                         <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.fax"
                                      maxLength="14" id="contact_fax" pattern=".{14,}"
-                                     title="Fax number should contain 10 digits including local city codes."/>
+                                     title="Fax number should contain 10 digits including local city codes." />
                     </div>
                     </div>
                 </div>
@@ -587,8 +578,7 @@
                         <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true"
                                          pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
-                                         title="Address Line 1 will only accept alphanumeric and will only allow # , and . as special characters." maxLength="50"
-                                    />
+                                         title="Address Line 1 will only accept alphanumeric and will only allow # , and . as special characters." maxLength="50" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -596,22 +586,21 @@
                         <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control"
                                          pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
-                                         title="Address Line 2 will only accept alphanumeric and will only allow # , and . as special characters." maxLength="50"
-                            />
+                                         title="Address Line 2 will only accept alphanumeric and will only allow # , and . as special characters." maxLength="50" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3" style="width: 26%;">City<span class="asterisk_red"></span></label>
                         <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.city" id="address.city" cssClass="form-control" required="true"
-                                    pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" title="City should not contain special characters." maxLength="30"/>
+                                    pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" title="City should not contain special characters." maxLength="30" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3" style="width: 26%;">Region</label>
                         <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.state" id="address.state" cssClass="form-control"
-                                    pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" title="Region should not contain special characters." maxLength="30"/>
+                                    pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" title="Region should not contain special characters." maxLength="30" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -866,7 +855,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Position" name="contact.position" maxLength="30"
                                          type="text" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                         title="Position must not contain numbers and/or special characters."/>
+                                         title="Position must not contain numbers and/or special characters." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -875,7 +864,7 @@
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                          id="consignee_contact_lastName" required="true" maxLength="30" autofocus="true"
                                          pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                         title="Last Name should not contain special characters and/or numbers."/>
+                                         title="Last Name should not contain special characters and/or numbers." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -884,7 +873,7 @@
                             <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
                                          id="consignee_contact_firstName" maxLength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
                                          title="First Name should not contain special characters and/or numbers."
-                                         required="true"/>
+                                         required="true" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -892,7 +881,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
                                          id="consignee_contact_middleName" maxLength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                         title="Middle Name should not contain special characters and/or numbers."/>
+                                         title="Middle Name should not contain special characters and/or numbers." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -910,7 +899,7 @@
                             <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
                                          maxLength="18" required="true" id="consignee_contact_mobile"
                                          title="Mobile number should contain 11 digits."
-                                         pattern=".{18}"/>
+                                         pattern=".{18}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -918,7 +907,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Email Address" name="contact.email" id="consignee_contact_email"
                                          required="true" maxLength="50" title="Example: example@domain.com"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"/>
+                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -926,7 +915,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.fax"
                                          maxLength="14" id="consignee_contact_fax" pattern=".{14,}"
-                                         title="Fax number should contain 10 digits including local city codes."/>
+                                         title="Fax number should contain 10 digits including local city codes." />
                         </div>
                     </div>
 
@@ -1240,7 +1229,6 @@ $(document).ready(function() {
 
         /* END EDIT WIP --------------------------------------------------------------------------*/
 
-
     });
 
     // Customer Dropdown
@@ -1249,72 +1237,72 @@ $(document).ready(function() {
         /*alert(custId);*/
 
         $.getJSON('customerAction', {
-                    customerID : custId
-                },
-                function(jsonResponse) {
-                    /*alert(jsonResponse.dummyMsg);*/
+                customerID : custId
+            },
+            function(jsonResponse) {
+                /*alert(jsonResponse.dummyMsg);*/
 
-                    $('#ajaxResponse').text(jsonResponse.dummyMsg);
+                $('#ajaxResponse').text(jsonResponse.dummyMsg);
 
-                    var select = $('#shipperContact');
+                var select = $('#shipperContact');
 
-                    select.find('option').remove();
+                select.find('option').remove();
 
-                    var select2 = $('#shipperAddress');
+                var select2 = $('#shipperAddress');
 
-                    select2.find('option').remove();
+                select2.find('option').remove();
 
-                    var select3 = $('#shipperConsignee');
+                var select3 = $('#shipperConsignee');
 
-                    select3.find('option').remove();
+                select3.find('option').remove();
 
-                    var select4 = $('#consigneeAddress');
+                var select4 = $('#consigneeAddress');
 
-                    select4.find('option').remove();
+                select4.find('option').remove();
 
-                    // populate customer consignee list
-                    $.each(jsonResponse.customerContactsMap, function(key, value) {
+                // populate customer consignee list
+                $.each(jsonResponse.customerContactsMap, function(key, value) {
 
-                        $('<option>').val(key).text(value).appendTo(select);
-
-                    });
-                    // populate customer address list
-                    $.each(jsonResponse.customerAddressMap, function(key, value) {
-
-                        if($("#order_modeOfService").val() == 'DOOR TO PIER') {
-                            $("#shipperAddress").prop('disabled', false);
-                            $("#consigneeAddress").prop('disabled', true);
-                            $('<option>').val(key).text(value).appendTo(select2);
-                        }else if ($("#order_modeOfService").val() == 'PIER TO DOOR') {
-                            $("#shipperAddress").prop('disabled', true);
-                            $("#consigneeAddress").prop('disabled', false);
-                        }else if ($("#order_modeOfService").val() == 'PIER TO PIER'){
-                            $("#consigneeAddress").prop('disabled', true);
-                            $("#shipperAddress").prop('disabled', true);
-                        }else{
-                            $("#shipperAddress").prop('disabled', false);
-                            $("#consigneeAddress").prop('disabled', false);
-                            $('<option>').val(key).text(value).appendTo(select2);
-                        }
-
-                    });
-                    // populate customer consignee list
-                    $.each(jsonResponse.customerConsigneeMap, function(key, value) {
-                        //alert($("#shipperConsignee").val());
-
-                        $('<option>').val(null).text("").appendTo(select3);
-                        $('<option>').val(key).text(value).appendTo(select3);
-                    });
-
-                    // populate customer address list
-                    $.each(jsonResponse.consigneeAddressMap, function(key, value) {
-                        //alert($("#consigneeAddress").val());
-
-                        $('<option>').val(null).text("").appendTo(select4);
-                        $('<option>').val(key).text(value).appendTo(select4);
-                    });
+                    $('<option>').val(key).text(value).appendTo(select);
 
                 });
+                // populate customer address list
+                $.each(jsonResponse.customerAddressMap, function(key, value) {
+
+                    if($("#order_modeOfService").val() == 'DOOR TO PIER') {
+                        $("#shipperAddress").prop('disabled', false);
+                        $("#consigneeAddress").prop('disabled', true);
+                        $('<option>').val(key).text(value).appendTo(select2);
+                    }else if ($("#order_modeOfService").val() == 'PIER TO DOOR') {
+                        $("#shipperAddress").prop('disabled', true);
+                        $("#consigneeAddress").prop('disabled', false);
+                    }else if ($("#order_modeOfService").val() == 'PIER TO PIER'){
+                        $("#consigneeAddress").prop('disabled', true);
+                        $("#shipperAddress").prop('disabled', true);
+                    }else{
+                        $("#shipperAddress").prop('disabled', false);
+                        $("#consigneeAddress").prop('disabled', false);
+                        $('<option>').val(key).text(value).appendTo(select2);
+                    }
+
+                });
+                // populate customer consignee list
+                $.each(jsonResponse.customerConsigneeMap, function(key, value) {
+                    //alert($("#shipperConsignee").val());
+
+                    $('<option>').val(null).text("").appendTo(select3);
+                    $('<option>').val(key).text(value).appendTo(select3);
+                });
+
+                // populate customer address list
+                $.each(jsonResponse.consigneeAddressMap, function(key, value) {
+                    //alert($("#consigneeAddress").val());
+
+                    $('<option>').val(null).text("").appendTo(select4);
+                    $('<option>').val(key).text(value).appendTo(select4);
+                });
+
+            });
 
     });
 
@@ -1324,37 +1312,37 @@ $(document).ready(function() {
         var consignee_Id = $("#shipperConsignee").val();
         /*alert("TEST");*/
         $.getJSON('consigneeAction', {
-                    customerID : custId,
-                    consigneeId : consignee_Id
-                },
-                function(jsonResponse) {
-                    /*alert(consignee_Id);*/
-                    var select4 = $('#consigneeAddress');
+                customerID : custId,
+                consigneeId : consignee_Id
+            },
+            function(jsonResponse) {
+                /*alert(consignee_Id);*/
+                var select4 = $('#consigneeAddress');
 
-                    select4.find('option').remove();
+                select4.find('option').remove();
 
-                    // populate consignee address
-                    $.each(jsonResponse.consigneeAddressMap, function(key, value) {
+                // populate consignee address
+                $.each(jsonResponse.consigneeAddressMap, function(key, value) {
 
-                        if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
+                    if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
 
-                            if ($("#shipperConsignee").val() != '') {
-                                $('<option>').val(key).text(value).appendTo(select4);
-                                $("#consigneeAddress_textfield").val(value);
-                            } else {
-                                if ($("#consigneeAddress").val() != '') {
-                                    $('<option>').val(null).text("").appendTo(select4);
-                                }
-                                $('<option>').val(key).text(value).appendTo(select4);
+                        if ($("#shipperConsignee").val() != '') {
+                            $('<option>').val(key).text(value).appendTo(select4);
+                            $("#consigneeAddress_textfield").val(value);
+                        } else {
+                            if ($("#consigneeAddress").val() != '') {
+                                $('<option>').val(null).text("").appendTo(select4);
                             }
-
-                        }else{
                             $('<option>').val(key).text(value).appendTo(select4);
                         }
 
-                    });
+                    }else{
+                        $('<option>').val(key).text(value).appendTo(select4);
+                    }
 
                 });
+
+            });
 
     });
 
@@ -1364,33 +1352,32 @@ $(document).ready(function() {
         var address_Id = $("#consigneeAddress").val();
         /*alert(address_Id);*/
         $.getJSON('addressAction', {
-                    customerID : custId,
-                    addressId: address_Id
-                },
-                function (jsonResponse) {
-                    /*alert(address_Id);*/
-                    var select3 = $('#shipperConsignee');
+                customerID : custId,
+                addressId: address_Id
+            },
+            function (jsonResponse) {
+                /*alert(address_Id);*/
+                var select3 = $('#shipperConsignee');
 
-                    select3.find('option').remove();
+                select3.find('option').remove();
 
-                    // populate consignee field
-                    $.each(jsonResponse.customerConsigneeMap, function (key, value) {
+                // populate consignee field
+                $.each(jsonResponse.customerConsigneeMap, function (key, value) {
 
-                        if($("#consigneeAddress").val() != ''){
-                            $('<option>').val(key).text(value).appendTo(select3);
-                        }else{
-                            if($("#shipperConsignee").val() != ''){
-                                //$('<option>').val(null).text("").appendTo(select3);
-                            }
-                            $('<option>').val(key).text(value).appendTo(select3);
+                    if($("#consigneeAddress").val() != ''){
+                        $('<option>').val(key).text(value).appendTo(select3);
+                    }else{
+                        if($("#shipperConsignee").val() != ''){
+                            //$('<option>').val(null).text("").appendTo(select3);
                         }
-
-                    });
+                        $('<option>').val(key).text(value).appendTo(select3);
+                    }
 
                 });
 
-    });
+            });
 
+    });
 
     // Date Time Picker
     var fromDatePickUp = $('#datepicker1');
@@ -1456,7 +1443,6 @@ $(document).ready(function() {
 
 function dynamicDropdown(select, index) {
 
-
     var opt = select.options,
             lent = opt.length;
 
@@ -1465,7 +1451,6 @@ function dynamicDropdown(select, index) {
     }
 
     /*alert(select.options[ index ].value);*/
-
 
     // If Service Requirement is Rolling Cargo
     if (select.options[ index ].value === 'ROLLING CARGO LOAD') {
@@ -1646,10 +1631,7 @@ function dynamicDropdown(select, index) {
         $("#shipperAddress").prop('disabled', false);
         $("#consigneeAddress").prop('disabled', false);
     }
-
-
 }
-
 
 var sReq = select = document.getElementById('order.serviceRequirement');
 var sType = select = document.getElementById('order.freightType');

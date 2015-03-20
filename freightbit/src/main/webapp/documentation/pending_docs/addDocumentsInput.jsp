@@ -7,8 +7,9 @@
         </div>
         <s:hidden value="%{order.freightType}" cssClass="serviceType"/>
         <s:hidden value="%{order.modeOfService}" cssClass="serviceMode"/>
-        <s:hidden cssClass="originVendorFlag" value="%{originVendorFlag}" />
-        <s:hidden cssClass="destinationVendorFlag" value="%{destinationVendorFlag}" />
+        <%--<s:hidden cssClass="originVendorFlag" value="%{originVendorFlag}" />
+        <s:hidden cssClass="destinationVendorFlag" value="%{destinationVendorFlag}" />--%>
+        <s:hidden cssClass="vendorLocationFlag" value="%{vendorLocationFlag}" />
 
         <s:form action="addDocument" theme="bootstrap">
 
@@ -18,7 +19,7 @@
                 <%--<s:param name="orderIdParam" value="%{orderIdParam}"></s:param>--%>
                 <s:hidden name="documentStageParam" value="%{documentStageParam}" />
 
-                <s:hidden name="document.referenceId" value="%{orderIdParam}" />
+                <s:hidden name="document.referenceId" cssClass="orderIdParam" value="%{orderIdParam}" />
 
                     <input list="documents" id="documentName" name="document.documentName" class="form-control" maxLength="30" required="true" style="margin-bottom: 15px !important;" required="true"/>
                     <datalist id="documents" class="datalistDocuments">
@@ -32,15 +33,75 @@
 
             </div>
 
-            <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Series Number</label>
-            <div class="col-lg-8" >
-                    <s:textfield cssClass="form-control modalComment" name="document.referenceNumber" style="margin-bottom: 15px !important;" />
+            <div class="recipientField" style="display:none;">
+                <%--<label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">ATW Representative</label>
+                <div class="col-lg-8" >
+                    <s:select id="authorizedRepresentative"
+                              cssClass="form-control"
+                              style="margin-bottom: 15px !important;"
+                              name="authorizedRecipient"
+                              list="recipientList"
+                              emptyOption="true"/>
+                </div>
+
+                <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Representative</label>
+                <div class="col-lg-8" >
+                    <s:select id="representativeName"
+                              cssClass="form-control"
+                              style="margin-bottom: 15px !important;"
+                              list="representativeList" />
+                </div>--%>
+
+                <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Authorized Agent</label>
+                <div class="col-lg-8" >
+                    <s:select id="representativeContact"
+                              name="repContactIdParam"
+                              cssClass="form-control"
+                              style="margin-bottom: 15px !important;"
+                              list="repContactsList"
+                              listKey="driverId"
+                              listValue="authorizedAgent"
+                              required="true" />
+                </div>
+
+                <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Ernest Shipper Contact</label>
+                <div class="col-lg-8" >
+                    <s:select id="shipperContact"
+                              name="shipperContactIdParam"
+                              cssClass="form-control"
+                              style="margin-bottom: 15px !important;"
+                              list="shipperContacts"
+                              listKey="contactId"
+                              listValue="firstName + ' ' + lastName"
+                              required="true" />
+                </div>
+
+                <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Ernest Consignee Contact</label>
+                <div class="col-lg-8" >
+                    <s:select id="consigneeContact"
+                              name="consigneeContactIdParam"
+                              cssClass="form-control"
+                              style="margin-bottom: 15px !important;"
+                              list="consigneeContacts"
+                              listKey="contactId"
+                              listValue="firstName + ' ' + lastName"
+                              required="true" />
+                </div>
             </div>
 
-            <label class="col-lg-4 control-label" style="text-align: right; clear:both;">Comments</label>
-            <div class="col-lg-8" >
+            <div class="seriesField">
+                <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Series Number</label>
+                <div class="col-lg-8" >
+                    <s:textfield cssClass="form-control modalComment" name="document.referenceNumber" style="margin-bottom: 15px !important;" />
+                </div>
+            </div>
+
+            <div class="commentsField">
+                <label class="col-lg-4 control-label" style="text-align: right; clear:both;">Comments</label>
+                <div class="col-lg-8" >
                     <s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
                                 id="document_documentComments" maxLength="255"/>
+                </div>
             </div>
 
             <div style="clear:both;" class="modal-footer">
@@ -55,42 +116,62 @@
 
         </s:form>
 
-
 <script>
     $(document).ready(function(){
 
-        $('#documentName').change(function() {
+        $('#documentName').on("input", function() {
 
             var documentName = $(this).val(),
                 originVendorFlag = $('.originVendorFlag').val(),
                 destinationVendorFlag = $('.destinationVendorFlag').val(),
                 referenceNumber = $('.modalComment'),
-                commentsBox = $('.modalTextArea');
+                commentsBox = $('.modalTextArea'),
+                seriesField = $('.seriesField'),
+                commentsField = $('.commentsField'),
+                recipientField = $('.recipientField');
 
             switch (documentName) {
 
+            case 'HOUSE BILL OF LADING' :
+                recipientField.hide();
+                seriesField.hide();
+                commentsField.hide();
+                referenceNumber.prop('disabled', true);
+                commentsBox.prop('disabled', true);
+                break;
+
             case 'MASTER WAYBILL ORIGIN' :
+                recipientField.hide();
+                seriesField.hide();
+                commentsField.hide();
                 referenceNumber.prop('disabled', true);
                 commentsBox.prop('disabled', true);
                 break;
 
             case 'MASTER WAYBILL DESTINATION' :
+                recipientField.hide();
+                seriesField.hide();
+                commentsField.hide();
                 referenceNumber.prop('disabled', true);
                 commentsBox.prop('disabled', true);
                 break;
 
             case 'AUTHORIZATION TO WITHDRAW' :
+                recipientField.show();
+                seriesField.hide();
+                commentsField.hide();
                 referenceNumber.prop('disabled', true);
                 commentsBox.prop('disabled', true);
                 break;
 
             default :
+                recipientField.hide();
+                seriesField.show();
+                commentsField.show();
                 referenceNumber.prop('disabled', false);
                 commentsBox.prop('disabled', false);
                 break;
-
             }
-
         });
 
         for(var i=0; i < $('.datalistDocuments option').size(); i++){
@@ -100,11 +181,11 @@
             if($('[name="documentStageParam"]').val() == 'OUTBOUND'){
                 if($('.serviceType').val() == 'SHIPPING AND TRUCKING' || $('.serviceType').val() == 'SHIPPING'){
                     if($('.serviceMode').val() == 'PIER TO DOOR' ){
-                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' ){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' ){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }else if($('.serviceMode').val() == 'DOOR TO PIER'){
-                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER'){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }else if($('.serviceMode').val() == 'PIER TO PIER'){
@@ -112,7 +193,7 @@
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }else{
-                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT'){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }

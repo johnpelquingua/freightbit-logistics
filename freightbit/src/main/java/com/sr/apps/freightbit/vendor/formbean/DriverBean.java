@@ -17,11 +17,12 @@ public class DriverBean {
     private Date modifiedTimeStamp;
     private String modifiedBy;
     private Integer vendorId;
+    private String authorizedAgent;
 
     public DriverBean() {
     }
 
-    public DriverBean(Integer driverId, String driverCode, String licenseNumber, String lastName, String firstName, String title, String middleName, String status, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
+    public DriverBean(Integer driverId, String driverCode, String licenseNumber, String lastName, String firstName, String title, String middleName, String status, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy, Integer vendorId, String authorizedAgent) {
         this.driverId = driverId;
         this.driverCode = driverCode;
         this.licenseNumber = licenseNumber;
@@ -34,6 +35,8 @@ public class DriverBean {
         this.createdBy = createdBy;
         this.modifiedTimeStamp = modifiedTimeStamp;
         this.modifiedBy = modifiedBy;
+        this.vendorId = vendorId;
+        this.authorizedAgent = authorizedAgent;
     }
 
     public Integer getDriverId() {
@@ -138,5 +141,13 @@ public class DriverBean {
 
     public void setVendorId(Integer vendorId) {
         this.vendorId = vendorId;
+    }
+
+    public String getAuthorizedAgent() {
+        return authorizedAgent;
+    }
+
+    public void setAuthorizedAgent(String authorizedAgent) {
+        this.authorizedAgent = authorizedAgent;
     }
 }

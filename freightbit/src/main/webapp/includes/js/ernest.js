@@ -1527,3 +1527,4 @@ function confirmStatusMsg(){
         $('#confirmStatModal').modal('show');
     });
 }
+

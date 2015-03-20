@@ -40,6 +40,9 @@ public class DocumentsBean {
     private String currentStage;
     private String nextStage;
     private String controlNumber;
+    private Integer repContact;
+    private Integer oriContact;
+    private Integer desContact;
 
     public DocumentsBean() {
     }
@@ -338,5 +341,29 @@ public class DocumentsBean {
 
     public void setControlNumber(String controlNumber) {
         this.controlNumber = controlNumber;
+    }
+
+    public Integer getRepContact() {
+        return repContact;
+    }
+
+    public void setRepContact(Integer repContact) {
+        this.repContact = repContact;
+    }
+
+    public Integer getOriContact() {
+        return oriContact;
+    }
+
+    public void setOriContact(Integer oriContact) {
+        this.oriContact = oriContact;
+    }
+
+    public Integer getDesContact() {
+        return desContact;
+    }
+
+    public void setDesContact(Integer desContact) {
+        this.desContact = desContact;
     }
 }

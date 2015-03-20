@@ -3706,7 +3706,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedBy(entity.getModifiedBy());
         formBean.setPortCode(entity.getPortCode());
 
-        if(!"".equals(entity.getShipping())){
+        if(!"".equals(entity.getShipping()) && entity.getShipping() != null){
             VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(entity.getShipping());
             formBean.setVoyageVendorDestination(entity.getShipping() + " - " + vendorService.findVendorByVendorCode(vesselScheduleEntity.getVendorCode()).getVendorName() + " - " + vesselScheduleEntity.getDestinationPort());
         }else{

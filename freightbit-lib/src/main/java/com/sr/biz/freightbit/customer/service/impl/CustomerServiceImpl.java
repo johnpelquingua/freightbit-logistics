@@ -164,11 +164,15 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Contacts> findContactByReferenceId(Integer customerId) {
         List<Contacts> result = contactsDao.findContactByReferenceId(customerId);
         return result;
+    }
 
+    @Override
+    public List<Contacts> findContactsByReferenceIdOnly(Integer referenceId) {
+        List<Contacts> result = contactsDao.findContactsByReferenceIdOnly(referenceId);
+        return result;
     }
 
     //end of Contacts
-
 
     //Address
 
