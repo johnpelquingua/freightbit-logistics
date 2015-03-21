@@ -27,7 +27,7 @@
                 </h3>
             </div>
             <center style="padding-top: 15px; padding-bottom: 10px;"><i><span style="color: red;">*</span> Service Freight Type: <b>Shipping and Trucking</b> and <b>Shipping</b> only</i></center>
-            <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-bottom: 0em;">
+            <div class="col-md-12 form-group" style="margin-top: 0.8em; margin-bottom: 0.5em;">
                 <s:form action="changeOrigin" theme="bootstrap">
                     <label class="col-lg-2 control-label">Filter by Origin :</label>
                     <div class="col-lg-3">
@@ -47,11 +47,10 @@
                     <s:submit name="submit" cssClass="btn btn-primary" value="Filter" />
                     <a href="viewSeaFreightList" class="btn btn-primary" id ="groups-btn">Display All</a>
                 </s:form>
-
             </div>
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs center-text padding-0-bot padding-10-lr" role="tablist" style="clear:both;">
+            <ul class="nav nav-tabs center-text padding-0-bot padding-10-lr" role="tablist" style="clear:both;" id="myTab">
                 <li class="active col-md-3 zeroPadding" id="fcl">
                     <a href="#fclTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                 </li>
@@ -71,27 +70,27 @@
                 <div class="tab-pane fade in active" id="fclTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" id="no-more-tables">
                             <display:table id="order" name="fclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="fclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
-                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black" scope="ORI"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black" scope="DES"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" scope="Type"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black" scope="Mode"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black" scope="Status"
                                                     style="text-align: center;"> </display:column></td>
                                 <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                 <td><display:column title="Action">
@@ -126,7 +125,7 @@
                 <div class="tab-pane fade" id="lclTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" id="no-more-tables">
                         <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
                             <div class="lclMainLoadingDiv" style="text-align: center; margin: 1.6em;">
                                 Processing LCL orders. Please Wait.<br/>
@@ -146,29 +145,29 @@
                                         </display:column>
                                     </td>
 
-                                    <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" scope="Type"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black" scope="ORI"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black" scope="DES"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black" scope="Mode"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black" scope="Status"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="orderWeight" title="Weight  <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="orderWeight" title="Weight  <i class='fa fa-sort' />" class="tb-font-black" scope="Weight"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black" scope="Volume"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="pickupDate" title="PICKUP  <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="pickupDate" title="PICKUP  <i class='fa fa-sort' />" class="tb-font-black" scope="PICKUP"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="deliveryDate" title="DELIVERY  <i class='fa fa-sort' />" class="tb-font-black"
+                                    <td><display:column property="deliveryDate" title="DELIVERY  <i class='fa fa-sort' />" class="tb-font-black" scope="DELIVERY"
                                                         style="text-align: center;"> </display:column></td>
                                     <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                     <td>
@@ -228,27 +227,27 @@
                 <div class="tab-pane fade" id="lcuTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" id="no-more-tables">
                             <display:table id="order" name="lcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="lcuTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
-                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" scope="Type"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black" scope="ORI"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black" scope="DES"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black" scope="Mode"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black" scope="Status"
                                                     style="text-align: center;"> </display:column></td>
                                 <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                 <td><display:column title="Action">
@@ -282,27 +281,27 @@
                 <div class="tab-pane fade" id="rcuTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" id="no-more-tables">
                             <display:table id="order" name="rcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="rcuTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
-                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" scope="Type"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black" scope="ORI"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black" scope="DES"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black" scope="Mode"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black" scope="Status"
                                                     style="text-align: center;"> </display:column></td>
                                 <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                 <td><display:column title="Action">
@@ -396,6 +395,7 @@
 <script>
     $(document).ready(function(){
         // START
+        $('#myTab').tabCollapse();
 
         if($('.lclTable tbody tr').size() >= 1){ filterLclTable(); }
         else{$('.lclMainLoadingDiv').hide();}

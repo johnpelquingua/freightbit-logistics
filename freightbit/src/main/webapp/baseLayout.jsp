@@ -43,6 +43,9 @@
     <script type='text/javascript' src='../includes/js/jquery-ui-timepicker-addon.js'></script>
     <script type='text/javascript' src='../includes/js/jquery.autocomplete.js'></script>
     <script type='text/javascript' src='../includes/js/Chart.min.js'></script>
+    <script type='text/javascript' src='../includes/js/bootstrap-tooltip.js'></script>
+    <script type='text/javascript' src='../includes/js/bootstrap-tooltip.js'></script>
+    <script type='text/javascript' src='../includes/js/bootstrap-tabcollapse.js'></script>
 
     <%--<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>--%>
     <%--<script type='text/javascript' src='includes/js/bootstrap-datetimepicker.min.js'></script>--%>

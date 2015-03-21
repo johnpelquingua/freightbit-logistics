@@ -100,8 +100,12 @@
                 <label class="col-lg-4 control-label" style="text-align: right; clear:both;">Comments</label>
                 <div class="col-lg-8" >
                     <s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
+<<<<<<< Updated upstream
                                 id="document_documentComments" maxLength="255"/>
                 </div>
+=======
+                                id="document_documentComments" maxLength="255" data-toggle="tooltip" data-placement="left" title='e.g. "Change this with sample comments" <br/> "Another sample"' data-html="true"/>
+>>>>>>> Stashed changes
             </div>
 
             <div style="clear:both;" class="modal-footer">
@@ -118,7 +122,9 @@
 
 <script>
     $(document).ready(function(){
-
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
         $('#documentName').on("input", function() {
 
             var documentName = $(this).val(),

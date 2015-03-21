@@ -72,33 +72,33 @@
             </div>
 
             <div class="panel-body">
-                <div class="table-responsive">
+                <div class="table-responsive" id="no-more-tables">
                         <display:table id="order" name="orders" requestURI="viewOrders.action" class="table table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 
-                            <td><display:column property="orderDate" title="Order Dates <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="orderDate" title="Order Dates <i class='fa fa-sort' />" class="tb-font-black" scope="Order Dates"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
                                                 style="text-align: center;" > </i></display:column></td>
-                            <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" style="text-align: center;">
+                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" style="text-align: center;" scope="Type">
                                 </display:column>
                             </td>
-                            <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />" class="tb-font-black" scope="Req't"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black" scope="Mode"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"
+                            <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Status"
                                                 style="text-align: center;"> </display:column></td>
 
                             <%--<td><display:column property="documentCheck" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"--%>
                                                 <%--style="text-align: center;"> </display:column></td>--%>
 
                             <td class="tb-font-black" style="text-align: center;">
-                                <display:column title="Actions">
+                                <display:column title="Actions" scope="Actions">
 
                                         <%--edit booking--%>
                                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
