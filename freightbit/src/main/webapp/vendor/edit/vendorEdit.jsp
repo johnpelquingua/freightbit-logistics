@@ -41,7 +41,7 @@
 
                     <div class="col-lg-9">
                         <s:textfield cssClass="form-control" id="vendor_vendorCode" placeholder="Vendor Code"
-                                     name="vendor.vendorCode" maxLength="3" pattern="^[A-Z]{3,}$" title="Must be letters only and CAPS." onkeypress="return alphaKeyOnly(event)"></s:textfield>
+                                     name="vendor.vendorCode" maxLength="3" pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$" title="Must be capital letters and numbers only."></s:textfield>
                     </div>
 
                     </div>
@@ -50,8 +50,10 @@
                         <label for="vendor.vendorName" class="col-lg-2 control-label" style="padding-top:0px;">Company<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Company Name"
-                                         name="vendor.vendorName" maxlength="30" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"></s:textfield>
+                            <%--<s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Company Name" name="vendor.vendorName"
+                                         maxlength="30" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"></s:textfield>--%>
+                                <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Company Name" name="vendor.vendorName"
+                                             maxlength="30" pattern="^[a-z0-9_-,.]{3,15}$"></s:textfield>
                         </div>
                     </div>
 

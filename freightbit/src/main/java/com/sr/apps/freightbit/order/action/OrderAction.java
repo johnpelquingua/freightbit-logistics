@@ -19,6 +19,7 @@ import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.User;
@@ -130,8 +131,13 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Map<Integer, String> consigneeContactMap = new HashMap<Integer, String>();
     private Map<Double, Double> shipperItemVolumeMap = new HashMap<Double, Double>();
     private Map<String, String> shipperItemCommodityMap = new HashMap<String, String>();
-    private Map<Float, Float> shipperItemValueMap = new HashMap<Float, Float>();
-    private Map<Float, Float> shipperItemWeightMap = new HashMap<Float, Float>();
+    private Map<Double, Double> shipperItemValueMap = new HashMap<Double, Double>();
+    private Map<Double, Double> shipperItemWeightMap = new HashMap<Double, Double>();
+    private Map<Double, Double> shipperItemLengthMap = new HashMap<Double, Double>();
+    private Map<Double, Double> shipperItemWidthMap = new HashMap<Double, Double>();
+    private Map<Double, Double> shipperItemHeightMap = new HashMap<Double, Double>();
+    private Map<String, String> shipperItemCodeMap = new HashMap<String, String>();
+
     private Integer itemId;
 
     public String itemAction() {
@@ -139,7 +145,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         if(itemId != null){
 
             Items shipperItem = customerService.findItemByCustomerItemsId(itemId);
-
             shipperItemVolumeMap.put(shipperItem.getLength() * shipperItem.getWidth() * shipperItem.getHeight(), shipperItem.getLength() * shipperItem.getWidth() * shipperItem.getHeight());
 
             shipperItemCommodityMap.put(shipperItem.getDescription(), shipperItem.getDescription());
@@ -147,6 +152,14 @@ public class OrderAction extends ActionSupport implements Preparable {
             shipperItemValueMap.put(shipperItem.getSrp(), shipperItem.getSrp());
 
             shipperItemWeightMap.put(shipperItem.getWeight(), shipperItem.getWeight());
+
+            shipperItemCodeMap.put(shipperItem.getItemCode(), shipperItem.getItemCode());
+
+            shipperItemLengthMap.put(shipperItem.getLength(), shipperItem.getLength());
+
+            shipperItemWidthMap.put(shipperItem.getWidth(), shipperItem.getWidth());
+
+            shipperItemHeightMap.put(shipperItem.getHeight(), shipperItem.getHeight());
 
         }
 
@@ -374,6 +387,9 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String addItemsInTable() {
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
@@ -385,6 +401,25 @@ public class OrderAction extends ActionSupport implements Preparable {
         String orderLimit = orderEntityForm.getServiceRequirement();
         // Get Order Item List
         List<OrderItems> orderItemNumberList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("orderIdPass"));
+
+        if(orderEntityForm.getServiceRequirement().equals("LESS CONTAINER LOAD") ||
+           orderEntityForm.getServiceRequirement().equals("LOOSE CARGO LOAD") ||
+           orderEntityForm.getServiceRequirement().equals("ROLLING CARGO LOAD") ||
+           orderEntityForm.getServiceRequirement().equals("LESS TRUCK LOAD")) {
+            // Check if Item Code exists in Customers Items Table
+            List<Items> customerOldItems = customerService.findItemByCustomerId(item.getCustomerId());
+            for (Items itemsElem : customerOldItems) {
+                if (itemsElem.getItemCode().equals(item.getItemCode())) {
+                    return INPUT;
+                }
+            }
+
+            Items itemEntity = transformToEntityBeanItem(item);
+            itemEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            itemEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            itemEntity.setCreatedTimeStamp(new Date());
+            customerService.addItem(itemEntity);
+        }
 
         // get total quantity from database
         Integer orderItemQuantityTotal = 0;
@@ -446,6 +481,10 @@ public class OrderAction extends ActionSupport implements Preparable {
             }
 
         }
+
+        // repopulate customer items
+
+        sessionAttributes.put("customerItems", customerItems);
         // Get Order Id
         Integer idOrder = orderItemEntity.getOrderId();
         // Put Order Id in session
@@ -463,7 +502,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityForm);
         // repopulate customer items
-        customerItems = (List) sessionAttributes.get("customerItems");
+        Integer contactIdParam = orderEntityForm.getShipperContactId();
+        Contacts contactEntity = customerService.findContactById(contactIdParam);
+        Customer customerEntity = customerService.findCustomerById(contactEntity.getReferenceId());
+        customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
 
         List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("idOrder"));
 
@@ -489,6 +531,35 @@ public class OrderAction extends ActionSupport implements Preparable {
 			addActionMessage("Success! Booking Item has been added.");
         }
 
+        sessionAttributes.put("customerItems", customerItems);
+        return SUCCESS;
+    }
+
+    public String addItemsAlreadyExists() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Orders orderEntityForm = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdPass"));
+        // Display Order Data to form
+        order = transformToOrderFormBean(orderEntityForm);
+        // get contact id from shipper
+        Integer contactIdParam = orderEntityForm.getShipperContactId();
+        // shipper id from contact
+        Contacts contactEntity = customerService.findContactById(contactIdParam);
+        Customer customerEntity = customerService.findCustomerById(contactEntity.getReferenceId());
+        // get customer items
+        customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
+        // get order items on order edit module
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("orderIdPass"));
+
+        // display item listing in table
+        for (OrderItems orderItemElem : orderItemEntityList) {
+
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+
+        sessionAttributes.put("customerItems", customerItems);
+        addFieldError("item.itemCode", getText("err.itemCode.already.exists"));
         return SUCCESS;
     }
 
@@ -1496,7 +1567,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     /*Add Item inside Booking*/
     public String addItemInBooking() {
-        /*validateOnSubmitItem(item);*/
+        validateOnSubmitItem(item);
         if (hasFieldErrors()) {
             return INPUT;
         }
@@ -1518,7 +1589,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String addedItemInBooking() {
+    /*public String addedItemInBooking() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
@@ -1540,7 +1611,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         addActionMessage("Success! Item has been added to the customer.");
 
         return SUCCESS;
-    }
+    }*/
 
     public Items transformToEntityBeanItem(ItemBean formBean) {
 
@@ -1550,17 +1621,17 @@ public class OrderAction extends ActionSupport implements Preparable {
         if (formBean.getCustomerItemsId() != null)
             entity.setCustomerItemsId(new Integer(formBean.getCustomerItemsId()));
 
-        entity.setItemName(formBean.getItemName());
+        entity.setItemName(orderItem.getNameSize());
         entity.setItemCode(formBean.getItemCode());
         entity.setCustomerId(formBean.getCustomerId());
-        entity.setSrp(formBean.getSrp());
+        entity.setSrp(orderItem.getDeclaredValue());
         entity.setLength(formBean.getLength());
         entity.setWidth(formBean.getWidth());
         entity.setHeight(formBean.getHeight());
         entity.setCriticalQuality(formBean.getCriticalQuality());
-        entity.setWeight(formBean.getWeight());
-        entity.setNote(formBean.getNote());
-        entity.setDescription(formBean.getDescription());
+        entity.setWeight(orderItem.getWeight());
+        entity.setNote(orderItem.getRemarks());
+        entity.setDescription(orderItem.getDescription());
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimeStamp(formBean.getCreatedTimeStamp());
 
@@ -2088,11 +2159,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.customerItems = customerItems;
     }
 
-    public Map<Float, Float> getShipperItemValueMap() {
+    public Map<Double, Double> getShipperItemValueMap() {
         return shipperItemValueMap;
     }
 
-    public void setShipperItemValueMap(Map<Float, Float> shipperItemValueMap) {
+    public void setShipperItemValueMap(Map<Double, Double> shipperItemValueMap) {
         this.shipperItemValueMap = shipperItemValueMap;
     }
 
@@ -2112,11 +2183,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.shipperItemVolumeMap = shipperItemVolumeMap;
     }
 
-    public Map<Float, Float> getShipperItemWeightMap() {
+    public Map<Double, Double> getShipperItemWeightMap() {
         return shipperItemWeightMap;
     }
 
-    public void setShipperItemWeightMap(Map<Float, Float> shipperItemWeightMap) {
+    public void setShipperItemWeightMap(Map<Double, Double> shipperItemWeightMap) {
         this.shipperItemWeightMap = shipperItemWeightMap;
     }
 
@@ -2334,6 +2405,38 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setOperationsService(OperationsService operationsService) {
         this.operationsService = operationsService;
+    }
+
+    public Map<Double, Double> getShipperItemLengthMap() {
+        return shipperItemLengthMap;
+    }
+
+    public void setShipperItemLengthMap(Map<Double, Double> shipperItemLengthMap) {
+        this.shipperItemLengthMap = shipperItemLengthMap;
+    }
+
+    public Map<Double, Double> getShipperItemWidthMap() {
+        return shipperItemWidthMap;
+    }
+
+    public void setShipperItemWidthMap(Map<Double, Double> shipperItemWidthMap) {
+        this.shipperItemWidthMap = shipperItemWidthMap;
+    }
+
+    public Map<Double, Double> getShipperItemHeightMap() {
+        return shipperItemHeightMap;
+    }
+
+    public void setShipperItemHeightMap(Map<Double, Double> shipperItemHeightMap) {
+        this.shipperItemHeightMap = shipperItemHeightMap;
+    }
+
+    public Map<String, String> getShipperItemCodeMap() {
+        return shipperItemCodeMap;
+    }
+
+    public void setShipperItemCodeMap(Map<String, String> shipperItemCodeMap) {
+        this.shipperItemCodeMap = shipperItemCodeMap;
     }
 }
 

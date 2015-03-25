@@ -230,7 +230,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }
 
         //If the order items status is either Arrived or Delivered, the service can be accomplished.
-        if(orderItemEntityList.size() == checkAllStatus && orderItemEntityList.size() > 1){
+        if(orderItemEntityList.size() == checkAllStatus && orderItemEntityList.size() >= 1){
             orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
             orderService.updateOrder(orderEntity);
             return SUCCESS;

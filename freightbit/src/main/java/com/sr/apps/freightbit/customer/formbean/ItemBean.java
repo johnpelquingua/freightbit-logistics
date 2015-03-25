@@ -11,13 +11,14 @@ public class ItemBean {
     private Integer customerItemsId;
     private Integer customerId;
     private String itemName;
+    private String nameSize;
     private String itemCode;
     private Double length;
     private Double width;
     private Double height;
-    private Float srp;
+    private Double srp;
     private Integer criticalQuality;
-    private Float weight;
+    private Double weight;
     private String note;
     private String description;
     private Date createdTimeStamp;
@@ -31,15 +32,16 @@ public class ItemBean {
     }
 
 
-    public ItemBean(Integer customerItemsId, Integer customerId, String itemName,
-                    String itemCode, Double length, Double width, Double height, Float srp, Integer criticalQuality,
-                    Float weight, String note, String description, Date createdTimeStamp, String createdBy,
+    public ItemBean(Integer customerItemsId, Integer customerId, String itemName, String nameSize,
+                    String itemCode, Double length, Double width, Double height, Double srp, Integer criticalQuality,
+                    Double weight, String note, String description, Date createdTimeStamp, String createdBy,
                     Date modifiedTimeStamp, String modifiedBy) {
 
 
         this.customerItemsId = customerItemsId;
         this.customerId = customerId;
         this.itemName = itemName;
+        this.nameSize = nameSize;
         this.itemCode = itemCode;
         this.length = length;
         this.width = width;
@@ -80,6 +82,14 @@ public class ItemBean {
         this.itemName = itemName;
     }
 
+    public String getNameSize() {
+        return nameSize;
+    }
+
+    public void setNameSize(String nameSize) {
+        this.nameSize = nameSize;
+    }
+
     public String getItemCode() {
         return itemCode;
     }
@@ -112,11 +122,11 @@ public class ItemBean {
         this.height = height;
     }
 
-    public Float getSrp() {
+    public Double getSrp() {
         return srp;
     }
 
-    public void setSrp(Float srp) {
+    public void setSrp(Double srp) {
         this.srp = srp;
     }
 
@@ -128,11 +138,11 @@ public class ItemBean {
         this.criticalQuality = criticalQuality;
     }
 
-    public Float getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(Float weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 

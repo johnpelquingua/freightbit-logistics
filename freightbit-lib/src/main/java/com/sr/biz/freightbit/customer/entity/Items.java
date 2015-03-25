@@ -23,9 +23,9 @@ public class Items implements java.io.Serializable {
     private Double length;
     private Double width;
     private Double height;
-    private Float srp;
+    private Double srp;
     private Integer criticalQuality;
-    private Float weight;
+    private Double weight;
     private String note;
     private String description;
     private Date createdTimeStamp;
@@ -37,7 +37,7 @@ public class Items implements java.io.Serializable {
 
     }
 
-    public Items(Integer customerItemsId, Integer customerId, String itemName, String itemCode, Double length, Double width, Double height, Float srp, Integer criticalQuality, Float weight, String note, String description, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
+    public Items(Integer customerItemsId, Integer customerId, String itemName, String itemCode, Double length, Double width, Double height, Double srp, Integer criticalQuality, Double weight, String note, String description, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
         this.customerItemsId = customerItemsId;
         this.customerId = customerId;
         this.itemName = itemName;
@@ -93,16 +93,16 @@ public class Items implements java.io.Serializable {
     public void setHeight(Double height) { this.height = height; }
 
     @Column(name = "srp")
-    public Float getSrp() { return srp; }
-    public void setSrp(Float srp) { this.srp = srp; }
+    public Double getSrp() { return srp; }
+    public void setSrp(Double srp) { this.srp = srp; }
 
     @Column(name = "criticalQuality")
     public Integer getCriticalQuality() { return criticalQuality; }
     public void setCriticalQuality(Integer criticalQuality) { this.criticalQuality = criticalQuality; }
 
     @Column(name = "weight")
-    public Float getWeight() { return weight; }
-    public void setWeight(Float weight) { this.weight = weight; }
+    public Double getWeight() { return weight; }
+    public void setWeight(Double weight) { this.weight = weight; }
 
     @Column(name = "note")
     public String getNote() { return note; }

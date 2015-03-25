@@ -49,7 +49,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName"
-                                             id="vessel.vesselName" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="No special characters allowed" required="true" maxlength="50"/>
+                                             id="vessel.vesselName" pattern="^[a-z0-9_-,./]{3,15}$" title="No special characters allowed" required="true" maxlength="50"/>
                             </div>
 
                         </div>

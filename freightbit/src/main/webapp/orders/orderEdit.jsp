@@ -478,7 +478,8 @@
                         <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Position" name="contact.position" maxLength="30"
-                                         type="text" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
+                                         type="text" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Position must not contain numbers and/or special characters." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -521,7 +522,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
                                          maxLength="19" required="true" id="contact_mobile"
-                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."
+                                         title="(+639XX)(XXX-XXXX) Mobile number should not contain special characters and/or letters."
                                          pattern=".{18}" />
                         </div>
                     </div>
@@ -650,7 +651,7 @@
                                 <s:textfield name="consignee.companyName" cssClass="form-control" id="consignee.companyName"
                                              placeholder="Company Name" maxLength="30" required="true"
                                              pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                             title="Company Name should not contain special characters and/or numbers."/>
+                                             title="Company Name should not contain special characters."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -694,7 +695,7 @@
                             <div class="col-lg-8" style="width: 74%;">
                                 <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee_mobile"
                                              placeholder="(+639XX) (XXX-XXXX)" maxLength="18" required="true"
-                                             title="Mobile number should contain 11 digits."
+                                             title="(+639XX)(XXX-XXXX) Mobile number should not contain special characters and/or letters."
                                              pattern=".{18}"/>
                             </div>
                         </div>
@@ -803,7 +804,7 @@
                         <div class="col-lg-9">
                             <s:textfield name="customer.mobile" id="customer_mobile" cssClass="form-control" required="true"
                                          maxlength="18" placeholder="(+639XX)(XXX-XXXX)" pattern=".{18,}"
-                                         title="Mobile number should contain 11 digits." />
+                                         title="(+639XX)(XXX-XXXX) Mobile number should not contain special characters and/or letters." />
                         </div>
                     </div>
 
@@ -903,7 +904,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
                                          maxLength="18" required="true" id="consignee_contact_mobile"
-                                         title="Mobile number should contain 11 digits."
+                                         title="(+639XX)(XXX-XXXX) Mobile number should not contain special characters and/or letters."
                                          pattern=".{18}" />
                         </div>
                     </div>

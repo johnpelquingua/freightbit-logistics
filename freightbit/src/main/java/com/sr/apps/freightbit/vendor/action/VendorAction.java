@@ -360,7 +360,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         clearErrorsAndMessages();
 
         String name = "^[a-zA-Z][a-zA-Z, . - ]+$";
-        String code = "[A-Z]+";
+        String code = "[A-Z0-9]+";
 
 
         Pattern namePattern = Pattern.compile(name);
@@ -388,7 +388,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         Matcher matcher2 = codePattern.matcher(vendorBean.getVendorCode());
         if (!matcher2.matches()){
-            addFieldError("vendor.vendorCode", "Code must be capital letters only.");
+            addFieldError("vendor.vendorCode", "Code must be capital letters and numbers only.");
 
         }else if(StringUtils.isBlank(vendorBean.getVendorCode())) {
             addFieldError("vendor.vendorCode", getText("err.vendorCode.required"));

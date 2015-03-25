@@ -140,7 +140,7 @@
 
                             <s:textfield name="consignee.addressLine1" cssClass="addConsigneeInput form-control"
                                          id="consignee.addressLine1" placeholder="Address 1" required="true" style="width:95%"
-                                         maxLength="50" pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
+                                         maxLength="100" pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
                                          title="Address Line 1 will only accept alphanumeric and will only allow # , and . as special characters."/>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
 
                         <div class="col-lg-10" >
                             <s:textfield name="consignee.addressLine2" cssClass="form-control" style="width:95%"
-                                         id="consignee.addressLine2" placeholder="Address 2" maxLength="50"
+                                         id="consignee.addressLine2" placeholder="Address 2" maxLength="100"
                                          pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
                                          title="Address Line 2 will only accept alphanumeric and will only allow # , and . as special characters."/>
                         </div>

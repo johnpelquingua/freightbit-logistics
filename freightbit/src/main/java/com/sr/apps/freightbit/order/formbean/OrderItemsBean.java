@@ -53,12 +53,16 @@ public class OrderItemsBean {
     private String bulletSeal;
     private String shippingSeal;
     private String containerSize; // for container module display purpose
+    private String itemCode;
+    private Double length;
+    private Double width;
+    private Double height;
 
     public OrderItemsBean(){
 
     }
 
-    public OrderItemsBean(String modifiedBy, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorOriginName, String vendorDestination, String vendorDestinationName, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate, String plateNumberOri, String plateNumberDes, Integer containerId, String containerNumber, String sealNumber, String bulletSeal, String shippingSeal, String containerSize) {
+    public OrderItemsBean(String modifiedBy, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorOriginName, String vendorDestination, String vendorDestinationName, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate, String plateNumberOri, String plateNumberDes, Integer containerId, String containerNumber, String sealNumber, String bulletSeal, String shippingSeal, String containerSize, String itemCode, Double length, Double width, Double height) {
         this.modifiedBy = modifiedBy;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
@@ -108,6 +112,10 @@ public class OrderItemsBean {
         this.bulletSeal = bulletSeal;
         this.shippingSeal = shippingSeal;
         this.containerSize = containerSize;
+        this.itemCode = itemCode;
+        this.length = length;
+        this.width = width;
+        this.height = height;
     }
 
     public String getVendorSea() {
@@ -500,5 +508,37 @@ public class OrderItemsBean {
 
     public void setContainerSize(String containerSize) {
         this.containerSize = containerSize;
+    }
+
+    public String getItemCode() {
+        return itemCode;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public Double getLength() {
+        return length;
+    }
+
+    public void setLength(Double length) {
+        this.length = length;
+    }
+
+    public Double getWidth() {
+        return width;
+    }
+
+    public void setWidth(Double width) {
+        this.width = width;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
     }
 }
