@@ -76,7 +76,14 @@
                             <td><s:property value="order.orderDate"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Origin Port</td>
+                            <%--<td style="color: gray !important;">Origin Port</td>
+                            <td><s:property value="order.originationPort"/></td>--%>
+                            <s:if test="order.freightType == 'TRUCKING'">
+                                <td style="color: gray !important;">Location</td>
+                            </s:if>
+                            <s:else>
+                                <td style="color: gray !important;">Origin Port</td>
+                            </s:else>
                             <td><s:property value="order.originationPort"/></td>
                         </tr>
                         <tr>
@@ -134,7 +141,7 @@
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Pickup Date</td>
-                            <td><s:property value="order.pickupDate"/></td>
+                            <td><s:property value="order.strPickupDate"/></td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Pickup Address</td>
@@ -153,7 +160,7 @@
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Contact Person</td>
-                            <td><s:property value="order.ConsigneeContactName"/></td>
+                            <td><s:property value="order.consigneeContactName"/></td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Phone</td>
@@ -173,7 +180,7 @@
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Delivery Date</td>
-                            <td><s:property value="order.deliveryDate"/></td>
+                            <td><s:property value="order.strDeliveryDate"/></td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Delivery Address</td>
@@ -228,7 +235,7 @@
                     <thead>
                         <tr class="header_center" style="background-color: #fff;">
                             <th class="tb-font-black">Quantity</th>
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement == 'FULL CONTAINER LOAD' || order.serviceRequirement == 'FULL TRUCK LOAD'">
                                 <span>
                                     <th class="tb-font-black">Size</th>
                                 </span>
@@ -239,7 +246,7 @@
                                 </span>
                             </s:else>
                             <th class="tb-font-black">Weight <br /> (kg) </th>
-                            <th class="tb-font-black">Volume <br /> (m&#179;) </th>
+                            <th class="tb-font-black">Volume <br /> (cbm) </th>
                             <th class="tb-font-black">Commodity</th>
                             <th class="tb-font-black">Value <br /> (Php) </th>
                             <th class="tb-font-black">Rate <br /> (Php) </th>

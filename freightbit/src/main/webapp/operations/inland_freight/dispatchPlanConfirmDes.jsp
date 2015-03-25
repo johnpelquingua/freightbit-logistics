@@ -120,7 +120,7 @@
             <s:textfield cssClass="form-control dispatch-form" value="%{#attr.truck.grossWeight}" readonly="true" />
         </div>
 
-        <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Pickup Date</label>
+        <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Drop-off Date</label>
 
         <div class="col-lg-9">
             <s:textfield cssClass="form-control dispatch-form" value="%{finalDeliveryParam}" readonly="true" />

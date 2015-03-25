@@ -426,6 +426,7 @@
                                           list="#{orderItem_description}"
                                           value="%{orderItem_description}"
                                           style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem_description_textfield"
@@ -454,6 +455,7 @@
                                           list="#{orderItem_weight}"
                                           value="%{orderItem_weight}"
                                           style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.weight"
                                              id="orderItem_weight_textfield"
@@ -480,6 +482,7 @@
                                           list="#{orderItem_volume}"
                                           value="%{orderItem_volume}"
                                           style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItem_volume_textfield"
@@ -519,6 +522,7 @@
                                           list="#{orderItem_declaredValue}"
                                           value="%{orderItem_declaredValue}"
                                           style="display:none" />
+
                                 <s:textfield cssClass="form-control automaticDeclaredValue"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValue_textfield"
@@ -534,18 +538,18 @@
 
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
                         <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
-                            <s:if test="order.orderStatus != 'ON GOING'">
+                            <%--<s:if test="order.orderStatus != 'ON GOING'">--%>
                             <span>
                                 <s:submit name="submit" cssClass="addContainerToList btn btn-primary" id="submit_button" value="Add Container to List"/>
                             </span>
-                            </s:if>
+                            <%--</s:if>--%>
                         </s:if>
                         <s:else>
-                            <s:if test="order.orderStatus != 'ON GOING'">
+                            <%--<s:if test="order.orderStatus != 'ON GOING'">--%>
                             <span>
                                 <s:submit name="submit" cssClass="addItemToList btn btn-primary" id="submit_button" value="Add Item to List" />
                             </span>
-                            </s:if>
+                            <%--</s:if>--%>
                         </s:else>
                     </div>
 
@@ -578,14 +582,14 @@
 
             <legend style="text-align: left;">
                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
-                            <h4>
-                                Container Listing <small>(Maximum of 5 Containers)</small>
-                            </h4>
+                    <h4>
+                        Container Listing <small>(Maximum of 5 Containers)</small>
+                    </h4>
                 </s:if>
                 <s:else>
-                            <h4>
-                                Item Listing <small>(Maximum of 250 Items)</small>
-                            </h4>
+                    <h4>
+                        Item Listing <small>(Maximum of 250 Items)</small>
+                    </h4>
                 </s:else>
             </legend>
 

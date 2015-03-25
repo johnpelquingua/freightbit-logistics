@@ -36,6 +36,7 @@ import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -525,8 +526,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String createReport() {
         Map sessionAttributes = ActionContext.getContext().getSession();
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ID PARAM " + orderIdParam);
 
         // Booking Request Form will be created under pending documents start
 
@@ -1161,9 +1160,27 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setModifiedTimestamp(order.getModifiedTimestamp());
         orderBean.setModifiedBy(order.getModifiedBy());
         orderBean.setPickupDate(order.getPickupDate());
-        orderBean.setOriginationPort(order.getOriginationPort());
+        /*orderBean.setOriginationPort(order.getOriginationPort());*/
+
+        if(order.getOriginationPort() != null){
+            orderBean.setOriginationPort(order.getOriginationPort());
+        }else if(order.getServiceMode().equals("DELIVERY")){
+            orderBean.setOriginationPort("NOT APPLICABLE");
+        }else{
+            orderBean.setOriginationPort("NONE");
+        }
+
         orderBean.setDeliveryDate(order.getDeliveryDate());
-        orderBean.setDestinationPort(order.getDestinationPort());
+        /*orderBean.setDestinationPort(order.getDestinationPort());*/
+
+        if(order.getDestinationPort() != null){
+            orderBean.setDestinationPort(order.getDestinationPort());
+        }else if(order.getServiceMode().equals("PICKUP")){
+            orderBean.setDestinationPort("NOT APPLICABLE");
+        }else{
+            orderBean.setDestinationPort("NONE");
+        }
+
         orderBean.setRates(order.getRates());
 
         orderBean.setServiceRequirement(order.getServiceRequirement());
@@ -1177,8 +1194,27 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderBean.setCustomerName(shipperName.getCustomerName());
         }
 
-        orderBean.setPickupDate(order.getPickupDate());
-        orderBean.setDeliveryDate(order.getDeliveryDate());
+        /*orderBean.setPickupDate(order.getPickupDate());
+        orderBean.setDeliveryDate(order.getDeliveryDate());*/
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+        if(order.getPickupDate() != null){
+            /*formBean.setPickupDate(entity.getPickupDate());*/
+            orderBean.setStrPickupDate(formatter.format(order.getPickupDate()));
+        }else if(order.getServiceMode().equals("DELIVERY")){
+            orderBean.setStrPickupDate("NOT APPLICABLE");
+        }else{
+            orderBean.setStrPickupDate("NONE");
+        }
+
+        if(order.getDeliveryDate() != null){
+            /*formBean.setDeliveryDate(entity.getDeliveryDate());*/
+            orderBean.setStrDeliveryDate(formatter.format(order.getDeliveryDate()));
+        }else if(order.getServiceMode().equals("PICKUP")){
+            orderBean.setStrDeliveryDate("NOT APPLICABLE");
+        }else{
+            orderBean.setStrDeliveryDate("NONE");
+        }
 
         //shipper contact info
         Contacts contacts = customerService.findContactById(order.getShipperContactId());
@@ -1421,10 +1457,19 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setServiceRequirement(orderService.findOrdersById((Integer) sessionAttributes.get("orderIdPass")).getServiceRequirement());
         entity.setRate(formBean.getRate());
         entity.setComments(formBean.getRemarks());
+
         // Trucking Freight Types will proceed to inland freight operations
-        if (sessionAttributes.get("f_Type").equals("TRUCKING")) {
+        /*if (sessionAttributes.get("f_Type").equals("TRUCKING")) {
             entity.setStatus("PLANNING 2");
         } else {
+            entity.setStatus("PLANNING 1");
+        }*/
+
+        if(sessionAttributes.get("service_Mode").equals("DELIVERY")){
+            entity.setStatus("PLANNING 3");
+        }else if(sessionAttributes.get("service_Mode").equals("PICKUP") || sessionAttributes.get("service_Mode").equals("INTER-WAREHOUSE")){
+            entity.setStatus("PLANNING 2");
+        }else{
             entity.setStatus("PLANNING 1");
         }
 

@@ -237,25 +237,30 @@
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.pickupDate}" />--%>
-        <s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />
+        <s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.strPickupDate}" required="true" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;" />
     </div>
 
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.deliveryDate}" />--%>
-        <s:textfield type="text" class="to_date form-control" id="datepicker2" name="order.deliveryDate" value="%{order.deliveryDate}" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;" />
+        <s:textfield type="text" class="to_date form-control" id="datepicker2" name="order.deliveryDate" value="%{order.strDeliveryDate}" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" />
     </div>
 
 </div>
 
 <div class="form-group">
-
-    <label class="col-lg-3 control-label" style="margin-top: 5px;">Origin Port<span class="asterisk_red"></span></label>
+    <s:if test="order.freightType == 'TRUCKING'">
+        <label class="col-lg-3 control-label originPort" style="margin-top: 5px;">Location<span class="asterisk_red"></span></label>
+    </s:if>
+    <s:else>
+        <label class="col-lg-3 control-label originPort" style="margin-top: 5px;">Origin Port<span class="asterisk_red"></span></label>
+    </s:else>
+    <%--<label class="col-lg-3 control-label originPort" style="margin-top: 5px;">Origin Port<span class="asterisk_red"></span></label>--%>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.originationPort}" />--%>
         <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                   id="select1" name="order.originationPort" list="portsList" listKey="key"
-                  listValue="value" required="true" value="order.originationPort"/>
+                  listValue="value" required="true" value="%{order.originationPort}"/>
 
     </div>
 
@@ -264,7 +269,7 @@
         <%--<s:property value="%{order.destinationPort}" />--%>
         <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                   id="select2" name="order.destinationPort" list="portsList" listKey="key"
-                  listValue="value" required="true" value="order.destinationPort"/>
+                  listValue="value" required="true" value="%{order.destinationPort}"/>
 
     </div>
 
@@ -1171,15 +1176,6 @@ $(document).ready(function() {
                 }
             }
 
-//            for (var i = 0; i < sReq.options.length; i++){
-//                $("#order_serviceRequirement").val('');
-//                if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
-//                    sReq.options[i].style.display = "none";
-//                }else{
-//                    sReq.options[i].style.display = "block";
-//                }
-//            }
-
         } else if (order_freightType == 'SHIPPING'){
 
             /*$("#select1").val('');
@@ -1205,7 +1201,7 @@ $(document).ready(function() {
 
         }else {
         /*For Trucking*/
-            $("#select1").prop('disabled', true);
+            /*$("#select1").prop('disabled', true);*/
             $("#select2").prop('disabled', true);
             for (var i = 0; i < sMode.options.length; i++){
                 /*$("#order_modeOfService").val('');*/
@@ -1824,34 +1820,37 @@ function setThis(){
 
         if ($("#order_modeOfService").val() === 'PICKUP'){
 
-            $("#datepicker2").prop('disabled', true);
             $("#datepicker1").prop('disabled', false);
+            /*$("#datepicker1").val('');*/
+            $("#datepicker2").prop('disabled', true);
             $("#datepicker2").val('');
-            $("#datepicker1").val('');
             $("#shipperAddress").prop('disabled', false);
             $("#shipperAddress").val('');
             $("#shipperConsignee").val('');
-            $("#consigneeAddress").val('');
             $("#consigneeAddress").prop('disabled', true);
+            $("#consigneeAddress").val('');
+            $("#select2").val('');
 
         }else if ($("#order_modeOfService").val()  === 'DELIVERY'){
 
             $("#datepicker1").prop('disabled', true);
-            $("#datepicker2").prop('disabled', false);
-            $("#datepicker2").val('');
             $("#datepicker1").val('');
+            $("#datepicker2").prop('disabled', false);
+            /*$("#datepicker2").val(''); */
             $("#shipperAddress").prop('disabled', true);
             $("#shipperAddress").val('');
             $("#shipperConsignee").val('');
             $("#consigneeAddress").prop('disabled', false);
             $("#consigneeAddress").val('');
+            $("#select2").val('');
 
         }else if ($("#order_modeOfService").val()  === 'INTER-WAREHOUSE'){
 
             $("#datepicker1").prop('disabled', false);
+            /*$("#datepicker1").val('');*/
             $("#datepicker2").prop('disabled', false);
-            $("#datepicker2").val('');
-            $("#datepicker1").val('');
+            /*$("#datepicker2").val(''); */
+            $("#select2").val('');
 
         }
     });

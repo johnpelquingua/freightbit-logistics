@@ -981,8 +981,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
         sessionAttributes.put("vendorIdParam", vendorIdParam);
 
-        /*Integer orderId = (Integer) sessionAttributes.get("orderIdParam");*/
-
         return SUCCESS;
     }
 
@@ -1087,12 +1085,16 @@ public class OperationsAction extends ActionSupport implements Preparable {
             orderItems.add(transformToOrderItemFormBean(orderItemEntity));
         }
 
-        Vendor vendorEntity = vendorService.findVendorById(vendorId);
-        vendor.setVendorId(vendorEntity.getVendorId());
-        vendor.setVendorName(vendorEntity.getVendorName());
+        if(vendorId != null){
+            Vendor vendorEntity = vendorService.findVendorById(vendorId);
+            vendor.setVendorId(vendorEntity.getVendorId());
+            vendor.setVendorName(vendorEntity.getVendorName());
+        }
 
-        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
-        truck = transformToFormBeanTrucks(truckEntity);
+        if(truckCodeParam != null){
+            Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
+            truck = transformToFormBeanTrucks(truckEntity);
+        }
 
         destinationConfirmFlag = "MULTI";
 
@@ -1203,6 +1205,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         originConfirmFlag = "SINGLE";
 
+        if(finalPickupParam.equals("NaN-NaN-NaN")){
+            finalPickupParam = "No Pickup Date Selected";
+        }
+
         return SUCCESS;
     }
 
@@ -1257,8 +1263,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("OrderID  >>>>>>>>>>>>>>>>>> " + (Integer) sessionAttributes.get("orderIdParam"));
-        System.out.println("OrderItemID  >>>>>>>>>>>>>>>>>> " + (Integer) sessionAttributes.get("orderItemIdParam"));
+        System.out.println("OrderID  >>>>>>>>>>>>>>>>>> " + sessionAttributes.get("orderIdParam"));
+        System.out.println("OrderItemID  >>>>>>>>>>>>>>>>>> " + sessionAttributes.get("orderItemIdParam"));
         System.out.println("Vendor  >>>>>>>>>>>>>>>>>> " + vendorId);
         System.out.println("Driver  >>>>>>>>>>>>>>>>>> " + driverCodeParam);
         System.out.println("Truck  >>>>>>>>>>>>>>>>>> " + truckCodeParam);
@@ -1276,7 +1282,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 Integer orderItemIdCheck = Integer.parseInt(check[i]);
                 /*OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdCheck);*/
-
                 /*orderItems.add(transformToOrderItemFormBean(orderItemEntity));*/
 
                 OrderItems entity = operationsService.findOrderItemById(orderItemIdCheck);
@@ -1453,6 +1458,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 } else {
                     entity.setStatus("ON GOING");
                 }*/
+
                 entity.setStatus("ON GOING");
                 operationsService.updateOrderItem(entity);
             }
@@ -1504,6 +1510,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             } else {
                 entity.setStatus("ON GOING");
             }*/
+
             entity.setStatus("ON GOING");
             operationsService.updateOrderItem(entity);
 
@@ -1777,7 +1784,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String viewInfo() {
-
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
@@ -2774,7 +2780,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String viewFreightItemList() {
-
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
@@ -3059,25 +3064,51 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         formBean.setOrderStatus(entity.getOrderStatus());
         formBean.setFreightType(entity.getServiceType());
+
         if(entity.getOriginationPort() != null){
             formBean.setOriginationPort(entity.getOriginationPort());
+        }else if(entity.getServiceMode().equals("DELIVERY")){
+            formBean.setOriginationPort("NOT APPLICABLE");
         }else{
             formBean.setOriginationPort("NONE");
         }
+
         /*formBean.setOriginationPort(entity.getOriginationPort());*/
         formBean.setModeOfPayment(entity.getPaymentMode());
         formBean.setNotifyBy(entity.getNotificationType());
         formBean.setOrderDate(entity.getOrderDate());
         /*formBean.setDestinationPort(entity.getDestinationPort());*/
+
         if(entity.getDestinationPort() != null){
             formBean.setDestinationPort(entity.getDestinationPort());
+        }else if(entity.getServiceMode().equals("PICKUP")){
+            formBean.setDestinationPort("NOT APPLICABLE");
         }else{
             formBean.setDestinationPort("NONE");
         }
+
         formBean.setRates(entity.getRates());
         formBean.setComments(entity.getComments());
-        formBean.setPickupDate(entity.getPickupDate());
-        formBean.setDeliveryDate(entity.getDeliveryDate());
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+        if(entity.getPickupDate() != null){
+            /*formBean.setPickupDate(entity.getPickupDate());*/
+            formBean.setStrPickupDate(formatter.format(entity.getPickupDate()));
+        }else if(entity.getServiceMode().equals("DELIVERY")){
+            formBean.setStrPickupDate("NOT APPLICABLE");
+        }else{
+            formBean.setStrPickupDate("NONE");
+        }
+
+        if(entity.getDeliveryDate() != null){
+            /*formBean.setDeliveryDate(entity.getDeliveryDate());*/
+            formBean.setStrDeliveryDate(formatter.format(entity.getDeliveryDate()));
+        }else if(entity.getServiceMode().equals("PICKUP")){
+            formBean.setStrDeliveryDate("NOT APPLICABLE");
+        }else{
+            formBean.setStrDeliveryDate("NONE");
+        }
 
         Contacts contactShipperName = customerService.findContactById(entity.getShipperContactId());
 
@@ -3104,6 +3135,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
             address = new AddressBean();
             address.setAddress(getAddress(addresses));
             formBean.setShipperInfoAddress(address);
+        }else if(entity.getServiceMode().equals("DELIVERY")){
+            address = new AddressBean();
+            address.setAddress("NOT APPLICABLE");
+            formBean.setShipperInfoAddress(address);
         }else{
             address = new AddressBean();
             address.setAddress("NONE");
@@ -3127,32 +3162,24 @@ public class OperationsAction extends ActionSupport implements Preparable {
             address = new AddressBean();
             address.setAddress(getAddress(consigneeAddress));
             formBean.setConsigneeInfoAddress(address);
+        }else if(entity.getServiceMode().equals("PICKUP")){
+            address = new AddressBean();
+            address.setAddress("NOT APPLICABLE");
+            formBean.setConsigneeInfoAddress(address);
         }else{
             address = new AddressBean();
             address.setAddress("NONE");
             formBean.setConsigneeInfoAddress(address);
         }
+
         // for consignee contact person
-        formBean.setConsigneeContactPersonId(order.getConsigneeContactPersonId());
-        if (order.getConsigneeContactPersonId() != null) {
-            Contacts contactElem = customerService.findContactById(order.getConsigneeContactPersonId());
+        formBean.setConsigneeContactPersonId(entity.getConsigneeContactPersonId());
+        if (entity.getConsigneeContactPersonId() != null) {
+            Contacts contactElem = customerService.findContactById(entity.getConsigneeContactPersonId());
             formBean.setConsigneeContactName(contactElem.getFirstName() + " " + contactElem.getMiddleName() + " " + contactElem.getLastName());
         }
 
-
-
-//        OrderItems truckEntity = orderService.findOrderItemByOrderItemId(entity.getOrderId());
         List<OrderItems> orderItemEntity = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
-        /*Integer vendorCtrOri = 0;
-        Integer vendorCtrDes = 0;
-        for(OrderItems orderItemsElem : orderItemEntity){
-            if(orderItemsElem.getVendorOrigin() != null){
-                vendorCtrOri += 1;
-            }
-            if(orderItemsElem.getVendorDestination() != null){
-                vendorCtrDes += 1;
-            }
-        }*/
 
         if(orderItemEntity.size() >= 1){
                 if(orderItemEntity.get(0).getTruckOrigin() == null || "".equals(orderItemEntity.get(0).getTruckOrigin())){
@@ -3171,24 +3198,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     formBean.setPlateNumberDes(truckEntityDes.getPlateNumber());
                 }
         }
-        /*else{
-            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") ||
-                    orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")) {
-                if (vendorCtrOri != 0) {
-                    formBean.setPlateNumberOri(vendorCtrOri + " / " + orderItemEntity.size());
-                } else {
-                    formBean.setPlateNumberOri("NONE");
-                }
-            }
-            else if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR") ||
-                    orderEntity.getServiceMode().equals("DELIVERY") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")) {
-                if (vendorCtrDes != 0) {
-                    formBean.setPlateNumberDes(vendorCtrDes + " / " + orderItemEntity.size());
-                } else {
-                    formBean.setPlateNumberDes("NONE");
-                }
-            }
-        }*/
 
         return formBean;
     }
@@ -3237,25 +3246,34 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
 
+        Orders orderCheck = orderService.findOrdersById(entity.getOrderId());
+
         if(truckEntityOri == null || truckEntityOri.equals("")) {
             formBean.setPlateNumberOri("NONE");
         }
-        else{
+        else if(orderCheck.getServiceMode().equals("DELIVERY")){
+            formBean.setPlateNumberOri("NOT APPLICABLE");
+        }else{
             formBean.setPlateNumberOri(vendorService.findTrucksByTruckCode(entity.getTruckOrigin()).getPlateNumber());
         }
+
         if(truckEntityDes == null || truckEntityDes.equals("")) {
             formBean.setPlateNumberDes("NONE");
         }
-        else{
+        else if(orderCheck.getServiceMode().equals("PICKUP")){
+            formBean.setPlateNumberOri("NOT APPLICABLE");
+        }else{
             formBean.setPlateNumberDes(vendorService.findTrucksByTruckCode(entity.getTruckDestination()).getPlateNumber());
         }
+
         if(entity.getVendorSea() == null || "".equals(entity.getVendorSea()) || "NONE".equals(entity.getVendorSea())){
             formBean.setVendorSea("NONE");
         }else{
             formBean.setVendorSea(entity.getVendorSea());
         }
+
         // Vendor Origin and Destination will have N/A values if service mode does not require them
-        Orders orderCheck = orderService.findOrdersById(entity.getOrderId());
+
         if (orderCheck.getServiceMode().equals("PIER TO DOOR")){
             formBean.setVendorOrigin("N/A");
             formBean.setVendorOriginName("N/A");
@@ -3288,17 +3306,35 @@ public class OperationsAction extends ActionSupport implements Preparable {
             formBean.setVendorDestinationName("N/A");
             formBean.setFinalDeliveryDate("N/A");
         }else if(orderCheck.getServiceType().equals("TRUCKING")){
-            if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin())){
-                formBean.setVendorOrigin("NONE");
-                formBean.setVendorOriginName("NONE");
+
+            if(orderCheck.getServiceMode().equals("DELIVERY")){
+                if(entity.getVendorDestination() == null || "".equals(entity.getVendorDestination())){
+                    formBean.setVendorDestination("NONE");
+                    formBean.setVendorDestinationName("NONE");
+                    formBean.setFinalDeliveryDate("NONE");
+                }else{
+                    formBean.setVendorDestination(entity.getVendorOrigin());
+                    formBean.setVendorDestinationName(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
+                    formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
+                }
+                formBean.setVendorOrigin("NOT APPLICABLE");
+                formBean.setVendorOriginName("NOT APPLICABLE");
+                formBean.setFinalPickupDate("NOT APPLICABLE");
+
             }else{
-                formBean.setVendorOrigin(entity.getVendorOrigin());
-                formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
+                if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin())){
+                    formBean.setVendorOrigin("NONE");
+                    formBean.setVendorOriginName("NONE");
+                    formBean.setFinalPickupDate("NONE");
+                }else{
+                    formBean.setVendorOrigin(entity.getVendorOrigin());
+                    formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
+                    formBean.setFinalPickupDate(entity.getFinalPickupDate());
+                }
+                formBean.setVendorDestination("NOT APPLICABLE");
+                formBean.setVendorDestinationName("NOT APPLICABLE");
+                formBean.setFinalDeliveryDate("NOT APPLICABLE");
             }
-            formBean.setFinalPickupDate(entity.getFinalPickupDate());
-            formBean.setVendorDestination("N/A");
-            formBean.setVendorDestinationName("N/A");
-            formBean.setFinalDeliveryDate("N/A");
         }else{
             if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin()) || "NONE".equals(entity.getVendorOrigin())){
                 formBean.setVendorOrigin("NONE");
@@ -3313,7 +3349,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 formBean.setVendorDestination("NONE");
                 formBean.setVendorDestinationName("NONE");
                 formBean.setFinalDeliveryDate("NONE");
-            }else{
+            } else {
                 formBean.setVendorDestination(entity.getVendorDestination());
                 formBean.setVendorDestinationName(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
                 formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
@@ -4245,7 +4281,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("TRUCKING") ){
 
-            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") || orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("DELIVERY") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") || orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
 
                 List<Documents> waybillOrigin = documentsService.findDocumentNameAndId("HOUSE WAYBILL ORIGIN", orderIdParam);
 
@@ -4271,21 +4307,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             String documentCode = documentsService.findNextControlNo(getClientId(), "HWO"); // BRF for Booking Request Form Document Code
                             documentEntity.setControlNumber(documentCode);
 
-                            documentEntity.setReferenceNumber(documentCode.replace("HWO-",""));
+                            /*documentEntity.setReferenceNumber(documentCode.replace("HWO-",""));*/
 
                             documentsService.addDocuments(documentEntity);
                         } else { // will prompt a message when attempting to create house waybill origin if one was already created
                             clearErrorsAndMessages();
                             addActionError("House Waybill Origin(s) already exists.");
-
-//                            for (OrderItems orderItemsElem : orderItemsList) {
-//                                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-//                            }
-//                            return INPUT;
                         }
                     }else{ // if no origin vendor set will return an error message
+
                         clearErrorsAndMessages();
-                        addActionError("Container(s) / Item(s) has no Trucking vendor set!");
+                        addActionError("Container(s) / Item(s) has no Trucking origin vendor set!");
 
                         for(OrderItems orderItemsElem : orderItemsList) {
                             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
@@ -4298,7 +4330,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             }
 
-            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR") || orderEntity.getServiceMode().equals("DELIVERY") ){
 
                 List<Documents> waybillDestination = documentsService.findDocumentNameAndId("HOUSE WAYBILL DESTINATION", orderIdParam);
 
@@ -4317,28 +4349,28 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             documentEntity.setCreatedDate(new Date());
                             documentEntity.setDocumentStatus("FROM PLANNING");
                             documentEntity.setVendorCode(itemVendor);
-                            documentEntity.setFinalOutboundStage(1);
-                            documentEntity.setDocumentProcessed(2);
+                            if(orderEntity.getServiceMode().equals("DELIVERY")){
+                                documentEntity.setOutboundStage(1);
+                                documentEntity.setDocumentProcessed(0);
+                            }else{
+                                documentEntity.setFinalOutboundStage(1);
+                                documentEntity.setDocumentProcessed(2);
+                            }
                             documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                             // orderitem id should be set in orderitemid column WIP
                             String documentCode = documentsService.findNextControlNo(getClientId(), "HWD"); // BRF for Booking Request Form Document Code
                             documentEntity.setControlNumber(documentCode);
 
-                            documentEntity.setReferenceNumber(documentCode.replace("HWD-",""));
+                            /*documentEntity.setReferenceNumber(documentCode.replace("HWD-",""));*/
 
                             documentsService.addDocuments(documentEntity);
                         } else {
                             clearErrorsAndMessages();
                             addActionError("House Waybill Destination(s) already exists.");
-                            /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
-//                            for (OrderItems orderItemsElem : orderItemsList) {
-//                                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-//                            }
-//                            return INPUT;
                         }
                     }else{ // if no destination vendor set will return an error message
                         clearErrorsAndMessages();
-                        addActionError("Container(s) / Item(s) has no Trucking vendor set!");
+                        addActionError("Container(s) / Item(s) has no Trucking destination vendor set!");
 
                         for(OrderItems orderItemsElem : orderItemsList) {
                             orderItems.add(transformToOrderItemFormBean(orderItemsElem));

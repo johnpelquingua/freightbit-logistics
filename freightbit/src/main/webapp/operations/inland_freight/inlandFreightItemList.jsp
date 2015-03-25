@@ -89,16 +89,14 @@
 
                                 <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.serviceRequirement}"
-                                                 name="book-num"
-                                                 disabled="true"></s:textfield>
+                                                 name="book-num" disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
                                     Mode</label>
 
                                 <div class="col-lg-4">
                                     <s:textfield cssClass="serviceModeInput form-control" value="%{order.modeOfService}"
-                                                 name="book-num"
-                                                 disabled="true"></s:textfield>
+                                                 name="book-num" disabled="true"></s:textfield>
                                 </div>
 
                             </div>
@@ -121,21 +119,23 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin
-                                    Port</label>
+                                <s:if test="order.freightType == 'TRUCKING'">
+                                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Location</label>
+                                </s:if>
+                                <s:else>
+                                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port</label>
+                                </s:else>
 
                                 <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.originationPort}"
-                                                 name="book-num"
-                                                 disabled="true"></s:textfield>
+                                                 name="book-num" disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination
                                     Port</label>
 
                                 <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.destinationPort}"
-                                                 name="book-num"
-                                                 disabled="true"></s:textfield>
+                                                 name="book-num" disabled="true"></s:textfield>
                                 </div>
                             </div>
 
@@ -144,14 +144,14 @@
                                     Date</label>
 
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                                    <s:textfield cssClass="form-control" value="%{order.strPickupDate}"
                                                  disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery
                                     Date</label>
 
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                                    <s:textfield cssClass="form-control" value="%{order.strDeliveryDate}"
                                                  disabled="true"></s:textfield>
                                 </div>
                             </div>
@@ -162,16 +162,14 @@
 
                                 <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.shipperInfoAddress.address}"
-                                                 name="book-num"
-                                                 disabled="true"></s:textfield>
+                                                 name="book-num" disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination
                                     Address</label>
 
                                 <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.consigneeInfoAddress.address}"
-                                                 name="book-num"
-                                                 disabled="true"></s:textfield>
+                                                 name="book-num" disabled="true"></s:textfield>
                                 </div>
                             </div>
                         </div>
@@ -333,26 +331,6 @@
             </div>
         </div>
         <div class="pull-right">
-
-            <%--<s:url var="createdDocumentOriginUrl" action="createdDocumentOrigin">
-                <s:param name="orderIdParam"
-                         value="#attr.order.orderId"></s:param>
-            </s:url>
-            <s:a cssClass="btn btn-primary houseWaybillOriginBtn" href="%{createdDocumentOriginUrl}" rel="tooltip"
-                 title="Create Documents">
-                Create House WayBill Origin
-            </s:a>
-
-            <s:if test="#attr.order.freightType!='TRUCKING'">
-                <s:url var="createdDocumentDestinationUrl" action="createdDocumentDestination">
-                    <s:param name="orderIdParam"
-                             value="#attr.order.orderId"></s:param>
-                </s:url>
-                <s:a cssClass="btn btn-primary houseWaybillDestinationBtn" href="%{createdDocumentDestinationUrl}" rel="tooltip"
-                     title="Create Documents">
-                    Create House Waybill Destination
-                </s:a>
-            </s:if>--%>
 
             <s:url var="createdInlandDocumentUrl" action="createdInlandDocument">
                 <s:param name="orderIdParam"

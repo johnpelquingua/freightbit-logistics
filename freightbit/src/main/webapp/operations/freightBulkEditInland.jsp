@@ -56,7 +56,7 @@
                     </div>
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Freight Type</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.freightType}"
+                        <s:textfield cssClass="form-control serviceType" value="%{order.freightType}"
                                      disabled="true"></s:textfield>
                     </div>
                 </div>
@@ -109,12 +109,12 @@
                 <div class="form-group">
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                        <s:textfield cssClass="form-control" value="%{order.strPickupDate}"
                                      disabled="true"></s:textfield>
                     </div>
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                        <s:textfield cssClass="form-control" value="%{order.strDeliveryDate}"
                                      disabled="true"></s:textfield>
                     </div>
                 </div>
@@ -334,12 +334,11 @@
                                                   id="bodyType"
                                                   list="#{bodyType}"
                                                   value="%{bodyType}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="bodyType_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -354,12 +353,11 @@
                                                   id="plateNumber"
                                                   list="#{plateNumber}"
                                                   value="%{plateNumber}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="plateNumber_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -374,12 +372,11 @@
                                                   id="grossWeight"
                                                   list="#{grossWeight}"
                                                   value="%{grossWeight}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="grossWeight_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -539,12 +536,11 @@
                                                   id="bodyTypeDestination"
                                                   list="#{bodyType}"
                                                   value="%{bodyType}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="bodyType_Destination_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -559,12 +555,11 @@
                                                   id="plateNumberDestination"
                                                   list="#{plateNumber}"
                                                   value="%{plateNumber}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="plateNumber_Destination_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -579,12 +574,11 @@
                                                   id="grossWeightDestination"
                                                   list="#{grossWeight}"
                                                   value="%{grossWeight}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="grossWeight_Destination_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -613,6 +607,7 @@
                             </div>
                         </s:form>
                     </div>
+
                     <div class="panel-footer">
                         <div class="pull-right">
                             <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
@@ -839,12 +834,11 @@
                                                   id="bodyType"
                                                   list="#{bodyType}"
                                                   value="%{bodyType}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="bodyType_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -859,12 +853,11 @@
                                                   id="plateNumber"
                                                   list="#{plateNumber}"
                                                   value="%{plateNumber}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="plateNumber_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -879,12 +872,11 @@
                                                   id="grossWeight"
                                                   list="#{grossWeight}"
                                                   value="%{grossWeight}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="grossWeight_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -1235,14 +1227,15 @@
                 </display:table>
             </div>
 
+            <s:if test="order.modeOfService=='PICKUP'">
 
-        <s:if test="order.modeOfService=='PICKUP'">
+            <div class="panel panel-primary">
 
-        <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
                     <span class="panel-title">Dispatch Plan : Origin</span>
                 </div>
+
                 <div class="panel-body">
                     <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
                         <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
@@ -1272,9 +1265,8 @@
                             <div class="col-lg-8">
                                 <div>
                                     <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                              id="vendorListOrigin"
-                                              listKey="vendorId" listValue="vendorName" cssClass="form-control"
-                                              emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                                              id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="form-control dispatchInput"
+                                              emptyOption="true" value="%{orderItem.vendorOrigin}"></s:select>
                                 </div>
                             </div>
                             <div class="col-lg-2">
@@ -1290,9 +1282,8 @@
                             <div class="col-lg-8">
                                 <div>
                                     <s:select list="listDrivers" name="operationsBean.driverOrigin"
-                                              id="driverList"
-                                              listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
-                                              emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
+                                              id="driverList" listKey="driverId" listValue="firstName + lastName" cssClass="form-control dispatchInput"
+                                              emptyOption="true" value="%{orderItem.driverOrigin}"></s:select>
                                 </div>
                             </div>
                             <div class="col-lg-2">
@@ -1309,9 +1300,8 @@
                             <div class="col-lg-8">
                                 <div>
                                     <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                              id="trucksList"
-                                              listKey="truckId" listValue="truckCode" cssClass="form-control"
-                                              emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
+                                              id="trucksList" listKey="truckId" listValue="truckCode" cssClass="form-control dispatchInput"
+                                              emptyOption="true" value="%{orderItem.truckOrigin}" ></s:select>
                                 </div>
                             </div>
                             <div class="col-lg-2">
@@ -1332,12 +1322,11 @@
                                               id="bodyType"
                                               list="#{bodyType}"
                                               value="%{bodyType}"
-                                              style="display:none"
-                                            />
-                                    <s:textfield cssClass="form-control"
+                                              style="display:none" />
+
+                                    <s:textfield cssClass="form-control dispatchInput"
                                                  id="bodyType_textfield"
-                                                 disabled="true"
-                                            />
+                                                 disabled="true" />
                                 </div>
                             </div>
 
@@ -1352,12 +1341,11 @@
                                               id="plateNumber"
                                               list="#{plateNumber}"
                                               value="%{plateNumber}"
-                                              style="display:none"
-                                            />
-                                    <s:textfield cssClass="form-control"
+                                              style="display:none" />
+
+                                    <s:textfield cssClass="form-control dispatchInput"
                                                  id="plateNumber_textfield"
-                                                 disabled="true"
-                                            />
+                                                 disabled="true" />
                                 </div>
                             </div>
 
@@ -1372,12 +1360,11 @@
                                               id="grossWeight"
                                               list="#{grossWeight}"
                                               value="%{grossWeight}"
-                                              style="display:none"
-                                            />
-                                    <s:textfield cssClass="form-control"
+                                              style="display:none" />
+
+                                    <s:textfield cssClass="form-control dispatchInput"
                                                  id="grossWeight_textfield"
-                                                 disabled="true"
-                                            />
+                                                 disabled="true" />
                                 </div>
                             </div>
 
@@ -1386,7 +1373,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                             <div class="col-lg-8">
-                                <s:textfield cssClass="from_date form-control dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                                <s:textfield cssClass="from_date form-control dispatchInput dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;" />
                             </div>
                         </div>
                         <div style="float: right;">
@@ -1406,6 +1393,7 @@
                         </div>
                     </s:form>
                 </div>
+
                 <div class="panel-footer">
                     <div class="pull-right">
                         <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
@@ -1431,16 +1419,20 @@
                         </s:a>
                     </div>
                 </div>
+
             </div>
+
             </s:if>
 
             <s:elseif test="order.modeOfService=='DELIVERY'">
 
                 <div class="panel panel-primary">
+
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Origin</span>
+                        <span class="panel-title">Dispatch Plan : Destination</span>
                     </div>
+
                     <div class="panel-body">
                         <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
                             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
@@ -1469,9 +1461,8 @@
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                                 <div class="col-lg-8">
                                     <div>
-                                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                                  id="vendorListOrigin"
-                                                  listKey="vendorId" listValue="vendorName" cssClass="form-control"
+                                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListDestination"
+                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
                                                   emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                                     </div>
                                 </div>
@@ -1487,9 +1478,8 @@
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
                                 <div class="col-lg-8">
                                     <div>
-                                        <s:select list="listDrivers" name="operationsBean.driverOrigin"
-                                                  id="driverList"
-                                                  listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                        <s:select list="listDrivers" name="operationsBean.driverDestination"
+                                                  id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="dispatchInput form-control"
                                                   emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
                                     </div>
                                 </div>
@@ -1506,9 +1496,8 @@
 
                                 <div class="col-lg-8">
                                     <div>
-                                        <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                                  id="trucksList"
-                                                  listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                        <s:select list="listDrivers" name="operationsBean.truckDestination"
+                                                  id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
                                                   emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                                     </div>
                                 </div>
@@ -1527,15 +1516,14 @@
                                 <div class="col-lg-8">
                                     <div>
                                         <s:select cssClass="form-control"
-                                                  id="bodyType"
+                                                  id="bodyTypeDestination"
                                                   list="#{bodyType}"
                                                   value="%{bodyType}"
-                                                  style="display:none"
-                                                />
-                                        <s:textfield cssClass="form-control"
-                                                     id="bodyType_textfield"
-                                                     disabled="true"
-                                                />
+                                                  style="display:none" />
+
+                                        <s:textfield cssClass="dispatchInput form-control"
+                                                     id="bodyType_Destination_textfield"
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -1547,15 +1535,14 @@
                                 <div class="col-lg-8">
                                     <div>
                                         <s:select cssClass="form-control"
-                                                  id="plateNumber"
+                                                  id="plateNumberDestination"
                                                   list="#{plateNumber}"
                                                   value="%{plateNumber}"
-                                                  style="display:none"
-                                                />
-                                        <s:textfield cssClass="form-control"
-                                                     id="plateNumber_textfield"
-                                                     disabled="true"
-                                                />
+                                                  style="display:none" />
+
+                                        <s:textfield cssClass="dispatchInput form-control"
+                                                     id="plateNumber_Destination_textfield"
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -1567,15 +1554,15 @@
                                 <div class="col-lg-8">
                                     <div>
                                         <s:select cssClass="form-control"
-                                                  id="grossWeight"
+                                                  id="grossWeightDestination"
                                                   list="#{grossWeight}"
                                                   value="%{grossWeight}"
-                                                  style="display:none"
-                                                />
-                                        <s:textfield cssClass="form-control"
-                                                     id="grossWeight_textfield"
-                                                     disabled="true"
-                                                />
+                                                  style="display:none" />
+
+                                        <s:textfield cssClass="dispatchInput form-control"
+                                                     id="grossWeight_Destination_textfield"
+                                                     disabled="true" />
+
                                     </div>
                                 </div>
 
@@ -1584,7 +1571,7 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="pickup" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                                    <s:textfield cssClass="dispatchInput from_date form-control dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="pickup" name="operationsBean.deliveryDate" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
                             </div>
                             <div style="float: right;">
@@ -1600,10 +1587,11 @@
                                     </button>
                                 </s:a>
 
-                                <button class="btn btn-primary dispatchSaveBtn" type="button">Save</button>
+                                <button class="btn btn-primary dispatchSaveBtnDes" type="button" disabled>Save</button>
                             </div>
                         </s:form>
                     </div>
+
                     <div class="panel-footer">
                         <div class="pull-right">
                             <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
@@ -1629,6 +1617,7 @@
                             </s:a>
                         </div>
                     </div>
+
                 </div>
             </s:elseif>
 
@@ -1639,6 +1628,7 @@
                         <i class="fa fa-truck"></i>
                         <span class="panel-title">Dispatch Plan : Origin</span>
                     </div>
+
                     <div class="panel-body">
                         <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
                             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
@@ -1668,9 +1658,8 @@
                                 <div class="col-lg-8">
                                     <div>
                                         <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                                  id="vendorListOrigin"
-                                                  listKey="vendorId" listValue="vendorName" cssClass="form-control"
-                                                  emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                                                  id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="form-control"
+                                                  emptyOption="true" value="%{orderItem.vendorOrigin}"></s:select>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
@@ -1686,9 +1675,8 @@
                                 <div class="col-lg-8">
                                     <div>
                                         <s:select list="listDrivers" name="operationsBean.driverOrigin"
-                                                  id="driverList"
-                                                  listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
-                                                  emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
+                                                  id="driverList" listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                                  emptyOption="true" value="%{orderItem.driverOrigin"></s:select>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
@@ -1705,9 +1693,8 @@
                                 <div class="col-lg-8">
                                     <div>
                                         <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                                  id="trucksList"
-                                                  listKey="truckId" listValue="truckCode" cssClass="form-control"
-                                                  emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
+                                                  id="trucksList" listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                                  emptyOption="true" value="%{orderItem.truckOrigin}" ></s:select>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
@@ -1728,12 +1715,11 @@
                                                   id="bodyType"
                                                   list="#{bodyType}"
                                                   value="%{bodyType}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="bodyType_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -1748,12 +1734,11 @@
                                                   id="plateNumber"
                                                   list="#{plateNumber}"
                                                   value="%{plateNumber}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="plateNumber_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -1768,12 +1753,11 @@
                                                   id="grossWeight"
                                                   list="#{grossWeight}"
                                                   value="%{grossWeight}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="form-control"
                                                      id="grossWeight_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -1782,7 +1766,7 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                                    <s:textfield cssClass="dispatchInput from_date form-control dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
                             </div>
                             <div style="float: right;">
@@ -1802,6 +1786,7 @@
                             </div>
                         </s:form>
                     </div>
+
                     <div class="panel-footer">
                         <div class="pull-right">
                             <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
@@ -1827,8 +1812,10 @@
                             </s:a>
                         </div>
                     </div>
+
                 </div>
             </s:elseif>
+
         </s:if>
 
         <%--<s:if test="order.freightType=='TRUCKING'">
@@ -2250,15 +2237,14 @@
                                       id="vendor.vendorClass" name="vendor.vendorClass"/>
                         </div>
                     </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label" style="padding-top:0px;">Service Area<span class="asterisk_red"></span></label>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Service Area<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9">
-                                <s:select list="portsList" listKey="key" listValue="value" cssClass="form-control"
-                                          id="vendor.serviceArea" name="vendor.serviceArea"/>
-                            </div>
+                        <div class="col-lg-9">
+                            <s:select list="portsList" listKey="key" listValue="value" cssClass="form-control"
+                                      id="vendor.serviceArea" name="vendor.serviceArea"/>
                         </div>
-
+                    </div>
 
                 </div>
             </div>
@@ -2419,8 +2405,8 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-        dispatchFilterScheduleOrigin();
-        dispatchFilterScheduleDestination();
+        /*dispatchFilterScheduleOrigin();
+        dispatchFilterScheduleDestination();*/
 
         $('.forceSubmit').click(function(){
             /*$('.dispatchOriginForm').submit();*/
@@ -2461,6 +2447,14 @@
     if ($('#successDiv').length !== 0){
         window.location.href = '#anchorDiv';
     }
+
+    $(document).ready(function(){
+        dispatchFilterScheduleOrigin();
+        dispatchFilterScheduleDestination();
+        /*validationForm('dispatchInput', 'finalSaveBtnDes');*/
+        validationForm('dispatchInput', 'dispatchSaveBtn');
+        validationForm('dispatchInput', 'dispatchSaveBtnDes');
+    });
 
     // User must choose a vendor first before adding vessel schedule
     $(document).ready(function(){

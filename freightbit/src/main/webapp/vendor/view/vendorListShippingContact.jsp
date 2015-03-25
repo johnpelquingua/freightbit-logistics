@@ -1,4 +1,4 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
+        <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
@@ -19,11 +19,9 @@
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> Vendor List</a></li>
-            <li class="active"><a href="<s:url action='viewInfoVendor' />"> Vendor
-                Profile</a></li>
+            <li class="active"><a href="<s:url action='viewInfoVendor' />"> Vendor Profile</a></li>
             <li class="active"> Contact Persons</li>
         </ol>
-
     </div>
 </div>
 

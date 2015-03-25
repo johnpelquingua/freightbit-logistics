@@ -257,11 +257,11 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String viewInfoVendor() {
         Vendor vendorEntity = new Vendor();
         if (!StringUtils.isBlank(vendorCodeParam))
-            /*vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);*/
-            vendorEntity = vendorService.findVendorById(vendorIdParam);
+            vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
+            /*vendorEntity = vendorService.findVendorById(vendorIdParam);*/
         else
-            /*vendorEntity = vendorService.findVendorById(getSessionVendorId());*/
-            vendorEntity = vendorService.findVendorById(vendorIdParam);
+            vendorEntity = vendorService.findVendorById(getSessionVendorId());
+            /*vendorEntity = vendorService.findVendorById(vendorIdParam);*/
         vendor = transformToFormBean(vendorEntity);
 
         Map sessionAttributes = ActionContext.getContext().getSession();

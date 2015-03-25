@@ -94,7 +94,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port</label>
+                    <s:if test="order.freightType == 'TRUCKING'">
+                        <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Location</label>
+                    </s:if>
+                    <s:else>
+                        <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port</label>
+                    </s:else>
                     <div class="col-lg-4">
                         <s:textfield cssClass="form-control" value="%{order.originationPort}" name="book-num"
                                      disabled="true"></s:textfield>
@@ -109,12 +114,12 @@
                 <div class="form-group">
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                        <s:textfield cssClass="form-control" value="%{order.strPickupDate}"
                                      disabled="true"></s:textfield>
                     </div>
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                        <s:textfield cssClass="form-control" value="%{order.strDeliveryDate}"
                                      disabled="true"></s:textfield>
                     </div>
                 </div>
@@ -391,12 +396,11 @@
                                                   id="bodyType"
                                                   list="#{bodyType}"
                                                   value="%{bodyType}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="dispatchInput form-control"
                                                      id="bodyType_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -411,12 +415,11 @@
                                                   id="plateNumber"
                                                   list="#{plateNumber}"
                                                   value="%{plateNumber}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="dispatchInput form-control"
                                                      id="plateNumber_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -431,12 +434,11 @@
                                                   id="grossWeight"
                                                   list="#{grossWeight}"
                                                   value="%{grossWeight}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="dispatchInput form-control"
                                                      id="grossWeight_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -446,9 +448,9 @@
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control finalPickupDate" value="%{orderItem.finalPickupDate}"
-                                                 id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
-                                                 contenteditable="false" style="margin-bottom: 15px !important;"/>
+                                    <s:textfield cssClass="dispatchInput from_date form-control dispatchFinalPickup"
+                                                 id="pickup" name="operationsBean.pickupDate" placeholder="Select Pickup date"
+                                                    contenteditable="false" style="margin-bottom: 15px !important;" required="true"/>
                                 </div>
                             </div>
 
@@ -464,7 +466,7 @@
                                         Cancel
                                     </button>
                                 </s:a>
-                                <button class="btn btn-primary finalSaveBtn" type="button" disabled>Save</button>
+                                <button class="btn btn-primary dispatchSaveBtn" type="button" disabled>Save</button>
                             </div>
 
                         </s:form>
@@ -606,12 +608,11 @@
                                                   id="bodyType"
                                                   list="#{bodyType}"
                                                   value="%{bodyType}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="dispatchInput form-control"
                                                      id="bodyType_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -626,12 +627,11 @@
                                                   id="plateNumber"
                                                   list="#{plateNumber}"
                                                   value="%{plateNumber}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="dispatchInput form-control"
                                                      id="plateNumber_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -646,12 +646,11 @@
                                                   id="grossWeight"
                                                   list="#{grossWeight}"
                                                   value="%{grossWeight}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="dispatchInput form-control"
                                                      id="grossWeight_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -661,9 +660,12 @@
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control finalDeliveryDate" value="%{orderItem.finalDeliveryDate}"
+                                    <%--<s:textfield cssClass="from_date form-control finalDeliveryDate" value="%{orderItem.finalDeliveryDate}"
                                                  id="delivery" name="operationsBean.deliveryDate" placeholder="Select start date"
-                                                 contenteditable="false" style="margin-bottom: 15px !important;"/>
+                                                 contenteditable="false" style="margin-bottom: 15px !important;"/>--%>
+                                    <s:textfield cssClass="from_date form-control dispatchFinalPickup"
+                                                 id="pickup" name="operationsBean.deliveryDate" placeholder="Select Delivery date"
+                                                 contenteditable="false" style="margin-bottom: 15px !important;" required="true"/>
                                 </div>
                             </div>
 
@@ -679,7 +681,7 @@
                                         Cancel
                                     </button>
                                 </s:a>
-                                <button class="btn btn-primary finalSaveBtn" type="button" disabled>Save</button>
+                                <button class="btn btn-primary dispatchSaveBtn" type="button" disabled>Save</button>
                             </div>
 
                         </s:form>
@@ -821,12 +823,11 @@
                                                   id="bodyType"
                                                   list="#{bodyType}"
                                                   value="%{bodyType}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="dispatchInput form-control"
                                                      id="bodyType_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -841,12 +842,11 @@
                                                   id="plateNumber"
                                                   list="#{plateNumber}"
                                                   value="%{plateNumber}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="dispatchInput form-control"
                                                      id="plateNumber_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -861,12 +861,11 @@
                                                   id="grossWeight"
                                                   list="#{grossWeight}"
                                                   value="%{grossWeight}"
-                                                  style="display:none"
-                                                />
+                                                  style="display:none" />
+
                                         <s:textfield cssClass="dispatchInput form-control"
                                                      id="grossWeight_textfield"
-                                                     disabled="true"
-                                                />
+                                                     disabled="true" />
                                     </div>
                                 </div>
 
@@ -876,9 +875,9 @@
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control finalPickupDate" value="%{orderItem.finalPickupDate}"
+                                    <s:textfield cssClass="dispatchInput from_date form-control dispatchFinalPickup"
                                                  id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
-                                                 contenteditable="false" style="margin-bottom: 15px !important;"/>
+                                                 contenteditable="false" style="margin-bottom: 15px !important;" required="true" />
                                 </div>
                             </div>
 
@@ -894,7 +893,7 @@
                                         Cancel
                                     </button>
                                 </s:a>
-                                <button class="btn btn-primary finalSaveBtn" type="button" disabled>Save</button>
+                                <button class="btn btn-primary dispatchSaveBtn" type="button">Save</button>
                             </div>
 
                         </s:form>
@@ -990,7 +989,7 @@
 
         </s:if>
 
-        <div class="panel panel-primary">
+        <%--<div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-truck"></i>
                 <span class="panel-title"> Dispatch Plan : Origin</span>
@@ -1084,12 +1083,11 @@
                                           id="bodyType"
                                           list="#{bodyType}"
                                           value="%{bodyType}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              id="bodyType_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
                         </div>
 
@@ -1104,12 +1102,11 @@
                                           id="plateNumber"
                                           list="#{plateNumber}"
                                           value="%{plateNumber}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              id="plateNumber_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
                         </div>
 
@@ -1124,12 +1121,11 @@
                                           id="grossWeight"
                                           list="#{grossWeight}"
                                           value="%{grossWeight}"
-                                          style="display:none"
-                                        />
+                                          style="display:none" />
+
                                 <s:textfield cssClass="form-control"
                                              id="grossWeight_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
                         </div>
 
@@ -1180,7 +1176,7 @@
                     </s:a>
                 </div>
             </div>
-        </div>
+        </div>--%>
 
     </div>
 </div>
@@ -1849,6 +1845,8 @@
 
     $(document).ready(function(){
         dispatchFilterScheduleOrigin();
+        /*validationForm('dispatchInput', 'finalSaveBtn');*/
+        validationForm('dispatchInput', 'dispatchSaveBtn');
     });
 
     $(document).ready(function () {

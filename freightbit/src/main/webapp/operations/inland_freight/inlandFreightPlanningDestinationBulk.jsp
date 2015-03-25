@@ -56,7 +56,7 @@
                     </div>
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Freight Type</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.freightType}"
+                        <s:textfield cssClass="form-control serviceType" value="%{order.freightType}"
                                      disabled="true"></s:textfield>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
                         Mode</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.modeOfService}"
+                        <s:textfield cssClass="form-control serviceMode" value="%{order.modeOfService}"
                                      disabled="true"></s:textfield>
                     </div>
 
@@ -94,7 +94,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port</label>
+                    <s:if test="order.freightType == 'TRUCKING'">
+                        <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Location</label>
+                    </s:if>
+                    <s:else>
+                        <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port</label>
+                    </s:else>
                     <div class="col-lg-4">
                         <s:textfield cssClass="form-control" value="%{order.originationPort}"
                                      disabled="true"></s:textfield>
@@ -109,12 +114,12 @@
                 <div class="form-group">
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                        <s:textfield cssClass="form-control" value="%{order.strPickupDate}"
                                      disabled="true"></s:textfield>
                     </div>
                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
                     <div class="col-lg-4">
-                        <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                        <s:textfield cssClass="form-control" value="%{order.strDeliveryDate}"
                                      disabled="true"></s:textfield>
                     </div>
                 </div>
@@ -136,30 +141,6 @@
 
         </div>
 
-        <%--<div class="panel panel-primary">
-            <div class="panel-heading">
-                <i class="fa fa-list"></i>
-                <span class="panel-title">Cargo</span>
-            </div>
-
-            <div class="panel-body form-horizontal">
-                <div class="form-group">
-                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
-                    </s:if>
-                    <s:else>
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
-                    </s:else>
-                    <div class="col-lg-10">
-                        <ol>
-                            <s:iterator value="nameSizeList" >
-                                <li><s:property /></li>
-                            </s:iterator>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>--%>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-list"></i>
@@ -167,17 +148,7 @@
             </div>
 
             <div class="panel-body form-horizontal">
-                <%--<div class="form-group">
-                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
-                    </s:if>
-                    <s:else>
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
-                    </s:else>
-                    <div class="col-lg-10">
-                        <s:property value="orderItem.nameSize"/>
-                    </div>
-                </div>--%>
+
                 <display:table id="currentDestinationVendor" name="orderItemDestinationVendor"
                                requestURI="/checkItemStatusInland.action" pagesize="10"
                                class="table table-striped table-hover table-bordered text-center tablesorter"
@@ -221,71 +192,76 @@
             </div>
         </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <i class="fa fa-anchor"></i>
-                <span class="panel-title">Freight Plan</span>
-            </div>
-            <div class="panel-body form-horizontal">
+        <s:if test="order.freightType=='SHIPPING AND TRUCKING' || order.freightType=='SHIPPING'">
 
-                <display:table id="orderItem" name="orderItems"
-                               requestURI="/viewSeaFreightItemList.action"
-                               class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple freightTableBulk"
-                               style="margin-top: 15px;">
-                    <tr>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-anchor"></i>
+                    <span class="panel-title">Freight Plan</span>
+                </div>
+                <div class="panel-body form-horizontal">
+
+                    <display:table id="orderItem" name="orderItems"
+                                   requestURI="/viewSeaFreightItemList.action"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple freightTableBulk"
+                                   style="margin-top: 15px;">
+                        <tr>
                             <%--Change Header based on Service Requirement--%>
-                        <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"></display:column>
-                        </td>
-                        <td>
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
+                            <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
                                                 class="tb-font-black"
-                                                style="text-align: center;">
-                                </display:column>
-                            </s:if>
-                            <s:else>
-                                <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
+                                                style="text-align: center;"></display:column>
+                            </td>
+                            <td>
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;">
+                                    </display:column>
+                                </s:if>
+                                <s:else>
+                                    <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;">
+                                    </display:column>
+                                </s:else>
+                            </td>
+
+                            <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
                                                 class="tb-font-black"
-                                                style="text-align: center;">
-                                </display:column>
-                            </s:else>
-                        </td>
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                            <td><display:column property="departureDate" title="Departure Date <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="departureDate" title="Departure Date <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                            <td><display:column property="arrivalDate" title="Arrival Date <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="arrivalDate" title="Arrival Date <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                        </tr>
+                    </display:table>
 
-                    </tr>
-                </display:table>
-
+                </div>
             </div>
-        </div>
+
+        </s:if>
 
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-truck"></i>
                 <span class="panel-title"> Dispatch Plan : Destination</span>
             </div>
+
             <div class="panel-body">
-                <s:form cssClass="form-horizontal dispatchDestinationForm" theme="bootstrap" action="editBulkItemsInlandDestination">
+                <s:form cssClass="form-horizontal destinationForm" theme="bootstrap" action="editBulkItemsInlandDestination">
                     <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                     <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                     <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -315,9 +291,16 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                         <div class="col-lg-8">
                             <div>
-                                <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
-                                          id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="form-control"
-                                          emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                                <s:if test="order.modeOfService != 'DELIVERY'">
+                                    <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
+                                              id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
+                                              emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
+                                </s:if>
+                                <s:else>
+                                    <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListDestination"
+                                              id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
+                                              emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
+                                </s:else>
                             </div>
                         </div>
                         <div class="col-lg-2">
@@ -333,7 +316,7 @@
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                          id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                          id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
                             </div>
                         </div>
@@ -350,7 +333,7 @@
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                          id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                          id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.truckDestination}"></s:select>
                             </div>
                         </div>
@@ -371,12 +354,11 @@
                                           id="bodyType"
                                           list="#{bodyType}"
                                           value="%{bodyType}"
-                                          style="display:none"
-                                        />
-                                <s:textfield cssClass="form-control"
+                                          style="display:none" />
+
+                                <s:textfield cssClass="dispatchInput form-control"
                                              id="bodyType_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
                         </div>
 
@@ -391,12 +373,11 @@
                                           id="plateNumber"
                                           list="#{plateNumber}"
                                           value="%{plateNumber}"
-                                          style="display:none"
-                                        />
-                                <s:textfield cssClass="form-control"
+                                          style="display:none" />
+
+                                <s:textfield cssClass="dispatchInput form-control"
                                              id="plateNumber_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
                         </div>
 
@@ -411,12 +392,11 @@
                                           id="grossWeight"
                                           list="#{grossWeight}"
                                           value="%{grossWeight}"
-                                          style="display:none"
-                                        />
-                                <s:textfield cssClass="form-control"
+                                          style="display:none" />
+
+                                <s:textfield cssClass="dispatchInput form-control"
                                              id="grossWeight_textfield"
-                                             disabled="true"
-                                        />
+                                             disabled="true" />
                             </div>
                         </div>
 
@@ -425,7 +405,12 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
                         <div class="col-lg-8">
-                            <s:textfield cssClass="from_date form-control dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                            <s:if test="order.modeOfService != 'DELIVERY'">
+                                <s:textfield cssClass="dispatchInput from_date form-control dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                            </s:if>
+                            <s:else>
+                                <s:textfield cssClass="dispatchInput from_date form-control dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                            </s:else>
                         </div>
                     </div>
 
@@ -441,10 +426,11 @@
                                 Cancel
                             </button>
                         </s:a>
-                        <button class="btn btn-primary dispatchSaveBtnDes" type="button">Save</button>
+                        <button class="btn btn-primary dispatchSaveBtnDes" type="button" disabled>Save</button>
                     </div>
                 </s:form>
             </div>
+
             <div class="panel-footer">
                 <div class="pull-right">
                     <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
@@ -468,6 +454,7 @@
                     </s:a>
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -935,6 +922,11 @@
 
     });
 
+    /*$(document).ready(function(){
+        validationForm('dispatchInput', 'finalSaveBtnDes');
+        *//*dateValidationInitDes();*//*
+    });*/
+
     $(document).ready(function() {
 
         $('.forceSubmitDes').click(function(){
@@ -1186,6 +1178,8 @@
 
     $(document).ready(function(){
         dispatchFilterScheduleDestination();
+        /*validationForm('dispatchInput', 'finalSaveBtnDes');*/
+        validationForm('dispatchInput', 'dispatchSaveBtnDes');
     });
 
     $(document).ready(function () {

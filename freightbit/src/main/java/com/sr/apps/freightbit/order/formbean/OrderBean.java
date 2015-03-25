@@ -29,9 +29,11 @@ public class OrderBean {
 	private String shipperCode;
 	private String consigneeCode;
     private Date pickupDate;
+    private String strPickupDate;
     /*private Date pickupTime;*/
     private String originationPort;
     private Date deliveryDate;
+    private String strDeliveryDate;
     /*private Date deliveryTime;*/
     private String destinationPort;
     private Double rates;
@@ -225,19 +227,27 @@ public class OrderBean {
 		this.consigneeCode = consigneeCode;
 	}
 	
-	
 	public Date getPickupDate() {
 		return pickupDate;
 	}
 	public void setPickupDate(Date pickupDate) {
 		this.pickupDate = pickupDate;
 	}
-	/*public Date getPickupTime() {
-		return pickupTime;
-	}
-	public void setPickupTime(Date pickupTime) {
-		this.pickupTime = pickupTime;
-	}*/
+
+    public String getStrPickupDate() {
+        return strPickupDate;
+    }
+
+    public void setStrPickupDate(String strPickupDate) {
+        this.strPickupDate = strPickupDate;
+    }
+
+    /*public Date getPickupTime() {
+            return pickupTime;
+        }
+        public void setPickupTime(Date pickupTime) {
+            this.pickupTime = pickupTime;
+        }*/
 	public String getOriginationPort() {
 		return originationPort;
 	}
@@ -250,12 +260,21 @@ public class OrderBean {
 	public void setDeliveryDate(Date deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
-	/*public Date getDeliveryTime() {
-		return deliveryTime;
-	}
-	public void setDeliveryTime(Date deliveryTime) {
-		this.deliveryTime = deliveryTime;
-	}*/
+
+    public String getStrDeliveryDate() {
+        return strDeliveryDate;
+    }
+
+    public void setStrDeliveryDate(String strDeliveryDate) {
+        this.strDeliveryDate = strDeliveryDate;
+    }
+
+    /*public Date getDeliveryTime() {
+            return deliveryTime;
+        }
+        public void setDeliveryTime(Date deliveryTime) {
+            this.deliveryTime = deliveryTime;
+        }*/
 	public String getDestinationPort() {
 		return destinationPort;
 	}

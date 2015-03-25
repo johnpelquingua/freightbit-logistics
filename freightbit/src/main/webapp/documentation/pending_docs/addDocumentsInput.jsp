@@ -11,7 +11,7 @@
         <s:hidden cssClass="destinationVendorFlag" value="%{destinationVendorFlag}" />--%>
         <s:hidden cssClass="vendorLocationFlag" value="%{vendorLocationFlag}" />
 
-        <s:form action="addDocument" theme="bootstrap">
+        <s:form action="addDocument" theme="bootstrap" novalidate="true">
 
             <label class="col-lg-4 control-label" style="text-align: right;">Document Name</label>
             <div class="col-lg-8">
@@ -34,23 +34,6 @@
             </div>
 
             <div class="recipientField" style="display:none;">
-                <%--<label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">ATW Representative</label>
-                <div class="col-lg-8" >
-                    <s:select id="authorizedRepresentative"
-                              cssClass="form-control"
-                              style="margin-bottom: 15px !important;"
-                              name="authorizedRecipient"
-                              list="recipientList"
-                              emptyOption="true"/>
-                </div>
-
-                <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Representative</label>
-                <div class="col-lg-8" >
-                    <s:select id="representativeName"
-                              cssClass="form-control"
-                              style="margin-bottom: 15px !important;"
-                              list="representativeList" />
-                </div>--%>
 
                 <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Authorized Agent</label>
                 <div class="col-lg-8" >
@@ -92,7 +75,7 @@
             <div class="seriesField">
                 <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Series Number</label>
                 <div class="col-lg-8" >
-                    <s:textfield cssClass="form-control modalComment" name="document.referenceNumber" style="margin-bottom: 15px !important;" />
+                    <s:textfield cssClass="form-control modalComment" name="document.referenceNumber" style="margin-bottom: 15px !important;" maxLength="30"/>
                 </div>
             </div>
 
@@ -100,12 +83,8 @@
                 <label class="col-lg-4 control-label" style="text-align: right; clear:both;">Comments</label>
                 <div class="col-lg-8" >
                     <s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
-<<<<<<< Updated upstream
-                                id="document_documentComments" maxLength="255"/>
+                        id="document_documentComments" maxLength="255" data-toggle="tooltip" data-placement="left" title='e.g. "Change this with sample comments" <br/> "Another sample"' data-html="true"/>
                 </div>
-=======
-                                id="document_documentComments" maxLength="255" data-toggle="tooltip" data-placement="left" title='e.g. "Change this with sample comments" <br/> "Another sample"' data-html="true"/>
->>>>>>> Stashed changes
             </div>
 
             <div style="clear:both;" class="modal-footer">
@@ -226,9 +205,16 @@
                         }
                     }
                 }else{
-                    if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'HOUSE BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW'){
-                        $('.datalistDocuments option').eq(i).remove();
+                    if($('.serviceMode').val() == 'DELIVERY'){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'HOUSE BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW'){
+                            $('.datalistDocuments option').eq(i).remove();
+                        }
+                    }else{
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'HOUSE BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW'){
+                            $('.datalistDocuments option').eq(i).remove();
+                        }
                     }
+
                 }
             }else if($('[name="documentStageParam"]').val() == 'FINAL OUTBOUND'){
                 if($('.serviceType').val() == 'SHIPPING AND TRUCKING' || $('.serviceType').val() == 'SHIPPING'){

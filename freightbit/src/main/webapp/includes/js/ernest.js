@@ -919,12 +919,13 @@ function dateValidationInit(){
             finalPickupDate = new Date($('.finalPickupDate').val()),
             finalSaveBtn = $('.finalSaveBtn'),
             serviceMode = $('.serviceModeField').val(),
+            serviceType = $('.serviceTypeField').val(),
             formToSubmit = $('.originForm'),
             originVendor = $('#vendorListOrigin').val(),
             originDriver = $('#driverList').val(),
             originTruck = $('#trucksList').val();
 
-        if(serviceMode != 'DELIVERY') {
+        if(serviceType != 'TRUCKING') {
             if (departureDate != 'Invalid Date' && pickupdate != 'Invalid Date') {
                 if (finalPickupDate.setHours(0, 0, 0, 0) >= pickupdate.setHours(0, 0, 0, 0) && finalPickupDate.setHours(0, 0, 0, 0) <= departureDate.setHours(0, 0, 0, 0)) {
                     finalPickupDateModal(originVendor,originDriver,originTruck,finalPickupDate);
@@ -978,47 +979,54 @@ function dateValidationInitDes(){
             arrivalDate = new Date($('.arrivalDate').val()),
             finalDeliveryDate = new Date($('.finalDeliveryDate').val()),
             finalSaveBtnDes = $('.finalSaveBtnDes').val(),
+            serviceMode = $('.serviceModeField').val(),
+            serviceType = $('.serviceTypeField').val(),
             formToSubmit = $('.destinationForm').val(),
             destinationVendor = $('#vendorListDestination').val(),
             destinationDriver = $('#driverListDestination').val(),
             destinationTruck = $('#trucksListDestination').val();
 
-        if(arrivalDate != 'Invalid Date' && deliveryDate != 'Invalid Date'){
-            if(deliveryDate.setHours(0,0,0,0) >= finalDeliveryDate.setHours(0,0,0,0) && arrivalDate.setHours(0,0,0,0) <= finalDeliveryDate.setHours(0,0,0,0)){
-                /*formToSubmit.submit();*/
-                finalDeliveryDateModal(destinationVendor,destinationDriver,destinationTruck,finalDeliveryDate);
-                $('#saveDispatchPlanning').modal('show');
-            }else{
-                deliveryDate = deliveryDate.getUTCFullYear() + '-' + (deliveryDate.getMonth() + 1) + '-' + deliveryDate.getDate();
-                arrivalDate = arrivalDate.getUTCFullYear() + '-' + (arrivalDate.getMonth() + 1) + '-' + arrivalDate.getDate();
-                var message = 'Date must be between <font color="red">' + arrivalDate + '</font> and <font color="red">' + deliveryDate + '</font> <br/>Do you still wish to proceed?';
-                $('#dateWarningModalBodyDes').empty().append(message);
-                $('#dateWarningModalDes').modal('show');
+        if(serviceType != 'TRUCKING') {
+            if (arrivalDate != 'Invalid Date' && deliveryDate != 'Invalid Date') {
+                if (deliveryDate.setHours(0, 0, 0, 0) >= finalDeliveryDate.setHours(0, 0, 0, 0) && arrivalDate.setHours(0, 0, 0, 0) <= finalDeliveryDate.setHours(0, 0, 0, 0)) {
+                    /*formToSubmit.submit();*/
+                    finalDeliveryDateModal(destinationVendor, destinationDriver, destinationTruck, finalDeliveryDate);
+                    $('#saveDispatchPlanning').modal('show');
+                } else {
+                    deliveryDate = deliveryDate.getUTCFullYear() + '-' + (deliveryDate.getMonth() + 1) + '-' + deliveryDate.getDate();
+                    arrivalDate = arrivalDate.getUTCFullYear() + '-' + (arrivalDate.getMonth() + 1) + '-' + arrivalDate.getDate();
+                    var message = 'Date must be between <font color="red">' + arrivalDate + '</font> and <font color="red">' + deliveryDate + '</font> <br/>Do you still wish to proceed?';
+                    $('#dateWarningModalBodyDes').empty().append(message);
+                    $('#dateWarningModalDes').modal('show');
+                }
+            } else {
+                if (deliveryDate != 'Invalid Date') {
+                    if (deliveryDate.setHours(0, 0, 0, 0) >= finalDeliveryDate.setHours(0, 0, 0, 0)) {
+                        /*formToSubmit.submit();*/
+                        finalDeliveryDateModal(destinationVendor, destinationDriver, destinationTruck, finalDeliveryDate);
+                        $('#saveDispatchPlanning').modal('show');
+                    } else {
+                        deliveryDate = deliveryDate.getUTCFullYear() + '-' + (deliveryDate.getMonth() + 1) + '-' + deliveryDate.getDate();
+                        var message = 'Date must be no later than <font color="red">' + deliveryDate + '</font>';
+                        $('#dateWarningModalBodyDes').empty().append(message);
+                        $('#dateWarningModalDes').modal('show');
+                    }
+                } else {
+                    if (arrivalDate.setHours(0, 0, 0, 0) <= finalDeliveryDate.setHours(0, 0, 0, 0)) {
+                        /*formToSubmit.submit();*/
+                        finalDeliveryDateModal(destinationVendor, destinationDriver, destinationTruck, finalDeliveryDate);
+                        $('#saveDispatchPlanning').modal('show');
+                    } else {
+                        arrivalDate = arrivalDate.getUTCFullYear() + '-' + (arrivalDate.getMonth() + 1) + '-' + arrivalDate.getDate();
+                        var message = 'Date must be on or after <font color="red">' + arrivalDate + '</font>';
+                        $('#dateWarningModalBodyDes').empty().append(message);
+                        $('#dateWarningModalDes').modal('show');
+                    }
+                }
             }
         }else{
-            if(deliveryDate != 'Invalid Date'){
-                if(deliveryDate.setHours(0,0,0,0) >= finalDeliveryDate.setHours(0,0,0,0)){
-                    /*formToSubmit.submit();*/
-                    finalDeliveryDateModal(destinationVendor,destinationDriver,destinationTruck,finalDeliveryDate);
-                    $('#saveDispatchPlanning').modal('show');
-                }else{
-                    deliveryDate = deliveryDate.getUTCFullYear() + '-' + (deliveryDate.getMonth() + 1) + '-' + deliveryDate.getDate();
-                    var message = 'Date must be no later than <font color="red">' + deliveryDate + '</font>';
-                    $('#dateWarningModalBodyDes').empty().append(message);
-                    $('#dateWarningModalDes').modal('show');
-                }
-            }else{
-                if(arrivalDate.setHours(0,0,0,0) <= finalDeliveryDate.setHours(0,0,0,0)){
-                    /*formToSubmit.submit();*/
-                    finalDeliveryDateModal(destinationVendor,destinationDriver,destinationTruck,finalDeliveryDate);
-                    $('#saveDispatchPlanning').modal('show');
-                }else{
-                    arrivalDate = arrivalDate.getUTCFullYear() + '-' + (arrivalDate.getMonth() + 1) + '-' + arrivalDate.getDate();
-                    var message = 'Date must be on or after <font color="red">' + arrivalDate + '</font>';
-                    $('#dateWarningModalBodyDes').empty().append(message);
-                    $('#dateWarningModalDes').modal('show');
-                }
-            }
+            finalDeliveryDateModal(destinationVendor, destinationDriver, destinationTruck, finalDeliveryDate);
+            $('#saveDispatchPlanning').modal('show');
         }
 
     })
@@ -1062,10 +1070,6 @@ function finalDeliveryDateModal(destinationVendor,destinationDriver,destinationT
 
 
 function finalPickupDateBulkModal(originVendor,originDriver,originTruck,dispatchFinalPickup){
-    /*alert(originVendor);
-     alert(originDriver);
-     alert(originTruck);
-     alert(finalPickupDate);*/
 
     dispatchFinalPickup = dispatchFinalPickup.getUTCFullYear() + '-' + (dispatchFinalPickup.getMonth() + 1) + '-' + dispatchFinalPickup.getDate();
 
@@ -1255,7 +1259,8 @@ function dispatchFilterScheduleDestination() {
             destinationVendor = $('#vendorListDestination').val(),
             destinationDriver = $('#driverListDestination').val(),
             destinationTruck = $('#trucksListDestination').val(),
-            serviceType = $('.serviceType').val();
+            serviceType = $('.serviceType').val(),
+            serviceMode = $('.serviceMode').val();
 
         for (var i = 0; i < dispatchFreightTable.size(); i++){
             var loop_schedArrival = new Date(scheduleArrival.eq(i).text()).setHours(0,0,0,0);
@@ -1270,17 +1275,23 @@ function dispatchFilterScheduleDestination() {
         }
 
         if(serviceType != 'TRUCKING'){
-            if(selectedArrival <= dispatchFinalDelivery.setHours(0,0,0,0)){
-                /*formToSubmit.submit();*/
+            if(serviceMode != 'DELIVERY'){
+                if(selectedArrival <= dispatchFinalDelivery.setHours(0,0,0,0)){
+                    /*formToSubmit.submit();*/
+                    finalDeliveryDateBulkModal(destinationVendor, destinationDriver, destinationTruck, dispatchFinalDelivery);
+                    $('#saveDispatchPlanning').modal('show');
+                }else{
+                    finalArrival = new Date(selectedArrival);
+                    finalArrival = finalArrival.getUTCFullYear() + '-' + (finalArrival.getMonth() + 1) + '-' + finalArrival.getDate();
+                    var message = 'Date must be on or after <font color="red">' + finalArrival + '</font> <br/> Do you still wish to proceed?';
+                    $('#dateWarningModalBodyDes').empty().append(message);
+                    $('#dateWarningModalDes').modal('show');
+                }
+            }else{
                 finalDeliveryDateBulkModal(destinationVendor, destinationDriver, destinationTruck, dispatchFinalDelivery);
                 $('#saveDispatchPlanning').modal('show');
-            }else{
-                finalArrival = new Date(selectedArrival);
-                finalArrival = finalArrival.getUTCFullYear() + '-' + (finalArrival.getMonth() + 1) + '-' + finalArrival.getDate();
-                var message = 'Date must be on or after <font color="red">' + finalArrival + '</font> <br/> Do you still wish to proceed?';
-                $('#dateWarningModalBodyDes').empty().append(message);
-                $('#dateWarningModalDes').modal('show');
             }
+
         }else{
             finalDeliveryDateBulkModal(destinationVendor, destinationDriver, destinationTruck, dispatchFinalDelivery);
             $('#saveDispatchPlanning').modal('show');
