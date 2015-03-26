@@ -17,9 +17,9 @@
 </style>
 
 <script>
-  $(document).ready(function(){
+  /*$(document).ready(function(){
   if (window.localStorage) {
-  $('.notifBox').on('click',':checkbox',function(){
+  $('#notifyByPhone').on('click',':checkbox',function(){
   var name = this.name;
   var value = this.value;
 
@@ -41,38 +41,75 @@
   });
   });
   }
+  });*/
+
+  $(document).ready(function () {
+      $("#notifyByPhone").click(function () {
+          if (document.getElementById('notifyByPhone').checked) {
+              localStorage.setItem('notifyByPhone', "true");
+          } else {
+              localStorage.setItem('notifyByPhone', "false");
+          }
+      });
+      $("#notifyByMobile").click(function () {
+          if (document.getElementById('notifyByMobile').checked) {
+              localStorage.setItem('notifyByMobile', "true");
+          } else {
+              localStorage.setItem('notifyByMobile', "false");
+          }
+      });
+      $("#notifyBySms").click(function () {
+          if (document.getElementById('notifyBySms').checked) {
+              localStorage.setItem('notifyBySms', "true");
+          } else {
+              localStorage.setItem('notifyBySms', "false");
+          }
+      });
+      $("#notifyByFax").click(function () {
+          if (document.getElementById('notifyByFax').checked) {
+              localStorage.setItem('notifyByFax', "true");
+          } else {
+              localStorage.setItem('notifyByFax', "false");
+          }
+      });
+      $("#notifyByEmail").click(function () {
+          if (document.getElementById('notifyByEmail').checked) {
+              localStorage.setItem('notifyByEmail', "true");
+          } else {
+              localStorage.setItem('notifyByEmail', "false");
+          }
+      });
   });
 
-  /*$(document).ready(function() {
-      function getThis() {
-          $("#notifyBy").val(localStorage.getItem("checkBoxField"));
-      }
-
-      //    Set the value in cache
-      function setThis() {
-          localStorage.setItem("checkBoxField", $("#notifyBy").val());
-      }
-
-      if(document.getElementById("notifyBy").checked){
-          alert("CHECKED");
-      }
-
-      *//*if($('#notifyBy [type="checkboxlist"]:checked').length) {
-          alert(1);
-      }
-      else{
-          setThis();
-      }*//*
-
-      *//*$(window).load(function () {
-          getThis();
-      });*//*
-  });
   $(document).ready(function() {
       $(window).load(function () {
-          getThis();
+          var getStatusPhone = localStorage.getItem('notifyByPhone');
+          var getStatusMobile = localStorage.getItem('notifyByMobile');
+          var getStatusSms = localStorage.getItem('notifyBySms');
+          var getStatusFax = localStorage.getItem('notifyByFax');
+          var getStatusEmail = localStorage.getItem('notifyByEmail');
+
+          if (getStatusPhone == "true") {
+              document.getElementById("notifyByPhone").checked = true;
+              if(getStatusMobile == "true") {
+                  document.getElementById("notifyByMobile").checked = true;
+                  if(getStatusSms == "true") {
+                      document.getElementById("notifyBySms").checked = true;
+                      if(getStatusFax == "true") {
+                          document.getElementById("notifyByFax").checked = true;
+                          if(getStatusEmail == "true") {
+                              document.getElementById("notifyByEmail").checked = true;
+                          }
+                      }
+                  }
+              }
+          }
+          else
+          {
+              console.log("its not checked");
+          }
       });
-  });*/
+  });
 </script>
 
 <div class="row">
@@ -327,8 +364,12 @@
                     <div class="col-lg-9" style="text-align:left !important;">
                         <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
-                        <s:checkboxlist cssClass="notifBox" list="notifyByList" listKey="key" value="" listValue="value" name="order.notifyBy" id="notifyBy" ></s:checkboxlist>
-
+                        <%--<s:checkboxlist cssClass="notifBox" list="notifyByList" listKey="key" value="" listValue="value" name="order.notifyBy" id="notifyBy" ></s:checkboxlist><br/>--%>
+                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByPhone" value="Phone" /> Phone&emsp;&emsp;&emsp;&emsp;
+                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByMobile" value="Mobile" /> Mobile&emsp;&emsp;&emsp;&emsp;
+                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyBySms" value="SMS" /> SMS&emsp;&emsp;&emsp;&emsp;
+                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByFax" value="Fax" /> Fax&emsp;&emsp;&emsp;&emsp;
+                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByEmail" value="E-mail" /> E-mail
                     </div>
 
                 </div>
