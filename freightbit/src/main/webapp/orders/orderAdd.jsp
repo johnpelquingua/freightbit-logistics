@@ -110,6 +110,18 @@
           }
       });
   });
+  function validate_form()
+  {
+      valid = true;
+
+      if($('input[type=checkbox]:checked').length == 0)
+      {
+          alert ( "ERROR! Please select at least one checkbox" );
+          valid = false;
+      }
+
+      return valid;
+  }
 </script>
 
 <div class="row">
@@ -151,7 +163,7 @@
                                 Basic Information
                             </span>
                         </legend>
-                        <s:form action="addOrder" theme="bootstrap" cssClass="addOrderForm" >
+                        <s:form action="addOrder" theme="bootstrap" cssClass="addOrderForm" onsubmit="return validate_form();">
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></span></label>
@@ -326,12 +338,12 @@
 
                     <label class="pickupDateLabel col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class="pickupDateInput from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;" readonly="true">
+                        <input type="text" class="pickupDateInput from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" style="margin-bottom: 15px !important;">
                     </div>
 
                     <label class="col-lg-3 control-label deliveryDateLabel" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class="deliveryDateInput to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" readonly="true">
+                        <input type="text" class="deliveryDateInput to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" style="margin-bottom: 15px !important;">
                     </div>
 
                 </div>
@@ -510,8 +522,8 @@
             Cancel
         </button>
 
-        <%--<s:submit name="submit" cssClass="btn btn-primary nextBtn" value="Next" />--%>
-        <button class="btn btn-primary nextBtn" type="button" disabled>Next</button>
+        <s:submit name="submit" cssClass="btn btn-primary nextBtnDateVal" value="Next" />
+        <%--<button class="btn btn-primary nextBtn" type="button">Next</button>--%>
         </s:form>
     </div>
 
