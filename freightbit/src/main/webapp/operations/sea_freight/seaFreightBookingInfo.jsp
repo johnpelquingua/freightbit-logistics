@@ -129,7 +129,7 @@
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Pick-up Date</td>
-                            <td><s:property value="order.pickupDate"/></td>
+                            <td><s:property value="order.strPickupDate"/></td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Pick-up Address</td>
@@ -174,7 +174,7 @@
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Delivery Date</td>
-                            <td><s:property value="order.deliveryDate"/></td>
+                            <td><s:property value="order.strDeliveryDate"/></td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Delivery Address</td>

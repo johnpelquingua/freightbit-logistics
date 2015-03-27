@@ -94,12 +94,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Commodity</label>
                             <div class="col-lg-3">
                                 <s:textarea name="item.description" id="item.description" resize="none" style="resize:none" rows="3" cssClass="form-control" maxlength="50" tabindex="8" />
                             </div>
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Note</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Comments</label>
                             <div class="col-lg-3">
                                 <s:textarea name="item.note" id="item.note" cssClass="form-control" style="resize:none" rows="3" maxlength="50" tabindex="9" />
                             </div>

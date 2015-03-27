@@ -53,7 +53,7 @@
                 Basic Information
             </span>
         </legend>
-        <s:form action="editOrder" theme="bootstrap">
+        <s:form action="editOrder" theme="bootstrap" onsubmit="return validate_form();">
         <%--<s:property value="%{order.orderId}"/>--%>
         <s:hidden name="order.orderId" id="order_orderId" value="%{order.orderId}" />
         <%--<s:property value="%{order.orderNumber}"/>--%>
@@ -279,7 +279,12 @@
         <div class="col-lg-9" style="text-align:left !important;">
             <%--<s:property value="%{order.notifyBy}" />
             <s:property value="%{notificationList}" />--%>
-            <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" value="%{notificationList}"/>
+            <%--<s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" value="%{notificationList}"/>--%>
+            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByPhone" value="Phone" /> Phone&emsp;&emsp;&emsp;&emsp;
+            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByMobile" value="Mobile" /> Mobile&emsp;&emsp;&emsp;&emsp;
+            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyBySms" value="SMS" /> SMS&emsp;&emsp;&emsp;&emsp;
+            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByFax" value="Fax" /> Fax&emsp;&emsp;&emsp;&emsp;
+            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByEmail" value="E-mail" /> E-mail
         </div>
 
     </div>
@@ -829,7 +834,7 @@
             </div>
             <div class="modal-footer">
                 <div>
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    <s:submit cssClass="btn btn-primary nextBtnDateVal" name="submit" value="Save"/>
                 </div>
                 </s:form>
             </div>
@@ -945,8 +950,88 @@
 
     var ctr = "N";
 
-$(document).ready(function() {
+    $(document).ready(function () {
+        $("#notifyByPhone").click(function () {
+            if (document.getElementById('notifyByPhone').checked) {
+                localStorage.setItem('notifyByPhone', "true");
+            } else {
+                localStorage.setItem('notifyByPhone', "false");
+            }
+        });
+        $("#notifyByMobile").click(function () {
+            if (document.getElementById('notifyByMobile').checked) {
+                localStorage.setItem('notifyByMobile', "true");
+            } else {
+                localStorage.setItem('notifyByMobile', "false");
+            }
+        });
+        $("#notifyBySms").click(function () {
+            if (document.getElementById('notifyBySms').checked) {
+                localStorage.setItem('notifyBySms', "true");
+            } else {
+                localStorage.setItem('notifyBySms', "false");
+            }
+        });
+        $("#notifyByFax").click(function () {
+            if (document.getElementById('notifyByFax').checked) {
+                localStorage.setItem('notifyByFax', "true");
+            } else {
+                localStorage.setItem('notifyByFax', "false");
+            }
+        });
+        $("#notifyByEmail").click(function () {
+            if (document.getElementById('notifyByEmail').checked) {
+                localStorage.setItem('notifyByEmail', "true");
+            } else {
+                localStorage.setItem('notifyByEmail', "false");
+            }
+        });
+    });
 
+    $(document).ready(function() {
+        $(window).load(function () {
+            var getStatusPhone = localStorage.getItem('notifyByPhone');
+            var getStatusMobile = localStorage.getItem('notifyByMobile');
+            var getStatusSms = localStorage.getItem('notifyBySms');
+            var getStatusFax = localStorage.getItem('notifyByFax');
+            var getStatusEmail = localStorage.getItem('notifyByEmail');
+
+            if (getStatusPhone == "true") {
+                document.getElementById("notifyByPhone").checked = true;
+                if(getStatusMobile == "true") {
+                    document.getElementById("notifyByMobile").checked = true;
+                    if(getStatusSms == "true") {
+                        document.getElementById("notifyBySms").checked = true;
+                        if(getStatusFax == "true") {
+                            document.getElementById("notifyByFax").checked = true;
+                            if(getStatusEmail == "true") {
+                                document.getElementById("notifyByEmail").checked = true;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                console.log("its not checked");
+            }
+        });
+    });
+
+    function validate_form()
+    {
+        valid = true;
+
+        if($('input[type=checkbox]:checked').length == 0)
+        {
+            alert ( "ERROR! Please select at least one checkbox" );
+            valid = false;
+        }
+
+        return valid;
+    }
+
+$(document).ready(function() {
     $( window ).load(function() {
 
         /*alert((localStorage.getItem("ctr")));*/
