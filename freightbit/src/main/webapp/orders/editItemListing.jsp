@@ -19,8 +19,6 @@
           <s:hidden name="orderItem.truckOrigin" value="%{orderItem.truckOrigin}" />
           <s:hidden name="orderItem.truckDestination" value="%{orderItem.truckDestination}" />
           <s:hidden name="orderItem.finalPickupDate" value="%{orderItem.finalPickupDate}" />
-          <%--<s:textfield value="%{orderItem.finalPickupDate}" />
-          <s:textfield value="%{orderItem.finalDeliveryDate}" />--%>
           <s:hidden name="orderItem.finalDeliveryDate" value="%{orderItem.finalDeliveryDate}" />
           <s:hidden name="orderItem.vendorOrigin" value="%{orderItem.vendorOrigin}" />
           <s:hidden name="orderItem.vendorDestination" value="%{orderItem.vendorDestination}" />
@@ -32,14 +30,14 @@
           <div class="form-group">
 
               <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
-                <label class="col-lg-4 control-label" style="padding-top:0px; display:none;">Quantity: </label>
+                <label class="col-lg-4 control-label" style="padding-top:0px;">Quantity: </label>
                 <div class="col-lg-7" >
-                  <s:select cssClass="form-control" id="orderItem.quantity" name="orderItem.quantity" list="containerQuantity"
+                  <s:hidden name="orderItem.quantity" value="%{orderItem.quantity}" />
+                  <s:select cssClass="form-control" id="orderItem_quantityFCL" list="containerQuantity"
                             emptyOption="true"
                             required="true"
                             onchange="fcl()"
-                            cssStyle="display:none"
-                  />
+                            disabled="true" />
                 </div>
               </s:if>
               <s:else>
@@ -47,8 +45,7 @@
                 <div class="col-lg-7" >
                   <s:select cssClass="form-control" id="orderItem_quantity" name="orderItem.quantity" list="itemQuantity"
                             emptyOption="true"
-                            required="true"
-                  />
+                            required="true" />
                 </div>
               </s:else>
           </div>
@@ -56,6 +53,7 @@
             <s:if test="order.serviceRequirement == 'FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Size: </label>
             <div class="col-lg-7" >
+
                 <s:select cssClass="form-control containerSizeDropdown"
                           id="orderItem.nameSize"
                           name="orderItem.nameSize"
@@ -63,8 +61,7 @@
                           listKey="key"
                           listValue="value"
                           emptyOption="true"
-                          required="true"
-                        />
+                          required="true" />
             </div>
             </s:if>
             <s:else>
@@ -82,35 +79,38 @@
               </div>
             </s:else>
           </div>
-          <div class="form-group">
-            <label class="col-lg-4 control-label" style="padding-top:0px;">Weight (kg): </label>
-            <div class="col-lg-7" >
+
               <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
-                <s:textfield cssClass="form-control" name="orderItem.weight" id="orderItem_weight" maxLength="9" required="true"
-                             placeholder="XXXXXX.XX"
-                             pattern="\d+(\.\d{1,2})?"
-                />
+                <s:textfield cssClass="form-control weightAndVolume" name="orderItem.weight" id="orderItem.weight" maxLength="9" required="true" />
               </s:if>
               <s:else>
-                <s:textfield cssClass="form-control" name="orderItem.weight" id="orderItem_weight_textfield" maxLength="9" required="true"
-                             placeholder="XXXXXX.XX"
-                             pattern="\d+(\.\d{1,2})?"
-                />
+              <div class="form-group">
+                  <label class="col-lg-4 control-label" style="padding-top:0px;">Weight (kg): </label>
+
+                  <div class="col-lg-7" >
+                    <s:textfield cssClass="form-control" name="orderItem.weight" id="orderItemWeight_textfield" maxLength="9" required="true"
+                               placeholder="XXXXXX.XX"
+                               value="%{getText('format.number',{orderItem.weight})}"
+                               pattern="\d+(\.\d{1,2})?" />
+
+                  </div>
+              </div>
               </s:else>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-4 control-label" style="padding-top:0px;">Volume (m&#179;): </label>
-            <div class="col-lg-7" >
+
               <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
-                <s:textfield cssClass="form-control" id="orderItem-volume" name="orderItem.volume"/>
+                <s:textfield cssClass="form-control weightAndVolume" name="orderItem.volume" id="orderItem-volume"/>
               </s:if>
               <s:else>
-                <s:textfield cssClass="form-control" name="orderItem.volume" id="orderItem_volume_textfield" required="true"
-                        pattern="\d+(\.\d{1,2})?" />
+              <div class="form-group">
+                <label class="col-lg-4 control-label" style="padding-top:0px;">Volume (cbm): </label>
+                  <div class="col-lg-7">
+                    <s:textfield cssClass="form-control" name="orderItem.volume" id="orderItemVolume_textfield" required="true"
+                            value="%{getText('format.number',{orderItem.volume})}"
+                            pattern="\d+(\.\d{1,2})?" />
+                  </div>
+              </div>
               </s:else>
-            </div>
-          </div>
+
           <div class="form-group">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Commodity: </label>
             <div class="col-lg-7" >
@@ -121,24 +121,24 @@
             <label class="col-lg-4 control-label" style="padding-top:0px;">Value (Php): </label>
             <div class="col-lg-7" >
               <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
-                <s:textfield cssClass="form-control automaticDeclaredValue" name="orderItem.declaredValue" id="orderItem_declaredValues"/>
+                <s:textfield cssClass="form-control automaticDeclaredValue" name="orderItem.declaredValue" id="orderItemdeclaredValues" value="%{getText('format.money',{orderItem.declaredValue})}"/>
               </s:if>
               <s:else>
                 <s:select cssClass="form-control automaticDeclaredValue" id="orderItem_declaredValue" list="#{orderItem_declaredValue}"
                           value="%{orderItem_declaredValue}"
-                          style="display:none"
-                />
-                <s:textfield cssClass="form-control automaticDeclaredValue" name="orderItem.declaredValue" id="orderItem_declaredValue_textfield"
+                          style="display:none" />
+
+                <s:textfield cssClass="form-control automaticDeclaredValue" name="orderItem.declaredValue" id="orderItemdeclaredValues_textfield"
                              maxLength="19"
-                             required="true"
-                />
+                             value="%{getText('format.money',{orderItem.declaredValue})}"
+                             required="true" />
               </s:else>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Rate (Php): </label>
             <div class="col-lg-7" >
-              <s:textfield cssClass="form-control" id="orderItem_rate" name="orderItem.rate" maxLength="16"/>
+              <s:textfield cssClass="form-control" id="orderItem_rate" name="orderItem.rate" maxLength="16" disabled="true"/>
             </div>
           </div>
           <div class="form-group">
@@ -146,8 +146,7 @@
             <div class="col-lg-7" >
               <s:textarea cssClass="form-control" name="orderItem.remarks" id="orderItem_remarks"
                           cssStyle="resize: none; height: 150px;"
-                          maxLength="255"
-              />
+                          maxLength="255" />
             </div>
           </div>
 
@@ -163,3 +162,17 @@
     </div>
   </div>
 </div>
+
+<script>
+
+  $('.weightAndVolume').hide();
+
+  $(document).ready(function() {
+    $("#orderItemdeclaredValues").maskMoney();
+    $("#orderItemdeclaredValues_textfield").maskMoney();
+    $("#orderItemWeight_textfield").maskMoney({precision:0});
+    $("#orderItemVolume_textfield").maskMoney({precision:0});
+  });
+
+</script>
+

@@ -582,8 +582,7 @@ function getThis(){
     localStorage.setItem("FaxField", $("#customerFax_textfield").val());
 
 }
-function setThis()
-{
+function setThis(){
     $("#order_serviceRequirement").val(localStorage.getItem("ServiceReqField"));
     $("#order_modeOfService").val(localStorage.getItem("ServiceModeField"));
     $("#order_freightType").val(localStorage.getItem("FreightTypeField"));

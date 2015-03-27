@@ -137,6 +137,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Map<Double, Double> shipperItemWidthMap = new HashMap<Double, Double>();
     private Map<Double, Double> shipperItemHeightMap = new HashMap<Double, Double>();
     private Map<String, String> shipperItemCodeMap = new HashMap<String, String>();
+    private Map<String, String> shipperItemCommentsMap = new HashMap<String, String>();
 
     private Integer itemId;
 
@@ -160,6 +161,8 @@ public class OrderAction extends ActionSupport implements Preparable {
             shipperItemWidthMap.put(shipperItem.getWidth(), shipperItem.getWidth());
 
             shipperItemHeightMap.put(shipperItem.getHeight(), shipperItem.getHeight());
+
+            shipperItemCommentsMap.put(shipperItem.getNote(), shipperItem.getNote());
 
         }
 
@@ -406,19 +409,25 @@ public class OrderAction extends ActionSupport implements Preparable {
            orderEntityForm.getServiceRequirement().equals("LOOSE CARGO LOAD") ||
            orderEntityForm.getServiceRequirement().equals("ROLLING CARGO LOAD") ||
            orderEntityForm.getServiceRequirement().equals("LESS TRUCK LOAD")) {
+
             // Check if Item Code exists in Customers Items Table
             List<Items> customerOldItems = customerService.findItemByCustomerId(item.getCustomerId());
+            Integer itemCheck = 0;
             for (Items itemsElem : customerOldItems) {
                 if (itemsElem.getItemCode().equals(item.getItemCode())) {
-                    return INPUT;
+                    itemCheck = itemCheck + 1;
+                    /*return INPUT;*/
                 }
             }
 
-            Items itemEntity = transformToEntityBeanItem(item);
-            itemEntity.setModifiedBy(commonUtils.getUserNameFromSession());
-            itemEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-            itemEntity.setCreatedTimeStamp(new Date());
-            customerService.addItem(itemEntity);
+            if(itemCheck == 0){
+                Items itemEntity = transformToEntityBeanItem(item);
+                itemEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+                itemEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                itemEntity.setCreatedTimeStamp(new Date());
+                customerService.addItem(itemEntity);
+            }
+
         }
 
         // get total quantity from database
@@ -430,8 +439,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
+
         //Changes the order Status to pending
-        /*orderEntityForm.setOrderStatus("PENDING");*/
         if (orderEntityForm.getOrderStatus().equals("PENDING") || orderEntityForm.getOrderStatus().equals("INCOMPLETE")) {
             orderEntityForm.setOrderStatus("PENDING");
         } else {
@@ -475,6 +484,12 @@ public class OrderAction extends ActionSupport implements Preparable {
             } else {
                 // Add order items to database
                 orderItemEntity.setQuantity(orderItem.getQuantity());
+                if(orderItem.getVolume() == null){
+                    OrderItems orderItemInside = operationsService.findOrderItemById(orderItem.getOrderItemId());
+                    Double dblVolume = (orderItemInside.getQuantity() * (orderItem.getLength() * orderItem.getWidth() * orderItem.getHeight()));
+                    String strVolume = dblVolume.toString();
+                    orderItemEntity.setVolume(Float.parseFloat(strVolume));
+                }
                 orderService.addItem(orderItemEntity);
                 String messageFlag = "OTHERS_OK";
                 sessionAttributes.put("messageFlag", messageFlag);
@@ -483,7 +498,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         // repopulate customer items
-
         sessionAttributes.put("customerItems", customerItems);
         // Get Order Id
         Integer idOrder = orderItemEntity.getOrderId();
@@ -587,6 +601,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Success! Booking Item has been deleted.");
+
+        sessionAttributes.put("orderIdPass", orderEntityForm.getOrderId());
 
         return SUCCESS;
     }
@@ -1512,9 +1528,29 @@ public class OrderAction extends ActionSupport implements Preparable {
         /*entity.setQuantity(formBean.getQuantity());*/
         entity.setClassification(formBean.getClassification());
         entity.setDeclaredValue(formBean.getDeclaredValue());
-        entity.setWeight(formBean.getWeight());
-        // Condition in FCL and LCL
 
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdPass"));
+
+        if(orderEntity.getServiceRequirement().equals("FULL CONTAINER LOAD") || orderEntity.getServiceRequirement().equals("FULL TRUCK LOAD")){
+            if (formBean.getNameSize().equals("10 FOOTER")){
+                entity.setWeight(9000.00);
+                entity.setVolume(14.0F);
+            }else if(formBean.getNameSize().equals("20 FOOTER")){
+                entity.setWeight(18000.00);
+                entity.setVolume(28.0F);
+            }else if(formBean.getNameSize().equals("40 STD FOOTER")){
+                entity.setWeight(20000.00);
+                entity.setVolume(56.0F);
+            }else{
+                entity.setWeight(22000.00);
+                entity.setVolume(78.0F);
+            }
+        }else{
+            entity.setWeight(formBean.getWeight());
+            entity.setVolume(formBean.getVolume());
+        }
+
+        // Condition in FCL and LCL
         /*if (sessionAttributes.get("service_Req").equals("FULL CONTAINER LOAD")) {
             entity.setNameSize(formBean.getNameSize());
         } else {
@@ -1530,12 +1566,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setComments(formBean.getRemarks());
 
         // Trucking Freight Types will proceed to inland freight operations
-        /*if (sessionAttributes.get("f_Type").equals("TRUCKING")) {
-            entity.setStatus("PLANNING 2");
-        } else {
-            entity.setStatus("PLANNING 1");
-        }*/
-
         if(sessionAttributes.get("service_Mode").equals("DELIVERY")){
             entity.setStatus("PLANNING 3");
         }else if(sessionAttributes.get("service_Mode").equals("PICKUP") || sessionAttributes.get("service_Mode").equals("INTER-WAREHOUSE")){
@@ -1544,7 +1574,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             entity.setStatus("PLANNING 1");
         }
 
-        entity.setVolume(formBean.getVolume());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setModifiedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimestamp(new Date());
@@ -2437,6 +2466,14 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setShipperItemCodeMap(Map<String, String> shipperItemCodeMap) {
         this.shipperItemCodeMap = shipperItemCodeMap;
+    }
+
+    public Map<String, String> getShipperItemCommentsMap() {
+        return shipperItemCommentsMap;
+    }
+
+    public void setShipperItemCommentsMap(Map<String, String> shipperItemCommentsMap) {
+        this.shipperItemCommentsMap = shipperItemCommentsMap;
     }
 }
 

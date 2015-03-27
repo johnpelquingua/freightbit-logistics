@@ -4,124 +4,10 @@
 // AUTHORED BY Jan Sarmiento -- START
 $(document).ready(function(){
 
-    $('.containerSizeDropdown').change(function(){
-        var declaredValField = $('.automaticDeclaredValue');
-        switch($(this).val()){
-            case '10 FT' :
-                if (document.getElementById('orderItem_quantityFCL').value == "1") {
-                    declaredValField.val('250,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "2") {
-                    declaredValField.val('500,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "3") {
-                    declaredValField.val('750,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "4") {
-                    declaredValField.val('1,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "5") {
-                    declaredValField.val('1,250,000.00');
-                }
-                else{
-                    declaredValField.val('250,000.00');
-                    document.getElementById('orderItem_quantityFCL').value = 1;
-                }
-                break;
-            case '20 FT' :
-                if (document.getElementById('orderItem_quantityFCL').value == "1") {
-                    declaredValField.val('500,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "2") {
-                    declaredValField.val('1,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "3") {
-                    declaredValField.val('1,500,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "4") {
-                    declaredValField.val('2,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "5") {
-                    declaredValField.val('2,500,000.00');
-                }
-                else{
-                    declaredValField.val('500,000.00');
-                    document.getElementById('orderItem_quantityFCL').value = 1;
-                }
-                break;
-            case '40 STD FT' :
-                if (document.getElementById('orderItem_quantityFCL').value == "1") {
-                    declaredValField.val('1,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "2") {
-                    declaredValField.val('2,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "3") {
-                    declaredValField.val('3,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "4") {
-                    declaredValField.val('4,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "5") {
-                    declaredValField.val('5,000,000.00');
-                }
-                else{
-                    declaredValField.val('1,000,000.00');
-                    document.getElementById('orderItem_quantityFCL').value = 1;
-                }
-                break;
-            case '40 HC FT' :
-                if (document.getElementById('orderItem_quantityFCL').value == "1") {
-                    declaredValField.val('1,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "2") {
-                    declaredValField.val('2,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "3") {
-                    declaredValField.val('3,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "4") {
-                    declaredValField.val('4,000,000.00');
-                }
-                else if(document.getElementById('orderItem_quantityFCL').value == "5") {
-                    declaredValField.val('5,000,000.00');
-                }
-                else{
-                    declaredValField.val('1,000,000.00');
-                    document.getElementById('orderItem_quantityFCL').value = 1;
-                }
-                break;
-            default :
-                declaredValField.val('');
-        }
-    });
-
     if($('.cargoContainerSavingTable tbody tr').size() == 0){
         $('.cargoContainerSavingTableDiv').hide()
         $('.cargoContainerSavingTableLoadingDiv').show();
     }
-
-    $('.containerQuantityDropdown').change(function () {
-        var quantityFCL = document.getElementById('orderItem_quantityFCL').value;
-        var totalValue = 0;
-
-        if (document.getElementById('orderItem.nameSize').value == "10 FT") {
-            totalValue = quantityFCL * 250000; // compute for total value
-            document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
-        }
-        else if (document.getElementById('orderItem.nameSize').value == "20 FT") {
-            totalValue = quantityFCL * 500000; // compute for total value
-            document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
-        }
-        else if (document.getElementById('orderItem.nameSize').value == "40 STD FT") {
-            totalValue = quantityFCL * 1000000; // compute for total value
-            document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
-        }
-        else if (document.getElementById('orderItem.nameSize').value == "40 HC FT") {
-            totalValue = quantityFCL * 1000000; // compute for total value
-            document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
-        }
-    });
 
     // adding item memory
     $('.addItemToList').click(function(){
@@ -135,14 +21,14 @@ $(document).ready(function(){
     addTotalRate();
     newlineHandler('itemListing', 8);
     actionConfirmation($('.itemListingDeleteActionIcon'), $('.itemListingDeleteConfirmBtn'), $('#itemListingDeleteModal'));
+    containerHandler('itemListing', 2, 3, 4);
+    containerHandler('cargoContainerSavingTable', 2, 3, 4);
 });
 
-// function to check if adding item memory exists
-$(function(){
-    if(localStorage.getItem('addingItems') || localStorage.getItem('addingContainer')){
-        $('.addItemDiv').focus();
-    }
-});
+if($('.cargoContainerSavingTable tbody tr').size() == 0){
+    $('.cargoContainerSavingTableDiv').hide()
+    $('.cargoContainerSavingTableLoadingDiv').show();
+}
 
 // THIS FUNCTION HIDES THE WEIGHT AND VOLUME FIELD IF THE SERVICE REQ IS FULL CONTAINER LOAD
 $(function(){
@@ -151,6 +37,13 @@ $(function(){
     }
 });
 // END
+
+// function to check if adding item memory exists
+$(function(){
+    if(localStorage.getItem('addingItems') || localStorage.getItem('addingContainer')){
+        $('.addItemDiv').focus();
+    }
+});
 
 function getThis(){
     localStorage.setItem("itemQuantityField",$("#orderItem_quantity").val());
@@ -209,6 +102,12 @@ $(document).ready(function() {
     $("#orderItem_weight").maskMoney({precision:0});
     $("#orderItem_weight_textfield").maskMoney({precision:0});
     $("#orderItem-volume").maskMoney({precision:0});
+    $("#orderItem_length").maskMoney({precision:0});
+    $("#orderItem_length_textfield").maskMoney({precision:0});
+    $("#orderItem_width").maskMoney({precision:0});
+    $("#orderItem_width_textfield").maskMoney({precision:0});
+    $("#orderItem_height").maskMoney({precision:0});
+    $("#orderItem_height_textfield").maskMoney({precision:0});
 });
 
 $("#item_itemCode").keyup(function(){
@@ -246,7 +145,6 @@ $(document).ready(function() {
             document.getElementById("orderItem_length_textfield").value = '';
             document.getElementById("orderItem_width_textfield").value = '';
             document.getElementById("orderItem_height_textfield").value = '';
-
         }
 
         $.getJSON('itemAction', {
@@ -260,7 +158,9 @@ $(document).ready(function() {
                 select6 = $('#orderItem_length'),
                 select7 = $('#orderItem_width'),
                 select8 = $('#orderItem_height'),
+                select9 = $('#orderItem_remarks'),
                 serviceReq = $('.serviceReq');
+
                 select.find('option').remove();
                 select2.find('option').remove();
                 select3.find('option').remove();
@@ -269,48 +169,13 @@ $(document).ready(function() {
                 select6.find('option').remove();
                 select7.find('option').remove();
                 select8.find('option').remove();
-
+                select9.find('option').remove();
 
             var itemQuantity = $("#orderItem_quantity").val();
             // Set quantity to 1 when Item name is selected first
             if(itemQuantity == '') {
                 document.getElementById("orderItem_quantity").value = 1;
             }
-
-            //if(serviceReq == 'FULL CONTAINER LOAD' || serviceReq == 'FULL TRUCK LOAD'){
-                // populate item volume based on length X Width X Height
-                $.each(jsonResponse.shipperItemVolumeMap, function (key, value) {
-                    $('<option>').val(key).text(value).appendTo(select);
-                    var orderItem_volume = $("#orderItem_volume"); // get value of volume
-
-                    document.getElementById("orderItem_volume_textfield").value = orderItem_volume.val(); // set volume of Item volume textfield
-                    var totalVolume = $("#orderItem_quantity").val() * orderItem_volume.val(); // compute for total volume
-                    orderItem_volume.html(""); // clear list of order Item volume dropdown
-                    var newOption = $('<option value="'+totalVolume+'">'+totalVolume+'</option>'); // append new value to the dropdown list
-                    orderItem_volume.append(newOption);
-                    document.getElementById("orderItem_volume_textfield").value = totalVolume; // set total volume to the order item volume textfield
-                });
-            //}
-
-            $.each(jsonResponse.shipperItemCodeMap, function (key, value) {
-                $('<option>').val(key).text(value).appendTo(select5);
-                document.getElementById("orderItem_itemCode_textfield").value = $("#orderItem_itemCode").val();
-            });
-
-            $.each(jsonResponse.shipperItemLengthMap, function (key, value) {
-                $('<option>').val(key).text(value).appendTo(select6);
-                document.getElementById("orderItem_length_textfield").value = $("#orderItem_length").val();
-            });
-
-            $.each(jsonResponse.shipperItemWidthMap, function (key, value) {
-                $('<option>').val(key).text(value).appendTo(select7);
-                document.getElementById("orderItem_width_textfield").value = $("#orderItem_width").val();
-            });
-
-            $.each(jsonResponse.shipperItemHeightMap, function (key, value) {
-                $('<option>').val(key).text(value).appendTo(select8);
-                document.getElementById("orderItem_height_textfield").value = $("#orderItem_height").val();
-            });
 
             // populate item description
             $.each(jsonResponse.shipperItemCommodityMap, function (key, value) {
@@ -340,6 +205,64 @@ $(document).ready(function() {
                 document.getElementById("orderItem_weight_textfield").value = totalWeight; // set total value to the order item value textfield
             });
 
+            $.each(jsonResponse.shipperItemCodeMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select5);
+                document.getElementById("orderItem_itemCode_textfield").value = $("#orderItem_itemCode").val();
+            });
+
+            $.each(jsonResponse.shipperItemLengthMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select6);
+                document.getElementById("orderItem_length_textfield").value = (parseInt($("#orderItem_length").val())).toPrecision(1);
+                var totalLength = $('#orderItem_quantity').val() * (parseInt($("#orderItem_length").val())).toPrecision(1);
+                $("#orderItem_length").html(""); // clear list of order Item length dropdown
+                var newOption4 = $('<option value="'+totalLength+'">'+totalLength+'</option>'); // append new value to the dropdown list
+                $("#orderItem_length").append(newOption4);
+                document.getElementById("orderItem_length_textfield").value = totalLength; // set total value to the order item length textfield
+            });
+
+            $.each(jsonResponse.shipperItemWidthMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select7);
+                document.getElementById("orderItem_width_textfield").value = (parseInt($("#orderItem_width").val())).toPrecision(1);
+                var totalWidth = $('#orderItem_quantity').val() * (parseInt($("#orderItem_width").val())).toPrecision(1);
+                $("#orderItem_width").html(""); // clear list of order Item width dropdown
+                var newOption5 = $('<option value="'+totalWidth+'">'+totalWidth+'</option>'); // append new value to the dropdown list
+                $("#orderItem_width").append(newOption5);
+                document.getElementById("orderItem_width_textfield").value = totalWidth; // set total value to the order item width textfield
+            });
+
+            $.each(jsonResponse.shipperItemHeightMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select8);
+                document.getElementById("orderItem_height_textfield").value = (parseInt($("#orderItem_height").val())).toPrecision(1);
+                var totalHeight = $('#orderItem_quantity').val() * (parseInt($("#orderItem_height").val())).toPrecision(1);
+                $("#orderItem_height").html(""); // clear list of order Item height dropdown
+                var newOption6 = $('<option value="'+totalHeight+'">'+totalHeight+'</option>'); // append new value to the dropdown list
+                $("#orderItem_height").append(newOption6);
+                document.getElementById("orderItem_height_textfield").value = totalHeight; // set total value to the order item height textfield
+            });
+
+            $.each(jsonResponse.shipperItemCommentsMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select9);
+                document.getElementById("orderItem_remarks_textarea").value = $("#orderItem_remarks").val();
+            });
+
+            // populate item volume based on length X Width X Height
+            $.each(jsonResponse.shipperItemVolumeMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select);
+
+                var orderItemQuantity = $("#orderItem_quantity").val(),
+                    orderItemLength = $("#orderItem_length").val(),
+                    orderItemWidth = $("#orderItem_width").val(),
+                    orderItemHeight = $("#orderItem_height").val(),
+                    orderItem_volume = $("#orderItem_volume"),
+                    orderItemVolume;
+
+                    orderItemVolume = orderItemQuantity * (orderItemLength * orderItemWidth * orderItemHeight);
+                    orderItem_volume.html("");
+                    var newOption = $('<option value="'+orderItemVolume+'">'+orderItemVolume+'</option>'); // append new value to the dropdown list
+                    orderItem_volume.append(newOption);
+                    document.getElementById("orderItem_volume_textfield").value = orderItemVolume; // set total volume to the order item volume textfield
+            });
+
         });
 
     });
@@ -365,12 +288,22 @@ $(document).ready(function() {
                 select2 = $('#orderItem_description'),
                 select3 = $('#orderItem_declaredValue'),
                 select4 = $('#orderItem_weight'),
-            serviceReq = $('.serviceReq');
+                select5 = $('#orderItem_itemCode'),
+                select6 = $('#orderItem_length'),
+                select7 = $('#orderItem_width'),
+                select8 = $('#orderItem_height'),
+                select9 = $('#orderItem_remarks'),
+                serviceReq = $('.serviceReq');
 
                 select.find('option').remove();
                 select2.find('option').remove();
                 select3.find('option').remove();
                 select4.find('option').remove();
+                select5.find('option').remove();
+                select6.find('option').remove();
+                select7.find('option').remove();
+                select8.find('option').remove();
+                select9.find('option').remove();
 
             if(serviceReq == 'FULL CONTAINER LOAD' || serviceReq == 'FULL TRUCK LOAD') {
 
@@ -414,8 +347,69 @@ $(document).ready(function() {
                 $("#orderItem_weight").append(newOption3);
                 document.getElementById("orderItem_weight_textfield").value = totalWeight; // set total value to the order item value textfield
             });
+
+            $.each(jsonResponse.shipperItemCodeMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select5);
+                document.getElementById("orderItem_itemCode_textfield").value = $("#orderItem_itemCode").val();
+            });
+
+            $.each(jsonResponse.shipperItemLengthMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select6);
+                document.getElementById("orderItem_length_textfield").value = (parseInt($("#orderItem_length").val())).toPrecision(1);
+                var totalLength = $('#orderItem_quantity').val() * (parseInt($("#orderItem_length").val())).toPrecision(1);
+                $("#orderItem_length").html(""); // clear list of order Item length dropdown
+                var newOption4 = $('<option value="'+totalLength+'">'+totalLength+'</option>'); // append new value to the dropdown list
+                $("#orderItem_length").append(newOption4);
+                document.getElementById("orderItem_length_textfield").value = totalLength; // set total value to the order item length textfield
+            });
+
+            $.each(jsonResponse.shipperItemWidthMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select7);
+                document.getElementById("orderItem_width_textfield").value = (parseInt($("#orderItem_width").val())).toPrecision(1);
+                var totalWidth = $('#orderItem_quantity').val() * (parseInt($("#orderItem_width").val())).toPrecision(1);
+                $("#orderItem_width").html(""); // clear list of order Item width dropdown
+                var newOption5 = $('<option value="'+totalWidth+'">'+totalWidth+'</option>'); // append new value to the dropdown list
+                $("#orderItem_width").append(newOption5);
+                document.getElementById("orderItem_width_textfield").value = totalWidth; // set total value to the order item width textfield
+            });
+
+            $.each(jsonResponse.shipperItemHeightMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select8);
+                document.getElementById("orderItem_height_textfield").value = (parseInt($("#orderItem_height").val())).toPrecision(1);
+                var totalHeight = $('#orderItem_quantity').val() * (parseInt($("#orderItem_height").val())).toPrecision(1);
+                $("#orderItem_height").html(""); // clear list of order Item height dropdown
+                var newOption6 = $('<option value="'+totalHeight+'">'+totalHeight+'</option>'); // append new value to the dropdown list
+                $("#orderItem_height").append(newOption6);
+                document.getElementById("orderItem_height_textfield").value = totalHeight; // set total value to the order item height textfield
+            });
+
+            $.each(jsonResponse.shipperItemCommentsMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select9);
+                document.getElementById("orderItem_remarks_textarea").value = $("#orderItem_remarks").val();
+            });
+
+            // populate item volume based on length X Width X Height
+            $.each(jsonResponse.shipperItemVolumeMap, function (key, value) {
+                $('<option>').val(key).text(value).appendTo(select);
+
+                var orderItemQuantity = $("#orderItem_quantity").val(),
+                    orderItemLength = $("#orderItem_length").val(),
+                    orderItemWidth = $("#orderItem_width").val(),
+                    orderItemHeight = $("#orderItem_height").val(),
+                    orderItem_volume = $("#orderItem_volume"),
+                    orderItemVolume;
+
+                    orderItemVolume = orderItemQuantity * (orderItemLength * orderItemWidth * orderItemHeight);
+                    orderItem_volume.html("");
+                    var newOption = $('<option value="'+orderItemVolume+'">'+orderItemVolume+'</option>'); // append new value to the dropdown list
+                    orderItem_volume.append(newOption);
+                    document.getElementById("orderItem_volume_textfield").value = orderItemVolume; // set total volume to the order item volume textfield
+            });
+
         });
+
     });
+
 });
 
 // On dropdown change
@@ -429,92 +423,99 @@ function dynamicDropdown(select, index) {
 
     /*To compute for total tons and weight for FCL*/
     if (sContainer.value != ''){
+        var totalVolume,
+            totalWeight,
+            totalValue
+
         switch(sContainer.value){
-            case '10 FT' :
-                document.getElementById("orderItem-volume").value = sQuantity.value * 14;
-                document.getElementById("orderItem_weight").value = sQuantity.value * 9000;
+            case '10 FOOTER' :
+                totalVolume = sQuantity.value * 14;
+                totalWeight = sQuantity.value * 9000;
+                totalValue = sQuantity.value * 250000;
+                totalVolume = 1 * 14;
+                totalWeight = 1 * 9000;
+                totalValue = 1 * 250000;
+                document.getElementById("orderItem-volume").value = addCommas(totalVolume);
+                document.getElementById("orderItem_weight").value = addCommas(totalWeight);
+                document.getElementById("orderItem_declaredValues").value = addCommas(totalValue);
                 break;
-            case '20 FT' :
-                document.getElementById("orderItem-volume").value = sQuantity.value * 28;
-                document.getElementById("orderItem_weight").value = sQuantity.value * 18000;
+            case '20 FOOTER' :
+                totalVolume = sQuantity.value * 28;
+                totalWeight = sQuantity.value * 18000;
+                totalValue = sQuantity.value * 500000;
+                totalVolume = 1 * 28;
+                totalWeight = 1 * 18000;
+                totalValue = 1 * 500000;
+                document.getElementById("orderItem-volume").value = addCommas(totalVolume);
+                document.getElementById("orderItem_weight").value = addCommas(totalWeight);
+                document.getElementById("orderItem_declaredValues").value = addCommas(totalValue);
                 break;
-            case '40 STD FT' :
-                document.getElementById("orderItem-volume").value = sQuantity.value * 56;
-                document.getElementById("orderItem_weight").value = sQuantity.value * 20000;
+            case '40 STD FOOTER' :
+                totalVolume = sQuantity.value * 56;
+                totalWeight = sQuantity.value * 20000;
+                totalValue = sQuantity.value * 1000000;
+                totalVolume = 1 * 56;
+                totalWeight = 1 * 20000;
+                totalValue = 1 * 1000000;
+                document.getElementById("orderItem-volume").value = addCommas(totalVolume);
+                document.getElementById("orderItem_weight").value = addCommas(totalWeight);
+                document.getElementById("orderItem_declaredValues").value = addCommas(totalValue);
                 break;
-            case '40 HC FT' :
-                document.getElementById("orderItem-volume").value = sQuantity.value * 78;
-                document.getElementById("orderItem_weight").value = sQuantity.value * 22000;
+            case '40 HC FOOTER' :
+                totalVolume = sQuantity.value * 78;
+                totalWeight = sQuantity.value * 22000;
+                totalValue = sQuantity.value * 1000000;
+                totalVolume = 1 * 78;
+                totalWeight = 1 * 22000;
+                totalValue = 1 * 1000000;
+                document.getElementById("orderItem-volume").value = addCommas(totalVolume);
+                document.getElementById("orderItem_weight").value = addCommas(totalWeight);
+                document.getElementById("orderItem_declaredValues").value = addCommas(totalValue);
                 break;
         }
     }
 
     if (select.options[ index ].value === '') {
         document.getElementById("orderItem-volume").value = "";
-//            document.getElementById("orderItemVolume").value = "";
     }
 
-    if (select.options[ index ].value === '10 FT') {
-        var containerQuantityNull = document.getElementById("orderItem.quantity").value;
+    if (select.options[ index ].value === '10 FOOTER') {
+        var containerQuantityNull = document.getElementById("orderItem_quantityFCL").value;
+         if(containerQuantityNull == '') {
+             document.getElementById("orderItem_weight").value = '9,000';
+             document.getElementById("orderItem_quantityFCL").value = 1;
+             document.getElementById("orderItem-volume").value = '14';
+             document.getElementById("orderItem_declaredValues").value = '250,000.00';
+         }
+     }
+
+    if (select.options[ index ].value === '20 FOOTER') {
+        var containerQuantityNull = document.getElementById("orderItem_quantityFCL").value;
         if(containerQuantityNull == '') {
-            document.getElementById("orderItem_weight").value = 9000;
-            document.getElementById("orderItem.quantity").value = 1;
-            document.getElementById("orderItem-volume").value = "14";
-//                document.getElementById("orderItemVolume").value = "14";
-        }else{
-            var containerQuantity = document.getElementById("orderItem.quantity").value;
-            var containerVolume = containerQuantity * 14;
-            document.getElementById("orderItem_weight").value = 9000;
-            document.getElementById("orderItem-volume").value = containerVolume;
-//                document.getElementById("orderItemVolume").value = containerVolume;
+            document.getElementById("orderItem_weight").value = '18,000';
+            document.getElementById("orderItem_quantityFCL").value = 1;
+            document.getElementById("orderItem-volume").value = '28';
+            document.getElementById("orderItem_declaredValues").value = '500,000.00';
         }
     }
 
-    if (select.options[ index ].value === '20 FT') {
-        var containerQuantityNull = document.getElementById("orderItem.quantity").value;
-        if(containerQuantityNull == '') {
-            document.getElementById("orderItem_weight").value = 18000;
-            document.getElementById("orderItem.quantity").value = 1;
-            document.getElementById("orderItem-volume").value = "28";
-//                document.getElementById("orderItemVolume").value = "28";
-        }else {
-            var containerQuantity = document.getElementById("orderItem.quantity").value;
-            var containerVolume = containerQuantity * 28;
-            document.getElementById("orderItem_weight").value = 18000;
-            document.getElementById("orderItem-volume").value = containerVolume;
-//                document.getElementById("orderItemVolume").value = containerVolume;
-        }
-    }
-
-    if (select.options[ index ].value === '40 STD FT') {
-        var containerQuantity = document.getElementById("orderItem.quantity").value;
+    if (select.options[ index ].value === '40 STD FOOTER') {
+        var containerQuantity = document.getElementById("orderItem_quantityFCL").value;
         if(containerQuantity == '') {
-            document.getElementById("orderItem_weight").value = 20000;
-            document.getElementById("orderItem.quantity").value = 1;
-            document.getElementById("orderItem-volume").value = "56";
-//                document.getElementById("orderItemVolume").value = "56";
-        }else {
-            var containerQuantity = document.getElementById("orderItem.quantity").value;
-            var containerVolume = containerQuantity * 56;
-            document.getElementById("orderItem_weight").value = 20000;
-            document.getElementById("orderItem-volume").value = containerVolume;
-//                document.getElementById("orderItemVolume").value = containerVolume;
+            document.getElementById("orderItem_weight").value = '20,000';
+            document.getElementById("orderItem_quantityFCL").value = 1;
+            document.getElementById("orderItem-volume").value = '56';
+            document.getElementById("orderItem_declaredValues").value = '1,000,000.00';
         }
     }
 
-    if (select.options[ index ].value === '40 HC FT') {
-        var containerQuantity = document.getElementById("orderItem.quantity").value;
+    if (select.options[ index ].value === '40 HC FOOTER') {
+        var containerQuantity = document.getElementById("orderItem_quantityFCL").value;
         if(containerQuantity == '') {
-            document.getElementById("orderItem_weight").value = 22000;
-            document.getElementById("orderItem.quantity").value = 1;
-            document.getElementById("orderItem-volume").value = "78";
-//                document.getElementById("orderItemVolume").value = "78";
-        }else {
-            var containerQuantity = document.getElementById("orderItem.quantity").value;
-            var containerVolume = containerQuantity * 78;
-            document.getElementById("orderItem_weight").value = 22000;
-            document.getElementById("orderItem-volume").value = containerVolume;
-//                document.getElementById("orderItemVolume").value = containerVolume;
+            document.getElementById("orderItem_weight").value = '22,000';
+            document.getElementById("orderItem_quantityFCL").value = 1;
+            document.getElementById("orderItem-volume").value = '78';
+            document.getElementById("orderItem_declaredValues").value = '1,000,000.00';
         }
     }
 }
@@ -529,6 +530,7 @@ var sQuantity = select = document.getElementById('orderItem_quantityFCL');
 sContainer.onchange = function () {
     dynamicDropdown.call(this, sContainer, this.selectedIndex);
 };
+
 if(sQuantity != null){
     sQuantity.onchange = function () {
         dynamicDropdown.call(this, sQuantity, this.selectedIndex);

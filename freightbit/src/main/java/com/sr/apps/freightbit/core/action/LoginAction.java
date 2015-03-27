@@ -129,7 +129,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
             /*-------------------------------------------BACOLOD-------------------------------------------------*/
 
-            List<Orders> bacolodOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "BACOLOD");
+            /*List<Orders> bacolodOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "BACOLOD");
 
             bacolodWeight = 0.00; // Loop of per order item weight total
             bacolodVolume = 0.F; // Loop of per order item volume total
@@ -143,13 +143,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     bacolodVolume = bacolodVolume + orderItemBacolod.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------BACOLOD-------------------------------------------------*/
 
             /*-------------------------------------------BUTUAN-------------------------------------------------*/
 
-            List<Orders> butuanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "BUTUAN");
+            /*List<Orders> butuanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "BUTUAN");
 
             butuanWeight = 0.00; // Loop of per order item weight total
             butuanVolume = 0.F; // Loop of per order item volume total
@@ -163,13 +163,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     butuanVolume = butuanVolume + orderItemButuan.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------BUTUAN-------------------------------------------------*/
 
             /*-------------------------------------------CAGAYAN-------------------------------------------------*/
 
-            List<Orders> cagayanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "CAGAYAN");
+            /*List<Orders> cagayanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "CAGAYAN");
 
             cagayanWeight = 0.00; // Loop of per order item weight total
             cagayanVolume = 0.F; // Loop of per order item volume total
@@ -183,13 +183,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     cagayanVolume = cagayanVolume + orderItemCagayan.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------CAGAYAN-------------------------------------------------*/
 
             /*-------------------------------------------CEBU-------------------------------------------------*/
 
-            List<Orders> cebuOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "CEBU");
+            /*List<Orders> cebuOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "CEBU");
 
             cebuWeight = 0.00; // Loop of per order item weight total
             cebuVolume = 0.F; // Loop of per order item volume total
@@ -203,13 +203,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     cebuVolume = cebuVolume + orderItemCebu.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------CEBU-------------------------------------------------*/
 
             /*-------------------------------------------COTABATO-------------------------------------------------*/
 
-            List<Orders> cotabatoOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "COTABATO");
+            /*List<Orders> cotabatoOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "COTABATO");
 
             cotabatoWeight = 0.00; // Loop of per order item weight total
             cotabatoVolume = 0.F; // Loop of per order item volume total
@@ -223,13 +223,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     cotabatoVolume = cotabatoVolume + orderItemCotabato.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------COTABATO-------------------------------------------------*/
 
             /*-------------------------------------------DAVAO-------------------------------------------------*/
 
-            List<Orders> davaoOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "DAVAO");
+            /*List<Orders> davaoOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "DAVAO");
 
             davaoWeight = 0.00; // Loop of per order item weight total
             davaoVolume = 0.F; // Loop of per order item volume total
@@ -243,12 +243,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     davaoVolume = davaoVolume + orderItemDavao.getVolume();
                 }
 
-            }
+            }*/
+
             /*-------------------------------------------DAVAO-------------------------------------------------*/
 
             /*-------------------------------------------DUMAGUETE-------------------------------------------------*/
 
-            List<Orders> dumagueteOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "DUMAGUETE");
+            /*List<Orders> dumagueteOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "DUMAGUETE");
 
             dumagueteWeight = 0.00; // Loop of per order item weight total
             dumagueteVolume = 0.F; // Loop of per order item volume total
@@ -262,13 +263,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     dumagueteVolume = dumagueteVolume + orderItemDumaguete.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------DUMAGUETE-------------------------------------------------*/
 
             /*-------------------------------------------GENSAN-------------------------------------------------*/
 
-            List<Orders> gensanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "GEN. SANTOS");
+            /*List<Orders> gensanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "GEN. SANTOS");
 
             gensanWeight = 0.00; // Loop of per order item weight total
             gensanVolume = 0.F; // Loop of per order item volume total
@@ -282,13 +283,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     gensanVolume = gensanVolume + orderItemGensan.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------GENSAN-------------------------------------------------*/
 
             /*-------------------------------------------ILIGAN-------------------------------------------------*/
 
-            List<Orders> iliganOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "ILIGAN");
+            /*List<Orders> iliganOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "ILIGAN");
 
             iliganWeight = 0.00; // Loop of per order item weight total
             iliganVolume = 0.F; // Loop of per order item volume total
@@ -302,13 +303,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     iliganVolume = iliganVolume + orderItemIligan.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------ILIGAN-------------------------------------------------*/
 
             /*-------------------------------------------ILOILO-------------------------------------------------*/
 
-            List<Orders> iloiloOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "ILOILO");
+            /*List<Orders> iloiloOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "ILOILO");
 
             iloiloWeight = 0.00; // Loop of per order item weight total
             iloiloVolume = 0.F; // Loop of per order item volume total
@@ -322,13 +323,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     iloiloVolume = iloiloVolume + orderItemIloilo.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------ILOILO-------------------------------------------------*/
 
             /*-------------------------------------------OZAMIS-------------------------------------------------*/
 
-            List<Orders> ozamisOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "OZAMIS");
+            /*List<Orders> ozamisOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "OZAMIS");
 
             ozamisWeight = 0.00; // Loop of per order item weight total
             ozamisVolume = 0.F; // Loop of per order item volume total
@@ -342,13 +343,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     ozamisVolume = ozamisVolume + orderItemOzamis.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------OZAMIS-------------------------------------------------*/
 
             /*-------------------------------------------PALAWAN-------------------------------------------------*/
 
-            List<Orders> palawanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "PALAWAN");
+            /*List<Orders> palawanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "PALAWAN");
 
             palawanWeight = 0.00; // Loop of per order item weight total
             palawanVolume = 0.F; // Loop of per order item volume total
@@ -362,13 +363,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     palawanVolume = palawanVolume + orderItemPalawan.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------PALAWAN-------------------------------------------------*/
 
             /*-------------------------------------------ROXAS-------------------------------------------------*/
 
-            List<Orders> roxasOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "ROXAS");
+            /*List<Orders> roxasOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "ROXAS");
 
             roxasWeight = 0.00; // Loop of per order item weight total
             roxasVolume = 0.F; // Loop of per order item volume total
@@ -382,13 +383,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     roxasVolume = roxasVolume + orderItemRoxas.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------ROXAS-------------------------------------------------*/
 
             /*-------------------------------------------TAGBILARAN-------------------------------------------------*/
 
-            List<Orders> tagbilaranOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "TAGBILARAN");
+            /*List<Orders> tagbilaranOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "TAGBILARAN");
 
             tagbilaranWeight = 0.00; // Loop of per order item weight total
             tagbilaranVolume = 0.F; // Loop of per order item volume total
@@ -402,13 +403,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     tagbilaranVolume = tagbilaranVolume + orderItemTagbilaran.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------TAGBILARAN-------------------------------------------------*/
 
             /*-------------------------------------------TACLOBAN-------------------------------------------------*/
 
-            List<Orders> taclobanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "TACLOBAN");
+            /*List<Orders> taclobanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "TACLOBAN");
 
             taclobanWeight = 0.00; // Loop of per order item weight total
             taclobanVolume = 0.F; // Loop of per order item volume total
@@ -422,13 +423,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     taclobanVolume = taclobanVolume + orderItemTacloban.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------TACLOBAN-------------------------------------------------*/
 
             /*-------------------------------------------ZAMBOANGA-------------------------------------------------*/
 
-            List<Orders> zamboangaOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "ZAMBOANGA");
+         /*   List<Orders> zamboangaOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "ZAMBOANGA");
 
             zamboangaWeight = 0.00; // Loop of per order item weight total
             zamboangaVolume = 0.F; // Loop of per order item volume total
@@ -442,7 +443,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     zamboangaVolume = zamboangaVolume + orderItemZamboanga.getVolume();
                 }
 
-            }
+            }*/
 
             /*-------------------------------------------ZAMBOANGA-------------------------------------------------*/
 

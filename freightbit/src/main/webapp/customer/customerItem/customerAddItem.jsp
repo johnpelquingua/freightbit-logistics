@@ -107,7 +107,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
 
                             <div class="col-lg-3">
-                                <s:textarea name="item.description" id="item.description" resize="none" cssStyle="width: 140%"
+                                <s:textarea name="item.description" id="item.description" cssStyle="width: 140%"
                                             style="resize:none" rows="3" cssClass="form-control" maxlength="50" tabindex="8"/>
                             </div>
 

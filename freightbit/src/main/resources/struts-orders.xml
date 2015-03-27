@@ -82,7 +82,8 @@
         </action>
 
         <action name="deleteItem" class="com.sr.apps.freightbit.order.action.OrderAction" method="deleteItem">
-            <result name="success" type="tiles">orders.add-booking-info.tiles</result>
+            <!--<result name="success" type="tiles">orders.add-booking-info.tiles</result>-->
+            <result name="success" type="redirect">addOrderInfo</result>
         </action>
 
         <action name="addOrderInfo" class="com.sr.apps.freightbit.order.action.OrderAction" method="addOrderInfo">

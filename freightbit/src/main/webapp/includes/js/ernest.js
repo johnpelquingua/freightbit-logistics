@@ -1,4 +1,4 @@
-function fcl(){
+/*function fcl(){
     var containerVolume = document.getElementById("orderItem.volume").value;
     alert(containerVolume);
 
@@ -23,11 +23,9 @@ function fcl(){
         document.getElementById("orderItem.volume").value = totalVolume;
         document.getElementById("orderItemVolume").value = totalVolume;
     }
+}*/
 
-}
-
-
-function serviceValidate(){
+/*function serviceValidate(){
 	var serviceReq = document.getElementById("serviceReq");
 	var pos = serviceReq.options[serviceReq.selectedIndex].value;
 	if(pos == "FULL CARGO LOAD"){
@@ -44,7 +42,7 @@ function serviceValidate(){
 	    document.getElementById("item-menu").style.display = 'block';
 
 	}
-}
+}*/
 
 function typeValidate(){
     var typeReq = document.getElementById("mode");
@@ -71,7 +69,7 @@ function typeValidate(){
 
 }
 
-function getMaxValue(type, value){
+/*function getMaxValue(type, value){
     if(value == '10 FT'){
         if(type == 'VOLUME'){ return 14; }
         else if(type == 'WEIGHT'){ return 9000; }
@@ -85,7 +83,7 @@ function getMaxValue(type, value){
         if(type == 'VOLUME'){ return 78; }
         else if(type == 'WEIGHT'){ return 22000; }
     }
-}
+}*/
 
 function initValidationScript(pageType){
     var conVol, conWt,
@@ -204,8 +202,8 @@ function tablePropClass(tableClass, tableName, colStatus, colType, colReq, colMo
                 origColumn = $('.'+tableName+' tbody tr td:nth-child('+colOrigin+')').eq(i),
                 des = placeAbbrev(desColumn.text()),
                 ori = placeAbbrev(origColumn.text());
-            desColumn.empty().append(des);
-            origColumn.empty().append(ori);
+                desColumn.empty().append(des);
+                origColumn.empty().append(ori);
         }
 
         tableTr.eq(i).css('background-color', trColor(statusColumn));
@@ -435,7 +433,7 @@ function initTimestampAbbrev(tableClass, dateColumn){
     var table = $('.'+tableClass+' tbody tr td:nth-child('+dateColumn+')');
 
     for(var i = 0; i < table.size(); i++){
-            var splitDate = table.eq(i).text().split(' ');
+        var splitDate = table.eq(i).text().split(' ');
         if(splitDate[0] != ''){
             table.eq(i).empty().append(dateAbbrev(splitDate[0])+' '+splitDate[1].substr(0,8));
         }
@@ -481,6 +479,18 @@ function dateAbbrev_Format2(table, column){
     }
 }
 
+function addCommas(nStr) {
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
 // AUTHORED BY JAN SARMIENTO -- START
 // This function modifies the \n character in the table and replaces it with a <br/> tag
 // THIS FUNCTIONS CONCERNS ONLY THE FRONT-END
@@ -493,6 +503,41 @@ function newlineHandler(tableName, commentColumn){
         tableComment.eq(i).empty().append(transformedString);
     }
 }
+
+function containerHandler(tableName, containerColumn, weightColumn, volumeColumn){
+    var tableTr = $('.'+tableName+' tbody tr td:nth-child('+containerColumn+')');
+
+    for(var i=0; i <= tableTr.size(); i++){
+        var tableContainer = $('.'+tableName+' tbody tr td:nth-child('+containerColumn+')').eq(i),
+            columnWeight = $('.'+tableName+' tbody tr td:nth-child('+weightColumn+')').eq(i),
+            tableWeight = parseFloat($('.'+tableName+' tbody tr td:nth-child('+weightColumn+')').eq(i).text()),
+            columnVolume = $('.'+tableName+' tbody tr td:nth-child('+volumeColumn+')').eq(i),
+            tableVolume = parseFloat($('.'+tableName+' tbody tr td:nth-child('+volumeColumn+')').eq(i).text()),
+            container = containerAbbrev(tableContainer.text()),
+            weight = addCommas((tableWeight.toFixed(0)).toString()),
+            volume = addCommas((tableVolume.toFixed(0)).toString());
+
+            tableContainer.empty().append(container);
+            columnWeight.empty().append(weight);
+            columnVolume.empty().append(volume);
+    }
+
+}
+
+function containerAbbrev(containerSize){
+    if(containerSize == '10 FOOTER'){
+        return '10 FT';
+    }else if(containerSize == '20 FOOTER'){
+        return '20 FT';
+    }else if(containerSize == '40 STD FOOTER'){
+        return '40 STD FT';
+    }else if(containerSize == '40 HC FOOTER'){
+        return '40 HC FT';
+    }else{
+        return containerSize;
+    }
+}
+
 // AUTHORED BY JAN SARMIENTO -- END
 
 function computeAll(tableClass, wellTotalWeight, wellTotalVolume, operation){
@@ -711,7 +756,6 @@ function showGateOutFields(containerId) {
             alert('An error occurred! ' + thrownError);
         }
     });
-
 }
 
 function showActualDateFields(statusId) {
