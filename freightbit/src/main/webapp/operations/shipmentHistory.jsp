@@ -91,7 +91,6 @@
                         </ol>
                     </div>
                 </div>--%>
-
                 <display:table id="orderItem" name="orderItemListings"
                                requestURI="setBulkItemStatus.action" pagesize="10"
                                class="bulkItemStatus table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"

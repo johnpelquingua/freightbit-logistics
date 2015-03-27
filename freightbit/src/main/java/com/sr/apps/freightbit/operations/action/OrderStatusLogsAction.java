@@ -652,6 +652,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             orderItemListings.add(transformToOrderItemFormBean(orderItemsListing));
         }
 
+
         clearErrorsAndMessages();
         addActionMessage("Success! Shipment Logs has been updated.");
         nameSizeList = (List) sessionAttributes.get("nameSizeList");

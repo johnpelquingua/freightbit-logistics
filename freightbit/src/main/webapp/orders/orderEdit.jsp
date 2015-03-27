@@ -1032,7 +1032,6 @@
     }
 
 $(document).ready(function() {
-
     $( window ).load(function() {
 
         /*alert((localStorage.getItem("ctr")));*/
