@@ -220,13 +220,16 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         entity.setVesselName(formBean.getVesselName());
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        entity.setVendorName(vendorService.findVendorById(formBean.getVendorId()).getVendorName());
 
         return entity;
     }
 
     public String getColumnFilter() {
         String column = "";
-        if ("ESTIMATED DATE OF DEPARTURE".equals(vesselSchedule.getVesselScheduleCriteria())) {
+        if ("SHIPPING COMPANY".equals(vesselSchedule.getVesselScheduleCriteria())) {
+            column = "vendorName";
+        } else if ("ESTIMATED DATE OF DEPARTURE".equals(vesselSchedule.getVesselScheduleCriteria())) {
             column = "departureDate";
         } else if ("PIER ORIGIN".equals(vesselSchedule.getVesselScheduleCriteria())) {
             column = "originPort";
