@@ -92,9 +92,9 @@
                                                             style="text-align: center;"> </display:column></td>--%>
                                         <td><display:column property="weight" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="note" title="Note <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="description" title="Commodity <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="description" title="Description <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="note" title="Comments <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">

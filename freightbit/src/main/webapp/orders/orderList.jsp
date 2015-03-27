@@ -109,17 +109,17 @@
                                             <i class="fa fa-pencil table-action-icons"></i>
                                         </s:a>
 
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES')">
                                         <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' || #attr.order.orderStatus == 'INCOMPLETE' ">
                                             <%--delete booking--%>
                                             <s:url var="deleteOrderUrl" action="deleteOrder">
                                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                             </s:url>
-                                            <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
                                                 <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
                                                 </s:a>
-                                            </sec:authorize>
                                             <i class="fa fa-trash-o deleteBookingIcon table-action-icons"></i>
                                         </s:if>
+                                        </sec:authorize>
                                     </sec:authorize>
 
                                         <%--info booking--%>
