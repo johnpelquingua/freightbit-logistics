@@ -61,9 +61,12 @@
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
-                                        <s:textfield required="true" name="customer.email" cssClass="customerInput form-control" id="customer.email" maxLength="50"
-                                                     placeholder="Email Address" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"
-                                                     title="Example: example@domain.com" />
+                                        <%--<s:textfield required="true" name="customer.email" cssClass="customerInput form-control" id="customer.email" maxLength="50"--%>
+                                                     <%--placeholder="Email Address" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"--%>
+                                                     <%--title="Example: example@domain.com" />--%>
+                                            <s:textfield type="email" required="true" name="customer.email" cssClass="customerInput form-control" id="customer.email" maxLength="50"
+                                                         placeholder="Email Address" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"
+                                                         title="Example: example@domain.com" />
                                     </div>
                                 </div>
 

@@ -110,18 +110,6 @@
           }
       });
   });
-  function validate_form()
-  {
-      valid = true;
-
-      if($('input[type=checkbox]:checked').length == 0)
-      {
-          alert ( "ERROR! Please select at least one checkbox" );
-          valid = false;
-      }
-
-      return valid;
-  }
 </script>
 
 <div class="row">
@@ -163,7 +151,7 @@
                                 Basic Information
                             </span>
                         </legend>
-                        <s:form action="addOrder" theme="bootstrap" cssClass="addOrderForm" onsubmit="return validate_form();">
+                        <s:form action="addOrder" theme="bootstrap" cssClass="addOrderForm" onsubmit="return validate_form()">
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></span></label>
@@ -523,7 +511,7 @@
         </button>
 
         <s:submit name="submit" cssClass="btn btn-primary nextBtnDateVal" value="Next" />
-        <%--<button class="btn btn-primary nextBtn" type="button">Next</button>--%>
+        <%--<button class="btn btn-primary nextBtnDateVal" type="button">Next</button>--%>
         </s:form>
     </div>
 
