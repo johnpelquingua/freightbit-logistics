@@ -537,6 +537,4 @@
         });
 
     }
-
-    $(document).ready(function(){ $('<div>Cancel</div>').closest('div').empty().append('Close'); })
 </script>

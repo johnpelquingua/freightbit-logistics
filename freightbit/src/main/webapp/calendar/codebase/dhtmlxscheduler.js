@@ -1043,7 +1043,7 @@ if(!window.dhtmlx)
 		if (ok)
 			inner += button(config.ok || "OK", true);
 		if (cancel)
-			inner += button(config.cancel || "Cancel", false);
+			inner += button(config.cancel || "Close", false);
 		if (config.buttons){
 			for (var i=0; i<config.buttons.length; i++)
 				inner += button(config.buttons[i],i);
@@ -3223,7 +3223,7 @@ scheduler.locale = {
 		month_tab:"Month",
 		new_event:"New event",
 		icon_save:"Save",
-		icon_cancel:"Cancel",
+		icon_cancel:"Close",
 		icon_details:"Details",
 		icon_edit:"Edit",
 		icon_delete:"Delete",
