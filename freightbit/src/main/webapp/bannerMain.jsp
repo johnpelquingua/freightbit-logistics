@@ -36,8 +36,8 @@
         <ul class="dropdown-menu" style="min-width: 130px;">
 
             <li class="message-preview">
-                <a href="orders/bookingPlanner.jsp">
-                    <li><a href="orders/bookingCalendar.jsp"><i class="fa fa-question-circle"></i> Help Center</a></li>
+                <a href="/help/help.jsp">
+                    <li><a href="/help/help.jsp"><i class="fa fa-question-circle"></i> Help Center</a></li>
 
                 </a>
             </li>

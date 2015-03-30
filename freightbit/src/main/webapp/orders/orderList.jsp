@@ -140,6 +140,7 @@
 
                                     <%--approve booking--%>
                                     <%--<s:property value="%{#attr.order.orderId}"/>--%>
+                                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES')">
                                     <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING'">
                                         | <%--separator--%>
                                         <s:url var="approveOrderUrl" action="approveOrder">
@@ -159,6 +160,7 @@
                                         </s:a>
                                         <i class="fa fa-times cancelBookingIcon"></i>
                                     </s:if>
+                                    </sec:authorize>
 
                                 </display:column>
                             </td>

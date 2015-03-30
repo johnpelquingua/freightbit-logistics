@@ -38,7 +38,7 @@
 
             <li class="message-preview">
                 <a href="#">
-                    <li><a href="Help"><i class="fa fa-question-circle"></i> Help Center</a></li>
+                    <li><a href="help.jsp"><i class="fa fa-question-circle"></i> Help Center</a></li>
 
                 </a>
             </li>

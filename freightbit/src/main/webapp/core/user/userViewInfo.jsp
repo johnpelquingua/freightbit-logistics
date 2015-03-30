@@ -125,7 +125,7 @@
                                                  </tr>
                                                  <tr>
                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Permissions</td>
-                                                     <td>
+                                                     <td class="permissionsAlign">
                                                          <table>
                                                          <%--<s:iterator value="preSelectedPermissionNames" var="permName">
                                                             <tr>
