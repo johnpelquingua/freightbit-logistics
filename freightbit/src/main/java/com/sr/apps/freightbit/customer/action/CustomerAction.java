@@ -1323,17 +1323,17 @@ public class CustomerAction extends ActionSupport implements Preparable {
             return "contact_limit";
         }
 
-        try {
+//        try {
             Contacts contactEntity = transformToEntityBeanConsigneeContacts(consigneeContact);
             contactEntity.setReferenceId(contactCodeParam);
             contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedTimestamp(new Date());
             customerService.addContact(contactEntity);
-        } catch (ContactAlreadyExistsException e) {
+        /*} catch (ContactAlreadyExistsException e) {
             addFieldError("contact.lastName", getText("err.contact.already.exists"));
             return INPUT;
-        }
+        }*/
 
         sessionAttributes.put("contactCodeParam", contactCodeParam);
         sessionAttributes.put("addressIdParam", addressIdParam);
@@ -1341,11 +1341,11 @@ public class CustomerAction extends ActionSupport implements Preparable {
         clearErrorsAndMessages();
         addActionMessage("Success! New Contact Person for Consignee has been created.");
 
-        Contacts contactEntity = customerService.findContactById(contactCodeParam);
+        Contacts contactEntity2 = customerService.findContactById(contactCodeParam);
         Address addressEntity = customerService.findAddressById(addressIdParam);
-        consignee = transformToFormBeanConsignee(addressEntity, contactEntity);
+        consignee = transformToFormBeanConsignee(addressEntity, contactEntity2);
 
-        List<Contacts> contactEntityList = customerService.findContactByConsignee(contactEntity.getContactId(), "C_CONTACT", getClientId());
+        List<Contacts> contactEntityList = customerService.findContactByConsignee(contactEntity2.getContactId(), "C_CONTACT", getClientId());
         for (Contacts contactElem : contactEntityList) {
             contacts.add(transformToFormBeanContacts(contactElem));
         }
@@ -1374,16 +1374,16 @@ public class CustomerAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
-        try {
+//        try {
             Contacts contactEntity = transformToEntityBeanConsigneeContacts(consigneeContact);
             contactEntity.setReferenceId((Integer) sessionAttributes.get("contactCodeParam"));
             contactEntity.setModifiedTimestamp(new Date());
             contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             customerService.updateContact(contactEntity);
-        } catch (ContactAlreadyExistsException e) {
+        /*} catch (ContactAlreadyExistsException e) {
             addFieldError("contact.lastName", getText("err.contact.already.exists"));
             return INPUT;
-        }
+        }*/
 
         clearErrorsAndMessages();
         addActionMessage("Contact Person for Consignee has been successfully edited.");
