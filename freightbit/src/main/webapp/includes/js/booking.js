@@ -831,21 +831,21 @@ $(document).ready(function(){
     //validationForm('bookingInput', 'nextBtn', 'BOOKING');
 });
 
-//function dateSameValidation() {
-//    $('.nextBtnDateVal').click(function(){
-//        var firstDate = new Date($('.pickupDateInput').val()),
-//            lastDate = new Date($('.deliveryDateInput').val()),
-//            formToSubmit = $('.addOrderForm');
-//
-//        if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
-//            var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
-//            $('#dateSameWarningModalBody').empty().append(message);
-//            $('#dateSameWarningModal').modal('show');
-//        }else{
-//            formToSubmit.submit();
-//        }
-//    })
-//}
+function dateSameValidation() {
+    $('.nextBtnDateVal').click(function(){
+        var firstDate = new Date($('.pickupDateInput').val()),
+            lastDate = new Date($('.deliveryDateInput').val()),
+            formToSubmit = $('.addOrderForm');
+
+        if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
+            var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
+            $('#dateSameWarningModalBody').empty().append(message);
+            $('#dateSameWarningModal').modal('show');
+        }else{
+            formToSubmit.submit();
+        }
+    })
+}
 
 function dynamicDropdown(select, index) {
     var opt = select.options,
@@ -1090,6 +1090,7 @@ function dynamicDropdown(select, index) {
     }
 
 }
+/*
 function validate_form()
 {
     var firstDate = new Date($('.pickupDateInput').val()),
@@ -1105,6 +1106,7 @@ function validate_form()
         $('#dateSameWarningModal').modal('show');
         return false;
     }else if($('.pickupDateInput').val().match(dateRegEx) !== null){
+        alert($('.pickupDateInput').val().match(dateRegEx));
         alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
         return false;
     }else if($('.deliveryDateInput').val().match(dateRegEx) !== null){
@@ -1115,4 +1117,4 @@ function validate_form()
         return true;
     }
 //    return valid;
-}
+}*/
