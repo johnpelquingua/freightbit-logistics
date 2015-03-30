@@ -93,9 +93,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addContact(Contacts contacts) throws ContactAlreadyExistsException {
-        if (contactsDao.findContactByLastNameAndFirstName(contacts.getLastName(), contacts.getFirstName()).size() > 0)
+        /*if (contactsDao.findContactByLastNameAndFirstName(contacts.getLastName(), contacts.getFirstName()).size() > 0)
             throw new ContactAlreadyExistsException(contacts.getLastName());
-        else
+        else*/
             contactsDao.addContact(contacts);
     }
 
@@ -108,9 +108,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateContact(Contacts contacts) throws ContactAlreadyExistsException{
-        if (contactsDao.findDuplicateContactByNameAndId(contacts.getLastName(), contacts.getFirstName(), contacts.getContactId(), contacts.getReferenceId()).size() > 0)
+        /*if (contactsDao.findDuplicateContactByNameAndId(contacts.getLastName(), contacts.getFirstName(), contacts.getContactId(), contacts.getReferenceId()).size() > 0)
             throw new ContactAlreadyExistsException(contacts.getLastName());
-        else
+        else*/
             contactsDao.updateContact(contacts);
     }
 
