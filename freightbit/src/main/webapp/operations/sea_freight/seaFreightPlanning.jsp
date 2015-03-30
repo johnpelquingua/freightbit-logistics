@@ -133,12 +133,12 @@
             <div class="form-group">
                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date</label>
                 <div class="col-lg-4">
-                    <s:textfield cssClass="form-control pickupDate" value="%{order.pickupDate}"
+                    <s:textfield cssClass="form-control pickupDate" value="%{order.strPickupDate}"
                                  disabled="true"></s:textfield>
                 </div>
                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date</label>
                 <div class="col-lg-4">
-                    <s:textfield cssClass="form-control deliveryDate" value="%{order.deliveryDate}"
+                    <s:textfield cssClass="form-control deliveryDate" value="%{order.strDeliveryDate}"
                                  disabled="true"></s:textfield>
                 </div>
             </div>

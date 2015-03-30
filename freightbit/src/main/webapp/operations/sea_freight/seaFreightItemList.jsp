@@ -16,6 +16,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Operations</li>
             <li class="active"><a href="<s:url action='viewSeaFreightList' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>"> Freight Plan : Orders </a></li>
             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                 <li class="active"> Freight Plan : Containers</li>
@@ -128,12 +129,12 @@
                             <div class="form-group">
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control pickupDate" value="%{order.pickupDate}"
+                                    <s:textfield cssClass="form-control pickupDate" value="%{order.strPickupDate}"
                                                  disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control deliveryDate" value="%{order.deliveryDate}"
+                                    <s:textfield cssClass="form-control deliveryDate" value="%{order.strDeliveryDate}"
                                                  disabled="true"></s:textfield>
                                 </div>
                             </div>

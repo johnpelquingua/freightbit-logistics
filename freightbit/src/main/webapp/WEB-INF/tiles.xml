@@ -100,6 +100,11 @@
         <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanning.jsp"/>
     </definition>
 
+    <definition name="operations.scheduleExists.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Edit Freight Planning"/>
+        <put-attribute name="body" value="/operations/sea_freight/scheduleExists.jsp"/>
+    </definition>
+
     <definition name="operations.seaFreightPlanningBulk.tiles" extends="baseLayout">
         <put-attribute name="title" value="Freight Plan"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanningBulk.jsp"/>

@@ -12,6 +12,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
+            <li class="active"> Documentations</li>
             <li class="active"> Archived Documents List</li>
         </ol>
 

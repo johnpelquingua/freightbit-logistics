@@ -17,6 +17,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Operations</li>
             <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Dispatch Plan : Orders </a></li>
             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                 <li class="active"> Dispatch Plan : Containers</li>

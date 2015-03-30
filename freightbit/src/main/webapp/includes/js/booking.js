@@ -1106,7 +1106,6 @@ function validate_form()
         $('#dateSameWarningModal').modal('show');
         return false;
     }else if($('.pickupDateInput').val().match(dateRegEx) !== null){
-        alert($('.pickupDateInput').val().match(dateRegEx));
         alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
         return false;
     }else if($('.deliveryDateInput').val().match(dateRegEx) !== null){
@@ -1117,4 +1116,5 @@ function validate_form()
         return true;
     }
 //    return valid;
-}*/
+}
+*/

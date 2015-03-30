@@ -1563,6 +1563,97 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String addVesselScheduleInPlanningAlreadyExists(){
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        OrderItems entity = operationsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        order = transformToOrderFormBean(orderEntity);
+
+        Customer customerEntity = customerService.findCustomerById(orderEntity.getCustomerId());
+        customer = new CustomerBean();
+        customer.setCustomerType(customerEntity.getCustomerType());
+
+//        String schedulesExist;
+
+        // if Vessel Schedule Id is null and populates field with none value
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
+            orderItem.setVendorSea("NONE");
+            orderItem.setVesselScheduleId("NONE");
+            vesselSchedule.setVesselName("NONE");
+            vesselSchedule.setDepartureDate("NONE");
+            vesselSchedule.setArrivalDate("NONE");
+            vesselSchedule.setDepartureTime("NONE");
+            vesselSchedule.setArrivalTime("NONE");
+            vesselSchedule.setOriginPort("NONE");
+            vesselSchedule.setDestinationPort("NONE");
+            scheduleExists = "FALSE";
+        }else{
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
+            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+            scheduleExists = "TRUE";
+        }
+
+        // if Truck Origin Code is null and populates field with none value
+        if(orderItem.getTruckOrigin() == null || orderItem.getTruckOrigin().equals("") || orderItem.getTruckOrigin().length() == 0 || orderItem.getTruckOrigin().isEmpty()){
+            orderItem.setVendorOrigin("NONE");
+            orderItem.setDriverOrigin("NONE");
+            orderItem.setTruckOrigin("NONE");
+            orderItem.setFinalPickupDate("NONE");
+            truck.setTruckType("NONE");
+            truck.setPlateNumber("NONE");
+            truck.setGrossWeight(0);
+        }else{
+            Trucks truckEntity = vendorService.findTrucksByTruckCode(orderItem.getTruckOrigin());
+            truck = transformToFormBeanTrucks(truckEntity);
+        }
+
+        // if Truck Destination Code is null and populates field with none value
+        if(orderItem.getTruckDestination() == null || orderItem.getTruckDestination().equals("") || orderItem.getTruckDestination().length() == 0 || orderItem.getTruckDestination().isEmpty()){
+            orderItem.setVendorDestination("NONE");
+            orderItem.setDriverDestination("NONE");
+            orderItem.setTruckDestination("NONE");
+            orderItem.setFinalDeliveryDate("NONE");
+            truckDestination.setTruckType("NONE");
+            truckDestination.setPlateNumber("NONE");
+            truckDestination.setGrossWeight(0);
+        }else{
+            Trucks truckEntity = vendorService.findTrucksByTruckCode(orderItem.getTruckDestination());
+            truckDestination = transformToFormBeanTrucks(truckEntity);
+        }
+
+        vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
+
+        /*for current vessel schedule bound for edit*/
+//        if(vesselSchedule.getScheduleExists().equals("TRUE")){
+//            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
+//            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+//        }
+
+        // Vessel schedules filtered by origin and destination
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
+        sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
+        sessionAttributes.put("nameSizeParam", entity.getNameSize());
+
+        /*if ("PLANNING 1".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 1")) {
+            return "PLANNING 1"; // will be directed to sea vendor select
+        } else if ("PLANNING 2".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 2")) {
+            return "PLANNING 2"; // will be directed to origin vendor select
+        } else {
+            return "PLANNING 3"; // will be directed to destination vendor select
+        }*/
+        addFieldError("vesselSchedule.vesselScheduleId", getText("err.voyageNumber.already.exists"));
+        return SUCCESS;
+    }
+
     public VesselSchedules transformToVesselScheduleEntityBean(VesselScheduleBean formBean) {
         VesselSchedules entity = new VesselSchedules();
         Client client = clientService.findClientById(getClientId().toString());
@@ -2479,6 +2570,140 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Vendor Added Successfully!");
+
+        return SUCCESS;
+    }
+
+    public String reloadSeaFreightSchedulePlanning() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        OrderItems entity = operationsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+        sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
+
+        sessionAttributes.put("nameSizeParam", sessionAttributes.get("nameSizeParam"));
+
+        // if Vessel Schedule Id is null and populates field with none value
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE") ){
+            orderItem.setVendorSea("NONE");
+            orderItem.setVesselScheduleId("NONE");
+            vesselSchedule.setVesselName("NONE");
+            vesselSchedule.setDepartureDate("NONE");
+            vesselSchedule.setArrivalDate("NONE");
+            vesselSchedule.setDepartureTime("NONE");
+            vesselSchedule.setArrivalTime("NONE");
+            vesselSchedule.setOriginPort("NONE");
+            vesselSchedule.setDestinationPort("NONE");
+            scheduleExists = "FALSE";
+        }else{
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
+            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+            scheduleExists = "TRUE";
+        }
+
+        // if Truck Origin Code is null and populates field with none value
+        if(orderItem.getTruckOrigin() == null || orderItem.getTruckOrigin().equals("") || orderItem.getTruckOrigin().length() == 0 || orderItem.getTruckOrigin().isEmpty()){
+            orderItem.setVendorOrigin("NONE");
+            orderItem.setDriverOrigin("NONE");
+            orderItem.setTruckOrigin("NONE");
+            orderItem.setFinalPickupDate("NONE");
+            truck.setTruckType("NONE");
+            truck.setPlateNumber("NONE");
+            truck.setGrossWeight(0);
+        }else{
+            Trucks truckEntity = vendorService.findTrucksByTruckCode(orderItem.getTruckOrigin());
+            truck = transformToFormBeanTrucks(truckEntity);
+        }
+
+        // if Truck Destination Code is null and populates field with none value
+        if(orderItem.getTruckDestination() == null || orderItem.getTruckDestination().equals("") || orderItem.getTruckDestination().length() == 0 || orderItem.getTruckDestination().isEmpty()){
+            orderItem.setVendorDestination("NONE");
+            orderItem.setDriverDestination("NONE");
+            orderItem.setTruckDestination("NONE");
+            orderItem.setFinalDeliveryDate("NONE");
+            truckDestination.setTruckType("NONE");
+            truckDestination.setPlateNumber("NONE");
+            truckDestination.setGrossWeight(0);
+        }else{
+            Trucks truckEntity = vendorService.findTrucksByTruckCode(orderItem.getTruckDestination());
+            truckDestination = transformToFormBeanTrucks(truckEntity);
+        }
+
+        vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
+
+        // Vessel schedules filtered by origin and destination
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Vessel Schedule has been added successfully!");
+
+        return SUCCESS;
+    }
+
+    public String reloadSeaFreightSchedulePlanningBulk() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+//        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByVendorId((Integer)sessionAttributes.get("vendorIdPass"));
+//
+//        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+//            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+//        }
+
+        // if Vessel Schedule Id is null and populates field with none value
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
+            orderItem.setVendorSea("NONE");
+            orderItem.setVesselScheduleId("NONE");
+            vesselSchedule.setVesselName("NONE");
+            vesselSchedule.setDepartureDate("NONE");
+            vesselSchedule.setArrivalDate("NONE");
+            vesselSchedule.setDepartureTime("NONE");
+            vesselSchedule.setArrivalTime("NONE");
+            vesselSchedule.setOriginPort("NONE");
+            vesselSchedule.setDestinationPort("NONE");
+            scheduleExists = "FALSE";
+        }else{
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
+            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+            scheduleExists = "TRUE";
+        }
+
+        List<OrderItems> orderItemsListing = orderService.findAllItemByOrderId(orderEntity.getOrderId());
+
+        for(OrderItems orderItemElem : orderItemsListing){
+            orderItemVesselSchedule.add(transformToOrderItemFormBean(orderItemElem));
+        }
+
+        // Vessel schedules filtered by origin and destination
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
+        // for the order items to appear again
+        nameSizeList = (List) sessionAttributes.get("nameSizeList") ;
+
+        // Vessel schedules filtered by class
+        vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
+
+        clearErrorsAndMessages();
+        addActionMessage("Vessel Schedule has been added successfully!");
 
         return SUCCESS;
     }

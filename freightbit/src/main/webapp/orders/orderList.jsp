@@ -24,6 +24,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
+            <li class="active"> Booking</li>
             <li class="active"> Booking List</li>
         </ol>
 
