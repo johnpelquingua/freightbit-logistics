@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Region<span class="asterisk_red"></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Region<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10" >
                                 <s:textfield name="address.state" id="address.state" cssClass="form-control" maxlength="50"
