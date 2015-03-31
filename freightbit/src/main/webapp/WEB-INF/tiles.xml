@@ -709,6 +709,10 @@
         <put-attribute name="title" value="Add Booking"/>
         <put-attribute name="body" value="/orders/orderAddInfo.jsp"/>
     </definition>
+    <definition name="orders.edit-booking-info.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Edit Booking"/>
+        <put-attribute name="body" value="/orders/orderEditInfo.jsp"/>
+    </definition>
     <!-- ORDER module tiles End-->
 
     <!-- REPORT module tiles Begin-->

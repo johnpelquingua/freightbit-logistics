@@ -54,6 +54,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private OrderBean order = new OrderBean();
     private ContactBean contact = new ContactBean();
     private AddressBean address = new AddressBean();
+    private Items items = new Items();
     private ItemBean item = new ItemBean();
     private DocumentsBean document = new DocumentsBean();
     private ConsigneeBean consigneeBean = new ConsigneeBean();
@@ -260,6 +261,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String viewOrders() {
 
+        Date todayDate = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
@@ -416,7 +419,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             for (Items itemsElem : customerOldItems) {
                 if (itemsElem.getItemCode().equals(item.getItemCode())) {
                     itemCheck = itemCheck + 1;
-                    /*return INPUT;*/
                 }
             }
 
@@ -464,11 +466,13 @@ public class OrderAction extends ActionSupport implements Preparable {
                 // Add order items to database
                 if(orderItem.getQuantity() == 1){
                     orderItemEntity.setQuantity(1);
+                    orderItemEntity.setNameSize(orderItem.getNameSize());
                     orderService.addItem(orderItemEntity);
                 }else{
                     Integer saveLoop = orderItem.getQuantity();
                     for(int i = 0; i < saveLoop; i++ ){
                         orderItemEntity.setQuantity(1);
+                        orderItemEntity.setNameSize(orderItem.getNameSize());
                         orderService.addItem(orderItemEntity);
                     }
                 }
@@ -490,6 +494,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                     String strVolume = dblVolume.toString();
                     orderItemEntity.setVolume(Float.parseFloat(strVolume));
                 }
+                orderItemEntity.setNameSize(item.getItemCode());
                 orderService.addItem(orderItemEntity);
                 String messageFlag = "OTHERS_OK";
                 sessionAttributes.put("messageFlag", messageFlag);
@@ -506,6 +511,83 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
+
+    public String editItemsInTable() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+
+
+        List<OrderItems> orderItemNumberList = orderService.findAllItemByOrderId(operationsService.findOrderItemById(orderItem.getOrderItemId()).getOrderId());
+
+        Orders orderEntity = orderService.findOrdersById(operationsService.findOrderItemById(orderItem.getOrderItemId()).getOrderId());
+
+        // get total quantity from database
+        Integer orderItemQuantityTotal = 0;
+
+        for (int i = 0; i < orderItemNumberList.size(); i++) {
+
+            orderItemQuantityTotal = orderItemQuantityTotal + orderItemNumberList.get(i).getQuantity();
+        }
+
+        OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
+
+        //count quantity of item from form and from database
+        Integer orderItemQuantityGrandTotal = orderItemQuantityTotal + orderItem.getQuantity();
+
+        if(orderEntity.getServiceRequirement().equals("FULL CONTAINER LOAD") || orderEntity.getServiceRequirement().equals("FULL TRUCK LOAD")){
+            if (orderItemQuantityGrandTotal > 5) {
+                String messageFlag = "FCL_LIMIT";
+                sessionAttributes.put("messageFlag", messageFlag);
+
+            } else {
+                // Add order items to database
+                if(orderItem.getQuantity() == 1){
+                    orderItemEntity.setQuantity(1);
+                    orderItemEntity.setNameSize(orderItem.getNameSize());
+                    orderService.updateItemListing(orderItemEntity);
+                }else{
+                    Integer saveLoop = orderItem.getQuantity();
+                    for(int i = 0; i < saveLoop; i++ ){
+                        orderItemEntity.setQuantity(1);
+                        orderItemEntity.setNameSize(orderItem.getNameSize());
+                        orderService.updateItemListing(orderItemEntity);
+                    }
+                }
+
+                String messageFlag = "FCL_OK";
+                sessionAttributes.put("messageFlag", messageFlag);
+            }
+        }else{
+            if (orderItemQuantityGrandTotal > 250) {
+                String messageFlag = "OTHERS_LIMIT";
+                sessionAttributes.put("messageFlag", messageFlag);
+            } else {
+                // Add order items to database
+                orderItemEntity.setQuantity(orderItem.getQuantity());
+                if(orderItem.getVolume() == null){
+                    OrderItems orderItemInside = operationsService.findOrderItemById(orderItem.getOrderItemId());
+                    Double dblVolume = (orderItemInside.getQuantity() * (orderItem.getLength() * orderItem.getWidth() * orderItem.getHeight()));
+                    String strVolume = dblVolume.toString();
+                    orderItemEntity.setVolume(Float.parseFloat(strVolume));
+                }
+                orderItemEntity.setNameSize(item.getItemCode());
+
+                orderService.updateItemListing(orderItemEntity);
+                String messageFlag = "OTHERS_OK";
+                sessionAttributes.put("messageFlag", messageFlag);
+            }
+        }
+
+
+
+        // Get Order Id
+        Integer idOrder = orderItemEntity.getOrderId();
+        // Put Order Id in session
+        sessionAttributes.put("orderIdPass", idOrder);
+
+        return SUCCESS;
+    }
+
 
     public String addedItemsInTable() {
 
@@ -615,7 +697,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         // Booking Request Form will be created under pending documents start
-
         Documents documentEntity = new Documents();
         Client client = clientService.findClientById(getClientId().toString());
         documentEntity.setClient(client);
@@ -717,7 +798,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         // display item listing in table
         for (OrderItems orderItemElem : orderItemEntityList) {
-
             orderItems.add(transformToOrderItemsFormBean(orderItemElem));
         }
 
@@ -738,6 +818,42 @@ public class OrderAction extends ActionSupport implements Preparable {
         OrderItems orderItemListingEntity = orderService.findOrderItemByOrderItemId(orderItemIdParam);
         orderItem = transformToOrderItemsFormBean(orderItemListingEntity);
         sessionAttributes.put("orderItemIdParam", orderItem.getOrderItemId());
+        return SUCCESS;
+    }
+
+    public String loadEditOrderItem() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        // Display Order Data to form
+        Orders orderEntityForm = orderService.findOrdersById((operationsService.findOrderItemById(orderItemIdParam)).getOrderId());
+        order = transformToOrderFormBean(orderEntityForm);
+
+        OrderItems orderItemListingEntity = orderService.findOrderItemByOrderItemId(orderItemIdParam);
+        orderItem = transformToOrderItemsFormBean(orderItemListingEntity);
+
+        // get contact id from shipper
+        Integer contactIdParam = orderEntityForm.getShipperContactId();
+
+        // shipper id from contact
+        Contacts contactEntity = customerService.findContactById(contactIdParam);
+        Customer customerEntity = customerService.findCustomerById(contactEntity.getReferenceId());
+
+        customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
+
+        items = customerService.findItemByCode(orderItemListingEntity.getNameSize());
+
+        // get order items on order edit module
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((operationsService.findOrderItemById(orderItemIdParam)).getOrderId());
+
+        // display item listing in table
+        /*for (OrderItems orderItemElem : orderItemEntityList) {
+            if(orderItemListingEntity.getOrderItemId() != orderItemElem.getOrderItemId()){
+                orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+            }
+        }*/
+
+        sessionAttributes.put("orderIdPass", orderEntityForm.getOrderId());
+
         return SUCCESS;
     }
 
@@ -1389,7 +1505,18 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderItemBean.setVendorSea(orderItem.getVendorSea());
         orderItemBean.setServiceRequirement(orderItem.getServiceRequirement());
         orderItemBean.setQuantity(orderItem.getQuantity());
-        orderItemBean.setNameSize(orderItem.getNameSize());
+
+        Orders orderEntity = orderService.findOrdersById(operationsService.findOrderItemById(orderItem.getOrderItemId()).getOrderId());
+
+        if(orderEntity.getServiceRequirement().equals("FULL CONTAINER LOAD") || orderEntity.getServiceRequirement().equals("FULL TRUCK LOAD")){
+            orderItemBean.setNameSize(orderItem.getNameSize());
+            orderItemBean.setItemName(orderItem.getNameSize());
+        }else{
+            Items itemEntity = customerService.findItemByCode(orderItem.getNameSize());
+            orderItemBean.setNameSize(itemEntity.getItemCode());
+            orderItemBean.setItemName(itemEntity.getItemName());
+        }
+
         orderItemBean.setWeight(orderItem.getWeight());
         orderItemBean.setVolume(orderItem.getVolume());
         orderItemBean.setClassification(orderItem.getClassification());
@@ -1525,7 +1652,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         entity.setOrderId((Integer) sessionAttributes.get("orderIdPass"));
         entity.setCommodity(formBean.getDescription());
-        /*entity.setQuantity(formBean.getQuantity());*/
         entity.setClassification(formBean.getClassification());
         entity.setDeclaredValue(formBean.getDeclaredValue());
 
@@ -1550,17 +1676,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             entity.setVolume(formBean.getVolume());
         }
 
-        // Condition in FCL and LCL
-        /*if (sessionAttributes.get("service_Req").equals("FULL CONTAINER LOAD")) {
-            entity.setNameSize(formBean.getNameSize());
-        } else {
-            *//*Integer nameId = Integer.parseInt(formBean.getNameSize());
-            Items itemEntity = customerService.findItemByCustomerItemsId(nameId);
-            entity.setNameSize(itemEntity.getItemName());*//*
-            entity.setNameSize(formBean.getNameSize());
-        }*/
-
-        entity.setNameSize(formBean.getNameSize());
+        /*entity.setNameSize(formBean.getNameSize());*/
         entity.setServiceRequirement(orderService.findOrdersById((Integer) sessionAttributes.get("orderIdPass")).getServiceRequirement());
         entity.setRate(formBean.getRate());
         entity.setComments(formBean.getRemarks());
@@ -2474,6 +2590,14 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setShipperItemCommentsMap(Map<String, String> shipperItemCommentsMap) {
         this.shipperItemCommentsMap = shipperItemCommentsMap;
+    }
+
+    public Items getItems() {
+        return items;
+    }
+
+    public void setItems(Items items) {
+        this.items = items;
     }
 }
 

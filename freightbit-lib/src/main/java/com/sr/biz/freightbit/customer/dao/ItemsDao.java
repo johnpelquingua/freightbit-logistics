@@ -16,6 +16,8 @@ public interface ItemsDao {
 
     public Items findIItemDetailsByItemName(String itemName);
 
+    public Items findItemByCode(String itemCode);
+
     public List<Items> findUserByItemName(String itemName);
 
     public void updateItems(Items items);

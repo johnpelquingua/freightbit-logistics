@@ -94,6 +94,10 @@
             <result name="success">/orders/editItemListing.jsp</result>
         </action>
 
+        <action name="loadEditOrderItem" class="com.sr.apps.freightbit.order.action.OrderAction" method="loadEditOrderItem">
+            <result name="success" type="tiles">orders.edit-booking-info.tiles</result>
+        </action>
+
         <action name="editItemListing" class="com.sr.apps.freightbit.order.action.OrderAction" method="editItemListing">
             <result name="success" type="redirect">loadSuccessEditItemListing</result>
         </action>
@@ -106,6 +110,14 @@
                 method="addItemsInTable">
             <result name="input" type="redirect">addItemsAlreadyExists</result>
             <result name="success" type="redirect">addedItemsInTable</result>
+        </action>
+
+        <action name="editItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="editItemsInTable">
+            <result name="success" type="redirect">addOrderInfo</result>
+            <result name="input" type="redirect">addedItemsInTable</result>
+            <!--<result name="input" type="redirect">addItemsAlreadyExists</result>-->
+            <!--<result name="success" type="redirect">addedItemsInTable</result>-->
         </action>
 
         <action name="addedItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"

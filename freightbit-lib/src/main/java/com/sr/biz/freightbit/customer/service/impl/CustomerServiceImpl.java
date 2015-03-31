@@ -356,6 +356,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Items findItemByCode(String itemCode) {
+        return itemsDao.findItemByCode(itemCode);
+    }
+
+    @Override
     public List<Items> findItemByCustomerId(Integer customerId) {
         List<Items> result = itemsDao.findItemByCustomerId(customerId);
         return result;

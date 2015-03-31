@@ -108,6 +108,8 @@ public interface CustomerService {
 
     public Items findItemDetailsByItemName(String itemName);
 
+    public Items findItemByCode(String itemCode);
+
     public void updateItems(Items items);
 
     public List<Items> findAllItemsByClientId(Integer clientId);
