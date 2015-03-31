@@ -37,7 +37,7 @@
                                 <label class="col-lg-12 control-label" style="padding-top:0px !important; margin-top: 0px !important; text-align:left;">Company Name / Customer Name<span class="asterisk_red"></span></label>
                                 <div class="col-lg-12" >
                                     <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName"
-                                                  pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                                  pattern="^(\s*[\#a-zA-Z0-9\.\,\-\&]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\-\&\#]*)\s*)+$"
                                                   title="Company / Customer name must not contain special charatcters."/>
                                 </div>
                             </div>
