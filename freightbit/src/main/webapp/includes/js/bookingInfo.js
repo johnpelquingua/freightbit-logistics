@@ -30,6 +30,10 @@ if($('.cargoContainerSavingTable tbody tr').size() == 0){
     $('.cargoContainerSavingTableLoadingDiv').show();
 }
 
+$( window ).load(function() {
+    $('.addItemDiv').focus();
+});
+
 // THIS FUNCTION HIDES THE WEIGHT AND VOLUME FIELD IF THE SERVICE REQ IS FULL CONTAINER LOAD
 $(function(){
     if($('.serviceReq').text() == 'FULL CONTAINER LOAD'){

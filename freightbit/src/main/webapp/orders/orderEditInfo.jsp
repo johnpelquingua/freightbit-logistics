@@ -328,13 +328,16 @@
                             </label>
     `
                             <div class="col-lg-3" >
+
+                                <s:hidden name="orderItem.quantity" value="%{orderItem.quantity}" />
                                 <s:select cssClass="form-control containerQuantityDropdown"
                                           id="orderItem_quantityFCL"
                                           name="orderItem.quantity"
                                           list="containerQuantity"
                                           emptyOption="true"
                                           required="true"
-                                          onchange="fcl()" />
+                                          onchange="fcl()"
+                                          disabled="true"/>
                             </div>
 
                         </div>
@@ -662,32 +665,16 @@
 <%------------------------------------------------ LESS CONTAINER LOAD END ----------------------------------------------------------------%>
 
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
-                        <%--<button class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
                             Cancel
-                        </button>--%>
+                        </button>
                         <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                             <span>
-                                <s:url var="orderAddInfoUrl" action="addOrderInfo">
-                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{orderAddInfoUrl}">
-                                    <button class="btn btn-danger">
-                                        Cancel
-                                    </button>
-                                </s:a>
                                 <s:submit name="submit" cssClass="addContainerToList btn btn-primary" id="submit_button" value="Save Container to List"/>
                             </span>
                         </s:if>
                         <s:else>
                             <span>
-                                <s:url var="orderAddInfoUrl" action="addOrderInfo">
-                                    <%--<s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>--%>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{orderAddInfoUrl}">
-                                    <button class="btn btn-danger">
-                                        Cancel
-                                    </button>
-                                </s:a>
                                 <s:submit name="submit" cssClass="addItemToList btn btn-primary" id="submit_button" value="Save Item to List" />
                             </span>
                         </s:else>
@@ -848,7 +835,6 @@
 <%--<div class="panel-footer">
 
     <div class="pull-right">
-        <!-- Button trigger modal -->
         <button class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
             Cancel
         </button>
@@ -1002,7 +988,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='addOrderInfo'">Yes</button>
+                <%--<button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>--%>
             </div>
         </div>
     </div>
@@ -1269,6 +1256,13 @@
 
     $( window ).load(function() {
         $('.addItemDiv').focus();
+    });
+
+    // THIS FUNCTION HIDES THE WEIGHT AND VOLUME FIELD IF THE SERVICE REQ IS FULL CONTAINER LOAD
+    $(function(){
+        if($('.serviceReq').text() == 'FULL CONTAINER LOAD'){
+            $('.weightAndVolume').hide();
+        }
     });
 
     $(document).ready(function() {

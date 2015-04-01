@@ -515,8 +515,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String editItemsInTable() {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-
-
         List<OrderItems> orderItemNumberList = orderService.findAllItemByOrderId(operationsService.findOrderItemById(orderItem.getOrderItemId()).getOrderId());
 
         Orders orderEntity = orderService.findOrdersById(operationsService.findOrderItemById(orderItem.getOrderItemId()).getOrderId());
@@ -525,7 +523,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         Integer orderItemQuantityTotal = 0;
 
         for (int i = 0; i < orderItemNumberList.size(); i++) {
-
             orderItemQuantityTotal = orderItemQuantityTotal + orderItemNumberList.get(i).getQuantity();
         }
 
@@ -539,13 +536,13 @@ public class OrderAction extends ActionSupport implements Preparable {
                 String messageFlag = "FCL_LIMIT";
                 sessionAttributes.put("messageFlag", messageFlag);
 
-            } else {
+            }else {
                 // Add order items to database
                 if(orderItem.getQuantity() == 1){
                     orderItemEntity.setQuantity(1);
                     orderItemEntity.setNameSize(orderItem.getNameSize());
                     orderService.updateItemListing(orderItemEntity);
-                }else{
+                }else {
                     Integer saveLoop = orderItem.getQuantity();
                     for(int i = 0; i < saveLoop; i++ ){
                         orderItemEntity.setQuantity(1);
@@ -561,7 +558,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             if (orderItemQuantityGrandTotal > 250) {
                 String messageFlag = "OTHERS_LIMIT";
                 sessionAttributes.put("messageFlag", messageFlag);
-            } else {
+            } else{
                 // Add order items to database
                 orderItemEntity.setQuantity(orderItem.getQuantity());
                 if(orderItem.getVolume() == null){
@@ -577,9 +574,6 @@ public class OrderAction extends ActionSupport implements Preparable {
                 sessionAttributes.put("messageFlag", messageFlag);
             }
         }
-
-
-
         // Get Order Id
         Integer idOrder = orderItemEntity.getOrderId();
         // Put Order Id in session
