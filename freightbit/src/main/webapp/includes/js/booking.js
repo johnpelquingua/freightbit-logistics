@@ -859,50 +859,62 @@ function dynamicDropdown(select, index) {
         case 'DOOR TO PIER' :
             $("#customerName").val('');
             $("#shipperContact").val('');
+            $("#shipperContact").empty();
             $("#shipperAddress").prop('disabled', false);
             $("#shipperAddress").val('');
+            $("#shipperAddress").empty();
             $("#shipperConsignee").val('');
+            $("#shipperConsignee").empty();
             $("#consigneeAddress").val('');
             $("#consigneeAddress").prop('disabled', true);
+            $("#consigneeAddress_textfield").val('');
+            $("#consigneeAddress_textfield").prop('disabled', true);
+            $("#consigneeContact").val('');
+            $("#consigneeContact").empty();
             $("#customerPhone_textfield").val('');
             $("#customerMobile_textfield").val('');
             $("#customerEmail_textfield").val('');
             $("#customerFax_textfield").val('');
-            $("#consigneeAddress_textfield").val('');
-            $("#consigneeAddress_textfield").prop('disabled', true);
-            $("#consigneeContact").val('');
             break;
         case 'PIER TO DOOR' :
             $("#customerName").val('');
             $("#shipperContact").val('');
+            $("#shipperContact").empty();
             $("#shipperAddress").prop('disabled', true);
             $("#shipperAddress").val('');
+            $("#shipperAddress").empty();
             $("#shipperConsignee").val('');
+            $("#shipperConsignee").empty();
             $("#consigneeAddress").prop('disabled', false);
             $("#consigneeAddress").val('');
+            $("#consigneeAddress_textfield").val('');
+            $("#consigneeAddress_textfield").prop('disabled', false);
+            $("#consigneeContact").val('');
+            $("#consigneeContact").empty();
             $("#customerPhone_textfield").val('');
             $("#customerMobile_textfield").val('');
             $("#customerEmail_textfield").val('');
             $("#customerFax_textfield").val('');
-            $("#consigneeAddress_textfield").val('');
-            $("#consigneeAddress_textfield").prop('disabled', false);
-            $("#consigneeContact").val('');
             break;
         default :
             $("#customerName").val('');
             $("#shipperContact").val('');
+            $("#shipperContact").empty();
             $("#shipperAddress").prop('disabled', false);
             $("#shipperAddress").val('');
+            $("#shipperAddress").empty();
             $("#shipperConsignee").val('');
+            $("#shipperConsignee").empty();
             $("#consigneeAddress").prop('disabled', false);
             $("#consigneeAddress").val('');
+            $("#consigneeAddress_textfield").val('');
+            $("#consigneeAddress_textfield").prop('disabled', false);
+            $("#consigneeContact").val('');
+            $("#consigneeContact").empty();
             $("#customerPhone_textfield").val('');
             $("#customerMobile_textfield").val('');
             $("#customerEmail_textfield").val('');
             $("#customerFax_textfield").val('');
-            $("#consigneeAddress_textfield").val('');
-            $("#consigneeAddress_textfield").prop('disabled', false);
-            $("#consigneeContact").val('');
             break;
     }
 
@@ -911,13 +923,16 @@ function dynamicDropdown(select, index) {
         case 'PICKUP' :
             $("#customerName").val('');
             $("#shipperContact").val('');
+            $("#shipperContact").empty();
             $("#datepicker2").prop('disabled', true);
             $("#datepicker1").prop('disabled', false);
             $("#datepicker2").val('');
             $("#datepicker1").val('');
             $("#shipperAddress").prop('disabled', false);
             $("#shipperAddress").val('');
+            $("#shipperAddress").empty();
             $("#shipperConsignee").val('');
+            $("#shipperConsignee").empty();
             $("#consigneeAddress").val('');
             $("#consigneeAddress").prop('disabled', true);
             $("#consigneeAddress_textfield").val('');
@@ -926,19 +941,23 @@ function dynamicDropdown(select, index) {
         case 'DELIVERY' :
             $("#customerName").val('');
             $("#shipperContact").val('');
+            $("#shipperContact").empty();
             $("#datepicker1").prop('disabled', true);
             $("#datepicker2").prop('disabled', false);
             $("#datepicker2").val('');
             $("#datepicker1").val('');
             $("#shipperAddress").prop('disabled', true);
             $("#shipperAddress").val('');
+            $("#shipperAddress").empty();
             $("#shipperConsignee").val('');
+            $("#shipperConsignee").empty();
             $("#consigneeAddress").prop('disabled', false);
             $("#consigneeAddress").val('');
             break;
         case 'INTER-WAREHOUSE' :
             $("#customerName").val('');
             $("#shipperContact").val('');
+            $("#shipperContact").empty();
             $("#datepicker1").prop('disabled', false);
             $("#datepicker2").prop('disabled', false);
             $("#datepicker2").val('');
@@ -1013,15 +1032,14 @@ function dynamicDropdown(select, index) {
     // If Service Type is Shipping and Trucking
     if (select.options[ index ].value === 'SHIPPING AND TRUCKING') {
         $("#select1").val('');
-        $("#select2").val('');
-        $("#order_modeOfService").val('');
-        $('#datepicker1').val('');
-        $('#datepicker2').val('');
-        $('#datepicker1').prop('disabled' , false);
-        $('#datepicker2').prop('disabled' , false);
         $('#select1').prop('disabled',false);
+        $("#select2").val('');
         $('#select2').prop('disabled',false);
-        $("#order_modeOfPayment").val('');
+        $('#datepicker1').val('');
+        $('#datepicker1').prop('disabled' , false);
+        $('#datepicker2').val('');
+        $('#datepicker2').prop('disabled' , false);
+        $("#order_modeOfService").val('');
         $("#order_modeOfPayment").val('');
         $("#customerPhone_textfield").val('');
         $("#customerMobile_textfield").val('');

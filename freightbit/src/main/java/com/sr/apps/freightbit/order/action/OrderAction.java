@@ -1004,7 +1004,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        if (orderEntity.getOrderStatus().equals("INCOMPLETE")) {
+        if (orderEntity.getOrderStatus().equals("INCOMPLETE") || orderEntity.getOrderStatus().equals("CANCELLED") || orderEntity.getOrderStatus().equals("PENDING") ) {
             String column = getColumnFilter();
             List<Orders> orderEntityList = new ArrayList<Orders>();
             if (StringUtils.isNotBlank(column)) {

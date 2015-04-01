@@ -103,12 +103,14 @@
 
                                         <%--edit booking--%>
                                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
-                                        <s:url var="editOrderUrl" action="loadEditOrder">
-                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{editOrderUrl}" rel="tooltip" title ="Edit Booking">
-                                            <i class="fa fa-pencil table-action-icons"></i>
-                                        </s:a>
+                                        <s:if test=" #attr.order.orderStatus != 'SERVICE ACCOMPLISHED' ">
+                                            <s:url var="editOrderUrl" action="loadEditOrder">
+                                                <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{editOrderUrl}" rel="tooltip" title ="Edit Booking">
+                                                <i class="fa fa-pencil table-action-icons"></i>
+                                            </s:a>
+                                        </s:if>
 
                                         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES')">
                                         <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' || #attr.order.orderStatus == 'INCOMPLETE' ">

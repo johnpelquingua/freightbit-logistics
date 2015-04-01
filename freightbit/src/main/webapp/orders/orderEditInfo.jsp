@@ -1260,7 +1260,7 @@
 
     // THIS FUNCTION HIDES THE WEIGHT AND VOLUME FIELD IF THE SERVICE REQ IS FULL CONTAINER LOAD
     $(function(){
-        if($('.serviceReq').text() == 'FULL CONTAINER LOAD'){
+        if($('.serviceReq').text() == 'FULL CONTAINER LOAD' || $('.serviceReq').text() == 'FULL TRUCK LOAD'){
             $('.weightAndVolume').hide();
         }
     });

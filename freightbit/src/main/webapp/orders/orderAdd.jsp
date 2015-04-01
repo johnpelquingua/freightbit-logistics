@@ -378,11 +378,11 @@
                         <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
                         <%--<s:checkboxlist cssClass="notifBox" list="notifyByList" listKey="key" value="" listValue="value" name="order.notifyBy" id="notifyBy" ></s:checkboxlist><br/>--%>
-                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByPhone" value="Phone" /> Phone&emsp;&emsp;&emsp;&emsp;
-                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByMobile" value="Mobile" /> Mobile&emsp;&emsp;&emsp;&emsp;
+                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByPhone" value="PHONE" /> Phone&emsp;&emsp;&emsp;&emsp;
+                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByMobile" value="MOBILE" /> Mobile&emsp;&emsp;&emsp;&emsp;
                             <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyBySms" value="SMS" /> SMS&emsp;&emsp;&emsp;&emsp;
-                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByFax" value="Fax" /> Fax&emsp;&emsp;&emsp;&emsp;
-                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByEmail" value="E-mail" /> E-mail
+                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByFax" value="FAX" /> Fax&emsp;&emsp;&emsp;&emsp;
+                            <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByEmail" value="E-MAIL" /> E-mail
                     </div>
 
                 </div>
