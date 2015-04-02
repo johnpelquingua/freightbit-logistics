@@ -69,6 +69,17 @@ toDateDelivery.datepicker({
 
 $(document).ready(function() {
 
+    // DISABLE ADD CONTACT PERSON BUTTON IF CONTACT ALREADY EXISTS - START
+    $('.bookingInput').hover(function(){
+        if($('#consigneeContact').val() != null){
+            $('#id_Consignee').attr('disabled', true);
+        }else{
+            $('#id_Consignee').attr('disabled', false);
+        }
+    });
+
+    // DISABLE ADD CONTACT PERSON BUTTON IF CONTACT ALREADY EXISTS - END
+
     $('.serviceModeDropdown').change(function(){
         $('.addAddressItems').prop('disabled', true);
         if($(this).val() == 'PIER TO DOOR' || $(this).val() == 'PIER TO PIER'){
@@ -1108,11 +1119,13 @@ function dynamicDropdown(select, index) {
     }
 
 }
-/*
+
 function validate_form()
 {
     var firstDate = new Date($('.pickupDateInput').val()),
         lastDate = new Date($('.deliveryDateInput').val()),
+        pickupDate = $('.pickupDateInput').val(),
+        deliveryDate = $('.deliveryDateInput').val(),
         dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
 
     if($('input[type=checkbox]:checked').length == 0){
@@ -1123,16 +1136,14 @@ function validate_form()
         $('#dateSameWarningModalBody').empty().append(message);
         $('#dateSameWarningModal').modal('show');
         return false;
-    }else if($('.pickupDateInput').val().match(dateRegEx) !== null){
+    }else if(pickupDate.match(dateRegEx) === null){
         alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
         return false;
-    }else if($('.deliveryDateInput').val().match(dateRegEx) !== null){
+    }else if(deliveryDate.match(dateRegEx) === null){
         alert('ERROR! Delivery Date is not a valid date (MM/DD/YYYY)');
         return false;
     }else{
-//        return false;
         return true;
     }
-//    return valid;
 }
-*/
+

@@ -37,7 +37,7 @@
                 <div>New Booking!</div>
             </div>
         </div>
-    </div>
+        </div>
 
 </div>
         </a>
