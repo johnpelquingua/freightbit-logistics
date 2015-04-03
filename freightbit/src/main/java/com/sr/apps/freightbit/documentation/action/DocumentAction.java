@@ -31,6 +31,7 @@ import com.sr.biz.freightbit.vendor.entity.Driver;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
+import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -1756,6 +1757,21 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             vendorLocationFlag = "DESTINATION";
 
+            if(orderEntity.getServiceType().equals("SHIPPING")){
+                for (Driver driverElem : allDriverList){
+                    if(driverElem.getVendorId() == ernestRecipientOri.getVendorId()){
+
+                        DriverBean formBean = new DriverBean();
+                        formBean.setDriverId(driverElem.getDriverId());
+                        formBean.setLastName(driverElem.getLastName());
+                        formBean.setFirstName(driverElem.getFirstName());
+                        formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+
+                        repContactsList.add(formBean);
+                    }
+                }
+            }
+
             for (Driver driverElem : allDriverList){
                 if(driverElem.getVendorId() == ernestRecipientDes.getVendorId()){
 
@@ -2150,7 +2166,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
 
         }else if(documentName.equals("AUTHORIZATION TO WITHDRAW")){
-
             Driver contactEntity = vendorService.findDriverById(repContactIdParam);
 
             Vendor vendorEntity = vendorService.findVendorById(contactEntity.getVendorId());
@@ -2159,7 +2174,87 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                 if(documentStageParam.equals("OUTBOUND")){
 
-                    if(orderItemElem.getVendorOrigin().equals(vendorEntity.getVendorCode()) || vendorEntity.getVendorCode().equals("ELC")){
+                    try{
+                        if(orderItemElem.getVendorOrigin().equals(vendorEntity.getVendorCode()) || vendorEntity.getVendorCode().equals("ELC")){
+
+                            // will delete ATW document if it exists
+                            for (Documents freightDocumentElem : bookingDocuments){
+                                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                                if(docName.equals("AUTHORIZATION TO WITHDRAW")){
+                                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+
+                                    if(documentEntity != null) {
+
+                                        if (vendorEntity.getVendorCode().equals("ELC")) {
+
+                                            for (OrderItems orderItemInsideElem : orderItemsList) {
+                                                if (documentEntity.getVendorCode().equals("ELC") && documentEntity.getOrderItemId().equals(orderItemInsideElem.getOrderItemId()) && documentEntity.getDocumentStatus().equals("OUTBOUND")) {
+                                                    documentsService.deleteDocument(documentEntity);
+                                                }
+                                            }
+
+                                        } else {
+
+                                            if (documentEntity.getVendorCode().equals(orderItemElem.getVendorOrigin()) && documentEntity.getOrderItemId().equals(orderItemElem.getOrderItemId())) {
+                                                documentsService.deleteDocument(documentEntity);
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+
+                            Documents documentEntity = new Documents();
+                            Client client = clientService.findClientById(getClientId().toString());
+
+                            documentEntity.setClient(client);
+                            documentEntity.setDocumentName(documentName);
+                            documentEntity.setReferenceId(document.getReferenceId());
+                            documentEntity.setReferenceTable("ORDERS");
+                            documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                            documentEntity.setCreatedDate(new Date());
+                            documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
+                            documentEntity.setVendorCode(vendorEntity.getVendorCode());
+
+                            documentEntity.setRepContact(repContactIdParam);
+                            documentEntity.setOriContact(shipperContactIdParam);
+                            documentEntity.setDesContact(consigneeContactIdParam);
+
+                            if (documentStageParam.equals("OUTBOUND")) {
+                                documentEntity.setOutboundStage(1);
+                                documentEntity.setDocumentProcessed(0);
+                                documentEntity.setDocumentStatus("OUTBOUND");
+                            } else if (documentStageParam.equals("INBOUND")) {
+                                documentEntity.setInboundStage(1);
+                                documentEntity.setDocumentProcessed(1);
+                                documentEntity.setDocumentStatus("INBOUND");
+                            } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                                documentEntity.setDocumentProcessed(2);
+                                documentEntity.setFinalOutboundStage(1);
+                                documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                            } else {
+                                documentEntity.setFinalInboundStage(1);
+                                documentEntity.setDocumentProcessed(3);
+                                documentEntity.setDocumentStatus("FINAL INBOUND");
+                            }
+
+                            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                            documentEntity.setReferenceNumber(document.getReferenceNumber());
+                            documentEntity.setDocumentComments(document.getDocumentComments());
+                            String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
+                            documentEntity.setControlNumber(documentCode);
+
+                            documentEntity.setReferenceNumber(documentCode.replace("ATW-", ""));
+
+                            documentsService.addDocuments(documentEntity);
+                        }
+
+                    }catch(NullPointerException npe){
+
+                        System.out.println("vendor origin is null");
+                        npe.printStackTrace();
+
+                    }finally{
 
                         // will delete ATW document if it exists
                         for (Documents freightDocumentElem : bookingDocuments){
@@ -2169,20 +2264,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                                 if(documentEntity != null) {
 
-                                    if (vendorEntity.getVendorCode().equals("ELC")) {
-
-                                        for (OrderItems orderItemInsideElem : orderItemsList) {
-                                            if (documentEntity.getVendorCode().equals("ELC") && documentEntity.getOrderItemId() == orderItemInsideElem.getOrderItemId() && documentEntity.getDocumentStatus().equals("OUTBOUND")) {
-                                                documentsService.deleteDocument(documentEntity);
-                                            }
-                                        }
-
-                                    } else {
-
-                                        if (documentEntity.getVendorCode().equals(orderItemElem.getVendorOrigin()) && documentEntity.getOrderItemId() == orderItemElem.getOrderItemId()) {
+                                    for (OrderItems orderItemInsideElem : orderItemsList) {
+                                        if (documentEntity.getVendorCode().equals("ELC") && documentEntity.getDocumentStatus().equals("OUTBOUND")) {
                                             documentsService.deleteDocument(documentEntity);
                                         }
                                     }
+
                                 }
                             }
                         }
@@ -2234,28 +2321,100 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                 }else if(documentStageParam.equals("FINAL OUTBOUND")){
 
-                    if(orderItemElem.getVendorDestination().equals(vendorEntity.getVendorCode()) || vendorEntity.getVendorCode().equals("ELC")){
+                    try{
+                        if(orderItemElem.getVendorDestination().equals(vendorEntity.getVendorCode()) || vendorEntity.getVendorCode().equals("ELC")){
 
-                        // will delete ATW document if it exists
-                        for (Documents freightDocumentElem : bookingDocuments){
-                            String docName = freightDocumentElem.getDocumentName().toUpperCase();
-                            if(docName.equals("AUTHORIZATION TO WITHDRAW")){
-                                Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                            // will delete ATW document if it exists
+                            for (Documents freightDocumentElem : bookingDocuments){
+                                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                                if(docName.equals("AUTHORIZATION TO WITHDRAW")){
+                                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
 
-                                if(documentEntity != null) {
+                                    if(documentEntity != null) {
 
-                                    if (vendorEntity.getVendorCode().equals("ELC")) {
+                                        if (vendorEntity.getVendorCode().equals("ELC")) {
 
-                                        for (OrderItems orderItemInsideElem : orderItemsList) {
-                                            if (documentEntity.getVendorCode().equals("ELC") && documentEntity.getOrderItemId() == orderItemInsideElem.getOrderItemId() && documentEntity.getDocumentStatus().equals("FINAL OUTBOUND")) {
+                                            for (OrderItems orderItemInsideElem : orderItemsList) {
+                                                if (documentEntity.getVendorCode().equals("ELC") && documentEntity.getOrderItemId().equals(orderItemInsideElem.getOrderItemId()) && documentEntity.getDocumentStatus().equals("FINAL OUTBOUND")) {
+                                                    documentsService.deleteDocument(documentEntity);
+                                                }
+                                            }
+
+                                        }else{
+
+                                            if (documentEntity.getVendorCode().equals(orderItemElem.getVendorDestination()) && documentEntity.getOrderItemId().equals(orderItemElem.getOrderItemId())) {
                                                 documentsService.deleteDocument(documentEntity);
                                             }
                                         }
+                                    }
+                                }
+                            }
 
-                                    }else{
+                            Documents documentEntity = new Documents();
+                            Client client = clientService.findClientById(getClientId().toString());
 
-                                        if (documentEntity.getVendorCode().equals(orderItemElem.getVendorDestination()) && documentEntity.getOrderItemId() == orderItemElem.getOrderItemId()) {
-                                            documentsService.deleteDocument(documentEntity);
+                            documentEntity.setClient(client);
+                            documentEntity.setDocumentName(documentName);
+                            documentEntity.setReferenceId(document.getReferenceId());
+                            documentEntity.setReferenceTable("ORDERS");
+                            documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                            documentEntity.setCreatedDate(new Date());
+                            documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
+                            documentEntity.setVendorCode(vendorEntity.getVendorCode());
+
+                            documentEntity.setRepContact(repContactIdParam);
+                            documentEntity.setOriContact(shipperContactIdParam);
+                            documentEntity.setDesContact(consigneeContactIdParam);
+
+                            if (documentStageParam.equals("OUTBOUND")) {
+                                documentEntity.setOutboundStage(1);
+                                documentEntity.setDocumentProcessed(0);
+                                documentEntity.setDocumentStatus("OUTBOUND");
+                            } else if (documentStageParam.equals("INBOUND")) {
+                                documentEntity.setInboundStage(1);
+                                documentEntity.setDocumentProcessed(1);
+                                documentEntity.setDocumentStatus("INBOUND");
+                            } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                                documentEntity.setDocumentProcessed(2);
+                                documentEntity.setFinalOutboundStage(1);
+                                documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                            } else {
+                                documentEntity.setFinalInboundStage(1);
+                                documentEntity.setDocumentProcessed(3);
+                                documentEntity.setDocumentStatus("FINAL INBOUND");
+                            }
+
+                            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                            documentEntity.setReferenceNumber(document.getReferenceNumber());
+                            documentEntity.setDocumentComments(document.getDocumentComments());
+                            String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
+                            documentEntity.setControlNumber(documentCode);
+
+                            documentEntity.setReferenceNumber(documentCode.replace("ATW-", ""));
+
+                            documentsService.addDocuments(documentEntity);
+                        }
+
+                    }catch(NullPointerException npe){
+
+                        System.out.println("vendor destination is null");
+                        npe.printStackTrace();
+
+                    }finally{
+
+                        if(!orderEntity.getServiceType().equals("SHIPPING")){
+                            // will delete ATW document if it exists
+                            for (Documents freightDocumentElem : bookingDocuments){
+                                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                                if(docName.equals("AUTHORIZATION TO WITHDRAW")){
+                                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+
+                                    if(documentEntity != null) {
+
+                                        for (OrderItems orderItemInsideElem : orderItemsList) {
+                                            if (documentEntity.getVendorCode().equals("ELC") && documentEntity.getDocumentStatus().equals("FINAL OUTBOUND")) {
+                                                documentsService.deleteDocument(documentEntity);
+                                            }
                                         }
                                     }
                                 }
@@ -2305,6 +2464,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentEntity.setReferenceNumber(documentCode.replace("ATW-", ""));
 
                         documentsService.addDocuments(documentEntity);
+
                     }
                 }
             }

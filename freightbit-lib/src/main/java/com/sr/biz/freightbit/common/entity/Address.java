@@ -5,15 +5,9 @@ import com.sr.biz.freightbit.core.entity.Client;
 import javax.persistence.*;
 import java.util.Date;
 
-
-/**
- * Created by Solutions Resource on 5/28/14.
- */
-
 @Entity
 @Table(name = "address", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "addressId"))
 public class Address implements java.io.Serializable {
-
 
     private Integer addressId;
     private Client clientId;

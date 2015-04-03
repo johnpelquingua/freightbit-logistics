@@ -598,6 +598,24 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
     }
 
     @Override
+    public OrderItems findOrderItemByCode(String nameSize) {
+        log.debug("Find initiated");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from OrderItems o where o.nameSize = :nameSize");
+            query.setParameter("nameSize", nameSize);
+            List<OrderItems> results = (List<OrderItems>) query.list();
+            if (results != null && results.size() > 0) {
+                return results.get(0);
+            }
+            return null;
+        } catch (Exception e) {
+            log.error("Find failed", e);
+            throw e;
+        }
+    }
+
+    @Override
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId){
         log.debug("Find initiated");
         try {
@@ -652,9 +670,10 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated");
         try {
              log.debug("Find succeed");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from VesselSchedules");
+            /*Query query = getSessionFactory().getCurrentSession().createQuery("from VesselSchedules");
             List<VesselSchedules> results = (List<VesselSchedules>) query.list();
-            return results;
+            return results;*/
+            return getSessionFactory().getCurrentSession().createQuery("from VesselSchedules").list();
         } catch (Exception e) {
             log.error("Find failed", e);
             throw e;

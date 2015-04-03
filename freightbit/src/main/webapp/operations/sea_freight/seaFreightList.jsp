@@ -165,9 +165,9 @@
                                                         style="text-align: center;"> </display:column></td>
                                     <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black" scope="Volume"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="pickupDate" title="PICKUP  <i class='fa fa-sort' />" class="tb-font-black" scope="PICKUP"
+                                    <td><display:column property="strPickupDate" title="PICKUP  <i class='fa fa-sort' />" class="tb-font-black" scope="PICKUP"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="deliveryDate" title="DELIVERY  <i class='fa fa-sort' />" class="tb-font-black" scope="DELIVERY"
+                                    <td><display:column property="strDeliveryDate" title="DELIVERY  <i class='fa fa-sort' />" class="tb-font-black" scope="DELIVERY"
                                                         style="text-align: center;"> </display:column></td>
                                     <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                     <td>

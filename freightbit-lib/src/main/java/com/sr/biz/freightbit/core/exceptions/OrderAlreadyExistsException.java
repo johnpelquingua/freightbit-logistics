@@ -1,10 +1,6 @@
 package com.sr.biz.freightbit.core.exceptions;
 
-/**
- * Created by JMXPSX on 5/27/14.
- */
 public class OrderAlreadyExistsException extends ObjectAlreadyExistsException {
-
 
     public OrderAlreadyExistsException(String name) {
         super(name);

@@ -18,6 +18,7 @@ import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.core.exceptions.AddressAlreadyExistsException;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
@@ -573,6 +574,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
                         documentEntity.setAging(insideDocumentEntity.getAging());
 
                         documentsService.updateDocument(documentEntity);
+                        documentsService.updateDocument(documentEntity);
                         }
                     /*--------------------- DOCUMENTS ------------------------------*/
                 }
@@ -825,11 +827,18 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        Address addressEntity = transformToEntityBeanAddress(address);
-        addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
-        addressEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-        addressEntity.setCreatedTimestamp(new Date());
-        customerService.addAddress(addressEntity);
+
+        try{
+            Address addressEntity = transformToEntityBeanAddress(address);
+            addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            addressEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            addressEntity.setCreatedTimestamp(new Date());
+            customerService.addAddress(addressEntity);
+        }catch (AddressAlreadyExistsException e) {
+            addFieldError("address.addressLine1", getText("err.addressLine1.already.exists"));
+            return INPUT;
+        }
+
         return SUCCESS;
     }
 
@@ -843,6 +852,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
         addressEntity.setModifiedTimestamp(new Date());
         customerService.updateAddress(addressEntity);
+
         return SUCCESS;
     }
 

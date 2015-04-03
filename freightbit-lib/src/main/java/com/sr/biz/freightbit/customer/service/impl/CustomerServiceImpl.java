@@ -4,6 +4,7 @@ import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.core.exceptions.AddressAlreadyExistsException;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.customer.dao.ItemsDao;
@@ -183,8 +184,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addAddress(Address address) {
-        addressDao.addAddress(address);
+    public Integer addAddress(Address address) throws AddressAlreadyExistsException{
+        if(addressDao.findAddressByAddressLine(address.getAddressLine1()).size() > 0)
+           throw new AddressAlreadyExistsException(address.getAddressLine1());
+        else
+            return addressDao.addAddress(address);
+
     }
 
     @Override

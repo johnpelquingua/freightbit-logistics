@@ -5,6 +5,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 
+<style>
+    .fa-arrow-circle-down {
+        cursor: pointer;
+        color: #428bca;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -170,14 +177,11 @@
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                 </s:else>
                 <div class="col-lg-10">
-                    <%--<div class="form-control">--%>
-                        <%--<c:out value="${sessionScope.nameSizeParam}"/>--%>
-                        <ol>
-                            <s:iterator value="nameSizeList" >
-                                <li><s:property /></li>
-                            </s:iterator>
-                        </ol>
-                    <%--</div>--%>
+                    <ol>
+                        <s:iterator value="nameSizeList" >
+                            <li><s:property /></li>
+                        </s:iterator>
+                    </ol>
                 </div>
             </div>
             <div class="form-group">
@@ -220,7 +224,7 @@
 
         <div class="well">
             <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedules</h4>
-            <display:table id="vesselSchedule" name="vesselSchedule"
+            <display:table id="vesselSchedule" name="orderItemVesselSchedule"
                            requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                            class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable">
                 <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
@@ -282,18 +286,6 @@
                 <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                     style="text-align: center;"> </display:column></td>
                 <td><display:column title="Action">
-
-                    <%--<s:url var="editBulkItemsUrl" action="editBulkItems">
-                        <s:param name="vesselScheduleIdParam"
-                                 value="#attr.vesselSchedule.vesselScheduleId">
-                        </s:param>
-                        <s:param name="vendorIdParam"
-                                 value="#attr.vesselSchedule.vendorId">
-                        </s:param>
-                    </s:url>
-                    <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip" title="Set Schedule">
-                        <i class="fa fa-arrow-circle-down"></i>
-                    </s:a>--%>
 
                     <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${vesselSchedule.vesselScheduleId})">
                         <i class="fa fa-arrow-circle-down"></i>

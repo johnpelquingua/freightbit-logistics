@@ -5,12 +5,9 @@ import com.sr.biz.freightbit.common.entity.Address;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Solutions Resource on 5/28/14.
- */
 public interface AddressDao {
 
-    public void addAddress(Address address);
+    public Integer addAddress(Address address);
 
     public void deleteAddress(Address address);
 
@@ -25,6 +22,8 @@ public interface AddressDao {
     public Address findAddressById(Integer addressId);
 
     public List<Address> findAddressInBooking(Integer addressId);
+
+    public List<Address> findAddressByAddressLine(String addressLine1);
 
     public Address findAddressByRefId(Integer contactId);
 

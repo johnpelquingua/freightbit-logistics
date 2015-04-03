@@ -1,10 +1,5 @@
 package com.sr.biz.freightbit.vendor.service;
 
-/**
- * Created with IntelliJ IDEA.
- * User: johnpel
- */
-
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
@@ -18,6 +13,8 @@ public interface VendorService {
     public Integer addVendor(Vendor vendor) throws VendorAlreadyExistsException;
 
     public void updateVendor(Vendor vendor);
+
+    public void updateErnestVendor(Vendor vendor);
 
     public void deleteVendor(Vendor vendor);
 

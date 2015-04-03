@@ -228,18 +228,30 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        try {
+
+        if(!vendor.getVendorCode().equals("ELC")) {
+            try {
+                Vendor vendorEntity = transformToEntityBean(vendor);
+                vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
+                vendorEntity.setModifiedTimeStamp(new Date());
+                vendorService.updateVendor(vendorEntity);
+            } catch (VendorAlreadyExistsException e) {
+                addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
+                return INPUT;
+            }
+        }else{
             Vendor vendorEntity = transformToEntityBean(vendor);
+
+            vendorEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            vendorEntity.setCreatedTimeStamp(new Date());
             vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
-            vendorEntity.setModifiedTimeStamp(new Date());
-            vendorService.updateVendor(vendorEntity);
-        } catch (VendorAlreadyExistsException e) {
-            addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
-            return INPUT;
+            vendorService.updateErnestVendor(vendorEntity);
+
         }
-        /*return SUCCESS;*/
+
         clearErrorsAndMessages();
         addActionMessage("Success! Vendor has been updated.");
+
         if ("TRUCKING".equals(vendor.getVendorType())) {
             return "TRUCKING";
         } else {
@@ -256,20 +268,22 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public String viewInfoVendor() {
         Vendor vendorEntity = new Vendor();
-        if (!StringUtils.isBlank(vendorCodeParam))
-            vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
+        if (!StringUtils.isBlank(vendorCodeParam)){
+            vendorEntity = vendorService.findVendorById(vendorIdParam);
             /*vendorEntity = vendorService.findVendorById(vendorIdParam);*/
-        else
+        }else{
             vendorEntity = vendorService.findVendorById(getSessionVendorId());
             /*vendorEntity = vendorService.findVendorById(vendorIdParam);*/
+        }
+
         vendor = transformToFormBean(vendorEntity);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("vendorId", vendor.getVendorId());
 
-        if ("TRUCKING".equals(vendor.getVendorType())) {
+        if ("TRUCKING".equals(vendor.getVendorType())){
             return "TRUCKING";
-        } else {
+        }else{
             return "SHIPPING";
         }
     }
@@ -1097,10 +1111,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        /*vendorService.addContact(transformToEntityBeanContacts(contact));*/
+
         try {
             Contacts contactEntity = transformToEntityBeanContacts(contact);
-
             contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedTimestamp(new Date());
@@ -1118,7 +1131,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        /*vendorService.updateContact(transformToEntityBeanContacts(contact));*/
+
         try {
             Contacts contactEntity = transformToEntityBeanContacts(contact);
             contactEntity.setModifiedTimestamp(new Date());
@@ -1128,6 +1141,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             addFieldError("contact.lastName", getText("err.contact.already.exists"));
             return INPUT;
         }
+
         return SUCCESS;
     }
 

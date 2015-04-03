@@ -814,8 +814,8 @@
 
                         <div class="col-lg-8">
                             <s:textfield cssClass="dispatchInput from_date form-control finalPickupDate"
-                                         id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
-                                         contenteditable="false" style="margin-bottom: 15px !important;"/>
+                                         id="pickup" name="operationsBean.pickupDate" placeholder="Select Pickup date"
+                                         contenteditable="false" style="margin-bottom: 15px !important;" required="true"/>
                         </div>
                     </div>
 
@@ -1089,9 +1089,9 @@
                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                 <div class="col-lg-8">
-                    <s:textfield cssClass="from_date form-control finalPickupDate" value="%{orderItem.finalPickupDate}"
-                                 id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
-                                 contenteditable="false" style="margin-bottom: 15px !important;"/>
+                    <s:textfield cssClass="dispatchInput from_date form-control finalPickupDate"
+                                 id="pickup" name="operationsBean.pickupDate" placeholder="Select Pickup date"
+                                 contenteditable="false" style="margin-bottom: 15px !important;" required="true"/>
                 </div>
             </div>
             <div style="float: right;">
@@ -1454,9 +1454,9 @@
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                     <div class="col-lg-8">
-                        <s:textfield cssClass="from_date form-control finalPickupDate" value="%{orderItem.finalPickupDate}"
-                                     id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
-                                     contenteditable="false" style="margin-bottom: 15px !important;"/>
+                        <s:textfield cssClass="dispatchInput from_date form-control finalPickupDate"
+                                     id="pickup" name="operationsBean.pickupDate" placeholder="Select Pickup date"
+                                     contenteditable="false" style="margin-bottom: 15px !important;" required="true"/>
                     </div>
                 </div>
                 <div style="float: right;">
@@ -2162,8 +2162,6 @@
     $(document).ready(function(){
 
         $("#driver_licenseNumber").mask("A99-99-9999999");
-//        $("#shipping_mobile").mask("(+63999)(999-9999)");
-//        $("#shipping_fax").mask("(999) 999-9999");
         $("#truck_modelYear").mask("9999");
         $("#truck_grossWeight").mask("999999999");
         $("#truck_netWeight").mask("999999999");

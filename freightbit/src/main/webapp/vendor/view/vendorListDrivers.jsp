@@ -138,12 +138,12 @@
 
             </div>
             <div class="panel-footer">
-                <span class="pull-right">
+                <%--<span class="pull-right">
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddDriverPage'">
                         <i class="fa fa-group"></i> New Driver
                     </button>
-                </span>
+                </span>--%>
 
                 <div class="table-responsive" >
                     <div class="col-lg-12" style="position:relative;margin-top: -28px;">

@@ -641,10 +641,10 @@
                                             maxLength="255" />
                             </div>
 
-                            <label class="col-lg-3 control-label" style="padding-top: 0px; ">
+                            <label class="col-lg-3 control-label" style="padding-top: 0px; display: none; ">
                                 Volume (cbm)<span class="asterisk_red"/>
                             </label>
-                            <div class="col-lg-3" style="padding-top: 0px; ">
+                            <div class="col-lg-3" style="padding-top: 0px; display: none; ">
 
                                     <s:select cssClass="form-control"
                                               id="orderItem_volume"
@@ -981,10 +981,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
-                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-warning" style="color: red"></i> Cancel Booking</h4>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-warning" style="color: red"></i> Cancel container/item edit</h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to cancel the booking?</p>
+                <p>Are you sure you want to cancel container/item edit?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>

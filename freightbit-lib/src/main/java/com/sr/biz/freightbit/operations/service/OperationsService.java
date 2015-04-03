@@ -16,6 +16,8 @@ public interface OperationsService {
 
     public OrderItems findOrderItemById(Integer orderItemId);
 
+    public OrderItems findOrderItemByCode(String nameSize);
+
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId);
 
     public List<VesselSchedules> findVesselScheduleByVendorIdOriDesClass(Integer vendorId, String originPort, String destinationPort);

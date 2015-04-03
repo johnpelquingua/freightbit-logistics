@@ -1,49 +1,3 @@
-/*function fcl(){
-    var containerVolume = document.getElementById("orderItem.volume").value;
-    alert(containerVolume);
-
-    if(containerVolume != ''){
-        var containerQuantity = document.getElementById("orderItem.quantity").value;
-        var containerSize = document.getElementById("orderItem.nameSize").value;
-
-        if(containerQuantity == '') {
-            document.getElementById("orderItem.nameSize").value ='';
-            document.getElementById("orderItem.volume").value = '';
-            document.getElementById("orderItemVolume").value = '';
-        }
-
-        if (containerSize == '10 FT'){
-            var totalVolume = containerQuantity * 14;
-        }else if (containerSize == '20 FT'){
-            var totalVolume = containerQuantity * 28;
-        }else if (containerSize == '40 FT') {
-            var totalVolume = containerQuantity * 56;
-        }
-
-        document.getElementById("orderItem.volume").value = totalVolume;
-        document.getElementById("orderItemVolume").value = totalVolume;
-    }
-}*/
-
-/*function serviceValidate(){
-	var serviceReq = document.getElementById("serviceReq");
-	var pos = serviceReq.options[serviceReq.selectedIndex].value;
-	if(pos == "FULL CARGO LOAD"){
-
-        document.getElementById("item").style.display = 'none';
-        document.getElementById("item-menu").style.display = 'none';
-	    document.getElementById("cargo-menu").style.display = 'block';
-
-	}
-	else if(pos == "LESS CARGO LOAD" || pos == "LOOSE CARGO LOAD" || pos == "ROLLING CARGO LOAD"){
-
-        document.getElementById("cargo").style.display = 'none';
-        document.getElementById("cargo-menu").style.display = 'none';
-	    document.getElementById("item-menu").style.display = 'block';
-
-	}
-}*/
-
 function typeValidate(){
     var typeReq = document.getElementById("mode");
     var type = typeReq.options[typeReq.selectedIndex].value;
@@ -68,22 +22,6 @@ function typeValidate(){
     }
 
 }
-
-/*function getMaxValue(type, value){
-    if(value == '10 FT'){
-        if(type == 'VOLUME'){ return 14; }
-        else if(type == 'WEIGHT'){ return 9000; }
-}else if(value == '20 FT'){
-        if(type == 'VOLUME'){ return 28; }
-        else if(type == 'WEIGHT'){ return 18000; }
-    }else if(value == '40 STD FT'){
-        if(type == 'VOLUME'){ return 56; }
-        else if(type == 'WEIGHT'){ return 20000; }
-    }else if(value == '40 HC FT'){
-        if(type == 'VOLUME'){ return 78; }
-        else if(type == 'WEIGHT'){ return 22000; }
-    }
-}*/
 
 function initValidationScript(pageType){
     var conVol, conWt,

@@ -4,9 +4,6 @@ import com.sr.biz.freightbit.vendor.entity.Vendor;
 
 import java.util.List;
 
-/**
- * Created by JMXPSX on 5/29/14.
- */
 public interface VendorDao {
 
     public Integer addVendor(Vendor vendor);

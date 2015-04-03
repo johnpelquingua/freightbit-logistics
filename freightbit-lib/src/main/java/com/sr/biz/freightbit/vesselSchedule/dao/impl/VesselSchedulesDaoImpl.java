@@ -13,10 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 7/22/14.
- */
-
 @Transactional
 public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements VesselSchedulesDao{
 

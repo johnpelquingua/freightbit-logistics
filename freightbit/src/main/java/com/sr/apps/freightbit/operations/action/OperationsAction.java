@@ -377,7 +377,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     // method for bulk setting and editing of vendors
     public String checkItemStatus() {
-
         List<Integer> planning1 = new ArrayList();
         List<Integer> planning2 = new ArrayList();
         List<Integer> planning3 = new ArrayList();
@@ -882,7 +881,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String editBulkItemsInlandOrigin() {
-
         Map sessionAttributes = ActionContext.getContext().getSession();
         try {
 
@@ -899,7 +897,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 orderItemEntity.setVendorOrigin(vendorService.findVendorById(operationsBean.getVendorListOrigin()).getVendorCode());
                 orderItemEntity.setDriverOrigin(operationsBean.getDriverOrigin());
                 orderItemEntity.setTruckOrigin(operationsBean.getTruckOrigin());
-                orderItemEntity.setFinalPickupDate(operationsBean.getPickupDate());
+                if(operationsBean.getPickupDate().equals("NaN-NaN-NaN")){
+                    orderItemEntity.setFinalPickupDate("Invalid Pickup Date Selected");
+                }else{
+                    orderItemEntity.setFinalPickupDate(operationsBean.getPickupDate());
+                }
                 orderItemEntity.setClientId(1);
 
                 if("SHIPPING AND TRUCKING".equals(freightType)) {
@@ -952,7 +954,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 orderItemEntity.setVendorDestination(vendorService.findVendorById(operationsBean.getVendorListDestination()).getVendorCode());
                 orderItemEntity.setDriverDestination(operationsBean.getDriverDestination());
                 orderItemEntity.setTruckDestination(operationsBean.getTruckDestination());
-                orderItemEntity.setFinalDeliveryDate(operationsBean.getDeliveryDate());
+                if(operationsBean.getDeliveryDate().equals("NaN-NaN-NaN")){
+                    orderItemEntity.setFinalDeliveryDate("Invalid Delivery Date Selected");
+                }else{
+                    orderItemEntity.setFinalDeliveryDate(operationsBean.getDeliveryDate());
+                }
                 orderItemEntity.setClientId(1);
 
                 if("SHIPPING AND TRUCKING".equals(freightType)) {
@@ -1000,7 +1006,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List <OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
 
         for(OrderItems orderItemsElem : orderItemsList){
-            if(entity.getOrderItemId() == orderItemsElem.getOrderItemId()){
+            if(orderItemIdParam.equals(orderItemsElem.getOrderItemId())){
                 orderItems.add(transformToOrderItemFormBean(orderItemsElem));
             }
         }
@@ -1062,10 +1068,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         originConfirmFlag = "MULTI";
 
+        if(finalPickupParam.equals("NaN-NaN-NaN")){
+            finalPickupParam = "Invalid Pickup Date Selected";
+        }
+
         return SUCCESS;
     }
 
-    public String editBulkOrderItemsOriginConfirmDes() {
+    public String editBulkOrderItemsDestinationConfirm() {
 
         System.out.println("Vendor  >>>>>>>>>>>>>>>>>> " + vendorId);
         System.out.println("Driver  >>>>>>>>>>>>>>>>>> " + driverCodeParam);
@@ -1097,6 +1107,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         destinationConfirmFlag = "MULTI";
+
+        if(finalDeliveryParam.equals("NaN-NaN-NaN")){
+            finalDeliveryParam = "Invalid Delivery Date Selected";
+        }
 
         return SUCCESS;
     }
@@ -1191,7 +1205,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List <OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
 
         for(OrderItems orderItemsElem : orderItemsList){
-            if(entity.getOrderItemId() == orderItemsElem.getOrderItemId()){
+            if(entity.getOrderItemId().equals(orderItemsElem.getOrderItemId())){
                 orderItems.add(transformToOrderItemFormBean(orderItemsElem));
             }
         }
@@ -1206,7 +1220,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         originConfirmFlag = "SINGLE";
 
         if(finalPickupParam.equals("NaN-NaN-NaN")){
-            finalPickupParam = "No Pickup Date Selected";
+            finalPickupParam = "Invalid Pickup Date Selected";
         }
 
         return SUCCESS;
@@ -1231,7 +1245,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List <OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
 
         for(OrderItems orderItemsElem : orderItemsList){
-            if(entity.getOrderItemId() == orderItemsElem.getOrderItemId()){
+            if(entity.getOrderItemId().equals(orderItemsElem.getOrderItemId())){
                 orderItems.add(transformToOrderItemFormBean(orderItemsElem));
             }
         }
@@ -1244,6 +1258,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         truck = transformToFormBeanTrucks(truckEntity);
 
         destinationConfirmFlag = "SINGLE";
+
+        if(finalDeliveryParam.equals("NaN-NaN-NaN")){
+            finalDeliveryParam = "Invalid Delivery Date Selected";
+        }
 
         return SUCCESS;
     }
@@ -2209,12 +2227,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
 
-        /*for current vessel schedule bound for edit*/
-//        if(vesselSchedule.getScheduleExists().equals("TRUE")){
-//            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
-//            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
-//        }
-
         // Vessel schedules filtered by origin and destination
         List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
 
@@ -2225,13 +2237,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
-        /*if ("PLANNING 1".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 1")) {
-            return "PLANNING 1"; // will be directed to sea vendor select
-        } else if ("PLANNING 2".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 2")) {
-            return "PLANNING 2"; // will be directed to origin vendor select
-        } else {
-            return "PLANNING 3"; // will be directed to destination vendor select
-        }*/
         return "PLANNING 1";
     }
 
@@ -2997,8 +3002,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // FOR IMPROVEMENT -- FILTER ALL VESSEL SCHEDULES DATES THAT WILL NOT INCLUDE CURRENT DATE
         List<VesselSchedules> vesselSchedulesList = operationsService.findAllVesselSchedule();
 
-        for(VesselSchedules vesselScheduleElem : vesselSchedulesList){
-            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        if(vesselSchedulesList != null){
+            for(VesselSchedules vesselScheduleElem : vesselSchedulesList){
+                vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+            }
         }
 
         return SUCCESS;
@@ -3590,10 +3597,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
         } else {
             formBean.setVesselScheduleId(entity.getVesselScheduleId());
             // Clarence set vessel schedule ID as voyage Number too confusing...
-            formBean.setVesselName(vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(entity.getVesselScheduleId()).getVesselName());
-            formBean.setVendorName(vendorService.findVendorByVendorCode(entity.getVendorSea()).getVendorName());
-            formBean.setDepartureDate(vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(entity.getVesselScheduleId()).getDepartureDate());
-            formBean.setArrivalDate(vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(entity.getVesselScheduleId()).getArrivalDate());
+            Vendor vendorEntity = vendorService.findVendorByVendorCode(entity.getVendorSea());
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(entity.getVesselScheduleId());
+            formBean.setVendorName(vendorEntity.getVendorName());
+            formBean.setVoyageNumber(vesselScheduleEntity.getVoyageNumber());
+            formBean.setVesselName(vesselScheduleEntity.getVesselName());
+            formBean.setOriginPort(vesselScheduleEntity.getOriginPort());
+            formBean.setDestinationPort(vesselScheduleEntity.getDestinationPort());
+            formBean.setDepartureDate(vesselScheduleEntity.getDepartureDate());
+            formBean.setArrivalDate(vesselScheduleEntity.getArrivalDate());
         }
 
         formBean.setFinalPickupDate(entity.getFinalPickupDate());
@@ -4406,7 +4418,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Documents> releaseOrder = documentsService.findDocumentNameAndId("RELEASE ORDER", orderIdParam);*/
 
         for (String itemVendor : vendorCodeDocument) {
-            if(itemVendor != null){ // proforma document will be created if shipping vendor is not null
+            if(itemVendor != null && !itemVendor.equals("")){ // proforma document will be created if shipping vendor is not null
 
                 if (proforma.size() == 0) {
                     Documents documentEntityProforma = new Documents();
@@ -4421,8 +4433,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntityProforma.setCreatedDate(new Date());
                     documentEntityProforma.setDocumentStatus("FROM PLANNING");
                     documentEntityProforma.setVendorCode(itemVendor);
-                    documentEntityProforma.setOutboundStage(1);
-                    documentEntityProforma.setDocumentProcessed(0);
+
+                    if(orderEntity.getServiceType().equals("SHIPPING")){
+                        documentEntityProforma.setFinalOutboundStage(1);
+                        documentEntityProforma.setDocumentProcessed(2);
+                    }else{
+                        documentEntityProforma.setOutboundStage(1);
+                        documentEntityProforma.setDocumentProcessed(0);
+                    }
+
                     documentEntityProforma.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP
                     String documentCode = documentsService.findNextControlNo(getClientId(), "PBL"); // BRF for Booking Request Form Document Code

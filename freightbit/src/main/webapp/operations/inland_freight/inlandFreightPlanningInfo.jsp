@@ -189,6 +189,30 @@
 
                 </div>
 
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
+                             title="Update Status">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i> Back to Dispatch Plan : Containers
+                                </button>
+                            </s:if>
+                            <s:else>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i> Back to Dispatch Plan : Items
+                                </button>
+                            </s:else>
+                        </s:a>
+                    </div>
+                </div>
+
             </div>
 
         </s:if>

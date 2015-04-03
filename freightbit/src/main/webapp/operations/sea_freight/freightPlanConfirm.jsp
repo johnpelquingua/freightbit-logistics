@@ -11,7 +11,6 @@
   }
 </style>
 
-
 <div class="panel-body">
 
     <h4>Are you sure you want to assign container(s) to this vessel schedule?</h4><br />
@@ -25,6 +24,7 @@
                        class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple"
                        style="margin-top: 15px;">
             <tr>
+
                 <td>
                     <display:column property="quantity" title="QTY <i class='fa fa-sort' />"
                                     class="tb-font-black"
@@ -44,27 +44,6 @@
                         </display:column>
                     </s:else>
                 </td>
-
-                <%--<td>
-                    <display:column property="containerId" title="Container Number <i class='fa fa-sort' />"
-                                    class="tb-font-black"
-                                    style="text-align: center;">
-                    </display:column>
-                </td>
-
-                <td>
-                    <display:column property="containerId" title="Seal Number <i class='fa fa-sort' />"
-                                    class="tb-font-black"
-                                    style="text-align: center;">
-                    </display:column>
-                </td>
-
-                <td>
-                    <display:column property="containerId" title="Bullet Seal Number <i class='fa fa-sort' />"
-                                    class="tb-font-black"
-                                    style="text-align: center;">
-                    </display:column>
-                </td>--%>
 
             </tr>
 

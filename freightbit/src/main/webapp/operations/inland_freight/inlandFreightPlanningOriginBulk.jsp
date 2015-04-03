@@ -989,7 +989,7 @@
 
         </s:if>
 
-        <%--<div class="panel panel-primary">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-truck"></i>
                 <span class="panel-title"> Dispatch Plan : Origin</span>
@@ -1024,7 +1024,7 @@
                             <div>
                                 <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
                                           id="vendorListOrigin"
-                                          listKey="vendorId" listValue="vendorName" cssClass="form-control"
+                                          listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                             </div>
                         </div>
@@ -1042,7 +1042,7 @@
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.driverOrigin"
                                           id="driverList"
-                                          listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                          listKey="driverId" listValue="firstName + lastName" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.driverDestination}" ></s:select>
                             </div>
                         </div>
@@ -1061,7 +1061,7 @@
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.truckOrigin"
                                           id="trucksList"
-                                          listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                          listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                             </div>
                         </div>
@@ -1085,7 +1085,7 @@
                                           value="%{bodyType}"
                                           style="display:none" />
 
-                                <s:textfield cssClass="form-control"
+                                <s:textfield cssClass="dispatchInput form-control"
                                              id="bodyType_textfield"
                                              disabled="true" />
                             </div>
@@ -1104,7 +1104,7 @@
                                           value="%{plateNumber}"
                                           style="display:none" />
 
-                                <s:textfield cssClass="form-control"
+                                <s:textfield cssClass="dispatchInput form-control"
                                              id="plateNumber_textfield"
                                              disabled="true" />
                             </div>
@@ -1123,7 +1123,7 @@
                                           value="%{grossWeight}"
                                           style="display:none" />
 
-                                <s:textfield cssClass="form-control"
+                                <s:textfield cssClass="dispatchInput form-control"
                                              id="grossWeight_textfield"
                                              disabled="true" />
                             </div>
@@ -1134,7 +1134,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                         <div class="col-lg-8">
-                            <s:textfield cssClass="from_date form-control dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                            <s:textfield cssClass="dispatchInput from_date form-control dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                         </div>
                     </div>
                     <div style="float: right;">
@@ -1176,7 +1176,7 @@
                     </s:a>
                 </div>
             </div>
-        </div>--%>
+        </div>
 
     </div>
 </div>

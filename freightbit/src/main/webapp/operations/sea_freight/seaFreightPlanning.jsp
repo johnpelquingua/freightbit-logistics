@@ -198,10 +198,7 @@
                                 <label class="col-lg-2 control-label " style="padding-top:0px;font-size: 13px;">Item Name: </label>
                             </s:else>
                             <div class="col-lg-10">
-                              <%--  <div class="form-control">
-                                    <c:out value="${sessionScope.nameSizeParam}"/>
-                                </div>--%>
-                              <s:property value="orderItem.nameSize"/>
+                                <s:property value="orderItem.nameSize"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -305,20 +302,6 @@
                             <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column title="Action">
-                                <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
-                                    <s:param name="orderItemIdParam"
-                                             value="#attr.orderItem.orderItemId">
-                                    </s:param>
-                                    <s:param name="vesselScheduleIdParam"
-                                             value="#attr.vesselSchedule.vesselScheduleId">
-                                    </s:param>
-                                    <s:param name="vendorIdParam"
-                                             value="#attr.vesselSchedule.vendorId">
-                                    </s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
-                                    <i class="fa fa-arrow-circle-down"></i>
-                                </s:a>--%>
                                 <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${orderItem.orderItemId},${vesselSchedule.vesselScheduleId},${vesselSchedule.vendorId})">
                                     <i class="fa fa-arrow-circle-down"></i>
                                 </a>
@@ -547,70 +530,6 @@
                 </div>
 
             </div>
-
-            <%--Origin--%>
-            <%--<div class="panel panel-primary">
-                <div class="panel-heading">
-                    <i class="fa fa-truck"></i>
-                    <span class="panel-title"> Dispatch Plan : Origin</span>
-                </div>
-                <div class="panel-body form-horizontal">
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>
-
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" value="%{truck.truckType}" disabled="true" />
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
-
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" value="%{truck.plateNumber}" disabled="true" />
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
-
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" value="%{truck.grossWeight}" disabled="true" />
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
-                        </div>
-                    </div>
-                </div>
-            </div>--%>
 
             <%--Destination--%>
         </s:if>

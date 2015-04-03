@@ -1,10 +1,7 @@
 package com.sr.biz.freightbit.core.exceptions;
 
-/**
- * Created by Clarence C. Victoria on 5/26/14.
- */
 public class ContactAlreadyExistsException extends ObjectAlreadyExistsException {
-    //
+
     public ContactAlreadyExistsException(String msg) {
         super(msg);
     }

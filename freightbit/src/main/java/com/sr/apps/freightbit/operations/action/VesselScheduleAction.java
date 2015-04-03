@@ -31,9 +31,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
     private List<VesselScheduleBean> vesselSchedules = new ArrayList<VesselScheduleBean>();
     private VesselSchedulesService vesselSchedulesService;
     private OperationsService operationsService;
-
     private Integer vendorId;
-
     private List<Parameters> vesselScheduleSearch = new ArrayList<Parameters>();
     private List<Parameters> portsList = new ArrayList<Parameters>();
     private List<Vendor> vendorList = new ArrayList<Vendor>();

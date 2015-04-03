@@ -42,8 +42,13 @@ public class OperationsServiceImpl implements OperationsService{
     }
 
     @Override
-    public OrderItems findOrderItemById(Integer orderItemId) {
+     public OrderItems findOrderItemById(Integer orderItemId) {
         return operationsDao.findOrderItemById(orderItemId);
+    }
+
+    @Override
+    public OrderItems findOrderItemByCode(String nameSize) {
+        return operationsDao.findOrderItemByCode(nameSize);
     }
 
     @Override

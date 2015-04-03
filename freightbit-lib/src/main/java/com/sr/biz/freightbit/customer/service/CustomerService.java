@@ -2,6 +2,7 @@ package com.sr.biz.freightbit.customer.service;
 
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.core.exceptions.AddressAlreadyExistsException;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
@@ -46,9 +47,9 @@ public interface CustomerService {
     public List<Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId);
 
     public List<Contacts> findContactByConsignee(Integer referenceId, String contactType, Integer clientId);
-    //Address
 
-    public void addAddress(Address address);
+    //Address
+    public Integer addAddress(Address address) throws AddressAlreadyExistsException;
 
     public void deleteAddress(Address address);
 

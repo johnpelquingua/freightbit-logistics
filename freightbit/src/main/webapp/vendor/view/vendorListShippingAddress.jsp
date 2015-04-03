@@ -148,18 +148,17 @@
 
             <div class="panel-footer">
 
-
-            <span class="pull-right">
+            <%--<span class="pull-right">
                 <s:url var="loadAddAddressUrl" action="loadAddShippingAddress">
                     <s:param name="vendorIdParam" value="vendorIdParam"> </s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{loadAddAddressUrl}" rel="tooltip" title="Add Contact">
-                    <%--<img src="../includes/images/add-user.png" class="icon-action circ-icon">--%>
+                    &lt;%&ndash;<img src="../includes/images/add-user.png" class="icon-action circ-icon">&ndash;%&gt;
                     <button type="button" class="btn btn-primary">
                         <i class="fa fa-home"> </i> New Address
                     </button>
                 </s:a>
-            </span>
+            </span>--%>
 
                 <div class="table-responsive" >
                     <div class="col-lg-12" style="position:relative;margin-top: -28px;">

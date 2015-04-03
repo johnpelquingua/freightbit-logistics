@@ -19,6 +19,7 @@ import java.util.List;
  * @author Hibernate Tools
  * @see com.sr.biz.freightbit.core.entity.User
  */
+
 @Transactional
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
@@ -110,7 +111,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
             query.setParameter("username", username);
             List<User> results = (List<User>) query.list();
             if (results != null && results.size() > 0) {
-            	return results.get(0);
+                return results.get(0);
             }
             return null;
         } catch (RuntimeException re) {

@@ -234,7 +234,8 @@
                         <td class="tb-font-black"><s:property value="weight"/></td>
                         <td class="tb-font-black"><s:property value="volume"/></td>
                         <td class="tb-font-black"><s:property value="description"/></td>
-                        <td class="tb-font-black"><s:property value="declaredValue"/></td>
+                        <%--<td class="tb-font-black"><s:property value="declaredValue"/></td>--%>
+                        <td class="tb-font-black"><s:property value="getText('format.money',{declaredValue})"/></td>
                         <td class="tb-font-black"><s:property value="rate"/></td>
                         <td class="tb-font-black"><s:property value="remarks"/></td>
                     </tr>
@@ -259,6 +260,8 @@
 
 <script>
     $(document).ready(function(){
+        containerHandler('cargoDetailsTable', 2, 3, 4);
+
         if($('.cargoDetailsTable tbody tr').size() == 0){
             $('.cargoDetailsTableDiv').empty().append('<h4 style="padding-bottom: -10px"><i class="fa fa-warning " style="color: red;"></i> No cargo/container found!</h4><i>Please make sure that the information of the booking is correct</i>');
         }

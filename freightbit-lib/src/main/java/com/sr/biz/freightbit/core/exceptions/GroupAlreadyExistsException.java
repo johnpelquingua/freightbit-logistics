@@ -1,6 +1,5 @@
 package com.sr.biz.freightbit.core.exceptions;
 
-
 public class GroupAlreadyExistsException extends ObjectAlreadyExistsException {
 
     public GroupAlreadyExistsException(String msg) {

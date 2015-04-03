@@ -148,7 +148,7 @@
             </div>
 
             <div class="panel-footer">
-            <span class="pull-right">
+            <%--<span class="pull-right">
                 <s:url var="loadAddAddressUrl" action="loadAddTruckingAddress">
                     <s:param name="vendorIdParam" value="vendorIdParam"> </s:param>
                 </s:url>
@@ -157,7 +157,7 @@
                         <i class="fa fa-home"> </i> New Address
                     </button>
                 </s:a>
-            </span>
+            </span>--%>
 
                 <div class="table-responsive" >
                     <div class="col-lg-12" style="position:relative;margin-top: -28px;">

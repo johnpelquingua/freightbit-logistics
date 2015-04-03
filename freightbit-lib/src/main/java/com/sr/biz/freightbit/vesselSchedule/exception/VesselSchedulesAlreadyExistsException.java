@@ -2,9 +2,6 @@ package com.sr.biz.freightbit.vesselSchedule.exception;
 
 import com.sr.biz.freightbit.core.exceptions.ObjectAlreadyExistsException;
 
-/**
- * Created by Clarence C. Victoria on 7/22/14.
- */
 public class VesselSchedulesAlreadyExistsException extends ObjectAlreadyExistsException{
 
     public VesselSchedulesAlreadyExistsException(String msg) {

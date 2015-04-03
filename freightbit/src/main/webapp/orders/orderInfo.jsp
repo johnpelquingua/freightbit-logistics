@@ -261,7 +261,8 @@
                                 <td class="tb-font-black"><s:property value="weight"/></td>
                                 <td class="tb-font-black"><s:property value="volume"/></td>
                                 <td class="tb-font-black"><s:property value="description"/></td>
-                                <td class="tb-font-black"><s:property value="declaredValue"/></td>
+                                <%--<td class="tb-font-black"><s:property value="declaredValue"/></td>--%>
+                                <td class="tb-font-black"><s:property value="getText('format.money',{declaredValue})"/></td>
                                 <td class="tb-font-black"><s:property value="rate"/></td>
                                 <td class="tb-font-black"><s:property value="remarks"/></td>
                             </tr>
@@ -292,6 +293,7 @@
     $(document).ready(function() {
 
         addTotalRate();
+        containerHandler('itemListing', 2, 3, 4);
 
         if($('.itemListing tbody tr').size() == 0){
             $('.totalRateDivParent').hide();

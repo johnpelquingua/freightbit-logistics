@@ -2,9 +2,6 @@ package com.sr.biz.freightbit.vendor.exceptions;
 
 import com.sr.biz.freightbit.core.exceptions.ObjectAlreadyExistsException;
 
-/**
- * Created by ADMIN on 5/16/2014.
- */
 public class VesselAlreadyExistsException extends ObjectAlreadyExistsException {
 
     public VesselAlreadyExistsException(String msg) {

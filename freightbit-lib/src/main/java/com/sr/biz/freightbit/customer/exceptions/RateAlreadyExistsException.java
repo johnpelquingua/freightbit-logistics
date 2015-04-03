@@ -2,9 +2,6 @@ package com.sr.biz.freightbit.customer.exceptions;
 
 import com.sr.biz.freightbit.core.exceptions.ObjectAlreadyExistsException;
 
-/**
- * Created by ADMIN on 5/13/14.
- */
 public class RateAlreadyExistsException extends ObjectAlreadyExistsException {
 
     public RateAlreadyExistsException(String msg) {

@@ -149,14 +149,14 @@
 
 
             <div class="panel-footer">
-                <span class="pull-right">
-                    <%--<a href="loadAddTrucksPage" class="icon-action-link" rel="tooltip" title="Add Driver">
+                <%--<span class="pull-right">
+                    &lt;%&ndash;<a href="loadAddTrucksPage" class="icon-action-link" rel="tooltip" title="Add Driver">
                         <img src="../includes/images/add-user.png" class="icon-action circ-icon">
-                    </a>--%>
+                    </a>&ndash;%&gt;
                     <button type="button" class="btn btn-primary" onclick="location.href='loadAddTrucksPage'">
                         <i class="fa fa-truck"></i> New Truck
                     </button>
-                </span>
+                </span>--%>
 
                 <div class="table-responsive" >
                     <div class="col-lg-12" style="position:relative;margin-top: -28px;">

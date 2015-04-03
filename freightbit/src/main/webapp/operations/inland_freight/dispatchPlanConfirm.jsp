@@ -53,27 +53,6 @@
                         </s:else>
                     </td>
 
-                    <%--<td>
-                        <display:column property="containerId" title="Container Number <i class='fa fa-sort' />"
-                                        class="tb-font-black"
-                                        style="text-align: center;">
-                        </display:column>
-                    </td>
-
-                    <td>
-                        <display:column property="containerId" title="Seal Number <i class='fa fa-sort' />"
-                                        class="tb-font-black"
-                                        style="text-align: center;">
-                        </display:column>
-                    </td>
-
-                    <td>
-                        <display:column property="containerId" title="Bullet Seal Number <i class='fa fa-sort' />"
-                                        class="tb-font-black"
-                                        style="text-align: center;">
-                        </display:column>
-                    </td>--%>
-
                 </tr>
 
             </display:table>
@@ -123,7 +102,7 @@
         <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Pickup Date</label>
 
         <div class="col-lg-9">
-            <s:textfield cssClass="form-control dispatch-form" value="%{finalPickupParam}" readonly="true" />
+            <s:textfield cssClass="finalPickupDate form-control dispatch-form" value="%{finalPickupParam}" readonly="true" />
         </div>
 
         <%--<s:textfield value="%{#attr.truck.plateNumber}" />--%>
@@ -159,5 +138,3 @@
         </div>
 
 </div>
-
-

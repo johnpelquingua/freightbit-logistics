@@ -2,10 +2,6 @@ package com.sr.biz.freightbit.vendor.exceptions;
 
 import com.sr.biz.freightbit.core.exceptions.ObjectAlreadyExistsException;
 
-/**
- * Created by JMXPSX on 5/16/14.
- */
-
 public class DriverAlreadyExistsException extends ObjectAlreadyExistsException {
 
     public DriverAlreadyExistsException(String name) {

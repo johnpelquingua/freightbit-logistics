@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class AddressBean {
 
-
     private String address;
     private Integer addressId;
     private Integer clientId;
@@ -21,10 +20,8 @@ public class AddressBean {
     private Date modifiedTimeStamp;
     private String modifiedBy;
 
-
     public AddressBean() {
     }
-
 
     public AddressBean(Integer addressId, Integer clientId, String referenceTable, Integer referenceId,
                        String addressType, String addressLine1, String addressLine2, String city,
@@ -45,9 +42,7 @@ public class AddressBean {
         this.modifiedTimeStamp = modifiedTimeStamp;
         this.modifiedBy = modifiedBy;
 
-
     }
-
 
     public String getAddress() {
         return address;

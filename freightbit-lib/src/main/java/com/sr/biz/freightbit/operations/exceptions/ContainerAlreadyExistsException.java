@@ -2,9 +2,6 @@ package com.sr.biz.freightbit.operations.exceptions;
 
 import com.sr.biz.freightbit.core.exceptions.ObjectAlreadyExistsException;
 
-/**
- * Created by Clarence C. Victoria on 11/3/2014.
- */
 public class ContainerAlreadyExistsException extends ObjectAlreadyExistsException {
 
     public ContainerAlreadyExistsException(String eirNumber) {

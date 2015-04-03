@@ -155,17 +155,6 @@
                         </div>
                     </div>
 
-                    <%--<div class="row">
-                        <div class="col-md-6 pull-right"  style="margin-right: -17em;">
-                            <button onClick='CheckAll(document.myform.check)' class="col-lg-3 btn btn-default">
-                                Select All
-                            </button>
-                            <button onClick='UnCheckAll(document.myform.check)' class="col-lg-3 btn btn-default">
-                                Deselect All
-                            </button>
-                        </div>
-                    </div>--%>
-
                     <div class="table-responsive">
                         <s:form name="myform" action="checkItemStatus" theme="bootstrap">
 
@@ -228,7 +217,7 @@
                                 <td><display:column title="Action">
 
                                     <s:if test="#attr.orderItem.status=='ON GOING'">
-
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -241,7 +230,7 @@
                                              title="Show Information">
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
-
+                                        </sec:authorize>
                                     </s:if>
 
                                     <s:elseif test="#attr.orderItem.status=='PLANNING 1'">
@@ -275,9 +264,9 @@
                                     </s:elseif>
 
                                     <s:else>
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
-                                        <%--<s:url var="viewEditSeaFreightUrl" action="viewEditSeaFreight">--%>
-                                        <s:url var="viewEditSeaFreightUrl" action="viewFreightPlanning"> <%--will be redirected to sea freight planning on edit--%>
+                                        <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
+                                        &lt;%&ndash;<s:url var="viewEditSeaFreightUrl" action="viewEditSeaFreight">&ndash;%&gt;
+                                        <s:url var="viewEditSeaFreightUrl" action="viewFreightPlanning"> &lt;%&ndash;will be redirected to sea freight planning on edit&ndash;%&gt;
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
                                             </s:param>
@@ -286,7 +275,7 @@
                                              title="Edit Schedule">
                                             <i class="fa fa-tasks"></i>
                                         </s:a>
-                                        </sec:authorize>
+                                        </sec:authorize>--%>
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">

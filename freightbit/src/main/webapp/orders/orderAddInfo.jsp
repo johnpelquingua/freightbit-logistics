@@ -614,10 +614,10 @@
                                             maxLength="255" />
                             </div>
 
-                            <label class="col-lg-3 control-label" style="padding-top: 0px; display:none;">
+                            <label class="col-lg-3 control-label" style="padding-top: 0px; display: none; ">
                                 Volume (cbm)<span class="asterisk_red"/>
                             </label>
-                            <div class="col-lg-3" style="padding-top: 0px; display:none;">
+                            <div class="col-lg-3" style="padding-top: 0px; display: none; ">
 
                                     <s:select cssClass="form-control"
                                               id="orderItem_volume"

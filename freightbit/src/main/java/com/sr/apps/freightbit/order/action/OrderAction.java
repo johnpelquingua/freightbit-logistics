@@ -488,14 +488,15 @@ public class OrderAction extends ActionSupport implements Preparable {
             } else {
                 // Add order items to database
                 orderItemEntity.setQuantity(orderItem.getQuantity());
-                if(orderItem.getVolume() == null){
-                    OrderItems orderItemInside = operationsService.findOrderItemById(orderItem.getOrderItemId());
-                    Double dblVolume = (orderItemInside.getQuantity() * (orderItem.getLength() * orderItem.getWidth() * orderItem.getHeight()));
-                    String strVolume = dblVolume.toString();
-                    orderItemEntity.setVolume(Float.parseFloat(strVolume));
-                }
+
+                Items itemEntity = customerService.findItemByCode(orderItem.getNameSize());
+                Double dblVolume = (orderItem.getQuantity() * (itemEntity.getLength() * itemEntity.getWidth() * itemEntity.getHeight()));
+                String strVolume = dblVolume.toString();
+
+                orderItemEntity.setVolume(Float.parseFloat(strVolume));
                 orderItemEntity.setNameSize(item.getItemCode());
                 orderService.addItem(orderItemEntity);
+
                 String messageFlag = "OTHERS_OK";
                 sessionAttributes.put("messageFlag", messageFlag);
             }
@@ -561,15 +562,15 @@ public class OrderAction extends ActionSupport implements Preparable {
             } else{
                 // Add order items to database
                 orderItemEntity.setQuantity(orderItem.getQuantity());
-                if(orderItem.getVolume() == null){
-                    OrderItems orderItemInside = operationsService.findOrderItemById(orderItem.getOrderItemId());
-                    Double dblVolume = (orderItemInside.getQuantity() * (orderItem.getLength() * orderItem.getWidth() * orderItem.getHeight()));
-                    String strVolume = dblVolume.toString();
-                    orderItemEntity.setVolume(Float.parseFloat(strVolume));
-                }
-                orderItemEntity.setNameSize(item.getItemCode());
 
+                Items itemEntity = customerService.findItemByCode(orderItem.getNameSize());
+                Double dblVolume = (orderItem.getQuantity() * (itemEntity.getLength() * itemEntity.getWidth() * itemEntity.getHeight()));
+                String strVolume = dblVolume.toString();
+
+                orderItemEntity.setVolume(Float.parseFloat(strVolume));
+                orderItemEntity.setNameSize(item.getItemCode());
                 orderService.updateItemListing(orderItemEntity);
+
                 String messageFlag = "OTHERS_OK";
                 sessionAttributes.put("messageFlag", messageFlag);
             }
@@ -700,9 +701,18 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setOrderNumber(orderService.findOrdersById(orderIdParam).getOrderNumber());
         documentEntity.setCreatedDate(new Date());
         documentEntity.setDocumentStatus("FROM BOOKING");
-        documentEntity.setDocumentProcessed(0);
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
         documentEntity.setOutboundStage(1);
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        if(orderEntity.getServiceType().equals("SHIPPING")){
+            documentEntity.setDocumentProcessed(2);
+            documentEntity.setFinalOutboundStage(1);
+        }else{
+            documentEntity.setDocumentProcessed(0);
+            documentEntity.setOutboundStage(1);
+        }
+
         documentEntity.setVendorCode("ELC");
         /*documentEntity.setDocumentType("MASTER");*/
         String documentCode = documentsService.findNextControlNo(getClientId(), "BRF"); // BRF for Booking Request Form Document Code
@@ -757,9 +767,16 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setOrderNumber(orderService.findOrdersById(orderEntity.getOrderId()).getOrderNumber());
         documentEntity.setCreatedDate(new Date());
         documentEntity.setDocumentStatus("FROM BOOKING");
-        documentEntity.setDocumentProcessed(0);
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-        documentEntity.setOutboundStage(1);
+
+        if(orderEntity.getServiceType().equals("SHIPPING")){
+            documentEntity.setDocumentProcessed(2);
+            documentEntity.setFinalOutboundStage(1);
+        }else{
+            documentEntity.setDocumentProcessed(0);
+            documentEntity.setOutboundStage(1);
+        }
+
         documentEntity.setVendorCode("ELC");
         // To get the document control number
         String documentCode = documentsService.findNextControlNo(getClientId(), "BRF"); // BRF for Booking Request Form Document Code
@@ -999,29 +1016,45 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String approveOrder() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
+        List<OrderItems> orderItemsEntity = operationsService.findAllOrderItemsByOrderId(orderIdParam);
 
-        if (orderEntity.getOrderStatus().equals("INCOMPLETE") || orderEntity.getOrderStatus().equals("CANCELLED") || orderEntity.getOrderStatus().equals("PENDING") ) {
-            String column = getColumnFilter();
-            List<Orders> orderEntityList = new ArrayList<Orders>();
-            if (StringUtils.isNotBlank(column)) {
-                orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
-            } else {
-                orderEntityList = orderService.findAllOrders();
-            }
+        if(orderItemsEntity.size() == 0){
+            List<Orders> orderEntityList = orderService.findAllOrders();
 
             for (Orders orderElem : orderEntityList) {
                 orders.add(transformToOrderFormBean(orderElem));
             }
 
-            Booking = notificationService.countAll();
-            System.out.println("The number of  new booking is " + Booking);
-			addActionError("Booking must have at least 1 item");
+            sessionAttributes.put("orderIdParam", orderIdParam);
+
+            clearErrorsAndMessages();
+            addActionError("Booking must have at least 1 container/item");
+
             return INPUT;
         }
+
+        /*if (orderEntity.getOrderStatus().equals("INCOMPLETE") || orderEntity.getOrderStatus().equals("CANCELLED") || orderEntity.getOrderStatus().equals("PENDING") ) {*/
+
+        /*String column = getColumnFilter();
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
+            orderEntityList = orderService.findAllOrders();
+        }*/
+
+        /*for (Orders orderElem : orderEntityList) {
+            orders.add(transformToOrderFormBean(orderElem));
+        }*/
+
+        Booking = notificationService.countAll();
+        System.out.println("The number of new booking is " + Booking);
+
+        /*}*/
 
         orderEntity.setOrderStatus("APPROVED");
         orderService.updateOrder(orderEntity);

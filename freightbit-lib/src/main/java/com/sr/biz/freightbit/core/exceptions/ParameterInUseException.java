@@ -1,7 +1,7 @@
 package com.sr.biz.freightbit.core.exceptions;
 
 public class ParameterInUseException extends ObjectAlreadyExistsException {
-    //
+
     public ParameterInUseException(String msg) {
         super(msg);
     }

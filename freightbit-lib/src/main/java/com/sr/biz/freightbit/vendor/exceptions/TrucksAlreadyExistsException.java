@@ -2,10 +2,6 @@ package com.sr.biz.freightbit.vendor.exceptions;
 
 import com.sr.biz.freightbit.core.exceptions.ObjectAlreadyExistsException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: johnpelquingua.com
- */
 public class TrucksAlreadyExistsException extends ObjectAlreadyExistsException {
 
     public TrucksAlreadyExistsException(String msg) {

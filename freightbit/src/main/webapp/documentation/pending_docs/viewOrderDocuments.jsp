@@ -272,34 +272,38 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist" style="padding-left: 10px;">
                     <%--Redirects to Outbound Stage--%>
-                    <li class="active col-md-2 padding-0-r" id="out">
-                        <%--<s:url var="outboundStageUrl" action="viewOrderDocuments">
-                            <s:param name="orderIdParam"
-                                     value="#attr.order.orderId"></s:param>
-                            &lt;%&ndash;<s:param name="orderNoParam"
-                                     value="#attr.order.orderNo"></s:param>&ndash;%&gt;
-                        </s:url>
-                        <s:a class="icon-action-link" href="%{outboundStageUrl}">
-                            Outbound
-                        </s:a>--%>
-                        <a href="#outbound" role="tab" data-toggle="tab">Outbound</a>
-                    </li>
+                    <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING' ">
+                        <li class="active col-md-2 padding-0-r" id="out">
+                            <%--<s:url var="outboundStageUrl" action="viewOrderDocuments">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                                &lt;%&ndash;<s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>&ndash;%&gt;
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{outboundStageUrl}">
+                                Outbound
+                            </s:a>--%>
+                            <a href="#outbound" role="tab" data-toggle="tab">Outbound</a>
+                        </li>
+                    </s:if>
                     <%--Redirects to Inbound Stage--%>
-                    <li id="in" class="col-md-2 padding-0-lr">
-                        <%--<s:url var="inboundStageUrl" action="viewOrderDocumentsInbound">
-                            <s:param name="orderIdParam"
-                                     value="#attr.order.orderId"></s:param>
-                            &lt;%&ndash;<s:param name="orderNoParam"
-                                     value="#attr.order.orderNo"></s:param>&ndash;%&gt;
-                        </s:url>
-                        <s:a class="icon-action-link" href="%{inboundStageUrl}">
-                            Inbound
-                        </s:a>--%>
-                        <a href="#inbound" role="tab" data-toggle="tab">Inbound</a>
-                    </li>
+                    <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING' ">
+                        <li id="in" class="col-md-2 padding-0-lr">
+                            <%--<s:url var="inboundStageUrl" action="viewOrderDocumentsInbound">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                                &lt;%&ndash;<s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>&ndash;%&gt;
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{inboundStageUrl}">
+                                Inbound
+                            </s:a>--%>
+                            <a href="#inbound" role="tab" data-toggle="tab">Inbound</a>
+                        </li>
+                    </s:if>
                     <%--Redirects to Final Outbound Stage--%>
                         <s:hidden value="%{order.freightType}" />
-                    <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' ">
+                    <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' ">
                         <li id="fiOut" class="col-md-2 padding-0-lr">
                             <%--<s:url var="finalOutboundStageUrl" action="viewOrderDocumentsFinalOutbound">
                                 <s:param name="orderIdParam"
@@ -312,7 +316,7 @@
                         </li>
                     </s:if>
                     <%--Redirects to Final Inbound Stage--%>
-                    <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' ">
+                    <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' ">
                         <li id="fiIn" class="col-md-2 padding-0-lr">
                             <%--<s:url var="finalInboundStageUrl" action="viewOrderDocumentsFinalInbound">
                                 <s:param name="orderIdParam"
@@ -333,7 +337,7 @@
 
                 <div class="tab-content" id="focusHere" tabindex="-1">
 <%------------------------------------------OUTBOUND DOCUMENTS BEGIN-----------------------------------------------%>
-
+                <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING' ">
                     <div class="tab-pane fade in active" id="outbound">
 
                         <div class="panel-body">
@@ -537,11 +541,11 @@
                         </div>
 
                     </div>
-
+                </s:if>
 <%------------------------------------------OUTBOUND DOCUMENTS END-----------------------------------------------%>
 
 <%------------------------------------------INBOUND DOCUMENTS END-----------------------------------------------%>
-
+                <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING' ">
                     <div class="tab-pane fade" id="inbound">
 
                         <div class="panel-body">
@@ -796,11 +800,11 @@
                         </div>
 
                     </div>
-
+                </s:if>
 <%------------------------------------------INBOUND DOCUMENTS END-----------------------------------------------%>
 
 <%------------------------------------------FINAL OUTBOUND DOCUMENTS BEGIN-----------------------------------------------%>
-
+                <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' ">
                     <div class="tab-pane fade" id="finalOutbound">
 
                         <div class="panel-body">
@@ -1036,11 +1040,11 @@
                         </div>
 
                     </div>
-
+                </s:if>
 <%------------------------------------------FINAL OUTBOUND DOCUMENTS END-----------------------------------------------%>
 
 <%------------------------------------------FINAL INBOUND DOCUMENTS BEGIN-----------------------------------------------%>
-
+                <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' ">
                     <div class="tab-pane fade" id="finalInbound">
 
                         <div class="panel-body">
@@ -1237,7 +1241,7 @@
                         </div>
 
                     </div>
-
+                </s:if>
 <%------------------------------------------FINAL INBOUND DOCUMENTS END-----------------------------------------------%>
 
 <%------------------------------------------COMPLETE DOCUMENTS BEGIN-----------------------------------------------%>
@@ -1397,6 +1401,7 @@
 
 <%------------------------------------------COMPLETE DOCUMENTS END-----------------------------------------------%>
             </div>
+
             <div class="panel panel-footer" style="margin-bottom: 0em;">
                 <div class="table-responsive">
                     <div class="col-lg-12">
@@ -1418,6 +1423,14 @@
                     </div>
                 </div>
             </div>
+
+            <div class="pull-right">
+                <a href="viewPendingDocuments" class="btn btn-danger" id ="groups-btn" style="margin-top: 20px;">
+                    <i class="fa fa-chevron-left"></i>
+                    Back to Pending Documents List
+                </a>
+            </div>
+
         </div>
     </div>
 </div>
@@ -1494,13 +1507,6 @@
                             <s:textfield type="text" cssClass="form-control" id="datepicker" name="dateReturnedInbound" value="%{strReturnedInbound}" required="true" placeholder="Select Receive date"></s:textfield>
                         </div>
                     </div>
-
-                    <%--<div class="col-md-12">
-                        <label class="control-label" style="padding-top:0px;">No. of SI / DR documents returned</label>
-                        <div>
-                            <s:select cssClass="form-control" name="quantitySI_DR" cssStyle="margin-bottom: 15px !important; resize: none;" list="documentQuantity" emptyOption="true" required="true" />
-                        </div>
-                    </div>--%>
 
                     <div style="float: right; margin-right: 1em; margin-top: 2em;">
                         <s:submit name="submit" cssClass="btn btn-primary" value="Okay" onclick="addOrderId()" />

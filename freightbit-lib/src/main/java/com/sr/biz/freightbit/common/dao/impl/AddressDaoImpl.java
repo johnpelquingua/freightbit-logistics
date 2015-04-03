@@ -12,10 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Created by Solutions Resource on 5/28/14.
- */
-
 @Transactional
 public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
 
@@ -34,12 +30,14 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
     }
 
     @Override
-    public void addAddress(Address address) {
+    public Integer addAddress(Address address) {
         log.debug("adding a new Address");
         try {
             Session session = getSessionFactory().getCurrentSession();
-            session.save(address);
-            log.debug("add successful");
+            /*session.save(address);*/
+            Integer addressId = (Integer) session.save(address);
+            log.debug("add address successful");
+            return addressId;
         } catch (RuntimeException re) {
             log.error("add failed", re);
             throw re;
@@ -112,19 +110,24 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
     public List<Address> findAddressInBooking(Integer addressId) {
         log.debug("getting Address instance with id: " + addressId);
         try {
-            /*Address instance = (Address) getSessionFactory().getCurrentSession().get(
-                    Address.class, addressId);
-            if (instance == null) {
-                log.debug("get successful, no instance found");
-            } else {
-                log.debug("get successful, instance found");
-            }
-            return instance;*/
 
             Query query = getSessionFactory().getCurrentSession().createQuery(" from Address a where addressId = :addressId");
             query.setParameter("addressId", addressId);
             return query.list();
 
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public List<Address> findAddressByAddressLine(String addressLine1) {
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(" from Address a where addressLine1 = :addressLine1");
+            query.setParameter("addressLine1", addressLine1);
+            List<Address> results = (List <Address>) query.list();
+            return results;
         } catch (RuntimeException re) {
             log.error("get failed", re);
             throw re;

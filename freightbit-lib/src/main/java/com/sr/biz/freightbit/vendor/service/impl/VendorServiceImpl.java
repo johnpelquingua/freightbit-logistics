@@ -133,6 +133,12 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateErnestVendor(Vendor vendor) {
+            vendorDao.updateVendor(vendor);
+    }
+
+    @Override
     public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId) {
         return vendorDao.findVendorsByCriteria(column, value, clientId);
     }

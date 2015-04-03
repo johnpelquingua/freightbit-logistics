@@ -353,7 +353,7 @@
             <result name="success">/operations/inland_freight/dispatchPlanConfirm.jsp</result>
         </action>
 
-        <action name="getConfirmModalDispatchBulkActionDes" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkOrderItemsOriginConfirmDes">
+        <action name="getConfirmModalDispatchBulkActionDes" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkOrderItemsDestinationConfirm">
             <result name="success">/operations/inland_freight/dispatchPlanConfirmDes.jsp</result>
         </action>
 
