@@ -1120,8 +1120,7 @@ function dynamicDropdown(select, index) {
 
 }
 
-function validate_form()
-{
+function validate_form(){
     var firstDate = new Date($('.pickupDateInput').val()),
         lastDate = new Date($('.deliveryDateInput').val()),
         pickupDate = $('.pickupDateInput').val(),

@@ -99,6 +99,11 @@
             <result name="success" type="tiles">operations.statusListItems.tiles</result>
         </action>
 
+        <action name="viewStatusListItemsNullError" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
+                method="viewStatusListItemsNullError">
+            <result name="success" type="tiles">operations.statusListItems.tiles</result>
+        </action>
+
         <action name="viewStatusListItemsErrorService" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="viewStatusListItemsErrorService">
             <result name="success" type="tiles">operations.statusListItems.tiles</result>
@@ -402,6 +407,10 @@
             <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
         </action>
 
+        <action name="addVesselScheduleInPlanningBulkAlreadyExists" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVesselScheduleInPlanningBulkAlreadyExists">
+            <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
+        </action>
+
         <action name="addInlandFreightVendorInPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadInlandFreightPlanning">
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
@@ -510,7 +519,8 @@
 
         <action name="addVesselScheduleInPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction"
                 method="addVesselSchedule">
-            <result name="input" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
+            <!--<result name="input" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
+            <result name="input" type="redirect">addVesselScheduleInPlanningBulkAlreadyExists</result>
             <result name="success" type="redirect">addSeaFreightScheduleInPlanningBulk</result>
         </action>
 
@@ -567,6 +577,10 @@
             <result name="success" type="tiles">operations.freightBulkEdit.tiles</result>
         </action>
 
+        <action name="addVesselScheduleInPlanningBulkEditAlreadyExists" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVesselScheduleInPlanningBulkEditAlreadyExists">
+            <result name="success" type="tiles">operations.freightBulkEdit.tiles</result>
+        </action>
+
         <action name="addVendor" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
             <result name="input" type="tiles">operations.freightBulkEditInland.tiles</result>
             <result name="success" type="redirect">editInlandFreightVendorInPlanningBulk</result>
@@ -584,7 +598,8 @@
 
         <action name="addVesselScheduleEdit" class="com.sr.apps.freightbit.operations.action.OperationsAction"
                 method="addVesselSchedule">
-            <result name="input" type="tiles">operations.freightBulkEdit.tiles</result>
+            <result name="input" type="redirect">addVesselScheduleInPlanningBulkEditAlreadyExists</result>
+            <!--<result name="input" type="tiles">operations.freightBulkEdit.tiles</result>-->
             <result name="success" type="redirect">reloadEditPage</result>
         </action>
 

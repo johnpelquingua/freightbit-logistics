@@ -24,24 +24,6 @@
     </div>
 </div>
 
-<s:if test="hasActionMessages()">
-    <div class="col-lg-12">
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-        </div>
-    </div>
-</s:if>
-
-<s:if test="hasActionErrors()">
-    <div class="col-lg-12">
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
-        </div>
-    </div>
-</s:if>
-
 <div class="row">
     <div class="col-lg-12">
 
@@ -89,6 +71,24 @@
                 </div>
             </div>
         </div>
+
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
+<s:if test="hasActionErrors()">
+    <div class="col-lg-12">
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
 
         <div class="panel panel-primary">
 
@@ -149,11 +149,6 @@
                             <display:column property="bulletSeal" title="Bullet Seal <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column>
                         </td>
-
-                        <%--<td>
-                            <display:column property="shippingSeal" title="Shipping Seal <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
-                        </td>--%>
 
                         <td>
                             <display:column property="status" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"

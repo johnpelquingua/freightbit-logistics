@@ -125,6 +125,22 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
 
         Items itemEntity = transformToEntityBeanItem(item);
+
+        List<OrderItems> orderItemsInBooking = orderService.findOrderItemByName(itemEntity.getItemCode());
+
+        if(orderItemsInBooking.size() > 0){
+
+            Integer customerId = getCustomerSessionId();
+            List<Items> itemEntityList = customerService.findItemByCustomerId(customerId);
+            for (Items itemsElem : itemEntityList) {
+                items.add(transformToFormBeanItem(itemsElem));
+            }
+
+            clearErrorsAndMessages();
+            addActionError("You cannot edit a Customer item associated with a Booking");
+            return INPUT;
+        }
+
         itemEntity.setModifiedBy(commonUtils.getUserNameFromSession());
         itemEntity.setModifiedTimeStamp(new Date());
         customerService.updateItems(itemEntity);
@@ -240,11 +256,26 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String deleteItem() {
         Items itemEntity = customerService.findItemByCustomerItemsId(customersItemIdParam);
 
-        List<OrderItems> orderItemsInBooking = orderService.findOrderItemByName(itemEntity.getItemName());
+        /*List<OrderItems> orderItemsInBooking = orderService.findOrderItemByName(itemEntity.getItemName());*/
 
-        for(OrderItems orderItemElem : orderItemsInBooking){
+        List<OrderItems> orderItemsInBooking = orderService.findOrderItemByName(itemEntity.getItemCode());
+
+        if(orderItemsInBooking.size() > 0){
+
+            Integer customerId = getCustomerSessionId();
+            List<Items> itemEntityList = customerService.findItemByCustomerId(customerId);
+            for (Items itemsElem : itemEntityList) {
+                items.add(transformToFormBeanItem(itemsElem));
+            }
+
+            clearErrorsAndMessages();
+            addActionError("You cannot delete a Customer item associated with a Booking");
+            return INPUT;
+        }
+
+        /*for(OrderItems orderItemElem : orderItemsInBooking){
             Orders orderEntity = orderService.findOrdersById(orderItemElem.getOrderId());
-            if(orderEntity.getCustomerId() == itemEntity.getCustomerId()){
+            if(orderEntity.getCustomerId().equals(itemEntity.getCustomerId())){
 
                 Integer customerId = getCustomerSessionId();
                 List<Items> itemEntityList = customerService.findItemByCustomerId(customerId);
@@ -252,11 +283,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
                     items.add(transformToFormBeanItem(itemsElem));
                 }
 
-                clearErrorsAndMessages();
-                addActionError("You cannot delete a Customer item associated with a Booking");
-                return INPUT;
+
             }
-        }
+        }*/
 
         customerService.deleteItem(itemEntity);
         return SUCCESS;

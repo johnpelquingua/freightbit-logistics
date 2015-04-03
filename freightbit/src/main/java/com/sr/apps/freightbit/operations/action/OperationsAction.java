@@ -809,11 +809,58 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         order = transformToOrderFormBean(orderEntity);
 
-        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByVendorId((Integer)sessionAttributes.get("vendorIdPass"));
+        // for the order items to appear again
+        nameSizeList = (List) sessionAttributes.get("nameSizeList") ;
+        sessionAttributes.put("nameSizeList", nameSizeList);
+
+        check = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+        for(int x = 0; x < check.length; x++) {
+            OrderItems orderItemsListing = orderService.findOrderItemByOrderItemId(Integer.parseInt(check[x]));
+            orderItemVesselSchedule.add(transformToOrderItemFormBean(orderItemsListing));
+        }
+
+        vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
+
+        // Vessel schedules filtered by origin and destination
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
 
         for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
             vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
         }
+
+        return SUCCESS;
+    }
+
+    public String addVesselScheduleInPlanningBulkEditAlreadyExists() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+        // for the order items to appear again
+        nameSizeList = (List) sessionAttributes.get("nameSizeList") ;
+        sessionAttributes.put("nameSizeList", nameSizeList);
+
+        check = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+        for(int x = 0; x < check.length; x++) {
+            OrderItems orderItemsListing = orderService.findOrderItemByOrderItemId(Integer.parseInt(check[x]));
+            orderItemVesselSchedule.add(transformToOrderItemFormBean(orderItemsListing));
+        }
+
+        vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
+
+        // Vessel schedules filtered by origin and destination
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Voyage Number entered already exists!");
 
         return SUCCESS;
     }
@@ -1588,14 +1635,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
         OrderItems entity = operationsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
         orderItem = transformToOrderItemFormBean(entity);
 
-        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
         order = transformToOrderFormBean(orderEntity);
 
         Customer customerEntity = customerService.findCustomerById(orderEntity.getCustomerId());
         customer = new CustomerBean();
         customer.setCustomerType(customerEntity.getCustomerType());
-
-//        String schedulesExist;
 
         // if Vessel Schedule Id is null and populates field with none value
         if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
@@ -1645,12 +1690,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
 
-        /*for current vessel schedule bound for edit*/
-//        if(vesselSchedule.getScheduleExists().equals("TRUE")){
-//            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
-//            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
-//        }
-
         // Vessel schedules filtered by origin and destination
         List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
 
@@ -1661,14 +1700,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
-        /*if ("PLANNING 1".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 1")) {
-            return "PLANNING 1"; // will be directed to sea vendor select
-        } else if ("PLANNING 2".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 2")) {
-            return "PLANNING 2"; // will be directed to origin vendor select
-        } else {
-            return "PLANNING 3"; // will be directed to destination vendor select
-        }*/
-        addFieldError("vesselSchedule.vesselScheduleId", getText("err.voyageNumber.already.exists"));
+        /*addFieldError("vesselSchedule.vesselScheduleId", getText("err.voyageNumber.already.exists"));*/
+
+        clearErrorsAndMessages();
+        addActionMessage("Voyage Number entered already exists!");
+
         return SUCCESS;
     }
 
@@ -2664,12 +2700,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         order = transformToOrderFormBean(orderEntity);
 
-//        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByVendorId((Integer)sessionAttributes.get("vendorIdPass"));
-//
-//        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
-//            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
-//        }
-
         // if Vessel Schedule Id is null and populates field with none value
         if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
             orderItem.setVendorSea("NONE");
@@ -2709,6 +2739,57 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Vessel Schedule has been added successfully!");
+
+        return SUCCESS;
+    }
+
+    public String addVesselScheduleInPlanningBulkAlreadyExists() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+        // if Vessel Schedule Id is null and populates field with none value
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
+            orderItem.setVendorSea("NONE");
+            orderItem.setVesselScheduleId("NONE");
+            vesselSchedule.setVesselName("NONE");
+            vesselSchedule.setDepartureDate("NONE");
+            vesselSchedule.setArrivalDate("NONE");
+            vesselSchedule.setDepartureTime("NONE");
+            vesselSchedule.setArrivalTime("NONE");
+            vesselSchedule.setOriginPort("NONE");
+            vesselSchedule.setDestinationPort("NONE");
+            scheduleExists = "FALSE";
+        }else{
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
+            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+            scheduleExists = "TRUE";
+        }
+
+        List<OrderItems> orderItemsListing = orderService.findAllItemByOrderId(orderEntity.getOrderId());
+
+        for(OrderItems orderItemElem : orderItemsListing){
+            orderItemVesselSchedule.add(transformToOrderItemFormBean(orderItemElem));
+        }
+
+        // Vessel schedules filtered by origin and destination
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
+        // for the order items to appear again
+        nameSizeList = (List) sessionAttributes.get("nameSizeList") ;
+
+        // Vessel schedules filtered by class
+        vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
+
+        clearErrorsAndMessages();
+        addActionMessage("Voyage Number entered already exists!");
 
         return SUCCESS;
     }

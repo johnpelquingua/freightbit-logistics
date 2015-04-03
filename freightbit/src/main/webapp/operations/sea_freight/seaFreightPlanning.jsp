@@ -11,23 +11,23 @@
     }
 </style>
 
-<s:if test="hasActionMessages()">
+<%--<s:if test="hasActionMessages()">
     <div class="col-lg-12">
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
-</s:if>
+</s:if>--%>
 
-<s:if test="hasActionErrors()">
+<%--<s:if test="hasActionErrors()">
     <div class="col-lg-12">
         <div class="alert alert-errors">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
-</s:if>
+</s:if>--%>
 
 <div class="row">
     <div class="col-lg-12">
