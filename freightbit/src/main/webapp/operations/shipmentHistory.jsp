@@ -305,7 +305,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="alertlabe2">Update Status</h4><br/>
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+                <center><h4 class="modal-title" id="alertlabel"><i class="fa fa-warning" style="color: red"></i> Confirm status update</h4></center>
             </div>
             <div class="modal-body">
                 <div id="confirmStatId">
