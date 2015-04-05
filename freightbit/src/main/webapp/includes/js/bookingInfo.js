@@ -103,6 +103,7 @@ $(document).ready(function() {
     $("#orderItem_declaredValues").maskMoney();
     $("#orderItem_declaredValue_textfield").maskMoney();
     $("#item_srp").maskMoney();
+    $("#item_weight").maskMoney({precision:0});
     $("#orderItem_weight").maskMoney({precision:0});
     $("#orderItem_weight_textfield").maskMoney({precision:0});
     $("#orderItem-volume").maskMoney({precision:0});

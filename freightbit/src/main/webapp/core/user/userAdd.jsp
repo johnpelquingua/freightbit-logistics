@@ -14,9 +14,8 @@
             <li class="active"> Accounts</li>
             <li class="active"> User</li>
             <li class="active"><a href="<s:url action='viewUsers' />"> User List</a></li>
-            <li class="active"> Add New User</li>
+            <li class="active"> Add User</li>
         </ol>
-
     </div>
 </div>
 

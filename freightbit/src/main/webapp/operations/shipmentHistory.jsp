@@ -22,6 +22,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
+            <li class="active"> Operations</li>
             <li class="active"><a href="<s:url action='../operations/viewStatusList' />"> On-Going Booking List </a></li>
 
             <%--<li class="active"> On-Going Booking List</li>--%>
@@ -205,7 +206,7 @@
                               required="true"
                             />
                 </div>
-                    <div class="pull-right">
+                    <div class="pull-right" style="margin-top: 15px;">
                         <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                             <s:param name="orderIdParam"
                                      value="order.orderId"></s:param>
@@ -215,7 +216,7 @@
 
                         <s:a href="%{viewStatusListItemsUrl}" rel="tooltip" title="Update Status">
                             <button type="button" id="Cancel" class="btn btn-danger">
-                                <i class="fa fa-chevron-left"></i>Back to Booking Item List
+                                <i class="fa fa-chevron-left"></i> Back to Booking Item List
                             </button>
                         </s:a>
                             <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" onclick="return confirm('Are you sure you want to update this status?');"/>--%>

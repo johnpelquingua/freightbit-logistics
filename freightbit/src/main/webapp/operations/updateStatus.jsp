@@ -22,6 +22,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
+            <li class="active"> Operations</li>
             <li class="active"><a href="<s:url action='../operations/viewStatusList' />"> On-Going Booking List </a></li>
 
             <%--<li class="active"> On-Going Booking List</li>--%>
@@ -181,8 +182,7 @@
                               name="orderStatusLogsBean.status"
                               list="allFreightStatusList"
                               emptyOption="true"
-                              required="true"
-                            />
+                              required="true" />
 
                 </div>
                 <%--<div class="col-lg-12" style="text-align: center">
@@ -200,7 +200,7 @@
 
                         <s:a href="%{viewStatusListItemsUrl}" rel="tooltip" title="Update Status">
                             <button type="button" id="Cancel" class="btn btn-danger">
-                                <i class="fa fa-chevron-left"></i>Back to Booking Item List
+                                <i class="fa fa-chevron-left"></i> Back to Booking Item List
                             </button>
                         </s:a>
                             <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" value="Update Status" />--%>
@@ -331,7 +331,6 @@
      $('form').submit()
      }
      }*/
-
 
     $(document).ready(function() {
         var shipTable = $('.shipmentMonitoringTable tbody tr td:nth-child(2)');

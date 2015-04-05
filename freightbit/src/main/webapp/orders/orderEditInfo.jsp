@@ -521,8 +521,7 @@
                                                  id="orderItem_weight_textfield"
                                                  maxLength="9"
                                                  required="true"
-                                                 value="%{getText('format.number',{orderItem.weight})}"
-                                                 pattern="\d+(\.\d{2})?" />
+                                                 value="%{getText('format.number',{orderItem.weight})}" />
 
                             </div>
 
@@ -708,144 +707,6 @@
     </div>
 </s:if>
 
-<%--<div class="row">
-
-    <div class="col-lg-12">
-
-        <div class="well">
-
-        <fieldset>
-
-            <legend style="text-align: left;">
-                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
-                    <h4>
-                        Container Listing <small>(Maximum of 5 Containers)</small>
-                    </h4>
-                </s:if>
-                <s:else>
-                    <h4>
-                        Item Listing <small>(Maximum of 250 Items)</small>
-                    </h4>
-                </s:else>
-            </legend>
-
-            <div class="panel-body">
-                &lt;%&ndash;<div class="loadingDiv" style="text-align: center;">
-                    Processing Items. Please Wait.<br/>
-                    <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
-                </div>&ndash;%&gt;
-                <div class="table-responsive list-table tableDiv" style="display: none;">
-
-                    <table class="itemListing table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
-                        <thead>
-                        <tr class="header_center" style="background-color: #fff;">
-                            <th class="tb-font-black">Quantity</th>
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
-                            <span>
-                                <th class="tb-font-black">Size</th>
-                            </span>
-                            </s:if>
-                            <s:else>
-                            <span>
-                                <th class="tb-font-black">Name</th>
-                            </span>
-                            </s:else>
-                            <th class="tb-font-black">Weight <br /> (kg) </th>
-                            <th class="tb-font-black">Volume <br /> (cbm) </th>
-                            <th class="tb-font-black">Commodity</th>
-                            <th class="tb-font-black">Value <br /> (Php) </th>
-                            <th class="tb-font-black">Rate <br /> (Php) </th>
-                            <th class="tb-font-black">Comment</th>
-                            <th class="tb-font-black">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <s:iterator value="orderItems" var="orderItem">
-                            <tr>
-                                <td class="tb-font-black"><s:property value="quantity"/></td>
-                                <td class="tb-font-black"><s:property value="nameSize"/></td>
-                                <td class="tb-font-black"><s:property value="weight"/></td>
-                                <td class="tb-font-black"><s:property value="volume"/></td>
-                                <td class="tb-font-black"><s:property value="description"/></td>
-                                <td class="tb-font-black"><s:property value="getText('{0,number,#,##0.00}',{declaredValue})"/></td>
-                                <td class="tb-font-black"><s:property value="rate"/></td>
-                                <td class="tb-font-black"><s:property value="remarks"/></td>
-
-                                <td class="tb-font-black">
-                                    &lt;%&ndash;<a id="edit-icon" href="#" data-toggle="modal" data-target="#editItemListingModal" onclick="showEditItemListingFields(${orderItemId});">
-                                        <i class="fa fa-edit"></i>
-                                    </a>&ndash;%&gt;
-
-                                    <s:url var="editOrderItemUrl" action="loadEditOrderItem">
-                                        <s:param name="orderItemIdParam" value="%{#attr.order.orderItemId}"></s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{editOrderItemUrl}" rel="tooltip" title ="Edit Order Item">
-                                        <i class="fa fa-edit"></i>
-                                    </s:a>
-
-                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                    <s:url var="deleteItemUrl" action="deleteItem">
-                                        <s:param name="orderItemIdParam" value="%{orderItemId}"></s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
-                                         title="Delete this Item?"
-                                         onclick="return confirm('Do you really want to delete this item?');">
-                                    </s:a>
-                                    <i class="fa fa-trash-o itemListingDeleteActionIcon"></i>
-                                    </sec:authorize>
-
-                                </td>
-                            </tr>
-                        </s:iterator>
-                        </tbody>
-                        &lt;%&ndash;<s:property  value="%{customerItemsId}"/>&ndash;%&gt;
-                    </table>
-
-                </div>
-            </div>
-
-            &lt;%&ndash;<legend />&ndash;%&gt;
-
-            <div style="clear:both;">
-                <div class="col-lg-12" style="margin-top: 20px;">
-                    <div class="col-lg-2 col-lg-offset-7" style="text-align: right; padding-right: 0px;">
-                    Total Rate: Php
-                    </div>
-                    <div class="col-lg-2" id="totalRate">
-                        0
-                    </div>
-                </div>
-            </div>
-
-        </fieldset>
-
-        </div>
-
-    </div>
-
-</div>--%>
-
-<%--<div style="text-align: center;">
-
-</div>--%>
-
-<%--</div>--%>
-
-<%--<div class="panel-footer">
-
-    <div class="pull-right">
-        <button class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
-            Cancel
-        </button>
-
-        <button class="btn btn-primary" data-toggle="modal" data-target="#saveBooking">
-            Save Booking
-        </button>
-    </div>
-
-</div>--%>
-
 </div>
 </div>
 </div>
@@ -893,7 +754,7 @@
                             <label class="col-lg-3 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield name="item.weight" id="item.weight" required="true"
+                                <s:textfield name="item.weight" id="item_weight" required="true"
                                              cssClass="form-control addItemInput" pattern="\d+(\.\d{1,2})?" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 

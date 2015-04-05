@@ -11,24 +11,6 @@
     }
 </style>
 
-<%--<s:if test="hasActionMessages()">
-    <div class="col-lg-12">
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-        </div>
-    </div>
-</s:if>--%>
-
-<%--<s:if test="hasActionErrors()">
-    <div class="col-lg-12">
-        <div class="alert alert-errors">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
-        </div>
-    </div>
-</s:if>--%>
-
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -38,6 +20,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Operations</li>
             <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
             <li class="active">
                 <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">

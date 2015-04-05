@@ -13,10 +13,10 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Booking</li>
             <li class="active"><a href="<s:url action='viewOrders' />"> Booking List </a> </li>
             <li class="active"> Booking Information</li>
         </ol>
-
     </div>
 </div>
 

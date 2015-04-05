@@ -494,8 +494,7 @@
                                                  name="orderItem.weight"
                                                  id="orderItem_weight_textfield"
                                                  maxLength="9"
-                                                 required="true"
-                                                 pattern="\d+(\.\d{2})?" />
+                                                 required="true" />
 
                             </div>
 
@@ -863,8 +862,8 @@
                             <label class="col-lg-3 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield name="item.weight" id="item.weight" required="true"
-                                             cssClass="form-control addItemInput" pattern="\d+(\.\d{1,2})?" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.weight" id="item_weight" required="true"
+                                             cssClass="form-control addItemInput" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                         </div>

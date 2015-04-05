@@ -17,31 +17,6 @@
 </style>
 
 <script>
-  /*$(document).ready(function(){
-  if (window.localStorage) {
-  $('#notifyByPhone').on('click',':checkbox',function(){
-  var name = this.name;
-  var value = this.value;
-
-  if($(this).is(':checked')){
-  oTable.fnFilter(name, value,false,true,false,true);
-  //shorthand to check that localStorage exists
-  localStorage && localStorage.setItem(this.name,'checked');
-
-  } else {
-  oTable.fnFilter('',value,false,true,false,true);
-  //shorthand to check that localStorage exists
-  localStorage && localStorage.removeItem(this.name);
-  }
-  });
-
-  $(document).ready(function () {
-  $(':checkbox').each(function() {
-  $(this).prop('checked',localStorage.getItem(this.name) == 'checked');
-  });
-  });
-  }
-  });*/
 
   $(document).ready(function () {
       $("#notifyByPhone").click(function () {
@@ -134,10 +109,10 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
+            <li class="active"> Booking</li>
             <li class="active"><a href="<s:url action='viewOrders' />"> Booking List </a></li>
             <li class="active"> New Booking</li>
         </ol>
-        <%--<div id="ajaxResponse"></div>--%>
     </div>
 </div>
 

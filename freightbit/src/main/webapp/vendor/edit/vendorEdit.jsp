@@ -9,6 +9,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> Vendor List</a></li>
             <li class="active"> Edit Vendor</li>
         </ol>

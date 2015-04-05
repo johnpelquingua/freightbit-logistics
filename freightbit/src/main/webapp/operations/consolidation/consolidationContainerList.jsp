@@ -12,7 +12,7 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
             <li class="active"> Yard Management</li>
-            <li class="active"> Container List </li>
+            <li class="active"> Consolidation Container List </li>
         </ol>
 
     </div>

@@ -25,6 +25,7 @@
 
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Documentations</li>
             <li class="active"><a href="<s:url action='../documentation/viewPendingDocuments' />"> Pending Documents List</a></li>
             <li class="active"> Pending Documents of Booking Number <s:property value="bookingNumber"/></li>
         </ol>
