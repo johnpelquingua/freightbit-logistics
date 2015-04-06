@@ -96,6 +96,19 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    public String loadDeleteComplete() {
+        List <VesselSchedules> vesselSchedulesEntityList = new ArrayList<VesselSchedules>();
+        vesselSchedulesEntityList = vesselSchedulesService.findAllVesselSchedules();
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesEntityList) {
+            vesselSchedules.add(transformToFormBean(vesselScheduleElem));
+
+        }
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vessel Schedule has been deleted.");
+        return SUCCESS;
+    }
+
     public String editVesselSchedule() {
         validateOnSubmit(vesselSchedule);
         if (hasFieldErrors()) {

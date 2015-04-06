@@ -50,7 +50,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
-
+            <%--<s:textfield value="%{CustomerCodeParam}" />--%>
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Contact
                     Person List</h3>
@@ -77,7 +77,8 @@
                                                    pagesize="10"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-
+                                        <%--<td><display:column property="contactId" title="Last Name <i class='fa fa-sort'" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>--%>
                                         <td><display:column property="lastName" title="Last Name <i class='fa fa-sort'" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="firstName" title="First Name <i class='fa fa-sort'" class="tb-font-black"
@@ -135,8 +136,6 @@
                                             <a href="customerInfo" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
                                             <a href="viewAddress" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
                                             <a href="#" class="btn btn-default active" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
-
-
                                             <a href="viewItem" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list-ol fa-fw"></i> <br/>Items</a>
                                         </sec:authorize>
 

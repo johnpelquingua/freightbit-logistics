@@ -34,7 +34,8 @@
         <action name="deleteVesselSchedule" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
                 method="deleteVesselSchedule">
             <result name="errorInput" type="redirect">loadDeleteVesselScheduleError</result>
-            <result name="success" type="redirect">loadSaveComplete</result>
+            <!--<result name="success" type="redirect">loadSaveComplete</result>-->
+            <result name="success" type="redirect">loadDeleteComplete</result>
         </action>
 
         <action name="viewVesselSchedules" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
@@ -59,6 +60,11 @@
 
         <action name="loadSaveComplete" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
                 method="loadSaveComplete">
+            <result name="success" type="tiles">operations.vesselScheduleList.tiles</result>
+        </action>
+
+        <action name="loadDeleteComplete" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="loadDeleteComplete">
             <result name="success" type="tiles">operations.vesselScheduleList.tiles</result>
         </action>
 

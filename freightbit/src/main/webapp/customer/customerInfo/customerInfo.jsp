@@ -52,8 +52,6 @@
                                 access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                             <s:a href="%{editCustomerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
                                  title="Edit this Customer">
-                                <%--<img src="../includes/images/edit-user.png"
-                                     class="icon-action circ-icon"> --%>
                                 <i class="fa fa-pencil"></i> Edit Customer
                             </s:a>
                         </sec:authorize>
@@ -202,8 +200,6 @@
                                         <a href="" class="btn btn-default active" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
                                         <a href="viewAddress" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
                                         <a href="viewCustomerContacts" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
-
-
                                         <a href="viewItem" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list-ol fa-fw"></i> <br/>Items</a>
                                         </sec:authorize>
 

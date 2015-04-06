@@ -46,7 +46,6 @@
    </div>
 </s:if>
 
-
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
@@ -73,7 +72,7 @@
                             <table>
                                 <tr>
                                     <display:table id="item" name="items" requestURI="viewItem.action" pagesize="10"
-                                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                                   class="table table-striped table-hover table-bordered text-center tablesorter itemHandler"
                                                    style="margin-top: 15px;">
                                         <td><display:column property="itemName" title="Name <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
@@ -87,9 +86,6 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="srp" title="SRP (Php) <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <%--<td><display:column property="criticalQuality" title="Critical Quality <i class='fa fa-sort' />"
-                                                            class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>--%>
                                         <td><display:column property="weight" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="description" title="Commodity <i class='fa fa-sort' />" class="tb-font-black"
@@ -129,9 +125,7 @@
 
                     <div class="col-lg-2">
                         <div class="panel panel-info" >
-                            <%--<div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
-                            </div>--%>
+
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12" style="text-align: center;">
@@ -164,33 +158,6 @@
 
             </div>
 
-            <%--<div class="panel-footer">
-
-               <span class="pull-right">
-                    <s:url var="loadAddItemUrl" action="loadAddItem">
-                        <s:param name="customerIdParam" value="customerIdParam"> </s:param>
-                    </s:url>
-                    <s:a class="icon-action-link" href="%{loadAddItemUrl}" rel="tooltip" title="Add Contact">
-                        <button type="button" class="btn btn-primary">
-                            <i class="fa fa-list-ol"> </i> New Item
-                        </button>
-                    </s:a>
-                </span>
-
-                <div class="table-responsive" >
-                    <div class="col-lg-12" style="position:relative;margin-top: -28px;">
-                        <table class="col-lg-6">
-                            <tr>
-                                <td><label>Legend:</label></td>
-                                <td><i class="fa fa-pencil"></i> Edit</td>
-                                <td><i class="fa fa-trash-o"></i> Delete</td>
-                                <td><i class="fa fa-info-circle"></i> Information</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>--%>
-
         </div>
     </div>
 
@@ -215,6 +182,7 @@
 
 <script>
     $(document).ready(function(){
+        itemHandler('itemHandler',3,4,5,6,7);
         actionConfirmation($('.deleteCustomerItemsIcon'), $('.confirmDeleteModalBtn'), $('#deleteCustomerItemsModal'));
     });
 </script>

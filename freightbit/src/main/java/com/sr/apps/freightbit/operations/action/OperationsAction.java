@@ -4604,6 +4604,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }
 
+        System.out.println("VENDOR ORIGIN                              " + vendorOrigin);
+        System.out.println("VENDOR DESTINATION                        " + vendorDestination);
+
         if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("TRUCKING") ){
 
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") || orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){

@@ -84,7 +84,7 @@
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Website</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website"
+                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website" maxLength="50"
                                                  pattern="^([_W-Ww-w-\\.])*([A-Za-z0-9]+)*(\\.[A-Za-z]{3,3}*(\\.[A-Za-z]{2,3}))$" title="Proper Format: example.com or www.example.com"/>
                                 </div>
                             </div>
@@ -92,8 +92,10 @@
                             <div class="form-group">
                                 <label class="col-lg-5  control-label" style="padding-top:0px;">DTI / SEC</label>
                                 <div class="col-lg-7" >
+                                    <%--<s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
+                                                 placeholder="XXXXXXXX" maxLength="8" pattern="^[0-9]{8,}$"/>--%>
                                     <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
-                                                 placeholder="XXXXXXXX" maxLength="8" pattern="^[0-9]{8,}$"/>
+                                                placeholder="XXXXXXXX" maxLength="15" />
                                 </div>
                             </div>
 
@@ -250,7 +252,7 @@
         $("#customer_phone").mask("(999) 999-9999");
         $("#customer_mobile").mask("(+63999)(999-9999)");
         $("#customer_fax").mask("(999) 999-9999");
-        $("#customer_dti").mask("99999999");
+        /*$("#customer_dti").mask("99999999");*/
         $("#customer_mayorsPermit").mask("99-999999");
 
     });

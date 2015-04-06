@@ -17,7 +17,6 @@
             <li class="active"><a href="<s:url action='viewItem' />"> Items</a></li>
             <li class="active"> Edit Item</li>
         </ol>
-
     </div>
 </div>
 
@@ -54,42 +53,33 @@
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.weight" id="item_weight" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?"
+                                <s:textfield name="item.weight" id="item_weight" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?" value="%{getText('format.number',{item.weight})}"
                                              title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)" tabindex="4"/>
                             </div>
-
-                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)</label>--%>
-                            <%--<div class="col-lg-3"><span class="asterisk_input"></span>--%>
-                                <%--<s:textfield  name="item.srp" id="item.srp" required="true" cssClass="form-control" />--%>
-                            <%--</div>--%>
                         </div>
                         <div class="form-group">
-                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Critical Quality</label>--%>
-                            <%--<div class="col-lg-3">--%>
-                                <%--<s:textfield name="item.criticalQuality" id="item.criticalQuality" required="true" cssClass="form-control" />--%>
-                            <%--</div>--%>
                             <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield  name="item.srp" id="item_srp" required="true" cssClass="form-control" pattern="[0-9.,]+"
+                                <s:textfield  name="item.srp" id="item_srp" required="true" cssClass="form-control" pattern="[0-9.,]+" value="%{getText('format.number',{item.srp})}"
                                               title="Special characters in SRP is not valid" onkeypress="return isNumberKey(event)" tabindex="3"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control" style="150px" pattern="\d+(\.\d{1,2})?"
+                                <s:textfield name="item.length" id="item_length" required="true" cssClass="form-control" style="150px" pattern="\d+(\.\d{1,2})?" value="%{getText('format.number',{item.length})}"
                                              title="Special characters in Length is not valid" onkeypress="return isNumberKey(event)" tabindex="5"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Width (m)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?"
+                                <s:textfield name="item.width" id="item_width" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?" value="%{getText('format.number',{item.width})}"
                                              title="Special characters in width is not valid" onkeypress="return isNumberKey(event)" tabindex="6"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.height" id="item.height" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?"
+                                <s:textfield name="item.height" id="item_height" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?" value="%{getText('format.number',{item.height})}"
                                              title="Special characters in height is not valid" onkeypress="return isNumberKey(event)" tabindex="7"/>
                             </div>
                         </div>
@@ -142,6 +132,10 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        $("#item_weight").maskMoney({precision:0});
+        $("#item_length").maskMoney({precision:0});
+        $("#item_width").maskMoney({precision:0});
+        $("#item_height").maskMoney({precision:0});
         $("#item_srp").maskMoney();
     });
 
@@ -159,8 +153,7 @@
         return true;
     }*/
 
-function isNumberKey(evt)
-{
+function isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
     if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) || (charCode == 46 && $(this).val().indexOf('.') != -1))
         return false;

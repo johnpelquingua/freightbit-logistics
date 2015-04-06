@@ -14,12 +14,10 @@
             <li class="active"> Customer</li>
             <li class="active"><a href="<s:url action='customerList' />"> Customer List</a>
             </li>
-            <li class="active"><a href="<s:url action='customerInfo' />"> Customer
-                Profile</a></li>
+            <li class="active"><a href="<s:url action='customerInfo' />"> Customer Profile</a></li>
             <li class="active"><a href="<s:url action='viewItem' />"> Items</a></li>
             <li class="active"> Add Item</li>
         </ol>
-
     </div>
 </div>
 
@@ -40,7 +38,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-8">
-                                <s:textfield name="item.itemName" id="item.itemName" class="itemName" required="true" cssStyle="width: 115%"
+                                <s:textfield name="item.itemName" id="item.itemName" class="itemName" required="true"
                                              cssClass="addItemInput form-control" pattern="^(\s*[a-zA-Z0-9]+(([a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
                                              title="Item Name should not contain special characters" maxlength="50" tabindex="1"/>
                             </div>
@@ -51,7 +49,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Item Code<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.itemCode" id="itemCode" required="true" cssStyle="width: 140%"
+                                <s:textfield name="item.itemCode" id="itemCode" required="true"
                                              cssClass="addItemInput form-control" maxLength="25" pattern="[a-zA-Z0-9]+"
                                              title="Item Code should not contain special characters" tabindex="2"/>
                             </div>
@@ -59,7 +57,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.weight" id="item.weight" required="true" cssStyle="width: 140%"
+                                <s:textfield name="item.weight" id="item_weight" required="true"
                                              cssClass="addItemInput form-control" pattern="\d+(\.\d{1,2})?" title="XXXX.XX or enter an integer greater than 0"
                                              onkeypress="return isNumberKey(event)" tabindex="4"/>
                             </div>
@@ -72,14 +70,14 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.srp" id="item_srp" required="true" cssStyle="width: 140%" cssClass="addItemInput form-control" pattern="[0-9.,]+"
+                                <s:textfield name="item.srp" id="item_srp" required="true" cssClass="addItemInput form-control" pattern="[0-9.,]+"
                                              title="Special characters in SRP is not valid"  tabindex="3" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.length" id="item.length" required="true" cssStyle="width: 140%" cssClass="addItemInput form-control"
+                                <s:textfield name="item.length" id="item_length" required="true" cssClass="addItemInput form-control"
                                              style="150px" pattern="\d+(\.\d{1,2})?" title="XXXX.XX or enter an integer greater than 0"
                                              onkeypress="return isNumberKey(event)" tabindex="5"/>
                             </div>
@@ -90,14 +88,14 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Width (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.width" id="item.width" required="true" cssStyle="width: 140%" cssClass="addItemInput form-control"
+                                <s:textfield name="item.width" id="item_width" required="true" cssClass="addItemInput form-control"
                                              pattern="\d+(\.\d{1,2})?" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)" tabindex="6"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.height" id="item.height" required="true" cssStyle="width: 140%" tabindex="7"
+                                <s:textfield name="item.height" id="item_height" required="true" tabindex="7"
                                              cssClass="addItemInput form-control" pattern="\d+(\.\d{1,2})?" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
@@ -107,14 +105,14 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Commodity</label>
 
                             <div class="col-lg-3">
-                                <s:textarea name="item.description" id="item.description" cssStyle="width: 140%"
+                                <s:textarea name="item.description" id="item.description"
                                             style="resize:none" rows="3" cssClass="form-control" maxlength="50" tabindex="8"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Comments</label>
 
                             <div class="col-lg-3">
-                                <s:textarea name="item.note" id="item.note" cssClass="form-control" cssStyle="width: 140%"
+                                <s:textarea name="item.note" id="item.note" cssClass="form-control"
                                             style="resize:none" rows="3" maxlength="50" tabindex="9"/>
                             </div>
                         </div>
@@ -155,9 +153,12 @@
 
 </div>
 
-
 <script type="text/javascript">
     $(document).ready(function() {
+        $("#item_weight").maskMoney({precision:0});
+        $("#item_length").maskMoney({precision:0});
+        $("#item_width").maskMoney({precision:0});
+        $("#item_height").maskMoney({precision:0});
         $("#item_srp").maskMoney();
         validationForm('addItemInput', 'addItemBtn');
     });
@@ -175,14 +176,12 @@
         this.value=this.value.toUpperCase();
     });*/
 
-    function isNumberKey(evt)
-    {
+    function isNumberKey(evt){
         var charCode = (evt.which) ? evt.which : event.keyCode
         if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) || (charCode == 46 && $(this).val().indexOf('.') != -1))
             return false;
 
         return true;
     }
-
 
 </script>

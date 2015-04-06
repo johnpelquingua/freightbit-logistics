@@ -1300,8 +1300,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String viewContacts() {
         Integer customerId = getCustomerSessionId();
-        List<Contacts> contactEntityList = new ArrayList<Contacts>();
-        contactEntityList = customerService.findContactByReferenceId(customerId);
+        List<Contacts> contactEntityList = customerService.findContactByRefIdAndType("shipper",customerId);
+        /*contactEntityList = customerService.findContactByReferenceId(customerId);*/
         for (Contacts contactElem : contactEntityList) {
             contacts.add(transformToFormBeanContacts(contactElem));
         }
@@ -1310,8 +1310,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String loadSaveCompleteContacts() {
         Integer customerId = getCustomerSessionId();
-        List<Contacts> contactEntityList = new ArrayList<Contacts>();
-        contactEntityList = customerService.findContactByReferenceId(customerId);
+        List<Contacts> contactEntityList = customerService.findContactByRefIdAndType("shipper",customerId);
+        /*contactEntityList = customerService.findContactByReferenceId(customerId);*/
         for (Contacts contactElem : contactEntityList) {
             contacts.add(transformToFormBeanContacts(contactElem));
         }

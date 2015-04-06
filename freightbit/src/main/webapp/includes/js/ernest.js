@@ -494,6 +494,35 @@ function weightVolumeHandler(tableName,weightColumn, volumeColumn){
     }
 }
 
+function itemHandler(tableName,lengthColumn,widthColumn,heightColumn,srpColumn,weightColumn){
+    var tableTr = $('.'+tableName+' tbody tr td:nth-child('+lengthColumn+')');
+
+    for(var i=0; i <= tableTr.size(); i++){
+        var tableLength = parseFloat($('.'+tableName+' tbody tr td:nth-child('+lengthColumn+')').eq(i).text()),
+            tableWidth = parseFloat($('.'+tableName+' tbody tr td:nth-child('+widthColumn+')').eq(i).text()),
+            tableHeight = parseFloat($('.'+tableName+' tbody tr td:nth-child('+heightColumn+')').eq(i).text()),
+            tableSRP = parseFloat($('.'+tableName+' tbody tr td:nth-child('+srpColumn+')').eq(i).text()),
+            tableWeight = parseFloat($('.'+tableName+' tbody tr td:nth-child('+weightColumn+')').eq(i).text()),
+            columnLength = $('.'+tableName+' tbody tr td:nth-child('+lengthColumn+')').eq(i),
+            columnWidth = $('.'+tableName+' tbody tr td:nth-child('+widthColumn+')').eq(i),
+            columnHeight = $('.'+tableName+' tbody tr td:nth-child('+heightColumn+')').eq(i),
+            columnSRP = $('.'+tableName+' tbody tr td:nth-child('+srpColumn+')').eq(i),
+            columnWeight = $('.'+tableName+' tbody tr td:nth-child('+weightColumn+')').eq(i),
+            length = addCommas((tableLength.toFixed(0)).toString()),
+            width = addCommas((tableWidth.toFixed(0)).toString()),
+            height = addCommas((tableHeight.toFixed(0)).toString()),
+            srp = addCommas((tableSRP.toFixed(2)).toString()),
+            weight = addCommas((tableWeight.toFixed(0)).toString());
+
+            columnLength.empty().append(length);
+            columnWidth.empty().append(width);
+            columnHeight.empty().append(height);
+            columnSRP.empty().append(srp);
+            columnWeight.empty().append(weight);
+    }
+
+}
+
 function containerAbbrev(containerSize){
     if(containerSize == '10 FOOTER'){
         return '10 FT';
