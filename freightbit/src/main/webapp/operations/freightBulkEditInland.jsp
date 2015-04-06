@@ -1543,7 +1543,7 @@
                                 <div class="col-lg-8">
                                     <div>
                                         <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListDestination"
-                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
+                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="dispatchInputDes form-control"
                                                   emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                                     </div>
                                 </div>
@@ -1560,7 +1560,7 @@
                                 <div class="col-lg-8">
                                     <div>
                                         <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                                  id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="dispatchInput form-control"
+                                                  id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="dispatchInputDes form-control"
                                                   emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
                                     </div>
                                 </div>
@@ -1578,7 +1578,7 @@
                                 <div class="col-lg-8">
                                     <div>
                                         <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                                  id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
+                                                  id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="dispatchInputDes form-control"
                                                   emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                                     </div>
                                 </div>
@@ -1602,7 +1602,7 @@
                                                   value="%{bodyType}"
                                                   style="display:none" />
 
-                                        <s:textfield cssClass="dispatchInput form-control"
+                                        <s:textfield cssClass="dispatchInputDes form-control"
                                                      id="bodyType_Destination_textfield"
                                                      disabled="true" />
                                     </div>
@@ -1621,7 +1621,7 @@
                                                   value="%{plateNumber}"
                                                   style="display:none" />
 
-                                        <s:textfield cssClass="dispatchInput form-control"
+                                        <s:textfield cssClass="dispatchInputDes form-control"
                                                      id="plateNumber_Destination_textfield"
                                                      disabled="true" />
                                     </div>
@@ -1640,7 +1640,7 @@
                                                   value="%{grossWeight}"
                                                   style="display:none" />
 
-                                        <s:textfield cssClass="dispatchInput form-control"
+                                        <s:textfield cssClass="dispatchInputDes form-control"
                                                      id="grossWeight_Destination_textfield"
                                                      disabled="true" />
 
@@ -1652,7 +1652,7 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="dispatchInput from_date form-control dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="pickup" name="operationsBean.deliveryDate" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                                    <s:textfield cssClass="dispatchInputDes from_date form-control dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="pickup" name="operationsBean.deliveryDate" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
                             </div>
                             <div style="float: right;">

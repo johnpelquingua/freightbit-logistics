@@ -46,7 +46,7 @@
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
                                         <s:textfield placeholder="Enter company code" required="true" maxLength="3" name="customer.customerCode" cssClass="customerInput form-control" id="customerCode" onkeypress="return alphaKeyOnly(event)"
-                                                title="Company Code must not contain special charatcters." pattern="^[A-Z]{3,}$" />
+                                                title="Company Code must not contain special characters." pattern="^[A-Z0-9]{3,}$" />
                                     </div>
                                 </div>
 

@@ -23,6 +23,22 @@ function typeValidate(){
 
 }
 
+function getMaxValue(type, value){
+    if(value == '10 FT'){
+        if(type == 'VOLUME'){ return 14; }
+        else if(type == 'WEIGHT'){ return 9000; }
+    }else if(value == '20 FT'){
+        if(type == 'VOLUME'){ return 28; }
+        else if(type == 'WEIGHT'){ return 18000; }
+    }else if(value == '40 STD FT'){
+        if(type == 'VOLUME'){ return 56; }
+        else if(type == 'WEIGHT'){ return 20000; }
+    }else if(value == '40 HC FT'){
+        if(type == 'VOLUME'){ return 78; }
+        else if(type == 'WEIGHT'){ return 22000; }
+    }
+}
+
 function initValidationScript(pageType){
     var conVol, conWt,
         checkBox = $('.mainTable tbody td input[type="checkbox"]'),
@@ -460,6 +476,22 @@ function containerHandler(tableName, containerColumn, weightColumn, volumeColumn
             columnVolume.empty().append(volume);
     }
 
+}
+
+function weightVolumeHandler(tableName,weightColumn, volumeColumn){
+    var tableTr = $('.'+tableName+' tbody tr td:nth-child('+weightColumn+')');
+
+    for(var i=0; i <= tableTr.size(); i++){
+        var tableWeight = parseFloat($('.'+tableName+' tbody tr td:nth-child('+weightColumn+')').eq(i).text()),
+            tableVolume = parseFloat($('.'+tableName+' tbody tr td:nth-child('+volumeColumn+')').eq(i).text()),
+            columnWeight = $('.'+tableName+' tbody tr td:nth-child('+weightColumn+')').eq(i),
+            columnVolume = $('.'+tableName+' tbody tr td:nth-child('+volumeColumn+')').eq(i),
+            weight = addCommas((tableWeight.toFixed(0)).toString()),
+            volume = addCommas((tableVolume.toFixed(0)).toString());
+
+            columnWeight.empty().append(weight);
+            columnVolume.empty().append(volume);
+    }
 }
 
 function containerAbbrev(containerSize){

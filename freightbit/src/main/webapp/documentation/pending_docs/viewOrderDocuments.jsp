@@ -169,8 +169,10 @@
                                         <td class="tb-font-black"><s:property value="vendorDestination"/></td>
                                         <td class="tb-font-black"><s:property value="quantity"/></td>
                                         <td class="tb-font-black"><s:property value="nameSize"/></td>
-                                        <td class="tb-font-black"><s:property value="weight"/></td>
-                                        <td class="tb-font-black"><s:property value="volume"/></td>
+                                        <%--<td class="tb-font-black"><s:property value="weight"/></td>--%>
+                                        <td class="tb-font-black"><s:property value="getText('format.number',{weight})"/></td>
+                                        <%--<td class="tb-font-black"><s:property value="volume"/></td>--%>
+                                        <td class="tb-font-black"><s:property value="getText('format.number',{volume})"/></td>
                                         <td class="tb-font-black"><s:property value="description"/></td>
                                     </tr>
                                 </s:iterator>

@@ -1123,6 +1123,7 @@ function dynamicDropdown(select, index) {
 function validate_form(){
     var firstDate = new Date($('.pickupDateInput').val()),
         lastDate = new Date($('.deliveryDateInput').val()),
+        serviceMode = $('#order_modeOfService').val(),
         pickupDate = $('.pickupDateInput').val(),
         deliveryDate = $('.deliveryDateInput').val(),
         dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
@@ -1136,11 +1137,15 @@ function validate_form(){
         $('#dateSameWarningModal').modal('show');
         return false;
     }else if(pickupDate.match(dateRegEx) === null){
-        alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
-        return false;
+        if(serviceMode != 'DELIVERY'){
+            alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
+            return false;
+        }
     }else if(deliveryDate.match(dateRegEx) === null){
-        alert('ERROR! Delivery Date is not a valid date (MM/DD/YYYY)');
-        return false;
+        if(serviceMode != 'PICKUP'){
+            alert('ERROR! Delivery Date is not a valid date (MM/DD/YYYY)');
+            return false;
+        }
     }else{
         return true;
     }

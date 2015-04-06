@@ -218,38 +218,38 @@
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><strong> PICK UP</strong> <br>The shipment was pulled out from the area of the shipper.</td>
-                                        <td><strong> POSITIONED</strong> <br>The container was positioned at the area of the shipper for stuffing.</td>
+                                        <td><strong> QUEUE FOR PICK-UP</strong> <br>The pick-up requirement is lined-up for service action.</td>
+                                        <td><strong> CONSOLIDATION</strong> <br>The shipment is for consolidation at Ernest warehouse.</td>
                                     </tr>
                                     <tr>
                                         <td></td>
+                                        <td><strong> POSITIONED</strong> <br>The container was positioned at the area of the shipper for stuffing.</td>
                                         <td><strong> QUEUE FOR DEPARTURE</strong> <br>The shipment is at the port of origin waiting for departure.</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><strong> IN TRANSIT TO PICK-UP</strong> <br>The truck is in-transit to pick-up area.</td>
                                         <td><strong> IN-TRANSIT</strong> <br>The shipment is on board the cargo vessel and is in-transit to port of destination.</td>
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><strong> RETURNED TO ORIGIN</strong> <br>The shipment was not successfully delivered and is to return to origin.</td>
+                                        <td><strong> PICKED-UP</strong> <br>The shipment was pulled out from the area of the shipper.</td>
                                         <td><strong> ARRIVED</strong> <br>The shipment has arrived at the port of destination.</td>
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><strong> DELIVERED</strong> <br>The shipment was delivered to the consignee.</td>
-                                        <td><strong> IN TRANSIT TO DELIVERY</strong> <br>The truck is in-transit to delivery area.</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
                                         <td><strong> QUEUE FOR DELIVERY</strong> <br>The delivery requirement is lined-up for service action.</td>
-                                        <td><strong> QUEUE FOR PICK UP</strong> <br>The pick-up requirement is lined-up for service action.</td>
+                                        <td><strong> RETURNED TO ORIGIN</strong> <br>The shipment was not successfully delivered and is to return to origin.</td>
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><strong> CANCELED</strong> <br>The booking was cancelled.</td>
+                                        <td><strong> IN TRANSIT TO DELIVERY</strong> <br>The truck is in-transit to delivery area.</td>
                                         <td><strong> PENDING</strong> <br>The booking request is pending for action.</td>
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><strong> CONSOLIDATION</strong> <br>The shipment is for consolidation at Ernest warehouse.</td>
-                                        <td><strong> IN TRANSIT TO PICK UP</strong> <br>The truck is in-transit to pickup area.</td>
+                                        <td><strong> DELIVERED</strong> <br>The shipment was delivered to the consignee.</td>
+                                        <td><strong> CANCELLED</strong> <br>The booking was cancelled.</td>
                                     </tr>
                                     <tr>
                                         <td></td>

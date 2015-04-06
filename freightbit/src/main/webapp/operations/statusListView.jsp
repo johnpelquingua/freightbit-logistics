@@ -2,13 +2,6 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<style>
-    /*.header{
-        display: inline-block;
-        width: 160px;
-    }*/
-</style>
-
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -28,7 +21,7 @@
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
@@ -160,6 +153,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -171,6 +165,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function(){
         tableProp('DESTI_ORIG','order',0 ,7, 8, 9, 5, 6, 1);

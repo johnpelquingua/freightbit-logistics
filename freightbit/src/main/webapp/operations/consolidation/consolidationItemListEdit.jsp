@@ -56,7 +56,7 @@
 
                         <display:table id="orderItems" name="orderItemsBeans"
                                        requestURI="viewConsolidationItemList.action"
-                                       class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                       class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed availItems"
                                        style="margin-top: 15px;">
 
                             <td>
@@ -168,6 +168,7 @@
     // AUTHORED BY Jan Sarmiento -- START
     $(document).ready(function(){
         initValidationScript('CONSO_EDIT');
+        /*weightVolumeHandler('availItems',4,5);*/
 
         var submitBtn = $('#submitBtn'),
                 formToSubmit = $('#updateContainer');
