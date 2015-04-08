@@ -34,7 +34,7 @@
 
                 <div class="huge-dashboard"  id="booking"><s:property value="%{Booking}"></s:property></div>
                 <div id="ajaxResponse"></div>
-                <div>New Booking!</div>
+                <div>New Booking</div>
             </div>
         </div>
         </div>

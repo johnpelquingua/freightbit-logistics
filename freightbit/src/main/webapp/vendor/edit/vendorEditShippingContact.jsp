@@ -117,13 +117,6 @@
                             </div>
                         </div>
 
-
-
-                        <%--<div class="pull-right">
-                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-                        </div>
-                    </s:form>--%>
-
                 </div>
 
             </div>
@@ -139,18 +132,6 @@
 
         </div>
     </div>
-
-
-    <%--<div class="col-lg-2 col-lg-offset-2">
-        <div class="panel panel-primary">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li><a href="viewShippingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li class="active"><a href="#"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                <li><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
-            </ul>
-        </div>
-    </div>--%>
 
 </div>
 

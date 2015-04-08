@@ -219,6 +219,16 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         Session session = getSessionFactory().getCurrentSession();
         List<Orders> orders = session.createCriteria(Orders.class)
                 .add(Restrictions.like(column, value, MatchMode.ANYWHERE))
+                .list();
+        return orders;
+    }
+
+    @Override
+    public List<Orders> findOrdersByCriteriaOnGoing(String column, String value, Integer clientId) {
+        Log.debug("Find vendor by criteria ");
+        Session session = getSessionFactory().getCurrentSession();
+        List<Orders> orders = session.createCriteria(Orders.class)
+                .add(Restrictions.like(column, value, MatchMode.ANYWHERE))
                 .add(Restrictions.eq("orderStatus", "ON GOING"))
                 .list();
         return orders;

@@ -17,6 +17,7 @@ import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
@@ -188,7 +189,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             List<Contacts> shipperConsignee = customerService.findContactByRefIdAndType("CONSIGNEE", customerID);
 
             for (int i = 0; i < shipperConsignee.size(); i++) {
-                customerConsigneeMap.put(shipperConsignee.get(i).getContactId(), shipperConsignee.get(i).getFirstName() + ' ' + shipperConsignee.get(i).getMiddleName() + ' ' + shipperConsignee.get(i).getLastName());
+                customerConsigneeMap.put(shipperConsignee.get(i).getContactId(), shipperConsignee.get(i).getCompanyName() + " / " + shipperConsignee.get(i).getFirstName() + ' ' + shipperConsignee.get(i).getMiddleName() + ' ' + shipperConsignee.get(i).getLastName());
             }
 
             List<Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE", customerID);
@@ -246,14 +247,16 @@ public class OrderAction extends ActionSupport implements Preparable {
 
             Contacts customerConsignee = customerService.findContactById(consigneeAddress.getContactReferenceId());
 
-            customerConsigneeMap.put(customerConsignee.getContactId(), customerConsignee.getFirstName() + ' ' + customerConsignee.getMiddleName() + ' ' + customerConsignee.getLastName());
+            /*customerConsigneeMap.put(customerConsignee.getContactId(), customerConsignee.getFirstName() + ' ' + customerConsignee.getMiddleName() + ' ' + customerConsignee.getLastName());*/
+            customerConsigneeMap.put(customerConsignee.getContactId(), customerConsignee.getCompanyName() + " / " + customerConsignee.getFirstName() + ' ' + customerConsignee.getMiddleName() + ' ' + customerConsignee.getLastName());
 
         } else {
 
             List<Contacts> customerConsignee = customerService.findContactByRefIdAndType("CONSIGNEE", customerID);
 
             for (int i = 0; i < customerConsignee.size(); i++) {
-                customerConsigneeMap.put(customerConsignee.get(i).getContactId(), customerConsignee.get(i).getFirstName() + ' ' + customerConsignee.get(i).getMiddleName() + ' ' + customerConsignee.get(i).getLastName());
+                /*customerConsigneeMap.put(customerConsignee.get(i).getContactId(), customerConsignee.get(i).getFirstName() + ' ' + customerConsignee.get(i).getMiddleName() + ' ' + customerConsignee.get(i).getLastName());*/
+                customerConsigneeMap.put(customerConsignee.get(i).getContactId(), customerConsignee.get(i).getCompanyName() + " / " + customerConsignee.get(i).getFirstName() + ' ' + customerConsignee.get(i).getMiddleName() + ' ' + customerConsignee.get(i).getLastName());
             }
         }
         return SUCCESS;
@@ -263,19 +266,22 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Date todayDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
             orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+
         } else {
             orderEntityList = orderService.findAllOrders();
         }
+
         for (Orders orderElem : orderEntityList) {
             orders.add(transformToOrderFormBean(orderElem));
         }
 
         Booking = notificationService.countAll();
-        System.out.println("The number of  new booking is " + Booking);
+        System.out.println("The number of new booking is " + Booking);
 
         return SUCCESS;
 
@@ -566,7 +572,8 @@ public class OrderAction extends ActionSupport implements Preparable {
                 // Add order items to database
                 orderItemEntity.setQuantity(orderItem.getQuantity());
 
-                Items itemEntity = customerService.findItemByCode(orderItem.getNameSize());
+                /*Items itemEntity = customerService.findItemByCode(orderItem.getNameSize());*/
+                Items itemEntity = customerService.findItemByCode(item.getItemCode());
                 Double dblVolume = (orderItem.getQuantity() * (itemEntity.getLength() * itemEntity.getWidth() * itemEntity.getHeight()));
                 String strVolume = dblVolume.toString();
 
@@ -743,14 +750,15 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderService.addOrder(orderEntity);
 
         // Add Notification for user that booking was created
-        /*Notification notificationEntity = new Notification();
+        Notification notificationEntity = new Notification();
         notificationEntity.setDescription("BOOKING");
         notificationEntity.setNotificationId(1);
         notificationEntity.setNotificationType("Email");
         notificationEntity.setReferenceId(1);
         notificationEntity.setReferenceTable("Order");
         notificationEntity.setUserId(1);
-        notificationService.addNotification(notificationEntity);*/
+
+        notificationService.addNotification(notificationEntity);
         // End of Add Notification
 
         // To get generated Order Id

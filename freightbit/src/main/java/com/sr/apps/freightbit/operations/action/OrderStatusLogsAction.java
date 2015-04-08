@@ -86,13 +86,15 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         String column = getColumnFilter();
 
         if (StringUtils.isNotBlank(column)) {
-            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+            orderEntityList = orderService.findOrdersByCriteriaOnGoing(column, order.getOrderKeyword(), getClientId());
         } else {
             orderEntityList = orderStatusLogsService.findAllOrders();
         }
+
         for (Orders ordersElem : orderEntityList) {
             orders.add(transformToOrderFormBean(ordersElem));
         }
+
         return SUCCESS;
     }
 
@@ -296,7 +298,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         orderStatusLogsBean.setOrderItemId(orderItemEntity.getOrderItemId());
 
         //for filtering order status shipment list
-
         if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
 
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")){

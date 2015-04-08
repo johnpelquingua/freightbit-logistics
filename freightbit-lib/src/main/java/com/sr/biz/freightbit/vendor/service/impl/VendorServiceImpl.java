@@ -1,10 +1,5 @@
 package com.sr.biz.freightbit.vendor.service.impl;
 
-/**
- * Created with IntelliJ IDEA.
- * User: johnpel
- */
-
 import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
@@ -28,7 +23,6 @@ public class VendorServiceImpl implements VendorService {
     private TrailersDao trailersDao;
     private VesselDao vesselDao;
     private ContactsDao contactsDao;
-
 
     public void setTrucksDao(TrucksDao trucksDao) {
         this.trucksDao = trucksDao;
@@ -143,7 +137,6 @@ public class VendorServiceImpl implements VendorService {
         return vendorDao.findVendorsByCriteria(column, value, clientId);
     }
 
-
     //    START OF ADDRESS
     @Override
     public Address findAddressByRefId(Integer customerId) {
@@ -186,12 +179,10 @@ public class VendorServiceImpl implements VendorService {
         return address;
     }
 
-
     @Override
     public Address findAddressById(Integer addressId) {
         return addressDao.findAddressById(addressId);
     }
-
 
     @Override
     public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
@@ -229,11 +220,6 @@ public class VendorServiceImpl implements VendorService {
         trucksDao.deleteTrucks(trucks);
     }
 
-   /* @Override
-    public List<Trucks> findTrucksById(long truckId) {
-        return trucksDao.findTrucksById(truckId);
-    }*/
-
     @Override
     public List<Trucks> findAllTrucks() {
         List<Trucks> trucks = trucksDao.findAllTrucks();
@@ -248,24 +234,14 @@ public class VendorServiceImpl implements VendorService {
         return null;
     }
 
-
     @Override
     public List<Trucks> findTrucksByVendorId(Integer vendorId) {
         List<Trucks> result = trucksDao.findTrucksByVendorId(vendorId);
-       /* if (result != null && !result.isEmpty()) {
-            return result.get(0);
-        }*/
+
         return result;
     }
 
-  /*  @Override
-    public void updateLastVisitDate(User user) {
-        user.setLastVisitDate(new Date());
-        userDao.updateUser(user);
-    }*/
-
-//    END OF TRUCKS
-
+    //    END OF TRUCKS
 
     //    START OF DRIVER
     @Override
@@ -278,7 +254,6 @@ public class VendorServiceImpl implements VendorService {
             driverDao.addDriver(driver);
         }
     }
-
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -347,6 +322,7 @@ public class VendorServiceImpl implements VendorService {
         }
         return null;
     }
+
 //    END OF DRIVER
 
 //    START OF TRAILERS
@@ -500,17 +476,16 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
+    public List<Contacts> findContactByRefTableAndId(String referenceTable, Integer customerId) {
+        return contactsDao.findContactByRefTableAndId(referenceTable, customerId);
+    }
+
+    @Override
     public List<Contacts> findContactByReferenceId(Integer vendorId) {
         List<Contacts> result = contactsDao.findContactByReferenceId(vendorId);
         return result;
 
     }
-
-
-//    @Override
-//    public List<Contacts> findAllContactsByClientId(long clientId){
-//        return contactsDao.findAllContactsByClientId(clientId);
-//    }
 
     //end of Contacts
 }

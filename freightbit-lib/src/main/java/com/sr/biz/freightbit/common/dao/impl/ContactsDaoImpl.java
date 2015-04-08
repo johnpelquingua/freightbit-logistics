@@ -16,7 +16,7 @@ import java.util.Set;
 
 @Transactional
 public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao {
-    //
+
     private static final Logger log = Logger.getLogger(UserDaoImpl.class);
 
     @Override
@@ -122,10 +122,20 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
 
     @Override
     public List<Contacts> findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType) {
-        Query query = getSessionFactory().getCurrentSession().createQuery(" from Contacts where referenceTable = :referenceTable and referenceId = :referenceId and contactType = :contactType");
+        String stringQuery = "from Contacts c where c.referenceTable = :referenceTable and c.referenceId = :referenceId and c.contactType = :contactType order by companyName asc";
+        Query query = getSessionFactory().getCurrentSession().createQuery(stringQuery);
         query.setParameter("referenceTable", referenceTable);
         query.setParameter("referenceId", referenceId);
         query.setParameter("contactType", contactType);
+        return query.list();
+    }
+
+    @Override
+    public List<Contacts> findContactByRefTableAndId(String referenceTable, Integer referenceId) {
+        String stringQuery = "from Contacts c where c.referenceTable = :referenceTable and c.referenceId = :referenceId";
+        Query query = getSessionFactory().getCurrentSession().createQuery(stringQuery);
+        query.setParameter("referenceTable", referenceTable);
+        query.setParameter("referenceId", referenceId);
         return query.list();
     }
 

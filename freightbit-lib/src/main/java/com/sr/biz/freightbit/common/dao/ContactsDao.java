@@ -23,6 +23,8 @@ public interface ContactsDao {
 
     public List<Contacts> findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType);
 
+    public List<Contacts> findContactByRefTableAndId(String referenceTable, Integer referenceId);
+
     public List<Contacts> findContactByReferenceId(Integer referenceId);
 
     public List<Contacts> findContactsByReferenceIdOnly(Integer referenceId);

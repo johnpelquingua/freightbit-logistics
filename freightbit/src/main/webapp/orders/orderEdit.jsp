@@ -66,7 +66,7 @@
                 <%--<s:property value="%{order.freightType}" />--%>
                 <s:hidden name="order.freightType" value="%{order.freightType}" />
                 <s:select id="order.freightType"
-                          cssClass="form-control"
+                          cssClass="form-control bookingInput"
                           style="margin-bottom: 15px !important;"
                           name="order.freightType"
                           list="freightTypeList"
@@ -83,7 +83,7 @@
             <div class="col-lg-10">
                 <%--<s:property value="%{order.serviceRequirement}" />--%>
                 <s:hidden name="order.serviceRequirement" value="%{order.serviceRequirement}" />
-                <s:select cssClass="form-control"
+                <s:select cssClass="form-control bookingInput"
                           style="margin-bottom: 15px !important;"
                           name="order_serviceRequirement"
                           list="serviceRequirementList"
@@ -103,7 +103,7 @@
                 <%--<s:property value="%{order.modeOfService}" />--%>
                 <%--<s:hidden name="order.modeOfService" value="%{order.modeOfService}" />--%>
                 <s:select id="order_modeOfService"
-                          cssClass="form-control"
+                          cssClass="form-control bookingInput"
                           style="margin-bottom: 15px !important;"
                           name="order.modeOfService"
                           list="modeOfServiceList"
@@ -121,7 +121,7 @@
                 <%--<s:property value="%{order.modeOfPayment}" />--%>
                 <%--<s:hidden name="order.modeOfPayment" value="%{order.modeOfPayment}" />--%>
                 <s:select id="order.modeOfPayment"
-                          cssClass="form-control"
+                          cssClass="form-control bookingInput"
                           style="margin-bottom: 15px !important;"
                           name="order.modeOfPayment"
                           list="modeOfPaymentList"
@@ -138,7 +138,7 @@
             <div class="col-lg-10">
                 <s:hidden name="order.customerId" value="%{order.customerId}" />
                 <s:select id="customerName"
-                          cssClass="form-control step1"
+                          cssClass="form-control bookingInput"
                           style="margin-bottom: 15px !important;"
                           list="customerList"
                           listKey="customerId"
@@ -258,7 +258,7 @@
     <%--<label class="col-lg-3 control-label originPort" style="margin-top: 5px;">Origin Port<span class="asterisk_red"></span></label>--%>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.originationPort}" />--%>
-        <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+        <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;"
                   id="select1" name="order.originationPort" list="portsList" listKey="key"
                   listValue="value" required="true" value="%{order.originationPort}"/>
 
@@ -267,7 +267,7 @@
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Destination Port<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.destinationPort}" />--%>
-        <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+        <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;"
                   id="select2" name="order.destinationPort" list="portsList" listKey="key"
                   listValue="value" required="true" value="%{order.destinationPort}"/>
 
@@ -312,7 +312,7 @@
 
         <div class="col-lg-7">
             <%--<s:property value="%{order.shipperContactId}" />--%>
-            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId" value="%{order.shipperContactId}"
+            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId" value="%{order.shipperContactId}"
                       list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
         </div>
 
@@ -330,7 +330,7 @@
 
         <div class="col-lg-7">
             <%--<s:property value="%{order.shipperAddressId}" />--%>
-            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId" value="order.shipperAddressId"
+            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId" value="order.shipperAddressId"
                       list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" required="true"/>
         </div>
 
@@ -351,11 +351,11 @@
     </legend>
 
     <div class="form-group">
-        <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name<span class="asterisk_red"></span></label>
+        <label class="col-lg-3 control-label" style="margin-top: 5px;">Company / Consignee Name<span class="asterisk_red"></span></label>
 
         <div class="col-lg-7">
             <%--<s:property value="%{order.consigneeContactId}" />--%>
-            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId" value="order.consigneeContactId"
+            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId" value="order.consigneeContactId"
                       list="consigneeList" listKey="contactId"
                       listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
         </div>
@@ -375,7 +375,7 @@
         <div class="col-lg-7">
 
             <%--<s:property value="%{order.consigneeAddressId}" />--%>
-            <s:select cssClass="form-control" style="margin-bottom: 15px !important; display:none;" id="consigneeAddress" name="order.consigneeAddressId" value="order.consigneeAddressId"
+            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important; display:none;" id="consigneeAddress" name="order.consigneeAddressId" value="order.consigneeAddressId"
                       list="consigneeAddressList" listKey="addressId"
                       listValue="addressLine1 + ' ' + addressLine2" required="true"/>
 
@@ -392,7 +392,7 @@
             <%--<s:property value="%{order.consigneeContactName}" />
             <s:property value="%{order.consigneeContactPersonId}" />--%>
             <%--<s:textfield value="%{order.consigneeContactPersonId}"></s:textfield>--%>
-            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeContact" name="order.consigneeContactPersonId" value="order.consigneeContactPersonId"
+            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="consigneeContact" name="order.consigneeContactPersonId" value="order.consigneeContactPersonId"
                       list="consigneeContactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
         </div>
 
@@ -1034,6 +1034,16 @@
     }
 
 $(document).ready(function() {
+
+    // DISABLE ADD CONTACT PERSON BUTTON IF CONTACT ALREADY EXISTS - START
+    $('.bookingInput').hover(function(){
+        if($('#consigneeContact').val() != null){
+            $('#id_Consignee').attr('disabled', true);
+        }else{
+            $('#id_Consignee').attr('disabled', false);
+        }
+    });
+
     $( window ).load(function() {
 
         /*alert((localStorage.getItem("ctr")));*/
@@ -1058,7 +1068,6 @@ $(document).ready(function() {
                     customerID : custId
                 },
                 function(jsonResponse) {
-                    /*alert(jsonResponse.dummyMsg);*/
 
                     $('#ajaxResponse').text(jsonResponse.dummyMsg);
 
@@ -1153,9 +1162,6 @@ $(document).ready(function() {
                             $("#consigneeAddress_textfield").val(value);
                         }
 
-                        /*var consignAdd = $("#consigneeAddress").val();
-                        document.getElementById("order_consigneeAddressId_textfield").value = consignAdd;*/
-
                     });
 
                     // populate customer phone
@@ -1187,9 +1193,9 @@ $(document).ready(function() {
                     });
 
                     // populate consignee contacts
-//                    $.each(jsonResponse.consigneeContactMap, function(key, value) {
-//                        $('<option>').val(key).text(value).appendTo(select9);
-//                    });
+                    $.each(jsonResponse.consigneeContactMap, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(select9);
+                    });
 
                     var consignee_Id = $("#shipperConsignee").val();
 //                    alert(consignee_Id);
@@ -1203,6 +1209,10 @@ $(document).ready(function() {
                                 var select4 = $('#consigneeAddress');
 
                                 select4.find('option').remove();
+
+                                var select9 = $('#consigneeContact');
+
+                                select9.find('option').remove();
 
                                 // populate consignee address
                                 $.each(jsonResponse.consigneeAddressMap, function(key, value) {
@@ -1247,11 +1257,9 @@ $(document).ready(function() {
 
         if(order_freightType == 'SHIPPING AND TRUCKING') {
 
-            /*$("#select1").val('');
-            $("#select2").val('');*/
             $("#order_modeOfService").val('');
             for (var i = 0; i < sMode.options.length; i++) {
-                /*$("#order_modeOfService").val('');*/
+
                 if(sMode != '') {
                     sMode.value = sModeValue;
                     if (sMode.options[i].value == "DOOR TO DOOR" || sMode.options[i].value == "DOOR TO PIER" || sMode.options[i].value == "PIER TO DOOR") {
@@ -1259,9 +1267,9 @@ $(document).ready(function() {
                     } else {
                         sMode.options[i].style.display = "none";
                     }
-                }else{
+                }/*else{
 
-                }
+                }*/
             }
 
         } else if (order_freightType == 'SHIPPING'){
@@ -1372,7 +1380,6 @@ $(document).ready(function() {
                 });
                 // populate customer consignee list
                 $.each(jsonResponse.customerConsigneeMap, function(key, value) {
-                    //alert($("#shipperConsignee").val());
 
                     $('<option>').val(null).text("").appendTo(select3);
                     $('<option>').val(key).text(value).appendTo(select3);
@@ -1380,7 +1387,6 @@ $(document).ready(function() {
 
                 // populate customer address list
                 $.each(jsonResponse.consigneeAddressMap, function(key, value) {
-                    //alert($("#consigneeAddress").val());
 
                     $('<option>').val(null).text("").appendTo(select4);
                     $('<option>').val(key).text(value).appendTo(select4);
@@ -1394,7 +1400,7 @@ $(document).ready(function() {
     $('#shipperConsignee').change(function(event) {
         var custId = $("#customerName").val();
         var consignee_Id = $("#shipperConsignee").val();
-        /*alert("TEST");*/
+
         $.getJSON('consigneeAction', {
                 customerID : custId,
                 consigneeId : consignee_Id
@@ -1404,6 +1410,10 @@ $(document).ready(function() {
                 var select4 = $('#consigneeAddress');
 
                 select4.find('option').remove();
+
+                var select9 = $('#consigneeContact');
+
+                select9.find('option').remove();
 
                 // populate consignee address
                 $.each(jsonResponse.consigneeAddressMap, function(key, value) {
@@ -1426,6 +1436,11 @@ $(document).ready(function() {
 
                 });
 
+                // populate consignee contacts
+                $.each(jsonResponse.consigneeContactMap, function(key, value) {
+                    $('<option>').val(key).text(value).appendTo(select9);
+                });
+
             });
 
     });
@@ -1445,6 +1460,10 @@ $(document).ready(function() {
 
                 select3.find('option').remove();
 
+                var select9 = $('#consigneeContact');
+
+                select9.find('option').remove();
+
                 // populate consignee field
                 $.each(jsonResponse.customerConsigneeMap, function (key, value) {
 
@@ -1457,6 +1476,12 @@ $(document).ready(function() {
                         $('<option>').val(key).text(value).appendTo(select3);
                     }
 
+                });
+
+                // populate consignee contacts
+                $.each(jsonResponse.consigneeContactMap, function(key, value) {
+                    alert(value);
+                    $('<option>').val(key).text(value).appendTo(select9);
                 });
 
             });
@@ -1565,11 +1590,9 @@ function dynamicDropdown(select, index) {
 
             if(sMode.options[i].value == "DOOR TO DOOR"){
                 sMode.options[i].disabled = false;
-                //sMode.options[i].selected = true;
-            }else{
+            }/*else{
                 sMode.options[i].disabled = false;
-
-            }
+            }*/
         }
 
         for (var i = 0; i < sType.options.length; i++){
@@ -1594,41 +1617,30 @@ function dynamicDropdown(select, index) {
             }else {
                 if(sType.options[i].value == "SHIPPING AND TRUCKING"){
                     sType.options[i].disabled = false;
-                    /*sType.options[i].selected = true;*/
-                }else{
+                }/*else{
                     sType.options[i].disabled = false;
-
-                }
+                }*/
             }
         }
 
         if (select.options[ index ].value === 'DOOR TO PIER'){
 
-            /*$("#customerName").val('');
-            $("#shipperContact").val('');*/
             $("#shipperAddress").prop('disabled', false);
-            /*$("#shipperAddress").val('');*/
-            /*$("#shipperConsignee").val('');*/
             $("#consigneeAddress").prop('disabled', true);
             $("#consigneeAddress").val('');
+            $("#consigneeAddress_textfield").val('');
+            $("#consigneeAddress_textfield").prop('disabled', true);
         }else if (select.options[ index ].value === 'PIER TO DOOR'){
 
-            /*$("#customerName").val('');
-            $("#shipperContact").val('');*/
             $("#shipperAddress").prop('disabled', true);
+            $("#shipperConsignee").val('');
             $("#shipperAddress").val('');
-            /*$("#shipperConsignee").val('');*/
+            $("#consigneeContact").val('');
             $("#consigneeAddress").prop('disabled', false);
-            /*$("#consigneeAddress").val('');*/
-
         }else{
-            /*  $("#customerName").val('');
-             $("#shipperContact").val('');*/
+
             $("#shipperAddress").prop('disabled', false);
-            /* $("#shipperAddress").val('');
-             $("#shipperConsignee").val('');*/
             $("#consigneeAddress").prop('disabled', false);
-            /*$("#consigneeAddress").val('');*/
         }
 
     }
@@ -1646,11 +1658,9 @@ function dynamicDropdown(select, index) {
             }
         }
 
-        /*$("#customerName").val('');
-        $("#shipperContact").val('');*/
+
         $("#shipperAddress").prop('disabled', true);
         $("#shipperAddress").val('');
-        /*$("#shipperConsignee").val('');*/
         $("#consigneeAddress").prop('disabled', true);
         $("#consigneeAddress").val('');
 
@@ -1679,11 +1689,9 @@ function dynamicDropdown(select, index) {
             }else{
                 if(sMode.options[i].value == "DOOR TO DOOR"){
                     sMode.options[i].disabled = false;
-                    //sMode.options[i].selected = true;
-                }else{
+                }/*else{
                     sMode.options[i].disabled = false;
-
-                }
+                }*/
             }
         }
 
@@ -1909,7 +1917,6 @@ function setThis(){
         if ($("#order_modeOfService").val() === 'PICKUP'){
 
             $("#datepicker1").prop('disabled', false);
-            /*$("#datepicker1").val('');*/
             $("#datepicker2").prop('disabled', true);
             $("#datepicker2").val('');
             $("#shipperAddress").prop('disabled', false);
@@ -1924,7 +1931,6 @@ function setThis(){
             $("#datepicker1").prop('disabled', true);
             $("#datepicker1").val('');
             $("#datepicker2").prop('disabled', false);
-            /*$("#datepicker2").val(''); */
             $("#shipperAddress").prop('disabled', true);
             $("#shipperAddress").val('');
             $("#shipperConsignee").val('');
@@ -1935,9 +1941,7 @@ function setThis(){
         }else if ($("#order_modeOfService").val()  === 'INTER-WAREHOUSE'){
 
             $("#datepicker1").prop('disabled', false);
-            /*$("#datepicker1").val('');*/
             $("#datepicker2").prop('disabled', false);
-            /*$("#datepicker2").val(''); */
             $("#select2").val('');
 
         }

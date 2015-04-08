@@ -242,12 +242,6 @@ public class OrderBean {
         this.strPickupDate = strPickupDate;
     }
 
-    /*public Date getPickupTime() {
-            return pickupTime;
-        }
-        public void setPickupTime(Date pickupTime) {
-            this.pickupTime = pickupTime;
-        }*/
 	public String getOriginationPort() {
 		return originationPort;
 	}
@@ -269,12 +263,6 @@ public class OrderBean {
         this.strDeliveryDate = strDeliveryDate;
     }
 
-    /*public Date getDeliveryTime() {
-            return deliveryTime;
-        }
-        public void setDeliveryTime(Date deliveryTime) {
-            this.deliveryTime = deliveryTime;
-        }*/
 	public String getDestinationPort() {
 		return destinationPort;
 	}

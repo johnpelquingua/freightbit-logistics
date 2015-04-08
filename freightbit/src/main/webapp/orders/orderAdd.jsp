@@ -424,7 +424,7 @@
                     </legend>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name<span class="asterisk_red"></span></label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Company / Consignee Name<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-7">
                             <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId"

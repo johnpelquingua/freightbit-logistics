@@ -36,12 +36,13 @@
 
                     <s:form role="form" action="addShippingContact" cssClass="form-horizontal" theme="bootstrap">
 
-                        <div class="form-group">
+                        <div class="form-group" style="display: none;">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Contact Type<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
                             <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
                                       listKey="key" listValue="value" cssClass="form-control"
                                       value="contact.contactType"/>
+                                <%--<s:textfield cssClass="form-control" name="contact.contactType" value="VENDOR"/>--%>
                             </div>
                         </div>
 
@@ -119,13 +120,6 @@
                             </div>
                         </div>
 
-
-
-                        <%--<div class="pull-right">
-                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-                        </div>
-                    </s:form>--%>
-
                 </div>
 
             </div>
@@ -142,41 +136,17 @@
         </div>
     </div>
 </div>
-    <%--<div class="col-lg-2 col-lg-offset-2">
-        <div class="panel panel-primary">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li><a href="viewShippingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li class="active"><a href="#"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                <li><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
-            </ul>
-        </div>
-    </div>--%>
-    <script type="text/javascript">
-//        var emailbean = document.getElementById('emailfield').value;
-//        var emailf = document.getElementById('emailfield');
-//        var emailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,3})+$/ ;
-//        function validateEmail(){
-//            if(!emailformat.test(emailf.value)){
-//                alert("Invalid email use the format: email@yahoo.com");
-//                emailf.focus();
-//            }
-//        }
-//
-//        var emailf2 = document.getElementById('emailfield');
-//        emailf2.onchange= function(){
-//            validateEmail();
-//        };
 
+<script type="text/javascript">
 //jquery for masking telephone numbers
-                $(document).ready(function(){
+    $(document).ready(function(){
 
-                    $("#shipping_phone").mask("(999) 999-9999");
-                    $("#shipping_mobile").mask("(+63999)(999-9999)");
-                    $("#shipping_fax").mask("(999) 999-9999");
+        $("#shipping_phone").mask("(999) 999-9999");
+        $("#shipping_mobile").mask("(+63999)(999-9999)");
+        $("#shipping_fax").mask("(999) 999-9999");
 
-                });
-    </script>
+    });
+</script>
 
 
 
