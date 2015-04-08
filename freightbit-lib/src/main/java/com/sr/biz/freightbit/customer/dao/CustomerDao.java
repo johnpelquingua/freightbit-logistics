@@ -5,6 +5,7 @@ package com.sr.biz.freightbit.customer.dao;
  */
 
 import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.customer.entity.Items;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface CustomerDao {
     public void updateCustomer(Customer customer);
 
     public List<Customer> findAllCustomer();
+
+    public List<Items> findAllItemsInTable();
 
     public Customer findCustomerById(Integer customerId);
 

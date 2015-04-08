@@ -81,6 +81,8 @@ public interface CustomerService {
 
     public List<Customer> findAllCustomer();
 
+    public List<Items> findAllItemsInTable();
+
     public Customer findCustomerById(Integer customerId);
 
     public List<Customer> findCustomerByClientId(Integer clientId);

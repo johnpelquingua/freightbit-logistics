@@ -414,9 +414,10 @@ public class OrderAction extends ActionSupport implements Preparable {
            orderEntityForm.getServiceRequirement().equals("LESS TRUCK LOAD")) {
 
             // Check if Item Code exists in Customers Items Table
-            List<Items> customerOldItems = customerService.findItemByCustomerId(item.getCustomerId());
+            /*List<Items> customerOldItems = customerService.findItemByCustomerId(item.getCustomerId());*/
+            List<Items> allItemsList = customerService.findAllItemsInTable();
             Integer itemCheck = 0;
-            for (Items itemsElem : customerOldItems) {
+            for (Items itemsElem : allItemsList) {
                 if (itemsElem.getItemCode().equals(item.getItemCode())) {
                     itemCheck = itemCheck + 1;
                 }
@@ -429,7 +430,9 @@ public class OrderAction extends ActionSupport implements Preparable {
                 itemEntity.setCreatedTimeStamp(new Date());
                 customerService.addItem(itemEntity);
             }
-
+            else{
+                return INPUT;
+            }
         }
 
         // get total quantity from database
@@ -489,7 +492,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                 // Add order items to database
                 orderItemEntity.setQuantity(orderItem.getQuantity());
 
-                Items itemEntity = customerService.findItemByCode(orderItem.getNameSize());
+                Items itemEntity = customerService.findItemByCode(item.getItemCode());
                 Double dblVolume = (orderItem.getQuantity() * (itemEntity.getLength() * itemEntity.getWidth() * itemEntity.getHeight()));
                 String strVolume = dblVolume.toString();
 

@@ -428,8 +428,10 @@
             Cancel
         </button>
 
-        <s:submit name="submit" cssClass="btn btn-primary" value="Next" />
-        </s:form>
+        <%--<s:submit name="submit" cssClass="btn btn-primary" value="Next" />--%>
+        <button class="btn btn-primary nextBtnDateVal" type="button" disabled>Next</button>
+
+    </s:form>
     </div>
 
 </div>

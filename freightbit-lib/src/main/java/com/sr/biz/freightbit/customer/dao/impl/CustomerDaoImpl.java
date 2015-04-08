@@ -2,6 +2,7 @@ package com.sr.biz.freightbit.customer.dao.impl;
 
 import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.customer.entity.Items;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
@@ -74,6 +75,17 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
             throw re;
         }
 
+    }
+
+    @Override
+    public List<Items> findAllItemsInTable() {
+        log.debug("finding all Items");
+        try {
+            return getSessionFactory().getCurrentSession().createQuery("from Items items order by createdTimestamp desc").list();
+        } catch (RuntimeException re) {
+            log.error("find all failed", re);
+            throw re;
+        }
     }
 
     @Override
