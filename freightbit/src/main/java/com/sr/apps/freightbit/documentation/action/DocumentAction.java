@@ -1705,16 +1705,18 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             vendorLocationFlag = "ORIGIN";
 
-            for (Driver driverElem : allDriverList){
-                if(driverElem.getVendorId() == ernestRecipientOri.getVendorId()){
+            if(ernestRecipientOri != null){
+                for (Driver driverElem : allDriverList){
+                    if(driverElem.getVendorId() == ernestRecipientOri.getVendorId()){
 
-                    DriverBean formBean = new DriverBean();
-                    formBean.setDriverId(driverElem.getDriverId());
-                    formBean.setLastName(driverElem.getLastName());
-                    formBean.setFirstName(driverElem.getFirstName());
-                    formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+                        DriverBean formBean = new DriverBean();
+                        formBean.setDriverId(driverElem.getDriverId());
+                        formBean.setLastName(driverElem.getLastName());
+                        formBean.setFirstName(driverElem.getFirstName());
+                        formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
 
-                    repContactsList.add(formBean);
+                        repContactsList.add(formBean);
+                    }
                 }
             }
 
@@ -1757,31 +1759,35 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             vendorLocationFlag = "DESTINATION";
 
-            if(orderEntity.getServiceType().equals("SHIPPING")){
+            if(ernestRecipientOri != null){
+                if(orderEntity.getServiceType().equals("SHIPPING")){
+                    for (Driver driverElem : allDriverList){
+                        if(driverElem.getVendorId() == ernestRecipientOri.getVendorId()){
+
+                            DriverBean formBean = new DriverBean();
+                            formBean.setDriverId(driverElem.getDriverId());
+                            formBean.setLastName(driverElem.getLastName());
+                            formBean.setFirstName(driverElem.getFirstName());
+                            formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+
+                            repContactsList.add(formBean);
+                        }
+                    }
+                }
+            }
+
+            if(ernestRecipientDes != null){
                 for (Driver driverElem : allDriverList){
-                    if(driverElem.getVendorId() == ernestRecipientOri.getVendorId()){
+                    if(driverElem.getVendorId() == ernestRecipientDes.getVendorId()){
 
                         DriverBean formBean = new DriverBean();
                         formBean.setDriverId(driverElem.getDriverId());
                         formBean.setLastName(driverElem.getLastName());
                         formBean.setFirstName(driverElem.getFirstName());
-                        formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+                        formBean.setAuthorizedAgent(ernestRecipientDes.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
 
                         repContactsList.add(formBean);
                     }
-                }
-            }
-
-            for (Driver driverElem : allDriverList){
-                if(driverElem.getVendorId() == ernestRecipientDes.getVendorId()){
-
-                    DriverBean formBean = new DriverBean();
-                    formBean.setDriverId(driverElem.getDriverId());
-                    formBean.setLastName(driverElem.getLastName());
-                    formBean.setFirstName(driverElem.getFirstName());
-                    formBean.setAuthorizedAgent(ernestRecipientDes.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
-
-                    repContactsList.add(formBean);
                 }
             }
 
