@@ -80,7 +80,16 @@
             <div class="panel-footer">
                 <div class="table-responsive">
                     <div class="col-lg-12">
-                        <table class="col-lg-12">
+                        <div class="col-lg-12">
+                            <label>LEGEND:</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <i class='fa fa-info-circle' ></i> Information
+                        </div>
+                        <div class="col-lg-6">
+                            <i class='fa fa-cubes' ></i> Consolidate
+                        </div>
+                        <%--<table class="col-lg-12">
                             <tr>
                                 <td><label>LEGEND:</label></td>
                                 <td><i class='fa fa-info-circle' ></i> Information</td>
@@ -89,7 +98,7 @@
                                 <td></td>
                                 <td><i class='fa fa-cubes' ></i> Consolidate</td>
                             </tr>
-                        </table>
+                        </table>--%>
                     </div>
                 </div>
             </div>

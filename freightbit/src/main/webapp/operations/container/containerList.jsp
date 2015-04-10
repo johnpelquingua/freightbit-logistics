@@ -145,7 +145,23 @@
             <div class="panel-footer">
                 <div class="table-responsive">
                     <div class="col-lg-12">
-                        <table class="col-lg-12">
+                        <div class="col-lg-12">
+                            <label>LEGEND:</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <i class='fa fa-edit' ></i> Edit<br>
+                            <i class="fa fa-sign-out"></i> Gate Out
+                        </div>
+                        <div class="col-lg-3">
+                            <i class='fa fa-trash-o' ></i> Delete
+                        </div>
+                        <div class="col-lg-3">
+                            <i class='fa fa-info-circle' ></i> Information
+                        </div>
+                        <div class="col-lg-3">
+                            <i class='fa fa-print' ></i> Print EIR forms
+                        </div>
+                        <%--<table class="col-lg-12">
                             <tr>
                                 <td><label>LEGEND:</label></td>
                                 <td><i class='fa fa-edit' ></i> Edit</td>
@@ -157,7 +173,7 @@
                                 <td></td>
                                 <td><i class="fa fa-sign-out"></i> Gate Out</td>
                             </tr>
-                        </table>
+                        </table>--%>
                     </div>
                 </div>
             </div>

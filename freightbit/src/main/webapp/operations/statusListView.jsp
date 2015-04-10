@@ -102,7 +102,30 @@
             <div class="panel-footer">
                 <div class="table-responsive" >
                     <div class="col-lg-12">
-                        <table class="col-lg-12">
+                        <div class="col-lg-12">
+                            <label>Legend: </label> <br>
+                            <i class="fa fa-edit"></i> Update Status
+                        </div>
+                        <div class="col-lg-6">
+                            <strong> QUEUE FOR PICK-UP</strong> <br>The pick-up requirement is lined-up for service action. <br>
+                            <strong> POSITIONED</strong> <br>The container was positioned at the area of the shipper for stuffing. <br>
+                            <strong> IN TRANSIT TO PICK-UP</strong> <br>The truck is in-transit to pick-up area. <br>
+                            <strong> PICKED-UP</strong> <br>The shipment was pulled out from the area of the shipper. <br>
+                            <strong> QUEUE FOR DELIVERY</strong> <br>The delivery requirement is lined-up for service action. <br>
+                            <strong> IN TRANSIT TO DELIVERY</strong> <br>The truck is in-transit to delivery area. <br>
+                            <strong> DELIVERED</strong> <br>The shipment was delivered to the consignee. <br>
+                            <strong> SERVICE ACCOMPLISHED</strong> <br>The booking request has been accomplished.
+                        </div>
+                        <div class="col-lg-6">
+                            <strong> CONSOLIDATION</strong> <br>The shipment is for consolidation at Ernest warehouse. <br>
+                            <strong> QUEUE FOR DEPARTURE</strong> <br>The shipment is at the port of origin waiting for departure. <br>
+                            <strong> IN-TRANSIT</strong> <br>The shipment is on board the cargo vessel and is in-transit to port of destination. <br>
+                            <strong> ARRIVED</strong> <br>The shipment has arrived at the port of destination.<br>
+                            <strong> RETURNED TO ORIGIN</strong> <br>The shipment was not successfully delivered and is to return to origin.<br>
+                            <strong> PENDING</strong> <br>The booking request is pending for action. <br>
+                            <strong> CANCELLED</strong> <br>The booking was cancelled.
+                        </div>
+                        <%--<table class="col-lg-12">
                             <tr>
                                 <td><label>Legend: </label></td>
                                 <td><i class="fa fa-edit"></i> Update Status </td>
@@ -146,7 +169,7 @@
                                 <td></td>
                                 <td><strong> SERVICE ACCOMPLISHED</strong> <br>The booking request has been accomplished.</td>
                             </tr>
-                        </table>
+                        </table>--%>
                     </div>
                 </div>
             </div>

@@ -183,7 +183,30 @@
             <div class="panel-footer">
                 <div class="table-responsive">
                     <div class="col-lg-12">
-                        <table class="col-lg-12">
+                        <div class="col-lg-12">
+                            <label>LEGEND:</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled <br>
+                            <i class='fa fa-anchor'></i> Shipping<br>
+                            <i class='fa fa-print' ></i> Print
+                        </div>
+                        <div class="col-lg-3">
+                            <i class="fa fa-stop" style="color: #428bca;"></i> On Going<br>
+                            <i class='fa fa-truck' ></i> Trucking<br>
+                            <i class='fa fa-check' style="color: #2ECC71;"></i> Approve
+                        </div>
+                        <div class="col-lg-3">
+                            <i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete<br>
+                            <i class='fa fa-info-circle' ></i> Information<br>
+                            <i class='fa fa-times' style="color: red"></i> Cancel
+                        </div>
+                        <div class="col-lg-3">
+                            <i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added<br>
+                            <i class='fa fa-trash-o'></i> Delete<br>
+
+                        </div>
+                        <%--<table class="col-lg-12">
                             <tr>
                                 <td><label>LEGEND:</label></td>
                                 <td><i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled</td>
@@ -205,7 +228,7 @@
                                 <td><i class='fa fa-check' style="color: #2ECC71;"></i> Approve</td>
                                 <td><i class='fa fa-times' style="color: red"></i> Cancel</td>
                             </tr>
-                        </table>
+                        </table>--%>
                     </div>
                 </div>
             </div>
