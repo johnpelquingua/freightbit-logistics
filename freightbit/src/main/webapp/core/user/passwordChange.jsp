@@ -44,14 +44,14 @@
                     <s:hidden name="user.userName" value="%{user.userName}"/>
                     
                     <s:if test="!hasActionMessages()">
-                    <div class="form-group">
+                    <%--<div class="form-group">
                         <label for="uType" class="col-lg-4 control-label" id="users-add-label">Current Password:</label>
 
                         <div class="col-lg-8">
                             <s:password required="true" name="passwordBean.currentPassword" cssClass="form-control" maxlength="25"
                                          pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces." placeholder="Current Password"/>
                         </div>
-                    </div>
+                    </div>--%>
                     
                     <div class="form-group">
                         <label for="uType" class="col-lg-4 control-label" id="users-add-label">New Password:</label>

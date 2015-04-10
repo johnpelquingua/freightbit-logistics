@@ -22,9 +22,13 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i>
-                    Freight Plan List
-                </h3>
+                <i class="fa fa-list"></i>
+                <span class="panel-title">Freight Plan List</span>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#bookingNumModal" onclick="postAjaxHtml('bookingNumSearch', 'bookingNumInputDiv');">
+                        <i class="fa fa-search"></i> Search Order Number
+                    </button>
+                </span>
             </div>
             <center style="padding-top: 15px; padding-bottom: 10px;"><i><span style="color: red;">*</span> Service Freight Type: <b>Shipping and Trucking</b> and <b>Shipping</b> only</i></center>
             <div class="col-md-12 form-group" style="margin-top: 0.8em; margin-bottom: 0.5em;">
@@ -418,6 +422,22 @@
 
 <%--LARGE MODAL FOR CONSOLIDATION >> END--%>
 
+<div class="modal fade" id="bookingNumModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                <%--<div class="modal-header">
+                    <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+                </div>--%>
+            <div class="modal-body" style="padding: 0px;">
+                <div id="bookingNumInputDiv"> <%--Area where input fields will appear--%> </div>
+            </div>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                </div>--%>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function(){
         // START
@@ -542,5 +562,20 @@
     select2.onchange = function() {
         preventDuplicatePort.call(this, select1, this.selectedIndex);
     };
+
+    function showSearchOrderNumFields() {
+        $.ajax({
+            url: 'bookingNumSearch',
+            type: 'POST',
+            dataType: 'html',
+            success: function (html) {
+                $('#bookingNumInputDiv').html(html);
+                /*window.location.href = '#sixth';*/
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+    }
 </script>
 </sec:authorize>

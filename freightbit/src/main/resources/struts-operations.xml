@@ -209,6 +209,10 @@
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
         </action>
 
+        <action name="bookingNumSearch" class="com.sr.apps.freightbit.order.action.OrderAction" method="bookingNumSearch">
+            <result name="success">/operations/sea_freight/bookingNumSearch.jsp</result>
+        </action>
+
         <action name="checkItemStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkItemStatus">
             <!--<result name="PLANNING 1" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
             <!--<result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>

@@ -34,6 +34,8 @@ public interface OrderService {
 
     public Orders findOrdersByOrderNumber(String orderNumber);
 
+    public List<Orders> findOrdersByBookingNumber(String column, String value, Integer clientId);
+
     public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId);
 
     public List<Orders> findOrdersByCriteriaOnGoing(String column, String value, Integer clientId);

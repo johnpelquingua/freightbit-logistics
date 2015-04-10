@@ -343,8 +343,8 @@ public class UserAction extends ActionSupport implements Preparable {
         	if (!passwordBean.getNewPassword().equals(passwordBean.getRetypeNewPassword()))
         		addFieldError("passwordBean.newPassword", getText("err.password.not.matched"));
         }
-    	if (!BCrypt.checkpw(passwordBean.getCurrentPassword(), currentPassword))
-    		addFieldError("passwordBean.currentPassword", getText("err.current.password.not.matched"));
+    	/*if (!BCrypt.checkpw(passwordBean.getCurrentPassword(), currentPassword))
+    		addFieldError("passwordBean.currentPassword", getText("err.current.password.not.matched"));*/
     }
 
     private void populatePermissionsList(Integer userId) {

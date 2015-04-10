@@ -361,7 +361,8 @@
                             <div class="col-lg-3" >
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.weight"
-                                             id="orderItem_weight" />
+                                             id="orderItem_weight"
+                                             maxLength="6" />
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top: 0px;">
@@ -398,7 +399,7 @@
                             <div class="col-lg-3" >
                                 <s:textfield cssClass="form-control automaticDeclaredValue"
                                              name="orderItem.declaredValue"
-                                             id="orderItem_declaredValues" />
+                                             id="orderItem_declaredValues" maxLength="14" />
                             </div>
 
                         </div>
@@ -493,7 +494,7 @@
                                     <s:textfield cssClass="form-control"
                                                  name="orderItem.weight"
                                                  id="orderItem_weight_textfield"
-                                                 maxLength="9"
+                                                 maxLength="6"
                                                  required="true" />
 
                             </div>
@@ -512,7 +513,7 @@
                                           style="display:none" />
 
                                 <s:textfield name="item.length" id="orderItem_length_textfield" required="true" cssClass="addItemInput form-control"
-                                             style="150px" pattern="\d+(\.\d{1,2})?" title="Special characters in length is not valid" onkeypress="return isNumberKey(event)"/>
+                                             style="150px" pattern="\d+(\.\d{1,2})?" maxLength="3" title="Special characters in length is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-3 control-label" style="padding-top: 0px;">
@@ -537,7 +538,7 @@
                                           value="%{getText('format.number',{orderItem_width})}"
                                           style="display:none" />
 
-                                <s:textfield name="item.width" id="orderItem_width_textfield" required="true" cssClass="addItemInput form-control"  pattern="\d+(\.\d{1,2})?" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.width" id="orderItem_width_textfield" required="true" cssClass="addItemInput form-control"  pattern="\d+(\.\d{1,2})?" maxLength="3" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-3 control-label" style="padding-top: 0px;">
@@ -554,7 +555,7 @@
                                     <s:textfield cssClass="form-control automaticDeclaredValue"
                                                  name="orderItem.declaredValue"
                                                  id="orderItem_declaredValue_textfield"
-                                                 maxLength="19"
+                                                 maxLength="14"
                                                  required="true" />
 
                             </div>
@@ -572,7 +573,7 @@
                                           style="display:none" />
 
                                 <s:textfield name="item.height" id="orderItem_height_textfield" required="true"
-                                             cssClass="addItemInput form-control" pattern="\d+(\.\d{1,2})?" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
+                                             cssClass="addItemInput form-control" pattern="\d+(\.\d{1,2})?" maxLength="3" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-3 control-label" style="padding-top: 0px;">

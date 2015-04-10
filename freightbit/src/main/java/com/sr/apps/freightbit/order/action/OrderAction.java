@@ -335,6 +335,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String loadSearchBookingPage(){ return SUCCESS; }
 
+    public String bookingNumSearch(){ return SUCCESS; }
+
     public String loadAddOrderPage() {
         return SUCCESS;
     }
@@ -1069,6 +1071,17 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         orderEntity.setOrderStatus("APPROVED");
         orderService.updateOrder(orderEntity);
+
+        for(int i=0; i < orderItemsEntity.size(); i++) {
+            if(orderEntity.getServiceMode().equals("DELIVERY")){
+                orderItemsEntity.get(i).setStatus("PLANNING 3");
+            }else if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+                orderItemsEntity.get(i).setStatus("PLANNING 2");
+            }else{
+                orderItemsEntity.get(i).setStatus("PLANNING 1");
+            }
+            orderService.updateItemListing(orderItemsEntity.get(i));
+        }
 
         sessionAttributes.put("orderIdParam", orderIdParam);
 
