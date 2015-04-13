@@ -881,17 +881,17 @@ function dateSameValidation() {
             alert('delivery date ' + deliveryDate);*/
 
         if($('input[type=checkbox]:checked').length == 0){
-            alert(1);
+            /*alert(1);*/
             alert ( "ERROR! Please select at least one checkbox" );
             return false;
         }else if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
-            alert(2);
+            /*alert(2);*/
             var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
             $('#dateSameWarningModalBody').empty().append(message);
             $('#dateSameWarningModal').modal('show');
             return false;
         }else if(pickupDate.match(dateRegEx) === null){
-            alert(3);
+            /*alert(3);*/
             if(serviceMode != 'DELIVERY'){
                 alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
                 return false;
@@ -899,7 +899,7 @@ function dateSameValidation() {
                 formToSubmit.submit();
             }
         }else if(deliveryDate.match(dateRegEx) === null){
-            alert(4);
+            /*alert(4);*/
             if(serviceMode != 'PICKUP'){
                 alert('ERROR! Delivery Date is not a valid date (MM/DD/YYYY)');
                 return false;
@@ -907,7 +907,7 @@ function dateSameValidation() {
                 formToSubmit.submit();
             }
         }else{
-            alert(5);
+            /*alert(5);*/
             formToSubmit.submit();
             return true;
         }

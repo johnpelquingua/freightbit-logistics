@@ -92,6 +92,24 @@
     </div>
 </div>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
+<s:if test="hasActionErrors()">
+    <div class="col-lg-12">
+        <div class="alert alert-errors">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
@@ -107,7 +125,6 @@
                         <s:hidden name="truck.createdTimeStamp" value="%{truck.createdTimeStamp}" />
                         <s:hidden name="truck.createdBy" value="%{truck.createdBy}" />
 
-
                         <div class="col-lg-6">
 
                                 <%--Plate Number = plateNumber--%>
@@ -120,74 +137,69 @@
                                 </div>
                             </div>
 
-                                        <%--LTO Certificate Number = code--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">LTO Certificate Number<span class="asterisk_red"></span></label>
+                            <%--LTO Certificate Number = code--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">LTO Certificate Number<span class="asterisk_red"></span></label>
 
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
-                                                         id="truck.truckCode" required="true" title="Input your LTO Certificate Number"/>
-                                        </div>
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
+                                                 id="truck.truckCode" required="true" title="Input your LTO Certificate Number"/>
+                                </div>
+                            </div>
 
-                                    </div>
+                            <%--MV File Number--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">MV File Number<span class="asterisk_red"></span></label>
 
-                                        <%--MV File Number--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">MV File Number<span class="asterisk_red"></span></label>
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber" onkeypress="return isNumberKey(event)"
+                                                 id="truck_motorVehicleNumber" required="true" title="Input your MV File Number"/>
+                                </div>
+                            </div>
 
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber" onkeypress="return isNumberKey(event)"
-                                                         id="truck_motorVehicleNumber" required="true" title="Input your MV File Number"/>
-                                        </div>
-                                    </div>
+                            <%--Model = modelNumber--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Model<span class="asterisk_red"></span></label>
 
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="Model" name="truck.modelNumber"
+                                                 id="truck.modelNumber" required="true" title="Example: 4Runner, Yukon, Silverado"/>
+                                </div>
+                            </div>
 
+                            <%--Owner's Name = ownerName--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Owner's Name<span class="asterisk_red"></span></label>
 
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
+                                                 id="truck.ownerName" required="true" pattern="^(\s*[a-zA-Z\xD1-\xF1]+(([\'\-\+\s]\s*[a-zA-Z\xD1-\xF1])?[a-zA-Z\xD1-\xF1]*)\s*)+$"
+                                                 title="Owner's Name should not contain special characters and/or numbers." maxLength="50"/>
+                                </div>
+                            </div>
 
-                                        <%--Model = modelNumber--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Model<span class="asterisk_red"></span></label>
+                            <%--Owner's Address = ownerAddress--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Owner's Address<span class="asterisk_red"></span></label>
 
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="Model" name="truck.modelNumber"
-                                                         id="truck.modelNumber" required="true" title="Example: 4Runner, Yukon, Silverado"/>
-                                        </div>
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
+                                                 id="truck.ownerAddress" required="true" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                                 title="Owner's Address should not contain special characters."/>
+                                </div>
+                            </div>
 
+                            <%--O.R. Number = officialReceipt--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">O.R. Number<span class="asterisk_red"></span></label>
 
-                                    </div>
-
-                                        <%--Owner's Name = ownerName--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Owner's Name<span class="asterisk_red"></span></label>
-
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
-                                                         id="truck.ownerName" required="true" pattern="^(\s*[a-zA-Z\xD1-\xF1]+(([\'\-\+\s]\s*[a-zA-Z\xD1-\xF1])?[a-zA-Z\xD1-\xF1]*)\s*)+$"
-                                                         title="Owner's Name should not contain special characters and/or numbers." maxLength="50"/>
-                                        </div>
-                                    </div>
-                                        <%--Owner's Address = ownerAddress--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Owner's Address<span class="asterisk_red"></span></label>
-
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
-                                                         id="truck.ownerAddress" required="true" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
-                                                         title="Owner's Address should not contain special characters."/>
-                                        </div>
-                                    </div>
-                                        <%--O.R. Number = officialReceipt--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">O.R. Number<span class="asterisk_red"></span></label>
-
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt" onkeypress="return isNumberKey(event)"
-                                                         id="truck.officialReceipt" required="true" title="Please Input Valid O.R. Number" maxlength="15" pattern="[0-9]+"/>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt" onkeypress="return isNumberKey(event)"
+                                                 id="truck.officialReceipt" required="true" title="Please Input Valid O.R. Number" maxlength="15" pattern="[0-9]+"/>
+                                </div>
+                            </div>
 
                         </div>
-
 
                         <div class="col-lg-6">
 
@@ -202,70 +214,72 @@
                                 </div>
                             </div>
 
-                                        <%--Make = engineNumber--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Make<span class="asterisk_red"></span></label>
+                            <%--Make = engineNumber--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Make<span class="asterisk_red"></span></label>
 
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder=" e.g. Toyota, GMC, Chevrolet, etc."
-                                                         name="truck.engineNumber" title="Example: Toyota, GMC, Chevrolet."
-                                                         id="truck.engineNumber" required="true"  />
-                                        </div>
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder=" e.g. Toyota, GMC, Chevrolet, etc."
+                                                 name="truck.engineNumber" title="Example: Toyota, GMC, Chevrolet."
+                                                 id="truck.engineNumber" required="true"  />
+                                </div>
 
-                                    </div>
+                            </div>
 
-                                        <%--Type of Body = truckType--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Type of Body<span class="asterisk_red"></span></label>
+                            <%--Type of Body = truckType--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Type of Body<span class="asterisk_red"></span></label>
 
-                                        <div class="col-lg-8">
-                                            <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
-                                                      cssClass="form-control"/>
+                                <div class="col-lg-8">
+                                    <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
+                                              cssClass="form-control"/>
 
-                                        </div>
-                                    </div>
+                                </div>
+                            </div>
 
-                                        <%--Year Model = modelYear--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Year Model<span class="asterisk_red"></span></label>
+                            <%--Year Model = modelYear--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Year Model<span class="asterisk_red"></span></label>
 
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="e.g. 1999, 2012, etc." name="truck.modelYear"
-                                                         id="truck_modelYear" required="true" maxLength="4" title="Example: 1999, 2012" onkeypress="return isNumberKey(event)"/>
-                                        </div>
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="e.g. 1999, 2012, etc." name="truck.modelYear"
+                                                 id="truck_modelYear" required="true" maxLength="4" title="Example: 1999, 2012" onkeypress="return isNumberKey(event)"/>
+                                </div>
 
-                                    </div>
+                            </div>
 
-                                        <%--Gross Weight = grossWeight--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Gross Weight (kg.)<span class="asterisk_red"></span></label>
+                            <%--Gross Weight = grossWeight--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Gross Weight (kg.)<span class="asterisk_red"></span></label>
 
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
-                                                         id="truck_grossWeight" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
-                                                         title="Gross Weight will not accept letters or special characters."/>
-                                        </div>
-                                    </div>
-                                        <%--Net Weight = netWeight--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Net Weight (kg.)<span class="asterisk_red"></span></label>
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
+                                                 id="truck_grossWeight" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
+                                                 title="Gross Weight will not accept letters or special characters."/>
+                                </div>
+                            </div>
 
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
-                                                         id="truck_netWeight" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
-                                                         title="Gross Weight will not accept letters or special characters."/>
-                                        </div>
-                                    </div>
-                                        <%--Net Capacity = netCapacity--%>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Net Capacity<span class="asterisk_red"></span></label>
+                            <%--Net Weight = netWeight--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Net Weight (kg.)<span class="asterisk_red"></span></label>
 
-                                        <div class="col-lg-8">
-                                            <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
-                                                         id="truck_netCapacity" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
-                                                         title="Net Capacity will not accept letters or special characters."/>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
+                                                 id="truck_netWeight" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
+                                                 title="Gross Weight will not accept letters or special characters."/>
+                                </div>
+                            </div>
+
+                            <%--Net Capacity = netCapacity--%>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Net Capacity<span class="asterisk_red"></span></label>
+
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
+                                                 id="truck_netCapacity" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
+                                                 title="Net Capacity will not accept letters or special characters."/>
+                                </div>
+                            </div>
 
                        </div>
                 </div>

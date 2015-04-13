@@ -20,6 +20,7 @@ import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.core.entity.Client;
@@ -94,6 +95,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private DocumentsService documentsService;
     private NotificationService notificationService;
     private ClientService clientService;
+    private UserService userService;
     private ConsigneeBean consignee = new ConsigneeBean();
     private String custName; // get the customer name from ID
     private String custCode; // get customer code from ID
@@ -1446,7 +1448,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setConsigneeName(consigneeContactName.getCompanyName());
         orderBean.setAccountRep(order.getAccountRep());
         orderBean.setCreatedTimestamp(order.getCreatedTimestamp());
-        orderBean.setCreatedBy(order.getCreatedBy());
+
+        User userEntity = userService.findUserByUserName(order.getCreatedBy());
+        orderBean.setCreatedBy(userEntity.getFirstName() + " " + userEntity.getLastName());
+
         orderBean.setModifiedTimestamp(order.getModifiedTimestamp());
         orderBean.setModifiedBy(order.getModifiedBy());
         orderBean.setPickupDate(order.getPickupDate());
@@ -2679,6 +2684,10 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setItems(Items items) {
         this.items = items;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
 

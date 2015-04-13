@@ -22,6 +22,11 @@ public class OperationsServiceImpl implements OperationsService{
     }
 
     @Override
+    public List<OrderItems> findAllOrderItems() {
+        return operationsDao.findAllOrderItems();
+    }
+
+    @Override
     public List<OrderItems> findAllOrderItemsByOrderId(Integer orderId) {
         return operationsDao.findAllOrderItemsByOrderId(orderId);
     }

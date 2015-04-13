@@ -22,6 +22,7 @@ import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.vendor.entity.Driver;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
@@ -139,8 +140,17 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
 
         for (Vendor vendorElem : vendorEntityList) {
-            vendors.add(transformToFormBean(vendorElem));
+
+            if(vendorElem.getVendorType().equals("SHIPPING")){
+                shippingVendors.add(transformToFormBean(vendorElem));
+            }
+
+            if(vendorElem.getVendorType().equals("TRUCKING")){
+                truckingVendors.add(transformToFormBean(vendorElem));
+            }
+
         }
+
         return SUCCESS;
     }
 
@@ -156,7 +166,15 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
 
         for (Vendor vendorElem : vendorEntityList) {
-            vendors.add(transformToFormBean(vendorElem));
+
+            if(vendorElem.getVendorType().equals("SHIPPING")){
+                shippingVendors.add(transformToFormBean(vendorElem));
+            }
+
+            if(vendorElem.getVendorType().equals("TRUCKING")){
+                truckingVendors.add(transformToFormBean(vendorElem));
+            }
+
         }
 
         clearErrorsAndMessages();
@@ -437,6 +455,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         return formBean;
     }
+
     //trucks
     public String loadAddTrucksPage() {
         Vendor vendorEntity = new Vendor();
@@ -472,7 +491,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         truck = transformToFormBeanTrucks(truckEntity);
 
         clearErrorsAndMessages();
-        addActionMessage("Success! Truck has been deleted.");
         return SUCCESS;
     }
 
@@ -503,11 +521,33 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
 
         try {
+            // System will prevent editing of Truck when assign to a booking
+            List <OrderItems> orderItemListing = operationsService.findAllOrderItems();
+
+            for(OrderItems orderItemElem : orderItemListing){
+                if(orderItemElem.getTruckOrigin() != null && !orderItemElem.getTruckOrigin().equals("")) {
+                    if (orderItemElem.getTruckOrigin().equals(truck.getTruckCode())) {
+                        clearErrorsAndMessages();
+                        addActionMessage("Truck is currently assigned to a Booking.");
+
+                        return "Truck_In_Booking";
+                    }
+                }
+
+                if(orderItemElem.getTruckDestination() != null && !orderItemElem.getTruckDestination().equals("")) {
+                    if(orderItemElem.getTruckDestination().equals(truck.getTruckCode())){
+                        clearErrorsAndMessages();
+                        addActionMessage("Truck is currently assigned to a Booking.");
+
+                        return "Truck_In_Booking";
+                    }
+                }
+            }
+
             Trucks truckEntity = transformToEntityBeanTrucks(truck);
             truckEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             truckEntity.setModifiedTimestamp(new Date());
             vendorService.updateTrucks(truckEntity);
-
 
         }catch (TrucksAlreadyExistsException e){
             addFieldError("truck.truckCode", getText("err.truck.already.exists"));
@@ -941,6 +981,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 //        if (StringUtils.isBlank(driverBean.getDriverCode())) {
 //            addFieldError("driver.driverCode", getText("err.driverCode.required"));
 //        }
+
         if (StringUtils.isBlank(driverBean.getLicenseNumber())) {
             addFieldError("driver.licenseNumber", getText("err.licenseNumber.required"));
         }

@@ -10,6 +10,8 @@ public interface OperationsDao {
 
     public List<Orders> findAllOrders();
 
+    public List<OrderItems> findAllOrderItems();
+
     public List<OrderItems> findAllOrderItemsByOrderId(Integer orderId);
 
     public List<OrderItems> findAllOrderItemsWithContainer(Integer containerId);

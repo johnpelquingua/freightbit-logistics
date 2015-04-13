@@ -82,27 +82,27 @@
                                        style="margin-top: 15px;">
 
                             <td><display:column property="orderDate" title="Order Dates <i class='fa fa-sort' />" class="tb-font-black" scope="Order Dates"
-                                                style="text-align: center;"> </display:column></td>
+                                                style="text-align: center; width: 135px;"> </display:column></td>
                             <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
-                                                style="text-align: center;" > </i></display:column></td>
+                                                style="text-align: center; width: 105px;" > </i></display:column></td>
                             <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
-                                                style="text-align: center;"> </display:column></td>
+                                                style="text-align: center; width: 350px;"> </display:column></td>
                             <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" style="text-align: center;" scope="Type">
+                                                style="text-align: center; width: 350px;"> </display:column></td>
+                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" style="text-align: center; width: 75px;" scope="Type">
                                                 </display:column></td>
                             <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />" class="tb-font-black" scope="Req't"
-                                                style="text-align: center;"> </display:column></td>
+                                                style="text-align: center; width: 75px;"> </display:column></td>
                             <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black" scope="Mode"
-                                                style="text-align: center;"> </display:column></td>
+                                                style="text-align: center; width: 75px;"> </display:column></td>
                             <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Status"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="createdBy" title="Booked By <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Status"
-                                                style="text-align: center;"> </display:column></td>
+                                                style="text-align: center; width: 180px;"> </display:column></td>
                             <%--<td><display:column property="documentCheck" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"--%>
                                                 <%--style="text-align: center;"> </display:column></td>--%>
                             <td class="tb-font-black" style="text-align: center;">
-                                <display:column title="Actions" scope="Actions">
+                                <display:column title="Actions" scope="Actions" style="text-align: center; width: 140px;">
 
                                         <%--edit booking--%>
                                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
@@ -208,29 +208,7 @@
                             <i class='fa fa-trash-o'></i> Delete<br>
 
                         </div>
-                        <%--<table class="col-lg-12">
-                            <tr>
-                                <td><label>LEGEND:</label></td>
-                                <td><i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled</td>
-                                <td><i class="fa fa-stop" style="color: #428bca;"></i> On Going</td>
-                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete</td>
-                                <td><i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-anchor'></i> Shipping</td>
-                                <td><i class='fa fa-truck' ></i> Trucking</td>
-                                <td><i class='fa fa-info-circle' ></i> Information</td>
-                                <td><i class='fa fa-trash-o'></i> Delete</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-pencil' ></i> Edit</td>
-                                <td><i class='fa fa-print' ></i> Print</td>
-                                <td><i class='fa fa-check' style="color: #2ECC71;"></i> Approve</td>
-                                <td><i class='fa fa-times' style="color: red"></i> Cancel</td>
-                            </tr>
-                        </table>--%>
+
                     </div>
                 </div>
             </div>
@@ -243,15 +221,11 @@
 <div class="modal fade" id="inputModal1" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body" style="padding: 0px;">
                 <div id="inputDiv1"> <%--Area where input fields will appear--%> </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>

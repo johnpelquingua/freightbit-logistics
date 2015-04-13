@@ -92,6 +92,7 @@
                         </ol>
                     </div>
                 </div>--%>
+
                 <display:table id="orderItem" name="orderItemListings"
                                requestURI="setBulkItemStatus.action" pagesize="10"
                                class="bulkItemStatus table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
@@ -198,13 +199,22 @@
                     </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
-                    <s:select cssClass="statusDropdown form-control"
+
+                    <%--<s:select cssClass="statusDropdown form-control"
                               id="planningStatus"
                               name="orderStatusLogsBean.status"
                               list="allFreightStatusList"
                               emptyOption="true"
                               required="true"
-                            />
+                            />--%>
+
+                    <input list="allFreightStatusList" id="planningStatus" name="orderStatusLogsBean.status" class="form-control" required="true"/>
+                    <datalist id="allFreightStatusList" class="statusDropdown">
+                        <s:iterator value="allFreightStatusList">
+                            <option id="<s:property />" value="<s:property />" />
+                        </s:iterator>
+                    </datalist>
+
                 </div>
                     <div class="pull-right" style="margin-top: 15px;">
                         <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
@@ -282,20 +292,13 @@
 <div class="modal fade" id="actualModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body">
                 <div id="actualInput">
-                    <%--<label id="actualLabel" class="control-label header">Actual Date/Time: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate" />
-                    </div>--%>
+
                 </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>

@@ -367,6 +367,7 @@
                             </div>
 
                             <s:if test=" documentTab == 'OUTBOUND_READY' ">
+
                                 <%--<div class="outboundTableLoadingMainDiv center-text" style="margin-top: 1.6em;">--%>
                                     <%--Processing documents. Please Wait.<br/>--%>
                                     <%--<i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>--%>
@@ -540,7 +541,9 @@
 
                                 </s:form>
                                 <s:hidden cssClass="outboundDocumentIds" id="outboundDocumentArray" />
+
                             </s:if>
+
                         </div>
 
                     </div>
@@ -1038,6 +1041,7 @@
 
                                 </s:form>
                                 <s:hidden cssClass="finalOutboundDocumentIds" id="finalOutboundDocumentArray" />
+
                             </s:if>
 
                         </div>
@@ -1095,6 +1099,7 @@
                                     <%--Processing documents. Please Wait.<br/>--%>
                                     <%--<i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>--%>
                                 <%--</div>--%>
+
                                 <div class="table-responsive finalInboundTableMainDiv" style="clear:both;">
                                     <s:form name="myform" action="processDocumentsFinalInbound">
                                         <s:textfield type="hidden" name="orderIdParam" id="order-Id"></s:textfield>
@@ -1239,6 +1244,7 @@
 
                                     </s:form>
                                 <s:hidden cssClass="finalInboundDocumentIds" id="finalInboundDocumentArray" />
+
                             </s:if>
 
                         </div>
@@ -1406,6 +1412,17 @@
             </div>
 
             <div class="panel panel-footer" style="margin-bottom: 0em;">
+
+                <div class="pull-right">
+                    <a href="viewPendingDocuments" class="btn btn-danger" id="groups-btn">
+                        <i class="fa fa-chevron-left"></i>
+                        Back to Pending Documents List
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="panel panel-footer" style="margin-bottom: 0em;">
                 <div class="table-responsive">
                     <div class="col-lg-12">
                         <table class="col-lg-12">
@@ -1425,13 +1442,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-
-            <div class="pull-right">
-                <a href="viewPendingDocuments" class="btn btn-danger" id ="groups-btn" style="margin-top: 20px;">
-                    <i class="fa fa-chevron-left"></i>
-                    Back to Pending Documents List
-                </a>
             </div>
 
         </div>

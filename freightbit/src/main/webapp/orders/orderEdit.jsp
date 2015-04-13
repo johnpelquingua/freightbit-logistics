@@ -115,24 +115,7 @@
         </div>
 
         <div class="form-group">
-            <label class="col-lg-2 control-label">Payment Mode<span class="asterisk_red"></span></label>
 
-            <div class="col-lg-10">
-                <%--<s:property value="%{order.modeOfPayment}" />--%>
-                <%--<s:hidden name="order.modeOfPayment" value="%{order.modeOfPayment}" />--%>
-                <s:select id="order.modeOfPayment"
-                          cssClass="form-control bookingInput"
-                          style="margin-bottom: 15px !important;"
-                          name="order.modeOfPayment"
-                          list="modeOfPaymentList"
-                          listKey="key"
-                          listValue="value"
-                          value="order.modeOfPayment" />
-
-            </div>
-        </div>
-
-        <div class="form-group">
             <label class="col-lg-2 control-label">Customer Name<span class="asterisk_red"></span></label>
 
             <div class="col-lg-10">
@@ -147,6 +130,26 @@
                           required="true"
                           value="order.customerId"
                           disabled="true" />
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="col-lg-2 control-label">Payment Mode<span class="asterisk_red"></span></label>
+
+            <div class="col-lg-10">
+                    <%--<s:property value="%{order.modeOfPayment}" />--%>
+                    <%--<s:hidden name="order.modeOfPayment" value="%{order.modeOfPayment}" />--%>
+                <s:select id="order.modeOfPayment"
+                          cssClass="form-control bookingInput"
+                          style="margin-bottom: 15px !important;"
+                          name="order.modeOfPayment"
+                          list="modeOfPaymentList"
+                          listKey="key"
+                          listValue="value"
+                          value="order.modeOfPayment" />
 
             </div>
 
@@ -236,7 +239,7 @@
 
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
-        <%--<s:property value="%{order.pickupDate}" />--%>
+        <%--<s:textfield value="%{order.pickupDate}" name="order.pickupDate" />--%>
         <s:hidden type="text" cssClass="pickupDateInputOnLoad form-control" name="order.pickupDate" value="%{order.strPickupDate}" style="margin-bottom: 15px !important;" />
         <input type="text" class="pickupDateInput from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" style="margin-bottom: 15px !important;">
     </div>
@@ -259,7 +262,7 @@
     </s:else>
     <%--<label class="col-lg-3 control-label originPort" style="margin-top: 5px;">Origin Port<span class="asterisk_red"></span></label>--%>
     <div class="col-lg-3" >
-        <%--<s:property value="%{order.originationPort}" />--%>
+        <%--<s:textfield value="%{order.originationPort}" name="order.originationPort"/>--%>
         <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;"
                   id="select1" name="order.originationPort" list="portsList" listKey="key"
                   listValue="value" required="true" value="%{order.originationPort}"/>
@@ -268,7 +271,7 @@
 
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Destination Port<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
-        <%--<s:property value="%{order.destinationPort}" />--%>
+        <%--<s:textfield name="order.destinationPort" value="%{order.destinationPort}" />--%>
         <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;"
                   id="select2" name="order.destinationPort" list="portsList" listKey="key"
                   listValue="value" required="true" value="%{order.destinationPort}"/>
@@ -1082,17 +1085,17 @@ function dateSameValidation() {
             alert('delivery date ' + deliveryDate);*/
 
         if($('input[type=checkbox]:checked').length == 0){
-            alert(1);
+            /*alert(1);*/
             alert ( "ERROR! Please select at least one checkbox" );
             return false;
         }else if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
-            alert(2);
+            /*alert(2);*/
             var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
             $('#dateSameWarningModalBody').empty().append(message);
             $('#dateSameWarningModal').modal('show');
             return false;
         }else if(pickupDate.match(dateRegEx) === null){
-            alert(3);
+            /*alert(3);*/
             if(serviceMode != 'DELIVERY'){
                 alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
                 return false;
@@ -1100,7 +1103,7 @@ function dateSameValidation() {
                 formToSubmit.submit();
             }
         }else if(deliveryDate.match(dateRegEx) === null){
-            alert(4);
+            /*alert(4);*/
             if(serviceMode != 'PICKUP'){
                 alert('ERROR! Delivery Date is not a valid date (MM/DD/YYYY)');
                 return false;
@@ -1108,7 +1111,7 @@ function dateSameValidation() {
                 formToSubmit.submit();
             }
         }else{
-            alert(5);
+            /*alert(5);*/
             formToSubmit.submit();
             return true;
         }
@@ -1811,7 +1814,9 @@ function dynamicDropdown(select, index) {
     }
 
     if(select.options[index].value === 'PICKUP'){
+        $(".pickupDateInputOnLoad").prop('disabled', false);
         $("#datepicker1").prop('disabled', false);
+        $(".deliveryDateInputOnLoad").prop('disabled', true);
         $("#datepicker2").prop('disabled', true);
         $("#datepicker2").val('');
         $("#shipperAddress").prop('disabled', false);
@@ -1820,8 +1825,10 @@ function dynamicDropdown(select, index) {
         $("#select1").val('');
         $("#select2").val('');
     }else if(select.options[index].value === 'DELIVERY'){
+        $(".pickupDateInputOnLoad").prop('disabled', true);
         $("#datepicker1").prop('disabled', true);
         $("#datepicker1").val('');
+        $(".deliveryDateInputOnLoad").prop('disabled', false);
         $("#datepicker2").prop('disabled', false);
         $("#shipperAddress").prop('disabled', true);
         $("#consigneeAddress").prop('disabled', false);
