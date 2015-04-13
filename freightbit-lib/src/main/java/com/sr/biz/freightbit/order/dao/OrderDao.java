@@ -33,7 +33,7 @@ public interface OrderDao {
 
     public List<Orders> findOrdersByOrderNumber (String orderNumber);
 
-    public List<Orders> findOrdersByBookingNumber(String column, String value, Integer clientId);
+    public List<Orders> findOrdersByBookingNumber(String column, String value, Integer clientId, String serviceRequirement);
 
     public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId);
 

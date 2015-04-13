@@ -219,8 +219,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Orders> findOrdersByBookingNumber(String column, String value, Integer clientId) {
-        return orderDao.findOrdersByBookingNumber(column, value, clientId);
+    public List<Orders> findOrdersByBookingNumber(String column, String value, Integer clientId, String serviceRequirement) {
+        return orderDao.findOrdersByBookingNumber(column, value, clientId, serviceRequirement);
     }
 
     @Override

@@ -224,11 +224,12 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
     }
 
     @Override
-    public List<Orders> findOrdersByBookingNumber(String column, String value, Integer clientId) {
+    public List<Orders> findOrdersByBookingNumber(String column, String value, Integer clientId, String serviceRequirement) {
         Log.debug("Find vendor by criteria ");
         Session session = getSessionFactory().getCurrentSession();
         List<Orders> orders = session.createCriteria(Orders.class)
                 .add(Restrictions.like(column, value, MatchMode.ANYWHERE))
+                .add(Restrictions.eq("serviceRequirement", serviceRequirement))
                 .list();
         return orders;
     }

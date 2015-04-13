@@ -26,7 +26,7 @@
                 <i class="fa fa-list"></i>
                 <span class="panel-title">Freight Plan List</span>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#bookingNumModal" onclick="postAjaxHtml('bookingNumSearch', 'bookingNumInputDiv');">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#bookingNumModal" onclick="postAjaxHtml('bookingNumSearchFreight', 'bookingNumInputDiv');">
                         <i class="fa fa-search"></i> Search Order Number
                     </button>
                 </span>
