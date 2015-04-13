@@ -44,7 +44,7 @@
                 <span class="pull-right">
 
                     <s:url var="editVendorUrl" action="loadEditVendorPage">
-                        <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                        <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
                     </s:url>
                         <s:a cssClass="btn btn-success new-booking" href="%{editVendorUrl}" rel="tooltip"
                              title="Edit this vendor">
@@ -55,6 +55,7 @@
             </div>
 
             <div class="panel-body">
+                <s:hidden value="%{vendor.vendorId}" />
 
                 <s:set name="vendorId" value="%{vendor.vendorId}" scope="session"/>
 
@@ -159,4 +160,5 @@
     </div>--%>
 
 </div>
+
 

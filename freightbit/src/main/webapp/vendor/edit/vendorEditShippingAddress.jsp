@@ -105,7 +105,7 @@
 
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="viewShippingAddress" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <a href="viewShippingAddress" class="btn btn-danger" id ="groups-btn">Cancel</a>
 
                     <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                 </div>

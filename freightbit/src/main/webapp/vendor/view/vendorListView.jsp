@@ -42,8 +42,10 @@
 
 <div class="row">
     <div class="col-lg-12">
+
         <div class="panel panel-primary">
-            <div class="panel-heading">
+
+            <div class="panel-heading" style="margin-bottom: 1.5em;">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Vendor List</h3>
                 <span class="pull-right">
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
@@ -55,7 +57,152 @@
                     </button>
                 </span>
             </div>
-            <div class="panel-body">
+
+            <!-- Main Nav tabs -->
+            <div class="row padding-12-lr">
+                <ul class="nav nav-tabs center-text" role="tablist">
+                    <li class="active col-md-6 padding-0-r" id="shipping">
+                        <a href="#shippingTab" role="tab" data-toggle="tab"><i class="fa fa-anchor"></i> Shipping Vendors</a>
+                    </li>
+                    <li class="col-md-6 padding-0-lr" id="trucking">
+                        <a href="#truckingTab" role="tab" data-toggle="tab"><i class="fa fa-truck"></i> Trucking Vendors</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+
+                <%--SHIPPING TAB--%>
+                <div class="tab-pane fade in active" id="shippingTab">
+                    <div class="panel-body">
+
+                        <div class="table-responsive list-table">
+                            <tbody>
+                            <table>
+                                <tr>
+                                    <display:table id="vendor" name="shippingVendors" requestURI="viewVendors.action" pagesize="10"
+                                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                                   style="margin-top: 15px;">
+                                        <td><display:column property="vendorCode" title="Vendor Code <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="vendorName" title="Company Name <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="vendorType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="vendorClass" title="Class <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <%--<td><display:column property="serviceArea" title="Service Area <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>--%>
+                                        <td class="tb-font-black" style="text-align: center;">
+                                            <display:column title="Actions">
+
+                                                <s:url var="editVendorUrl" action="loadEditVendorPage">
+                                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                                    <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
+                                                     title="Edit this vendor">
+                                                    <i class="fa fa-pencil"></i>
+                                                </s:a>
+
+                                                <s:url var="deleteVendorUrl" action="deleteVendor">
+                                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                                    <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
+                                                     title="Delete this Vendor"
+                                                     onclick="return confirm('Do you really want to delete?');">
+                                                </s:a>
+                                                <i class="fa fa-trash-o vendorDeleteAction"></i>
+
+                                                <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
+                                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                                    <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
+                                                     title="View Vendor Info">
+                                                    <i class="fa fa-info-circle"></i>
+                                                </s:a>
+
+                                            </display:column>
+                                        </td>
+                                    </display:table>
+                                </tr>
+                            </table>
+                            </tbody>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <%--TRUCKING TABS--%>
+                <div class="tab-pane fade" id="truckingTab">
+                    <div class="panel-body">
+
+                        <div class="table-responsive list-table">
+                            <tbody>
+                            <table>
+                                <tr>
+                                    <display:table id="vendor" name="truckingVendors" requestURI="viewVendors.action" pagesize="10"
+                                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                                   style="margin-top: 15px;">
+                                        <td><display:column property="vendorCode" title="Vendor Code <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="vendorName" title="Company Name <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="vendorType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="vendorClass" title="Class <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="serviceArea" title="Service Area <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td class="tb-font-black" style="text-align: center;">
+                                            <display:column title="Actions">
+
+                                                <s:url var="editVendorUrl" action="loadEditVendorPage">
+                                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                                    <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
+                                                     title="Edit this vendor">
+                                                    <i class="fa fa-pencil"></i>
+                                                </s:a>
+
+                                                <s:url var="deleteVendorUrl" action="deleteVendor">
+                                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                                    <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
+                                                     title="Delete this Vendor"
+                                                     onclick="return confirm('Do you really want to delete?');">
+                                                </s:a>
+                                                <i class="fa fa-trash-o vendorDeleteAction"></i>
+
+                                                <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
+                                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                                    <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
+                                                     title="View Vendor Info">
+                                                    <i class="fa fa-info-circle"></i>
+                                                </s:a>
+
+                                            </display:column>
+                                        </td>
+                                    </display:table>
+                                </tr>
+                            </table>
+                            </tbody>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <%--<div class="panel-body">
                 <div class="table-responsive list-table">
                     <tbody>
                     <table>
@@ -113,33 +260,27 @@
                     </tbody>
 
                 </div>
-            </div>
+            </div>--%>
+
             <div class="panel-footer">
                 <div class="table-responsive" >
                     <div class="col-lg-12">
-                            <div class="col-lg-12">
-                                <label>LEGEND:</label>
-                            </div>
-                            <div class="col-lg-4">
-                                <i class="fa fa-pencil"></i> Edit
-                            </div>
-                            <div class="col-lg-4">
-                                <i class="fa fa-trash-o"></i> Delete
-                            </div>
-                            <div class="col-lg-4">
-                                <i class="fa fa-info-circle"></i> Information
-                            </div>
-                        <%--<table class="col-lg-12">
-                            <tr>
-                                <td><label>Legend:</label></td>
-                                <td><i class="fa fa-pencil"></i> Edit</td>
-                                <td><i class="fa fa-trash-o"></i> Delete</td>
-                                <td><i class="fa fa-info-circle"></i> Information</td>
-                            </tr>
-                        </table>--%>
+                        <div class="col-lg-12">
+                            <label>LEGEND:</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <i class="fa fa-pencil"></i> Edit
+                        </div>
+                        <div class="col-lg-4">
+                            <i class="fa fa-trash-o"></i> Delete
+                        </div>
+                        <div class="col-lg-4">
+                            <i class="fa fa-info-circle"></i> Information
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

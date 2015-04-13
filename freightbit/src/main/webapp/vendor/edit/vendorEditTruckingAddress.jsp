@@ -23,6 +23,79 @@
 
     </div>
 </div>
+
+<%--start--%>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <h3 class="panel-title" style="float:left;"><i class="fa fa-info-circle"></i> Vendor Trucking Profile</h3>
+
+            </div>
+
+            <div class="panel-body">
+
+                <s:hidden value="%{vendor.vendorId}"></s:hidden>
+                <div class="row">
+
+                    <div class=" col-lg-6 col-lg-offset-3">
+
+                        <div class="panel panel-info ">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="col-lg-3">
+                                        <div align="center" style="margin-top: 10px;">
+                                            <div align="center" style="margin-top: 10px;">
+                                                <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-9">
+
+                                        <table class="table table-user-information profile" style="margin-top: 10px;">
+                                            <tbody>
+                                            <tr>
+                                                <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important; border-top: none;">Company Name</td>
+                                                <td style="border-top: none; text-align: left !important;"><s:property value="vendor.vendorName"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Company Code</td>
+                                                <td><s:property value="vendor.vendorCode"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Type</td>
+                                                <td><s:property value="vendor.vendorType"/></td>
+                                            </tr>
+
+                                            <tr>
+                                            <tr>
+                                                <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Classification</td>
+                                                <td><s:property value="vendor.vendorClass"/></td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
@@ -105,7 +178,7 @@
 
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="viewTruckingAddress" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <a href="viewTruckingAddress" class="btn btn-danger" id ="groups-btn">Cancel</a>
 
                     <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                 </div>

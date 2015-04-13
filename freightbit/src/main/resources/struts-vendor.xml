@@ -133,26 +133,12 @@
             <result name="success" type="tiles">vendor.vendorListTrucks.tiles</result>
         </action>
 
-        <!--<action name="editTrucksInfoPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
-                method="loadEditTrucksPage">
-            <result name="success" type="tiles">vendor.vendorEditTrucks.tiles</result>
-        </action>
-
-        <action name="editTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editTrucks">
-            <result name="success" type="redirect">loadSaveCompleteTrucks</result>
-            <result name="input" type="tiles">vendor.vendorEditTrucks.tiles</result>
-        </action>
-
-        <action name="saveCompleteTruckInfo" class="com.sr.apps.freightbit.vendor.action.VendorAction"
-                method="loadSaveCompleteTrucks">
-            <result name="success" type="tiles">vendor.viewInfoTruck.tiles</result>
-        </action>-->
-
         <!-- vessels -->
 
         <action name="loadAddVesselsPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadAddVesselsPage">
-            <result name="success" type="tiles">vendor.vendorAddVessels.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorAddVessels.tiles</result>-->
+            <result name="SHIPPING" type="tiles">vendor.vendorAddVessels.tiles</result>
         </action>
 
         <action name="loadEditVesselsPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
@@ -180,6 +166,7 @@
         </action>
 
         <action name="viewVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewVessels">
+            <result name="SHIPPING" type="tiles">vendor.vendorListVessels.tiles</result>
             <result name="success" type="tiles">vendor.vendorListVessels.tiles</result>
         </action>
 
@@ -275,7 +262,8 @@
 
         <action name="loadAddShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadAddContact">
-            <result name="success" type="tiles">vendor.vendorAddShippingContact.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorAddShippingContact.tiles</result>-->
+            <result name="SHIPPING" type="tiles">vendor.vendorAddShippingContact.tiles</result>
         </action>
 
         <action name="loadEditShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"
@@ -308,7 +296,8 @@
 
         <action name="viewVendorShippingContacts" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="viewContacts">
-            <result name="success" type="tiles">vendor.vendorListShippingContact.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorListShippingContact.tiles</result>-->
+            <result name="SHIPPING" type="tiles">vendor.vendorListShippingContact.tiles</result>
         </action>
 
         <action name="loadSaveCompleteTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"
@@ -374,13 +363,15 @@
 
         <action name="loadAddShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadAddAddress">
-            <result name="success" type="tiles">vendor.vendorAddShippingAddress.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorAddShippingAddress.tiles</result>-->
+            <result name="SHIPPING" type="tiles">vendor.vendorAddShippingAddress.tiles</result>
 
         </action>
 
         <action name="loadAddTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadAddAddress">
-            <result name="success" type="tiles">vendor.vendorAddTruckingAddress.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorAddTruckingAddress.tiles</result>-->
+            <result name="TRUCKING" type="tiles">vendor.vendorAddTruckingAddress.tiles</result>
 
         </action>
 
@@ -397,12 +388,14 @@
 
         <action name="viewTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="viewAddress">
-            <result name="success" type="tiles">vendor.vendorListTruckingAddress.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorListTruckingAddress.tiles</result>-->
+            <result name="TRUCKING" type="tiles">vendor.vendorListTruckingAddress.tiles</result>
         </action>
 
         <action name="viewShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="viewAddress">
-            <result name="success" type="tiles">vendor.vendorListShippingAddress.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorListShippingAddress.tiles</result>-->
+            <result name="SHIPPING" type="tiles">vendor.vendorListShippingAddress.tiles</result>
         </action>
 
         <action name="loadSaveCompleteTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
