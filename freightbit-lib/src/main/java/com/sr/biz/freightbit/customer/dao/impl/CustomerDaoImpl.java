@@ -1,5 +1,6 @@
 package com.sr.biz.freightbit.customer.dao.impl;
 
+import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
@@ -12,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 @Transactional
@@ -198,6 +200,17 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
                 .add(Restrictions.eq("client.clientId", clientId))
                 .list();
         return customers;
+    }
+
+    @Override
+    public List<Contacts> findConsigneeByCriteria(String column, String value, Integer clientId) {
+        log.debug("Find contacts by criteria ");
+        Session session = getSessionFactory().getCurrentSession();
+        List<Contacts> consignees = session.createCriteria(Contacts.class)
+                .add(Restrictions.like(column, value, MatchMode.ANYWHERE))
+                .add(Restrictions.eq("client.clientId", clientId))
+                .list();
+        return consignees;
     }
 
     @Override

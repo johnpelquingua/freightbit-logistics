@@ -9,9 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 7/22/14.
- */
 public class VesselSchedulesServiceImpl implements VesselSchedulesService {
 
     private VesselSchedulesDao vesselSchedulesDao;

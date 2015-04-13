@@ -75,15 +75,15 @@
 
         <div class="form-group">
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer
-                Name</label>
+                </label>
             <div class="col-lg-4">
                 <s:textfield cssClass="form-control" value="%{order.customerName}"
                              disabled="true"></s:textfield>
             </div>
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee
-                Name</label>
+                </label>
             <div class="col-lg-4">
-                <s:textfield cssClass="form-control" value="%{order.consigneeCode}"
+                <s:textfield cssClass="form-control" value="%{order.consigneeName}"
                              disabled="true"></s:textfield>
             </div>
         </div>

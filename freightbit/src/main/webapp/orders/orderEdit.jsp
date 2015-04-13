@@ -53,7 +53,7 @@
                 Basic Information
             </span>
         </legend>
-        <s:form action="editOrder" theme="bootstrap" onsubmit="return validate_form();">
+        <s:form action="editOrder" theme="bootstrap" cssClass="editOrderForm">
         <%--<s:property value="%{order.orderId}"/>--%>
         <s:hidden name="order.orderId" id="order_orderId" value="%{order.orderId}" />
         <%--<s:property value="%{order.orderNumber}"/>--%>
@@ -237,13 +237,15 @@
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.pickupDate}" />--%>
-        <s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.strPickupDate}" required="true" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;" />
+        <s:hidden type="text" cssClass="pickupDateInputOnLoad form-control" name="order.pickupDate" value="%{order.strPickupDate}" style="margin-bottom: 15px !important;" />
+        <input type="text" class="pickupDateInput from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" style="margin-bottom: 15px !important;">
     </div>
 
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.deliveryDate}" />--%>
-        <s:textfield type="text" class="to_date form-control" id="datepicker2" name="order.deliveryDate" value="%{order.strDeliveryDate}" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" />
+        <s:hidden type="text" cssClass="deliveryDateInputOnLoad form-control" name="order.deliveryDate" value="%{order.strDeliveryDate}" style="margin-bottom: 15px !important;" />
+        <input type="text" class="deliveryDateInput to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" style="margin-bottom: 15px !important;">
     </div>
 
 </div>
@@ -279,7 +281,7 @@
         <div class="col-lg-9" style="text-align:left !important;">
             <%--<s:property value="%{order.notifyBy}" />--%>
             <%--<s:property value="%{notificationList}" />--%>
-            <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" value="%{notificationList}"/>
+            <s:checkboxlist list="notifyByList" cssClass="notifBox" listKey="key" listValue="value" name="order.notifyBy" value="%{notificationList}"/>
             <%--<input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByPhone" value="Phone" /> Phone&emsp;&emsp;&emsp;&emsp;
             <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyByMobile" value="Mobile" /> Mobile&emsp;&emsp;&emsp;&emsp;
             <input type="checkbox" class="notifBox" name="order.notifyBy" id="notifyBySms" value="SMS" /> SMS&emsp;&emsp;&emsp;&emsp;
@@ -836,7 +838,7 @@
             </div>
             <div class="modal-footer">
                 <div>
-                    <s:submit cssClass="btn btn-primary nextBtnDateVal" name="submit" value="Save"/>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                 </div>
                 </s:form>
             </div>
@@ -948,6 +950,26 @@
 
 <%--END OF ADD CONSIGNEE CONTACT PERSON--%>
 
+<%-- MODAL FOR DATE SAME WARNING  -- START --%>
+<div class="modal fade" id="dateSameWarningModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color: red"><i class="fa fa-warning"></i> WARNING</h4>
+            </div>
+            <div class="modal-body" id="dateSameWarningModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btnNextSubmit">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- MODAL FOR DATE SAME WARNING  -- END --%>
+
 <script type="text/javascript">
 
     var ctr = "N";
@@ -991,7 +1013,18 @@
     });
 
     $(document).ready(function() {
-        $(window).load(function () {
+
+        dateSameValidation();
+
+        var formToSubmit = $('.editOrderForm');
+
+        $('.btnNextSubmit').click(function(){
+            formToSubmit.submit();
+        })
+
+        validationForm('bookingInput', 'nextBtnDateVal', 'BOOKING');
+
+        /*$(window).load(function () {
             var getStatusPhone = localStorage.getItem('notifyByPhone');
             var getStatusMobile = localStorage.getItem('notifyByMobile');
             var getStatusSms = localStorage.getItem('notifyBySms');
@@ -1017,21 +1050,101 @@
             {
                 console.log("its not checked");
             }
-        });
+        });*/
+
     });
 
-    function validate_form()
-    {
-        valid = true;
+function dateSameValidation() {
+    $('.nextBtnDateVal').click(function(){
+        /*var firstDate = new Date($('.pickupDateInput').val()),
+            lastDate = new Date($('.deliveryDateInput').val()),
+            formToSubmit = $('.editOrderForm');
 
-        if($('input[type=checkbox]:checked').length == 0)
-        {
+        if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
+            var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
+            $('#dateSameWarningModalBody').empty().append(message);
+            $('#dateSameWarningModal').modal('show');
+        }else{
+            formToSubmit.submit();
+        }*/
+
+        var firstDate = new Date($('.pickupDateInput').val()),
+            lastDate = new Date($('.deliveryDateInput').val()),
+            serviceMode = $('#order_modeOfService').val(),
+            pickupDate = $('.pickupDateInput').val(),
+            deliveryDate = $('.deliveryDateInput').val(),
+            dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/,
+            formToSubmit = $('.editOrderForm');
+
+            /*alert('first date ' + firstDate);
+            alert('last date ' + lastDate);
+            alert('pickup date ' + pickupDate);
+            alert('delivery date ' + deliveryDate);*/
+
+        if($('input[type=checkbox]:checked').length == 0){
+            alert(1);
             alert ( "ERROR! Please select at least one checkbox" );
-            valid = false;
+            return false;
+        }else if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
+            alert(2);
+            var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
+            $('#dateSameWarningModalBody').empty().append(message);
+            $('#dateSameWarningModal').modal('show');
+            return false;
+        }else if(pickupDate.match(dateRegEx) === null){
+            alert(3);
+            if(serviceMode != 'DELIVERY'){
+                alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
+                return false;
+            }else{
+                formToSubmit.submit();
+            }
+        }else if(deliveryDate.match(dateRegEx) === null){
+            alert(4);
+            if(serviceMode != 'PICKUP'){
+                alert('ERROR! Delivery Date is not a valid date (MM/DD/YYYY)');
+                return false;
+            }else{
+                formToSubmit.submit();
+            }
+        }else{
+            alert(5);
+            formToSubmit.submit();
+            return true;
         }
+    })
+}
 
-        return valid;
+/*function validate_form(){
+    var firstDate = new Date($('.pickupDateInput').val()),
+        lastDate = new Date($('.deliveryDateInput').val()),
+        serviceMode = $('#order_modeOfService').val(),
+        pickupDate = $('.pickupDateInput').val(),
+        deliveryDate = $('.deliveryDateInput').val(),
+        dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
+
+    if($('input[type=checkbox]:checked').length == 0){
+        alert ( "ERROR! Please select at least one checkbox" );
+        return false;
+    }else if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
+        var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
+        $('#dateSameWarningModalBody').empty().append(message);
+        $('#dateSameWarningModal').modal('show');
+        return false;
+    }else if(pickupDate.match(dateRegEx) === null){
+        if(serviceMode != 'DELIVERY'){
+            alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
+            return false;
+        }
+    }else if(deliveryDate.match(dateRegEx) === null){
+        if(serviceMode != 'PICKUP'){
+            alert('ERROR! Delivery Date is not a valid date (MM/DD/YYYY)');
+            return false;
+        }
+    }else{
+        return true;
     }
+}*/
 
 $(document).ready(function() {
 
@@ -1913,6 +2026,15 @@ function setThis(){
 }
 
     $(window).load(function(){
+        /*Transfer date to input fields begin*/
+        var firstDate = new Date($('.pickupDateInputOnLoad').val()),
+            lastDate = new Date($('.deliveryDateInputOnLoad').val()),
+            fmtFirstDate = $.datepicker.formatDate('mm/dd/yy', new Date(firstDate)),
+            fmtLastDate = $.datepicker.formatDate('mm/dd/yy', new Date(lastDate));
+
+            $(".pickupDateInput").val(fmtFirstDate);
+            $(".deliveryDateInput").val((fmtLastDate));
+        /*Transfer date to input fields end*/
 
         if ($("#order_modeOfService").val() === 'PICKUP'){
 

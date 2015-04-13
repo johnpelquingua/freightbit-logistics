@@ -177,19 +177,23 @@
                 </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
-                    <s:select cssClass="statusDropdown form-control"
+
+                    <%--<s:select cssClass="statusDropdown form-control"
                               id="planningStatus"
                               name="orderStatusLogsBean.status"
                               list="allFreightStatusList"
                               emptyOption="true"
-                              required="true" />
+                              required="true" />--%>
+
+                    <input list="allFreightStatusList" id="planningStatus" name="orderStatusLogsBean.status" class="form-control" required="true"/>
+                    <datalist id="allFreightStatusList" class="statusDropdown">
+                        <s:iterator value="allFreightStatusList">
+                            <option id="<s:property />" value="<s:property />" />
+                        </s:iterator>
+                    </datalist>
 
                 </div>
-                <%--<div class="col-lg-12" style="text-align: center">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container Number <span class="asterisk_red"></span></label>
 
-                    <s:textfield required="true" name="orderStatusLogsBean.containerNumber" cssClass="form-control" id="containerNumber"/>
-                </div>--%>
                     <div class="pull-right" style="margin-top: 15px;">
                         <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                             <s:param name="orderIdParam"
@@ -205,7 +209,7 @@
                         </s:a>
                             <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" value="Update Status" />--%>
                         <button class="btn btn-primary submitBtn" type="button" disabled="true">Update Status</button>
-                            <%--                        <button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
+                            <%--<button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
                                     <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
                     </div>
             </div>
@@ -264,23 +268,17 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="actualModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body">
                 <div id="actualInput">
-                    <%--<label id="actualLabel" class="control-label header">Actual Date/Time: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate" />
-                    </div>--%>
+
                 </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>
@@ -310,27 +308,6 @@
 </div>
 </s:form>
 <script type="text/javascript">
-    /*function checkUpStatus(){
-     if($('.statusDropdown').val() == 'DELIVERED'){
-     $('#actualModal').modal('toggle');
-     $('#modalTrigger').click()
-     }
-     else if($('.statusDropdown').val() == 'PICKUP'){
-     $('#actualModal').modal('toggle');
-     $('#modalTrigger').click()
-     }
-     else if($('.statusDropdown').val() == 'ARRIVED'){
-     $('#actualModal').modal('toggle');
-     $('#modalTrigger').click()
-     }
-     else if($('.statusDropdown').val() == 'IN-TRANSIT'){
-     $('#actualModal').modal('toggle');
-     $('#modalTrigger').click()
-     }
-     else{
-     $('form').submit()
-     }
-     }*/
 
     $(document).ready(function() {
         var shipTable = $('.shipmentMonitoringTable tbody tr td:nth-child(2)');
@@ -338,6 +315,7 @@
             for (var i = 0; i < shipTable.size(); i++) {
                 if(shipTable.eq(i).text() != 'CANCELLED' && shipTable.eq(i).text() != 'PENDING'){
                     $('.statusDropdown option[value="' + shipTable.eq(i).text() + '"]').remove();
+                    /*$('#planningStatusDataList option[value="' + shipTable.eq(i).text() + '"]').remove();*/
                 }
             }
         }

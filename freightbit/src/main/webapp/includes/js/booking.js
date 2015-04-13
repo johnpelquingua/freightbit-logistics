@@ -15,7 +15,7 @@ fromDatePickUp.datepicker({
     timeFormat: 'h:mm TT',
     format : 'd.m.Y',
     minDate : 0,
-    maxDate: "+1m +1w",
+    maxDate: "+9m +9w",
 
     onClose: function(dateText, inst) {
 
@@ -28,20 +28,29 @@ fromDatePickUp.datepicker({
             if (testStartDate > testEndDate)
                 toDateDelivery.datetimepicker('setDate', testStartDate);
             }
+
         }
+
     },
 
     onSelect: function (selectedDateTime){
         toDateDelivery.datetimepicker('option', 'minDate', fromDatePickUp.datetimepicker('getDate'));
-    },
+    }
 
-    beforeShow: function(){
-        console.log(fromDatePickUp.val());
-        if(ServiceValue.val() == 'PICKUP' && fromDatePickUp.val() != '') {
+    /*beforeShow: function(){
+
+        if(ServiceValue.val() == 'PICKUP') {
+            fromDatePickUp.datepicker({maxDate: '+1m +1w'});
+        }
+
+     if(ServiceValue.val() == 'PICKUP' && fromDatePickUp.val() != '') {
             var beginDate = fromDatePickUp.datetimepicker("option", "maxDate");
+            alert(beginDate);
             beginDate.setDate(beginDate.getDate()+999);
         }
-    }
+
+    }*/
+
 });
 
 // delivery date validation -jp
@@ -613,7 +622,7 @@ function setThis(){
 
 $(document).ready(function(){
     $(window).load(function(){
-        //        sets the form values
+        //  sets the form values
         var custId = $("#customerName").val();
         $.getJSON('customerAction', {
                 customerID : custId },
@@ -844,9 +853,12 @@ $(document).ready(function(){
 
 function dateSameValidation() {
     $('.nextBtnDateVal').click(function(){
-        var firstDate = new Date($('.pickupDateInput').val()),
+        /*var firstDate = new Date($('.pickupDateInput').val()),
             lastDate = new Date($('.deliveryDateInput').val()),
             formToSubmit = $('.addOrderForm');
+
+            alert(firstDate);
+            alert(lastDate);
 
         if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
             var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
@@ -854,6 +866,50 @@ function dateSameValidation() {
             $('#dateSameWarningModal').modal('show');
         }else{
             formToSubmit.submit();
+        }*/
+        var firstDate = new Date($('.pickupDateInput').val()),
+            lastDate = new Date($('.deliveryDateInput').val()),
+            serviceMode = $('#order_modeOfService').val(),
+            pickupDate = $('.pickupDateInput').val(),
+            deliveryDate = $('.deliveryDateInput').val(),
+            dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/,
+            formToSubmit = $('.addOrderForm');
+
+            /*alert('first date ' + firstDate);
+            alert('last date ' + lastDate);
+            alert('pickup date ' + pickupDate);
+            alert('delivery date ' + deliveryDate);*/
+
+        if($('input[type=checkbox]:checked').length == 0){
+            alert(1);
+            alert ( "ERROR! Please select at least one checkbox" );
+            return false;
+        }else if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
+            alert(2);
+            var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
+            $('#dateSameWarningModalBody').empty().append(message);
+            $('#dateSameWarningModal').modal('show');
+            return false;
+        }else if(pickupDate.match(dateRegEx) === null){
+            alert(3);
+            if(serviceMode != 'DELIVERY'){
+                alert('ERROR! Pickup Date is not a valid date (MM/DD/YYYY)');
+                return false;
+            }else{
+                formToSubmit.submit();
+            }
+        }else if(deliveryDate.match(dateRegEx) === null){
+            alert(4);
+            if(serviceMode != 'PICKUP'){
+                alert('ERROR! Delivery Date is not a valid date (MM/DD/YYYY)');
+                return false;
+            }else{
+                formToSubmit.submit();
+            }
+        }else{
+            alert(5);
+            formToSubmit.submit();
+            return true;
         }
     })
 }
@@ -1117,16 +1173,20 @@ function dynamicDropdown(select, index) {
             }
         }
     }
-
 }
 
-function validate_form(){
+/*function validate_form(){
     var firstDate = new Date($('.pickupDateInput').val()),
         lastDate = new Date($('.deliveryDateInput').val()),
         serviceMode = $('#order_modeOfService').val(),
         pickupDate = $('.pickupDateInput').val(),
         deliveryDate = $('.deliveryDateInput').val(),
         dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
+
+        alert('first date' + firstDate);
+        alert('last date' + lastDate);
+        alert('pickup date' + pickupDate);
+        alert('delivery date' + deliveryDate);
 
     if($('input[type=checkbox]:checked').length == 0){
         alert ( "ERROR! Please select at least one checkbox" );
@@ -1149,5 +1209,5 @@ function validate_form(){
     }else{
         return true;
     }
-}
+}*/
 

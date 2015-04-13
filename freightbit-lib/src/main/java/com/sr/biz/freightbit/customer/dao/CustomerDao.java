@@ -4,6 +4,7 @@ package com.sr.biz.freightbit.customer.dao;
  * Created by Jimmy on 5/13/14.
  */
 
+import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 
@@ -32,6 +33,8 @@ public interface CustomerDao {
     public Customer findCustomerByEmail(String customer);
 
     public List<Customer> findCustomersByCriteria(String column, String value, Integer clientId);
+
+    public List<Contacts> findConsigneeByCriteria(String column, String value, Integer clientId);
 
     public List<Customer> findCustomerByCustomerCode(String customerCode);
 

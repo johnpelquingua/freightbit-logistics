@@ -4,12 +4,12 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 
-.table-responsive {
+.table-responsive-scroll {
     overflow-x: scroll !important;
 }
 
-.table {
-    width: 1200px !important;
+.table-scroll {
+    width: 1400px !important;
 }
 
 body {

@@ -71,52 +71,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date<span class="asterisk_red"></span></label>
-
-                            <div class="col-lg-9">
-                                <s:textfield cssClass="form-control vesselInput departureDate" id="departureDate"
-                                             name="vesselSchedule.departureDate" readonly="true" placeholder="Click here to set Departure Date"/>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label for="vesselSchedule.departureTime" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Time<span class="asterisk_red"></span></label>
-
-                            <div class="col-lg-9">
-                                <s:textfield cssClass="form-control" id="departureTime"
-                                             name="vesselSchedule.departureTime" readonly="true"/>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date<span class="asterisk_red"></span></label>
-
-                            <div class="col-lg-9">
-                                <s:textfield cssClass="form-control vesselInput arrivalDate" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true" placeholder="Click here to set Arrival Date"/>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label for="vesselSchedule.arrivalTime" class="col-lg-2 control-label" style="padding-top:0px;"> Arrival Time<span class="asterisk_red"></span></label>
-
-                            <div class="col-lg-9">
-                                <s:textfield cssClass="form-control" id="arrivalTime"
-                                             name="vesselSchedule.arrivalTime"/>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
                             <label for="vesselSchedule.originPort" class="col-lg-2 control-label" style="padding-top:0px;">Origin Pier<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-3">
                                 <s:select emptyOption="true" id="vesselSchedule_originPort"
                                           value="vesselSchedule.originPort"
                                           name="vesselSchedule.originPort"
@@ -124,13 +81,9 @@
                                           cssClass="form-control"/>
                             </div>
 
-                        </div>
-
-                        <div class="form-group">
-
                             <label for="vesselSchedule.destinationPort" class="col-lg-2 control-label" style="padding-top:0px;">Destination Pier<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-3">
 
                                 <s:select emptyOption="true" id="vesselSchedule_destinationPort"
                                           value="vesselSchedule.destinationPort"
@@ -141,12 +94,48 @@
 
                         </div>
 
+
+                        <div class="form-group">
+
+                            <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-3">
+                                <s:textfield cssClass="form-control vesselInput departureDate" id="departureDate"
+                                             name="vesselSchedule.departureDate" readonly="true" placeholder="Click here to set Departure Date"/>
+                            </div>
+
+                            <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-3">
+                                <s:textfield cssClass="form-control vesselInput arrivalDate" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true" placeholder="Click here to set Arrival Date"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="vesselSchedule.departureTime" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Time<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-3">
+                                <s:textfield cssClass="form-control" id="departureTime"
+                                             name="vesselSchedule.departureTime" readonly="true"/>
+                            </div>
+
+                            <label for="vesselSchedule.arrivalTime" class="col-lg-2 control-label" style="padding-top:0px;"> Arrival Time<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-3">
+                                <s:textfield cssClass="form-control" id="arrivalTime"
+                                             name="vesselSchedule.arrivalTime"/>
+                            </div>
+
+                        </div>
+
                 </div>
 
             <div class="panel-footer">
 
                 <div class="pull-right">
-                    <button type="button" id="Cancel" class="btn" data-toggle="modal" data-target="#cancelEdit">
+                    <button type="button" id="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#cancelEdit">
                         Cancel
                     </button>
                     <s:submit cssClass="btn btn-primary submitBtn" name="submit" value="Save" type="submit" disabled="true"/>

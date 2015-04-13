@@ -454,6 +454,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public List<Contacts> findConsigneeByCriteria(String column, String value, Integer clientId) {
+        return customerDao.findConsigneeByCriteria(column, value, clientId);
+    }
+
+    @Override
     public Customer findCustomerByCustomerCode(String customerCode) {
         List<Customer> result = customerDao.findCustomerByCustomerCode(customerCode);
         if (result != null && !result.isEmpty())

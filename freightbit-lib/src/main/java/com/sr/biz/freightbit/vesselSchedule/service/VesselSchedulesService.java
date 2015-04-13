@@ -5,9 +5,6 @@ import com.sr.biz.freightbit.vesselSchedule.exception.VesselSchedulesAlreadyExis
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 7/22/14.
- */
 public interface VesselSchedulesService {
 
     public void addVesselSchedule(VesselSchedules vesselSchedules) throws VesselSchedulesAlreadyExistsException;

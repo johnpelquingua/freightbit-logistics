@@ -396,7 +396,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         if (StringUtils.isNotBlank(column)) {
             customerEntityList = customerService.findCustomersByCriteria(column, customer.getCustomerKeyword(), getClientId());
-
         } else {
             customerEntityList = customerService.findAllCustomer();
         }

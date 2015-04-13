@@ -65,63 +65,52 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="vesselSchedule.originPort" class="col-lg-2 control-label" style="padding-top:0px;">Origin Pier<span class="asterisk_red"></span></label>
+                    <div class="col-lg-3">
+                        <s:select emptyOption="true" id="vesselSchedule_originPort"
+                                  value="vesselSchedule.originPort"
+                                  name="vesselSchedule.originPort"
+                                  list="portsList" listValue="value" listKey="key"
+                                  cssClass="form-control vesselInput" />
+                    </div>
+                    <label for="vesselSchedule.destinationPort" class="col-lg-2 control-label" style="padding-top:0px;">Destination Pier<span class="asterisk_red"></span></label>
+                    <div class="col-lg-3">
+                        <s:select emptyOption="true" id="vesselSchedule_destinationPort"
+                                  value="vesselSchedule.destinationPort"
+                                  name="vesselSchedule.destinationPort"
+                                  list="portsList" listValue="value" listKey="key"
+                                  cssClass="form-control vesselInput" />
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <div class="col-lg-3">
                         <s:textfield cssClass="form-control vesselInput departureDate" id="departureDate"
                                      name="vesselSchedule.departureDate" readonly="true" placeholder="Click here to set Departure Date"/>
+                    </div>
+                    <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date<span class="asterisk_red"></span></label>
+                    <div class="col-lg-3">
+                        <s:textfield cssClass="form-control vesselInput arrivalDate"
+                                     id="arrivalDate"
+                                     name="vesselSchedule.arrivalDate"
+                                     readonly="true"
+                                     placeholder="Click here to set Arrival Date" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="vesselSchedule.departureTime" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Time<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <div class="col-lg-3">
                         <s:textfield cssClass="form-control vesselInput" id="departureTime"
                                      name="vesselSchedule.departureTime" readonly="true" placeholder="Click here to set Departure Time"/>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
-                        <s:textfield cssClass="form-control vesselInput arrivalDate"
-                                     id="arrivalDate"
-                                     name="vesselSchedule.arrivalDate"
-                                     readonly="true"
-                                     placeholder="Click here to set Arrival Date"
-                                />
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label for="vesselSchedule.arrivalTime" class="col-lg-2 control-label" style="padding-top:0px;"> Arrival Time<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <div class="col-lg-3">
                         <s:textfield cssClass="form-control vesselInput" id="arrivalTime"
                                      name="vesselSchedule.arrivalTime"
                                      readonly="true"
-                                     placeholder="Click here to set Arrival Time"
-                                />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="vesselSchedule.originPort" class="col-lg-2 control-label" style="padding-top:0px;">Origin Pier<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
-                        <s:select emptyOption="true" id="vesselSchedule_originPort"
-                                  value="vesselSchedule.originPort"
-                                  name="vesselSchedule.originPort"
-                                  list="portsList" listValue="value" listKey="key"
-                                  cssClass="form-control vesselInput"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="vesselSchedule.destinationPort" class="col-lg-2 control-label" style="padding-top:0px;">Destination Pier<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
-                        <s:select emptyOption="true" id="vesselSchedule_destinationPort"
-                                  value="vesselSchedule.destinationPort"
-                                  name="vesselSchedule.destinationPort"
-                                  list="portsList" listValue="value" listKey="key"
-                                  cssClass="form-control vesselInput"/>
+                                     placeholder="Click here to set Arrival Time" />
                     </div>
                 </div>
 

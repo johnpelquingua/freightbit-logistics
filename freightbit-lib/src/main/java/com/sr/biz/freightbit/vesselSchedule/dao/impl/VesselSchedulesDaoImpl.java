@@ -63,7 +63,7 @@ public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements Vesse
         log.debug("Finding all Vessel Schedules");
         try {
             log.debug("Finding all Vessel Schedule successful");
-            return getSessionFactory().getCurrentSession().createQuery("from VesselSchedules").list();
+            return getSessionFactory().getCurrentSession().createQuery("from VesselSchedules order by createdTimestamp desc").list();
         } catch (Exception e) {
             log.error("Finding all Vessel Schedules failed", e);
             throw e;

@@ -2,6 +2,7 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
 <div class="row">
     <div class="col-lg-12">
@@ -38,8 +39,7 @@
                         <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   id="select1" list="portsList" listKey="key"
                                   listValue="value" name="originCity" emptyOption="true" required="true" />
-                                  <%--onchange="$(this).closest('form').submit()"
-                                  />--%>
+
                     </div>
                     <label class="col-lg-2 control-label">Filter by Destination :</label>
                     <div class="col-lg-3">
@@ -74,17 +74,17 @@
                 <div class="tab-pane fade in active" id="fclTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive" id="no-more-tables">
+                        <div class="table-responsive table-responsive-scroll" id="no-more-tables">
                             <display:table id="order" name="fclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="fclTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="fclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
+                                <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black" scope="ORI"
                                                     style="text-align: center;"> </display:column></td>
@@ -129,7 +129,7 @@
                 <div class="tab-pane fade" id="lclTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive" id="no-more-tables">
+                        <div class="table-responsive table-responsive-scroll" id="no-more-tables">
                         <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
                             <div class="lclMainLoadingDiv" style="text-align: center; margin: 1.6em;">
                                 Processing LCL orders. Please Wait.<br/>
@@ -138,7 +138,7 @@
                             <div class="lclMainTable" style="display: none;">
                                 <display:table id="order" name="lclTable"
                                                requestURI="viewSeaFreightList.action" pagesize="10"
-                                               class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                               class="lclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                style="margin-top: 15px;empty-cells: hide;">
 
                                     <td>
@@ -153,7 +153,7 @@
                                                         style="text-align: center;"> </display:column></td>
                                     <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
+                                    <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                         style="text-align: center;"> </display:column></td>
                                     <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" scope="Type"
                                                         style="text-align: center;"> </display:column></td>
@@ -231,17 +231,17 @@
                 <div class="tab-pane fade" id="lcuTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive" id="no-more-tables">
+                        <div class="table-responsive table-responsive-scroll" id="no-more-tables">
                             <display:table id="order" name="lcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="lcuTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="lcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
+                                <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" scope="Type"
                                                     style="text-align: center;"> </display:column></td>
@@ -285,17 +285,17 @@
                 <div class="tab-pane fade" id="rcuTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive" id="no-more-tables">
+                        <div class="table-responsive table-responsive-scroll" id="no-more-tables">
                             <display:table id="order" name="rcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="rcuTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="rcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
+                                <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" scope="Type"
                                                     style="text-align: center;"> </display:column></td>
@@ -367,33 +367,7 @@
                                 <i class='fa fa-times' ></i> Cancel<br>
                             </div>
                         </div>
-                        <%--<table class="col-lg-12">
-                            <tr>
-                                <td><label>LEGEND:</label></td>
-                                <td><i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled</td>
-                                <td><i class="fa fa-stop" style="color: #428bca;"></i> On Going</td>
-                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete</td>
-                                <td><i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-anchor'></i> Shipping</td>
-                                <td><i class='fa fa-truck' ></i> Trucking</td>
-                                <td><i class='fa fa-info-circle' ></i> Information</td>
-                                <td><i class='fa fa-trash-o'></i> Delete</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-tasks' ></i> Set Vessel Schedule</td>
-                                <td><i class='fa fa-print' ></i> Print</td>
-                                <td><i class='fa fa-check' ></i> Approve</td>
-                                <td><i class='fa fa-times' ></i> Cancel</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i style="color: red;" class='fa fa-ban'></i> Actions Disabled</td>
-                            </tr>
-                        </table>--%>
+
                     </div>
                 </div>
             </div>
@@ -425,15 +399,11 @@
 <div class="modal fade" id="bookingNumModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-                <%--<div class="modal-header">
-                    <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-                </div>--%>
+
             <div class="modal-body" style="padding: 0px;">
                 <div id="bookingNumInputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
-                <%--<div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-                </div>--%>
+
         </div>
     </div>
 </div>

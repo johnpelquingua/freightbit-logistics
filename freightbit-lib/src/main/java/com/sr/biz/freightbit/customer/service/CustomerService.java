@@ -95,6 +95,8 @@ public interface CustomerService {
 
     public List<Customer> findCustomersByCriteria(String column, String value, Integer clientId);
 
+    public List<Contacts> findConsigneeByCriteria(String column, String value, Integer clientId);
+
     public Customer findCustomerByCustomerCode(String customerCode);
 
     //Items

@@ -59,15 +59,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer Name</label>
+                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer</label>
                     <div class="col-lg-10">
                         <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num" disabled="true"></s:textfield>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee Name</label>
+                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee</label>
                     <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num" disabled="true"></s:textfield>
+                        <s:textfield cssClass="form-control" value="%{order.consigneeName}" name="book-num" disabled="true"></s:textfield>
                     </div>
                 </div>
 

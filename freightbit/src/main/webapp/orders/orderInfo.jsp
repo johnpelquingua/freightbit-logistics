@@ -116,7 +116,7 @@
                         </th>
                         <tbody>
                         <tr>
-                            <td style="color: gray !important;">Customer Name</td>
+                            <td style="color: gray !important;">Company / Customer Name</td>
                             <td><s:property value="order.customerName"/></td>
                         </tr>
                         <tr>
@@ -154,6 +154,10 @@
                     <table class="table leftAlign table-user-information">
                         <th style="font-size: 20px; border-top: none; width: 300px;">
                             <i class="fa fa-user"></i> Consignee Information</th>
+                        <tr>
+                            <td style="color: gray !important;">Company</td>
+                            <td><s:property value="order.consigneeName"/></td>
+                        </tr>
                         <tr>
                             <td style="color: gray !important;">Consignee Name</td>
                             <td><s:property value="order.consigneeInfoContact.name"/></td>

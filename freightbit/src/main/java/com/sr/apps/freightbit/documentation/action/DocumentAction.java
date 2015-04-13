@@ -3545,6 +3545,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         formBean.setCustomerName((customerName.getCustomerName()));
         //get consignee name
         Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
+        formBean.setConsigneeName(consigneeName.getCompanyName());
         formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
         if(orderService.findOrdersById(entity.getOrderId()).getServiceType().equals("TRUCKING")){
             formBean.setOriginationPort("N/A");

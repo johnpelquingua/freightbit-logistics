@@ -157,6 +157,10 @@
                         <tbody>
 
                         <tr>
+                            <td style="color: gray !important;">Company</td>
+                            <td><s:property value="order.consigneeName"/></td>
+                        </tr>
+                        <tr>
                             <td style="color: gray !important;">Consignee Name</td>
                             <td><s:property value="order.consigneeInfoContact.name"/></td>
                         </tr>

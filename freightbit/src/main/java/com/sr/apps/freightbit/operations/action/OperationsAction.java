@@ -2875,13 +2875,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String viewFreightList() {
         String column = getColumnBookingFilter();
+
         // For FCL Requirement
         List<Orders> fclOrders = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(originCity != null && destinationCity != null){
-                fclOrders = operationsService.findOrdersByOriginDestinationFCL(originCity, destinationCity);
-            }
-            fclOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*fclOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCity != null && destinationCity != null){
+            fclOrders = operationsService.findOrdersByOriginDestinationFCL(originCity, destinationCity);
         }else{
             fclOrders = operationsService.findOrdersByFCL();
         }
@@ -2893,10 +2893,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // For LCL Requirement
         List<Orders> lclOrders = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(originCity != null && destinationCity != null){
-                lclOrders = operationsService.findOrdersByOriginDestinationLCL(originCity, destinationCity);
-            }
-            lclOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*lclOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCity != null && destinationCity != null){
+            lclOrders = operationsService.findOrdersByOriginDestinationLCL(originCity, destinationCity);
         }else{
             lclOrders = operationsService.findOrdersByLCL();
         }
@@ -2908,10 +2907,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // For LCU Requirement
         List<Orders> lcuOrders = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(originCity != null && destinationCity != null){
-                lcuOrders = operationsService.findOrdersByOriginDestinationLCU(originCity, destinationCity);
-            }
-            lcuOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*lcuOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCity != null && destinationCity != null){
+            lcuOrders = operationsService.findOrdersByOriginDestinationLCU(originCity, destinationCity);
         }else{
             lcuOrders = operationsService.findOrdersByLCU();
         }
@@ -2923,10 +2921,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // For RCU Requirement
         List<Orders> rcuOrders = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(originCity != null && destinationCity != null){
-                rcuOrders = operationsService.findOrdersByOriginDestinationRCU(originCity, destinationCity);
-            }
-            rcuOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*rcuOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCity != null && destinationCity != null){
+            rcuOrders = operationsService.findOrdersByOriginDestinationRCU(originCity, destinationCity);
         }else{
             rcuOrders = operationsService.findOrdersByRCU();
         }
@@ -2936,31 +2933,27 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         // For FCL Trucking Origin
-
         List<Orders> fclTrucksOrders = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(originCityTruck != null){
-                fclTrucksOrders = operationsService.findOrdersByFCLTrucksOrigin(originCityTruck);
-            }
-            fclTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*fclTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCityTruck != null){
+            fclTrucksOrders = operationsService.findOrdersByFCLTrucksOrigin(originCityTruck);
         }else{
             fclTrucksOrders = operationsService.findOrdersByFCLTrucks();
         }
 
         for (Orders orderElem : fclTrucksOrders){
-            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER") ){
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER")){
                 fclTruckTable.add(transformToOrderFormBean(orderElem));
             }
         }
 
         // For LCL Trucking Origin
-
         List<Orders> lclTrucksOrders = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(originCityTruck != null){
-                lclTrucksOrders = operationsService.findOrdersByLCLTrucksOrigin(originCityTruck);
-            }
-            lclTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*lclTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCityTruck != null){
+            lclTrucksOrders = operationsService.findOrdersByLCLTrucksOrigin(originCityTruck);
         }else{
             lclTrucksOrders = operationsService.findOrdersByLCLTrucks();
         }
@@ -2972,13 +2965,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         // For LCU Trucking Origin
-
         List<Orders> lcuTrucksOrders = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-        if(originCityTruck != null){
+            /*lcuTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCityTruck != null){
             lcuTrucksOrders = operationsService.findOrdersByLCUTrucksOrigin(originCityTruck);
-            }
-            lcuTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
         }else{
             lcuTrucksOrders = operationsService.findOrdersByLCUTrucks();
         }
@@ -2990,13 +2981,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         // For RCU Trucking Origin
-
         List<Orders> rcuTrucksOrders = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(originCityTruck != null){
-                rcuTrucksOrders = operationsService.findOrdersByRCUTrucksOrigin(originCityTruck);
-            }
-            rcuTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*rcuTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCityTruck != null){
+            rcuTrucksOrders = operationsService.findOrdersByRCUTrucksOrigin(originCityTruck);
         }else{
             rcuTrucksOrders = operationsService.findOrdersByRCUTrucks();
         }
@@ -3009,12 +2998,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // For FTL Requirement
         List<Orders> ftlOrders = new ArrayList<Orders>();
-        System.out.println("+++++++++++++++++++++++++++++++++++++ " + originCityTruck );
         if (StringUtils.isNotBlank(column)) {
-            if(originCityTruck != null){
-                ftlOrders = operationsService.findOrdersByOriginFTL(originCityTruck);
-            }
-            ftlOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*ftlOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCityTruck != null){
+            ftlOrders = operationsService.findOrdersByOriginFTL(originCityTruck);
         }else{
             ftlOrders = operationsService.findOrdersByFTL();
         }
@@ -3026,10 +3013,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // For LTL Requirement
         List<Orders> ltlOrders = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(originCityTruck != null){
-                ltlOrders = operationsService.findOrdersByOriginLTL(originCityTruck);
-            }
-            ltlOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*ltlOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(originCityTruck != null){
+            ltlOrders = operationsService.findOrdersByOriginLTL(originCityTruck);
         }else{
             ltlOrders = operationsService.findOrdersByLTL();
         }
@@ -3039,13 +3025,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         // For FCL Trucking Destination
-
         List<Orders> fclTrucksOrdersDes = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(destinationCityTruck != null){
-                fclTrucksOrdersDes = operationsService.findOrdersByFCLTrucksDestination(destinationCityTruck);
-            }
-            fclTrucksOrdersDes = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*fclTrucksOrdersDes = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(destinationCityTruck != null){
+            fclTrucksOrdersDes = operationsService.findOrdersByFCLTrucksDestination(destinationCityTruck);
         }else{
             fclTrucksOrdersDes = operationsService.findOrdersByFCLTrucks();
         }
@@ -3060,10 +3044,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         List<Orders> lclTrucksOrdersDes = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(destinationCityTruck != null){
-                lclTrucksOrdersDes = operationsService.findOrdersByLCLTrucksDestination(destinationCityTruck);
-            }
-            lclTrucksOrdersDes = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*lclTrucksOrdersDes = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(destinationCityTruck != null){
+            lclTrucksOrdersDes = operationsService.findOrdersByLCLTrucksDestination(destinationCityTruck);
         }else{
             lclTrucksOrdersDes = operationsService.findOrdersByLCLTrucks();
         }
@@ -3075,13 +3058,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         // For LCU Trucking Destination
-
         List<Orders> lcuTrucksOrdersDes = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(destinationCityTruck != null){
-                lcuTrucksOrdersDes = operationsService.findOrdersByLCUTrucksDestination(destinationCityTruck);
-            }
-            lcuTrucksOrdersDes = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*lcuTrucksOrdersDes = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(destinationCityTruck != null){
+            lcuTrucksOrdersDes = operationsService.findOrdersByLCUTrucksDestination(destinationCityTruck);
         }else{
             lcuTrucksOrdersDes = operationsService.findOrdersByLCUTrucks();
         }
@@ -3093,13 +3074,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         // For RCU Trucking Destination
-
         List<Orders> rcuTrucksOrdersDes = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
-            if(destinationCityTruck != null){
-                rcuTrucksOrdersDes = operationsService.findOrdersByRCUTrucksDestination(destinationCityTruck);
-            }
-            rcuTrucksOrdersDes = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());
+            /*rcuTrucksOrdersDes = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId());*/
+        }else if(destinationCityTruck != null){
+            rcuTrucksOrdersDes = operationsService.findOrdersByRCUTrucksDestination(destinationCityTruck);
         }else{
             rcuTrucksOrdersDes = operationsService.findOrdersByRCUTrucks();
         }
@@ -3380,6 +3359,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModeOfService(entity.getServiceMode());
         //get consignee name
         Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
+        formBean.setConsigneeName(consigneeName.getCompanyName());
         formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
         //formBean.setConsigneeCode(entity.getConsigneeCode());
         formBean.setOrderId(entity.getOrderId());

@@ -108,7 +108,7 @@
 
         <action name="addItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addItemsInTable">
-            <result name="input" type="redirect">addItemsAlreadyExists</result>
+            <!--<result name="input" type="redirect">addItemsAlreadyExists</result>-->
             <result name="success" type="redirect">addedItemsInTable</result>
         </action>
 
@@ -125,10 +125,10 @@
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
 
-        <action name="addItemsAlreadyExists" class="com.sr.apps.freightbit.order.action.OrderAction"
+        <!--<action name="addItemsAlreadyExists" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addItemsAlreadyExists">
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
-        </action>
+        </action>-->
 
         <!--Add Contacts in New Booking-->
         <action name="addCustomerContact" class="com.sr.apps.freightbit.order.action.OrderAction"

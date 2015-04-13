@@ -263,28 +263,61 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String viewOrders() {
-
+        // for archiving booking work in progress...
         Date todayDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
-        if (StringUtils.isNotBlank(column)) {
-            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
 
+        if (StringUtils.isNotBlank(column)) {
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> column " + column);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> keyword " + order.getOrderKeyword());
+
+            if(column.equals("shipperCode")){
+                List<Customer> customerEntityList = customerService.findCustomersByCriteria("customerName", order.getOrderKeyword(), getClientId());
+                List <Orders> allOrderEntityList = orderService.findAllOrders();
+                // To search for customer in booking
+                for(Customer customerElem : customerEntityList){
+                    for(Orders orderElem : allOrderEntityList){
+                        if(customerElem.getCustomerId().equals(orderElem.getCustomerId())){
+                            orders.add(transformToOrderFormBean(orderElem));
+                        }
+                    }
+                }
+
+            }else if(column.equals("consigneeCode")){
+                List<Contacts> consigneeEntityList = customerService.findConsigneeByCriteria("companyName", order.getOrderKeyword(), getClientId());
+                List <Orders> allOrderEntityList = orderService.findAllOrders();
+                // To search for consignee in booking
+                for(Contacts consigneeElem : consigneeEntityList){
+                    for(Orders orderElem : allOrderEntityList){
+                        if(consigneeElem.getContactId().equals(orderElem.getConsigneeContactId())){
+                            orders.add(transformToOrderFormBean(orderElem));
+                        }
+                    }
+                }
+
+            }else{
+                orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+
+                for (Orders orderElem : orderEntityList) {
+                    orders.add(transformToOrderFormBean(orderElem));
+                }
+            }
         } else {
             orderEntityList = orderService.findAllOrders();
-        }
 
-        for (Orders orderElem : orderEntityList) {
-            orders.add(transformToOrderFormBean(orderElem));
+            for (Orders orderElem : orderEntityList) {
+                orders.add(transformToOrderFormBean(orderElem));
+            }
+
         }
 
         Booking = notificationService.countAll();
         System.out.println("The number of new booking is " + Booking);
 
         return SUCCESS;
-
     }
 
     public String viewOrdersBookingList() {
@@ -318,16 +351,16 @@ public class OrderAction extends ActionSupport implements Preparable {
         } else {
             if ("BOOKING NUMBER".equals(order.getOrderSearchCriteria())) {
                 column = "orderNumber";
-            } else if ("SHIPPER NAME".equals(order.getOrderSearchCriteria())) {
+            } else if ("CUSTOMER".equals(order.getOrderSearchCriteria())) {
                 column = "shipperCode";
-            } else if ("CONSIGNEE NAME".equals(order.getOrderSearchCriteria())) {
+            } else if ("CONSIGNEE".equals(order.getOrderSearchCriteria())) {
                 column = "consigneeCode";
-            } else if ("SERVICE MODE".equals(order.getOrderSearchCriteria())) {
-                column = "serviceMode";
             } else if ("SERVICE TYPE".equals(order.getOrderSearchCriteria())) {
                 column = "serviceType";
-            } else if ("STATUS".equals(order.getOrderSearchCriteria())) {
-                column = "orderStatus";
+            } else if ("SERVICE REQUIREMENT".equals(order.getOrderSearchCriteria())) {
+                column = "serviceRequirement";
+            } else if ("SERVICE MODE".equals(order.getOrderSearchCriteria())) {
+                column = "serviceMode";
             }
             return column;
         }
@@ -438,9 +471,9 @@ public class OrderAction extends ActionSupport implements Preparable {
                 itemEntity.setCreatedTimeStamp(new Date());
                 customerService.addItem(itemEntity);
             }
-            else{
+            /*else{
                 return INPUT;
-            }
+            }*/
         }
 
         // get total quantity from database
@@ -1397,24 +1430,26 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setTrailerCode(order.getTrailerCode());
         orderBean.setDriverCode(order.getDriverCode());
         orderBean.setVesselNumber(order.getVesselNumber());
-        /*orderBean.setShipperCode(order.getShipperCode());*/
         orderBean.setShipperAddressId(order.getShipperAddressId());
         orderBean.setShipperContactId(order.getShipperContactId());
+
         // get Customer name
         Contacts shipperContactName = customerService.findContactById(order.getShipperContactId());
+
         orderBean.setShipperContactName(getFullName(shipperContactName));
-        /*orderBean.setConsigneeCode(order.getConsigneeCode());*/
         orderBean.setConsigneeAddressId(order.getConsigneeAddressId());
         orderBean.setConsigneeContactId(order.getConsigneeContactId());
+
         Contacts consigneeContactName = customerService.findContactById(order.getConsigneeContactId());
-        orderBean.setConsigneeName(getFullName(consigneeContactName));
+
+        /*orderBean.setConsigneeName(getFullName(consigneeContactName));*/
+        orderBean.setConsigneeName(consigneeContactName.getCompanyName());
         orderBean.setAccountRep(order.getAccountRep());
         orderBean.setCreatedTimestamp(order.getCreatedTimestamp());
         orderBean.setCreatedBy(order.getCreatedBy());
         orderBean.setModifiedTimestamp(order.getModifiedTimestamp());
         orderBean.setModifiedBy(order.getModifiedBy());
         orderBean.setPickupDate(order.getPickupDate());
-        /*orderBean.setOriginationPort(order.getOriginationPort());*/
 
         if(order.getOriginationPort() != null){
             orderBean.setOriginationPort(order.getOriginationPort());
@@ -1425,7 +1460,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         orderBean.setDeliveryDate(order.getDeliveryDate());
-        /*orderBean.setDestinationPort(order.getDestinationPort());*/
 
         if(order.getDestinationPort() != null){
             orderBean.setDestinationPort(order.getDestinationPort());
@@ -1448,12 +1482,9 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderBean.setCustomerName(shipperName.getCustomerName());
         }
 
-        /*orderBean.setPickupDate(order.getPickupDate());
-        orderBean.setDeliveryDate(order.getDeliveryDate());*/
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
         if(order.getPickupDate() != null){
-            /*formBean.setPickupDate(entity.getPickupDate());*/
             orderBean.setStrPickupDate(formatter.format(order.getPickupDate()));
         }else if(order.getServiceMode().equals("DELIVERY")){
             orderBean.setStrPickupDate("NOT APPLICABLE");
@@ -1462,7 +1493,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         if(order.getDeliveryDate() != null){
-            /*formBean.setDeliveryDate(entity.getDeliveryDate());*/
             orderBean.setStrDeliveryDate(formatter.format(order.getDeliveryDate()));
         }else if(order.getServiceMode().equals("PICKUP")){
             orderBean.setStrDeliveryDate("NOT APPLICABLE");
@@ -1514,6 +1544,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             address.setAddress("NONE");
             orderBean.setConsigneeInfoAddress(address);
         }
+
         // for consignee contact person
         orderBean.setConsigneeContactPersonId(order.getConsigneeContactPersonId());
         if (order.getConsigneeContactPersonId() != null) {
@@ -1522,7 +1553,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         /*OUTBOUND DOCUMENTS*/
-        /*outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, order.getOrderId());*/
         outboundEntityList = documentsService.findDocumentsByOrderId(order.getOrderId());
 
         for (Documents documentElem : outboundEntityList) {

@@ -85,10 +85,10 @@
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="fclOriTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="fclTruckTable"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="fclTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="fclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -97,7 +97,7 @@
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
@@ -144,10 +144,10 @@
                         </div>
                         <div class="tab-pane fade" id="lclOriTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="lclTruckTable"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="lclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -156,7 +156,7 @@
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
@@ -209,10 +209,10 @@
                         </div>
                         <div class="tab-pane fade" id="lcuOriTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="lcuTruckTable"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="lcuTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="lcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -221,7 +221,7 @@
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
@@ -270,10 +270,10 @@
                         </div>
                         <div class="tab-pane fade" id="rcuOriTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="rcuTruckTable"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="rcuTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="rcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -282,7 +282,7 @@
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
@@ -363,17 +363,17 @@
 
                         <div class="tab-pane fade in active" id="ftlTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="ftlTable"
                                                    requestURI="viewSeaFreightList.action" pagesize="10"
-                                                   class="ftlTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="ftlTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells: hide;">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;width: 15%;"> </display:column></td>
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;width: 20%;"> </display:column></td>
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;width: 25%;"> </display:column></td>
                                         <%--<td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>--%>
@@ -414,17 +414,17 @@
                         </div>
                         <div class="tab-pane fade" id="ltlTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="ltlTable"
                                                    requestURI="viewSeaFreightList.action" pagesize="10"
-                                                   class="ltlTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="ltlTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells: hide;">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;width: 15%;"> </display:column></td>
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;width: 20%;"> </display:column></td>
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;width: 25%;"> </display:column></td>
                                         <%--<td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>--%>
@@ -501,10 +501,10 @@
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="fclDesTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="fclTruckTableDes"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="fclTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="fclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -513,7 +513,7 @@
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
@@ -561,10 +561,10 @@
                         </div>
                         <div class="tab-pane fade" id="lclDesTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="lclTruckTableDes"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="lclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -573,7 +573,7 @@
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
@@ -623,10 +623,10 @@
                         </div>
                         <div class="tab-pane fade" id="lcuDesTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="lcuTruckTableDes"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="lcuTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="lcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -635,7 +635,7 @@
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
@@ -682,10 +682,10 @@
                         </div>
                         <div class="tab-pane fade" id="rcuDesTab">
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="rcuTruckTableDes"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="rcuTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="rcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -694,7 +694,7 @@
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
@@ -770,33 +770,7 @@
                             <i class='fa fa-trash-o'></i> Delete <br>
                             <i class='fa fa-times' ></i> Cancel <br>
                         </div>
-                        <%--<table class="col-lg-12">
-                            <tr>
-                                <td><label>LEGEND:</label></td>
-                                <td><i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled</td>
-                                <td><i class="fa fa-stop" style="color: #428bca;"></i> On Going</td>
-                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete</td>
-                                <td><i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-anchor'></i> Shipping</td>
-                                <td><i class='fa fa-truck' ></i> Trucking</td>
-                                <td><i class='fa fa-info-circle' ></i> Information</td>
-                                <td><i class='fa fa-trash-o'></i> Delete</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-tasks' ></i> Set Vendor</td>
-                                <td><i class='fa fa-print' ></i> Print</td>
-                                <td><i class='fa fa-check' ></i> Approve</td>
-                                <td><i class='fa fa-times' ></i> Cancel</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i style="color: red;" class='fa fa-ban'></i> Actions Disabled</td>
-                            </tr>
-                        </table>--%>
+
                     </div>
                 </div>
             </div>
@@ -807,15 +781,11 @@
 <div class="modal fade" id="bookingNumModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body" style="padding: 0px;">
                 <div id="bookingNumInputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>

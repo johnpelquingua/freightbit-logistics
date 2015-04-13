@@ -77,8 +77,8 @@
             </div>
 
             <div class="panel-body">
-                <div class="table-responsive" id="no-more-tables">
-                        <display:table id="order" name="orders" requestURI="viewOrders.action" class="table table-hover table-bordered text-center tablesorter"
+                <div class="table-responsive table-responsive-scroll" id="no-more-tables">
+                        <display:table id="order" name="orders" requestURI="viewOrders.action" class="table table-scroll table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 
                             <td><display:column property="orderDate" title="Order Dates <i class='fa fa-sort' />" class="tb-font-black" scope="Order Dates"
@@ -90,18 +90,17 @@
                             <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" style="text-align: center;" scope="Type">
-                                </display:column>
-                            </td>
+                                                </display:column></td>
                             <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />" class="tb-font-black" scope="Req't"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black" scope="Mode"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Status"
                                                 style="text-align: center;"> </display:column></td>
-
+                            <td><display:column property="createdBy" title="Booked By <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Status"
+                                                style="text-align: center;"> </display:column></td>
                             <%--<td><display:column property="documentCheck" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"--%>
                                                 <%--style="text-align: center;"> </display:column></td>--%>
-
                             <td class="tb-font-black" style="text-align: center;">
                                 <display:column title="Actions" scope="Actions">
 
@@ -116,9 +115,10 @@
                                             </s:a>
                                         </s:if>
 
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES')">
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
                                         <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' || #attr.order.orderStatus == 'INCOMPLETE' ">
                                             <%--delete booking--%>
+                                            | <%--separator--%>
                                             <s:url var="deleteOrderUrl" action="deleteOrder">
                                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                             </s:url>
@@ -130,6 +130,7 @@
                                     </sec:authorize>
 
                                         <%--info booking--%>
+                                        | <%--separator--%>
                                         <s:url var="viewInfoOrderUrl" action="viewInfoOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
@@ -138,7 +139,8 @@
                                         </s:a>
 
                                     <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                                            | <%--separator--%>
                                             <a id="print-icon" title="Print Booking Form" rel="tooltip" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM');">
                                                 <i class="fa fa-print table-action-icons"></i>
                                             </a>

@@ -4,9 +4,6 @@ import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 7/22/14.
- */
 public interface VesselSchedulesDao {
 
     public Integer addVesselSchedule(VesselSchedules vesselSchedules);

@@ -104,18 +104,20 @@
 
                             <div class="form-group">
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer
-                                    Name</label>
+                                    </label>
 
                                 <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num"
                                                  disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee
-                                    Name</label>
+                                    </label>
 
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num"
-                                                 disabled="true"></s:textfield>
+                                    <%--<s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num"
+                                                 disabled="true"></s:textfield>--%>
+                                        <s:textfield cssClass="form-control" value="%{order.consigneeName}" name="book-num"
+                                                     disabled="true"></s:textfield>
                                 </div>
                             </div>
 
@@ -315,9 +317,40 @@
 
             <div class="panel-footer">
 
+                <div class="pull-right">
+
+                    <s:url var="createdInlandDocumentUrl" action="createdInlandDocument">
+                        <s:param name="orderIdParam"
+                                 value="#attr.order.orderId"></s:param>
+                    </s:url>
+                    <s:a cssClass="btn btn-primary houseWaybillOriginBtn" href="%{createdInlandDocumentUrl}" rel="tooltip"
+                         title="Create Inland Document(s)">
+                        Create Inland Document(s)
+                    </s:a>
+
+                    <a href="viewInlandFreightList" class="btn btn-danger" id ="groups-btn">
+                        <i class="fa fa-chevron-left"></i>
+                        Back to Dispatch Plan : Orders
+                    </a>
+
+                    <s:url var="viewDocumentListUrl" action="viewDocumentListInland">
+                        <s:param name="orderIdParam"
+                                 value="%{orderIdParam}">
+                        </s:param>
+                    </s:url>
+                    <s:a cssClass="btn btn-warning" href="%{viewDocumentListUrl}" rel="tooltip"
+                         title="Go to Documents Page">
+                        Proceed to Documents page <i class="fa fa-chevron-right"></i>
+                    </s:a>
+
+                </div>
+
+            </div>
+
+            <div class="panel-footer">
+
                 <div class="table-responsive">
                     <div class="col-lg-12">
-
                         <table class="col-lg-12">
                             <tr>
                                 <td><label>LEGEND:</label></td>
@@ -327,37 +360,12 @@
                             </tr>
                         </table>
                     </div>
-
                 </div>
+
             </div>
-        </div>
-        <div class="pull-right">
-
-            <s:url var="createdInlandDocumentUrl" action="createdInlandDocument">
-                <s:param name="orderIdParam"
-                         value="#attr.order.orderId"></s:param>
-            </s:url>
-            <s:a cssClass="btn btn-primary houseWaybillOriginBtn" href="%{createdInlandDocumentUrl}" rel="tooltip"
-                 title="Create Inland Document(s)">
-                 Create Inland Document(s)
-            </s:a>
-
-            <a href="viewInlandFreightList" class="btn btn-danger" id ="groups-btn">
-                <i class="fa fa-chevron-left"></i>
-                Back to Dispatch Plan : Orders
-            </a>
-
-            <s:url var="viewDocumentListUrl" action="viewDocumentListInland">
-                <s:param name="orderIdParam"
-                         value="%{orderIdParam}">
-                </s:param>
-            </s:url>
-            <s:a cssClass="btn btn-warning" href="%{viewDocumentListUrl}" rel="tooltip"
-                 title="Go to Documents Page">
-                Proceed to Documents page <i class="fa fa-chevron-right"></i>
-            </s:a>
 
         </div>
+
     </div>
 </div>
 

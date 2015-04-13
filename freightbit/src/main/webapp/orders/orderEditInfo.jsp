@@ -171,7 +171,7 @@
                             <%--<s:property value="%{order.customerId}"/>--%>
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 13px; text-align:left !important; border-top: none; width: 30%">Customer Name</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important; border-top: none; width: 30%">Company / Customer Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.customerName"/></td>
                             </tr>
                             <tr>
@@ -229,8 +229,9 @@
 
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 13px; text-align:left !important; border-top: none; width: 30%">Consignee Name</td>
-                                <td style="border-top: none; text-align: left !important;"><s:property value="order.consigneeInfoContact.name"/></td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important; border-top: none; width: 30%">Company</td>
+                                <%--<td style="border-top: none; text-align: left !important;"><s:property value="order.consigneeInfoContact.name"/></td>--%>
+                                <td style="border-top: none; text-align: left !important;"><s:property value="order.consigneeName"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Contact Person</td>
@@ -942,7 +943,7 @@
                                     <th style="font-size: 18px; border-top: none;" colspan="2"><i class="fa fa-user"></i> Customer Information</th>
                                     <tbody>
                                     <tr>
-                                        <td style="color: gray !important;">Customer Name</td>
+                                        <td style="color: gray !important;">Company / Customer Name</td>
                                         <td><s:property value="order.customerName"/></td>
                                     </tr>
                                     <tr>
@@ -987,8 +988,9 @@
                                     <th style="font-size: 18px; border-top: none;" colspan="2"><i class="fa fa-user"></i> Consignee Information</th>
 
                                     <tr>
-                                        <td style="color: gray !important;">Consignee Name</td>
-                                        <td><s:property value="order.consigneeInfoContact.name"/></td>
+                                        <td style="color: gray !important;">Company</td>
+                                        <%--<td><s:property value="order.consigneeInfoContact.name"/></td>--%>
+                                        <td><s:property value="order.consigneeName"/></td>
                                     </tr>
                                     <tr>
                                         <td style="color: gray !important;">Contact Person</td>

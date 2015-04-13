@@ -110,7 +110,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             }
             return column;
         }
-
     }
 
     public String viewStatusListItems() {
@@ -996,6 +995,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setCustomerName((customerName.getCustomerName()));
         //get consignee name
         Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
+        formBean.setConsigneeName(consigneeName.getCompanyName());
         formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
 
         formBean.setOrderStatus(entity.getOrderStatus());
