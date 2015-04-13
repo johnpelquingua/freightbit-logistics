@@ -425,6 +425,14 @@
         <put-attribute name="title" value="Vendor Contact List"/>
         <put-attribute name="body" value="/vendor/view/vendorListTruckingContact.jsp"/>
     </definition>
+    <definition name="vendor.vendorListTruckingContactInfo.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Vendor Contact List"/>
+        <put-attribute name="body" value="/vendor/view/vendorListTruckingContactInfo.jsp"/>
+    </definition>
+    <definition name="vendor.vendorListShippingContactInfo.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Vendor Contact List"/>
+        <put-attribute name="body" value="/vendor/view/vendorListShippingContactInfo.jsp"/>
+    </definition>
     <definition name="vendor.vendorListShippingAddress.tiles" extends="baseLayout">
         <put-attribute name="title" value="Vendor List Shipping Address"/>
         <put-attribute name="body" value="/vendor/view/vendorListShippingAddress.jsp"/>
@@ -641,6 +649,10 @@
     <definition name="customer.customerListContact.tiles" extends="baseLayout">
         <put-attribute name="title" value="Customer List Contacts"/>
         <put-attribute name="body" value="/customer/contact/customerListContact.jsp"/>
+    </definition>
+    <definition name="customer.customerListContactInfo.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Customer List Contacts"/>
+        <put-attribute name="body" value="/customer/contact/customerListContactInfo.jsp"/>
     </definition>
     <definition name="customer.customerAddConsignee.tiles" extends="baseLayout">
         <put-attribute name="title" value="Add New Consignee"/>

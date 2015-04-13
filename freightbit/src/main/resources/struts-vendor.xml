@@ -260,6 +260,15 @@
             <result name="success" type="tiles">vendor.vendorListTruckingContact.tiles</result>
         </action>
 
+        <action name="viewVendorTruckingContactsInfo" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="viewContactsInfo">
+            <result name="success" type="tiles">vendor.vendorListTruckingContactInfo.tiles</result>
+        </action>
+
+        <action name="viewVendorShippingContactsInfo" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="viewContactsInfo">
+            <result name="success" type="tiles">vendor.vendorListShippingContactInfo.tiles</result>
+        </action>
 
         <action name="loadAddShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadAddContact">
@@ -297,8 +306,8 @@
 
         <action name="viewVendorShippingContacts" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="viewContacts">
-            <!--<result name="success" type="tiles">vendor.vendorListShippingContact.tiles</result>-->
-            <result name="SHIPPING" type="tiles">vendor.vendorListShippingContact.tiles</result>
+            <result name="success" type="tiles">vendor.vendorListShippingContact.tiles</result>
+            <!--<result name="SHIPPING" type="tiles">vendor.vendorListShippingContact.tiles</result>-->
         </action>
 
         <action name="loadSaveCompleteTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"

@@ -1,0 +1,184 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<style>
+  .deleteCustomerContactsIcon {
+    cursor: pointer;
+  }
+</style>
+
+<div class="row">
+  <div class="col-lg-12">
+    <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-male"></i> Customer Module </h1>
+            </span>
+    </legend>
+    <ol class="breadcrumb">
+      <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+      <li class="active"> Customer</li>
+      <li class="active"><a href="<s:url action='customerList' />"> Customer List</a>
+      </li>
+      <li class="active"><a href="<s:url action='customerInfo' />"> Customer
+        Profile</a></li>
+      <li class="active"> Contact Persons</li>
+    </ol>
+
+  </div>
+</div>
+
+<s:if test="hasActionMessages()">
+  <div class="col-lg-12">
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+      <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+    </div>
+  </div>
+</s:if>
+
+<s:if test="hasActionErrors()">
+  <div class="col-lg-12">
+    <div class="alert alert-errors">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+      <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+    </div>
+  </div>
+</s:if>
+
+<div class="row">
+
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+
+      <div class="panel-heading">
+        <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Customer Contact Profile</h3>
+      </div>
+
+      <div class="panel-body">
+
+        <s:set name="vendorId" value="%{vendor.vendorId}" scope="session"/>
+        <s:hidden name="contactCodeParam" value="%{contact.contactId}"></s:hidden>
+
+        <div class="row">
+
+          <div class=" col-lg-6 col-lg-offset-2">
+
+            <div class="panel panel-info ">
+
+              <%--<div align="center" style="margin-top: 10px;">
+                  <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+              </div>--%>
+              <div class="row">
+                <div class="col-lg-12">
+
+                  <div class="col-lg-3">
+                    <div align="center" style="margin-top: 10px;">
+                      <div align="center" style="margin-top: 10px;">
+                        <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-9">
+
+                    <table class="table table-user-information profile" style="margin-top: 10px;">
+                      <tbody>
+                      <tr>
+                        <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Contact Type</td>
+                        <td><s:property value="contact.contactType"/></td>
+                      </tr>
+                      <tr>
+                        <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Position</td>
+                        <td><s:property value="contact.position"/></td>
+                      </tr>
+
+                      <tr>
+                      <tr>
+                        <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Last Name</td>
+                        <td><s:property value="contact.lastName"/></td>
+                      </tr>
+                      <tr>
+                        <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">First Name</td>
+                        <td><s:property value="contact.firstName"/></td>
+                      </tr>
+                      <tr>
+                        <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Phone</td>
+                        <td><s:property value="contact.phone"/></td>
+                      </tr>
+                      <tr>
+                        <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Mobile</td>
+                        <td><s:property value="contact.mobile"/></td>
+                      </tr>
+                      <tr>
+                        <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Fax</td>
+                        <td><s:property value="contact.fax"/></td>
+                      </tr>
+                      <tr>
+                        <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">E-mail</td>
+                        <td><s:property value="contact.email"/></td>
+                      </tr>
+                      <%--<tr>--%>
+                      <%--<td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Status</td>--%>
+                      <%--<td><s:property value="vendor.vendorStatus"/></td>--%>
+                      <%--</tr>--%>
+
+                      </tbody>
+                    </table>
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-2 col-lg-offset-2">
+            <div class="panel panel-info" >
+              <%--<div class="panel-heading">--%>
+              <%--<h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>--%>
+              <%--</div>--%>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-12" style="text-align: center;">
+
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                      <a href="customerInfo" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
+                      <a href="viewAddress" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
+                      <a href="#" class="btn btn-default active" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
+                      <a href="viewItem" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list-ol fa-fw"></i> <br/>Items</a>
+                    </sec:authorize>
+
+                    <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">--%>
+                    <%--<a href="viewRates" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-money fa-fw"></i> <br/>Rates</a>--%>
+                    <%--</sec:authorize>--%>
+
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                      <a href="viewConsignees" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list fa-fw"></i> <br/>Consignee</a>
+                    </sec:authorize>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <%--<div class="col-lg-3 col-lg-offset-2">
+      <div class="panel panel-primary">
+          <ul class="nav nav-pills nav-stacked">
+              <li class="active"><a href="#"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
+              <li><a href="viewShippingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
+              <li><a href="viewVendorShippingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
+              <li><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
+          </ul>
+      </div>
+  </div>--%>
+
+</div>

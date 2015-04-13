@@ -46,6 +46,7 @@
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
                         <i class="fa fa-search"></i> Search Schedule
                     </button>
+                    <a href="viewVesselSchedules" class="btn btn-primary" id ="groups-btn">Display All</a>
                     <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddVesselSchedule'">

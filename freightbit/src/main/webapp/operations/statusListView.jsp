@@ -40,6 +40,7 @@
                         <i class="fa fa-search"></i> Search Booking Number
                     </button>
                 </sec:authorize>
+                <a href="viewStatusList" class="btn btn-primary" id ="groups-btn">Display All</a>
                 </span>
             </div>
 

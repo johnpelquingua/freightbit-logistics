@@ -208,6 +208,8 @@
                                                    pagesize="10"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
+                                        <td><display:column property="contactType" title="Contact Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
                                         <td><display:column property="lastName" title="Last Name <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="firstName" title="First Name <i class='fa fa-sort' />" class="tb-font-black"
@@ -242,7 +244,14 @@
                                                     <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
 
                                                 </s:a>
-                                                <i class="fa fa-trash-o deleteVendorTruckingContactIcon"></i>
+                                                <i class="fa fa-trash-o"></i>
+                                                <s:url var="viewInfoContactUrl" action="viewVendorTruckingContactsInfo">
+                                                    <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{viewInfoContactUrl}" rel="tooltip"
+                                                     title="View Contact Info">
+                                                    <i class="fa fa-info-circle"></i>
+                                                </s:a>
                                             </display:column>
                                         </td>
                                     </display:table>

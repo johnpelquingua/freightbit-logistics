@@ -7,6 +7,7 @@ import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
@@ -171,7 +172,7 @@ public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements Vesse
         log.debug("Find vendor by criteria ");
         Session session = getSessionFactory().getCurrentSession();
         List<VesselSchedules> vesselSchedules = session.createCriteria(VesselSchedules.class)
-                .add(Restrictions.like(column, value))
+                .add(Restrictions.like(column, value, MatchMode.ANYWHERE))
                 .list();
         return vesselSchedules;
     }

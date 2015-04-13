@@ -62,6 +62,58 @@
 
 <div class="row">
     <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                    <i class="fa fa-list"></i>
+                    <span class="panel-title">Container List</span>
+                </s:if>
+                <s:else>
+                    <i class="fa fa-list"></i>
+                    <span class="panel-title">Items</span>
+                </s:else>
+            </div>
+
+            <div class="panel-body form-horizontal">
+
+                <display:table id="orderItem" name="orderItemListings"
+                               requestURI="loadUpdateStatus.action" pagesize="10"
+                               class="bulkItemStatus table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
+                               style="margin-top: 15px;">
+                <tr>
+                    <td>
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <display:column property="nameSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </s:if>
+                        <s:else>
+                            <display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </s:else>
+                    </td>
+
+                    <td>
+                        <display:column property="containerNumber" title="Container Number <i class='fa fa-sort' />" class="tb-font-black"
+                                        style="text-align: center;"> </display:column>
+                    </td>
+
+                    <td>
+                        <display:column property="sealNumber" title="Seal Number <i class='fa fa-sort' />" class="tb-font-black"
+                                        style="text-align: center;"> </display:column>
+                    </td>
+
+                    <td>
+                        <display:column property="bulletSeal" title="Bullet Seal <i class='fa fa-sort' />" class="tb-font-black"
+                                        style="text-align: center;"> </display:column>
+                    </td>
+
+                    <td>
+                        <display:column property="status" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
+                                        style="text-align: center;"> </display:column>
+                    </td>
+                    </display:table>
+            </div>
+        </div>
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -92,38 +144,6 @@
                         </ol>
                     </div>
                 </div>--%>
-
-                <display:table id="orderItem" name="orderItemListings"
-                               requestURI="setBulkItemStatus.action" pagesize="10"
-                               class="bulkItemStatus table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
-                               style="margin-top: 15px;">
-                    <tr>
-                    <td>
-                        <display:column property="createdTimestamp" title="Actual Date/Time <i class='fa fa-sort' />" class="tb-font-black"
-                                        style="text-align: center;" format="{0,date,dd-MMM-yyyy hh:mm a}"></display:column>
-                    </td>
-
-                    <td>
-                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                            <display:column property="nameSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
-                        </s:if>
-                        <s:else>
-                            <display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
-                        </s:else>
-                    </td>
-
-                    <td>
-                        <display:column property="containerNumber" title="Container Number <i class='fa fa-sort' />" class="tb-font-black"
-                                        style="text-align: center;"> </display:column>
-                    </td>
-
-                    <td>
-                        <display:column property="status" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
-                                        style="text-align: center;"> </display:column>
-                    </td>
-                </display:table>
 
                 <div class="table-responsive list-table">
                     <tbody>

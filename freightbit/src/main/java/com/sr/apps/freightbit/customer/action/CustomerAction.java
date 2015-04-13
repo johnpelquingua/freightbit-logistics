@@ -1307,6 +1307,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String viewContactsInfo() {
+        Contacts contactEntity = customerService.findContactById(contactCodeParam);
+        contact = transformToFormBeanContacts(contactEntity);
+        return SUCCESS;
+    }
+
     public String loadSaveCompleteContacts() {
         Integer customerId = getCustomerSessionId();
         List<Contacts> contactEntityList = customerService.findContactByRefIdAndType("shipper",customerId);

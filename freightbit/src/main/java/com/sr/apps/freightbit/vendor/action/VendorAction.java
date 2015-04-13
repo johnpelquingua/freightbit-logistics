@@ -1213,6 +1213,26 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String viewContactsInfo() {
+        Integer vendorId = getSessionVendorId();
+        Vendor vendorEntity = new Vendor();
+        if (!StringUtils.isBlank(vendorCodeParam)){
+            vendorEntity = vendorService.findVendorById(vendorIdParam);
+        }else{
+            vendorEntity = vendorService.findVendorById(getSessionVendorId());
+        }
+
+        vendor = transformToFormBean(vendorEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("vendorId", vendor.getVendorId());
+
+        Contacts contactEntity = vendorService.findContactById(contactCodeParam);
+        contact = transformToFormBeanContacts(contactEntity);
+
+        return SUCCESS;
+    }
+
     public String loadSaveCompleteContacts() {
         Integer vendorId = getSessionVendorId();
         List<Contacts> contactEntityList = new ArrayList<Contacts>();
