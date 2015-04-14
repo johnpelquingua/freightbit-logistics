@@ -175,6 +175,14 @@
                                                  name="book-num" disabled="true"></s:textfield>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Comments</label>
+                                <div class="col-lg-10">
+                                    <s:textarea cssClass="form-control" value="%{order.comments}"
+                                                disabled="true" cssStyle="resize: none; height: 150px;"></s:textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

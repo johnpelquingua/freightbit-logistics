@@ -36,7 +36,7 @@
 
             <div class="recipientField" style="display:none;">
 
-                <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Authorized Agent</label>
+                <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Authorized Agent to Withdraw</label>
                 <div class="col-lg-8" >
                     <s:select id="representativeContact"
                               name="repContactIdParam"

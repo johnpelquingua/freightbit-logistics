@@ -203,7 +203,7 @@
                                 </display:table>
                             </div>
 
-                            <div class="col-md-6 pull-right well wellDiv" style="display: none;">
+                            <div class="col-md-6 pull-right well wellDiv" style="display: none; margin-top: 20px;">
                                 <p>Total Weight (kg) : <font id="wellTotalWeight">0</font></p>
                                 <p>Total Volume  (cbm) : <font id="wellTotalVolume">0</font></p>
                                 <hr/>

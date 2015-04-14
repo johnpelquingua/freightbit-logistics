@@ -25,13 +25,14 @@ public class ContactBean {
     private String modifiedBy;
     private String name;
     private String companyName;
+    private String authorizedAgent;
 
     public ContactBean() {
 
     }
 
-    public ContactBean(String email, Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String position, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String name, String companyName) {
-        this.email = email;
+    public ContactBean(String middleName, Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String lastName, String phone, String mobile, String fax, String email, String position, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String name, String companyName, String authorizedAgent) {
+        this.middleName = middleName;
         this.sessionVendorId = sessionVendorId;
         this.contactId = contactId;
         this.clientId = clientId;
@@ -39,11 +40,11 @@ public class ContactBean {
         this.referenceId = referenceId;
         this.contactType = contactType;
         this.firstName = firstName;
-        this.middleName = middleName;
         this.lastName = lastName;
         this.phone = phone;
         this.mobile = mobile;
         this.fax = fax;
+        this.email = email;
         this.position = position;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
@@ -51,6 +52,7 @@ public class ContactBean {
         this.modifiedBy = modifiedBy;
         this.name = name;
         this.companyName = companyName;
+        this.authorizedAgent = authorizedAgent;
     }
 
     public String getLastName() {
@@ -211,5 +213,13 @@ public class ContactBean {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getAuthorizedAgent() {
+        return authorizedAgent;
+    }
+
+    public void setAuthorizedAgent(String authorizedAgent) {
+        this.authorizedAgent = authorizedAgent;
     }
 }

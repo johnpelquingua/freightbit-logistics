@@ -64,7 +64,7 @@
                     <li class="active col-md-6 padding-0-r" id="shipping">
                         <a href="#shippingTab" role="tab" data-toggle="tab"><i class="fa fa-anchor"></i> Shipping Vendors</a>
                     </li>
-                    <li class="col-md-6 padding-0-lr" id="trucking">
+                    <li class="col-md-6 padding-0-l " id="trucking">
                         <a href="#truckingTab" role="tab" data-toggle="tab"><i class="fa fa-truck"></i> Trucking Vendors</a>
                     </li>
                 </ul>

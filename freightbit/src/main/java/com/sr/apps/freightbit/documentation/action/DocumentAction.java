@@ -1667,7 +1667,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
         List<OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(orderEntity.getOrderId());
 
         List<String> vendorOrigin = new ArrayList<String>();
+        List<String> vendor3rdPartyOrigin = new ArrayList<String>();
         List<String> vendorDestination = new ArrayList<String>();
+        List<String> vendor3rdPartyDestination = new ArrayList<String>();
 
         // Origin vendors set will be stored in VendorOrigin Variable
         Integer vendorOriginCount = 0;
@@ -1688,13 +1690,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
         for (OrderItems everyItem : orderItemsList) {
             if(everyItem.getVendorOrigin() != null) {
                 if(!everyItem.getVendorOrigin().equals("ELC")) {
-                    if (vendorOrigin.isEmpty()) {
-                        vendorOrigin.add(everyItem.getVendorOrigin());
-                        vendorOriginCount = vendorOriginCount + 1;
+                    if (vendor3rdPartyOrigin.isEmpty()) {
+                        vendor3rdPartyOrigin.add(everyItem.getVendorOrigin());
+                        vendor3rdPartyOriginCount = vendor3rdPartyOriginCount + 1;
                     } else {
-                        if (!vendorOrigin.contains(everyItem.getVendorOrigin())) {
-                            vendorOrigin.add(everyItem.getVendorOrigin());
-                            vendorOriginCount = vendorOriginCount + 1;
+                        if (!vendor3rdPartyOrigin.contains(everyItem.getVendorOrigin())) {
+                            vendor3rdPartyOrigin.add(everyItem.getVendorOrigin());
+                            vendor3rdPartyOriginCount = vendor3rdPartyOriginCount + 1;
                         }
                     }
                 }
@@ -1720,13 +1722,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
         for (OrderItems everyItem : orderItemsList) {
             if(everyItem.getVendorDestination() != null) {
                if(!everyItem.getVendorDestination().equals("ELC")) {
-                   if (vendorDestination.isEmpty()) {
-                       vendorDestination.add(everyItem.getVendorDestination());
-                       vendorDestinationCount = vendorDestinationCount + 1;
+                   if (vendor3rdPartyDestination.isEmpty()) {
+                       vendor3rdPartyDestination.add(everyItem.getVendorDestination());
+                       vendor3rdPartyDestinationCount = vendor3rdPartyDestinationCount + 1;
                    } else {
-                       if (!vendorDestination.contains(everyItem.getVendorDestination())) {
-                           vendorDestination.add(everyItem.getVendorDestination());
-                           vendorDestinationCount = vendorDestinationCount + 1;
+                       if (!vendor3rdPartyDestination.contains(everyItem.getVendorDestination())) {
+                           vendor3rdPartyDestination.add(everyItem.getVendorDestination());
+                           vendor3rdPartyDestinationCount = vendor3rdPartyDestinationCount + 1;
                        }
                    }
                }
@@ -1735,6 +1737,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         documentNames = parameterService.getParameterMap(ParameterConstants.DOCUMENT, ParameterConstants.DOCUMENT_NAME);
 
         List <Driver> allDriverList = vendorService.findAllDrivers();
+        List <Contacts> allContactsList = vendorService.findAllContacts();
 
         // Will filter authorized agent and Ernest based on Origin and Destination
         if(documentStageParam.equals("OUTBOUND")){
@@ -1744,6 +1747,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             vendorLocationFlag = "ORIGIN";
 
             if(ernestRecipientOri != null){
+
                 for (Driver driverElem : allDriverList){
                     if(driverElem.getVendorId() == ernestRecipientOri.getVendorId()){
 
@@ -1751,42 +1755,71 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         formBean.setDriverId(driverElem.getDriverId());
                         formBean.setLastName(driverElem.getLastName());
                         formBean.setFirstName(driverElem.getFirstName());
-                        formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+                        formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName() + " (Driver) ");
 
                         repContactsList.add(formBean);
                     }
                 }
+
+                for (Contacts contactElem : allContactsList ) {
+                    if(contactElem.getReferenceId() == ernestRecipientOri.getVendorId()){
+
+                        DriverBean formBean = new DriverBean();
+                        formBean.setDriverId(contactElem.getContactId());
+                        formBean.setLastName(contactElem.getLastName());
+                        formBean.setFirstName(contactElem.getFirstName());
+                        formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + contactElem.getFirstName() + " " + contactElem.getLastName() + " (Contact Person) ");
+
+                        repContactsList.add(formBean);
+
+                    }
+                }
+
             }
 
             if(vendor3rdPartyOriginCount > 0) {
 
                 for (String driverOrigin : vendorOrigin) {
 
-                    /*if (!driverOrigin.equals("ELC") || driverOrigin != null) {*/
+                    Vendor vendorEntity = vendorService.findVendorByVendorCode(driverOrigin);
 
-                        Vendor vendorEntity = vendorService.findVendorByVendorCode(driverOrigin);
+                    if (vendorEntity != null) {
+                        // for drivers to add to authorized agent to withdraw
+                        for (Driver driverElem : allDriverList) {
 
-                        if (vendorEntity != null) {
+                            if (driverElem.getVendorId() == vendorEntity.getVendorId()) {
 
-                            for (Driver driverElem : allDriverList) {
+                                DriverBean formBean = new DriverBean();
+                                formBean.setDriverId(driverElem.getDriverId());
+                                formBean.setLastName(driverElem.getLastName());
+                                formBean.setFirstName(driverElem.getFirstName());
+                                Vendor insideEntity = vendorService.findVendorById(driverElem.getVendorId());
+                                formBean.setAuthorizedAgent(insideEntity.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName() + " (Driver) ");
 
-                                if (driverElem.getVendorId() == vendorEntity.getVendorId()) {
-
-                                    DriverBean formBean = new DriverBean();
-                                    formBean.setDriverId(driverElem.getDriverId());
-                                    formBean.setLastName(driverElem.getLastName());
-                                    formBean.setFirstName(driverElem.getFirstName());
-                                    Vendor insideEntity = vendorService.findVendorById(driverElem.getVendorId());
-                                    formBean.setAuthorizedAgent(insideEntity.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
-
-                                    repContactsList.add(formBean);
-
-                                }
+                                repContactsList.add(formBean);
 
                             }
+
+                        }
+                        // for vendor contact persons to add to authorized agent to withdraw
+                        for (Contacts contactElem : allContactsList) {
+
+                            if(contactElem.getReferenceId() == vendorEntity.getVendorId() && contactElem.getReferenceTable().equals("VENDOR")){
+
+                                DriverBean formBean = new DriverBean();
+                                formBean.setDriverId(contactElem.getContactId());
+                                formBean.setLastName(contactElem.getLastName());
+                                formBean.setFirstName(contactElem.getFirstName());
+                                Vendor insideEntity = vendorService.findVendorById(contactElem.getReferenceId());
+                                formBean.setAuthorizedAgent(insideEntity.getVendorName() + " - " + contactElem.getFirstName() + " " + contactElem.getLastName() + " (Contact Person) ");
+
+                                repContactsList.add(formBean);
+
+                            }
+
                         }
 
-                    /*}*/
+                    }
 
                 }
 
@@ -1807,7 +1840,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
             vendorLocationFlag = "DESTINATION";
 
             if(ernestRecipientOri != null){
+
                 if(orderEntity.getServiceType().equals("SHIPPING")){
+
                     for (Driver driverElem : allDriverList){
                         if(driverElem.getVendorId() == ernestRecipientOri.getVendorId()){
 
@@ -1815,15 +1850,34 @@ public class DocumentAction extends ActionSupport implements Preparable{
                             formBean.setDriverId(driverElem.getDriverId());
                             formBean.setLastName(driverElem.getLastName());
                             formBean.setFirstName(driverElem.getFirstName());
-                            formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+                            formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName() + " (Driver) ");
 
                             repContactsList.add(formBean);
                         }
                     }
+
+                    for(Contacts contactElem : allContactsList){
+
+                        if(contactElem.getReferenceId() == ernestRecipientOri.getVendorId()){
+
+                            DriverBean formBean = new DriverBean();
+                            formBean.setDriverId(contactElem.getContactId());
+                            formBean.setLastName(contactElem.getLastName());
+                            formBean.setFirstName(contactElem.getFirstName());
+                            formBean.setAuthorizedAgent(ernestRecipientOri.getVendorName() + " - " + contactElem.getFirstName() + " " + contactElem.getLastName() + " (Contact Person) ");
+
+                            repContactsList.add(formBean);
+
+                        }
+
+                    }
+
                 }
+
             }
 
             if(ernestRecipientDes != null){
+
                 for (Driver driverElem : allDriverList){
                     if(driverElem.getVendorId() == ernestRecipientDes.getVendorId()){
 
@@ -1831,50 +1885,81 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         formBean.setDriverId(driverElem.getDriverId());
                         formBean.setLastName(driverElem.getLastName());
                         formBean.setFirstName(driverElem.getFirstName());
-                        formBean.setAuthorizedAgent(ernestRecipientDes.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
+                        formBean.setAuthorizedAgent(ernestRecipientDes.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName() + " (Driver) ");
 
                         repContactsList.add(formBean);
                     }
                 }
+
+                for(Contacts contactElem : allContactsList){
+
+                    if(contactElem.getReferenceId() == ernestRecipientDes.getVendorId()){
+
+                        DriverBean formBean = new DriverBean();
+                        formBean.setDriverId(contactElem.getContactId());
+                        formBean.setLastName(contactElem.getLastName());
+                        formBean.setFirstName(contactElem.getFirstName());
+                        formBean.setAuthorizedAgent(ernestRecipientDes.getVendorName() + " - " + contactElem.getFirstName() + " " + contactElem.getLastName() + " (Contact Person) ");
+
+                        repContactsList.add(formBean);
+
+                    }
+
+                }
+
             }
 
             if(vendor3rdPartyDestinationCount > 0){
 
                 for(String driverDestination : vendorDestination) {
 
-                    /*if(!driverDestination.equals("ELC")){*/
+                    Vendor vendorEntity = vendorService.findVendorByVendorCode(driverDestination);
 
-                        Vendor vendorEntity = vendorService.findVendorByVendorCode(driverDestination);
+                    if(vendorEntity != null){
 
-                        if(vendorEntity != null){
+                        for (Driver driverElem : allDriverList) {
 
-                            for (Driver driverElem : allDriverList) {
+                            if (driverElem.getVendorId() == vendorEntity.getVendorId()) {
+                                DriverBean formBean = new DriverBean();
 
-                                if (driverElem.getVendorId() == vendorEntity.getVendorId()) {
-                                    DriverBean formBean = new DriverBean();
+                                formBean.setDriverId(driverElem.getDriverId());
+                                formBean.setDriverCode(driverElem.getDriverCode());
+                                formBean.setLicenseNumber(driverElem.getLicenseNumber());
+                                formBean.setLastName(driverElem.getLastName());
+                                formBean.setFirstName(driverElem.getFirstName());
+                                formBean.setMiddleName(driverElem.getMiddleName());
+                                formBean.setTitle(driverElem.getTitle());
+                                formBean.setStatus(driverElem.getStatus());
+                                formBean.setCreatedBy(driverElem.getCreatedBy());
+                                formBean.setCreatedTimeStamp(driverElem.getCreatedTimestamp());
+                                Vendor insideEntity = vendorService.findVendorById(driverElem.getVendorId());
+                                formBean.setAuthorizedAgent(insideEntity.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName() + " (Driver) ");
 
-                                    formBean.setDriverId(driverElem.getDriverId());
-                                    formBean.setDriverCode(driverElem.getDriverCode());
-                                    formBean.setLicenseNumber(driverElem.getLicenseNumber());
-                                    formBean.setLastName(driverElem.getLastName());
-                                    formBean.setFirstName(driverElem.getFirstName());
-                                    formBean.setMiddleName(driverElem.getMiddleName());
-                                    formBean.setTitle(driverElem.getTitle());
-                                    formBean.setStatus(driverElem.getStatus());
-                                    formBean.setCreatedBy(driverElem.getCreatedBy());
-                                    formBean.setCreatedTimeStamp(driverElem.getCreatedTimestamp());
-                                    Vendor insideEntity = vendorService.findVendorById(driverElem.getVendorId());
-                                    formBean.setAuthorizedAgent(insideEntity.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName());
-
-                                    repContactsList.add(formBean);
-
-                                }
+                                repContactsList.add(formBean);
 
                             }
 
                         }
 
-                    /*}*/
+                        // for vendor contact persons to add to authorized agent to withdraw
+                        for (Contacts contactElem : allContactsList) {
+
+                            if(contactElem.getReferenceId() == vendorEntity.getVendorId() && contactElem.getReferenceTable().equals("VENDOR")){
+
+                                DriverBean formBean = new DriverBean();
+                                formBean.setDriverId(contactElem.getContactId());
+                                formBean.setLastName(contactElem.getLastName());
+                                formBean.setFirstName(contactElem.getFirstName());
+                                Vendor insideEntity = vendorService.findVendorById(contactElem.getReferenceId());
+                                formBean.setAuthorizedAgent(insideEntity.getVendorName() + " - " + contactElem.getFirstName() + " " + contactElem.getLastName() + " (Contact Person) ");
+
+                                repContactsList.add(formBean);
+
+                            }
+
+                        }
+
+                    }
 
                 }
 
@@ -2236,9 +2321,17 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 return INPUT;
             }
 
+            Integer vendorIdHolder = 0;
             Driver contactEntity = vendorService.findDriverById(repContactIdParam);
 
-            Vendor vendorEntity = vendorService.findVendorById(contactEntity.getVendorId());
+            if(contactEntity != null){
+                vendorIdHolder = contactEntity.getVendorId();
+            }else{
+                Contacts contactElem = vendorService.findContactById(repContactIdParam);
+                vendorIdHolder = contactElem.getReferenceId();
+            }
+
+            Vendor vendorEntity = vendorService.findVendorById(vendorIdHolder);
 
             for(OrderItems orderItemElem : orderItemsList){
 
@@ -2274,49 +2367,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                                 }
                             }
 
-                            /*Documents documentEntity = new Documents();
-                            Client client = clientService.findClientById(getClientId().toString());
-
-                            documentEntity.setClient(client);
-                            documentEntity.setDocumentName(documentName);
-                            documentEntity.setReferenceId(document.getReferenceId());
-                            documentEntity.setReferenceTable("ORDERS");
-                            documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-                            documentEntity.setCreatedDate(new Date());
-                            documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
-                            documentEntity.setVendorCode(vendorEntity.getVendorCode());
-
-                            documentEntity.setRepContact(repContactIdParam);
-                            documentEntity.setOriContact(shipperContactIdParam);
-                            documentEntity.setDesContact(consigneeContactIdParam);
-
-                            if (documentStageParam.equals("OUTBOUND")) {
-                                documentEntity.setOutboundStage(1);
-                                documentEntity.setDocumentProcessed(0);
-                                documentEntity.setDocumentStatus("OUTBOUND");
-                            } else if (documentStageParam.equals("INBOUND")) {
-                                documentEntity.setInboundStage(1);
-                                documentEntity.setDocumentProcessed(1);
-                                documentEntity.setDocumentStatus("INBOUND");
-                            } else if (documentStageParam.equals("FINAL OUTBOUND")) {
-                                documentEntity.setDocumentProcessed(2);
-                                documentEntity.setFinalOutboundStage(1);
-                                documentEntity.setDocumentStatus("FINAL OUTBOUND");
-                            } else {
-                                documentEntity.setFinalInboundStage(1);
-                                documentEntity.setDocumentProcessed(3);
-                                documentEntity.setDocumentStatus("FINAL INBOUND");
-                            }
-
-                            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                            documentEntity.setReferenceNumber(document.getReferenceNumber());
-                            documentEntity.setDocumentComments(document.getDocumentComments());
-                            String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
-                            documentEntity.setControlNumber(documentCode);
-
-                            documentEntity.setReferenceNumber(documentCode.replace("ATW-", ""));
-
-                            documentsService.addDocuments(documentEntity);*/
                         }
 
                     }catch(NullPointerException npe){
@@ -2421,49 +2471,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                                 }
                             }
 
-                            /*Documents documentEntity = new Documents();
-                            Client client = clientService.findClientById(getClientId().toString());
-
-                            documentEntity.setClient(client);
-                            documentEntity.setDocumentName(documentName);
-                            documentEntity.setReferenceId(document.getReferenceId());
-                            documentEntity.setReferenceTable("ORDERS");
-                            documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-                            documentEntity.setCreatedDate(new Date());
-                            documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
-                            documentEntity.setVendorCode(vendorEntity.getVendorCode());
-
-                            documentEntity.setRepContact(repContactIdParam);
-                            documentEntity.setOriContact(shipperContactIdParam);
-                            documentEntity.setDesContact(consigneeContactIdParam);
-
-                            if (documentStageParam.equals("OUTBOUND")) {
-                                documentEntity.setOutboundStage(1);
-                                documentEntity.setDocumentProcessed(0);
-                                documentEntity.setDocumentStatus("OUTBOUND");
-                            } else if (documentStageParam.equals("INBOUND")) {
-                                documentEntity.setInboundStage(1);
-                                documentEntity.setDocumentProcessed(1);
-                                documentEntity.setDocumentStatus("INBOUND");
-                            } else if (documentStageParam.equals("FINAL OUTBOUND")) {
-                                documentEntity.setDocumentProcessed(2);
-                                documentEntity.setFinalOutboundStage(1);
-                                documentEntity.setDocumentStatus("FINAL OUTBOUND");
-                            } else {
-                                documentEntity.setFinalInboundStage(1);
-                                documentEntity.setDocumentProcessed(3);
-                                documentEntity.setDocumentStatus("FINAL INBOUND");
-                            }
-
-                            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                            documentEntity.setReferenceNumber(document.getReferenceNumber());
-                            documentEntity.setDocumentComments(document.getDocumentComments());
-                            String documentCode = documentsService.findNextControlNo(getClientId(), "ATW"); // ATW for Authorization to Withdraw Form Document Code
-                            documentEntity.setControlNumber(documentCode);
-
-                            documentEntity.setReferenceNumber(documentCode.replace("ATW-", ""));
-
-                            documentsService.addDocuments(documentEntity);*/
                         }
 
                     }catch(NullPointerException npe){
