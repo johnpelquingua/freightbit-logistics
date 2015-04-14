@@ -147,6 +147,8 @@ public interface VendorService {
 
     public List<Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
 
+    public List<Contacts> findVendorContact(String referenceTable, Integer vendorId);
+
     public List<Contacts> findContactByRefTableAndId(String referenceTable, Integer customerId);
 
     public List<Contacts> findContactByReferenceId(Integer vendorId);

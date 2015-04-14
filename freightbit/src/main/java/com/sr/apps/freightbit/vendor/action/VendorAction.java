@@ -1201,9 +1201,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         vendor = transformToFormBean(vendorEntity);
 
         /*contactEntityList = vendorService.findContactByReferenceId(vendorId);*/
-            contactEntityList = vendorService.findContactByReferenceId(vendorId);
+            contactEntityList = vendorService.findVendorContact("VENDOR", vendorId);
 
-            for (Contacts contactElem : contactEntityList) {
+        for (Contacts contactElem : contactEntityList) {
                 contacts.add(transformToFormBeanContacts(contactElem));
             }
 

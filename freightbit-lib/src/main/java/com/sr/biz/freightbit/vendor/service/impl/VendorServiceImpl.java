@@ -481,6 +481,11 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
+    public List<Contacts> findVendorContact(String referenceTable, Integer vendorId) {
+        return contactsDao.findContactByRefTableAndId(referenceTable, vendorId);
+    }
+
+    @Override
     public List<Contacts> findContactByReferenceId(Integer vendorId) {
         List<Contacts> result = contactsDao.findContactByReferenceId(vendorId);
         return result;

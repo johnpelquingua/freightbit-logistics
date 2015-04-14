@@ -17,7 +17,6 @@
 </style>
 
 <script>
-
   $(document).ready(function () {
       $("#notifyByPhone").click(function () {
           if (document.getElementById('notifyByPhone').checked) {
@@ -64,28 +63,26 @@
           var getStatusFax = localStorage.getItem('notifyByFax');
           var getStatusEmail = localStorage.getItem('notifyByEmail');
 
-          if (getStatusPhone == "true") {
-              document.getElementById("notifyByPhone").checked = true;
-              if(getStatusMobile == "true") {
-                  document.getElementById("notifyByMobile").checked = true;
-                  if(getStatusSms == "true") {
-                      document.getElementById("notifyBySms").checked = true;
-                      if(getStatusFax == "true") {
-                          document.getElementById("notifyByFax").checked = true;
-                          if(getStatusEmail == "true") {
-                              document.getElementById("notifyByEmail").checked = true;
-                          }
-                      }
-                  }
-              }
-          }
-          else
-          {
-              console.log("its not checked");
-          }
+            if (getStatusPhone == "true") {
+                document.getElementById("notifyByPhone").checked = true;
+                if (getStatusMobile == "true") {
+                    document.getElementById("notifyByMobile").checked = true;
+                    if (getStatusSms == "true") {
+                        document.getElementById("notifyBySms").checked = true;
+                        if (getStatusFax == "true") {
+                            document.getElementById("notifyByFax").checked = true;
+                            if (getStatusEmail == "true") {
+                                document.getElementById("notifyByEmail").checked = true;
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                console.log("its not checked");
+            }
       });
   });
-
 </script>
 
 <div class="row">
@@ -1008,6 +1005,24 @@
             </div>
             <div class="modal-body">
                 <center><p>Select a Customer first</p></center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="checkBoxModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Error</h4></center>
+            </div>
+            <div class="modal-body">
+                <center><p>Please select at least one checkbox</p></center>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>

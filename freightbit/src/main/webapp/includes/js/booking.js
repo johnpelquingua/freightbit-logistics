@@ -881,8 +881,7 @@ function dateSameValidation() {
             alert('delivery date ' + deliveryDate);*/
 
         if($('input[type=checkbox]:checked').length == 0){
-            /*alert(1);*/
-            alert ( "ERROR! Please select at least one checkbox" );
+            $('#checkBoxModal').modal('show');
             return false;
         }else if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
             /*alert(2);*/
