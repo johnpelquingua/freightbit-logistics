@@ -86,7 +86,6 @@ $(document).ready(function() {
             $('#id_Consignee').attr('disabled', false);
         }
     });
-
     // DISABLE ADD CONTACT PERSON BUTTON IF CONTACT ALREADY EXISTS - END
 
     $('.serviceModeDropdown').change(function(){
@@ -145,6 +144,7 @@ $(document).ready(function() {
 
     // Customer Dropdown
     $('#customerName').change(function(event) {
+        $('.overlay').fadeIn();
         var custId = $("#customerName").val();
 
         $.getJSON('customerAction', {
@@ -274,6 +274,7 @@ $(document).ready(function() {
             //});
 
             $.getJSON('consigneeAction', {
+                async : false,
                 customerID : custId,
                 consigneeId : consignee_Id
             },function(jsonResponse) {
@@ -307,15 +308,17 @@ $(document).ready(function() {
             });
 
         });
-
+        $('.overlay').fadeOut();
     });
 
     //Consignee on Select
     $('#shipperConsignee').change(function(event) {
+        $('.overlay').fadeIn();
         var custId = $("#customerName").val();
         var consignee_Id = $("#shipperConsignee").val();
 
         $.getJSON('consigneeAction', {
+            async : false,
             customerID : custId,
             consigneeId : consignee_Id
         },function(jsonResponse) {
@@ -345,14 +348,17 @@ $(document).ready(function() {
                 $('<option>').val(key).text(value).appendTo(select9);
             });
         });
+        $('.overlay').fadeOut();
     });
 
     //Consignee Address on Select
     $('#consigneeAddress').change(function(event) {
+        $('.overlay').fadeIn();
         var custId = $("#customerName").val(),
             address_Id = $("#consigneeAddress").val();
 
         $.getJSON('addressAction', {
+            async : false,
             customerID : custId,
             addressId: address_Id
         },function (jsonResponse) {
@@ -373,6 +379,7 @@ $(document).ready(function() {
                 }
             });
         });
+        $('.overlay').fadeOut();
     });
 
    /* // Date Time Picker

@@ -1050,6 +1050,13 @@
         </div>
     </div>
 </div>
+
+<div class="overlay" style="display: none;">
+    <div class="col-md-4 col-md-offset-4" style="margin-top: 15em; background-color: #ECF0F1; border-radius: 0.3em; padding: 0.9em; color: black; text-align: center">
+        <i class="fa fa-circle-o-notch fa-spin" style="color: #95A5A6; font-size: 4em;"></i><br/>
+        <p style="margin-top: 0.4em; margin-bottom: 0em;">Populating fields. Please wait.</p>
+    </div>
+</div>
 <%-- MODAL FOR DATE SAME WARNING  -- END --%>
 
 <script type="text/javascript" src="../includes/js/booking.js"></script>
