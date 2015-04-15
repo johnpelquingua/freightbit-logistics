@@ -31,7 +31,7 @@
             <div class="panel-body">
 
                 <s:form cssClass="form-horizontal vesselScheduleForm" theme="bootstrap" action="addVesselSchedule">
-                <%--<s:hidden value="%{vesselSchedule.vesselScheduleId}" name="vesselSchedule.vesselScheduleId"/>--%>
+                <s:hidden value="%{vesselSchedule.vesselScheduleId}" name="vesselSchedule.vesselScheduleId"/>
                 <%--<s:hidden value="%{vesselSchedule.createdBy}" name="vesselSchedule.createdBy"/>--%>
                 <%--<s:hidden value="%{vesselSchedule.createdTimestamp}" name="vesselSchedule.createdTimestamp"/>--%>
                 <div class="form-group">

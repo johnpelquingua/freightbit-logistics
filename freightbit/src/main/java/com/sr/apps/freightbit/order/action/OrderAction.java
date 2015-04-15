@@ -20,6 +20,7 @@ import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.core.exceptions.AddressAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.operations.service.OperationsService;
@@ -723,6 +724,10 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderItems.add(transformToOrderItemsFormBean(orderItemElem));
         }
 
+        if(orderItemEntityList.size() == 0) {
+            orderEntityForm.setOrderStatus("INCOMPLETE");
+            orderService.updateOrder(orderEntityForm);
+        }
         clearErrorsAndMessages();
         addActionMessage("Success! Booking Item has been deleted.");
 
@@ -1232,11 +1237,16 @@ public class OrderAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        Address addressEntity = transformToEntityBeanAddress(address);
-        addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
-        addressEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-        addressEntity.setCreatedTimestamp(new Date());
-        customerService.addAddress(addressEntity);
+        try{
+            Address addressEntity = transformToEntityBeanAddress(address);
+            addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            addressEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            addressEntity.setCreatedTimestamp(new Date());
+            customerService.addAddress(addressEntity);
+        }catch (AddressAlreadyExistsException e) {
+            addFieldError("address.addressLine1", getText("err.addressLine1.already.exists"));
+            return INPUT;
+        }
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         // Put Order Id to Order Id session

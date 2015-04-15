@@ -122,7 +122,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Parameters> containerSizeList = new ArrayList<Parameters>();
     private List<Parameters> containerEirTypeList = new ArrayList<Parameters>();
     private List<Parameters> containerStatusList = new ArrayList<Parameters>();
-    private List<Vessel> vesselList = new ArrayList<Vessel>();
+    private List<Vessel> listVessel = new ArrayList<Vessel>();
+    private List<Vendor> vendorList = new ArrayList<Vendor>();
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private List<OrderItemsBean> orderItemVesselSchedule = new ArrayList<OrderItemsBean>();
@@ -185,6 +186,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         containerSizeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_SIZE);
         containerEirTypeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.EIR_TYPE);
         containerStatusList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_STATUS);
+        vendorList = vendorService.findAllShippingVendor();
     }
 
     public String updateCompleteInlandPlanning() {
@@ -1616,7 +1618,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             entity.setModifiedTimestamp(new Date());
             vesselSchedulesService.addVesselSchedule(entity);
         }  catch (VesselSchedulesAlreadyExistsException e) {
-            addFieldError("vesselSchedule.vesselScheduleId", getText("err.voyageNumber.already.exists"));
+            addFieldError("vesselSchedule.voyageNumber", getText("err.voyageNumber.already.exists"));
             return INPUT;
         }
 
@@ -5635,12 +5637,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
         this.originCityTruck = originCityTruck;
     }
 
-    public List<Vessel> getVesselList() {
-        return vesselList;
+    public List<Vessel> getListVessel() {
+        return listVessel;
     }
 
-    public void setVesselList(List<Vessel> vesselList) {
-        this.vesselList = vesselList;
+    public void setListVessel(List<Vessel> listVessel) {
+        this.listVessel = listVessel;
     }
 
     public Map<String, String> getVesselMap() {
@@ -5825,5 +5827,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setBookingNumSearchList(List<Parameters> bookingNumSearchList) {
         this.bookingNumSearchList = bookingNumSearchList;
+    }
+
+    public List<Vendor> getVendorList() {
+        return vendorList;
+    }
+
+    public void setVendorList(List<Vendor> vendorList) {
+        this.vendorList = vendorList;
     }
 }

@@ -9,6 +9,11 @@ $(document).ready(function(){
         $('.cargoContainerSavingTableLoadingDiv').show();
     }
 
+    if($('.itemListing tbody tr').size() == 0){
+        //$('.tableDiv').hide()
+        $('.emptyContainerItemListing').show();
+    }
+
     // adding item memory
     $('.addItemToList').click(function(){
         localStorage.setItem('addingItems', true);

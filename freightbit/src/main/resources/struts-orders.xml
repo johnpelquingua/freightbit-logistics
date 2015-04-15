@@ -158,6 +158,7 @@
         <action name="addCustomerAddress" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addAddress">
             <result name="success" type="redirect">AddCustomerAddressInBooking</result>
+            <result name="input" type="tiles">orders.booking-new.tiles</result>
         </action>
 
         <action name="AddCustomerAddressInBooking" class="com.sr.apps.freightbit.order.action.OrderAction"

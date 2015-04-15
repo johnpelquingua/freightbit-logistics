@@ -729,7 +729,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
                         <s:iterator value="orderItems" var="orderItem">
                             <tr>
                                 <td class="tb-font-black"><s:property value="quantity"/></td>
@@ -744,7 +743,7 @@
 
                                 <td class="tb-font-black">
                                     <%--<a id="edit-icon" href="#" data-toggle="modal" data-target="#editItemListingModal" onclick="showEditItemListingFields(${orderItemId});">
-                        f                <i class="fa fa-edit"></i>
+                                        <i class="fa fa-edit"></i>
                                     </a>--%>
 
                                     <s:url var="editOrderItemUrl" action="loadEditOrderItem">
@@ -771,7 +770,9 @@
                         </tbody>
                         <%--<s:property  value="%{customerItemsId}"/>--%>
                     </table>
-
+                </div>
+                <div class="emptyContainerItemListing well" style="text-align: center; display: none;">
+                    <h4> No container/items to display</h4>
                 </div>
             </div>
 

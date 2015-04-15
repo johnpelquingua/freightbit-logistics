@@ -1076,6 +1076,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="emptyContainerItemListing well" style="text-align: center; display: none;">
+                        <h4> No container/items to display</h4>
+                    </div>
                 </div>
 
             </div>
