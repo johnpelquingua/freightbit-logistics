@@ -2,6 +2,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="true" %>
 
 <div class="row">
@@ -176,7 +177,7 @@
 
                     <td><display:column property="finalPickupDate" title="Pickup Date" class="tb-font-black"
                                         style="text-align: center;"> </display:column></td>
-
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
                     <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
                                         class="tb-font-black"
                                         style="text-align: center;"> </display:column></td>
@@ -184,7 +185,7 @@
                     <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
                                         class="tb-font-black"
                                         style="text-align: center;"> </display:column></td>
-
+                    </sec:authorize>
                     <td><display:column property="status" title="Status <i class='fa fa-sort' />"
                                         class="tb-font-black"
                                         style="text-align: center;"> </display:column></td>
@@ -260,7 +261,7 @@
                 <i class="fa fa-truck"></i>
                 <span class="panel-title"> Dispatch Plan : Destination</span>
             </div>
-
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
             <div class="panel-body">
                 <s:form cssClass="form-horizontal destinationForm" theme="bootstrap" action="editBulkItemsInlandDestination">
                     <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
@@ -330,7 +331,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">Truck Code</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.truckDestination"
@@ -365,7 +366,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                         <div class="col-lg-8">
@@ -431,7 +432,7 @@
                     </div>
                 </s:form>
             </div>
-
+            </sec:authorize>
             <div class="panel-footer">
                 <div class="pull-right">
                     <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
@@ -462,7 +463,6 @@
 </div>
 
 <%--Start Add Vendor Modal--%>
-
 <div class="modal fade" id="createVendor" role="form" aria-labelledby="myModalLabel1">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -815,7 +815,6 @@
 <%--End Add Vendor Modal--%>
 
 <%--MODAL FOR DATE VALIDATION START--%>
-
 <div class="modal fade" id="dateWarningModalDes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -833,7 +832,6 @@
         </div>
     </div>
 </div>
-
 <%--MODAL FOR DATE VALIDATION END--%>
 
 <!-- Confirm Vendor Modal -->
@@ -1132,8 +1130,6 @@
     $(document).ready(function(){
 
         $("#driver_licenseNumber").mask("A99-99-9999999");
-//        $("#shipping_mobile").mask("(+63999)(999-9999)");
-//        $("#shipping_fax").mask("(999) 999-9999");
         $("#truck_modelYear").mask("9999");
         $("#truck_grossWeight").mask("999999999");
         $("#truck_netWeight").mask("999999999");

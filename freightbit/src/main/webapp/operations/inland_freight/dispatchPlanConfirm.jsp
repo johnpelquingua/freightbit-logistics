@@ -26,7 +26,7 @@
 
             <h4 style="text-align:center;"><i class="fa fa-tasks"></i> CONTAINER(S)</h4>
 
-            <display:table id="orderItem" name="orderItems"
+            <%--<display:table id="orderItem" name="orderItems"
                            requestURI="/getConfirmModalAction.action"
                            class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple"
                            style="margin-top: 15px;">
@@ -55,7 +55,53 @@
 
                 </tr>
 
-            </display:table>
+            </display:table>--%>
+
+            <div class="table-responsive list-table">
+
+                <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
+                    <thead>
+                    <tr class="header_center" style="background-color: #fff;">
+                        <th class="tb-font-black">Quantity</th>
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        <span>
+                            <th class="tb-font-black">Size</th>
+                        </span>
+                        </s:if>
+                        <s:else>
+                        <span>
+                            <th class="tb-font-black">Name</th>
+                        </span>
+                        </s:else>
+                        <th class="tb-font-black">Commodity</th>
+                        <th class="tb-font-black">Declared Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <s:iterator value="orderItems" var="orderItems">
+                        <tr>
+                                <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                            <td class="tb-font-black"><s:property value="quantity"/></td>
+                            <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <%--<td><display:column property="nameSize" title="Container" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                <td class="tb-font-black"><s:property value="nameSize"/></td>
+                            </s:if>
+                            <s:else>
+                                <%--<td><display:column property="nameSize" title="Item" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                <td class="tb-font-black"><s:property value="nameSize"/></td>
+                            </s:else>
+                                <%--<td><display:column property="commodity" title="Commodity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                            <td class="tb-font-black"><s:property value="description"/></td>
+                                <%--<td><display:column property="declaredValue" title="Declared Value" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                            <td class="tb-font-black"><s:property value="getText('format.money',{declaredValue})"/></td>
+                        </tr>
+                    </s:iterator>
+
+                    </tbody>
+                </table>
+
+            </div>
 
         </div>
 
@@ -75,9 +121,9 @@
             <s:textfield cssClass="form-control dispatch-form" value="%{driverCodeParam}" readonly="true" />
         </div>
 
-        <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Truck</label>
+        <label class="col-lg-3 control-label" style="padding-top:0px; display:none; text-align: center;">Truck</label>
 
-        <div class="col-lg-9">
+        <div class="col-lg-9" style="display: none;">
             <s:textfield cssClass="form-control dispatch-form" value="%{truckCodeParam}" readonly="true" />
         </div>
 

@@ -72,20 +72,22 @@
                 <tbody>
 
                 <s:iterator value="orderItems" var="orderItems">
-                    <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                    <td class="tb-font-black"><s:property value="quantity"/></td>
-                    <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                        <%--<td><display:column property="nameSize" title="Container" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                        <td class="tb-font-black"><s:property value="nameSize"/></td>
-                    </s:if>
-                    <s:else>
-                        <%--<td><display:column property="nameSize" title="Item" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                        <td class="tb-font-black"><s:property value="nameSize"/></td>
-                    </s:else>
-                    <%--<td><display:column property="commodity" title="Commodity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                    <td class="tb-font-black"><s:property value="description"/></td>
-                    <%--<td><display:column property="declaredValue" title="Declared Value" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                    <td class="tb-font-black"><s:property value="getText('format.money',{declaredValue})"/></td>
+                    <tr>
+                        <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                        <td class="tb-font-black"><s:property value="quantity"/></td>
+                        <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <%--<td><display:column property="nameSize" title="Container" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                            <td class="tb-font-black"><s:property value="nameSize"/></td>
+                        </s:if>
+                        <s:else>
+                            <%--<td><display:column property="nameSize" title="Item" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                            <td class="tb-font-black"><s:property value="nameSize"/></td>
+                        </s:else>
+                        <%--<td><display:column property="commodity" title="Commodity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                        <td class="tb-font-black"><s:property value="description"/></td>
+                        <%--<td><display:column property="declaredValue" title="Declared Value" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                        <td class="tb-font-black"><s:property value="getText('format.money',{declaredValue})"/></td>
+                    </tr>
                 </s:iterator>
 
                 </tbody>
@@ -123,8 +125,8 @@
 
     </div>
 
-    <s:textfield value="%{#attr.orderItem.orderItemId}" />
-    <s:textfield value="%{#attr.vesselSchedule.vesselScheduleId}" />
+    <s:hidden value="%{#attr.orderItem.orderItemId}" />
+    <s:hidden value="%{#attr.vesselSchedule.vesselScheduleId}" />
 
     <div class="pull-right">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

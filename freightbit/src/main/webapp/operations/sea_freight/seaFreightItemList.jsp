@@ -227,7 +227,7 @@
                                 <td><display:column title="Action">
 
                                     <s:if test="#attr.orderItem.status=='ON GOING'">
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -274,18 +274,7 @@
                                     </s:elseif>
 
                                     <s:else>
-                                        <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT')">
-                                        &lt;%&ndash;<s:url var="viewEditSeaFreightUrl" action="viewEditSeaFreight">&ndash;%&gt;
-                                        <s:url var="viewEditSeaFreightUrl" action="viewFreightPlanning"> &lt;%&ndash;will be redirected to sea freight planning on edit&ndash;%&gt;
-                                            <s:param name="orderItemIdParam"
-                                                     value="#attr.orderItem.orderItemId">
-                                            </s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewEditSeaFreightUrl}" rel="tooltip"
-                                             title="Edit Schedule">
-                                            <i class="fa fa-tasks"></i>
-                                        </s:a>
-                                        </sec:authorize>--%>
+
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -300,17 +289,6 @@
                                         </s:a>
 
                                     </s:else>
-
-                                    <%--<s:url var="createdDocumentsSeaUrl" action="createdDocumentsSea">--%>
-                                        <%--<s:param name="orderIdParam"--%>
-                                                 <%--value="#attr.order.orderId"></s:param>--%>
-
-                                    <%--</s:url>--%>
-
-                                    <%--<s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"--%>
-                                         <%--title="Create Documents">--%>
-                                        <%--Create Proforma Bill of Lading--%>
-                                    <%--</s:a>--%>
 
                                 </display:column></td>
                             </tr>

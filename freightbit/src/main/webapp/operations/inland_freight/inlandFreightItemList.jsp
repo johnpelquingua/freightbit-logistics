@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="row">
     <div class="col-lg-12">
@@ -241,7 +242,7 @@
                                                     title="Pick-up Date <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-
+                                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
                                 <td><display:column property="vendorDestinationName"
                                                     title="Destination Vendor <i class='fa fa-sort' />"
                                                     class="tb-font-black"
@@ -256,7 +257,7 @@
                                                     title="Delivery Date <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-
+                                </sec:authorize>
                                 <td><display:column property="status" title="Status <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>

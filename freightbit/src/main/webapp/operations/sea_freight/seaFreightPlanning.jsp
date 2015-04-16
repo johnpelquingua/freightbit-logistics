@@ -244,7 +244,7 @@
                         <div class="col-lg-2" style="text-align: center;">
                             <div>
                                 <a href="#" style="width: 135px;">
-                                    <s:submit cssClass="btn btn-primary" name="submit" value="Filter by Vendor"/>
+                                    <s:submit cssClass="btn btn-primary findVesselScheduleBulk_submit" name="submit" value="Filter by Vendor"/>
                                 </a>
                             </div>
                         </div>
@@ -486,10 +486,10 @@
 
                             <label>Vessel<span class="asterisk_red"></span></label>
 
-                            <s:select emptyOption="true" id="vesselList"
+                            <s:select emptyOption="true" id="listVessel"
                                       value="vesselSchedule.vesselName"
                                       name="vesselSchedule.vesselName"
-                                      list="vesselList" listValue="value" listKey="key"
+                                      list="listVessel" listValue="value" listKey="key"
                                       cssClass="form-control vesselName" required="true"/>
 
                             <label>Departure Date<span class="asterisk_red"></span></label>
@@ -597,7 +597,7 @@
 
             function (jsonResponse) {
 
-                var vessel = $('#vesselList');
+                var vessel = $('#listVessel');
 
                 vessel.find('option').remove();
 
@@ -609,38 +609,10 @@
 
         });
 
-        /*$("#createSchedule").click(function() {
-            *//*var vendorId = $("#operationsBean_vendorList").val();
-
-            if (vendorId == "" || null){
-                alert("Select a vendor first");
-                $("#operationsBean_vendorList").focus();
-                return false;
-            }
-
-            $("#vendorIdHolder").val(vendorId);*//*
-            // To get the vessel list of the vendor
-            $.getJSON('listVessel', {
-                vendorId: vendorId
-            },
-
-            function (jsonResponse) {
-
-                var vessel = $('#vesselList');
-
-                vessel.find('option').remove();
-
-                $.each(jsonResponse.vesselMap, function (key, value) {
-                    $('<option>').val(key).text(value).appendTo(vessel);
-                });
-
-            });
-        });*/
-
         $("#createSchedule").click(function() {
             $("#vesselSchedule_vendorName").val('');
             $("#voyageNumber").val('');
-            $("#vesselList").val('');
+            $("#listVessel").val('');
             $("#departureDate").val('');
             $("#departureTime").val('');
             $("#arrivalDate").val('');
@@ -748,14 +720,14 @@
     };
 
     $(document).ready(function() {
-        $('#findVesselScheduleBulk_submit').prop('disabled',true);
+        $('.findVesselScheduleBulk_submit').prop('disabled',true);
         $("#operationsBean_vendorList").change(function(){
             var vendorId = $("#operationsBean_vendorList").val();
             $('#operationsBean_vendorList option:selected').each(function(){
                 if(vendorId == "" || null) {
-                    $('#findVesselScheduleBulk_submit').prop('disabled',true); }
+                    $('.findVesselScheduleBulk_submit').prop('disabled',true); }
                 else {
-                    $('#findVesselScheduleBulk_submit').prop('disabled',false); }
+                    $('.findVesselScheduleBulk_submit').prop('disabled',false); }
             });
         });
     });

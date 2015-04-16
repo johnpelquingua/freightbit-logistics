@@ -2,6 +2,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="true" %>
 
 <div class="row">
@@ -108,12 +109,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date</label>
+                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                     <div class="col-lg-4">
                         <s:textfield cssClass="form-control" value="%{order.strPickupDate}"
                                      disabled="true"></s:textfield>
                     </div>
-                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date</label>
+                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
                     <div class="col-lg-4">
                         <s:textfield cssClass="form-control" value="%{order.strDeliveryDate}"
                                      disabled="true"></s:textfield>
@@ -136,1179 +137,112 @@
         </div>
     </div>
 
-        <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
-            <s:if test="order.modeOfService=='DOOR TO DOOR'">
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <i class="fa fa-anchor"></i>
-                        <span class="panel-title">Freight Plan</span>
-                    </div>
-                    <div class="panel-body form-horizontal">
-
-                        <display:table id="orderItem" name="orderItems"
-                                       requestURI="/viewSeaFreightItemList.action"
-                                       class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple freightTableBulk"
-                                       style="margin-top: 15px;">
-                            <tr>
-                                    <%--Change Header based on Service Requirement--%>
-                                <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"></display:column>
-                                </td>
-                                <td>
-                                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                        <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
-                                                        class="tb-font-black"
-                                                        style="text-align: center;">
-                                        </display:column>
-                                    </s:if>
-                                    <s:else>
-                                        <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
-                                                        class="tb-font-black"
-                                                        style="text-align: center;">
-                                        </display:column>
-                                    </s:else>
-                                </td>
-
-                                <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="departureDate" title="Departure Date <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="arrivalDate" title="Arrival Date <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                            </tr>
-                        </display:table>
-
-                    </div>
-                </div>
-
-                <div class="well">
-                    <h4 style="text-align:center;">Current Inland Vendor(s)</h4>
-                    <display:table id="currentOriginVendor" name="orderItemOriginVendor"
-                                   requestURI="/checkItemStatusInland.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
-                                   style="margin-top: 15px;">
-
-                            <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
-                                                class="tb-font-black"
-                                                style="text-align: center;"></display:column></td>
-
-                            <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                <td><display:column property="nameSize" title="Container" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                            </s:if>
-                            <s:else>
-                                <td><display:column property="nameSize" title="Item" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                            </s:else>
-
-                            <td><display:column property="description" title="Commodity" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                            <td><display:column property="vendorOriginName" title="Origin Vendor" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                            <td><display:column property="finalPickupDate" title="Pickup Date" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-
-                            <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
-                                                class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-
-                            <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
-                                                class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-
-                            <td><display:column property="status" title="Status <i class='fa fa-sort' />"
-                                                class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-
-                    </display:table>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Origin</span>
-                    </div>
-                    <div class="panel-body">
-                        <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
-                            <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
-                            <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
-                            <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
-                            <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
-                            <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
-                            <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
-                            <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
-                            <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
-                            <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
-                            <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
-                            <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
-                            <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
-                            <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
-                            <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
-                            <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
-                            <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
-                            <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
-                            <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
-                            <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
-                            <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                                  id="vendorListOrigin"
-                                                  listKey="vendorId" listValue="vendorName" cssClass="form-control dispatchInput"
-                                                  emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info">
-                                            Add Vendor
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.driverOrigin"
-                                                  id="driverList"
-                                                  listKey="driverId" listValue="firstName + lastName" cssClass="form-control dispatchInput"
-                                                  emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createDriver" id="createDriverOriginBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Driver
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                                  id="trucksList"
-                                                  listKey="truckId" listValue="truckCode" cssClass="form-control dispatchInput"
-                                                  emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckOriginBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Truck
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="bodyType"
-                                                  list="#{bodyType}"
-                                                  value="%{bodyType}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInput"
-                                                     id="bodyType_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="plateNumber"
-                                                  list="#{plateNumber}"
-                                                  value="%{plateNumber}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInput"
-                                                     id="plateNumber_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="grossWeight"
-                                                  list="#{grossWeight}"
-                                                  value="%{grossWeight}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInput"
-                                                     id="grossWeight_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                                <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control dispatchInput dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
-                                </div>
-                            </div>
-                            <div style="float: right;">
-                                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                    <s:param name="orderIdParam"
-                                             value="#attr.order.orderId"></s:param>
-                                    <s:param name="orderNoParam"
-                                             value="#attr.order.orderNo"></s:param>
-                                </s:url>
-                                <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
-                                    <button type="button" id="Cancel" class="btn btn-danger">
-                                        Cancel
-                                    </button>
-                                </s:a>
-
-                                <button class="btn btn-primary dispatchSaveBtn" type="button">Save</button>
-                            </div>
-                        </s:form>
-                    </div>
-
-                <s:if test="order.modeOfService!='DOOR TO DOOR'">
-
-                    <div class="panel-footer">
-                        <div class="pull-right">
-                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                <s:param name="orderIdParam"
-                                         value="#attr.order.orderId"></s:param>
-                                <s:param name="orderNoParam"
-                                         value="#attr.order.orderNo"></s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Vendor">
-
-                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
-                                    </button>
-                                </s:if>
-                                <s:else>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
-                                    </button>
-                                </s:else>
-
-                            </s:a>
-                        </div>
-                    </div>
-
-                </s:if>
-
-                </div>
-
-                <div class="panel panel-primary">
-
-                    <div class="panel-heading">
-                        <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Destination</span>
-                    </div>
-
-                    <div class="panel-body">
-                        <s:form cssClass="form-horizontal dispatchDestinationForm" theme="bootstrap" action="editBulkItemsInlandDestination">
-                            <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
-                            <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
-                            <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
-                            <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
-                            <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
-                            <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
-                            <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
-                            <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
-                            <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
-                            <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
-                            <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
-                            <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
-                            <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
-                            <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
-                            <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
-                            <s:hidden name="operationsBean.pickupDate" value="2014-10-02" />
-                            <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
-                            <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
-                            <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.vesselScheduleId" value="0" />
-                            <s:hidden name="operationsBean.driverOrigin" value="%{orderItem.driverOrigin}" />
-                            <s:hidden name="operationsBean.truckOrigin" value="%{orderItem.truckOrigin}" />
-                            <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
-                            <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Vendor</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
-                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="form-control dispatchInputDes"
-                                                  emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info">
-                                            Add Vendor
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Driver</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                                  id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="form-control dispatchInputDes"
-                                                  emptyOption="true" value="%{orderItem.driverDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createDriver" class="btn btn-info" id="createDriverDestinationBtn" style="width:100px !important;">
-                                            Add Driver
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Truck Code</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                                  id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="form-control dispatchInputDes"
-                                                  emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckDestinationBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Truck
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="bodyTypeDestination"
-                                                  list="#{bodyType}"
-                                                  value="%{bodyType}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInputDes"
-                                                     id="bodyType_Destination_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="plateNumberDestination"
-                                                  list="#{plateNumber}"
-                                                  value="%{plateNumber}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInputDes"
-                                                     id="plateNumber_Destination_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="grossWeightDestination"
-                                                  list="#{grossWeight}"
-                                                  value="%{grossWeight}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInputDes"
-                                                     id="grossWeight_Destination_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Drop off Date</label>
-                                <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control dispatchInputDes dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
-                                </div>
-                            </div>
-                            <div style="float: right;">
-                                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                    <s:param name="orderIdParam"
-                                             value="#attr.order.orderId"></s:param>
-                                    <s:param name="orderNoParam"
-                                             value="#attr.order.orderNo"></s:param>
-                                </s:url>
-                                <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
-                                    <button type="button" id="Cancel" class="btn btn-danger">
-                                        Cancel
-                                    </button>
-                                </s:a>
-
-                                <button class="btn btn-primary dispatchSaveBtnDes" type="button">Save</button>
-                            </div>
-                        </s:form>
-                    </div>
-
-                    <div class="panel-footer">
-                        <div class="pull-right">
-                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                <s:param name="orderIdParam"
-                                         value="#attr.order.orderId"></s:param>
-                                <s:param name="orderNoParam"
-                                         value="#attr.order.orderNo"></s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Vendor">
-
-                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
-                                    </button>
-                                </s:if>
-                                <s:else>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
-                                    </button>
-                                </s:else>
-
-                            </s:a>
-                        </div>
-                    </div>
-                </div>
-            </s:if>
-            <s:elseif test="order.modeOfService=='DOOR TO PIER'">
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <i class="fa fa-anchor"></i>
-                        <span class="panel-title">Freight Plan</span>
-                    </div>
-                    <div class="panel-body form-horizontal">
-
-                        <display:table id="orderItem" name="orderItems"
-                                       requestURI="/viewSeaFreightItemList.action"
-                                       class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple freightTableBulk"
-                                       style="margin-top: 15px;">
-                            <tr>
-                                    <%--Change Header based on Service Requirement--%>
-                                <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"></display:column>
-                                </td>
-                                <td>
-                                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                        <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
-                                                        class="tb-font-black"
-                                                        style="text-align: center;">
-                                        </display:column>
-                                    </s:if>
-                                    <s:else>
-                                        <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
-                                                        class="tb-font-black"
-                                                        style="text-align: center;">
-                                        </display:column>
-                                    </s:else>
-                                </td>
-
-                                <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="departureDate" title="Departure Date <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="arrivalDate" title="Arrival Date <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                            </tr>
-                        </display:table>
-
-                    </div>
-                </div>
-
-                <div class="well">
-                    <h4 style="text-align:center;">Current Inland Vendor(s)</h4>
-                    <display:table id="currentOriginVendor" name="orderItemOriginVendor"
-                                   requestURI="/checkItemStatusInland.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
-                                   style="margin-top: 15px;">
-
-                        <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"></display:column></td>
-
-                        <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                            <td><display:column property="nameSize" title="Container" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                        </s:if>
-                        <s:else>
-                            <td><display:column property="nameSize" title="Item" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                        </s:else>
-
-                        <td><display:column property="description" title="Commodity" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="vendorOriginName" title="Origin Vendor" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="finalPickupDate" title="Pickup Date" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="status" title="Status <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                    </display:table>
-                </div>
-
-                <%--Origin--%>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Origin</span>
-                    </div>
-                    <div class="panel-body">
-                        <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
-                            <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
-                            <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
-                            <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
-                            <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
-                            <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
-                            <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
-                            <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
-                            <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
-                            <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
-                            <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
-                            <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
-                            <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
-                            <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
-                            <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
-                            <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
-                            <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
-                            <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
-                            <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
-                            <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
-                            <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                                  id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="form-control dispatchInput"
-                                                  emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info">
-                                            Add Vendor
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.driverOrigin"
-                                                  id="driverList" listKey="driverId" listValue="firstName + lastName" cssClass="form-control dispatchInput"
-                                                  emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createDriver" id="createDriverOrigBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Driver
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                                  id="trucksList" listKey="truckId" listValue="truckCode" cssClass="form-control dispatchInput"
-                                                  emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckOrigBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Truck
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="bodyType"
-                                                  list="#{bodyType}"
-                                                  value="%{bodyType}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInput"
-                                                     id="bodyType_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="plateNumber"
-                                                  list="#{plateNumber}"
-                                                  value="%{plateNumber}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInput"
-                                                     id="plateNumber_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="grossWeight"
-                                                  list="#{grossWeight}"
-                                                  value="%{grossWeight}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInput"
-                                                     id="grossWeight_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                                <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control dispatchInput dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
-                                </div>
-                            </div>
-                            <div style="float: right;">
-                                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                    <s:param name="orderIdParam"
-                                             value="#attr.order.orderId"></s:param>
-                                    <s:param name="orderNoParam"
-                                             value="#attr.order.orderNo"></s:param>
-                                </s:url>
-                                <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
-                                    <button type="button" id="Cancel" class="btn btn-danger">
-                                        Cancel
-                                    </button>
-                                </s:a>
-
-                                <button class="btn btn-primary dispatchSaveBtn" type="button">Save</button>
-                            </div>
-                        </s:form>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="pull-right">
-                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                <s:param name="orderIdParam"
-                                         value="#attr.order.orderId"></s:param>
-                                <s:param name="orderNoParam"
-                                         value="#attr.order.orderNo"></s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Vendor">
-
-                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
-                                    </button>
-                                </s:if>
-                                <s:else>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
-                                    </button>
-                                </s:else>
-
-                            </s:a>
-                        </div>
-                    </div>
-                </div>
-            </s:elseif>
-            <s:elseif test="order.modeOfService=='PIER TO DOOR'">
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <i class="fa fa-anchor"></i>
-                        <span class="panel-title">Freight Plan</span>
-                    </div>
-                    <div class="panel-body form-horizontal">
-
-                        <display:table id="orderItem" name="orderItems"
-                                       requestURI="/viewSeaFreightItemList.action"
-                                       class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple freightTableBulk"
-                                       style="margin-top: 15px;">
-                            <tr>
-                                    <%--Change Header based on Service Requirement--%>
-                                <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"></display:column>
-                                </td>
-                                <td>
-                                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                        <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
-                                                        class="tb-font-black"
-                                                        style="text-align: center;">
-                                        </display:column>
-                                    </s:if>
-                                    <s:else>
-                                        <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
-                                                        class="tb-font-black"
-                                                        style="text-align: center;">
-                                        </display:column>
-                                    </s:else>
-                                </td>
-
-                                <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="departureDate" title="Departure Date <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="arrivalDate" title="Arrival Date <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                            </tr>
-                        </display:table>
-
-                    </div>
-                </div>
-
-                <div class="well">
-                    <h4 style="text-align:center;">Current Inland Vendor(s)</h4>
-                    <display:table id="currentOriginVendor" name="orderItemOriginVendor"
-                                   requestURI="/checkItemStatusInland.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
-                                   style="margin-top: 15px;">
-
-                        <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"></display:column></td>
-
-                        <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                            <td><display:column property="nameSize" title="Container" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                        </s:if>
-                        <s:else>
-                            <td><display:column property="nameSize" title="Item" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                        </s:else>
-
-                        <td><display:column property="description" title="Commodity" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="vendorOriginName" title="Origin Vendor" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="finalPickupDate" title="Pickup Date" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="status" title="Status <i class='fa fa-sort' />"
-                                            class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                    </display:table>
-                </div>
-
-                <%--Destination--%>
-                <div class="panel panel-primary">
-
-                    <div class="panel-heading">
-                        <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Destination</span>
-                    </div>
-
-                    <div class="panel-body">
-                        <s:form cssClass="form-horizontal dispatchDestinationForm" theme="bootstrap" action="editBulkItemsInlandDestination">
-                            <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
-                            <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
-                            <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
-                            <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
-                            <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
-                            <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
-                            <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
-                            <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
-                            <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
-                            <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
-                            <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
-                            <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
-                            <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
-                            <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
-                            <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
-                            <s:hidden name="operationsBean.pickupDate" value="2014-10-02" />
-                            <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
-                            <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
-                            <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.vesselScheduleId" value="0" />
-                            <s:hidden name="operationsBean.driverOrigin" value="%{orderItem.driverOrigin}" />
-                            <s:hidden name="operationsBean.truckOrigin" value="%{orderItem.truckOrigin}" />
-                            <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
-                            <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Vendor</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
-                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="form-control dispatchInputDes"
-                                                  emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info">
-                                            Add Vendor
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Driver</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                                  id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="form-control dispatchInputDes"
-                                                  emptyOption="true" value="%{orderItem.driverDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createDriver" class="btn btn-info" id="createDriverDestinationBtn" style="width:100px !important;">
-                                            Add Driver
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Truck Code</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                                  id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="form-control dispatchInputDes"
-                                                  emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckDestinationBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Truck
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="bodyTypeDestination"
-                                                  list="#{bodyType}"
-                                                  value="%{bodyType}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInputDes"
-                                                     id="bodyType_Destination_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="plateNumberDestination"
-                                                  list="#{plateNumber}"
-                                                  value="%{plateNumber}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInputDes"
-                                                     id="plateNumber_Destination_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="grossWeightDestination"
-                                                  list="#{grossWeight}"
-                                                  value="%{grossWeight}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInputDes"
-                                                     id="grossWeight_Destination_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Drop off Date</label>
-                                <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control dispatchInputDes dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
-                                </div>
-                            </div>
-                            <div style="float: right;">
-                                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                    <s:param name="orderIdParam"
-                                             value="#attr.order.orderId"></s:param>
-                                    <s:param name="orderNoParam"
-                                             value="#attr.order.orderNo"></s:param>
-                                </s:url>
-                                <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
-                                    <button type="button" id="Cancel" class="btn btn-danger">
-                                        Cancel
-                                    </button>
-                                </s:a>
-
-                                <button class="btn btn-primary dispatchSaveBtnDes" type="button">Save</button>
-                            </div>
-                        </s:form>
-                        <%--<div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
-                            </div>
-                        </div>--%>
-                    </div>
-
-                    <div class="panel-footer">
-                        <div class="pull-right">
-                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                <s:param name="orderIdParam"
-                                         value="#attr.order.orderId"></s:param>
-                                <s:param name="orderNoParam"
-                                         value="#attr.order.orderNo"></s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Vendor">
-
-                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
-                                    </button>
-                                </s:if>
-                                <s:else>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
-                                    </button>
-                                </s:else>
-
-                            </s:a>
-                        </div>
-                    </div>
-                </div>
-            </s:elseif>
-        </s:if>
-
-        <s:if test="order.freightType=='TRUCKING'">
-            <%--<s:if test="order.modeOfService=='PICKUP'">--%>
-            <div class="well">
-                <h4 style="text-align:center;">Current Inland Vendor(s)</h4>
-                <display:table id="currentOriginVendor" name="orderItemOriginVendor"
-                               requestURI="/checkItemStatusInland.action" pagesize="10"
-                               class="table table-striped table-hover table-bordered text-center tablesorter"
-                               style="margin-top: 15px;">
-
-                    <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
-                                        class="tb-font-black"
-                                        style="text-align: center;"></display:column></td>
-
-                    <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                        <td><display:column property="nameSize" title="Container" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                    </s:if>
-                    <s:else>
-                        <td><display:column property="nameSize" title="Item" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                    </s:else>
-
-                    <td><display:column property="description" title="Commodity" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                    <td><display:column property="vendorOriginName" title="Origin Vendor" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                    <td><display:column property="finalPickupDate" title="Pickup Date" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                    <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
-                                        class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                    <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
-                                        class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                    <td><display:column property="status" title="Status <i class='fa fa-sort' />"
-                                        class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                </display:table>
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <i class="fa fa-anchor"></i>
+                <span class="panel-title">Freight Plan</span>
             </div>
 
-            <s:if test="order.modeOfService=='PICKUP'">
+            <div class="panel-body form-horizontal">
+
+                <display:table id="orderItem" name="orderItems"
+                               requestURI="/viewSeaFreightItemList.action"
+                               class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple freightTableBulk"
+                               style="margin-top: 15px;">
+                    <tr>
+                            <%--Change Header based on Service Requirement--%>
+                        <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"></display:column>
+                        </td>
+                        <td>
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;">
+                                </display:column>
+                            </s:if>
+                            <s:else>
+                                <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;">
+                                </display:column>
+                            </s:else>
+                        </td>
+
+                        <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="departureDate" title="Departure Date <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="arrivalDate" title="Arrival Date <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                    </tr>
+                </display:table>
+
+            </div>
+
+        </div>
+
+        <div class="well">
+            <h4 style="text-align:center;">Current Inland Vendor(s)</h4>
+            <display:table id="currentOriginVendor" name="orderItemOriginVendor"
+                           requestURI="/checkItemStatusInland.action" pagesize="10"
+                           class="table table-striped table-hover table-bordered text-center tablesorter"
+                           style="margin-top: 15px;">
+
+                <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
+                                    class="tb-font-black"
+                                    style="text-align: center;"></display:column></td>
+
+                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                    <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                </s:if>
+                <s:else>
+                    <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                </s:else>
+
+                <td><display:column property="description" title="Commodity" class="tb-font-black"
+                                    style="text-align: center;"> </display:column></td>
+
+                <td><display:column property="vendorOriginName" title="Origin Vendor" class="tb-font-black"
+                                    style="text-align: center;"> </display:column></td>
+
+                <td><display:column property="finalPickupDate" title="Pickup Date" class="tb-font-black"
+                                    style="text-align: center;"> </display:column></td>
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
+                <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
+                                    class="tb-font-black"
+                                    style="text-align: center;"> </display:column></td>
+
+                <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
+                                    class="tb-font-black"
+                                    style="text-align: center;"> </display:column></td>
+                </sec:authorize>
+                <td><display:column property="status" title="Status <i class='fa fa-sort' />"
+                                    class="tb-font-black"
+                                    style="text-align: center;"> </display:column></td>
+
+            </display:table>
+        </div>
+
+        <s:if test="order.modeOfService=='DOOR TO DOOR' || order.modeOfService=='DOOR TO PIER' || order.modeOfService=='PICKUP' || order.modeOfService=='INTER-WAREHOUSE'">
 
             <div class="panel panel-primary">
 
@@ -1347,7 +281,7 @@
                                 <div>
                                     <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
                                               id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="form-control dispatchInput"
-                                              emptyOption="true" value="%{orderItem.vendorOrigin}"></s:select>
+                                              emptyOption="true" value="%{orderItem.vendorOrigin}" ></s:select>
                                 </div>
                             </div>
                             <div class="col-lg-2">
@@ -1369,14 +303,14 @@
                             </div>
                             <div class="col-lg-2">
                                 <div>
-                                    <a data-toggle="modal" data-target="#createDriver" id="createDriverOrigBtn" class="btn btn-info" style="width:100px !important;">
+                                    <a data-toggle="modal" data-target="#createDriver" id="createDriverOriginBtn" class="btn btn-info" style="width:100px !important;">
                                         Add Driver
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                             <div class="col-lg-8">
                                 <div>
@@ -1387,7 +321,7 @@
                             </div>
                             <div class="col-lg-2">
                                 <div>
-                                    <a data-toggle="modal" data-target="#createTruck" id="createTruckOrigBtn" class="btn btn-info" style="width:100px !important;">
+                                    <a data-toggle="modal" data-target="#createTruck" id="createTruckOriginBtn" class="btn btn-info" style="width:100px !important;">
                                         Add Truck
                                     </a>
                                 </div>
@@ -1413,7 +347,7 @@
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="display: none;">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                             <div class="col-lg-8">
@@ -1454,7 +388,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                             <div class="col-lg-8">
-                                <s:textfield cssClass="from_date form-control dispatchInput dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                                <s:textfield cssClass="from_date form-control dispatchInput dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                             </div>
                         </div>
                         <div style="float: right;">
@@ -1475,6 +409,221 @@
                     </s:form>
                 </div>
 
+                <s:if test="order.modeOfService!='DOOR TO DOOR'">
+
+                    <div class="panel-footer">
+                        <div class="pull-right">
+                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                                <s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
+                                 title="Update Vendor">
+
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FULL TRUCK LOAD'">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
+                                    </button>
+                                </s:if>
+                                <s:else>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
+                                    </button>
+                                </s:else>
+
+                            </s:a>
+                        </div>
+                    </div>
+
+                </s:if>
+
+            </div>
+
+        </s:if>
+
+        <s:if test="order.modeOfService=='DOOR TO DOOR' || order.modeOfService=='PIER TO DOOR'">
+
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+                    <i class="fa fa-truck"></i>
+                    <span class="panel-title">Dispatch Plan : Destination</span>
+                </div>
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
+                <div class="panel-body">
+                    <s:form cssClass="form-horizontal dispatchDestinationForm" theme="bootstrap" action="editBulkItemsInlandDestination">
+                        <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                        <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
+                        <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
+                        <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
+                        <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
+                        <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
+                        <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
+                        <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
+                        <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
+                        <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
+                        <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
+                        <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
+                        <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
+                        <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
+                        <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
+                        <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
+                        <s:hidden name="operationsBean.pickupDate" value="2014-10-02" />
+                        <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
+                        <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
+                        <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
+                        <s:hidden name="operationsBean.vesselScheduleId" value="0" />
+                        <s:hidden name="operationsBean.driverOrigin" value="%{orderItem.driverOrigin}" />
+                        <s:hidden name="operationsBean.truckOrigin" value="%{orderItem.truckOrigin}" />
+                        <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
+                        <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Vendor</label>
+
+                            <div class="col-lg-8">
+                                <div>
+                                    <s:if test="order.modeOfService!='DELIVERY'">
+                                        <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
+                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="form-control dispatchInputDes"
+                                                  emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
+                                    </s:if>
+                                    <s:else>
+                                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListDestination"
+                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="dispatchInputDes form-control"
+                                                  emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                                    </s:else>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div>
+                                    <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info">
+                                        Add Vendor
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Driver</label>
+                            <div class="col-lg-8">
+                                <div>
+                                    <s:select list="listDrivers" name="operationsBean.driverDestination"
+                                              id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="form-control dispatchInputDes"
+                                              emptyOption="true" value="%{orderItem.driverDestination}" ></s:select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div>
+                                    <a data-toggle="modal" data-target="#createDriver" class="btn btn-info" id="createDriverDestinationBtn" style="width:100px !important;">
+                                        Add Driver
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Plate Number</label>
+                            <div class="col-lg-8">
+                                <div>
+                                    <s:select list="listDrivers" name="operationsBean.truckDestination"
+                                              id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="form-control dispatchInputDes"
+                                              emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div>
+                                    <a data-toggle="modal" data-target="#createTruck" id="createTruckDestinationBtn" class="btn btn-info" style="width:100px !important;">
+                                        Add Truck
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
+
+                            <div class="col-lg-8">
+                                <div>
+                                    <s:select cssClass="form-control"
+                                              id="bodyTypeDestination"
+                                              list="#{bodyType}"
+                                              value="%{bodyType}"
+                                              style="display:none" />
+
+                                    <s:textfield cssClass="form-control dispatchInputDes"
+                                                 id="bodyType_Destination_textfield"
+                                                 disabled="true" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group" style="display: none;">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+                            <div class="col-lg-8">
+                                <div>
+                                    <s:select cssClass="form-control"
+                                              id="plateNumberDestination"
+                                              list="#{plateNumber}"
+                                              value="%{plateNumber}"
+                                              style="display:none" />
+
+                                    <s:textfield cssClass="form-control dispatchInputDes"
+                                                 id="plateNumber_Destination_textfield"
+                                                 disabled="true" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                            <div class="col-lg-8">
+                                <div>
+                                    <s:select cssClass="form-control"
+                                              id="grossWeightDestination"
+                                              list="#{grossWeight}"
+                                              value="%{grossWeight}"
+                                              style="display:none" />
+
+                                    <s:textfield cssClass="form-control dispatchInputDes"
+                                                 id="grossWeight_Destination_textfield"
+                                                 disabled="true" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Drop off Date</label>
+                            <div class="col-lg-8">
+                                <s:textfield cssClass="from_date form-control dispatchInputDes dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                            </div>
+                        </div>
+                        <div style="float: right;">
+                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                                <s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>
+                            </s:url>
+                            <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
+                                <button type="button" id="Cancel" class="btn btn-danger">
+                                    Cancel
+                                </button>
+                            </s:a>
+
+                            <button class="btn btn-primary dispatchSaveBtnDes" type="button">Save</button>
+                        </div>
+                    </s:form>
+                </div>
+                </sec:authorize>
                 <div class="panel-footer">
                     <div class="pull-right">
                         <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
@@ -1486,7 +635,7 @@
                         <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
                              title="Update Vendor">
 
-                            <s:if test="order.serviceRequirement=='FULL TRUCK LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FULL TRUCK LOAD'">
                                 <button type="button" class="btn btn-danger">
                                     <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
                                 </button>
@@ -1503,406 +652,11 @@
 
             </div>
 
-            </s:if>
-
-            <s:elseif test="order.modeOfService=='DELIVERY'">
-
-                <div class="panel panel-primary">
-
-                    <div class="panel-heading">
-                        <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Destination</span>
-                    </div>
-
-                    <div class="panel-body">
-                        <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
-                            <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
-                            <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
-                            <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
-                            <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
-                            <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
-                            <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
-                            <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
-                            <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
-                            <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
-                            <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
-                            <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
-                            <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
-                            <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
-                            <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
-                            <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
-                            <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
-                            <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
-                            <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
-                            <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
-                            <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListDestination"
-                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="dispatchInputDes form-control"
-                                                  emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info">
-                                            Add Vendor
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                                  id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="dispatchInputDes form-control"
-                                                  emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createDriver" id="createDriverOrigBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Driver
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                                  id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="dispatchInputDes form-control"
-                                                  emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckOrigBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Truck
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="bodyTypeDestination"
-                                                  list="#{bodyType}"
-                                                  value="%{bodyType}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="dispatchInputDes form-control"
-                                                     id="bodyType_Destination_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="plateNumberDestination"
-                                                  list="#{plateNumber}"
-                                                  value="%{plateNumber}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="dispatchInputDes form-control"
-                                                     id="plateNumber_Destination_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="grossWeightDestination"
-                                                  list="#{grossWeight}"
-                                                  value="%{grossWeight}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="dispatchInputDes form-control"
-                                                     id="grossWeight_Destination_textfield"
-                                                     disabled="true" />
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
-                                <div class="col-lg-8">
-                                    <s:textfield cssClass="dispatchInputDes from_date form-control dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="pickup" name="operationsBean.deliveryDate" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" />
-                                </div>
-                            </div>
-                            <div style="float: right;">
-                                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                    <s:param name="orderIdParam"
-                                             value="#attr.order.orderId"></s:param>
-                                    <s:param name="orderNoParam"
-                                             value="#attr.order.orderNo"></s:param>
-                                </s:url>
-                                <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
-                                    <button type="button" id="Cancel" class="btn btn-danger">
-                                        Cancel
-                                    </button>
-                                </s:a>
-
-                                <button class="btn btn-primary dispatchSaveBtnDes" type="button" disabled>Save</button>
-                            </div>
-                        </s:form>
-                    </div>
-
-                    <div class="panel-footer">
-                        <div class="pull-right">
-                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                <s:param name="orderIdParam"
-                                         value="#attr.order.orderId"></s:param>
-                                <s:param name="orderNoParam"
-                                         value="#attr.order.orderNo"></s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Vendor">
-
-                                <s:if test="order.serviceRequirement=='FULL TRUCK LOAD'">
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
-                                    </button>
-                                </s:if>
-                                <s:else>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
-                                    </button>
-                                </s:else>
-
-                            </s:a>
-                        </div>
-                    </div>
-
-                </div>
-            </s:elseif>
-
-            <s:elseif test="order.modeOfService=='INTER-WAREHOUSE'">
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Origin</span>
-                    </div>
-
-                    <div class="panel-body">
-                        <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
-                            <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
-                            <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
-                            <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
-                            <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
-                            <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
-                            <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
-                            <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
-                            <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
-                            <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
-                            <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
-                            <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
-                            <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
-                            <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
-                            <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
-                            <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
-                            <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
-                            <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
-                            <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
-                            <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
-                            <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
-                            <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                                  id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
-                                                  emptyOption="true" value="%{orderItem.vendorOrigin}"></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info">
-                                            Add Vendor
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.driverOrigin"
-                                                  id="driverList" listKey="driverId" listValue="firstName + lastName" cssClass="form-control dispatchInput"
-                                                  emptyOption="true" value="%{orderItem.driverOrigin"></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createDriver" id="createDriverOrigBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Driver
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                                  id="trucksList" listKey="truckId" listValue="truckCode" cssClass="form-control dispatchInput"
-                                                  emptyOption="true" value="%{orderItem.truckOrigin}" ></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckOrigBtn" class="btn btn-info" style="width:100px !important;">
-                                            Add Truck
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="bodyType"
-                                                  list="#{bodyType}"
-                                                  value="%{bodyType}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInput"
-                                                     id="bodyType_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="plateNumber"
-                                                  list="#{plateNumber}"
-                                                  value="%{plateNumber}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInput"
-                                                     id="plateNumber_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
-
-                                <div class="col-lg-8">
-                                    <div>
-                                        <s:select cssClass="form-control"
-                                                  id="grossWeight"
-                                                  list="#{grossWeight}"
-                                                  value="%{grossWeight}"
-                                                  style="display:none" />
-
-                                        <s:textfield cssClass="form-control dispatchInput"
-                                                     id="grossWeight_textfield"
-                                                     disabled="true" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                                <div class="col-lg-8">
-                                    <s:textfield cssClass="dispatchInput from_date form-control dispatchFinalPickup" value="%{orderItem.finalPickupDate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;" />
-                                </div>
-                            </div>
-                            <div style="float: right;">
-                                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                    <s:param name="orderIdParam"
-                                             value="#attr.order.orderId"></s:param>
-                                    <s:param name="orderNoParam"
-                                             value="#attr.order.orderNo"></s:param>
-                                </s:url>
-                                <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
-                                    <button type="button" id="Cancel" class="btn btn-danger">
-                                        Cancel
-                                    </button>
-                                </s:a>
-
-                                <button class="btn btn-primary dispatchSaveBtn" type="button">Save</button>
-                            </div>
-                        </s:form>
-                    </div>
-
-                    <div class="panel-footer">
-                        <div class="pull-right">
-                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
-                                <s:param name="orderIdParam"
-                                         value="#attr.order.orderId"></s:param>
-                                <s:param name="orderNoParam"
-                                         value="#attr.order.orderNo"></s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Vendor">
-
-                                <s:if test="order.serviceRequirement=='FULL TRUCK LOAD'">
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
-                                    </button>
-                                </s:if>
-                                <s:else>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
-                                    </button>
-                                </s:else>
-
-                            </s:a>
-                        </div>
-                    </div>
-
-                </div>
-            </s:elseif>
-
         </s:if>
 
 </div>
 
 <%--Start Add Vendor Modal--%>
-
 <div class="modal fade" id="createDriver" role="form" aria-labelledby="myModalLabel1">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -2208,11 +962,9 @@
         </div>
     </div>
 </div>
-
 <%--End Add Vendor Modal--%>
 
 <%--Start Add Schedule--%>
-
 <div class="modal fade" id="addSchedule" role="form" aria-labelledby="myModalLabel2">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -2236,10 +988,10 @@
 
                     <label>Vessel<span class="asterisk_red"></span></label>
 
-                    <s:select emptyOption="true" id="vesselList"
+                    <s:select emptyOption="true" id="listVessel"
                               value="vesselSchedule.vesselName"
                               name="vesselSchedule.vesselName"
-                              list="vesselList" listValue="value" listKey="key"
+                              list="listVessel" listValue="value" listKey="key"
                               cssClass="form-control" required="true"/>
 
                     <label> Departure Date<span class="asterisk_red"></span></label>
@@ -2289,11 +1041,9 @@
         </div>
     </div>
 </div>
-
 <%--End Add Schedule--%>
 
 <%--MODAL FOR DATE VALIDATION START--%>
-
 <div class="modal fade" id="dateWarningModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2311,11 +1061,9 @@
         </div>
     </div>
 </div>
-
 <%--MODAL FOR DATE VALIDATION END--%>
 
 <%--MODAL FOR DATE VALIDATION DESTINATION START--%>
-
 <div class="modal fade" id="dateWarningModalDes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2333,7 +1081,6 @@
         </div>
     </div>
 </div>
-
 <%--MODAL FOR DATE VALIDATION DESTINATION END--%>
 
 <!-- Confirm Vendor Modal -->
@@ -2426,7 +1173,7 @@
 
             function (jsonResponse) {
 
-                var vessel = $('#vesselList');
+                var vessel = $('#listVessel');
 
                 vessel.find('option').remove();
 
@@ -2954,8 +1701,6 @@
     $(document).ready(function(){
 
         $("#driver_licenseNumber").mask("A99-99-9999999");
-//      $("#shipping_mobile").mask("(+63999)(999-9999)");
-//      $("#shipping_fax").mask("(999) 999-9999");
         $("#truck_modelYear").mask("9999");
         $("#truck_grossWeight").mask("999999999");
         $("#truck_netWeight").mask("999999999");
@@ -3006,157 +1751,6 @@
         $(window).load(function() {
             vendorOriginRetrieval();
             vendorDestinationRetrieval();
-
-            /*var vendorId = $("#vendorListOrigin").val();
-
-            $.getJSON('listVendorDriverAndTrucks', {
-                        vendorId : vendorId
-                    },
-
-                    function(jsonResponse) {
-
-                        var driver = $('#driverList');
-
-                        driver.find('option').remove();
-
-                        var truck = $('#trucksList');
-
-                        truck.find('option').remove();
-
-                        $.each(jsonResponse.driverMap, function(key, value) {
-                            $('<option>').val(key).text(value).appendTo(driver);
-                        });
-
-                        $.each(jsonResponse.trucksMap, function(key, value) {
-                            $('<option>').val(key).text(value).appendTo(truck);
-                        });
-
-                        var truckCode = $("#trucksList").val();
-
-                        $.getJSON('truckDetails', {
-                                    truckCodeParam: truckCode
-                                },
-
-                                function (jsonResponse) {
-                                    var select1 = $('#bodyType');
-
-                                    select1.find('option').remove();
-
-                                    var select2 = $('#plateNumber');
-
-                                    select2.find('option').remove();
-
-                                    var select3 = $('#grossWeight');
-
-                                    select3.find('option').remove();
-
-                                    // For Truck Type Auto-populate
-                                    $.each(jsonResponse.bodyTypeMap, function (key,value) {
-
-                                        $('<option>').val(key).text(value).appendTo(select1);
-                                        var bodyType = $("#bodyType").val();
-                                        document.getElementById("bodyType_textfield").value = bodyType;
-
-                                    });
-
-                                    // For Plate Number Auto-populate
-                                    $.each(jsonResponse.plateNumberMap, function (key,value) {
-
-                                        $('<option>').val(key).text(value).appendTo(select2);
-                                        var plateNumber = $("#plateNumber").val();
-                                        document.getElementById("plateNumber_textfield").value = plateNumber;
-
-                                    });
-
-                                    // For Gross Weight Auto-populate
-                                    $.each(jsonResponse.grossWeightMap, function (key,value) {
-
-                                        $('<option>').val(key).text(value).appendTo(select3);
-                                        var grossWeight = $("#grossWeight").val();
-                                        document.getElementById("grossWeight_textfield").value = grossWeight;
-
-                                    });
-                                });
-                    });
-
-            var vendorId = $("#vendorListDestination").val();
-
-            $.getJSON('listVendorDriverAndTrucks', {
-                        vendorId : vendorId
-                    },
-
-                    function(jsonResponse) {
-
-                        var driver = $('#driverListDestination');
-
-                        driver.find('option').remove();
-
-                        var truck = $('#trucksListDestination');
-
-                        truck.find('option').remove();
-
-                        $.each(jsonResponse.driverMap, function(key, value) {
-                            $('<option>').val(key).text(value).appendTo(driver);
-                        });
-
-                        $.each(jsonResponse.trucksMap, function(key, value) {
-                            $('<option>').val(key).text(value).appendTo(truck);
-                        });
-
-                        var truckCode = $("#trucksListDestination").val();
-                        if(truckCode != null) {
-                            $.getJSON('truckDetails', {
-                                        truckCodeParam: truckCode
-                                    },
-
-                                    function (jsonResponse) {
-                                        var select4 = $('#bodyTypeDestination');
-
-                                        select4.find('option').remove();
-
-                                        var select5 = $('#plateNumberDestination');
-
-                                        select5.find('option').remove();
-
-                                        var select6 = $('#grossWeightDestination');
-
-                                        select6.find('option').remove();
-
-                                        // For Truck Type Auto-populate
-                                        $.each(jsonResponse.bodyTypeMap, function (key, value) {
-
-                                            $('<option>').val(key).text(value).appendTo(select4);
-                                            var bodyType = $("#bodyTypeDestination").val();
-                                            document.getElementById("bodyType_Destination_textfield").value = bodyType;
-
-                                        });
-
-                                        // For Plate Number Auto-populate
-                                        $.each(jsonResponse.plateNumberMap, function (key, value) {
-
-                                            $('<option>').val(key).text(value).appendTo(select5);
-                                            var plateNumber = $("#plateNumberDestination").val();
-                                            document.getElementById("plateNumber_Destination_textfield").value = plateNumber;
-
-                                        });
-
-                                        // For Gross Weight Auto-populate
-                                        $.each(jsonResponse.grossWeightMap, function (key, value) {
-
-                                            $('<option>').val(key).text(value).appendTo(select6);
-                                            var grossWeight = $("#grossWeightDestination").val();
-                                            document.getElementById("grossWeight_Destination_textfield").value = grossWeight;
-
-                                        });
-                                    });
-                        }
-                        else{
-                            document.getElementById("bodyType_Destination_textfield").value = '';
-                            document.getElementById("plateNumber_Destination_textfield").value = '';
-                            document.getElementById("grossWeight_Destination_textfield").value = '';
-
-                        }
-                    });*/
             getThis();
             localStorage.clear();
         });

@@ -17,7 +17,7 @@
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
                     <li><a href="<s:url action='operations/viewSeaFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Freight Plan</a></li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_INLAND_FREIGHT','ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
                     <li><a href="<s:url action='operations/viewInlandFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Dispatch Plan</a></li>
                 </sec:authorize>
                 <%--<li><a href="<s:url action='operations/viewShipmentMonitoringList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>--%>
@@ -117,17 +117,4 @@
             </div>
         </div>
     </div>
-    <!-- FINANCE -->
-<%--
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-money"></i> Finance <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li><a href="<s:url action='finance/searchFinance'/>"> <i class="fa fa-caret-right fa-fw"></i> Search Finance</a></li>
-            <li><a href="<s:url action='finance/addFinance'/>"> <i class="fa fa-caret-right fa-fw"></i> Add Finance</a></li>
-        </ul>
-    </li>
---%>
-
-    <!-- HELP -->
-    <%--<li class=""><a href="Help" class="menu-style-a"><i class="fa fa-question"></i> Help</a></li>--%>
 </ul>

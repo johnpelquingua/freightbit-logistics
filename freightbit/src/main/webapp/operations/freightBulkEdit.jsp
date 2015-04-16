@@ -2,6 +2,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="true" %>
 
 <style>
@@ -173,22 +174,6 @@
 
                 <div class="form-group">
 
-                    <%--<s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
-                    </s:if>
-                    <s:else>
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
-                    </s:else>
-                    <div class="col-lg-10">
-
-                        <ol>
-                            <s:iterator value="nameSizeList" >
-                                <li><s:property /></li>
-                            </s:iterator>
-                        </ol>
-
-                    </div>--%>
-
                     <div class="table-responsive list-table">
 
                         <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
@@ -212,20 +197,22 @@
                             <tbody>
 
                             <s:iterator value="orderItemFreightPlan" var="orderItems">
-                                <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                                <td class="tb-font-black"><s:property value="quantity"/></td>
-                                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <%--<td><display:column property="nameSize" title="Container" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                                    <td class="tb-font-black"><s:property value="nameSize"/></td>
-                                </s:if>
-                                <s:else>
-                                    <%--<td><display:column property="nameSize" title="Item" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                                    <td class="tb-font-black"><s:property value="nameSize"/></td>
-                                </s:else>
-                                <%--<td><display:column property="commodity" title="Commodity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                                <td class="tb-font-black"><s:property value="description"/></td>
-                                <%--<td><display:column property="declaredValue" title="Declared Value" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
-                                <td class="tb-font-black"><s:property value="getText('format.money',{declaredValue})"/></td>
+                                <tr>
+                                    <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                    <td class="tb-font-black"><s:property value="quantity"/></td>
+                                    <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                        <%--<td><display:column property="nameSize" title="Container" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                        <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                    </s:if>
+                                    <s:else>
+                                        <%--<td><display:column property="nameSize" title="Item" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                        <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                    </s:else>
+                                    <%--<td><display:column property="commodity" title="Commodity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                    <td class="tb-font-black"><s:property value="description"/></td>
+                                    <%--<td><display:column property="declaredValue" title="Declared Value" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                    <td class="tb-font-black"><s:property value="getText('format.money',{declaredValue})"/></td>
+                                </tr>
                             </s:iterator>
 
                             </tbody>
@@ -247,7 +234,7 @@
                     <div class="col-lg-2" style="text-align: center;">
                         <div>
                             <a href="#" style="width: 135px;">
-                                <s:submit cssClass="btn btn-primary" name="submit" value="Filter by Vendor"/>
+                                <s:submit cssClass="btn btn-primary findVesselScheduleBulk_submit" name="submit" value="Filter by Vendor"/>
                             </a>
                         </div>
                     </div>
@@ -715,10 +702,10 @@
 
                     <label>Vessel<span class="asterisk_red"></span></label>
 
-                    <s:select emptyOption="true" id="vesselList"
+                    <s:select emptyOption="true" id="listVessel"
                               value="vesselSchedule.vesselName"
                               name="vesselSchedule.vesselName"
-                              list="vesselList" listValue="value" listKey="key"
+                              list="listVessel" listValue="value" listKey="key"
                               cssClass="form-control vendorIdPass" required="true"/>
 
                     <label> Departure Date<span class="asterisk_red"></span></label>
@@ -835,7 +822,7 @@
 
             function (jsonResponse) {
 
-                var vessel = $('#vesselList');
+                var vessel = $('#listVessel');
 
                 vessel.find('option').remove();
 
@@ -850,7 +837,7 @@
         $("#createSchedule").click(function() {
             $("#vesselSchedule_vendorName").val('');
             $("#voyageNumber").val('');
-            $("#vesselList").val('');
+            $("#listVessel").val('');
             $("#departureDate").val('');
             $("#departureTime").val('');
             $("#arrivalDate").val('');
@@ -1058,14 +1045,14 @@
     });
 
     $(document).ready(function() {
-        $('#findVesselSchedule_submit').prop('disabled',true);
+        $('.findVesselScheduleBulk_submit').prop('disabled',true);
         $("#operationsBean_vendorList").change(function(){
             var vendorId = $("#operationsBean_vendorList").val();
             $('#operationsBean_vendorList option:selected').each(function(){
                 if(vendorId == "" || null) {
-                    $('#findVesselSchedule_submit').prop('disabled',true); }
+                    $('.findVesselScheduleBulk_submit').prop('disabled',true); }
                 else {
-                    $('#findVesselSchedule_submit').prop('disabled',false); }
+                    $('.findVesselScheduleBulk_submit').prop('disabled',false); }
             });
         });
     });
