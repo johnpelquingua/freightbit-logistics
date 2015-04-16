@@ -148,17 +148,7 @@
     </div>
 
     <div class="panel-body form-horizontal">
-        <%--<div class="form-group">
-            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
-            </s:if>
-            <s:else>
-                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
-            </s:else>
-            <div class="col-lg-10">
-                <s:property value="orderItem.nameSize"/>
-            </div>
-        </div>--%>
+
         <display:table id="currentOriginVendor" name="orderItemOriginVendor"
                        requestURI="/checkItemStatusInland.action" pagesize="10"
                        class="table table-striped table-hover table-bordered text-center tablesorter"
@@ -199,31 +189,11 @@
                                 style="text-align: center;"> </display:column></td>
 
         </display:table>
+
     </div>
 </div>
 
 <s:if test="order.freightType=='TRUCKING'">
-
-        <%--<div class="panel panel-primary">
-            <div class="panel-heading">
-                <i class="fa fa-list"></i>
-                <span class="panel-title">Cargo</span>
-            </div>
-
-            <div class="panel-body form-horizontal">
-                <div class="form-group">
-                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
-                    </s:if>
-                    <s:else>
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
-                    </s:else>
-                    <div class="col-lg-10">
-                        <s:property value="orderItem.nameSize"/>
-                    </div>
-                </div>
-            </div>
-        </div>--%>
 
         <s:if test="order.modeOfService=='PICKUP'">
         <div class="panel panel-primary">
@@ -306,12 +276,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number </label>
 
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                          id="trucksList" listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
+                                          id="trucksList" listKey="truckId" listValue="plateNumber" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                             </div>
                         </div>
@@ -344,7 +314,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                         <div class="col-lg-8">
@@ -518,12 +488,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                          id="trucksList" listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
+                                          id="trucksList" listKey="truckId" listValue="plateNumber" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                             </div>
                         </div>
@@ -556,7 +526,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                         <div class="col-lg-8">
@@ -733,12 +703,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                          id="trucksList" listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
+                                          id="trucksList" listKey="truckId" listValue="plateNumber" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                             </div>
                         </div>
@@ -771,7 +741,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                         <div class="col-lg-8">
@@ -1009,12 +979,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                 <div class="col-lg-8">
                     <div>
                         <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                  id="trucksList" listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
+                                  id="trucksList" listKey="truckId" listValue="plateNumber" cssClass="dispatchInput form-control"
                                   emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                     </div>
                 </div>
@@ -1047,7 +1017,7 @@
 
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display:none;">
                 <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                 <div class="col-lg-8">
@@ -1135,106 +1105,9 @@
     </div>
 </div>
 
-    <%--<div class="panel-heading">
-        <i class="fa fa-truck"></i>
-        <span class="panel-title"> Dispatch Plan : Destination</span>
-    </div>
-    <div class="panel-body form-horizontal">
-
-        <div class="form-group">
-
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true"/>
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true"/>
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
-
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true"/>
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>
-
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{truckDestination.truckType}" disabled="true" />
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
-
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{truckDestination.plateNumber}" disabled="true" />
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
-
-            <div class="col-lg-1">
-                <s:textfield cssClass="form-control" value="%{truckDestination.grossWeight}" disabled="true" />
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label for="pickup" class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
-
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true"/>
-            </div>
-
-        </div>
-    </div>--%>
-
 </s:if>
+
 <s:elseif test="order.modeOfService=='DOOR TO PIER'">
-
-    <%--<div class="panel panel-primary">
-        <div class="panel-heading">
-            <i class="fa fa-list"></i>
-            <span class="panel-title">Cargo</span>
-        </div>
-
-        <div class="panel-body form-horizontal">
-            <div class="form-group">
-                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
-                </s:if>
-                <s:else>
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
-                </s:else>
-                <div class="col-lg-10">
-                    <s:property value="orderItem.nameSize"/>
-                </div>
-            </div>
-        </div>
-    </div>--%>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -1375,13 +1248,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                     <div class="col-lg-8">
                         <div>
                             <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                      id="trucksList"
-                                      listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
+                                      id="trucksList" listKey="truckId" listValue="plateNumber" cssClass="dispatchInput form-control"
                                       emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                         </div>
                     </div>
@@ -1413,7 +1285,7 @@
 
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                     <div class="col-lg-8">
@@ -1944,7 +1816,6 @@
 
                 if (testStartDate > testEndDate)
                     pickup.datetimepicker('setDate', testEndDate);
-
             }
 
             else {

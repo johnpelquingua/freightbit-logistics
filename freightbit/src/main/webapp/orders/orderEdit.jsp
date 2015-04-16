@@ -258,15 +258,15 @@
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:textfield value="%{order.pickupDate}" name="order.pickupDate" />--%>
-        <s:hidden type="text" cssClass="pickupDateInputOnLoad form-control" name="order.pickupDate" value="%{order.strPickupDate}" style="margin-bottom: 15px !important;" />
-        <input type="text" class="pickupDateInput from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" style="margin-bottom: 15px !important;">
+        <s:textfield type="text" cssClass="pickupDateInput pickupDateInputOnLoad form-control" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" style="margin-bottom: 15px !important;" />
+        <%--<input type="text" class="pickupDateInput from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" style="margin-bottom: 15px !important;">--%>
     </div>
 
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.deliveryDate}" />--%>
-        <s:hidden type="text" cssClass="deliveryDateInputOnLoad form-control" name="order.deliveryDate" value="%{order.strDeliveryDate}" style="margin-bottom: 15px !important;" />
-        <input type="text" class="deliveryDateInput to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" style="margin-bottom: 15px !important;">
+        <s:textfield type="text" cssClass="deliveryDateInput deliveryDateInputOnLoad form-control" id="datepicker2" name="order.deliveryDate" value="%{order.deliveryDate}" style="margin-bottom: 15px !important;" />
+        <%--<input type="text" class="deliveryDateInput to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" style="margin-bottom: 15px !important;">--%>
     </div>
 
 </div>

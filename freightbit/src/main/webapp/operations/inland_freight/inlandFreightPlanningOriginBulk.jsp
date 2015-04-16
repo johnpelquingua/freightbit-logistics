@@ -369,7 +369,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                                 <div class="col-lg-8">
                                     <div>
@@ -407,7 +407,7 @@
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                                 <div class="col-lg-8">
@@ -581,7 +581,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                                 <div class="col-lg-8">
                                     <div>
@@ -619,7 +619,7 @@
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                                 <div class="col-lg-8">
@@ -796,7 +796,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                                 <div class="col-lg-8">
                                     <div>
@@ -834,7 +834,7 @@
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                                 <div class="col-lg-8">
@@ -1056,13 +1056,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.truckOrigin"
-                                          id="trucksList"
-                                          listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
+                                          id="trucksList" listKey="truckId" listValue="truckCode" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                             </div>
                         </div>
@@ -1094,7 +1093,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
                         <div class="col-lg-8">

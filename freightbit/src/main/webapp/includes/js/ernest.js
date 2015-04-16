@@ -903,17 +903,17 @@ function hideVesselSchedule(){
         var arrivalDateReformat = dateAbbrev_Format3(arrivalDateTable.eq(i).text()),
             departureDateReformat = dateAbbrev_Format3(departureDateTable.eq(i).text());
 
-        arrivalDateTable.eq(i).empty().append(arrivalDateReformat);
-        departureDateTable.eq(i).empty().append(departureDateReformat);
+            arrivalDateTable.eq(i).empty().append(arrivalDateReformat);
+            departureDateTable.eq(i).empty().append(departureDateReformat);
     }
 
     setTimeout(function(){
         if($('.listOfSchedules tbody tr').size() == 0){
             $('.loadingDiv').empty().append('<i>No schedule found.</i>');
         }else{
-            if($('.listOfSchedules tbody tr').size() > 10){
+            /*if($('.listOfSchedules tbody tr').size() > 10){
                 $('.listOfSchedules').oneSimpleTablePagination({rowsPerPage: 10});
-            }
+            }*/
             $('.loadingDiv').hide();
             $('.tableDiv').fadeIn();
         }

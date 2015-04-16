@@ -46,6 +46,7 @@
 </div>
 
 <div class="row">
+
 <div class="col-lg-12">
 
 <div class="panel panel-primary">
@@ -171,7 +172,10 @@
             <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
 
             <div class="form-group">
-                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+
+                <div class="col-lg-12">
+
+                <%--<s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
                 </s:if>
                 <s:else>
@@ -179,11 +183,58 @@
                 </s:else>
                 <div class="col-lg-10">
                     <ol>
-                        <s:iterator value="nameSizeList" >
+                        <s:iterator value="nameSizeList">
                             <li><s:property /></li>
                         </s:iterator>
                     </ol>
+                </div>--%>
+
+                    <div class="table-responsive list-table">
+
+                        <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
+                            <thead>
+                            <tr class="header_center" style="background-color: #fff;">
+                                <th class="tb-font-black">Quantity</th>
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <span>
+                                        <th class="tb-font-black">Size</th>
+                                    </span>
+                                </s:if>
+                                <s:else>
+                                    <span>
+                                        <th class="tb-font-black">Name</th>
+                                    </span>
+                                </s:else>
+                                <th class="tb-font-black">Commodity</th>
+                                <th class="tb-font-black">Declared Value</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <s:iterator value="orderItemFreightPlan" var="orderItems">
+                                <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                <td class="tb-font-black"><s:property value="quantity"/></td>
+                                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <%--<td><display:column property="nameSize" title="Container" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                    <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                </s:if>
+                                <s:else>
+                                    <%--<td><display:column property="nameSize" title="Item" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                    <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                </s:else>
+                                <%--<td><display:column property="commodity" title="Commodity" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                <td class="tb-font-black"><s:property value="description"/></td>
+                                <%--<td><display:column property="declaredValue" title="Declared Value" class="tb-font-black" style="text-align: center;"> </display:column></td>--%>
+                                <td class="tb-font-black"><s:property value="getText('format.money',{declaredValue})"/></td>
+                            </s:iterator>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
                 </div>
+
             </div>
             <div class="form-group">
                 <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
@@ -267,7 +318,7 @@
         </div>
         <div class="tableDiv" style="display: none;">
             <display:table id="vesselSchedule" name="vesselSchedules"
-                           requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                           requestURI="/viewSeaFreightPlanning.action"
                            class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
                            style="margin-top: 15px;">
                 <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
@@ -287,11 +338,9 @@
                 <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                     style="text-align: center;"> </display:column></td>
                 <td><display:column title="Action">
-
-                    <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${vesselSchedule.vesselScheduleId})">
+                    <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${vesselSchedule.vesselScheduleId},${vesselSchedule.vendorId})">
                         <i class="fa fa-arrow-circle-down"></i>
                     </a>
-
                 </display:column></td>
 
             </display:table>
@@ -330,7 +379,6 @@
 </div>
 
 <%--Start Add Vendor Modal--%>
-
 <div class="modal fade" id="createVendor" role="form" aria-labelledby="myModalLabel1">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -403,11 +451,9 @@
         </div>
     </div>
 </div>
-
 <%--End Add Vendor Modal--%>
 
 <%--Start Add Schedule--%>
-
 <div class="modal fade" id="addSchedule" role="form" aria-labelledby="myModalLabel2">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -521,11 +567,11 @@
         window.location.href = '#anchorDiv';
     }
 
-    function confirmFreightPlan(vesselScheduleId) {
+    function confirmFreightPlan(vesselScheduleId,vendorId) {
         $.ajax({
             url: 'getConfirmModalBulkAction',
             type: 'POST',
-            data: {vesselScheduleIdParam: vesselScheduleId},
+            data: {vesselScheduleIdParam: vesselScheduleId, vendorIdParam: vendorId},
             dataType: 'html',
             success: function (html) {
                 $('#inputDiv').html(html);
@@ -562,34 +608,6 @@
             });
 
         });
-
-        /*$("#createSchedule").click(function() {
-            *//*var vendorId = $("#operationsBean_vendorList").val();
-
-            if (vendorId == "" || null){
-                alert("Select a vendor first");
-                $("#operationsBean_vendorList").focus();
-                return false;
-            }
-
-            $("#vendorIdHolder").val(vendorId);*//*
-            // To get the vessel list of the vendor
-            $.getJSON('listVessel', {
-                vendorId: vendorId
-            },
-
-            function (jsonResponse) {
-
-                var vessel = $('#vesselList');
-
-                vessel.find('option').remove();
-
-                $.each(jsonResponse.vesselMap, function (key, value) {
-                    $('<option>').val(key).text(value).appendTo(vessel);
-                });
-
-            });
-        });*/
 
         $("#createSchedule").click(function() {
             $("#vesselSchedule_vendorName").val('');

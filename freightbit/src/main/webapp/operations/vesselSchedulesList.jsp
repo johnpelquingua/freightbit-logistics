@@ -60,7 +60,7 @@
 
                 <div class="table-responsive">
                     <display:table id="vesselSchedule" name="vesselSchedules"
-                                   requestURI="viewVesselSchedules.action" pagesize="10"
+                                   requestURI="viewVesselSchedules.action"
                                    class="table table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
 
@@ -120,6 +120,7 @@
             <div class="panel-footer">
                 <div class="table-responsive">
                     <div class="col-lg-12">
+
                         <div class="col-lg-12">
                             <label>LEGEND:</label>
                         </div>
@@ -135,16 +136,7 @@
                         <div class="col-lg-3">
                             <i class='fa fa-trash-o'></i> Delete
                         </div>
-                        <%--<table class="col-lg-12">
-                            <tr>
-                                <td><label>LEGEND:</label></td>
-                                <td><i class="fa fa-stop" style="color: #d9534f;"></i> Unavailable</td>
-                                <td><i class="fa fa-stop" style="color: #5cb85c;"></i> Available</td>
-                                <td><i class='fa fa-pencil' ></i> Edit</td>
-                                <td><i class='fa fa-trash-o'></i> Delete</td>
-                            </tr>
 
-                        </table>--%>
                     </div>
                 </div>
             </div>
