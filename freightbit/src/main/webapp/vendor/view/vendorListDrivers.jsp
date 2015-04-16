@@ -49,17 +49,6 @@
 
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;"><i class="fa fa-info-circle"></i> Vendor Trucking Profile</h3>
-                <%--<span class="pull-right">
-
-                    <s:url var="editVendorUrl" action="loadEditVendorPage">
-                        <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
-                    </s:url>
-                        <s:a cssClass="btn btn-success new-booking" href="%{editVendorUrl}" rel="tooltip"
-                             title="Edit this vendor">
-                            &lt;%&ndash;<img src="../includes/images/edit-user.png" class="icon-action circ-icon">&ndash;%&gt;
-                            <i class="fa fa-pencil"></i> Edit Vendor
-                        </s:a>
-                </span>--%>
             </div>
 
             <div class="panel-body">
@@ -127,32 +116,9 @@
 
                     </div>
 
-                    <%--<div class="col-lg-2 col-lg-offset-2">
-                        <div class="panel panel-info" >
-                            &lt;%&ndash;<div class="panel-heading">&ndash;%&gt;
-                            &lt;%&ndash;<h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>&ndash;%&gt;
-                            &lt;%&ndash;</div>&ndash;%&gt;
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-12" style="text-align: center;">
-
-                                        <a href="" class="btn btn-default active" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
-                                        <a href="viewTruckingAddress" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
-                                        <a href="viewVendorTruckingContacts" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
-                                        <a href="viewDrivers" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Drivers</a>
-                                        <a href="viewTrucks" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-truck fa-fw"></i> <br/>Trucks</a>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>--%>
                     <div class="col-lg-2 col-lg-offset-2">
                         <div class="panel panel-info" >
-                            <%--<div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
-                            </div>--%>
+
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12" style="text-align: center;">
@@ -213,6 +179,8 @@
                                         <td><display:column property="middleName" title="Middle Name <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="title" title="Title <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="status" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">
