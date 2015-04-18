@@ -155,13 +155,13 @@
                                               listValue="customerName" cssClass="userAddForm form-control" value="user.customerId" disabled="true" emptyOption="true"/>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label"  style="padding-top:0px;">Permissions</label>
-                        <div class="col-lg-9">
-                        <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label"  style="padding-top:0px;">Permissions</label>
+                                <div class="col-lg-9">
+                                    <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

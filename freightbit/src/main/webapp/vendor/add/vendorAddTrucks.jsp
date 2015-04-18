@@ -103,7 +103,7 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" action="addTrucks" method="post" theme="bootstrap">
+                    <s:form cssClass="form-horizontal customerForm" action="addTrucks" method="post" theme="bootstrap">
 
 
                         <div class="col-lg-6">
@@ -279,6 +279,7 @@
                 <div class="pull-right">
                     <a href="viewTrucks" class="btn btn-danger" id ="groups-btn">Cancel</a>
                     <s:submit cssClass="btn btn-primary vendorAddTruckBtn" name="submit" value="Save" disabled="true"/>
+                    <%--<button type="button" name="submit" value="Save" disabled="true" class="btn btn-primary vendorAddTruckBtn">Save</button>--%>
                 </div>
             </div>
             </s:form>
@@ -314,6 +315,37 @@
 
 
     $(document).ready(function(){
+        $(".customerForm").on("submit", function(e) {
+            var year = new Date().getFullYear()+1;
+            if($('#truck_grossWeight').val() == 0){
+                alert('Warning : Gross Weight cannot be 0');
+                e.preventDefault();
+            }else if($('#truck_netWeight').val() == 0){
+                alert('Warning : Net Weight cannot be 0');
+                e.preventDefault();
+            }else if($('#truck_netCapacity').val() == 0){
+                alert('Warning : Net Capactiy cannot be 0');
+                e.preventDefault();
+            }else if($('#truck_modelYear').val() > year){
+                alert('Warning : Year model cannot exceed current production year ('+year+')');
+                e.preventDefault();
+            }
+
+        });
+//        $('.vendorAddTruckBtn').click(function(){
+//            if($('#truck_grossWeight').val() == 0){
+//                alert('Warning : Gross Weight cannot be 0');
+//            }else if($('#truck_netWeight').val() == 0){
+//                alert('Warning : Net Weight cannot be 0');
+//            }else if($('#truck_netCapacity').val() == 0){
+//                alert('Warning : Net Capactiy cannot be 0');
+//            }else if($('#truck_modelYear').val() > (new Date().getFullYear())+1){
+//                alert('Warning : Year model cannot exceed current production year.');
+//            }else{
+//                $('.customerForm').submit();
+//            }
+//        });
+
         validationForm('vendorAddTruckInput', 'vendorAddTruckBtn');
         $("#truck_motorVehicleNumber").mask("9999-99999999999");
         $("#truck_plateNumber").mask("AAA-9999");

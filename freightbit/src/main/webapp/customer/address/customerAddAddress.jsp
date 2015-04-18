@@ -48,7 +48,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Address Line 1<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10" >
-                                <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="addAddressInput form-control" required="true" maxLength="100"
+                                <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="addAddressInput form-control" required="true" maxLength="150"
                                              pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
                                              title="Address Line 1 will only accept alphanumeric and will only allow # , and . as special characters."/>
                             </div>
