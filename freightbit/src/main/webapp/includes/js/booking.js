@@ -305,10 +305,11 @@ $(document).ready(function() {
                 $.each(jsonResponse.consigneeContactMap, function(key, value) {
                     $('<option>').val(key).text(value).appendTo(select9);
                 });
-            });
 
+            });
+            $('.overlay').fadeOut();
         });
-        $('.overlay').fadeOut();
+
     });
 
     //Consignee on Select
@@ -347,8 +348,8 @@ $(document).ready(function() {
             $.each(jsonResponse.consigneeContactMap, function(key, value) {
                 $('<option>').val(key).text(value).appendTo(select9);
             });
+            $('.overlay').fadeOut();
         });
-        $('.overlay').fadeOut();
     });
 
     //Consignee Address on Select
@@ -378,8 +379,8 @@ $(document).ready(function() {
                     $('<option>').val(key).text(value).appendTo(select3);
                 }
             });
+            $('.overlay').fadeOut();
         });
-        $('.overlay').fadeOut();
     });
 
    /* // Date Time Picker
@@ -591,6 +592,23 @@ $(document).ready(function(){
 
 });
 
+$(document).ready(function(){
+    var notifBox = $('.notifBox');
+
+//    for(var x=0; x < notifBox.size(); x++){
+//        notifBox.eq(x).val(localStorage.getItem(notifBox.eq(x).attr('data-name')));
+//    }
+
+    for(var i=0; i < notifBox.size(); i++){
+        alert(notifBox.eq(i).attr('data-name')+' '+notifBox.eq(i).prop('checked'));
+        localStorage.setItem(notifBox.eq(i).attr('data-name'), notifBox.eq(i).prop('checked'));
+    }
+
+    notifBox.click(function(){
+       localStorage.setItem($(this).attr('data-name'),$(this).prop('checked'));
+    });
+});
+
 function getThis(){
     localStorage.setItem("ServiceReqField", $("#order_serviceRequirement").val());
     localStorage.setItem("ServiceModeField", $("#order_modeOfService").val());
@@ -601,13 +619,17 @@ function getThis(){
     localStorage.setItem("Deldatefield", $("#datepicker2").val());
     localStorage.setItem("OriginPortField", $("#select1").val());
     localStorage.setItem("DestinationPortField", $("#select2").val());
-    localStorage.setItem("NotificationField", $("#notification_type").val());
+//    localStorage.setItem("NotificationField", $("#notification_type").val());
     localStorage.setItem("CommentsField", $("#Comments").val());
     localStorage.setItem("PhoneField", $("#customerPhone_textfield").val());
     localStorage.setItem("Mobilefield", $("#customerMobile_textfield").val());
     localStorage.setItem("EmailField", $("#customerEmail_textfield").val());
     localStorage.setItem("FaxField", $("#customerFax_textfield").val());
 
+    var notifBox = $('.notifBox');
+    for(var i=0; i < notifBox.size(); i++){
+        localStorage.setItem(notifBox.eq(i).attr('name'), notifBox.eq(i).val());
+    }
 }
 function setThis(){
     $("#order_serviceRequirement").val(localStorage.getItem("ServiceReqField"));
@@ -619,12 +641,17 @@ function setThis(){
     $("#datepicker2").val(localStorage.getItem("Deldatefield"));
     $("#select1").val(localStorage.getItem("OriginPortField"));
     $("#select2").val(localStorage.getItem("DestinationPortField"));
-    $("#notification_type").val(localStorage.getItem("NotificationField"));
+//    $("#notification_type").val(localStorage.getItem("NotificationField"));
     $("#Comments").val(localStorage.getItem("CommentsField"));
     $("#customerPhone_textfield").val(localStorage.getItem("PhoneField"));
     $("#customerMobile_textfield").val(localStorage.getItem("Mobilefield"));
     $("#customerEmail_textfield").val(localStorage.getItem("EmailField"));
     $("#customerFax_textfield").val(localStorage.getItem("FaxField"));
+
+    var notifBox = $('.notifBox');
+    for(var i=0; i < notifBox.size(); i++){
+        $('.'+notifBox.eq(i).attr('name')).val(notifBox.eq(i).val());
+    }
 }
 
 $(document).ready(function(){
