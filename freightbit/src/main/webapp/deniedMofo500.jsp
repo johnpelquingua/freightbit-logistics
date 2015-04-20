@@ -27,7 +27,7 @@
         <div class="content">
             <img src="../includes/images/error-img-500.png" title="error" />
             <p>ERROR Page!</p>
-            <%--<p><span><label>Hi, </label><c:out value="${sessionScope.loggedinUser}"/></span> you do not have permission to accesss this page!</p>--%>
+            <%--<p><span><label>Hi, </label><c:out value="${sessionScope.loggedinUser}"/></span> you do not have permission to access this page!</p>--%>
         </div>
     </div>
 

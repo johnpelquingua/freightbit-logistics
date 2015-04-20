@@ -272,8 +272,8 @@
 
         <action name="loadAddShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadAddContact">
-            <!--<result name="success" type="tiles">vendor.vendorAddShippingContact.tiles</result>-->
-            <result name="SHIPPING" type="tiles">vendor.vendorAddShippingContact.tiles</result>
+            <result name="success" type="tiles">vendor.vendorAddShippingContact.tiles</result>
+            <!--<result name="SHIPPING" type="tiles">vendor.vendorAddShippingContact.tiles</result>-->
         </action>
 
         <action name="loadEditShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"

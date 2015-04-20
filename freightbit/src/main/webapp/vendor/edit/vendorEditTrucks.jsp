@@ -27,7 +27,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;"><i class="fa fa-info-circle"></i> Vendor Trucking Profile</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Vendor Trucking Profile</h3>
 
             </div>
 
@@ -120,7 +120,7 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" action="editTrucks" method="post" theme="bootstrap">
+                    <s:form cssClass="form-horizontal customerForm" action="editTrucks" method="post" theme="bootstrap">
                         <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
                         <s:hidden name="truck.createdTimeStamp" value="%{truck.createdTimeStamp}" />
                         <s:hidden name="truck.createdBy" value="%{truck.createdBy}" />
@@ -132,7 +132,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder=" e.g. ABC-123, XYZ-7890, etc." name="truck.plateNumber"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder=" e.g. ABC-123, XYZ-7890, etc." name="truck.plateNumber"
                                                  id="truck_plateNumber" required="true" pattern=".{7,8}" title="Example: ABC-123,XYZ-7890" onkeypress="return alphaKeyOnly(event)"/>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">LTO Certificate Number<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
                                                  id="truck.truckCode" required="true" title="Input your LTO Certificate Number"/>
                                 </div>
                             </div>
@@ -152,7 +152,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">MV File Number<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber" onkeypress="return isNumberKey(event)"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder="MV File Number" name="truck.motorVehicleNumber" onkeypress="return isNumberKey(event)"
                                                  id="truck_motorVehicleNumber" required="true" title="Input your MV File Number"/>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Model<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder="Model" name="truck.modelNumber"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder="Model" name="truck.modelNumber"
                                                  id="truck.modelNumber" required="true" title="Example: 4Runner, Yukon, Silverado"/>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Owner's Name<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder="Owner's Name" name="truck.ownerName"
                                                  id="truck.ownerName" required="true" pattern="^(\s*[a-zA-Z\xD1-\xF1]+(([\'\-\+\s]\s*[a-zA-Z\xD1-\xF1])?[a-zA-Z\xD1-\xF1]*)\s*)+$"
                                                  title="Owner's Name should not contain special characters and/or numbers." maxLength="50"/>
                                 </div>
@@ -183,7 +183,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Owner's Address<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder="Owner's Address" name="truck.ownerAddress"
                                                  id="truck.ownerAddress" required="true" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
                                                  title="Owner's Address should not contain special characters."/>
                                 </div>
@@ -194,7 +194,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">O.R. Number<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt" onkeypress="return isNumberKey(event)"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder="O.R. Number" name="truck.officialReceipt" onkeypress="return isNumberKey(event)"
                                                  id="truck.officialReceipt" required="true" title="Please Input Valid O.R. Number" maxlength="15" pattern="[0-9]+"/>
                                 </div>
                             </div>
@@ -219,7 +219,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Make<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder=" e.g. Toyota, GMC, Chevrolet, etc."
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder=" e.g. Toyota, GMC, Chevrolet, etc."
                                                  name="truck.engineNumber" title="Example: Toyota, GMC, Chevrolet."
                                                  id="truck.engineNumber" required="true"  />
                                 </div>
@@ -232,7 +232,7 @@
 
                                 <div class="col-lg-8">
                                     <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
-                                              cssClass="form-control"/>
+                                              cssClass="form-control vendorEditTruckInput"/>
 
                                 </div>
                             </div>
@@ -253,7 +253,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Gross Weight (kg.)<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder="Gross Weight" name="truck.grossWeight"
                                                  id="truck_grossWeight" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
                                                  title="Gross Weight will not accept letters or special characters."/>
                                 </div>
@@ -264,7 +264,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Net Weight (kg.)<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder="Net Weight" name="truck.netWeight"
                                                  id="truck_netWeight" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
                                                  title="Gross Weight will not accept letters or special characters."/>
                                 </div>
@@ -275,7 +275,7 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Net Capacity<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
+                                    <s:textfield cssClass="vendorEditTruckInput form-control" placeholder="Net Capacity" name="truck.netCapacity"
                                                  id="truck_netCapacity" required="true" maxLength="9" onkeypress="return isNumberKey(event)"
                                                  title="Net Capacity will not accept letters or special characters."/>
                                 </div>
@@ -289,8 +289,7 @@
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewTrucks" class="btn btn-danger" id ="groups-btn">Cancel</a>
-
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    <s:submit cssClass="btn btn-primary vendorEditTruckBtn" name="submit" value="Save"/>
                 </div>
             </div>
             </s:form>
@@ -312,6 +311,25 @@
     });
 
     $(document).ready(function(){
+
+        $(".customerForm").on("submit", function(e) {
+            var year = new Date().getFullYear()+1;
+            if($('#truck_grossWeight').val() == 0){
+                alert('Warning : Gross Weight cannot be 0');
+                e.preventDefault();
+            }else if($('#truck_netWeight').val() == 0){
+                alert('Warning : Net Weight cannot be 0');
+                e.preventDefault();
+            }else if($('#truck_netCapacity').val() == 0){
+                alert('Warning : Net Capactiy cannot be 0');
+                e.preventDefault();
+            }else if($('#truck_modelYear').val() > year){
+                alert('Warning : Year model cannot exceed current production year ('+year+')');
+                e.preventDefault();
+            }
+        });
+
+        validationForm('vendorEditTruckInput', 'vendorEditTruckBtn');
         $("#truck_motorVehicleNumber").mask("9999-99999999999");
         $("#truck_modelYear").mask("9999");
         $("#truck_plateNumber").mask("AAA-9999");

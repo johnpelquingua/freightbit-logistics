@@ -29,15 +29,6 @@
 
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;"><i class="fa fa-info-circle"></i> Vendor Shipping Profile</h3>
-                <%--<span class="pull-right">
-                    <s:url var="editVendorUrl" action="loadEditVendorPage">
-                        <s:param name="vendorIdParam" value="#attr.vendor.vendorId"></s:param>
-                    </s:url>
-                        <s:a cssClass="btn btn-success new-booking" href="%{editVendorUrl}" rel="tooltip"
-                             title="Edit this vendor">
-                            <i class="fa fa-pencil"></i> Edit Vendor
-                        </s:a>
-                </span>--%>
             </div>
 
             <div class="panel-body">
@@ -47,9 +38,6 @@
                     <div class=" col-lg-6 col-lg-offset-3">
                         <div class="panel panel-info ">
 
-                            <%--<div align="center" style="margin-top: 10px;">
-                                <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
-                            </div>--%>
                             <div class="row">
                                 <div class="col-lg-12">
 
@@ -83,10 +71,6 @@
                                                 <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Classification</td>
                                                 <td><s:property value="vendor.vendorClass"/></td>
                                             </tr>
-                                            <%--<tr>--%>
-                                            <%--<td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Status</td>--%>
-                                            <%--<td><s:property value="vendor.vendorStatus"/></td>--%>
-                                            <%--</tr>--%>
 
                                             </tbody>
                                         </table>
@@ -99,27 +83,6 @@
                         </div>
 
                     </div>
-
-                    <%--<div class="col-lg-2 col-lg-offset-2">
-                        <div class="panel panel-info" >
-                            &lt;%&ndash;<div class="panel-heading">&ndash;%&gt;
-                            &lt;%&ndash;<h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>&ndash;%&gt;
-                            &lt;%&ndash;</div>&ndash;%&gt;
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-12" style="text-align: center;">
-
-                                        <a href="viewInfoVendor" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
-                                        <a href="#" class="btn btn-default active" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
-                                        <a href="viewVendorShippingContacts" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
-                                        <a href="viewVessels" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-anchor fa-fw"></i> <br/>Vessels</a>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>--%>
 
                 </div>
 
@@ -142,7 +105,7 @@
 
                             <s:form role="form" action="addShippingContact" cssClass="form-horizontal" theme="bootstrap">
 
-                            <div class="form-group" style="display: none;">
+                            <div class="form-group" >
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Contact Type<span class="asterisk_red"></span></label>
                                 <div class="col-lg-10">
                                     <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
@@ -245,7 +208,6 @@
     </div>
 </div>
 <%--end--%>
-
 
 <script type="text/javascript">
 //jquery for masking telephone numbers

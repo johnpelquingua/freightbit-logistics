@@ -287,19 +287,6 @@
         </div>
     </div>
 
-    <%--<div class="col-lg-2 col-lg-offset-2">
-        <div class="panel panel-primary">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li><a href="viewTruckingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="viewVendorTruckingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                <li><a href="viewDrivers"><i class="fa fa-group fa-fw"></i> Drivers</a></li>
-                <li class="active"><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
-            </ul>
-        </div>
-    </div>--%>
-
-
 </div>
 
 <script type="text/javascript">
@@ -312,7 +299,6 @@
         startDate: 2
 
     });
-
 
     $(document).ready(function(){
         $(".customerForm").on("submit", function(e) {
@@ -330,8 +316,8 @@
                 alert('Warning : Year model cannot exceed current production year ('+year+')');
                 e.preventDefault();
             }
-
         });
+
 //        $('.vendorAddTruckBtn').click(function(){
 //            if($('#truck_grossWeight').val() == 0){
 //                alert('Warning : Gross Weight cannot be 0');
@@ -353,11 +339,13 @@
         $("#truck_grossWeight").mask("999999999");
         $("#truck_netWeight").mask("999999999");
         $("#truck_netCapacity").mask("999999999");
-//        $("#shipping_fax").mask("(999) 999-9999");
+
     });
+
     $("#truck_plateNumber").keyup(function(){
         this.value=this.value.toUpperCase();
     });
+
     function isNumberKey(evt)
     {
         var charCode = (evt.which) ? evt.which : event.keyCode
@@ -366,6 +354,5 @@
 
         return true;
     }
-
 
 </script>
