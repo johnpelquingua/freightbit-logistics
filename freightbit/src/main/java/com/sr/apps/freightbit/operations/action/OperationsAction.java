@@ -3354,7 +3354,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Trucks> trucksList = vendorService.findTrucksByVendorId(vendorId);
 
         for(int i = 0; i < driverList.size(); i++) {
-            driverMap.put(driverList.get(i).getFirstName() + " " + driverList.get(i).getLastName(), driverList.get(i).getFirstName() + " " + driverList.get(i).getLastName());
+            if(driverList.get(i).getStatus().equals("ACTIVE")) {
+                driverMap.put(driverList.get(i).getFirstName() + " " + driverList.get(i).getLastName(), driverList.get(i).getFirstName() + " " + driverList.get(i).getLastName());
+            }
         }
 
         for(int i = 0; i <trucksList.size(); i++) {

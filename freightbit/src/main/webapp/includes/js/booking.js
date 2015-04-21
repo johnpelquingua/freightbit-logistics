@@ -600,7 +600,7 @@ $(document).ready(function(){
 //    }
 
     for(var i=0; i < notifBox.size(); i++){
-        alert(notifBox.eq(i).attr('data-name')+' '+notifBox.eq(i).prop('checked'));
+        //alert(notifBox.eq(i).attr('data-name')+' '+notifBox.eq(i).prop('checked'));
         localStorage.setItem(notifBox.eq(i).attr('data-name'), notifBox.eq(i).prop('checked'));
     }
 

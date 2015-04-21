@@ -432,8 +432,10 @@ public class OrderServiceImpl implements OrderService {
             return companyCode + "-000" + nextBookingNoAsStr;
         else if (zerosToAdd == 2)
             return companyCode + "-00" + nextBookingNoAsStr;
-        else //if (zerosToAdd == 1)
+        else if (zerosToAdd == 1)
             return companyCode + "-0" + nextBookingNoAsStr;
+        else
+            return companyCode + "-" + nextBookingNoAsStr;
     }
 
 // End Items

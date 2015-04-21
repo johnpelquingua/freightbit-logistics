@@ -1132,39 +1132,66 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String cancelOrder() {
-
-        Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        orderEntity.setOrderStatus("CANCELLED");
-        orderService.updateOrder(orderEntity);
+        String column = getColumnFilter();
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
+            orderEntityList = orderService.findAllOrders();
+        }
+        for (Orders orderElem : orderEntityList) {
+            orders.add(transformToOrderFormBean(orderElem));
+        }
 
         List<OrderItems> orderItemListing = operationsService.findAllOrderItemsByOrderId(orderIdParam);
-        for(int i=0; i < orderItemListing.size(); i++){
-            orderItemListing.get(i).setVendorSea(null);
-            orderItemListing.get(i).setVendorOrigin(null);
-            orderItemListing.get(i).setVendorDestination(null);
-            orderItemListing.get(i).setVesselScheduleId(null);
-            orderItemListing.get(i).setDriverOrigin(null);
-            orderItemListing.get(i).setDriverDestination(null);
-            orderItemListing.get(i).setTruckOrigin(null);
-            orderItemListing.get(i).setTruckDestination(null);
-            orderItemListing.get(i).setFinalPickupDate(null);
-            orderItemListing.get(i).setFinalDeliveryDate(null);
-            orderItemListing.get(i).setContainerId(null);
-            orderItemListing.get(i).setServiceRequirement(null);
-            orderItemListing.get(i).setStatus("CANCELLED");
-            orderService.updateItemListing(orderItemListing.get(i));
+        Integer checkItems = 0;
+
+        for (OrderItems orderItemElem : orderItemListing){
+
+            if (orderItemElem.getStatus().equals("ARRIVED") || orderItemElem.getStatus().equals("DELIVERED")){
+                checkItems = checkItems + 1;
+            }
+
         }
 
-        List<Documents> documentEntityListing = documentsService.findDocumentsByOrderId(orderIdParam);
-        for(int j=0; j < documentEntityListing.size(); j++){
-            documentsService.deleteDocument(documentEntityListing.get(j));
+        if(orderItemListing.size() == checkItems && orderItemListing.size() >= 1){
+            clearErrorsAndMessages();
+            addActionError("You can't cancel booking with item status of ARRIVED or DELIVERED.");
+            return INPUT;
         }
 
-        clearErrorsAndMessages();
-        addActionMessage("Booking cancelled.");
+        else {
+            Orders orderEntity = orderService.findOrdersById(orderIdParam);
+            orderEntity.setOrderStatus("CANCELLED");
+            orderService.updateOrder(orderEntity);
 
-        return SUCCESS;
+            for (int i = 0; i < orderItemListing.size(); i++) {
+                orderItemListing.get(i).setVendorSea(null);
+                orderItemListing.get(i).setVendorOrigin(null);
+                orderItemListing.get(i).setVendorDestination(null);
+                orderItemListing.get(i).setVesselScheduleId(null);
+                orderItemListing.get(i).setDriverOrigin(null);
+                orderItemListing.get(i).setDriverDestination(null);
+                orderItemListing.get(i).setTruckOrigin(null);
+                orderItemListing.get(i).setTruckDestination(null);
+                orderItemListing.get(i).setFinalPickupDate(null);
+                orderItemListing.get(i).setFinalDeliveryDate(null);
+                orderItemListing.get(i).setContainerId(null);
+                orderItemListing.get(i).setServiceRequirement(null);
+                orderItemListing.get(i).setStatus("CANCELLED");
+                orderService.updateItemListing(orderItemListing.get(i));
+            }
 
+
+            List<Documents> documentEntityListing = documentsService.findDocumentsByOrderId(orderIdParam);
+            for (int j = 0; j < documentEntityListing.size(); j++) {
+                documentsService.deleteDocument(documentEntityListing.get(j));
+            }
+
+            clearErrorsAndMessages();
+            addActionMessage("Booking cancelled.");
+            return SUCCESS;
+        }
     }
 
     public String viewInfoOrder() {
