@@ -206,7 +206,7 @@
                                     <s:date name="new java.util.Date()" format="dd-MMM-yyyy hh:mm a"/>
                                 </s:param>
                             </s:textfield>--%>
-                        <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate"/>
+                        <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="statusDropdown form-control" id="actualDate"/>
                         <script>
                             $(function () {
                                 var actDate = $('#actualDate');

@@ -609,11 +609,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 //Status in OrderStatusLogs will be passed into OrderItems table
                 orderItemEntity.setStatus(orderStatusLogsBean.getStatus());
                 orderStatusLogsService.updateStatusOrderItem(orderItemEntity);
-
-                //Status in OrderStatusLogs will be passed into Orders table
-                Orders orderEntity = orderService.findOrdersById(orderIdParam);
-                orderEntity.setOrderStatus(orderStatusLogsBean.getStatus());
-                orderService.updateOrder(orderEntity);
             }
         } catch (Exception e) {
             addActionError("Update Failed");
@@ -786,11 +781,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
                 orderItemEntity.setStatus(orderStatusLogsBean.getStatus());
                 orderStatusLogsService.updateStatusOrderItem(orderItemEntity);
-
-                //Status in OrderStatusLogs will be passed into Orders table
-                Orders orderEntity = orderService.findOrdersById(orderIdParam);
-                orderEntity.setOrderStatus(orderStatusLogsBean.getStatus());
-                orderService.updateOrder(orderEntity);
 
         } catch (Exception e) {
                 addActionError("Update Failed");
