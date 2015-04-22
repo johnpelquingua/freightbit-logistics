@@ -13,6 +13,8 @@ import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.core.entity.User;
+import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.operations.entity.Container;
@@ -55,6 +57,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private OperationsService operationsService;
     private CustomerService customerService;
     private OrderService orderService;
+    private UserService userService;
     private ContainerService containerService;
     private Integer orderIdParam;
     private String orderNoParam;
@@ -1036,7 +1039,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 formBean.setStatus(orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId()).getStatus());
         }
         formBean.setOrderItemId(entity.getOrderItemId());
-        formBean.setCreatedBy(entity.getCreatedBy());
+
+        User userEntity = userService.findUserByUserName(entity.getCreatedBy());
+        formBean.setCreatedBy(userEntity.getFirstName() + " " + userEntity.getLastName());
 
         if(entity.getContainerId() != null){
             Container containerNumEntity = containerService.findContainerById(entity.getContainerId());
@@ -1070,7 +1075,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setActualDate(entity.getActualDate());
         formBean.setStatus(entity.getStatus());
-        formBean.setCreatedBy(entity.getCreatedBy());
+        User userEntity = userService.findUserByUserName(entity.getCreatedBy());
+        formBean.setCreatedBy(userEntity.getFirstName() + " " + userEntity.getLastName());
         formBean.setNameSize(orderService.findOrderItemByOrderItemId(entity.getOrderItemId()).getNameSize());
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setOrderId(operationsService.findOrderItemById(entity.getOrderItemId()).getOrderId());
@@ -1295,6 +1301,14 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setContainerService(ContainerService containerService) {
         this.containerService = containerService;
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     public void setNotificationService(NotificationService notificationService) {
