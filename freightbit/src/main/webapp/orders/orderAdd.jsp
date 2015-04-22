@@ -15,11 +15,11 @@
         margin: 0 !important;
     }
 
-    @media (min-width: 1200px) {
-        .container {
-            width: 910px; !important;
-        }
-    }
+    /*@media (min-width: 1200px) {*/
+        /*.container {*/
+            /*width: 910px; !important;*/
+        /*}*/
+    /*}*/
 </style>
 
 <script>
