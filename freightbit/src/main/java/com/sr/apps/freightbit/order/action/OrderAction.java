@@ -1154,7 +1154,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         }
 
-        if(orderItemListing.size() == checkItems && orderItemListing.size() >= 1){
+        if(checkItems >= 1){
             clearErrorsAndMessages();
             addActionError("You can't cancel booking with item status of ARRIVED or DELIVERED.");
             return INPUT;
