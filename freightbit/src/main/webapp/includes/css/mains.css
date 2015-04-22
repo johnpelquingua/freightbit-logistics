@@ -723,8 +723,12 @@ span.pagelinks {
 .ui-timepicker-rtl dl dd { margin: 0 40% 10px 10px; }
 
 @media (min-width: 1200px) {
-    .container {
-        width: 1060px;
+    /*.container {*/
+        /*width: 1060px;*/
+    /*}*/
+
+    .form-control {
+        width: 100%;
     }
 }
 
