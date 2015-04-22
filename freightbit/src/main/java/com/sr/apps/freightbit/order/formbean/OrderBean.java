@@ -66,6 +66,7 @@ public class OrderBean {
     private Float orderVolume;
     private Double orderWeight;
     private Integer aging;
+    private String strAging;
     private String plateNumberOri;
     private String plateNumberDes;
 	private AddressBean shipperInfoAddress;
@@ -532,4 +533,11 @@ public class OrderBean {
         this.orderItemStatus = orderItemStatus;
     }
 
+    public String getStrAging() {
+        return strAging;
+    }
+
+    public void setStrAging(String strAging) {
+        this.strAging = strAging;
+    }
 }

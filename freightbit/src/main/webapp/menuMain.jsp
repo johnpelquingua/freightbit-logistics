@@ -6,7 +6,19 @@
     <li><a href="<s:url action='home.action' />" class="menu-style-a"><i class="fa fa-dashboard"></i> Dashboard</a></li>
     <!-- BOOKING -->
     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
-        <li><a href="<s:url action='orders/viewOrders' />" class="menu-style-a"><i class="fa fa-book"></i> Booking</a></li>
+        <%--<li><a href="<s:url action='orders/viewOrders' />" class="menu-style-a"><i class="fa fa-book"></i> Booking</a></li>--%>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-book"></i> Booking <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
+                    <li><a href="<s:url action='orders/viewOrders' />"> <i class="fa fa-caret-right fa-fw"></i> Active Bookings</a></li>
+                </sec:authorize>
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
+                    <li><a href="<s:url action='orders/viewOrders' />"> <i class="fa fa-caret-right fa-fw"></i> Archived Bookings</a></li>
+                </sec:authorize>
+
+            </ul>
+        </li>
     </sec:authorize>
 
     <!-- OPERATION -->

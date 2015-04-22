@@ -97,7 +97,9 @@
                                                 style="text-align: center; width: 75px;"> </display:column></td>
                             <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Status"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="createdBy" title="Booked By <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Status"
+                            <td><display:column property="createdBy" title="Booked By <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Created By"
+                                                style="text-align: center; width: 180px;"> </display:column></td>
+                            <td><display:column property="strAging" title="Aging <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Aging"
                                                 style="text-align: center; width: 180px;"> </display:column></td>
                             <%--<td><display:column property="documentCheck" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"--%>
                                                 <%--style="text-align: center;"> </display:column></td>--%>
@@ -122,8 +124,8 @@
                                             <s:url var="deleteOrderUrl" action="deleteOrder">
                                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                             </s:url>
-                                                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
-                                                </s:a>
+                                            <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
+                                            </s:a>
                                             <i class="fa fa-trash-o deleteBookingIcon table-action-icons"></i>
                                         </s:if>
                                         </sec:authorize>

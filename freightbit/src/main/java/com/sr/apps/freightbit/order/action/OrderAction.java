@@ -267,9 +267,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String viewOrders() {
-        // for archiving booking work in progress...
-        Date todayDate = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
@@ -1528,7 +1525,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderBean.setCustomerName(shipperName.getCustomerName());
         }
 
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
         if(order.getPickupDate() != null){
             orderBean.setStrPickupDate(formatter.format(order.getPickupDate()));
@@ -1606,6 +1603,43 @@ public class OrderAction extends ActionSupport implements Preparable {
                 orderBean.setDocumentCheck("AVAILABLE");
                 orderBean.setDocumentId(documentElem.getDocumentId());
             }
+        }
+
+        //Will only compute for aging if status is service accomplished
+        if(order.getOrderStatus().equals("SERVICE ACCOMPLISHED")){
+            //TO CHECK FOR AGING AND MOVING TO ARCHIVE
+            String todayDate = (formatter.format(new Date()));
+            String accomplishedDate = (formatter.format(order.getModifiedTimestamp()));
+            System.out.println(order.getModifiedTimestamp() + " Modified Timestamp");
+
+            Date d1 = null;
+            Date d2 = null;
+
+            try{
+                d1 = formatter.parse(todayDate);
+                d2 = formatter.parse(accomplishedDate);
+                System.out.println(d1 + " Date Today");
+                System.out.println(d2 + " Accomplished Date");
+
+                long diff = d1.getTime() - d2.getTime();
+
+                long diffSeconds = diff / 1000 % 60;
+                long diffMinutes = diff / (60 * 1000) % 60;
+                long diffHours = diff / (60 * 60 * 1000) % 24;
+                long diffDays = diff / (24 * 60 * 60 * 1000);
+
+                System.out.println(diffDays + " days");
+                System.out.println(diffHours + " hours");
+                System.out.println(diffMinutes + " minutes");
+                System.out.println(diffSeconds + " seconds");
+
+                orderBean.setStrAging(diffDays + " days");
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }else{
+            orderBean.setStrAging("0");
         }
 
         return orderBean;
