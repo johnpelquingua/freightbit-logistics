@@ -531,4 +531,5 @@ public class OrderBean {
     public void setOrderItemStatus(String orderItemStatus) {
         this.orderItemStatus = orderItemStatus;
     }
+
 }

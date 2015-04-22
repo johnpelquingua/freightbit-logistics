@@ -647,6 +647,7 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <s:form action="addCustomerAddress" cssClass="form-horizontal" theme="bootstrap">
+                    <s:hidden name="orderPage" value="ADD"/>
                     <s:hidden name="address.referenceId" id="custAddIdHolder"/>
                         <div class="form-group">
                         <label class="col-lg-3" style="width: 26%;">Address Type<span class="asterisk_red"></span></label>

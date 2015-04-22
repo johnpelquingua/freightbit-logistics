@@ -71,7 +71,8 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
             /*Query query = getSessionFactory().getCurrentSession().createQuery("from Customer where clientId = :clientId");
             query.setParameter("clientId", clientId);
             return query.list();*/
-            return getSessionFactory().getCurrentSession().createQuery("from Customer customer order by createdTimestamp desc").list();
+            /*return getSessionFactory().getCurrentSession().createQuery("from Customer customer order by createdTimestamp desc").list();*/
+            return getSessionFactory().getCurrentSession().createQuery("from Customer customer order by customerName asc").list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;

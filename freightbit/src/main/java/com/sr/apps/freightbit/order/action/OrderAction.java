@@ -116,6 +116,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Float orderItemRateParam;
     private Double orderItemDeclaredValueParam;
     private String orderItemRemarksParam;
+    private String orderPage;
     private Map<Integer, String> customerContactsMap = new LinkedHashMap<Integer, String>();
     private String dummyMsg;
     private Integer customerID;
@@ -1261,6 +1262,10 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     //adding customer address in booking
     public String addAddress() throws Exception {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        // Put Order Id to Order Id session
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
         if (hasFieldErrors()) {
             return INPUT;
         }
@@ -1272,12 +1277,11 @@ public class OrderAction extends ActionSupport implements Preparable {
             customerService.addAddress(addressEntity);
         }catch (AddressAlreadyExistsException e) {
             addFieldError("address.addressLine1", getText("err.addressLine1.already.exists"));
+            if(orderPage.equals("EDIT")){
+                loadEditOrder();
+            }
             return INPUT;
         }
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        // Put Order Id to Order Id session
-        sessionAttributes.put("orderIdParam", orderIdParam);
 
         return SUCCESS;
     }
@@ -2725,6 +2729,14 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public String getOrderPage() {
+        return orderPage;
+    }
+
+    public void setOrderPage(String orderPage) {
+        this.orderPage = orderPage;
     }
 }
 

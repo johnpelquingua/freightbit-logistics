@@ -599,6 +599,7 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <s:form action="addCustomerAddressEditOrder" cssClass="form-horizontal" theme="bootstrap">
+                    <s:hidden name="orderPage" value="EDIT"/>
                     <s:hidden name="orderIdParam" id="orderIdHolder"/>
                     <s:hidden name="address.referenceId" id="custAddIdHolder"/>
                     <div class="form-group">
@@ -1382,7 +1383,6 @@ $(document).ready(function() {
         /* BEGIN EDIT WIP ------------------------------------------------------------------------*/
 
         /*Filters Service Mode Dropdown on page load for edit*/
-
         var order_freightType = $("#editOrder_order_freightType").val();
         var sReq = select = document.getElementById('order_serviceRequirement');
         var sType = select = document.getElementById('order_freightType');
@@ -1401,9 +1401,7 @@ $(document).ready(function() {
                     } else {
                         sMode.options[i].style.display = "none";
                     }
-                }/*else{
-
-                }*/
+                }
             }
 
         } else if (order_freightType == 'SHIPPING'){
@@ -1683,7 +1681,6 @@ $(document).ready(function() {
 });
 
 // For Service Mode Dropdown selection
-
 function dynamicDropdown(select, index) {
 
     var opt = select.options,
@@ -1724,9 +1721,7 @@ function dynamicDropdown(select, index) {
 
             if(sMode.options[i].value == "DOOR TO DOOR"){
                 sMode.options[i].disabled = false;
-            }/*else{
-                sMode.options[i].disabled = false;
-            }*/
+            }
         }
 
         for (var i = 0; i < sType.options.length; i++){
@@ -1751,9 +1746,7 @@ function dynamicDropdown(select, index) {
             }else {
                 if(sType.options[i].value == "SHIPPING AND TRUCKING"){
                     sType.options[i].disabled = false;
-                }/*else{
-                    sType.options[i].disabled = false;
-                }*/
+                }
             }
         }
 

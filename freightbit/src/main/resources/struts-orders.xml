@@ -165,6 +165,7 @@
                 method="reloadAddOrderPage">
             <result name="success" type="tiles">orders.booking-new.tiles</result>
         </action>
+
         <!--Add Address in Edit Booking-->
         <action name="addCustomerAddressEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addAddress">
