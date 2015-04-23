@@ -253,7 +253,7 @@
 
                 <div class="panel-body">
                     <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
-                        <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                        <%--<s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                         <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
                         <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
@@ -267,14 +267,15 @@
                         <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
                         <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
                         <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
-                        <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
+                        <s:hidden name="operationsBean.status" value="%{orderItems.status}" />
                         <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
                         <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
                         <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
                         <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
                         <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
                         <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
-                        <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
+                        <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />--%>
+
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                             <div class="col-lg-8">
@@ -443,7 +444,7 @@
 
         </s:if>
 
-        <s:if test="order.modeOfService=='DOOR TO DOOR' || order.modeOfService=='PIER TO DOOR'">
+        <s:if test="order.modeOfService=='DOOR TO DOOR' || order.modeOfService=='PIER TO DOOR' || order.modeOfService=='DELIVERY'">
 
             <div class="panel panel-primary">
 
@@ -454,7 +455,7 @@
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
                 <div class="panel-body">
                     <s:form cssClass="form-horizontal dispatchDestinationForm" theme="bootstrap" action="editBulkItemsInlandDestination">
-                        <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                        <%--<s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                         <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
                         <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
@@ -478,7 +479,7 @@
                         <s:hidden name="operationsBean.driverOrigin" value="%{orderItem.driverOrigin}" />
                         <s:hidden name="operationsBean.truckOrigin" value="%{orderItem.truckOrigin}" />
                         <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
-                        <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
+                        <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />--%>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Vendor</label>
