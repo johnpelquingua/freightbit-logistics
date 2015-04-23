@@ -11,7 +11,7 @@
         cursor: pointer;
         color: #2ECC71;
     }
-    .deleteBookingIcon {
+    .deleteBookingIcon, .archiveBookingIcon{
         cursor: pointer;
     }
 </style>
@@ -25,7 +25,7 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
             <li class="active"> Booking</li>
-            <li class="active"> Booking List</li>
+            <li class="active"> Active Booking List</li>
         </ol>
 
     </div>
@@ -56,7 +56,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Booking List </h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Active Booking List </h3>
                 <span class="pull-right">
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                         <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal1" onclick="showSearchFields();">
@@ -99,8 +99,8 @@
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="createdBy" title="Booked By <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Created By"
                                                 style="text-align: center; width: 180px;"> </display:column></td>
-                            <td><display:column property="strAging" title="Aging <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Aging"
-                                                style="text-align: center; width: 180px;"> </display:column></td>
+                            <td><display:column property="aging" title="Aging <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Aging"
+                                                style="text-align: center; width: 100px;"> </display:column></td>
                             <%--<td><display:column property="documentCheck" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"--%>
                                                 <%--style="text-align: center;"> </display:column></td>--%>
                             <td class="tb-font-black" style="text-align: center;">
@@ -172,7 +172,17 @@
                                         <i class="fa fa-times cancelBookingIcon"></i>
                                     </s:if>
                                     </sec:authorize>
-
+                                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS')">
+                                        <s:if test=" #attr.order.orderStatus == 'SERVICE ACCOMPLISHED' ">
+                                            | <%--separator--%>
+                                            <s:url var="archiveOrderUrl" action="archiveOrder">
+                                                <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{archiveOrderUrl}" rel="tooltip" title="Move to Archive" onclick="return confirm('Archive Booking?');">
+                                            </s:a>
+                                            <i class="fa fa-caret-square-o-right archiveBookingIcon"></i>
+                                        </s:if>
+                                    </sec:authorize>
                                 </display:column>
                             </td>
 
@@ -283,6 +293,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="archiveBookingModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Archive Booking</span>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to archive this booking?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-danger confirmArchiveModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
     $(document).ready(function() {
@@ -290,6 +317,7 @@
         actionConfirmation($('.cancelBookingIcon'), $('.confirmCancelModalBtn'), $('#cancelBookingModal'));
         actionConfirmation($('.approveBookingIcon'), $('.confirmApproveModalBtn'), $('#approveBookingModal'));
         actionConfirmation($('.deleteBookingIcon'), $('.confirmDeleteModalBtn'), $('#deleteBookingModal'));
+        actionConfirmation($('.archiveBookingIcon'), $('.confirmArchiveModalBtn'), $('#archiveBookingModal'));
 
 //        $('.cancelBookingIcon').click(function(){
 //            $('.confirmCancelModalBtn').attr('href', $(this).prev().attr('href'));

@@ -14,7 +14,7 @@
                     <li><a href="<s:url action='../orders/viewOrders' />"> <i class="fa fa-caret-right fa-fw"></i> Active Bookings</a></li>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
-                    <li><a href="<s:url action='../orders/viewOrders' />"> <i class="fa fa-caret-right fa-fw"></i> Archived Bookings</a></li>
+                    <li><a href="<s:url action='../orders/viewArchivedOrders' />"> <i class="fa fa-caret-right fa-fw"></i> Archived Bookings</a></li>
                 </sec:authorize>
 
             </ul>

@@ -14,28 +14,15 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Booking</li>
-            <li class="active"><a href="<s:url action='viewOrders' />"> Active Booking List </a> </li>
+            <li class="active"><a href="<s:url action='viewArchivedOrders' />"> Archived Booking List </a> </li>
             <li class="active"> Booking Information</li>
         </ol>
     </div>
 </div>
 
 <div class="panel panel-primary">
-    <%--<td><s:property value="#attr.order.documentId"/></td>--%>
     <div class="panel-heading">
-        <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Booking Information</h3>
-        <div class="btn-toolbar pull-right">
-            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
-                    <a class="btn btn-success" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-edit"></i> Edit Booking</a>
-                    <%--<s:property value="#attr.order.documentCheck"/>--%>
-                <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
-                    <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM')"> <i class="fa fa-print"></i> Print Booking</a>
-                </s:if>
-                <s:else>
-                    <a class="btn btn-info" title="Create Booking Request Form" href="<s:url action='createReport' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-file-text-o"></i> Create Booking Request Form</a>
-                </s:else>
-            </sec:authorize>
-        </div>
+        <h3 class="panel-title" style="float:left;"><i class="fa fa-info-circle"></i> Booking Information</h3>
     </div>
 
     <div class="panel-body">
@@ -207,34 +194,6 @@
     <div class="panel-body">
         <div class="table-responsive list-table cargoDetailsTableDiv center-text">
 
-            <%--<table class="table table-striped table-hover table-bordered text-center tablesorter">
-                <thead>
-                <tr>
-                    <th>Quantity</th>
-                    <th>Class</th>
-                    <th>Height</th>
-                    <th>Width</th>
-                    <th>Length</th>
-                    <th>Weight</th>
-                    <th>Value</th>
-                </tr>
-
-                </thead>
-                <tbody>
-                <s:iterator value="order.orderItemsBean" var="orderItem">
-                    <tr>
-                        <td><s:property value="quantity"/></td>
-                        <td><s:property value="classification"/></td>
-                        <td><s:property value="height"/></td>
-                        <td><s:property value="width"/></td>
-                        <td><s:property value="length"/></td>
-                        <td><s:property value="weight"/></td>
-                        <td><s:property value="declaredValue"/></td>
-                    </tr>
-                </s:iterator>
-                </tbody>
-            </table>--%>
-
                 <table class="table table-striped table-hover table-bordered text-center tablesorter itemListing" id="orderItems">
                     <thead>
                         <tr class="header_center" style="background-color: #fff;">
@@ -282,15 +241,13 @@
 
     <div class="panel-footer">
         <div class="pull-right">
-            <button type="button" id="Cancel" class="btn btn-danger" onclick="location.href='viewOrders'">
-                <i class="fa fa-chevron-left"></i> Back to Active Booking List
+            <button type="button" id="Cancel" class="btn btn-danger" onclick="location.href='viewArchivedOrders'">
+                <i class="fa fa-chevron-left"></i> Back to Archived Booking List
             </button>
         </div>
     </div>
 
 </div>
-
-<!-- /.row -->
 
 <script type="text/javascript">
 
@@ -305,22 +262,6 @@
             $('.cargoDetailsTableDiv').append('<h4 style="padding-bottom: -10px"><i class="fa fa-warning " style="color: red;"></i> No cargo/container found!</h4><i>Please make sure that the information of the booking is correct</i>');
         }
 
-        // Adding of Rates and displaying it in Total Rates
-//        var tbl = document.getElementById("orderItems");
-//        if (tbl != null) {
-//
-//            var orderItemTotalRate = 0;
-//
-//            for (var i = 0; i < tbl.rows.length; i++){
-//
-//                var orderItemRate = parseInt(tbl.rows[i+1].cells[6].innerHTML);
-//
-//                orderItemTotalRate = orderItemTotalRate + orderItemRate;
-//
-//                document.getElementById("totalRate").innerHTML = orderItemTotalRate;
-//            }
-//        }
-
     });
 
     function generateReport(documentId,documentName) {
@@ -329,21 +270,5 @@
             this.document.title = "Booking Request Form";
         }
     }
-
-    /*function createReport(orderId) {
-        $.ajax({
-            url: 'createReport',
-            type: 'POST',
-            data: { orderIdParam: orderId },
-            dataType: 'html',
-            success: function (html) {
-                $('#inputDiv').html(html);
-            },
-            error: function(xhr, ajaxOptions, thrownError){
-                alert('An error occurred! ' + thrownError);
-            }
-        });
-
-    }*/
 
 </script>

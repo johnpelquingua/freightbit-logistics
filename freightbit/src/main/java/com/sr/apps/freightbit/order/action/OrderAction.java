@@ -267,9 +267,9 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String viewOrders() {
-
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
         if (StringUtils.isNotBlank(column)) {
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> column " + column);
@@ -282,7 +282,9 @@ public class OrderAction extends ActionSupport implements Preparable {
                 for(Customer customerElem : customerEntityList){
                     for(Orders orderElem : allOrderEntityList){
                         if(customerElem.getCustomerId().equals(orderElem.getCustomerId())){
-                            orders.add(transformToOrderFormBean(orderElem));
+                            if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }
                         }
                     }
                 }
@@ -294,7 +296,9 @@ public class OrderAction extends ActionSupport implements Preparable {
                 for(Contacts consigneeElem : consigneeEntityList){
                     for(Orders orderElem : allOrderEntityList){
                         if(consigneeElem.getContactId().equals(orderElem.getConsigneeContactId())){
-                            orders.add(transformToOrderFormBean(orderElem));
+                            if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }
                         }
                     }
                 }
@@ -303,20 +307,127 @@ public class OrderAction extends ActionSupport implements Preparable {
                 orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
 
                 for (Orders orderElem : orderEntityList) {
-                    orders.add(transformToOrderFormBean(orderElem));
+                    if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                        orders.add(transformToOrderFormBean(orderElem));
+                    }
                 }
             }
         } else {
             orderEntityList = orderService.findAllOrders();
 
             for (Orders orderElem : orderEntityList) {
-                orders.add(transformToOrderFormBean(orderElem));
+                // will input Aging on Service Accomplished status only
+                if(orderElem.getOrderStatus().equals("SERVICE ACCOMPLISHED")) {
+                    //TO CHECK FOR AGING AND MOVING TO ARCHIVE
+                    String todayDate = (formatter.format(new Date()));
+                    String accomplishedDate = (formatter.format(orderElem.getModifiedTimestamp()));
+
+                    Date d1 = null;
+                    Date d2 = null;
+
+                    try {
+                        d1 = formatter.parse(todayDate);
+                        d2 = formatter.parse(accomplishedDate);
+                        System.out.println(d1 + " Date Today");
+                        System.out.println(d2 + " Accomplished Date");
+
+                        long diff = d1.getTime() - d2.getTime();
+
+                        long diffSeconds = diff / 1000 % 60;
+                        long diffMinutes = diff / (60 * 1000) % 60;
+                        long diffHours = diff / (60 * 60 * 1000) % 24;
+                        long diffDays = diff / (24 * 60 * 60 * 1000);
+
+                        System.out.println(diffDays + " days");
+                        System.out.println(diffHours + " hours");
+                        System.out.println(diffMinutes + " minutes");
+                        System.out.println(diffSeconds + " seconds");
+
+                        orderElem.setAging(Integer.parseInt(String.valueOf(diffDays)));
+                        orderService.updateOrder(orderElem);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                // will change the order status if aging days are 30 or over
+                if(orderElem.getAging() != null){
+                    if(orderElem.getAging() >= 30){
+                        orderElem.setOrderStatus("ARCHIVED");
+                        orderService.updateOrder(orderElem);
+                    }
+                }
+                // will only show bookings that is not archived
+                if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                    orders.add(transformToOrderFormBean(orderElem));
+                }
+
             }
 
         }
 
         Booking = notificationService.countAll();
         System.out.println("The number of new booking is " + Booking);
+
+        return SUCCESS;
+    }
+
+    public String viewArchivedOrders() {
+        String column = getColumnFilter();
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+
+        if (StringUtils.isNotBlank(column)) {
+
+            if(column.equals("shipperCode")){
+                List<Customer> customerEntityList = customerService.findCustomersByCriteria("customerName", order.getOrderKeyword(), getClientId());
+                List <Orders> allOrderEntityList = orderService.findAllOrders();
+                // To search for customer in booking
+                for(Customer customerElem : customerEntityList){
+                    for(Orders orderElem : allOrderEntityList){
+                        if(customerElem.getCustomerId().equals(orderElem.getCustomerId())){
+                            if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }
+                        }
+                    }
+                }
+
+            }else if(column.equals("consigneeCode")){
+                List<Contacts> consigneeEntityList = customerService.findConsigneeByCriteria("companyName", order.getOrderKeyword(), getClientId());
+                List <Orders> allOrderEntityList = orderService.findAllOrders();
+                // To search for consignee in booking
+                for(Contacts consigneeElem : consigneeEntityList){
+                    for(Orders orderElem : allOrderEntityList){
+                        if(consigneeElem.getContactId().equals(orderElem.getConsigneeContactId())){
+                            if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }
+                        }
+                    }
+                }
+
+            }else{
+                orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+
+                for (Orders orderElem : orderEntityList) {
+                    if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                        orders.add(transformToOrderFormBean(orderElem));
+                    }
+                }
+            }
+        } else {
+            orderEntityList = orderService.findAllOrders();
+
+            for (Orders orderElem : orderEntityList) {
+
+                // will only show bookings that is not archived
+                if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                    orders.add(transformToOrderFormBean(orderElem));
+                }
+
+            }
+
+        }
 
         return SUCCESS;
     }
@@ -1088,24 +1199,8 @@ public class OrderAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
-        /*if (orderEntity.getOrderStatus().equals("INCOMPLETE") || orderEntity.getOrderStatus().equals("CANCELLED") || orderEntity.getOrderStatus().equals("PENDING") ) {*/
-
-        /*String column = getColumnFilter();
-        List<Orders> orderEntityList = new ArrayList<Orders>();
-        if (StringUtils.isNotBlank(column)) {
-            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
-        } else {
-            orderEntityList = orderService.findAllOrders();
-        }*/
-
-        /*for (Orders orderElem : orderEntityList) {
-            orders.add(transformToOrderFormBean(orderElem));
-        }*/
-
         Booking = notificationService.countAll();
         System.out.println("The number of new booking is " + Booking);
-
-        /*}*/
 
         orderEntity.setOrderStatus("APPROVED");
         orderService.updateOrder(orderEntity);
@@ -1125,6 +1220,22 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Booking successfully Approved!");
+
+        return SUCCESS;
+    }
+
+    public String archiveOrder(){
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+
+        orderEntity.setOrderStatus("ARCHIVED");
+        orderService.updateOrder(orderEntity);
+
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
+        clearErrorsAndMessages();
+        addActionMessage("Booking successfully Archived!");
 
         return SUCCESS;
     }
@@ -1543,6 +1654,8 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderBean.setStrDeliveryDate("NONE");
         }
 
+        orderBean.setOrderCompleted(formatter.format(order.getModifiedTimestamp()));
+
         //shipper contact info
         Contacts contacts = customerService.findContactById(order.getShipperContactId());
         contact = new ContactBean();
@@ -1605,7 +1718,14 @@ public class OrderAction extends ActionSupport implements Preparable {
             }
         }
 
-        //Will only compute for aging if status is service accomplished
+        if(order.getAging() != null){
+            orderBean.setAging(order.getAging());
+        }else{
+            orderBean.setAging(0);
+        }
+
+
+        /*//Will only compute for aging if status is service accomplished
         if(order.getOrderStatus().equals("SERVICE ACCOMPLISHED")){
             //TO CHECK FOR AGING AND MOVING TO ARCHIVE
             String todayDate = (formatter.format(new Date()));
@@ -1633,14 +1753,16 @@ public class OrderAction extends ActionSupport implements Preparable {
                 System.out.println(diffMinutes + " minutes");
                 System.out.println(diffSeconds + " seconds");
 
-                orderBean.setStrAging(diffDays + " days");
+                orderBean.setStrAging(diffDays + " day(s)");
+                orderBean.setAging(Integer.parseInt(String.valueOf(diffDays)));
 
             }catch(Exception e){
                 e.printStackTrace();
             }
         }else{
-            orderBean.setStrAging("0");
-        }
+            orderBean.setStrAging("0 day(s)");
+            orderBean.setAging(0);
+        }*/
 
         return orderBean;
     }

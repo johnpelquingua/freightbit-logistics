@@ -691,9 +691,17 @@
         <put-attribute name="title" value="Booking List"/>
         <put-attribute name="body" value="/orders/orderList.jsp"/>
     </definition>
+    <definition name="orders.archived-booking-list.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Archived Booking List"/>
+        <put-attribute name="body" value="/orders/orderListArchived.jsp"/>
+    </definition>
     <definition name="orders.booking-info.tiles" extends="baseLayout">
         <put-attribute name="title" value="Booking Information"/>
         <put-attribute name="body" value="/orders/orderInfo.jsp"/>
+    </definition>
+    <definition name="orders.archived-booking-info.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Archived Booking Information"/>
+        <put-attribute name="body" value="/orders/archivedOrderInfo.jsp"/>
     </definition>
     <definition name="orders.booking-new.tiles" extends="baseLayout">
         <put-attribute name="title" value="New Booking"/>

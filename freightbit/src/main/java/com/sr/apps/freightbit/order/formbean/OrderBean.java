@@ -75,6 +75,7 @@ public class OrderBean {
 	private ContactBean consigneeInfoContact;
 	private List <OrderItemsBean> orderItemsBean;
     private List <CustomerBean> customerBean;
+    private String orderCompleted;
 
     public Integer getOrderId() {
 		return orderId;
@@ -539,5 +540,13 @@ public class OrderBean {
 
     public void setStrAging(String strAging) {
         this.strAging = strAging;
+    }
+
+    public String getOrderCompleted() {
+        return orderCompleted;
+    }
+
+    public void setOrderCompleted(String orderCompleted) {
+        this.orderCompleted = orderCompleted;
     }
 }
