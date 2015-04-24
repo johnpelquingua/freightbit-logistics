@@ -172,16 +172,16 @@
                                         <i class="fa fa-times cancelBookingIcon"></i>
                                     </s:if>
                                     </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS')">
-                                        <s:if test=" #attr.order.orderStatus == 'SERVICE ACCOMPLISHED' ">
+                                    <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+                                        <%--<s:if test=" #attr.order.orderStatus == 'SERVICE ACCOMPLISHED' ">--%>
                                             | <%--separator--%>
                                             <s:url var="archiveOrderUrl" action="archiveOrder">
                                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                             </s:url>
                                             <s:a class="icon-action-link" href="%{archiveOrderUrl}" rel="tooltip" title="Move to Archive" onclick="return confirm('Archive Booking?');">
                                             </s:a>
-                                            <i class="fa fa-caret-square-o-right archiveBookingIcon"></i>
-                                        </s:if>
+                                            <i class="fa fa-hand-o-right archiveBookingIcon"></i>
+                                        <%--</s:if>--%>
                                     </sec:authorize>
                                 </display:column>
                             </td>

@@ -282,9 +282,15 @@ public class OrderAction extends ActionSupport implements Preparable {
                 for(Customer customerElem : customerEntityList){
                     for(Orders orderElem : allOrderEntityList){
                         if(customerElem.getCustomerId().equals(orderElem.getCustomerId())){
-                            if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                            String strOrig = orderElem.getOrderStatus();
+                            int intIndex = strOrig.indexOf("ARCHIVED");
+
+                            if(intIndex == -1){
                                 orders.add(transformToOrderFormBean(orderElem));
                             }
+                            /*if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }*/
                         }
                     }
                 }
@@ -296,9 +302,15 @@ public class OrderAction extends ActionSupport implements Preparable {
                 for(Contacts consigneeElem : consigneeEntityList){
                     for(Orders orderElem : allOrderEntityList){
                         if(consigneeElem.getContactId().equals(orderElem.getConsigneeContactId())){
-                            if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                            String strOrig = orderElem.getOrderStatus();
+                            int intIndex = strOrig.indexOf("ARCHIVED");
+
+                            if(intIndex == -1){
                                 orders.add(transformToOrderFormBean(orderElem));
                             }
+                            /*if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }*/
                         }
                     }
                 }
@@ -307,9 +319,15 @@ public class OrderAction extends ActionSupport implements Preparable {
                 orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
 
                 for (Orders orderElem : orderEntityList) {
-                    if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                    String strOrig = orderElem.getOrderStatus();
+                    int intIndex = strOrig.indexOf("ARCHIVED");
+
+                    if(intIndex == -1){
                         orders.add(transformToOrderFormBean(orderElem));
                     }
+                    /*if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                        orders.add(transformToOrderFormBean(orderElem));
+                    }*/
                 }
             }
         } else {
@@ -353,14 +371,20 @@ public class OrderAction extends ActionSupport implements Preparable {
                 // will change the order status if aging days are 30 or over
                 if(orderElem.getAging() != null){
                     if(orderElem.getAging() >= 30){
-                        orderElem.setOrderStatus("ARCHIVED");
+                        orderElem.setOrderStatus("SERVICE ACCOMPLISHED - ARCHIVED");
                         orderService.updateOrder(orderElem);
                     }
                 }
                 // will only show bookings that is not archived
-                if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
                     orders.add(transformToOrderFormBean(orderElem));
                 }
+                /*if(!orderElem.getOrderStatus().equals("ARCHIVED")){
+                    orders.add(transformToOrderFormBean(orderElem));
+                }*/
 
             }
 
@@ -385,9 +409,15 @@ public class OrderAction extends ActionSupport implements Preparable {
                 for(Customer customerElem : customerEntityList){
                     for(Orders orderElem : allOrderEntityList){
                         if(customerElem.getCustomerId().equals(orderElem.getCustomerId())){
-                            if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                            String strOrig = orderElem.getOrderStatus();
+                            int intIndex = strOrig.indexOf("ARCHIVED");
+
+                            if(intIndex != -1){
                                 orders.add(transformToOrderFormBean(orderElem));
                             }
+                            /*if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }*/
                         }
                     }
                 }
@@ -399,9 +429,15 @@ public class OrderAction extends ActionSupport implements Preparable {
                 for(Contacts consigneeElem : consigneeEntityList){
                     for(Orders orderElem : allOrderEntityList){
                         if(consigneeElem.getContactId().equals(orderElem.getConsigneeContactId())){
-                            if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                            String strOrig = orderElem.getOrderStatus();
+                            int intIndex = strOrig.indexOf("ARCHIVED");
+
+                            if(intIndex != -1){
                                 orders.add(transformToOrderFormBean(orderElem));
                             }
+                            /*if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }*/
                         }
                     }
                 }
@@ -410,9 +446,15 @@ public class OrderAction extends ActionSupport implements Preparable {
                 orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
 
                 for (Orders orderElem : orderEntityList) {
-                    if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                    String strOrig = orderElem.getOrderStatus();
+                    int intIndex = strOrig.indexOf("ARCHIVED");
+
+                    if(intIndex != -1){
                         orders.add(transformToOrderFormBean(orderElem));
                     }
+                    /*if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                        orders.add(transformToOrderFormBean(orderElem));
+                    }*/
                 }
             }
         } else {
@@ -421,9 +463,15 @@ public class OrderAction extends ActionSupport implements Preparable {
             for (Orders orderElem : orderEntityList) {
 
                 // will only show bookings that is not archived
-                if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex != -1){
                     orders.add(transformToOrderFormBean(orderElem));
                 }
+                /*if(orderElem.getOrderStatus().equals("ARCHIVED")){
+                    orders.add(transformToOrderFormBean(orderElem));
+                }*/
 
             }
 
@@ -1228,8 +1276,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        String str = orderEntity.getOrderStatus();
 
-        orderEntity.setOrderStatus("ARCHIVED");
+        orderEntity.setOrderStatus(str + " - ARCHIVED");
         orderService.updateOrder(orderEntity);
 
         sessionAttributes.put("orderIdParam", orderIdParam);

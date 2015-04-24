@@ -142,7 +142,7 @@
                                                style="margin-top: 15px;empty-cells: hide;">
 
                                     <td>
-                                            <%--<display:column title="<input type='checkbox' class='lclCheckbox' id='mainCheckBox' name='mainCheckBox'/>">--%>
+                                        <%--<display:column title="<input type='checkbox' class='lclCheckbox' id='mainCheckBox' name='mainCheckBox'/>">--%>
                                         <display:column title="">
                                             <s:checkbox theme="simple" name="check" cssClass="lclCheckbox"
                                                         fieldValue="%{#attr.order.orderId}"/>
@@ -173,27 +173,31 @@
                                                         style="text-align: center;"> </display:column></td>
                                     <td><display:column property="strDeliveryDate" title="DELIVERY  <i class='fa fa-sort' />" class="tb-font-black" scope="DELIVERY"
                                                         style="text-align: center;"> </display:column></td>
-                                    <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
+                                    <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_SALES')">
                                     <td>
                                         <display:column title="Action">
                                             <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
                                                 <i class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
-                                                <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                                    <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
-                                                </s:url>
-                                                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                                     title="Direct Load">
-                                                    <i class="fa fa-tasks" id="status"></i>
-                                                </s:a>
+                                                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
+                                                    <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                                        <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
+                                                    </s:url>
+                                                    <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                                                         title="Direct Load">
+                                                        <i class="fa fa-tasks" id="status"></i>
+                                                    </s:a>
+                                                </sec:authorize>
 
-                                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
-                                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                                </s:url>
-                                                <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
-                                                    <i class="fa fa-info-circle"></i>
-                                                </s:a>
+                                                <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_SALES')">
+                                                    <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
+                                                        <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                                    </s:url>
+                                                    <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </s:a>
+                                                </sec:authorize>
                                             </s:else>
                                         </display:column>
                                     </td>
@@ -377,7 +381,6 @@
 </div>
 
 <%--LARGE MODAL FOR CONSOLIDATION >> START--%>
-
 <div id="consolidateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -393,7 +396,6 @@
         </div>
     </div>
 </div>
-
 <%--LARGE MODAL FOR CONSOLIDATION >> END--%>
 
 <div class="modal fade" id="bookingNumModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
@@ -500,7 +502,6 @@
     $('#select2').change(function(){ preventSamePort($(this), $('#select1')); })*/
 
     // Avoid selecting duplicate ports
-
     function preventDuplicatePort(select, index) {
 
         var options = select.options,
