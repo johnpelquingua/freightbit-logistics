@@ -65,9 +65,9 @@
                                 </div>
                             </div>--%>
                             <div class="form-group">
-                                <label class="col-lg-5 control-label" style="padding-top:0px;">Phone Number<span class="asterisk_red"></span></label>
+                                <label class="col-lg-5 control-label" style="padding-top:0px;">Phone Number</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14" pattern=".{14,}"
+                                    <s:textfield name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14" pattern=".{14,}"
                                     placeholder="(XXX) XXX-XXXX" title="Phone number should contain 10 digits including local city code."/>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                     <%--<s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
                                                  placeholder="XXXXXXXX" maxLength="8" pattern="^[0-9]{8,}$"/>--%>
                                     <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
-                                                placeholder="XXXXXXXX" maxLength="15" />
+                                                placeholder="XXXXXXXX/XXXX" maxLength="15" />
                                 </div>
                             </div>
 
@@ -116,11 +116,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-lg-5 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span></label>
+                                <label class="col-lg-5 control-label" style="padding-top:0px;">Mobile</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="18"
-                                    placeholder="(+639XX)(XXX-XXXX)" pattern=".{18,}"
-                                    title="Mobile number should contain 11 digits."/>
+                                    <s:textfield name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="14"
+                                    placeholder="(XXX) XXX-XXXX" pattern=".{14,}"
+                                    title="Mobile number should contain 10 digits."/>
                                 </div>
                             </div>
 
@@ -150,7 +150,7 @@
 
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Mayor's Permit Number</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield name="customer.mayorsPermit" cssClass="form-control" id="customer_mayorsPermit" placeholder="XX-XXXXXX" pattern=".{9,}"/>
+                                    <s:textfield name="customer.mayorsPermit" cssClass="form-control" id="customer_mayorsPermit" placeholder="XX-XXXXXX" maxLength="10"/>
                                 </div>
                             </div>
 
@@ -250,10 +250,12 @@
     $(document).ready(function(){
 
         $("#customer_phone").mask("(999) 999-9999");
-        $("#customer_mobile").mask("(+63999)(999-9999)");
+        /*$("#customer_mobile").mask("(+63999)(999-9999)");*/
+        $("#customer_mobile").mask("(999) 999-9999");
         $("#customer_fax").mask("(999) 999-9999");
         /*$("#customer_dti").mask("99999999");*/
-        $("#customer_mayorsPermit").mask("99-999999");
+        /*$("#customer_mayorsPermit").mask("99-999999");*/
+
 
     });
 

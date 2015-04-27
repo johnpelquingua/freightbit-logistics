@@ -217,7 +217,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-//          $("#driver_licenseNumber").mask("A99-99-9999999");
+          $("#driver_licenseNumber").mask("A99-99-9999999");
 //        $("#shipping_mobile").mask("(+63999)(999-9999)");
 //        $("#shipping_fax").mask("(999) 999-9999");
     });
