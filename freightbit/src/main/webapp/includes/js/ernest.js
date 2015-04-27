@@ -155,8 +155,8 @@ function tablePropClass(tableClass, tableName, colStatus, colType, colReq, colMo
                 origColumn = $('.'+tableName+' tbody tr td:nth-child('+colOrigin+')').eq(i),
                 des = placeAbbrev(desColumn.text()),
                 ori = placeAbbrev(origColumn.text());
-                desColumn.empty().append(des);
-                origColumn.empty().append(ori);
+            desColumn.empty().append(des);
+            origColumn.empty().append(ori);
         }
 
         tableTr.eq(i).css('background-color', trColor(statusColumn));
@@ -470,9 +470,9 @@ function containerHandler(tableName, containerColumn, weightColumn, volumeColumn
             weight = addCommas((tableWeight.toFixed(0)).toString()),
             volume = addCommas((tableVolume.toFixed(0)).toString());
 
-            tableContainer.empty().append(container);
-            columnWeight.empty().append(weight);
-            columnVolume.empty().append(volume);
+        tableContainer.empty().append(container);
+        columnWeight.empty().append(weight);
+        columnVolume.empty().append(volume);
     }
 
 }
@@ -488,8 +488,8 @@ function weightVolumeHandler(tableName,weightColumn, volumeColumn){
             weight = addCommas((tableWeight.toFixed(0)).toString()),
             volume = addCommas((tableVolume.toFixed(0)).toString());
 
-            columnWeight.empty().append(weight);
-            columnVolume.empty().append(volume);
+        columnWeight.empty().append(weight);
+        columnVolume.empty().append(volume);
     }
 }
 
@@ -513,11 +513,11 @@ function itemHandler(tableName,lengthColumn,widthColumn,heightColumn,srpColumn,w
             srp = addCommas((tableSRP.toFixed(2)).toString()),
             weight = addCommas((tableWeight.toFixed(0)).toString());
 
-            columnLength.empty().append(length);
-            columnWidth.empty().append(width);
-            columnHeight.empty().append(height);
-            columnSRP.empty().append(srp);
-            columnWeight.empty().append(weight);
+        columnLength.empty().append(length);
+        columnWidth.empty().append(width);
+        columnHeight.empty().append(height);
+        columnSRP.empty().append(srp);
+        columnWeight.empty().append(weight);
     }
 
 }
@@ -903,8 +903,8 @@ function hideVesselSchedule(){
         var arrivalDateReformat = dateAbbrev_Format3(arrivalDateTable.eq(i).text()),
             departureDateReformat = dateAbbrev_Format3(departureDateTable.eq(i).text());
 
-            arrivalDateTable.eq(i).empty().append(arrivalDateReformat);
-            departureDateTable.eq(i).empty().append(departureDateReformat);
+        arrivalDateTable.eq(i).empty().append(arrivalDateReformat);
+        departureDateTable.eq(i).empty().append(departureDateReformat);
     }
 
     setTimeout(function(){
@@ -912,8 +912,8 @@ function hideVesselSchedule(){
             $('.loadingDiv').empty().append('<i>No schedule found.</i>');
         }else{
             /*if($('.listOfSchedules tbody tr').size() > 10){
-                $('.listOfSchedules').oneSimpleTablePagination({rowsPerPage: 10});
-            }*/
+             $('.listOfSchedules').oneSimpleTablePagination({rowsPerPage: 10});
+             }*/
             $('.loadingDiv').hide();
             $('.tableDiv').fadeIn();
         }
@@ -1209,17 +1209,17 @@ function changeDocumentInputLabels(documentName) {
 }
 
 /*function documentsCheckbox(){
-    $('.documentsCheckbox').click(function(){
+ $('.documentsCheckbox').click(function(){
 
-        if($(this).parent().siblings().eq(1).text() == undefined || $(this).parent().siblings().eq(1).text() == '' || $(this).parent().siblings().eq(1).text() == null){
-//            alert('Please input SERIES NUMBER first before proceeding document');
-            $('#warningModalContent').empty().append('Please input SERIES NUMBER first before proceeding document');
-            $('#warningModal').modal().show();
-        }else{
-            window.location = $(this).prev().attr('href');
-        }
-    });
-}*/
+ if($(this).parent().siblings().eq(1).text() == undefined || $(this).parent().siblings().eq(1).text() == '' || $(this).parent().siblings().eq(1).text() == null){
+ //            alert('Please input SERIES NUMBER first before proceeding document');
+ $('#warningModalContent').empty().append('Please input SERIES NUMBER first before proceeding document');
+ $('#warningModal').modal().show();
+ }else{
+ window.location = $(this).prev().attr('href');
+ }
+ });
+ }*/
 
 function preventSamePort(select1, select2) {
     select2.find('option').show();
@@ -1573,11 +1573,88 @@ function processDocumentStage(table, tableDiv, loadingDiv, stageColumn, idColumn
     tableDiv.fadeIn();
 }
 
-function confirmStatusMsg(){
+function planningWarningMsg(){
     $('.submitBtn').click(function() {
+        var vendorsTable = $('.vendorTable tbody tr'),
+            vendorSea = $('.vendorTable tbody tr td:nth-child(1)'),
+            vendorOrigin = $('.vendorTable tbody tr td:nth-child(2)'),
+            vendorDestination = $('.vendorTable tbody tr td:nth-child(3)'),
+            serviceMode = $('.serviceMode').val();
         var message = 'Are you sure you want to update this status?';
-        $('#confirmStatId').empty().append(message);
-        $('#confirmStatModal').modal('show');
+        var noVendMsg = 'One or more items/container(s) has missing vendor(s). Are you sure you want to update this status?';
+
+        for(var i=0; i < vendorsTable.size(); i++) {
+            if(serviceMode == 'DOOR TO DOOR') {
+                if (vendorOrigin.eq(i).text() == null || vendorOrigin.eq(i).text() == '' || vendorDestination.eq(i).text() == null || vendorDestination.eq(i).text() == '' || vendorSea.eq(i).text() == null || vendorSea.eq(i).text() == '') {
+                    $('#planWarningBody').empty().append(noVendMsg);
+                    $('#planWarningModal').modal('show');
+                }
+                else{
+                    $('#confirmStatId').empty().append(message);
+                    $('#confirmStatModal').modal('show');
+                }
+            }
+            else if(serviceMode == 'DOOR TO PIER') {
+                if (vendorOrigin.eq(i).text() == null || vendorOrigin.eq(i).text() == '' || vendorSea.eq(i).text() == null || vendorSea.eq(i).text() == '') {
+                    $('#planWarningBody').empty().append(noVendMsg);
+                    $('#planWarningModal').modal('show');
+                }
+                else{
+                    $('#confirmStatId').empty().append(message);
+                    $('#confirmStatModal').modal('show');
+                }
+            }
+            else if(serviceMode == 'PIER TO DOOR'){
+                if (vendorDestination.eq(i).text() == null || vendorDestination.eq(i).text() == '' || vendorSea.eq(i).text() == null || vendorSea.eq(i).text() == '') {
+                    $('#planWarningBody').empty().append(noVendMsg);
+                    $('#planWarningModal').modal('show');
+                }
+                else{
+                    $('#confirmStatId').empty().append(message);
+                    $('#confirmStatModal').modal('show');
+                }
+            }
+            else if(serviceMode == 'PIER TO PIER'){
+                if (vendorSea.eq(i).text() == null || vendorSea.eq(i).text() == '') {
+                    $('#planWarningBody').empty().append(noVendMsg);
+                    $('#planWarningModal').modal('show');
+                }
+                else{
+                    $('#confirmStatId').empty().append(message);
+                    $('#confirmStatModal').modal('show');
+                }
+            }
+            else if(serviceMode == 'PICKUP'){
+                if (vendorOrigin.eq(i).text() == null || vendorOrigin.eq(i).text() == '') {
+                    $('#planWarningBody').empty().append(noVendMsg);
+                    $('#planWarningModal').modal('show');
+                }
+                else{
+                    $('#confirmStatId').empty().append(message);
+                    $('#confirmStatModal').modal('show');
+                }
+            }
+            else if(serviceMode == 'DELIVERY'){
+                if (vendorDestination.eq(i).text() == null || vendorDestination.eq(i).text() == '') {
+                    $('#planWarningBody').empty().append(noVendMsg);
+                    $('#planWarningModal').modal('show');
+                }
+                else{
+                    $('#confirmStatId').empty().append(message);
+                    $('#confirmStatModal').modal('show');
+                }
+            }
+            else if(serviceMode == 'INTER-WAREHOUSE'){
+                if (vendorOrigin.eq(i).text() == null || vendorOrigin.eq(i).text() == '') {
+                    $('#planWarningBody').empty().append(noVendMsg);
+                    $('#planWarningModal').modal('show');
+                }
+                else{
+                    $('#confirmStatId').empty().append(message);
+                    $('#confirmStatModal').modal('show');
+                }
+            }
+        }
     });
 }
 

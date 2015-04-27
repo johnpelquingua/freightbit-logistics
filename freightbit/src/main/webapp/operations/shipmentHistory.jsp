@@ -62,6 +62,19 @@
 
 <div class="row">
     <div class="col-lg-12">
+            <div class="table-responsive list-table">
+                <table class="vendorTable table table-striped table-hover table-bordered text-center tablesorter" id="orderItems" style="display: none;">
+            <s:iterator value="orderItemListings" var="orderItem">
+                <s:hidden value="orderItemId"/>
+                <s:hidden cssClass="serviceMode" value="%{order.modeOfService}"></s:hidden>
+                <tr>
+                    <td><s:property value="vendorName"></s:property></td>
+                    <td><s:property value="vendorOriginName"></s:property></td>
+                    <td><s:property value="vendorDestinationName"></s:property></td>
+                </tr>
+            </s:iterator>
+                </table>
+            </div>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
@@ -73,7 +86,6 @@
                     <span class="panel-title">Items</span>
                 </s:else>
             </div>
-
             <div class="panel-body form-horizontal">
 
                 <display:table id="orderItem" name="orderItemListings"
@@ -228,8 +240,8 @@
                               required="true"
                             />--%>
 
-                    <input list="allFreightStatusList" id="planningStatus" name="orderStatusLogsBean.status" class="form-control" required="true"/>
-                    <datalist id="allFreightStatusList" class="statusDropdown">
+                    <input list="allFreightStatusList" id="planningStatus" name="orderStatusLogsBean.status" class="statusDropdown form-control" required="true"/>
+                    <datalist id="allFreightStatusList">
                         <s:iterator value="allFreightStatusList">
                             <option id="<s:property />" value="<s:property />" />
                         </s:iterator>
@@ -346,6 +358,25 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="planWarningModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="alertlabe2">Update Status</h4><br/>
+                <center><h4 class="modal-title" id="alertlabel"><i class="fa fa-warning" style="color: red"></i> Confirm status update</h4></center>
+            </div>
+            <div class="modal-body" id="planWarningBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary submitPlanWarning" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
 </s:form>
 <script type="text/javascript">
     /*function checkUpStatus(){
@@ -381,7 +412,8 @@
     });
 
     $(document).ready(function(){
-        confirmStatusMsg();
+//        confirmStatusMsg();
+        planningWarningMsg();
         validationForm('statusDropdown','submitBtn');
     });
 
@@ -390,6 +422,9 @@
             $('.statusForm').submit();
         });
 
+        $('.submitPlanWarning').click(function(){
+            $('.statusForm').submit();
+        });
     });
 
     function sendOkStatus(){

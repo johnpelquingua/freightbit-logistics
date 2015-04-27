@@ -21,6 +21,7 @@ import com.sr.biz.freightbit.operations.entity.Container;
 import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
 import com.sr.biz.freightbit.operations.service.ContainerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
+import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
@@ -583,12 +584,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 sessionAttributes.put("nameSizeList", nameSizeList);
             }
         }
-        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 || planning3BulkItems.size() > 0){
+        /*if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 || planning3BulkItems.size() > 0){
             return "errorInput";
         }
         else{
             return "SET";
-        }
+        }*/
+        return "SET";
     }
 
     public String updateBulkStatus() {
@@ -609,9 +611,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 orderStatusLogsService.addStatus(orderStatusLogsEntity);
 
-                //Status in OrderStatusLogs will be passed into OrderItems table
+                /*//Status in OrderStatusLogs will be passed into OrderItems table
                 orderItemEntity.setStatus(orderStatusLogsBean.getStatus());
-                orderStatusLogsService.updateStatusOrderItem(orderItemEntity);
+                orderStatusLogsService.updateStatusOrderItem(orderItemEntity);*/
             }
         } catch (Exception e) {
             addActionError("Update Failed");
@@ -780,10 +782,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 orderStatusLogsService.addStatus(orderStatusLogsEntity);
 
-                //Status in OrderStatusLogs will be passed into OrderItems table
+                /*//Status in OrderStatusLogs will be passed into OrderItems table
                 OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
                 orderItemEntity.setStatus(orderStatusLogsBean.getStatus());
-                orderStatusLogsService.updateStatusOrderItem(orderItemEntity);
+                orderStatusLogsService.updateStatusOrderItem(orderItemEntity);*/
 
         } catch (Exception e) {
                 addActionError("Update Failed");
@@ -1032,6 +1034,15 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             formBean.setCreatedTimestamp(orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId()).getActualDate());
         }
         formBean.setNameSize(entity.getNameSize());
+        Vendor vendorEntity = vendorService.findVendorByVendorCode(entity.getVendorSea());
+        if(vendorEntity == null || vendorEntity.equals("")) {
+            formBean.setVendorName("NONE");
+        }
+        else{
+            formBean.setVendorName(vendorEntity.getVendorName());
+        }
+        formBean.setVendorOriginName(entity.getVendorOrigin());
+        formBean.setVendorDestinationName(entity.getVendorDestination());
         if(statusLogsEntity == null || statusLogsEntity.equals("")) {
                 formBean.setStatus(entity.getStatus());
         }

@@ -506,7 +506,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){ // catches error when no values inside check
                         return "NULL_INPUT";
                     }
-                    Integer ctrSeaStatus = 0;
                     Integer orderItemId = Integer.parseInt(check[i]);
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
                     if ("PLANNING 1".equals(entity.getStatus())) {
@@ -530,7 +529,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     else if ("ON GOING".equals(entity.getStatus())) {
                         onGoing.add(orderItemId);
                     }
-                    else if ("QUEUE FOR PICKUP".equals(entity.getStatus())) {
+                    /*else if ("QUEUE FOR PICKUP".equals(entity.getStatus())) {
                         queuePickup.add(orderItemId);
                     }
                     else if ("QUEUE FOR CONSOLIDATION".equals(entity.getStatus())) {
@@ -538,7 +537,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     }
                     else if ("QUEUE FOR DEPARTURE".equals(entity.getStatus())) {
                         queueDeparture.add(orderItemId);
-                    }
+                    }*/
 
                 }
 
@@ -587,7 +586,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         orderItemFreightPlan.add(transformToOrderItemFormBean(orderItemEntity));
                     }
 
-                } else if (queueConsolidation.size() > 0) {
+                } /*else if (queueConsolidation.size() > 0) {
                     nameSizeList = new ArrayList<String>();
 
                     for(int i = 0; i < queueConsolidation.size(); i++){
@@ -611,7 +610,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         nameSizeList.add(orderItemEntity.getNameSize());
                         orderItemFreightPlan.add(transformToOrderItemFormBean(orderItemEntity));
                     }
-                }
+                }*/
 
                 for(int x = 0; x < check.length; x++) {
                     OrderItems orderItemsListing = orderService.findOrderItemByOrderItemId(Integer.parseInt(check[x]));
@@ -629,7 +628,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
 
-                if(planning1.size() > 0 || planning2.size() > 0 || planning3.size() > 0 || onGoing.size() > 0 || queueConsolidation.size() > 0 || queuePickup.size() > 0 || queueDeparture.size() > 0) {
+                if(planning1.size() > 0 || planning2.size() > 0 || planning3.size() > 0 || onGoing.size() > 0) {
                     return "EDIT";
                 }
                 else{
@@ -791,12 +790,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     else if ("ON GOING".equals(entity.getStatus())) {
                         onGoing.add(orderItemId);
                     }
-                    else if ("QUEUE FOR PICKUP".equals(entity.getStatus())) {
+                    /*else if ("QUEUE FOR PICKUP".equals(entity.getStatus())) {
                         queuePickup.add(orderItemId);
                     }
                     else if ("QUEUE FOR DELIVERY".equals(entity.getStatus())) {
                         queueDelivery.add(orderItemId);
-                    }
+                    }*/
                 }
 
                 Map sessionAttributes = ActionContext.getContext().getSession();
@@ -844,7 +843,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         orderItems.add(transformToOrderItemFormBean(orderItemEntity));
                     }
 
-                } else if (queuePickup.size() > 0) {
+                } /*else if (queuePickup.size() > 0) {
 
                     nameSizeList = new ArrayList<String>();
 
@@ -864,7 +863,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         orderItems.add(transformToOrderItemFormBean(orderItemEntity));
                     }
 
-                }
+                }*/
 
                 for(int x = 0; x < check.length; x++) {
                     OrderItems orderItemsListing = orderService.findOrderItemByOrderItemId(Integer.parseInt(check[x]));
@@ -881,7 +880,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 sessionAttributes.put("orderIdParam", orderIdParam);
                 sessionAttributes.put("orderItemIdParam", orderItemIdParam);
 
-                    if (planning2.size() > 0 || planning3.size() > 0 || onGoing.size() > 0 || queuePickup.size() > 0 || queueDelivery.size() > 0) {
+                    if (planning2.size() > 0 || planning3.size() > 0 || onGoing.size() > 0) {
                         return "EDIT";
                     } else if (planning1.size() > 0) {
                         return "errorEditInput";
@@ -1045,11 +1044,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     if ("DOOR TO DOOR".equals(modeOfService)) {
                         if ("ON GOING".equals(orderItemEntity.getStatus())) {
                             orderItemEntity.setStatus("ON GOING");
-                        } else if("PLANNING 3".equals(orderItemEntity.getStatus())) {
+                        } else {
                             orderItemEntity.setStatus("PLANNING 3");
-                        } else{
+                        } /*else{
                             orderItemEntity.setStatus(orderItemEntity.getStatus());
-                        }
+                        }*/
                     } else {
                         orderItemEntity.setStatus("ON GOING");
                     }
@@ -1301,10 +1300,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         newEntity.setStatus("PLANNING 2");
                     } else if ("DOOR TO PIER".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceMode())) {
                         newEntity.setStatus("PLANNING 2");
-                    } else if ("PIER TO DOOR".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceMode())) {
-                        newEntity.setStatus("PLANNING 3");
                     } else {
-                        newEntity.setStatus(orderItemEntity.getStatus());
+                        newEntity.setStatus("PLANNING 3");
                     }
                 }else{
                     newEntity.setStatus("ON GOING");
@@ -1350,26 +1347,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 if("SHIPPING AND TRUCKING".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceType())) {
                     if ("DOOR TO DOOR".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceMode())) {
                         newEntity.setStatus("PLANNING 2");
-                    }
-                    else {
-                        newEntity.setStatus(orderItemEntity.getStatus());
-                    }
-                    if ("DOOR TO PIER".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceMode())) {
+                    } else if ("DOOR TO PIER".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceMode())) {
                         newEntity.setStatus("PLANNING 2");
-                    }
-                    else {
-                        newEntity.setStatus(orderItemEntity.getStatus());
-                    }
-                    if ("PIER TO DOOR".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceMode())) {
+                    } else {
                         newEntity.setStatus("PLANNING 3");
                     }
-                    else {
-                        newEntity.setStatus(orderItemEntity.getStatus());
-                    }
-                }else if ("SHIPPING".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceType())) {
+                }else{
                     newEntity.setStatus("ON GOING");
-                }else {
-                    newEntity.setStatus(orderItemEntity.getStatus());
                 }
 
                 operationsService.updateOrderItem(newEntity);
@@ -1534,7 +1518,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 Orders orderEntity = orderService.findOrdersById(saveEntity.getOrderId());
 
-                if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
+                /*if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
                     if ("DOOR TO PIER".equals(orderEntity.getServiceMode())) {
                         if(entity.getStatus().equals("PLANNING 2")){
                             entity.setStatus("ON GOING");
@@ -1546,8 +1530,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     }
                 }else {
                     entity.setStatus(saveEntity.getStatus());
-                }
+                }*/
 
+                if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
+                    if ("DOOR TO PIER".equals(orderEntity.getServiceMode())) {
+                        entity.setStatus("ON GOING");
+                    } else {
+                        entity.setStatus("PLANNING 3");
+                    }
+                } else {
+                    entity.setStatus("ON GOING");
+                }
                 operationsService.updateOrderItem(entity);
             }
 
@@ -1589,7 +1582,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             Orders orderEntity = orderService.findOrdersById(saveEntity.getOrderId());
 
-            if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
+            /*if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
                 if ("DOOR TO PIER".equals(orderEntity.getServiceMode())) {
                     if(entity.getStatus().equals("PLANNING 2")){
                         entity.setStatus("ON GOING");
@@ -1601,8 +1594,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
             }else {
                 entity.setStatus(saveEntity.getStatus());
-            }
+            }*/
 
+            if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
+                if ("DOOR TO PIER".equals(orderEntity.getServiceMode())) {
+                    entity.setStatus("ON GOING");
+                } else {
+                    entity.setStatus("PLANNING 3");
+                }
+            } else {
+                entity.setStatus("ON GOING");
+            }
             operationsService.updateOrderItem(entity);
         }
 
@@ -1680,12 +1682,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 } else {
                     entity.setStatus("ON GOING");
                 }*/
-                if(entity.getStatus().equals("PLANNING 3")) {
+                /*if(entity.getStatus().equals("PLANNING 3")) {
                     entity.setStatus("ON GOING");
                 }
                 else{
                     entity.setStatus(saveEntity.getStatus());
-                }
+                }*/
+                entity.setStatus("ON GOING");
                 operationsService.updateOrderItem(entity);
             }
 
@@ -1736,12 +1739,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
             } else {
                 entity.setStatus("ON GOING");
             }*/
-            if(entity.getStatus().equals("PLANNING 3")) {
+            /*if(entity.getStatus().equals("PLANNING 3")) {
                 entity.setStatus("ON GOING");
             }
             else{
                 entity.setStatus(saveEntity.getStatus());
-            }
+            }*/
+            entity.setStatus("ON GOING");
             operationsService.updateOrderItem(entity);
 
         }

@@ -162,7 +162,7 @@
                         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                         <td>
                             <display:column title="Action">
-                                <s:if test="#attr.orderItem.status != 'PLANNING 1' && #attr.orderItem.status != 'PLANNING 2' && #attr.orderItem.status != 'PLANNING 3'">
+                                <%--<s:if test="#attr.orderItem.status != 'PLANNING 1' && #attr.orderItem.status != 'PLANNING 2' && #attr.orderItem.status != 'PLANNING 3'">--%>
                                 <s:url var="loadUpdateStatusUrl" action="loadUpdateStatus">
                                     <s:param name="orderItemIdParam" value="#attr.orderItem.orderItemId">
                                     </s:param>
@@ -170,7 +170,7 @@
                                     <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip" title="View Shipment History">
                                     <i class="fa fa-edit"></i>
                                     </s:a>
-                                </s:if>
+                                <%--</s:if>--%>
                                 <s:else>
                                     <i style="color: red;" class="fa fa-ban"></i>
                                 </s:else>
