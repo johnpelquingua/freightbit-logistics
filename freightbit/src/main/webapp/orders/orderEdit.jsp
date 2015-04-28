@@ -12,6 +12,15 @@
     label.checkbox {
         margin: 0 !important;
     }
+
+    @media (min-width: 1200px) and (max-width: 1360px) {
+        .control-label{
+            margin:0px; !important;
+        }
+        .form-control{
+            width:95%; !important;
+        }
+    }
 </style>
 
 <div class="row">
