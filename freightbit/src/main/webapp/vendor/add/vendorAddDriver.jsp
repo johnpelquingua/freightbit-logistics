@@ -111,7 +111,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="vendorAddDriverInput form-control"
-                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="13" pattern="^[A-Z0-9]+$"
+                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="13" pattern="^(\s*[\#a-zA-Z0-9\.\,\-\&]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\-\&\#]*)\s*)+$"
                                              title="Must be Alphanumeric characters" onkeyup="this.value=this.value.toUpperCase();" />
                             </div>
 
@@ -176,13 +176,6 @@
 
                         </div>
 
-                        <%--<div class="pull-right">
-
-                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-                        </div>
-
-                    </s:form>--%>
-
                 </div>
             </div>
 
@@ -203,8 +196,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         validationForm('vendorAddDriverInput', 'vendorAddDriverBtn');
-        $("#driver_licenseNumber").mask("A99-99-9999999");
-//        $("#shipping_mobile").mask("(+63999)(999-9999)");
-//        $("#shipping_fax").mask("(999) 999-9999");
+        /*$("#driver_licenseNumber").mask("A99-99-9999999");*/
+
     });
 </script>

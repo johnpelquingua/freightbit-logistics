@@ -90,7 +90,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-3">
-                    <i class="fa fa-building fa-5x"></i>
+                    <i class="fa fa-building-o fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
                     <div class="huge-dashboard" id="vendor"><s:property value="%{Vendor}"></s:property></div>

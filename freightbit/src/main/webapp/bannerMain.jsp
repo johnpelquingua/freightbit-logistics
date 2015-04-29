@@ -3,32 +3,6 @@
 <%@ page session="true" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<%--
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><img src="../includes/images/reallogo.png" width="300px"></a>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Welcome, SuperUser</a></li>
-        <li><a href="#"><img src="../includes/images/setting2.png" width="25px"></a></li>
-      </ul>
-      <!--
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search...">
-      </form>
-      -->
-    </div>
-  </div>
-</div>--%>
-
 <ul class="nav navbar-nav navbar-right navbar-user">
 
     <li class="dropdown messages-dropdown">
@@ -54,8 +28,6 @@
 
         <li class="message-preview">
             <a href="#">
-                <%--<span class="avatar"><img alt="User Pic" src="includes/images/photo.png" class="img-circle" style="width:40px; "></span>--%>
-                <%--<span class="name">Jan Ernest:</span>--%>
                 <span class="message" style="text-align: center;" ><a href="/home"><i class="fa fa-exclamation-circle"></i> <s:property value="%{AllNotification}"></s:property> Notifications</a></span>
             </a>
         </li>
@@ -76,19 +48,3 @@
     </li>
 
 </ul>
-
-
-<%--
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(window).load(function() {
-            var test = document.getElementById("notifs");
-            var notifcount = <s:property value="%{AllNotification}"></s:property>
-
-            if (notifcount == 0){test.css({'-webkit-box-shadow':'0 0 20px blue'},
-            {'-moz-box-shadow':' 0 0 20px blue'},
-            {'box-shadow':'0 0 20px blue'})
-            }
-        });
-    });
-</script>--%>

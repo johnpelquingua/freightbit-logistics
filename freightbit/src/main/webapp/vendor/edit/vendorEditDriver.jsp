@@ -114,7 +114,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control"
-                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="13" pattern="^[A-Z0-9]+$"
+                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="13" pattern="^(\s*[\#a-zA-Z0-9\.\,\-\&]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\-\&\#]*)\s*)+$"
                                              title="Example:Must be Alphanumeric characters" onkeyup="this.value=this.value.toUpperCase();" />
                             </div>
 
@@ -179,13 +179,6 @@
 
                         </div>
 
-                        <%--<div class="pull-right">
-
-                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-                        </div>
-
-                    </s:form>--%>
-
                 </div>
             </div>
 
@@ -201,24 +194,11 @@
         </div>
     </div>
 
-    <%--<div class="col-lg-2 col-lg-offset-2">
-        <div class="panel panel-primary">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li><a href="viewTruckingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="viewVendorTruckingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                <li class="active"><a href="viewDrivers"><i class="fa fa-group fa-fw"></i> Drivers</a></li>
-                <li><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
-            </ul>
-        </div>
-    </div>--%>
-
 </div>
 
 <script type="text/javascript">
     $(document).ready(function(){
-          $("#driver_licenseNumber").mask("A99-99-9999999");
-//        $("#shipping_mobile").mask("(+63999)(999-9999)");
-//        $("#shipping_fax").mask("(999) 999-9999");
+         /* $("#driver_licenseNumber").mask("A99-99-9999999");*/
+
     });
 </script>

@@ -295,9 +295,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                             if(intIndex == -1){
                                 orders.add(transformToOrderFormBean(orderElem));
                             }
-                            /*if(!orderElem.getOrderStatus().equals("ARCHIVED")){
-                                orders.add(transformToOrderFormBean(orderElem));
-                            }*/
+
                         }
                     }
                 }
@@ -315,9 +313,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                             if(intIndex == -1){
                                 orders.add(transformToOrderFormBean(orderElem));
                             }
-                            /*if(!orderElem.getOrderStatus().equals("ARCHIVED")){
-                                orders.add(transformToOrderFormBean(orderElem));
-                            }*/
+
                         }
                     }
                 }
@@ -332,9 +328,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                     if(intIndex == -1){
                         orders.add(transformToOrderFormBean(orderElem));
                     }
-                    /*if(!orderElem.getOrderStatus().equals("ARCHIVED")){
-                        orders.add(transformToOrderFormBean(orderElem));
-                    }*/
+
                 }
             }
         } else {
@@ -342,7 +336,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderEntityList = orderService.findAllOrders();
 
             for (Orders orderElem : orderEntityList) {
-                if( orderElem.getCustomerId() != customerId && customerId != getClientId()) {
+                if(orderElem.getCustomerId() != customerId && customerId != getClientId()) {
                     continue;
                 }
                 // will input Aging on Service Accomplished status only
@@ -393,9 +387,6 @@ public class OrderAction extends ActionSupport implements Preparable {
                 if(intIndex == -1){
                     orders.add(transformToOrderFormBean(orderElem));
                 }
-                /*if(!orderElem.getOrderStatus().equals("ARCHIVED")){
-                    orders.add(transformToOrderFormBean(orderElem));
-                }*/
 
             }
 
@@ -425,9 +416,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                             if(intIndex != -1){
                                 orders.add(transformToOrderFormBean(orderElem));
                             }
-                            /*if(orderElem.getOrderStatus().equals("ARCHIVED")){
-                                orders.add(transformToOrderFormBean(orderElem));
-                            }*/
+
                         }
                     }
                 }
@@ -445,9 +434,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                             if(intIndex != -1){
                                 orders.add(transformToOrderFormBean(orderElem));
                             }
-                            /*if(orderElem.getOrderStatus().equals("ARCHIVED")){
-                                orders.add(transformToOrderFormBean(orderElem));
-                            }*/
+
                         }
                     }
                 }
@@ -462,9 +449,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                     if(intIndex != -1){
                         orders.add(transformToOrderFormBean(orderElem));
                     }
-                    /*if(orderElem.getOrderStatus().equals("ARCHIVED")){
-                        orders.add(transformToOrderFormBean(orderElem));
-                    }*/
+
                 }
             }
         } else {
@@ -479,9 +464,6 @@ public class OrderAction extends ActionSupport implements Preparable {
                 if(intIndex != -1){
                     orders.add(transformToOrderFormBean(orderElem));
                 }
-                /*if(orderElem.getOrderStatus().equals("ARCHIVED")){
-                    orders.add(transformToOrderFormBean(orderElem));
-                }*/
 
             }
 
@@ -541,6 +523,9 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String bookingNumSearch(){ return SUCCESS; }
 
     public String loadAddOrderPage() {
+
+        System.out.println("USERNAME " + commonUtils.getUserNameFromSession());
+
         return SUCCESS;
     }
 

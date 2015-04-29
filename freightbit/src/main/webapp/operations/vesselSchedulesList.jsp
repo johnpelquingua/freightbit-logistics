@@ -60,7 +60,7 @@
 
                 <div class="table-responsive">
                     <display:table id="vesselSchedule" name="vesselSchedules"
-                                   requestURI="viewVesselSchedules.action"
+                                   requestURI="viewVesselSchedules.action" pagesize="10"
                                    class="table table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
 
