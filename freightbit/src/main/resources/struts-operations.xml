@@ -22,7 +22,8 @@
 
         <action name="addVesselScheduleInPlanningAlreadyExists" class="com.sr.apps.freightbit.operations.action.OperationsAction"
                 method="addVesselScheduleInPlanningAlreadyExists">
-            <result name="success" type="tiles">operations.scheduleExists.tiles</result>
+            <!--<result name="success" type="tiles">operations.scheduleExists.tiles</result>-->
+            <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
         </action>
 
         <action name="editVesselSchedule" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
