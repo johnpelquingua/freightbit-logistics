@@ -31,7 +31,8 @@ public class UserBean {
     public UserBean(int userCode, String firstName, String lastName,
                     String companyName, String userName, String password,
                     String title, String emailAddress, String contactNumber,
-                    String userType, String status, Integer clientId) {
+                    String userType, String status, Integer clientId,
+                    Integer customerId) {
         this.userCode = userCode;
         this.firstName = firstName;
         this.companyName = companyName;
@@ -43,6 +44,7 @@ public class UserBean {
         this.userType = userType;
         this.status = status;
         this.clientId = clientId;
+        this.customerId = customerId;
     }
 
     public String getUserId() {

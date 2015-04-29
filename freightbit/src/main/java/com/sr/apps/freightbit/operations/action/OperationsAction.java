@@ -486,6 +486,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
 
             sessionAttributes.put("nameSizeList", nameSizeList);
+            sessionAttributes.put("orderItemFreightPlan", orderItemFreightPlan);
 
             if(planning1.size()> 0) {
                 return SUCCESS;
@@ -931,6 +932,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // for the order items to appear again
         nameSizeList = (List) sessionAttributes.get("nameSizeList") ;
         sessionAttributes.put("nameSizeList", nameSizeList);
+        orderItemFreightPlan = (List) sessionAttributes.get("orderItemFreightPlan") ;
+        sessionAttributes.put("orderItemFreightPlan", orderItemFreightPlan);
 
         check = (String[]) sessionAttributes.get("checkedItemsInSession");
 
@@ -2969,6 +2972,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // for the order items to appear again
         nameSizeList = (List) sessionAttributes.get("nameSizeList") ;
+        orderItemFreightPlan = (List) sessionAttributes.get("orderItemFreightPlan") ;
 
         // Vessel schedules filtered by class
         vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());

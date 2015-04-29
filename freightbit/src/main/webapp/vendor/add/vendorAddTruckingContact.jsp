@@ -156,7 +156,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control addTruckingContactInput" placeholder="(XXX)XXX-XXXX" name="contact.phone" maxLength="14" required="true"
+                            <s:textfield cssClass="form-control addTruckingContactInput" placeholder="(XXX) XXX-XXXX" name="contact.phone" maxLength="14" required="true"
                                          id="trucking_phone" title="Phone number should contain 10 digits including local city code." pattern=".{14,}"/>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.fax" maxLength="14" pattern=".{14,}"
+                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.fax" maxLength="14" pattern=".{14,}"
                                         id="trucking_fax" title="Fax number should contain 10 digits including local city codes."/>
                             </div>
                         </div>
