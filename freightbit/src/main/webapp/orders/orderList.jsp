@@ -82,29 +82,29 @@
                                        style="margin-top: 15px;">
 
                             <td><display:column property="orderDate" title="Order Dates <i class='fa fa-sort' />" class="tb-font-black" scope="Order Dates"
-                                                style="text-align: center; width: 135px;"> </display:column></td>
+                                                style="text-align: center;"> </display:column></td>
                             <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
-                                                style="text-align: center; width: 105px;" > </i></display:column></td>
+                                                style="text-align: center;" > </i></display:column></td>
                             <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black" scope="Customer"
-                                                style="text-align: center; width: 350px;"> </display:column></td>
+                                                style="text-align: center;"> </display:column></td>
                             <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black" scope="Consignee"
-                                                style="text-align: center; width: 350px;"> </display:column></td>
+                                                style="text-align: center;"> </display:column></td>
                             <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" style="text-align: center; width: 75px;" scope="Type">
                                                 </display:column></td>
                             <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />" class="tb-font-black" scope="Req't"
-                                                style="text-align: center; width: 75px;"> </display:column></td>
+                                                style="text-align: center;"> </display:column></td>
                             <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black" scope="Mode"
-                                                style="text-align: center; width: 75px;"> </display:column></td>
+                                                style="text-align: center;"> </display:column></td>
                             <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Status"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="createdBy" title="Booked By <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Created By"
-                                                style="text-align: center; width: 180px;"> </display:column></td>
+                                                style="text-align: center;"> </display:column></td>
                             <td><display:column property="aging" title="Aging <i class='fa fa-sort' />" class="tb-font-black status-color" scope="Aging"
-                                                style="text-align: center; width: 100px;"> </display:column></td>
+                                                style="text-align: center;"> </display:column></td>
                             <%--<td><display:column property="documentCheck" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"--%>
                                                 <%--style="text-align: center;"> </display:column></td>--%>
                             <td class="tb-font-black" style="text-align: center;">
-                                <display:column title="Actions" scope="Actions" style="text-align: center; width: 140px;">
+                                <display:column title="Actions" scope="Actions" style="text-align: center;">
 
                                         <%--edit booking--%>
                                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
