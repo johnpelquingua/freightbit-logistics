@@ -157,7 +157,8 @@
                                         <s:url var="approveOrderUrl" action="approveOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{approveOrderUrl}" rel="tooltip" title="Approve Booking" onclick="return confirm('Approve Booking?');">
+                                        <%--<s:a class="icon-action-link" href="%{approveOrderUrl}" rel="tooltip" title="Approve Booking" onclick="return confirm('Approve Booking?');">--%>
+                                        <s:a class="icon-action-link" href="%{approveOrderUrl}" rel="tooltip" title="Approve Booking">
                                             <i class="fa fa-check approveBookingIcon"></i>
                                         </s:a>
 
@@ -168,7 +169,8 @@
                                         <s:url var="cancelOrderUrl" action="cancelOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{cancelOrderUrl}" rel="tooltip" title="Cancel Booking" onclick="return confirm('Cancel Booking?');">
+                                        <%--<s:a class="icon-action-link" href="%{cancelOrderUrl}" rel="tooltip" title="Cancel Booking" onclick="return confirm('Cancel Booking?');">--%>
+                                        <s:a class="icon-action-link" href="%{cancelOrderUrl}" rel="tooltip" title="Cancel Booking">
                                             <i class="fa fa-times cancelBookingIcon"></i>
                                         </s:a>
 
@@ -180,7 +182,8 @@
                                             <s:url var="archiveOrderUrl" action="archiveOrder">
                                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                             </s:url>
-                                            <s:a class="icon-action-link" href="%{archiveOrderUrl}" rel="tooltip" title="Move to Archive" onclick="return confirm('Archive Booking?');">
+                                            <%--<s:a class="icon-action-link" href="%{archiveOrderUrl}" rel="tooltip" title="Move to Archive" onclick="return confirm('Archive Booking?');">--%>
+                                            <s:a class="icon-action-link" href="%{archiveOrderUrl}" rel="tooltip" title="Move to Archive">
                                                 <i class="fa fa-hand-o-right archiveBookingIcon"></i>
                                             </s:a>
 

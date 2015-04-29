@@ -690,7 +690,7 @@
                             <div class="col-lg-8" style="width: 74%;">
                                 <s:textfield name="consignee.companyName" cssClass="form-control" id="consignee.companyName"
                                              placeholder="Company Name" maxLength="30" required="true"
-                                             pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                             pattern="^(\s*[\#a-zA-Z0-9\.\,\-\&]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\-\&\#]*)\s*)+$"
                                              title="Company Name should not contain special characters."/>
                             </div>
                         </div>
