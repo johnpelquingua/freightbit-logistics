@@ -152,7 +152,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="display: none;">
                             <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Permissions </label>
 
                             <div class="col-lg-9">
