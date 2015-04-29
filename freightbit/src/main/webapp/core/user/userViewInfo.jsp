@@ -29,15 +29,6 @@
     </div>
 </s:if>
 
-<%--
-<div class="row">
-    <div class="col-lg-6 col-lg-offset-2">
-        <div class="panel panel-info">
-
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-info-circle"></i> User Profile</h3>
-            </div>--%>
-
 <div class="row">
     <div class="col-lg-12" >
         <div class="panel panel-primary">
@@ -59,10 +50,6 @@
             </div>
 
             <div class="panel-body">
-
-                 <%--<div align="center" style="margin-top: 10px;">
-                         <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
-                 </div>--%>
 
                      <div class="row">
 
@@ -123,7 +110,7 @@
                                                       <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Status</td>
                                                       <td><s:property value="user.status"/></td>
                                                  </tr>
-                                                 <tr>
+                                                 <tr style="display: none;">
                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Permissions</td>
                                                      <td class="permissionsAlign">
                                                          <table>
@@ -159,8 +146,4 @@
     </div>
 </div>
 
-<%--
-            </div>
-        </div>
-    </div>
-</div>--%>
+

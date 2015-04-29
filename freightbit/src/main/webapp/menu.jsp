@@ -94,7 +94,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-user"></i> Accounts <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="<s:url action='../core/viewUsers' />"> <i class="fa fa-caret-right fa-fw"></i> User</a></li>
-                <li><a href="<s:url action='../core/viewGroups' />"> <i class="fa fa-caret-right fa-fw"></i> Group</a></li>
+                <%--<li><a href="<s:url action='../core/viewGroups' />"> <i class="fa fa-caret-right fa-fw"></i> Group</a></li>--%>
                 <!--  <li><a href="<s:url action='../core/viewPermissions' />"> <i class="fa fa-caret-right fa-fw"></i> Permission</a></li> -->
             </ul>
         </li>
