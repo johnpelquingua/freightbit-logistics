@@ -267,16 +267,23 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String viewOrders() {
+        int customerId = 0;
+        if( commonUtils.getCustomerIdFromSession()!= null ){
+            customerId = commonUtils.getCustomerIdFromSession();
+        }else{
+            customerId = getClientId();
+        }
+
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-
+        // This will check for the filter used by user to search for bookings
         if (StringUtils.isNotBlank(column)) {
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> column " + column);
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> keyword " + order.getOrderKeyword());
 
             if(column.equals("shipperCode")){
-                List<Customer> customerEntityList = customerService.findCustomersByCriteria("customerName", order.getOrderKeyword(), getClientId());
+                List<Customer> customerEntityList = customerService.findCustomersByCriteria("customerName", order.getOrderKeyword(),getClientId());
                 List <Orders> allOrderEntityList = orderService.findAllOrders();
                 // To search for customer in booking
                 for(Customer customerElem : customerEntityList){
@@ -331,9 +338,13 @@ public class OrderAction extends ActionSupport implements Preparable {
                 }
             }
         } else {
+            // check if the user is not a regular customer
             orderEntityList = orderService.findAllOrders();
 
             for (Orders orderElem : orderEntityList) {
+                if( orderElem.getCustomerId() != customerId && customerId != getClientId()) {
+                    continue;
+                }
                 // will input Aging on Service Accomplished status only
                 if(orderElem.getOrderStatus().equals("SERVICE ACCOMPLISHED")) {
                     //TO CHECK FOR AGING AND MOVING TO ARCHIVE
@@ -389,7 +400,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             }
 
         }
-
         Booking = notificationService.countAll();
         System.out.println("The number of new booking is " + Booking);
 
