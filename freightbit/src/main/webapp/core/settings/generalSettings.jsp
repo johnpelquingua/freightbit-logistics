@@ -71,7 +71,7 @@
                                             <hr/>
                                             <div id="vendorClassDiv">
                                                 <s:iterator value="vendorClassParamList" var="vendorClass">
-                                                        <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorClass', this, '%{parameterId}');" style="margin-bottom: 15px;" readonly="true" onclick="$(this).prop('readonly', false)"/>
+                                                        <s:textfield cssClass="form-control ALLINPUT" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorClass', this, '%{parameterId}');" style="margin-bottom: 15px;" readonly="true" onclick="$(this).prop('readonly', false)"/>
                                                 </s:iterator>
                                             </div>
                                             <div class="control-group" id="vendorClassGroup">
@@ -88,7 +88,7 @@
                                             <hr/>
                                             <div id="vendorTypeDiv">
                                                 <s:iterator value="vendorTypeParamList" var="vendorType">
-                                                    <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorType', this, '%{parameterId}');" style="margin-bottom: 15px;"/>
+                                                    <s:textfield cssClass="form-control ALLINPUT" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorType', this, '%{parameterId}');" style="margin-bottom: 15px;"/>
                                                 </s:iterator>
                                             </div>
                                             <div class="control-group" id="vendorTypeGroup">
@@ -107,7 +107,7 @@
                                     <label class="col-lg-3 control-label" id="users-add-label">Customer Type :</label>
                                     <div class="col-lg-9" id="customerTypeDiv">
                                         <s:iterator value="customerTypeParamList" var="customerType">
-                                            <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('customerType', this, '%{parameterId}');" style="margin-bottom: 15px;"/>
+                                            <s:textfield cssClass="form-control ALLINPUT" name="value" id="%{key}"  onchange="trackTextFieldChanges('customerType', this, '%{parameterId}');" style="margin-bottom: 15px;"/>
                                         </s:iterator>
                                     </div>
                                     <div style="margin-left: 20.2em;" id="customerTypeGroup">
@@ -124,7 +124,7 @@
                                     <label class="col-lg-3 control-label" id="users-add-label">Contact Type :</label>
                                     <div class="col-lg-9" id="contactTypeDiv">
                                         <s:iterator value="contactTypeParamList" var="contactType">
-                                            <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('contactType', this, '%{parameterId}');" cssStyle="margin-bottom: 15px;"/>
+                                            <s:textfield cssClass="form-control ALLINPUT" name="value" id="%{key}"  onchange="trackTextFieldChanges('contactType', this, '%{parameterId}');" cssStyle="margin-bottom: 15px;"/>
                                         </s:iterator>
                                     </div>
                                     <div style="margin-left: 20.2em;" id="contactTypeGroup">
@@ -140,7 +140,7 @@
                                     <label class="col-lg-3 control-label" id="users-add-label">Adress Type : </label>
                                     <div class="col-lg-9" id="addressTypeDiv">
                                         <s:iterator value="addressTypeParamList" var="addressType">
-                                            <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('addressType', this, '%{parameterId}');" cssStyle="margin-bottom: 15px;"/>
+                                            <s:textfield cssClass="form-control ALLINPUT" name="value" id="%{key}"  onchange="trackTextFieldChanges('addressType', this, '%{parameterId}');" cssStyle="margin-bottom: 15px;"/>
                                         </s:iterator>
                                     </div>
                                     <div style="margin-left: 20.2em;" id="addressTypeGroup">
@@ -156,7 +156,7 @@
                                     <label class="col-lg-3 control-label" id="users-add-label">Ports : </label>
                                     <div class="col-lg-9" id="orderPortDiv">
                                         <s:iterator value="portsParamsList" var="orderPort">
-                                            <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('ports', this, '%{parameterId}');" cssStyle="margin-bottom: 15px;"/>
+                                            <s:textfield cssClass="form-control ALLINPUT" name="value" id="%{key}"  onchange="trackTextFieldChanges('ports', this, '%{parameterId}');" cssStyle="margin-bottom: 15px;"/>
                                         </s:iterator>
                                     </div>
                                     <div style="margin-left: 20.2em;" id="orderPortGroup">
@@ -321,63 +321,137 @@ $(document).ready(function() {
 	    $("#orderPortDiv").append(fieldWrapper);
 	    orderPortCounter++;
 	});
+
+    var allInput = $('.ALLINPUT'),
+        inputSize = allInput.size(),
+        inputObject = {};
+
+    for(var i=0; i < inputSize; i++){
+        inputObject[allInput.eq(i).attr('id')] = allInput.eq(i).val();
+    }
   
   $("#saveButton").click(function() {
-		var msg = '';
-		for(i=1; i<vendorClassCounter; i++){
-		  if (i==1)
-			  msg="{NEW_"+i+":"+ $('#vendorClass_' + i).val() +"}";
-		  else
-			  msg += ", {NEW_"+i+":" + $('#vendorClass_' + i).val() +"}";
-		}		
-        document.forms[0].vendorClassAdded.value = vendorClassParamMap + "" + msg;
+      var inputFlag = false;
+      for(var i=0; i < inputSize; i++){
+          if(inputObject[allInput.eq(i).attr('id')] != $('.ALLINPUT').eq(i).val()){
+              inputFlag = true;
+          }
+      }
+		if(inputFlag){
+            if(confirm('Some pre-set values has been changed, Confirm saving?') == true){
+                var msg = '';
+                for(i=1; i<vendorClassCounter; i++){
+                    if (i==1)
+                        msg="{NEW_"+i+":"+ $('#vendorClass_' + i).val() +"}";
+                    else
+                        msg += ", {NEW_"+i+":" + $('#vendorClass_' + i).val() +"}";
+                }
+                document.forms[0].vendorClassAdded.value = vendorClassParamMap + "" + msg;
 
-		var msg = '';
-		for(i=1; i<vendorTypeCounter; i++){
-		  if (i==1)
-			  msg="{NEW_"+i+":"+ $('#vendorType_' + i).val() +"}";
-		  else
-			  msg += ", {NEW_"+i+":" + $('#vendorType_' + i).val() +"}";
-		}		
-        document.forms[0].vendorTypeAdded.value = vendorTypeParamMap + "" + msg;
+                var msg = '';
+                for(i=1; i<vendorTypeCounter; i++){
+                    if (i==1)
+                        msg="{NEW_"+i+":"+ $('#vendorType_' + i).val() +"}";
+                    else
+                        msg += ", {NEW_"+i+":" + $('#vendorType_' + i).val() +"}";
+                }
+                document.forms[0].vendorTypeAdded.value = vendorTypeParamMap + "" + msg;
 
-		var msg = '';
-		for(i=1; i<customerTypeCounter; i++){
-			if (i==1)
-				  msg="{NEW_"+i+":"+ $('#customerType_' + i).val() +"}";
-			  else
-				  msg += ", {NEW_"+i+":" + $('#customerType_' + i).val() +"}";
-		}
-        document.forms[0].customerTypeAdded.value = customerTypeParamMap + "" + msg;
-        
-		var msg = '';
-		for(i=1; i<contactTypeCounter; i++){
-			if (i==1)
-				  msg="{NEW_"+i+":"+ $('#contactType_' + i).val() +"}";
-			  else
-				  msg += ", {NEW_"+i+":" + $('#contactType_' + i).val() +"}";
-		}
-        document.forms[0].contactTypeAdded.value = contactTypeParamMap + "" + msg;
-        
-		var msg = '';
-		for(i=1; i<addressTypeCounter; i++){
-			if (i==1)
-				  msg="{NEW_"+i+":"+ $('#addressType_' + i).val() +"}";
-			  else
-				  msg += ", {NEW_"+i+":" + $('#addressType_' + i).val() +"}";
-		}
-        document.forms[0].addressTypeAdded.value = addressTypeParamMap + "" + msg;
-        
-		var msg = '';
-		for(i=1; i<orderPortCounter; i++){
-			if (i==1)
-				  msg="{NEW_"+i+":"+ $('#orderPort_' + i).val() +"}";
-			  else
-				  msg += ", {NEW_"+i+":" + $('#orderPort_' + i).val() +"}";
-		}
-        document.forms[0].portsAdded.value = portsParamMap + "" + msg;
-        document.forms[0].action = "editGeneralSettings";
-        document.forms[0].submit();
+                var msg = '';
+                for(i=1; i<customerTypeCounter; i++){
+                    if (i==1)
+                        msg="{NEW_"+i+":"+ $('#customerType_' + i).val() +"}";
+                    else
+                        msg += ", {NEW_"+i+":" + $('#customerType_' + i).val() +"}";
+                }
+                document.forms[0].customerTypeAdded.value = customerTypeParamMap + "" + msg;
+
+                var msg = '';
+                for(i=1; i<contactTypeCounter; i++){
+                    if (i==1)
+                        msg="{NEW_"+i+":"+ $('#contactType_' + i).val() +"}";
+                    else
+                        msg += ", {NEW_"+i+":" + $('#contactType_' + i).val() +"}";
+                }
+                document.forms[0].contactTypeAdded.value = contactTypeParamMap + "" + msg;
+
+                var msg = '';
+                for(i=1; i<addressTypeCounter; i++){
+                    if (i==1)
+                        msg="{NEW_"+i+":"+ $('#addressType_' + i).val() +"}";
+                    else
+                        msg += ", {NEW_"+i+":" + $('#addressType_' + i).val() +"}";
+                }
+                document.forms[0].addressTypeAdded.value = addressTypeParamMap + "" + msg;
+
+                var msg = '';
+                for(i=1; i<orderPortCounter; i++){
+                    if (i==1)
+                        msg="{NEW_"+i+":"+ $('#orderPort_' + i).val() +"}";
+                    else
+                        msg += ", {NEW_"+i+":" + $('#orderPort_' + i).val() +"}";
+                }
+                document.forms[0].portsAdded.value = portsParamMap + "" + msg;
+                document.forms[0].action = "editGeneralSettings";
+                document.forms[0].submit();
+            }
+        }else{
+            var msg = '';
+            for(i=1; i<vendorClassCounter; i++){
+                if (i==1)
+                    msg="{NEW_"+i+":"+ $('#vendorClass_' + i).val() +"}";
+                else
+                    msg += ", {NEW_"+i+":" + $('#vendorClass_' + i).val() +"}";
+            }
+            document.forms[0].vendorClassAdded.value = vendorClassParamMap + "" + msg;
+
+            var msg = '';
+            for(i=1; i<vendorTypeCounter; i++){
+                if (i==1)
+                    msg="{NEW_"+i+":"+ $('#vendorType_' + i).val() +"}";
+                else
+                    msg += ", {NEW_"+i+":" + $('#vendorType_' + i).val() +"}";
+            }
+            document.forms[0].vendorTypeAdded.value = vendorTypeParamMap + "" + msg;
+
+            var msg = '';
+            for(i=1; i<customerTypeCounter; i++){
+                if (i==1)
+                    msg="{NEW_"+i+":"+ $('#customerType_' + i).val() +"}";
+                else
+                    msg += ", {NEW_"+i+":" + $('#customerType_' + i).val() +"}";
+            }
+            document.forms[0].customerTypeAdded.value = customerTypeParamMap + "" + msg;
+
+            var msg = '';
+            for(i=1; i<contactTypeCounter; i++){
+                if (i==1)
+                    msg="{NEW_"+i+":"+ $('#contactType_' + i).val() +"}";
+                else
+                    msg += ", {NEW_"+i+":" + $('#contactType_' + i).val() +"}";
+            }
+            document.forms[0].contactTypeAdded.value = contactTypeParamMap + "" + msg;
+
+            var msg = '';
+            for(i=1; i<addressTypeCounter; i++){
+                if (i==1)
+                    msg="{NEW_"+i+":"+ $('#addressType_' + i).val() +"}";
+                else
+                    msg += ", {NEW_"+i+":" + $('#addressType_' + i).val() +"}";
+            }
+            document.forms[0].addressTypeAdded.value = addressTypeParamMap + "" + msg;
+
+            var msg = '';
+            for(i=1; i<orderPortCounter; i++){
+                if (i==1)
+                    msg="{NEW_"+i+":"+ $('#orderPort_' + i).val() +"}";
+                else
+                    msg += ", {NEW_"+i+":" + $('#orderPort_' + i).val() +"}";
+            }
+            document.forms[0].portsAdded.value = portsParamMap + "" + msg;
+            document.forms[0].action = "editGeneralSettings";
+            document.forms[0].submit();
+        }
 	});
 	    
 	});
