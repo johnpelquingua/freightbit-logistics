@@ -35,7 +35,7 @@ public class User implements java.io.Serializable {
 
     public User(Client client, String username, String password,
                 String title, String email, String firstName, String lastName,
-                String status, String contactNo, String userType) {
+                String status, String contactNo, String userType, Integer customerId) {
         this.client = client;
         this.username = username;
         this.password = password;
@@ -46,6 +46,10 @@ public class User implements java.io.Serializable {
         this.status = status;
         this.contactNo = contactNo;
         this.userType = userType;
+        if( customerId != null ){
+            this.customerId = customerId;
+        }
+
     }
 
     @Id

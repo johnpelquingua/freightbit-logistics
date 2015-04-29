@@ -139,6 +139,7 @@ public class UserAction extends ActionSupport implements Preparable {
 
     public String addUser() throws Exception {
     	try {
+
 	        validateOnSubmit(user);
 	        if (hasFieldErrors()) {
                 populatePermissionsList(1);
@@ -400,7 +401,8 @@ public class UserAction extends ActionSupport implements Preparable {
         entity.setStatus(formBean.getStatus());
         entity.setContactNo(formBean.getContactNumber());
         entity.setUserType(formBean.getUserType());
-        if ("CUSTOMER".equals(formBean.getUserType()))
+
+        if ("REGULAR CUSTOMER".equals(formBean.getUserType()))
         	entity.setCustomerId(formBean.getCustomerId());
         
         return entity;
