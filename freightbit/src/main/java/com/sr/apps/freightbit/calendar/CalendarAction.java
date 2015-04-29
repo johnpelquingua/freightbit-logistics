@@ -64,7 +64,7 @@ public class CalendarAction extends ActionSupport {
 	}
 
 	public String events() throws Exception {
-		List <CalendarDetailsDTO> calendarDetails = calendarService.getEvents(commonUtils.getClientId());
+		List <CalendarDetailsDTO> calendarDetails = calendarService.getEvents(commonUtils.getCustomerIdFromSession());
 			messageStore.setData(formatToJSON(calendarDetails));
 			return SUCCESS;
 	}

@@ -13,10 +13,13 @@ public class CalendarServiceImpl implements CalendarService {
 	private OrderDao orderDao;
 
 	@Override
-	public List<CalendarDetailsDTO> getEvents(Integer clientId) {
+	public List<CalendarDetailsDTO> getEvents(Integer customerId) {
 		List <Orders> orderList = orderDao.findAllOrders();
 		List <CalendarDetailsDTO> calDetails = new ArrayList<CalendarDetailsDTO>();
 		for (Orders order:orderList) {
+            if (order.getCustomerId() != customerId && customerId != null){
+                continue;
+            }
 			CalendarDetailsDTO detail = new CalendarDetailsDTO();
 			detail.setOrderId(order.getOrderId());
 			detail.setOrderDetails(order.getOrderNumber() + ": " + order.getOriginationPort() + "-" + order.getDestinationPort());
