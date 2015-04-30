@@ -1,5 +1,6 @@
 package com.sr.apps.freightbit.core.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
@@ -8,9 +9,11 @@ import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
+import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
@@ -66,8 +69,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private Double zamboangaWeight;
     private Float zamboangaVolume;
 
+    private OrderBean order = new OrderBean();
+    private List<OrderBean> orders = new ArrayList<OrderBean>();
     private UserService userService;
     private OperationsService operationsService;
+    private OrderStatusLogsService orderStatusLogsService;
     private NotificationService notificationService;
     private OrderService orderService;
     private ParameterService parameterService;
@@ -97,7 +103,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		}*/
 
         User userEntity = userService.findUserByUserName(username);
-
         if (userEntity != null) {
 
         	userService.updateLastVisitDate(userEntity);
@@ -110,7 +115,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
             User = notificationService.countAllUser();
             Vendor = notificationService.countAllVendor();
             AllNotification = notificationService.countAllNotification();
-
             System.out.println("The number of  new booking is "+Booking);
             System.out.println("The number of  new Customer is "+Customer);
             System.out.println("The number of  new User is "+User);
@@ -450,7 +454,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
             /*==============================================CODE FOR OPTIMIZATION===========================================*/
             /*==============================================CODE FOR OPTIMIZATION===========================================*/
             /*==============================================CODE FOR OPTIMIZATION===========================================*/
-
+            viewStatusList();
             return SUCCESS;
 
         } else {
@@ -470,6 +474,43 @@ public class LoginAction extends ActionSupport implements SessionAware {
         if (getPassword().length() == 0) {
             addFieldError("password", getText("password.required"));
         }*/
+    }
+
+    public String viewStatusList() {
+
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        String column = getColumnFilter();
+
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
+            orderEntityList = orderStatusLogsService.findAllOrders();
+        }
+        for (Orders ordersElem : orderEntityList) {
+            orders.add(transformToOrderFormBean(ordersElem));
+        }
+        return SUCCESS;
+    }
+
+    public String getColumnFilter() {
+
+        String column = "";
+        if (order == null) {
+            System.out.println("ok");
+            return column;
+        } else {
+            if ("BOOKING NUMBER".equals(order.getOrderSearchCriteria())) {
+                column = "orderNumber";
+            }
+            return column;
+        }
+
+    }
+
+    private Integer getClientId() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer clientId = (Integer) sessionAttributes.get("clientId");
+        return clientId;
     }
 
     public OrderBean transformToOrderFormBean(Orders entity) {
@@ -879,5 +920,29 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     public void setZamboangaVolume(Float zamboangaVolume) {
         this.zamboangaVolume = zamboangaVolume;
+    }
+
+    public OrderBean getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderBean order) {
+        this.order = order;
+    }
+
+    public List<OrderBean> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderBean> orders) {
+        this.orders = orders;
+    }
+
+    public OrderStatusLogsService getOrderStatusLogsService() {
+        return orderStatusLogsService;
+    }
+
+    public void setOrderStatusLogsService(OrderStatusLogsService orderStatusLogsService) {
+        this.orderStatusLogsService = orderStatusLogsService;
     }
 }

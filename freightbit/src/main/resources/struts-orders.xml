@@ -101,6 +101,7 @@
         <action name="deleteItem" class="com.sr.apps.freightbit.order.action.OrderAction" method="deleteItem">
             <!--<result name="success" type="tiles">orders.add-booking-info.tiles</result>-->
             <result name="success" type="redirect">addOrderInfo</result>
+            <result name="ERROR_DELETE" type="tiles">orders.add-booking-info.tiles</result>
         </action>
 
         <action name="addOrderInfo" class="com.sr.apps.freightbit.order.action.OrderAction" method="addOrderInfo">
@@ -126,6 +127,7 @@
         <action name="addItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addItemsInTable">
             <!--<result name="input" type="redirect">addItemsAlreadyExists</result>-->
+            <result name="ERROR_ADD" type="tiles">orders.add-booking-info.tiles</result>
             <result name="success" type="redirect">addedItemsInTable</result>
         </action>
 

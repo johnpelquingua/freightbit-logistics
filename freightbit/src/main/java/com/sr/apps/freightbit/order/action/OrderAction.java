@@ -9,6 +9,7 @@ import com.sr.apps.freightbit.customer.formbean.ConsigneeBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.customer.formbean.ItemBean;
 import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
+import com.sr.apps.freightbit.operations.formbean.OrderStatusLogsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
@@ -23,6 +24,7 @@ import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.exceptions.AddressAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
+import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.User;
@@ -34,6 +36,7 @@ import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
+import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
@@ -90,6 +93,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Integer orderIdParam;
     private Integer orderItemIdParam;
     private OperationsService operationsService;
+    private OrderStatusLogsService orderStatusLogsService;
     private OrderService orderService;
     private CustomerService customerService;
     private ParameterService parameterService;
@@ -598,11 +602,42 @@ public class OrderAction extends ActionSupport implements Preparable {
         Orders orderEntityForm = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdPass"));
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityForm);
+        // get contact id from shipper
+        Integer contactIdParam = orderEntityForm.getShipperContactId();
+        // shipper id from contact
+        Contacts contactEntity = customerService.findContactById(contactIdParam);
+        Customer customerEntity = customerService.findCustomerById(contactEntity.getReferenceId());
+        // get customer items
+        customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
+        // get order items on order edit module
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("orderIdPass"));
+
+        // display item listing in table
+        for (OrderItems orderItemElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+
+        sessionAttributes.put("customerItems", customerItems);
 
         // Get Service Requirement
         String orderLimit = orderEntityForm.getServiceRequirement();
         // Get Order Item List
         List<OrderItems> orderItemNumberList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("orderIdPass"));
+        Integer checkItems = 0;
+        for (OrderItems orderItemsElem : orderItemNumberList) {
+            List<OrderStatusLogs> statusLogsEntity = orderStatusLogsService.findAllShipmentLogs(orderItemsElem.getOrderItemId());
+            for(OrderStatusLogs statusLogsElem: statusLogsEntity){
+                if (statusLogsElem.getStatus().equals("ARRIVED") || statusLogsElem.getStatus().equals("DELIVERED")){
+                    checkItems = checkItems + 1;
+                }
+            }
+        }
+
+        if(checkItems >= 1){
+            clearErrorsAndMessages();
+            addActionError("You can no longer add an item/container(s) for this booking because one or more existing item/container(s) had been arrived/delivered.");
+            return "ERROR_ADD";
+        }
 
         if(orderEntityForm.getServiceRequirement().equals("LESS CONTAINER LOAD") ||
            orderEntityForm.getServiceRequirement().equals("LOOSE CARGO LOAD") ||
@@ -855,17 +890,45 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String deleteItem() {
-
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        // Get Order Item Entity
         OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemIdParam);
-        orderService.deleteItem(orderItemEntity);
+        List<OrderStatusLogs> statusLogsEntity = orderStatusLogsService.findAllShipmentLogs(orderItemIdParam);
+        for(OrderStatusLogs statusLogsElem: statusLogsEntity){
+            if (statusLogsElem.getStatus().equals("ARRIVED") || statusLogsElem.getStatus().equals("DELIVERED")){
+                // repopulate booking details on first form
+                Orders orderEntityForm = orderService.findOrdersById(orderItemEntity.getOrderId());
+                // Display Order Data to form
+                order = transformToOrderFormBean(orderEntityForm);
+                // get contact id from shipper
+                Integer contactIdParam = orderEntityForm.getShipperContactId();
+                // shipper id from contact
+                Contacts contactEntity = customerService.findContactById(contactIdParam);
+                Customer customerEntity = customerService.findCustomerById(contactEntity.getReferenceId());
+                // get customer items
+                customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
+                // get order items on order edit module
+                List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("orderIdPass"));
 
+                // display item listing in table
+                for (OrderItems orderItemElem : orderItemEntityList) {
+                    orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+                }
+
+                sessionAttributes.put("customerItems", customerItems);
+
+                clearErrorsAndMessages();
+                addActionError("You can no longer delete an item/container(s) for this booking because one or more existing item/container(s) had been arrived/delivered.");
+                return "ERROR_DELETE";
+            }
+        }
+
+        orderService.deleteItem(orderItemEntity);
         // repopulate booking details on first form
         Orders orderEntityForm = orderService.findOrdersById(orderItemEntity.getOrderId());
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityForm);
-
         // repopulate customer items after order item delete
-        Map sessionAttributes = ActionContext.getContext().getSession();
         customerItems = (List) sessionAttributes.get("customerItems");
 
         // Display order items in table
@@ -1298,13 +1361,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         List<OrderItems> orderItemListing = operationsService.findAllOrderItemsByOrderId(orderIdParam);
         Integer checkItems = 0;
-
-        for (OrderItems orderItemElem : orderItemListing){
-
-            if (orderItemElem.getStatus().equals("ARRIVED") || orderItemElem.getStatus().equals("DELIVERED")){
-                checkItems = checkItems + 1;
+        for (OrderItems orderItemsElem : orderItemListing) {
+            List<OrderStatusLogs> statusLogsEntity = orderStatusLogsService.findAllShipmentLogs(orderItemsElem.getOrderItemId());
+            for(OrderStatusLogs statusLogsElem: statusLogsEntity){
+                if (statusLogsElem.getStatus().equals("ARRIVED") || statusLogsElem.getStatus().equals("DELIVERED")){
+                    checkItems = checkItems + 1;
+                }
             }
-
         }
 
         if(checkItems >= 1){
@@ -1854,6 +1917,27 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderItemBean.setContainerId(orderItem.getContainerId());
 
         return orderItemBean;
+    }
+
+    public OrderStatusLogsBean transformToOrderStatusLogsFormBean (OrderStatusLogs entity) {
+
+        OrderStatusLogsBean formBean = new OrderStatusLogsBean();
+        formBean.setStatusId(entity.getStatusId());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setActualDate(entity.getActualDate());
+        formBean.setStatus(entity.getStatus());
+        User userEntity = userService.findUserByUserName(entity.getCreatedBy());
+        formBean.setCreatedBy(userEntity.getFirstName() + " " + userEntity.getLastName());
+        formBean.setNameSize(orderService.findOrderItemByOrderItemId(entity.getOrderItemId()).getNameSize());
+        formBean.setOrderItemId(entity.getOrderItemId());
+        formBean.setOrderId(operationsService.findOrderItemById(entity.getOrderItemId()).getOrderId());
+
+//        formBean.setContainerNumber(entity.getContainerNumber());
+        /*if(entity.getActualDate() == null || (entity.getActualDate().equals("")){
+            formBean.setActualDate("NONE");
+        }*/
+        return formBean;
+
     }
 
     private Orders transformToOrderEntityBean(OrderBean formBean) {
@@ -2937,6 +3021,14 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setOrderPage(String orderPage) {
         this.orderPage = orderPage;
+    }
+
+    public OrderStatusLogsService getOrderStatusLogsService() {
+        return orderStatusLogsService;
+    }
+
+    public void setOrderStatusLogsService(OrderStatusLogsService orderStatusLogsService) {
+        this.orderStatusLogsService = orderStatusLogsService;
     }
 }
 

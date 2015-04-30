@@ -84,7 +84,7 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     BigInteger Booking , Customer,User,Vendor, AllNotification ;
 
     public String home() {
-
+System.out.println("Username Bean: "+username);
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         Booking = notificationService.countAll();
         Customer = notificationService.countAllCustomer();
@@ -99,47 +99,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
         System.out.println("The Number of all Notification is "+AllNotification);
 
         changeOrigin();
-        viewStatusList();
 
         return SUCCESS;
 
-    }
-
-    public String viewStatusList() {
-
-        List<Orders> orderEntityList = new ArrayList<Orders>();
-        String column = getColumnFilter();
-
-        if (StringUtils.isNotBlank(column)) {
-            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
-        } else {
-            orderEntityList = orderStatusLogsService.findAllOrders();
-        }
-        for (Orders ordersElem : orderEntityList) {
-            orders.add(transformToOrderFormBean(ordersElem));
-        }
-        return SUCCESS;
-    }
-
-    public String getColumnFilter() {
-
-        String column = "";
-        if (order == null) {
-            System.out.println("ok");
-            return column;
-        } else {
-            if ("BOOKING NUMBER".equals(order.getOrderSearchCriteria())) {
-                column = "orderNumber";
-            }
-            return column;
-        }
-
-    }
-
-    private Integer getClientId() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        Integer clientId = (Integer) sessionAttributes.get("clientId");
-        return clientId;
     }
 
     public OrderBean transformToOrderFormBean(Orders entity) {

@@ -33,7 +33,7 @@
                     <li><a href="<s:url action='operations/viewInlandFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Dispatch Plan</a></li>
                 </sec:authorize>
                 <%--<li><a href="<s:url action='operations/viewShipmentMonitoringList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>--%>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES', 'ROLE_CUSTOMER_RELATIONS','ROLE_DOCUMENT_SPECIALIST')">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
                     <li><a href="<s:url action='operations/viewVesselSchedules' />"> <i class="fa fa-caret-right fa-fw"></i> Vessel Schedule</a></li>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT','ROLE_SALES','ROLE_DOCUMENT_SPECIALIST')">
@@ -44,7 +44,7 @@
     </sec:authorize>
 
     <!-- YARD MANAGEMENT -->
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES', 'ROLE_INLAND_FREIGHT', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_SPECIALIST')">
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_SPECIALIST')">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-road"></i> Yard Management <b class="caret"></b></a>
             <ul class="dropdown-menu">

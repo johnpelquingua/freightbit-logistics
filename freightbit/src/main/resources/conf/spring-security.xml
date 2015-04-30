@@ -144,7 +144,7 @@
                 default-target-url='/login.action'
                 username-parameter='username'
                 password-parameter='password' />
-    <logout logout-success-url="/login.action"/>
+    <logout logout-success-url="/login.action" logout-url="/j_spring_security_logout" invalidate-session="true" delete-cookies="JSESSIONID"/>
     <!-- enable csrf protection
     <csrf/>-->
 
@@ -154,14 +154,14 @@
 </http>
 	<!-- AUTH MANAGER -->
     <authentication-manager >
-    	<authentication-provider ref="authProvider"></authentication-provider>  
+    	<authentication-provider ref="authProvider"></authentication-provider>
     </authentication-manager>
-    
+
 	<beans:bean id="authProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 	  <beans:property name="userDetailsService" ref="userDetailsService" />
 	  <beans:property name="passwordEncoder" ref="encoder" />
 	</beans:bean>
-  
+
  	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
  	<beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 
