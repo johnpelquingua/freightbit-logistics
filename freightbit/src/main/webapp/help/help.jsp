@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-<title>HELP</title>
+<title>Help Center</title>
 <div class="container">
     <h2>Booking Module</h2>
     <div class="panel-group" id="accordion-booking">
@@ -15,7 +15,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-search">Searching for a Booking</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-search">Searching for a Booking</a>
                 </h4>
             </div>
             <div id="collapse-booking-search" class="panel-collapse collapse">
@@ -32,7 +32,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-create">Create a Booking</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-create">Create a Booking</a>
                 </h4>
             </div>
             <div id="collapse-booking-create" class="panel-collapse collapse">
@@ -51,7 +51,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-editContactInfo">Edit Contact Information</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-editContactInfo">Edit Contact Information</a>
                 </h4>
             </div>
             <div id="collapse-booking-editContactInfo" class="panel-collapse collapse">
@@ -67,7 +67,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-addContactPerson">Add Contact Person</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addContactPerson">Add Contact Person</a>
                 </h4>
             </div>
             <div id="collapse-booking-addContactPerson" class="panel-collapse collapse">
@@ -83,7 +83,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-addAddress">Add Address</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addAddress">Add Address</a>
                 </h4>
             </div>
             <div id="collapse-booking-addAddress" class="panel-collapse collapse">
@@ -99,7 +99,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-addConsignee">Add Consignee</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addConsignee">Add Consignee</a>
                 </h4>
             </div>
             <div id="collapse-booking-addConsignee" class="panel-collapse collapse">
@@ -115,7 +115,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-addConsigneeContact">Add Contact person for Consignee</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addConsigneeContact">Add Contact person for Consignee</a>
                 </h4>
             </div>
             <div id="collapse-booking-addConsigneeContact" class="panel-collapse collapse">
@@ -131,7 +131,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-addContainerFCL">Add Container (Full Container Load)</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addContainerFCL">Add Container (Full Container Load)</a>
                 </h4>
             </div>
             <div id="collapse-booking-addContainerFCL" class="panel-collapse collapse">
@@ -147,7 +147,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-addItemLCL">Add Item (Less Container Load)</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addItemLCL">Add Item (Less Container Load)</a>
                 </h4>
             </div>
             <div id="collapse-booking-addItemLCL" class="panel-collapse collapse">
@@ -163,7 +163,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-edit">Edit Booking</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-edit">Edit Booking</a>
                 </h4>
             </div>
             <div id="collapse-booking-edit" class="panel-collapse collapse">
@@ -181,7 +181,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-delete">Delete Booking</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-delete">Delete Booking</a>
                 </h4>
             </div>
             <div id="collapse-booking-delete" class="panel-collapse collapse">
@@ -198,7 +198,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-view">View Booking Information</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-view">View Booking Information</a>
                 </h4>
             </div>
             <div id="collapse-booking-view" class="panel-collapse collapse">
@@ -214,7 +214,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-printForm">Print Booking Form</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-printForm">Print Booking Form</a>
                 </h4>
             </div>
             <div id="collapse-booking-printForm" class="panel-collapse collapse">
@@ -230,7 +230,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-approve">Approve Booking</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-approve">Approve Booking</a>
                 </h4>
             </div>
             <div id="collapse-booking-approve" class="panel-collapse collapse">
@@ -247,7 +247,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-booking-cancel">Cancel Booking</a>
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-cancel">Cancel Booking</a>
                 </h4>
             </div>
             <div id="collapse-booking-cancel" class="panel-collapse collapse">
@@ -273,7 +273,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-freightPlan-sortingOrders">Sorting Orders</a>
+                        <a data-toggle="collapse" data-parent="#accordion-freightPlan" href="#collapse-operations-freightPlan-sortingOrders">Sorting Orders</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-sortingOrders" class="panel-collapse collapse">
@@ -288,7 +288,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-freightPlan-settingVesselSchedule">Setting Vessel Schedule</a>
+                        <a data-toggle="collapse" data-parent="#accordion-freightPlan" href="#collapse-operations-freightPlan-settingVesselSchedule">Setting Vessel Schedule</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-settingVesselSchedule" class="panel-collapse collapse">
@@ -305,7 +305,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-freightPlan-creatingFreightDocuments">Creating Freight Documents</a>
+                        <a data-toggle="collapse" data-parent="#accordion-freightPlan" href="#collapse-operations-freightPlan-creatingFreightDocuments">Creating Freight Documents</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-creatingFreightDocuments" class="panel-collapse collapse">
@@ -321,7 +321,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-freightPlan-consolidatingItems">Consolidating items</a>
+                        <a data-toggle="collapse" data-parent="#accordion-freightPlan" href="#collapse-operations-freightPlan-consolidatingItems">Consolidating items</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-consolidatingItems" class="panel-collapse collapse">
@@ -330,7 +330,7 @@
                             1.	To consolidate items, navigate to the LCL by clicking the LCL tab. <br>
                             2.	Choose the items to be consolidated and click the consolidate button. Note: Only items with the same origin and destination may be checked. <br>
                             3.	A window will appear with the list of available schedules. Choose the schedule for the selected items and click the set vessel schedule. <br>
-                            4.	The selected items’ statuses will be changed to on-going.
+                            4.	The selected items&#39; statuses will be changed to on-going.
                         </p>
                     </div>
                 </div>
@@ -338,7 +338,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-freightPlan-directLoad">Direct Load</a>
+                        <a data-toggle="collapse" data-parent="#accordion-freightPlan" href="#collapse-operations-freightPlan-directLoad">Direct Load</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-directLoad" class="panel-collapse collapse">
@@ -355,7 +355,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-freightPlan-viewBoookingInformation">View Booking Information</a>
+                        <a data-toggle="collapse" data-parent="#accordion-freightPlan" href="#collapse-operations-freightPlan-viewBoookingInformation">View Booking Information</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-viewBoookingInformation" class="panel-collapse collapse">
@@ -374,14 +374,14 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-sortingViaServicePorts">Sorting via Service Ports</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-sortingViaServicePorts">Sorting via Service Ports</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-sortingViaServicePorts" class="panel-collapse collapse">
                     <div class="panel-body">
                         <p>
                             1.	To sort via service ports, choose the port under the sort by origin, sort by destination or sort by location (see Figure 3). <br>
-                            2.	2.	The list you’re currently in will be updated accordingly.
+                            2.	The list you&#39;re currently in will be updated accordingly.
                         </p>
                     </div>
                 </div>
@@ -389,7 +389,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-sortingViaRequirements">Sorting via Service Requirements</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-sortingViaRequirements">Sorting via Service Requirements</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-sortingViaRequirements" class="panel-collapse collapse">
@@ -397,7 +397,7 @@
                         <p>
                             1.	To sort via service requirements, click on the tab of your desired service requirement. <br>
                             2.	Choose the port under the sort by origin or the sort by destination (see Figure 3). <br>
-                            3.	The list you’re currently in will be updated accordingly.
+                            3.	The list you&#39;re currently in will be updated accordingly.
                         </p>
                     </div>
                 </div>
@@ -405,7 +405,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-sortingViaTrucking">Sorting via Trucking</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-sortingViaTrucking">Sorting via Trucking</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-sortingViaTrucking" class="panel-collapse collapse">
@@ -414,7 +414,7 @@
                             1.	To sort via trucking, click on the trucking tab (see Figure 4). <br>
                             2.	Choose the service requirement (see Figure 18). <br>
                             3.	Choose the port under sort by location (see Figure 3). <br>
-                            4.	The list you’re currently in will be updated accordingly.
+                            4.	The list you&#39;re currently in will be updated accordingly.
                         </p>
                     </div>
                 </div>
@@ -422,7 +422,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-viewBookingInformation">Viewing Booking Information</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-viewBookingInformation">Viewing Booking Information</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-viewBookingInformation" class="panel-collapse collapse">
@@ -437,14 +437,14 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-settingVendorSingleItem">Setting a Vendor(Single Item)</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-settingVendorSingleItem">Setting a Vendor(Single Item)</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-settingVendorSingleItem" class="panel-collapse collapse">
                     <div class="panel-body">
                         <p>
-                            1.	To set a vendor for a single item, click on the item’s checkbox then click the set vendor button (see Figure 22). <br>
-                            2.	you will be redirected to the dispatch plan:origin page. Choose the vendor who’ll be picking up the order. <br>
+                            1.	To set a vendor for a single item, click on the item&#39;s checkbox then click the set vendor button (see Figure 22). <br>
+                            2.	you will be redirected to the dispatch plan:origin page. Choose the vendor who&#39;ll be picking up the order. <br>
                             3.	Set the pickup date then click save. <br>
                             4.	you will be redirected back to the booking information page, the status of the order will be set to planning 3 and a success message will appear.
                         </p>
@@ -454,14 +454,14 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-settingVendorMultipleItem">Setting a Vendor(Multiple Item)</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-settingVendorMultipleItem">Setting a Vendor(Multiple Item)</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-settingVendorMultipleItem" class="panel-collapse collapse">
                     <div class="panel-body">
                         <p>
-                            1.	To set a vendor for multiple item, click on the item’s checkbox then click the set vendor button (see Figure 22). <br>
-                            2.	you will be redirected to the dispatch plan page. Choose the vendor who’ll be picking up the order. <br>
+                            1.	To set a vendor for multiple item, click on the item&#39;s checkbox then click the set vendor button (see Figure 22). <br>
+                            2.	you will be redirected to the dispatch plan page. Choose the vendor who&#39;ll be picking up the order. <br>
                             3.	Set the pickup date then click save. <br>
                             4.	you will be redirected back to the booking information page, the status of the order will be set to planning 3 and a success message will appear (see Figure 25).
                         </p>
@@ -471,7 +471,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-addingVendor">Adding a Vendor</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-addingVendor">Adding a Vendor</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-addingVendor" class="panel-collapse collapse">
@@ -488,7 +488,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-addDriver">Adding a Driver</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-addDriver">Adding a Driver</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-addDriver" class="panel-collapse collapse">
@@ -505,7 +505,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-addingTruck">Adding a Truck</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-addingTruck">Adding a Truck</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-addingTruck" class="panel-collapse collapse">
@@ -522,7 +522,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-dispatchPlan-creatingInlandDocuments">Creating Inland Document(s)</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-creatingInlandDocuments">Creating Inland Document(s)</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-creatingInlandDocuments" class="panel-collapse collapse">
@@ -542,7 +542,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-vesselSchedule-search">Searching for a Vessel Schedule</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-vesselSchedule-search">Searching for a Vessel Schedule</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-vesselSchedule-search" class="panel-collapse collapse">
@@ -558,7 +558,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-vesselSchedule-add">Adding a Vessel Schedule</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-vesselSchedule-add">Adding a Vessel Schedule</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-vesselSchedule-add" class="panel-collapse collapse">
@@ -574,7 +574,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-vesselSchedule-edit">Editing a Vessel Schedule</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-vesselSchedule-edit">Editing a Vessel Schedule</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-vesselSchedule-edit" class="panel-collapse collapse">
@@ -590,7 +590,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-vesselSchedule-delete">Deleting a Vessel Schedule</a>
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-vesselSchedule-delete">Deleting a Vessel Schedule</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-vesselSchedule-delete" class="panel-collapse collapse">
@@ -610,7 +610,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-shipmentMonitoring-searchBookingNumber">Searching for a Booking Number</a>
+                        <a data-toggle="collapse" data-parent="#accordion-shipmentMonitoring" href="#collapse-operations-shipmentMonitoring-searchBookingNumber">Searching for a Booking Number</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-shipmentMonitoring-searchBookingNumber" class="panel-collapse collapse">
@@ -626,7 +626,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-shipmentMonitoring-setServiceComplete">Update Status(Set Service Complete)</a>
+                        <a data-toggle="collapse" data-parent="#accordion-shipmentMonitoring" href="#collapse-operations-shipmentMonitoring-setServiceComplete">Update Status(Set Service Complete)</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-shipmentMonitoring-setServiceComplete" class="panel-collapse collapse">
@@ -641,7 +641,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-operations-shipmentMonitoring-setStatus">Update Status(Set Status)</a>
+                        <a data-toggle="collapse" data-parent="#accordion-shipmentMonitoring" href="#collapse-operations-shipmentMonitoring-setStatus">Update Status(Set Status)</a>
                     </h4>
                 </div>
                 <div id="collapse-operations-shipmentMonitoring-setStatus" class="panel-collapse collapse">
@@ -649,8 +649,8 @@
                         <p>
                             1.	To update an on-going booking to specific status, click the update status button of the booking under its actions column. <br>
                             2.	Choose the container from the container list by clicking its corresponding checkbox then click the set status button. <br>
-                            3.	you will be redirected to the container’s shipment history. Update the status by choosing the current status of the container under shipment update and setting the actual date/time of the status. <br>
-                            4.	The status update will then be listed in the container’s shipment history and a success balloon will appear.
+                            3.	you will be redirected to the container&#39;s shipment history. Update the status by choosing the current status of the container under shipment update and setting the actual date/time of the status. <br>
+                            4.	The status update will then be listed in the container&#39;s shipment history and a success balloon will appear.
                         </p>
                     </div>
                 </div>
@@ -666,7 +666,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-add">Adding a new Customer</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-add">Adding a new Customer</a>
                 </h4>
             </div>
             <div id="collapse-customer-add" class="panel-collapse collapse">
@@ -683,7 +683,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-editCustomer">Editing Customer Information</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-editCustomer">Editing Customer Information</a>
                 </h4>
             </div>
             <div id="collapse-customer-editCustomer" class="panel-collapse collapse">
@@ -700,7 +700,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-deleteCustomer">Delete a Customer</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-deleteCustomer">Delete a Customer</a>
                 </h4>
             </div>
             <div id="collapse-customer-deleteCustomer" class="panel-collapse collapse">
@@ -717,7 +717,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-viewCustomerInformation">Viewing Customer Information</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-viewCustomerInformation">Viewing Customer Information</a>
                 </h4>
             </div>
             <div id="collapse-customer-viewCustomerInformation" class="panel-collapse collapse">
@@ -725,7 +725,7 @@
                     <p>
                         1.	To view customer information, click Customer on the Main Menu. <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed.
+                        3.	The customer&#39;s profile page will be displayed.
                     </p>
                 </div>
             </div>
@@ -733,7 +733,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-addCustomerAddress">Adding Address to a Customer</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-addCustomerAddress">Adding Address to a Customer</a>
                 </h4>
             </div>
             <div id="collapse-customer-addCustomerAddress" class="panel-collapse collapse">
@@ -741,7 +741,7 @@
                     <p>
                         1.	To add a new address to a customer, click Customer on the Main Menu. <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Address. <br>
                         5.	Click New Address <br>
                         6.	Complete the Add Address form. Required fields are marked with an asterisk (*). <br>
@@ -753,7 +753,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-editAddress">Editing Customer Address</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-editAddress">Editing Customer Address</a>
                 </h4>
             </div>
             <div id="collapse-customer-editAddress" class="panel-collapse collapse">
@@ -761,7 +761,7 @@
                     <p>
                         1.	To edit customer address, click Customer on the Main Menu. <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Address. <br>
                         5.	Click the Pencil icon on Actions column. <br>
                         6.	Update all necessary changes. <br>
@@ -773,7 +773,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-deleteAddress">Deleting Customer Address</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-deleteAddress">Deleting Customer Address</a>
                 </h4>
             </div>
             <div id="collapse-customer-deleteAddress" class="panel-collapse collapse">
@@ -781,7 +781,7 @@
                     <p>
                         1.	To delete customer address, click Customer on the Main Menu. <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Address. <br>
                         5.	Click the Trash icon on Actions column. <br>
                         6.	A prompt will appear to confirm the deletion. <br>
@@ -793,7 +793,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-addingCustomerContactPerson">Adding a Contact Person to a Customer</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-addingCustomerContactPerson">Adding a Contact Person to a Customer</a>
                 </h4>
             </div>
             <div id="collapse-customer-addingCustomerContactPerson" class="panel-collapse collapse">
@@ -801,7 +801,7 @@
                     <p>
                         1.	To add new contact person to customer, click Customer on the Main Menu. <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Contacts. <br>
                         5.	Click New Contact Person. <br>
                         6.	Fill up all necessary information to add new contact person to a customer. All required fields are marked with an asterisk (*). <br>
@@ -813,7 +813,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-editCustomerContactPerson">Editing Customer Contact Person</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-editCustomerContactPerson">Editing Customer Contact Person</a>
                 </h4>
             </div>
             <div id="collapse-customer-editCustomerContactPerson" class="panel-collapse collapse">
@@ -821,7 +821,7 @@
                     <p>
                         1.	To edit customer contact person, click Customer on the Main Menu. <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Contacts. <br>
                         5.	Click the Pencil icon on Actions column. <br>
                         6.	Update all necessary changes. <br>
@@ -833,7 +833,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-deleteCustomerContactPerson">Deleting Customer Contact Person</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-deleteCustomerContactPerson">Deleting Customer Contact Person</a>
                 </h4>
             </div>
             <div id="collapse-customer-deleteCustomerContactPerson" class="panel-collapse collapse">
@@ -841,7 +841,7 @@
                     <p>
                         1.	To delete customer contact person, click Customer on the Main Menu.<br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Contacts. <br>
                         5.	Click The Trash icon on Actions column. <br>
                         6.	A prompt will appear to confirm the deletion. <br>
@@ -853,7 +853,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-addingCustomerItems">Adding Items to Customer</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-addingCustomerItems">Adding Items to Customer</a>
                 </h4>
             </div>
             <div id="collapse-customer-addingCustomerItems" class="panel-collapse collapse">
@@ -861,7 +861,7 @@
                     <p>
                         1.	To add new Item to a customer, click Customer on the Main Menu <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Items. <br>
                         5.	Click New Item. <br>
                         6.	Fill up all required fields to add new Item. Required fields are marked with an asterisk (*). <br>
@@ -873,7 +873,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-editCustomerItem">Editing Customer Items</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-editCustomerItem">Editing Customer Items</a>
                 </h4>
             </div>
             <div id="collapse-customer-editCustomerItem" class="panel-collapse collapse">
@@ -881,7 +881,7 @@
                     <p>
                         1.	To edit a customer item, click Customer on the Main Menu <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Items. <br>
                         5.	Click the Pencil icon on Actions column. <br>
                         6.	Update all necessary changes. <br>
@@ -893,7 +893,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-deleteCustomerItem">Deleting Customer Items</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-deleteCustomerItem">Deleting Customer Items</a>
                 </h4>
             </div>
             <div id="collapse-customer-deleteCustomerItem" class="panel-collapse collapse">
@@ -901,7 +901,7 @@
                     <p>
                         1.	To delete a customer item, click Customer on the Main Menu <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Items. <br>
                         5.	Click The Trash icon on Actions column. <br>
                         6.	A prompt will appear to confirm the deletion. <br>
@@ -913,7 +913,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-addingCustomerConsignee">Adding Consignee to a Customer</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-addingCustomerConsignee">Adding Consignee to a Customer</a>
                 </h4>
             </div>
             <div id="collapse-customer-addingCustomerConsignee" class="panel-collapse collapse">
@@ -921,7 +921,7 @@
                     <p>
                         1.	To add new consignee to customer, click Customer on the Main Menu <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Consignee. <br>
                         5.	Click New Consignee. <br>
                         6.	Fill up all necessary information to add new consignee to a customer. All required fields are marked with an asterisk (*).  <br>
@@ -933,7 +933,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-editCustomerConsignee">Editing Customer Consignee</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-editCustomerConsignee">Editing Customer Consignee</a>
                 </h4>
             </div>
             <div id="collapse-customer-editCustomerConsignee" class="panel-collapse collapse">
@@ -941,7 +941,7 @@
                     <p>
                         1.	To edit customer consignee, click Customer on the Main Menu <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Consignee. <br>
                         5.	Click the Pencil icon on the Actions column. <br>
                         6.	Update all necessary changes.  <br>
@@ -953,7 +953,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-deleteCustomerConsignee">Deleting Customer Consignee</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-deleteCustomerConsignee">Deleting Customer Consignee</a>
                 </h4>
             </div>
             <div id="collapse-customer-deleteCustomerConsignee" class="panel-collapse collapse">
@@ -961,7 +961,7 @@
                     <p>
                         1.	To delete customer consignee, click Customer on the Main Menu <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Consignee. <br>
                         5.	Click The Trash icon on Actions column. <br>
                         6.	A prompt will appear to confirm the deletion.  <br>
@@ -973,7 +973,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-viewConsigneeInformation">View Consignee Information</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-viewConsigneeInformation">View Consignee Information</a>
                 </h4>
             </div>
             <div id="collapse-customer-viewConsigneeInformation" class="panel-collapse collapse">
@@ -981,7 +981,7 @@
                     <p>
                         1.	To view consignee information of a customer, click Customer on the Main Menu <br>
                         2.	Click the Information icon on Actions column. <br>
-                        3.	The customer’s profile page will be displayed. <br>
+                        3.	The customer&#39;s profile page will be displayed. <br>
                         4.	Click Consignee. <br>
                         5.	Click the Information icon on Actions column. <br>
                         6.	You will be redirected to a page where you can see all the information about the consignee.
@@ -992,7 +992,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-customer-search">Search customer</a>
+                    <a data-toggle="collapse" data-parent="#accordion-customer" href="#collapse-customer-search">Search customer</a>
                 </h4>
             </div>
             <div id="collapse-customer-search" class="panel-collapse collapse">
@@ -1016,14 +1016,14 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-add">Adding a Vendor</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-add">Adding a Vendor</a>
                 </h4>
             </div>
             <div id="collapse-vendor-add" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To add a new vendor, click on new vendor in the vendor page. <br>
-                        2.	You’ll be redirected to the Add Vendor page. Fill in the required fields then click save. <br>
+                        2.	You&#39;ll be redirected to the Add Vendor page. Fill in the required fields then click save. <br>
                         3.	A message will appear indicating the success in adding a vendor.
                     </p>
                 </div>
@@ -1032,15 +1032,15 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-edit">Editing Vendor Details</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-edit">Editing Vendor Details</a>
                 </h4>
             </div>
             <div id="collapse-vendor-edit" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
-                        1.	To edit a vendor’s details, click on edit this vendor under the Actions. <br>
-                        2.	You’ll be redirected to the edit vendor page, update the current vendor details then click save. <br>
-                        3.	You’ll be redirected to the updated vendor profile and a success message will appear.
+                        1.	To edit a vendor&#39;s details, click on edit this vendor under the Actions. <br>
+                        2.	You&#39;ll be redirected to the edit vendor page, update the current vendor details then click save. <br>
+                        3.	You&#39;ll be redirected to the updated vendor profile and a success message will appear.
                     </p>
                 </div>
             </div>
@@ -1048,7 +1048,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-delete">Deleting a Vendor</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-delete">Deleting a Vendor</a>
                 </h4>
             </div>
             <div id="collapse-vendor-delete" class="panel-collapse collapse">
@@ -1064,7 +1064,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-search">Searching for a Vendor</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-search">Searching for a Vendor</a>
                 </h4>
             </div>
             <div id="collapse-vendor-search" class="panel-collapse collapse">
@@ -1077,17 +1077,17 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" id="vendor">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-view">Viewing Vendor Details</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-view">Viewing Vendor Details</a>
                 </h4>
             </div>
             <div id="collapse-vendor-view" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
-                        1.	To view a vendor’s details, click on a vendor’s corresponding view vendor info button under the actions column.<br>
-                        2.	You’ll be redirected to the vendor profile where you’ll see the basic information of the vendor. <br>
+                        1.	To view a vendor&#39;s details, click on a vendor&#39;s corresponding view vendor info button under the actions column.<br>
+                        2.	You&#39;ll be redirected to the vendor profile where you&#39;ll see the basic information of the vendor. <br>
                         3.	You will be redirected to a page containing the list of results matching your search.
                     </p>
                 </div>
@@ -1096,14 +1096,14 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-viewVendorAddress">Viewing Vendor Addresses</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-viewVendorAddress">Viewing Vendor Addresses</a>
                 </h4>
             </div>
             <div id="collapse-vendor-viewVendorAddress" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To view the list of vendor addresses, navigate to the vendor profile and click address from the sidebar.<br>
-                        2.	You’ll be redirected to the address list page where you’ll see the list of addresses a vendor has.<br>
+                        2.	You&#39;ll be redirected to the address list page where you&#39;ll see the list of addresses a vendor has.<br>
                         3.	You will be redirected to a page containing the list of results matching your search.
                     </p>
                 </div>
@@ -1112,7 +1112,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-addVendorAddress">Adding a Vendor Address</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-addVendorAddress">Adding a Vendor Address</a>
                 </h4>
             </div>
             <div id="collapse-vendor-addVendorAddress" class="panel-collapse collapse">
@@ -1120,8 +1120,8 @@
                     <p>
                         1.	Navigate to the address list page (see Viewing Vendor Addresses).<br>
                         2.	Click on the new address button.<br>
-                        3.	You’ll be redirected to the add address page. Fill out the required fields then click save. Note:Saving will not proceed until required fields are filled up. <br>
-                        4.	You’ll return to the address list with the updated address list and a success message will appear on top of the list.
+                        3.	You&#39;ll be redirected to the add address page. Fill out the required fields then click save. Note:Saving will not proceed until required fields are filled up. <br>
+                        4.	You&#39;ll return to the address list with the updated address list and a success message will appear on top of the list.
                     </p>
                 </div>
             </div>
@@ -1129,7 +1129,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-editVendorAddress">Editing Vendor Address</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-editVendorAddress">Editing Vendor Address</a>
                 </h4>
             </div>
             <div id="collapse-vendor-editVendorAddress" class="panel-collapse collapse">
@@ -1137,8 +1137,8 @@
                     <p>
                         1.	Navigate to the address list page (see Viewing Vendor Addresses).<br>
                         2.	Click on the edit this vendor address button under the actions column.<br>
-                        3.	You’ll be redirected to the edit address page. Update the information then click save. Note: Saving will not proceed until all required fields are filled up. <br>
-                        4.	You’ll be redirected to the updated address list and a success message will appear on top of the list.
+                        3.	You&#39;ll be redirected to the edit address page. Update the information then click save. Note: Saving will not proceed until all required fields are filled up. <br>
+                        4.	You&#39;ll be redirected to the updated address list and a success message will appear on top of the list.
                     </p>
                 </div>
             </div>
@@ -1146,7 +1146,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-deleteVendorAddress">Deleting a Vendor Address</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-deleteVendorAddress">Deleting a Vendor Address</a>
                 </h4>
             </div>
             <div id="collapse-vendor-deleteVendorAddress" class="panel-collapse collapse">
@@ -1163,14 +1163,14 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-viewContactPerson">Viewing list of Contact Persons</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-viewContactPerson">Viewing list of Contact Persons</a>
                 </h4>
             </div>
             <div id="collapse-vendor-viewContactPerson" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To view the list of contact persons a vendor has, navigate to the vendor profile page (see Viewing Vendor Details) then click contacts from the sidebar.<br>
-                        2.	You’ll be redirected to the contact persons list page.
+                        2.	You&#39;ll be redirected to the contact persons list page.
                     </p>
                 </div>
             </div>
@@ -1178,15 +1178,15 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-addContactPerson">Adding a Contact Person</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-addContactPerson">Adding a Contact Person</a>
                 </h4>
             </div>
             <div id="collapse-vendor-addContactPerson" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To add a contact person, navigate to the contact person list page (see Viewing list of Contact Persons) and click new contact person button. <br>
-                        2.	You’ll be redirected to the add contact person page. Fill in the required fields then click save. Note: Adding will not proceed until all required fields are filled up. <br>
-                        3.	You’ll be redirected to the updated contact person list page and a success message will be displayed on top of the list.
+                        2.	You&#39;ll be redirected to the add contact person page. Fill in the required fields then click save. Note: Adding will not proceed until all required fields are filled up. <br>
+                        3.	You&#39;ll be redirected to the updated contact person list page and a success message will be displayed on top of the list.
                     </p>
                 </div>
             </div>
@@ -1194,15 +1194,15 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-editContactPerson">Editing Contact Person Details</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-editContactPerson">Editing Contact Person Details</a>
                 </h4>
             </div>
             <div id="collapse-vendor-editContactPerson" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
-                        1.	To edit a contact person’s details, navigate to the contact persons list page (see Viewing list of Contact Persons) then click edit this contact person button under the action column. <br>
-                        2.	You’ll be redirected to the edit contact person page. Update the information then click save. Note: Required fields need to be filled up to continue saving. <br>
-                        3.	You’ll be redirected to the updated contact persons list page and a success message will appear on top of the list.
+                        1.	To edit a contact person&#39;s details, navigate to the contact persons list page (see Viewing list of Contact Persons) then click edit this contact person button under the action column. <br>
+                        2.	You&#39;ll be redirected to the edit contact person page. Update the information then click save. Note: Required fields need to be filled up to continue saving. <br>
+                        3.	You&#39;ll be redirected to the updated contact persons list page and a success message will appear on top of the list.
                     </p>
                 </div>
             </div>
@@ -1210,7 +1210,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-deleteContactPerson">Deleting a Contact Person</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-deleteContactPerson">Deleting a Contact Person</a>
                 </h4>
             </div>
             <div id="collapse-vendor-deleteContactPerson" class="panel-collapse collapse">
@@ -1227,14 +1227,14 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-viewDrivers">Viewing list of Drivers</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-viewDrivers">Viewing list of Drivers</a>
                 </h4>
             </div>
             <div id="collapse-vendor-viewDrivers" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To view the list of drivers a vendor has, navigate to the vendor profile page (see Viewing Vendor Details) then click drivers from the sidebar. <br>
-                        2.	You’ll be redirected to the drivers list page.
+                        2.	You&#39;ll be redirected to the drivers list page.
                     </p>
                 </div>
             </div>
@@ -1242,15 +1242,15 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-addDriver">Adding a Driver</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-addDriver">Adding a Driver</a>
                 </h4>
             </div>
             <div id="collapse-vendor-addDriver" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To add a driver, navigate to the driver list page (see Viewing list of Drivers) and click new driver button. <br>
-                        2.	You’ll be redirected to the add driver page. Fill in the required fields then click save. Note: Adding will not proceed until all required fields are filled up. <br>
-                        3.	You’ll be redirected to the updated driver list page and a success message will be displayed on top of the list.
+                        2.	You&#39;ll be redirected to the add driver page. Fill in the required fields then click save. Note: Adding will not proceed until all required fields are filled up. <br>
+                        3.	You&#39;ll be redirected to the updated driver list page and a success message will be displayed on top of the list.
                     </p>
                 </div>
             </div>
@@ -1258,15 +1258,15 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-editDriver">Editing a Driver Details</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-editDriver">Editing a Driver Details</a>
                 </h4>
             </div>
             <div id="collapse-vendor-editDriver" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
-                        1.	To edit a driver’s details, navigate to the driver list page (see Viewing list of Drivers) then click edit this driver button under the action column. <br>
-                        2.	You’ll be redirected to the edit driver page. Update the information then click save. Note: Required fields need to be filled up to continue saving. <br>
-                        3.	You’ll be redirected to the updated driver list page and a success message will appear on top of the list.
+                        1.	To edit a driver&#39;s details, navigate to the driver list page (see Viewing list of Drivers) then click edit this driver button under the action column. <br>
+                        2.	You&#39;ll be redirected to the edit driver page. Update the information then click save. Note: Required fields need to be filled up to continue saving. <br>
+                        3.	You&#39;ll be redirected to the updated driver list page and a success message will appear on top of the list.
                     </p>
                 </div>
             </div>
@@ -1274,7 +1274,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-deleteDriver">Deleting a Driver</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-deleteDriver">Deleting a Driver</a>
                 </h4>
             </div>
             <div id="collapse-vendor-deleteDriver" class="panel-collapse collapse">
@@ -1291,16 +1291,16 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-viewTruckInformation">Viewing Truck Details</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-viewTruckInformation">Viewing Truck Details</a>
                 </h4>
             </div>
             <div id="collapse-vendor-viewTruckInformation" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To view the list of trucks a vendor has, navigate to the vendor profile page (see Viewing Vendor Details) then click trucks from the sidebar. <br>
-                        2.	You’ll be redirected to the trucks list page. <br>
+                        2.	You&#39;ll be redirected to the trucks list page. <br>
                         3.	Click view truck info button under the action column. <br>
-                        4.	You’ll be redirected to the truck information page.
+                        4.	You&#39;ll be redirected to the truck information page.
                     </p>
                 </div>
             </div>
@@ -1308,15 +1308,15 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-addingTruck">Adding a Truck</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-addingTruck">Adding a Truck</a>
                 </h4>
             </div>
             <div id="collapse-vendor-addingTruck" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To add a truck, navigate to the trucks list page (see Viewing Truck Details, step 1-2) and click new truck button. <br>
-                        2.	You’ll be redirected to the add truck page. Fill in the required fields then click save. Note: Adding will not proceed until all required fields are filled up. <br>
-                        3.	You’ll be redirected to the updated trucks list page and a success message will be displayed on top of the list.
+                        2.	You&#39;ll be redirected to the add truck page. Fill in the required fields then click save. Note: Adding will not proceed until all required fields are filled up. <br>
+                        3.	You&#39;ll be redirected to the updated trucks list page and a success message will be displayed on top of the list.
                     </p>
                 </div>
             </div>
@@ -1324,15 +1324,15 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-editTruck">Editing Truck Details</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-editTruck">Editing Truck Details</a>
                 </h4>
             </div>
             <div id="collapse-vendor-editTruck" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
-                        1.	To edit a truck’s details, navigate to the trucks list page (see Viewing Truck Details, step 1-2) then click edit truck button under the action column. <br>
-                        2.	You’ll be redirected to the edit truck page. Update the information then click save. Note: Required fields need to be filled up to continue saving. <br>
-                        3.	You’ll be redirected to the updated trucks information page.
+                        1.	To edit a truck&#39;s details, navigate to the trucks list page (see Viewing Truck Details, step 1-2) then click edit truck button under the action column. <br>
+                        2.	You&#39;ll be redirected to the edit truck page. Update the information then click save. Note: Required fields need to be filled up to continue saving. <br>
+                        3.	You&#39;ll be redirected to the updated trucks information page.
                     </p>
                 </div>
             </div>
@@ -1340,7 +1340,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-deleteTruck">Deleting a Truck</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-deleteTruck">Deleting a Truck</a>
                 </h4>
             </div>
             <div id="collapse-vendor-deleteTruck" class="panel-collapse collapse">
@@ -1357,14 +1357,14 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-viewVesselList">Viewing list of Vessels</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-viewVesselList">Viewing list of Vessels</a>
                 </h4>
             </div>
             <div id="collapse-vendor-viewVesselList" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To view the list of vessels a vendor has, navigate to the vendor profile page (see Viewing Vendor Details) then click vessels from the sidebar. <br>
-                        2.	You’ll be redirected to the vessels list page.
+                        2.	You&#39;ll be redirected to the vessels list page.
                     </p>
                 </div>
             </div>
@@ -1372,15 +1372,15 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-addingVessel">Adding a Vessel</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-addingVessel">Adding a Vessel</a>
                 </h4>
             </div>
             <div id="collapse-vendor-addingVessel" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
                         1.	To add a vessels, navigate to the vessels list page (see Viewing list of Vessels) and click new vessel button. <br>
-                        2.	You’ll be redirected to the add vessel page. Fill in the required fields then click save. Note: Adding will not proceed until all required fields are filled up. <br>
-                        3.	You’ll be redirected to the updated vessel list page and a success message will be displayed on top of the list.
+                        2.	You&#39;ll be redirected to the add vessel page. Fill in the required fields then click save. Note: Adding will not proceed until all required fields are filled up. <br>
+                        3.	You&#39;ll be redirected to the updated vessel list page and a success message will be displayed on top of the list.
                     </p>
                 </div>
             </div>
@@ -1388,15 +1388,15 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-editVessel">Editing Vessel Details</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-editVessel">Editing Vessel Details</a>
                 </h4>
             </div>
             <div id="collapse-vendor-editVessel" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
-                        1.	To edit a vessel’s details, navigate to the vessel list page (see Viewing list of Contact Persons) then click edit this vessel button under the action column. <br>
-                        2.	You’ll be redirected to the edit vessel page. Update the information then click save. Note: Required fields need to be filled up to continue saving. <br>
-                        3.	You’ll be redirected to the updated vessels list page and a success message will appear on top of the list.
+                        1.	To edit a vessel&#39;s details, navigate to the vessel list page (see Viewing list of Contact Persons) then click edit this vessel button under the action column. <br>
+                        2.	You&#39;ll be redirected to the edit vessel page. Update the information then click save. Note: Required fields need to be filled up to continue saving. <br>
+                        3.	You&#39;ll be redirected to the updated vessels list page and a success message will appear on top of the list.
                     </p>
                 </div>
             </div>
@@ -1404,13 +1404,13 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vendor-deleteVessel">Deleting a Vessel</a>
+                    <a data-toggle="collapse" data-parent="#accordion-vendor" href="#collapse-vendor-deleteVessel">Deleting a Vessel</a>
                 </h4>
             </div>
             <div id="collapse-vendor-deleteVessel" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
-                        1.	To delete a vessel’s details, navigate to the vessel list page (see Viewing list of Contact Persons) then click delete this vessel button under the action column. <br>
+                        1.	To delete a vessel&#39;s details, navigate to the vessel list page (see Viewing list of Contact Persons) then click delete this vessel button under the action column. <br>
                         2.	A confirmation message will appear. Click ok to continue, otherwise click cancel. <br>
                         3.	A success message will appear and the vessels list is updated.
                     </p>

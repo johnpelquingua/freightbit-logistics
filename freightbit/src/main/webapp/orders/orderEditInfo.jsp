@@ -327,7 +327,6 @@
                             <label class="col-lg-2 control-label" style="padding-top: 0px;">
                                 Container Quantity<span class="asterisk_red" />
                             </label>
-    `
                             <div class="col-lg-3" >
 
                                 <s:hidden name="orderItem.quantity" value="%{orderItem.quantity}" />
