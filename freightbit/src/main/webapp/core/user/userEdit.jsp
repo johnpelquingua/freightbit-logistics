@@ -152,7 +152,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group" style="display: none;">
+                        <div class="form-group" style="display:none;">
                             <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Permissions </label>
 
                             <div class="col-lg-9">
@@ -164,7 +164,15 @@
             </div>
             <div class="panel-footer">
                 <span class="pull-right">
-                  <a href="viewUsers" class="btn btn-danger" id="users-add-btn">Cancel</a>
+                  <s:url var="viewUserUrl" action="viewUsers">
+                      <s:param name="userNameParam"
+                               value="user.userName"></s:param>
+                  </s:url>
+                    <s:a href="%{viewUserUrl}">
+                        <button type="button" id="Cancel" class="btn btn-danger">
+                            Cancel
+                        </button>
+                    </s:a>
                   <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                 </span>
             </div>

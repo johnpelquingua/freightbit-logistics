@@ -3,8 +3,18 @@
 
 <div class="row">
     <div class="col-lg-12">
+        <legend style="text-align: left;">
+            <span >
         <h1><i class="fa fa-user"></i> User Profile </h1>
-        <hr/>
+            </span>
+        </legend>
+        <ol class="breadcrumb">
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Accounts</li>
+            <li class="active"> User</li>
+            <li class="active"><a href="<s:url action='viewUsers' />"> User List</a></li>
+            <li class="active"> Edit User</li>
+        </ol>
     </div>
 </div>
 
@@ -116,7 +126,15 @@
 
             <div class="panel-footer">
                    <span class="pull-right">
-                     <a href="viewUserProfile" class="btn btn-danger" id="users-add-btn">Cancel</a>
+                     <s:url var="viewUserProfileUrl" action="viewUserProfile">
+                         <s:param name="userNameParam"
+                                  value="user.userName"></s:param>
+                     </s:url>
+                    <s:a href="%{viewUserProfileUrl}">
+                        <button type="button" id="Cancel" class="btn btn-danger">
+                            Cancel
+                        </button>
+                    </s:a>
                      <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                    </span>
             </div>

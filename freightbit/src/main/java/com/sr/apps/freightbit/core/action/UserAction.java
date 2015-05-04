@@ -364,20 +364,21 @@ public class UserAction extends ActionSupport implements Preparable {
 
 	private void findCurrentUserPermissions(Integer userId) {
 		List<Permission> selectedPermissionsList = (List<Permission>) permissionService.findPermissionByUser(getClientId(), userId);
-        if (null != selectedPermissionsList) {
+        /*if (null != selectedPermissionsList) {
         	preSelectedPermissions = new String[selectedPermissionsList.size()];
         	preSelectedPermissionNames = new String[selectedPermissionsList.size()];
-        }
-		int i;
-		if(isEmpty(selectedPermissionsList.size())){
+        }*/
+        preSelectedPermissions = new String[selectedPermissionsList.size()];
+        int i;
+//		if(isEmpty(selectedPermissionsList.size())){
 			for (i = 0; i<selectedPermissionsList.size(); i++) {
 					String permissionId;
 					permissionId = selectedPermissionsList.get(i).getPermissionId().toString();
 					preSelectedPermissions[i] = permissionId;
-					String permissionName=selectedPermissionsList.get(i).getDescription();
-					preSelectedPermissionNames[i] = permissionName;
+					/*String permissionName=selectedPermissionsList.get(i).getDescription();
+					preSelectedPermissionNames[i] = permissionName;*/
 			}
-		}
+//		}
 	}
     
     //used to transform a formbean to an entity bean

@@ -69,8 +69,17 @@
 
 			<s:if test="!hasActionMessages()">
 	            <div class="panel-footer">
-	                    <span class="pull-right">                           
-	                      <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
+	                    <span class="pull-right">
+                            <s:url var="loadEditUserPageUrl" action="loadEditUserProfile">
+                                <s:param name="userNameParam"
+                                         value="user.userName"></s:param>
+                            </s:url>
+                            <s:a href="%{loadEditUserPageUrl}">
+                                <button type="button" id="Cancel" class="btn btn-danger">
+                                    Cancel
+                                </button>
+                            </s:a>
+	                        <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
 	                    </span>
 	            </div>
             </s:if>
