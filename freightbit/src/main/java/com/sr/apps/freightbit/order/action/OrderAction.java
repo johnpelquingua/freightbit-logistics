@@ -530,8 +530,44 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         System.out.println("USERNAME " + commonUtils.getUserNameFromSession());
 
+        User userEntity = userService.findUserByUserName(commonUtils.getUserNameFromSession());
+
+        if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+            if(userEntity.getCustomerId() != null){
+                Customer customerEntity = customerService.findCustomerById(userEntity.getCustomerId());
+                customerList.add(customerEntity);
+            }else{
+                customerList = customerService.findAllCustomer();
+            }
+        }else{
+            customerList = customerService.findAllCustomer();
+        }
+
         return SUCCESS;
     }
+
+   /* private CustomerBean transformToFormBean(Customer entity) {
+
+        CustomerBean formBean = new CustomerBean();
+        formBean.setCustomerId(entity.getCustomerId());
+        formBean.setCustomerCode(entity.getCustomerCode());
+        formBean.setCustomerName(entity.getCustomerName());
+        formBean.setCustomerType(entity.getCustomerType());
+        formBean.setPhone(entity.getPhone());
+        formBean.setEmail(entity.getEmail());
+        formBean.setWebsite(entity.getWebsite());
+        formBean.setFax(entity.getFax());
+        formBean.setMobile(entity.getMobile());
+        formBean.setDti(entity.getDti());
+        formBean.setMayorsPermit(entity.getMayorsPermit());
+        formBean.setAaf(entity.getAaf());
+        formBean.setSignatureCard(entity.getSignatureCard());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setServiceArea(entity.getServiceArea());
+
+        return formBean;
+    }*/
 
     public String editCustomerContactInfo() {
 
@@ -2330,7 +2366,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     @Override
     public void prepare() throws Exception {
-        customerList = customerService.findAllCustomer();
+        /*customerList = customerService.findAllCustomer();*/
         serviceRequirementList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.SERVICE_REQUIREMENT);
         freightTypeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.FREIGHT_TYPE);
         modeOfPaymentList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.MODE_OF_PAYMENT);

@@ -721,35 +721,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setMayorsPermit(entity.getMayorsPermit());
         formBean.setAaf(entity.getAaf());
         formBean.setSignatureCard(entity.getSignatureCard());
-
-//        /*Dti Checkbox*/
-//        if (entity.getDti() == 1 ){
-//            formBean.setDti(1);
-//        }else {
-//            formBean.setDti(0);
-//        }
-//
-//        /*Mayor's Permit Checkbox*/
-//        if (entity.getMayorsPermit() == 1 ){
-//            formBean.setMayorsPermit(1);
-//        }else {
-//            formBean.setMayorsPermit(0);
-//        }
-//
-//        /*Account Application Form Checkbox*/
-//        if (entity.getAaf() == 1 ){
-//            formBean.setAaf(1);
-//        }else {
-//            formBean.setAaf(0);
-//        }
-//
-//        /*Signature Card Checkbox*/
-//        if (entity.getSignatureCard() == 1 ){
-//            formBean.setSignatureCard(1);
-//        }else {
-//            formBean.setSignatureCard(0);
-//        }
-
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setServiceArea(entity.getServiceArea());
