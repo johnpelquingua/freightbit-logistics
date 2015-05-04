@@ -1213,6 +1213,20 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         //orderIdParam is Order ID passed from form
         Map sessionAttributes = ActionContext.getContext().getSession();
+
+        User userEntity = userService.findUserByUserName(commonUtils.getUserNameFromSession());
+
+        if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+            if(userEntity.getCustomerId() != null){
+                Customer customerEntity = customerService.findCustomerById(userEntity.getCustomerId());
+                customerList.add(customerEntity);
+            }else{
+                customerList = customerService.findAllCustomer();
+            }
+        }else{
+            customerList = customerService.findAllCustomer();
+        }
+
         // If orderIdParam is null, value is only null when added via add contacts, address and consignee
         if (orderIdParam == null) {
             orderIdParam = (Integer) sessionAttributes.get("orderIdParam");

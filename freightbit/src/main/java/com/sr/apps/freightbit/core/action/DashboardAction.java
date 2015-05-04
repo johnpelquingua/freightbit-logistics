@@ -84,7 +84,7 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     BigInteger Booking , Customer,User,Vendor, AllNotification ;
 
     public String home() {
-System.out.println("Username Bean: "+username);
+        System.out.println("Username Bean: "+username);
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         Booking = notificationService.countAll();
         Customer = notificationService.countAllCustomer();
