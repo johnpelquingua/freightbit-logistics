@@ -98,6 +98,8 @@ public interface OrderService {
 
     public OrderItems findOrderItemByOrderItemId(Integer orderItemId);
 
+    public OrderItems findOrderItemByCode(String nameSize);
+
     public List<Items> findItemByCustomerId(Integer customerId);
 
     public void updateItems(Items items);

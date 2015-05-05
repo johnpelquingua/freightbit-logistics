@@ -380,6 +380,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public OrderItems findOrderItemByCode(String nameSize) {
+        return orderItemsDao.findOrderItemByCode(nameSize);
+    }
+
+    @Override
     public List<Items> findItemByCustomerId(Integer customerId) {
         List<Items> result = itemsDao.findItemByCustomerId(customerId);
         return result;

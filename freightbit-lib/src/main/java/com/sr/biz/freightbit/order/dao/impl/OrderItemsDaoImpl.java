@@ -92,6 +92,22 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
     }
 
     @Override
+    public OrderItems findOrderItemByCode(String nameSize) {
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from OrderItems o where o.nameSize = :nameSize");
+            query.setParameter("nameSize", nameSize);
+            List<OrderItems> results = (List<OrderItems>) query.list();
+            if (results != null && results.size() > 0) {
+                return results.get(0);
+            }
+            return null;
+        } catch (RuntimeException re) {
+            throw re;
+        }
+    }
+
+    @Override
     public List<OrderItems> findAllOrderItemLCL() {
         Log.debug("Finding all orderItems");
         try {
@@ -118,18 +134,4 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
         }
     }
 
-    /*@Override
-    public List<OrderItems> findAllOrderItemByVesselName(String vesselName) {
-        Log.debug("Finding all orderItems by vesselName");
-        try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.vesselName = :vesselName");
-            query.setParameter("vesselName", vesselName);
-            List<OrderItems> results = (List<OrderItems>) query.list();
-            Log.debug("find by items successful, result size:" + results.size());
-            return results;
-        } catch (RuntimeException re) {
-            Log.error("Find all failed", re);
-            throw re;
-        }
-    }*/
 }

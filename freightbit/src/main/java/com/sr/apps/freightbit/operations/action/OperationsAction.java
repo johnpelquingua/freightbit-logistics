@@ -3074,7 +3074,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : fclOrders){
-            fclTable.add(transformToOrderFormBean(orderElem));
+            // will only show bookings that is not archived
+            String strOrig = orderElem.getOrderStatus();
+            int intIndex = strOrig.indexOf("ARCHIVED");
+
+            if(intIndex == -1){
+                fclTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For LCL Requirement
@@ -3088,7 +3094,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : lclOrders){
-            lclTable.add(transformToOrderFormBean(orderElem));
+            // will only show bookings that is not archived
+            String strOrig = orderElem.getOrderStatus();
+            int intIndex = strOrig.indexOf("ARCHIVED");
+
+            if(intIndex == -1){
+                lclTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For LCU Requirement
@@ -3102,7 +3114,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : lcuOrders){
-            lcuTable.add(transformToOrderFormBean(orderElem));
+            // will only show bookings that is not archived
+            String strOrig = orderElem.getOrderStatus();
+            int intIndex = strOrig.indexOf("ARCHIVED");
+
+            if(intIndex == -1){
+                lcuTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For RCU Requirement
@@ -3116,7 +3134,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : rcuOrders){
-            rcuTable.add(transformToOrderFormBean(orderElem));
+            // will only show bookings that is not archived
+            String strOrig = orderElem.getOrderStatus();
+            int intIndex = strOrig.indexOf("ARCHIVED");
+
+            if(intIndex == -1){
+                rcuTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For FCL Trucking Origin
@@ -3131,7 +3155,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         for (Orders orderElem : fclTrucksOrders){
             if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER")){
-                fclTruckTable.add(transformToOrderFormBean(orderElem));
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    fclTruckTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3147,7 +3177,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         for (Orders orderElem : lclTrucksOrders){
             if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER") ) {
-                lclTruckTable.add(transformToOrderFormBean(orderElem));
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    lclTruckTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3163,7 +3199,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         for (Orders orderElem : lcuTrucksOrders){
             if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER") ) {
-                lcuTruckTable.add(transformToOrderFormBean(orderElem));
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    lcuTruckTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3179,7 +3221,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         for (Orders orderElem : rcuTrucksOrders){
             if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER") ) {
-                rcuTruckTable.add(transformToOrderFormBean(orderElem));
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    rcuTruckTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3194,7 +3242,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : ftlOrders){
-            ftlTable.add(transformToOrderFormBean(orderElem));
+            // will only show bookings that is not archived
+            String strOrig = orderElem.getOrderStatus();
+            int intIndex = strOrig.indexOf("ARCHIVED");
+
+            if(intIndex == -1){
+                ftlTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For LTL Requirement
@@ -3208,7 +3262,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : ltlOrders){
-            ltlTable.add(transformToOrderFormBean(orderElem));
+            // will only show bookings that is not archived
+            String strOrig = orderElem.getOrderStatus();
+            int intIndex = strOrig.indexOf("ARCHIVED");
+
+            if(intIndex == -1){
+                ltlTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For FCL Trucking Destination
@@ -3223,12 +3283,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         for (Orders orderElem : fclTrucksOrdersDes){
             if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("PIER TO DOOR") ) {
-                fclTruckTableDes.add(transformToOrderFormBean(orderElem));
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    fclTruckTableDes.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
         // For LCL Trucking Destination
-
         List<Orders> lclTrucksOrdersDes = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
             lclTrucksOrdersDes = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId(), "LESS CONTAINER LOAD");
@@ -3240,7 +3305,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         for (Orders orderElem : lclTrucksOrdersDes){
             if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("PIER TO DOOR") ) {
-                lclTruckTableDes.add(transformToOrderFormBean(orderElem));
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    lclTruckTableDes.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3256,7 +3327,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         for (Orders orderElem : lcuTrucksOrdersDes){
             if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("PIER TO DOOR") ) {
-                lcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    lcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3272,7 +3349,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         for (Orders orderElem : rcuTrucksOrdersDes){
             if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("PIER TO DOOR") ) {
-                rcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    rcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 

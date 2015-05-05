@@ -16,10 +16,10 @@ public interface OrderItemsDao {
 
     public OrderItems findOrderItemByOrderItemId(Integer orderItemId);
 
+    public OrderItems findOrderItemByCode(String nameSize);
+
     public List<OrderItems> findAllOrderItemLCL();
 
     public List<OrderItems> findAllOrderItemsByContainerId(Integer containerId);
-
-    /*public List<OrderItems> findAllOrderItemByVesselName(String vesselName);*/
 
 }

@@ -104,10 +104,10 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="<s:url action='../reports/truckReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Trucks</a></li>
-            <li><a href="<s:url action='../reports/containerReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Container</a></li>
+            <%--<li><a href="<s:url action='../reports/containerReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Container</a></li>
             <li><a href="<s:url action='../reports/cargoReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Cargo</a></li>
             <li><a href="<s:url action='../reports/customerRelationReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Customer Relation</a></li>
-            <li><a href="<s:url action='../reports/salesReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Sales</a></li>
+            <li><a href="<s:url action='../reports/salesReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Sales</a></li>--%>
         </ul>
     </li>
     <div id="footer-ver2" class="categories">
@@ -117,7 +117,7 @@
                 <a href="http://www.solutionsresource.com" rel="license">Solutions Resource Inc.</a>
             </div>
             <div id="svnrev2" >
-                version 2015.3c10be0
+                version 2015.ecfb401
             </div>
         </div>
     </div>

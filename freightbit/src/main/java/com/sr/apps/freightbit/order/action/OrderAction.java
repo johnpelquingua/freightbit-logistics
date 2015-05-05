@@ -660,11 +660,15 @@ public class OrderAction extends ActionSupport implements Preparable {
         // Get Order Item List
         List<OrderItems> orderItemNumberList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("orderIdPass"));
         Integer checkItems = 0;
+        Integer bookingItems = 0;
         for (OrderItems orderItemsElem : orderItemNumberList) {
+            if(orderItemsElem.getNameSize().equals(item.getItemCode())){
+                bookingItems += 1 ;
+            }
             List<OrderStatusLogs> statusLogsEntity = orderStatusLogsService.findAllShipmentLogs(orderItemsElem.getOrderItemId());
             for(OrderStatusLogs statusLogsElem: statusLogsEntity){
                 if (statusLogsElem.getStatus().equals("ARRIVED") || statusLogsElem.getStatus().equals("DELIVERED")){
-                    checkItems = checkItems + 1;
+                    checkItems += 1;
                 }
             }
         }
@@ -697,9 +701,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                 itemEntity.setCreatedTimeStamp(new Date());
                 customerService.addItem(itemEntity);
             }
-            /*else{
-                return INPUT;
-            }*/
+
         }
 
         // get total quantity from database
@@ -756,16 +758,38 @@ public class OrderAction extends ActionSupport implements Preparable {
                 String messageFlag = "OTHERS_LIMIT";
                 sessionAttributes.put("messageFlag", messageFlag);
             } else {
-                // Add order items to database
-                orderItemEntity.setQuantity(orderItem.getQuantity());
 
-                Items itemEntity = customerService.findItemByCode(item.getItemCode());
-                Double dblVolume = (orderItem.getQuantity() * (itemEntity.getLength() * itemEntity.getWidth() * itemEntity.getHeight()));
-                String strVolume = dblVolume.toString();
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>booking items " + bookingItems);
 
-                orderItemEntity.setVolume(Float.parseFloat(strVolume));
-                orderItemEntity.setNameSize(item.getItemCode());
-                orderService.addItem(orderItemEntity);
+                if(bookingItems == 0){
+                    // Add order items to database
+                    orderItemEntity.setQuantity(orderItem.getQuantity());
+
+                    Items itemEntity = customerService.findItemByCode(item.getItemCode());
+                    Double dblVolume = (orderItem.getQuantity() * (itemEntity.getLength() * itemEntity.getWidth() * itemEntity.getHeight()));
+                    String strVolume = dblVolume.toString();
+
+                    orderItemEntity.setVolume(Float.parseFloat(strVolume));
+                    orderItemEntity.setNameSize(item.getItemCode());
+                    orderService.addItem(orderItemEntity);
+                }else{
+                    //Get orderItem Item Code
+                    OrderItems oldOrderItemEntity = orderService.findOrderItemByCode(item.getItemCode());
+                    //delete the existing item under the same order Items
+                    orderService.deleteItem(oldOrderItemEntity);
+
+                    Items itemEntity = customerService.findItemByCode(item.getItemCode());
+                    Double dblVolume = oldOrderItemEntity.getVolume() + (orderItem.getQuantity() * (itemEntity.getLength() * itemEntity.getWidth() * itemEntity.getHeight()));
+                    String strVolume = dblVolume.toString();
+
+                    orderItemEntity.setQuantity(oldOrderItemEntity.getQuantity() + orderItem.getQuantity());
+                    orderItemEntity.setWeight(oldOrderItemEntity.getWeight() + orderItem.getWeight());
+                    orderItemEntity.setVolume(Float.parseFloat(strVolume));
+                    orderItemEntity.setDeclaredValue(oldOrderItemEntity.getDeclaredValue() + orderItem.getDeclaredValue());
+                    orderItemEntity.setNameSize(item.getItemCode());
+                    orderService.addItem(orderItemEntity);
+
+                }
 
                 String messageFlag = "OTHERS_OK";
                 sessionAttributes.put("messageFlag", messageFlag);
