@@ -41,7 +41,7 @@
                 <div class="table-responsive list-table">
 
                     <s:form action="addUser" theme="bootstrap" cssClass="form-horizontal" method="post" name="addForm">
-                    <div class="row">
+                    <%--<div class="row">--%>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;"> User Type<span class="asterisk_red"></span></label>
@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name<span class="asterisk_red"></span></label>
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Username<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.userName" id="uUserName" cssClass="userAddForm form-control" maxlength="25" pattern="^[A-Za-z0-9_-]{4,}$"
@@ -127,7 +127,7 @@
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.emailAddress" id="uEmailAddress" maxlength="50"
                                                  pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-                                                 cssClass="userAddForm form-control" placeholder="E-mail" title="Example: example@domain.com"/>
+                                                 cssClass="userAddForm form-control" placeholder="Email" title="Example: example@domain.com"/>
                                 </div>
                             </div>
 
@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <%--</div>--%>
                 </div>
 
             </div>

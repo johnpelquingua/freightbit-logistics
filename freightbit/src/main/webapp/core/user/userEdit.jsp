@@ -52,7 +52,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="display:none;">
                             <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Company <span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name <span class="asterisk_red"></span></label>
+                            <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Username <span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
                                 <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="^[A-Za-z0-9_-]{4,}$"
@@ -92,7 +92,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Password <span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-9" style="padding-top: 8px;">
                                 <s:url var="loadChangePasswordUrl" action="loadChangePassword">
                                     <s:param name="userIdParam" value="%{user.userId}"></s:param>
                                 </s:url>

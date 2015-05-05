@@ -72,9 +72,8 @@
                                 <td><display:column property="title" title="Title <i class='fa fa-sort' />" class="tb-font-black"/></td>
                                 <td><display:column property="lastName" title="Last Name <i class='fa fa-sort' />" class="tb-font-black"/></td>
                                 <td><display:column property="firstName" title="First Name <i class='fa fa-sort' />" class="tb-font-black"/></td>
-                                <td><display:column property="companyName" title="Company Name <i class='fa fa-sort' />"
-                                                    class="tb-font-black"/></td>
-                                <td><display:column property="userName" title="User Name <i class='fa fa-sort' />" class="tb-font-black"/></td>
+                                <td><display:column property="finalCompanyName" title="Company Name <i class='fa fa-sort' />" class="tb-font-black"/></td>
+                                <td><display:column property="userName" title="Username <i class='fa fa-sort' />" class="tb-font-black"/></td>
                                 <td><display:column property="userType" title="User Type <i class='fa fa-sort' />" class="tb-font-black"/></td>
 
                                 <td class="tb-font-black">
@@ -121,29 +120,10 @@
                         <div class="col-lg-4">
                             <i class="fa fa-info-circle"></i> Information
                         </div>
-                        <%--<table class="col-lg-12">
-                            <tr>
-                                <td><label>LEGEND:</label></td>
-                                <td><i class='fa fa-pencil' ></i> Edit</td>
-                                <td><i class='fa fa-trash-o' ></i> Delete</td>
-                                <td><i class="fa fa-info-circle"></i> Information</td>
-                            </tr>
-                        </table>--%>
                     </div>
                 </div>
             </div>
-            <%--<div class="panel-footer">
-                <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking"
-                            onclick="location.href='loadSearchUserPage'">
-                        <i class="fa fa-search"></i> Search User
-                    </button>
-                    <button type="button" class="btn btn-primary new-booking"
-                            onclick="location.href='loadAddUserPage'">
-                        <i class="fa fa-male"></i> New User
-                    </button>
-                </span>
-            </div>--%>
+
         </div>
     </div>
 </div>
@@ -151,15 +131,11 @@
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body" style="padding: 0px;">
                 <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>

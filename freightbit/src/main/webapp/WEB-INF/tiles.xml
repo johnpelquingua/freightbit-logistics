@@ -239,99 +239,36 @@
         <put-attribute name="title" value="Consolidation Container Info"/>
         <put-attribute name="body" value="/operations/consolidation/consolidationContainerInfo.jsp"/>
     </definition>
-
     <!--OPERATION module ends-->
 
     <!-- DOCUMENTATION module begin -->
-
     <definition name="documentation.viewPendingDocuments.tiles" extends="baseLayout">
         <put-attribute name="title" value="Pending Documents"/>
         <put-attribute name="body" value="/documentation/pending_docs/viewPendingDocuments.jsp"/>
     </definition>
-
     <definition name="documentation.viewPlainDocuments.tiles" extends="baseLayout">
         <put-attribute name="title" value="Plain Documents"/>
         <put-attribute name="body" value="/documentation/plain_docs/viewPlainDocuments.jsp"/>
     </definition>
-    <!--OUTBOUND DOCUMENT VIEW-->
     <definition name="documentation.viewOrderDocuments.tiles" extends="baseLayout">
         <put-attribute name="title" value="Order Documents"/>
         <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocuments.jsp"/>
     </definition>
-
     <definition name="documentation.viewOrderDocumentsArchived.tiles" extends="baseLayout">
         <put-attribute name="title" value="Order Documents"/>
         <put-attribute name="body" value="/documentation/archived_docs/viewOrderDocumentsArchived.jsp"/>
     </definition>
-
-    <!--INBOUND DOCUMENT VIEW-->
-    <!--<definition name="documentation.viewOrderDocumentsInbound.tiles" extends="baseLayout">-->
-        <!--<put-attribute name="title" value="Order Documents"/>-->
-        <!--<put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsInbound.jsp"/>-->
-    <!--</definition>-->
-    <!--FINAL OUTBOUND DOCUMENT VIEW-->
-    <!--<definition name="documentation.viewOrderDocumentsFinalOutbound.tiles" extends="baseLayout">-->
-        <!--<put-attribute name="title" value="Order Documents"/>-->
-        <!--<put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalOutbound.jsp"/>-->
-    <!--</definition>-->
-    <!--FINAL INBOUND DOCUMENT VIEW-->
-    <!--<definition name="documentation.viewOrderDocumentsFinalInbound.tiles" extends="baseLayout">-->
-        <!--<put-attribute name="title" value="Order Documents"/>-->
-        <!--<put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalInbound.jsp"/>-->
-    <!--</definition>-->
-    <!--OUTBOUND DOCUMENT INPUT VIEW-->
-    <!--<definition name="documentation.orderDocumentsInput.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Input Number"/>
-        <put-attribute name="body" value="/documentation/pending_docs/orderDocumentsInput.jsp"/>
-    </definition>-->
-    <!--INBOUND DOCUMENT INPUT VIEW-->
     <definition name="documentation.orderDocumentsInboundInput.tiles" extends="baseLayout">
         <put-attribute name="title" value="Input Number"/>
         <put-attribute name="body" value="/documentation/pending_docs/orderDocumentsInboundInput.jsp"/>
     </definition>
-    <!--INBOUND DOCUMENT DATE RECEIVED INPUT VIEW ONLY-->
-    <!--<definition name="documentation.dateReceivedInbound.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Input Number"/>
-        <put-attribute name="body" value="/documentation/pending_docs/dateReceivedInbound.jsp"/>
-    </definition>-->
-
     <definition name="documentation.viewArchivedDocuments.tiles" extends="baseLayout">
         <put-attribute name="title" value="Archived Documents"/>
         <put-attribute name="body" value="/documentation/archived_docs/viewArchivedDocuments.jsp"/>
     </definition>
-
-    <!--<definition name="documentation.acceptanceReceipt.tiles" extends="baseLayout">-->
-        <!--<put-attribute name="title" value="Acceptance Receipt Form"/>-->
-        <!--<put-attribute name="body" value="/documentation/forms/acceptanceReceipt.jsp"/>-->
-    <!--</definition>-->
-
-    <!--<definition name="documentation.billOfLading.tiles" extends="baseLayout">-->
-        <!--<put-attribute name="title" value="Bill of Lading"/>-->
-        <!--<put-attribute name="body" value="/documentation/forms/billOfLading.jsp"/>-->
-    <!--</definition>-->
-
-    <!--<definition name="documentation.wayBillOrigin.tiles" extends="baseLayout">-->
-        <!--<put-attribute name="title" value="Way Bill Origin"/>-->
-        <!--<put-attribute name="body" value="/documentation/forms/waybillOrigin.jsp"/>-->
-    <!--</definition>-->
-
-    <!--<definition name="documentation.wayBillDestination.tiles" extends="baseLayout">-->
-        <!--<put-attribute name="title" value="Bill of Destination"/>-->
-        <!--<put-attribute name="body" value="/documentation/forms/waybillDestination.jsp"/>-->
-    <!--</definition>-->
-
-    <!--<definition name="documentation.releaseOrder.tiles" extends="baseLayout">-->
-        <!--<put-attribute name="title" value="Bill of Destination"/>-->
-        <!--<put-attribute name="body" value="/documentation/forms/releaseOrder.jsp"/>-->
-    <!--</definition>-->
-
     <!-- DOCUMENTATION module end -->
 
     <!-- CORE module tiles Begin-->
-    <!--<definition name="core.userSearch.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Search User"/>
-        <put-attribute name="body" value="/core/user/userSearch.jsp"/>
-    </definition>-->
     <definition name="core.userListView.tiles" extends="baseLayout">
         <put-attribute name="title" value="User Page"/>
         <put-attribute name="body" value="/core/user/userListView.jsp"/>
@@ -396,15 +333,9 @@
         <put-attribute name="title" value="General Settings"/>
         <put-attribute name="body" value="/core/settings/generalSettings.jsp"/>
     </definition>
-
     <!-- CORE module tiles End-->
 
     <!-- VENDOR module tiles Begin -->
-
-    <!--<definition name="vendor.vendorSearch.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Search Vendor"/>
-        <put-attribute name="body" value="/vendor/vendorSearch.jsp"/>
-    </definition>-->
     <definition name="vendor.vendorAdd.tiles" extends="baseLayout">
         <put-attribute name="title" value="Add New Vendor"/>
         <put-attribute name="body" value="/vendor/add/vendorAdd.jsp"/>
@@ -553,19 +484,13 @@
         <put-attribute name="title" value="Edit Shipping Address"/>
         <put-attribute name="body" value="/vendor/edit/vendorEditShippingAddress.jsp"/>
     </definition>
-
     <!-- VENDOR module tiles END -->
 
     <!-- CUSTOMER module tiles END -->
-
     <definition name="customer.customerListItems.tiles" extends="baseLayout">
         <put-attribute name="title" value="Customer List Items"/>
         <put-attribute name="body" value="/customer/customerItem/customerListItems.jsp"/>
     </definition>
-    <!--<definition name="customer.customerSearch.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Search Customer"/>
-        <put-attribute name="body" value="/customer/customerInfo/customerSearch.jsp"/>
-    </definition>-->
     <definition name="customer.customerAdd.tiles" extends="baseLayout">
         <put-attribute name="title" value="Add Customer"/>
         <put-attribute name="body" value="/customer/customerInfo/customerAddInfo.jsp"/>
@@ -682,11 +607,9 @@
         <put-attribute name="title" value="Consignee Edit Contact"/>
         <put-attribute name="body" value="/customer/consignee/consigneeEditContact.jsp"/>
     </definition>
-
     <!-- CUSTOMER module tiles END -->
 
     <!-- ORDER module tiles Begin-->
-
     <definition name="orders.booking-list.tiles" extends="baseLayout">
         <put-attribute name="title" value="Booking List"/>
         <put-attribute name="body" value="/orders/orderList.jsp"/>
@@ -726,7 +649,6 @@
     <!-- ORDER module tiles End-->
 
     <!-- REPORT module tiles Begin-->
-
     <definition name="report.full_truck_load.tiles" extends="baseLayout">
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/full_truck_load.jsp"/>
@@ -747,11 +669,9 @@
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/sales.jsp"/>
     </definition>
-
     <!-- REPORT module tiles End-->
 
     <!-- FINANCE module tiles Begin-->
-
     <definition name="finance.tiles" extends="baseLayout">
         <put-attribute name="title" value="Finance Page"/>
         <put-attribute name="body" value="/finance/finance.jsp"/>
@@ -773,11 +693,9 @@
         <put-attribute name="title" value="Dispatch Item List"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightItemList.jsp"/>
     </definition>
-
     <!-- FINANCE module tiles End-->
 
     <!-- Please rename your tiles def accordingly (Please refer to above) where name=folderName.jspName.tiles -->
-
     <definition name="permission.tiles" extends="baseLayout">
         <put-attribute name="title" value="Permission Page"/>
         <put-attribute name="body" value="/core/permissions/permissions.jsp"/>

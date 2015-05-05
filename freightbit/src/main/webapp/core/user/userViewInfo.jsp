@@ -88,7 +88,7 @@
                                                  <tr>
                                                  <tr>
                                                       <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Company</td>
-                                                      <td><s:property value="user.companyName"/></td>
+                                                      <td><s:property value="user.finalCompanyName"/></td>
                                                  </tr>
                                                  <tr>
                                                       <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Username</td>
@@ -104,7 +104,7 @@
                                                  </tr>
                                                  <tr>
                                                       <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Contact Number</td>
-                                                     <td><i class="fa fa-phone"></i><s:property value="user.contactNumber"/></td>
+                                                     <td><i class="fa fa-phone"></i> <s:property value="user.contactNumber"/></td>
                                                  </tr>
                                                  <tr>
                                                       <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Status</td>

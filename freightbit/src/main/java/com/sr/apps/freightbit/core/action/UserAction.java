@@ -425,12 +425,24 @@ public class UserAction extends ActionSupport implements Preparable {
         formBean.setContactNumber(entity.getContactNo());
         formBean.setStatus(entity.getStatus());
         formBean.setCustomerId(entity.getCustomerId());
-        if (entity.getCustomerId() != null) {
-        	Customer customer = customerService.findCustomerById(entity.getCustomerId());
-        	formBean.setCustomerName(customer.getCustomerName());
+
+        if(entity.getUserType().equals("REGULAR CUSTOMER")){
+            if (entity.getCustomerId() != null) {
+                Customer customer = customerService.findCustomerById(entity.getCustomerId());
+                formBean.setCustomerName(customer.getCustomerName());
+                formBean.setFinalCompanyName(customer.getCustomerName());
+            }else{
+                formBean.setFinalCompanyName("No Company set");
+            }
+        }else{
+            formBean.setFinalCompanyName("Ernest Logistics Corp.");
         }
+
         return formBean;
     }
+
+
+
 
     private PermissionBean transformToPermissionsFormBean(Permission permission) {
         PermissionBean formBean = new PermissionBean();

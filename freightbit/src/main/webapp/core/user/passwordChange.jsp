@@ -14,7 +14,6 @@
             </s:url>
             <li class="active"><s:a href="%{loadEditUserUrl}" class="btn btn-default" id="users-add-btn">Edit User</s:a></li>
         </ol>
-
     </div>
 </div>
 
@@ -54,7 +53,7 @@
                     </div>--%>
                     
                     <div class="form-group">
-                        <label for="uType" class="col-lg-4 control-label" id="users-add-label">New Password:</label>
+                        <label class="col-lg-4 control-label" id="users-add-label" style="padding-top: 0px;">New Password:</label>
 
                         <div class="col-lg-8">
                             <s:password required="true" name="passwordBean.newPassword" cssClass="form-control" maxlength="25"
@@ -63,40 +62,42 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="uType" class="col-lg-4 control-label" id="users-add-label">Re-type New Password:</label>
+                        <label class="col-lg-4 control-label" id="users-add-label" style="padding-top: 0px;">Re-type New Password:</label>
 
                         <div class="col-lg-8">
                             <s:password required="true" name="passwordBean.retypeNewPassword" cssClass="form-control" maxlength="25"
                                         pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces."  placeholder="Re-type New Password"/>
                         </div>
-                    </div>
+                </div>
                     </s:if>
             </div>
 
-			<s:if test="!hasActionMessages()">
-	            <div class="panel-footer">
-	                    <span class="pull-right">
-                            <s:url var="loadEditUserPageUrl" action="loadEditUserPage">
-                                <s:param name="userNameParam"
-                                         value="user.userName"></s:param>
-                            </s:url>
-                            <s:a href="%{loadEditUserPageUrl}">
-                                <button type="button" id="Cancel" class="btn btn-danger">
-                                    Cancel
-                                </button>
-                            </s:a>
-                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-	                    </span>
-	            </div>
-            </s:if>
-            <s:if test="hasActionMessages()">
-            	<s:a href="%{loadEditUserUrl}" class="btn btn-default" id="users-add-btn"><< Back</s:a>
+        </div>
 
-            </s:if>
+        <s:if test="!hasActionMessages()">
+            <div class="panel-footer">
+                <span class="pull-right">
+                    <s:url var="loadEditUserPageUrl" action="loadEditUserPage">
+                        <s:param name="userNameParam"
+                                 value="user.userName"></s:param>
+                    </s:url>
+                    <s:a href="%{loadEditUserPageUrl}">
+                        <button type="button" id="Cancel" class="btn btn-danger">
+                            Cancel
+                        </button>
+                    </s:a>
+                    <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
+                </span>
+            </div>
+        </s:if>
 
-            </s:form>
+        <s:if test="hasActionMessages()">
+            <s:a href="%{loadEditUserUrl}" class="btn btn-default" id="users-add-btn"><< Back</s:a>
+
+        </s:if>
+
+        </s:form>
 
         </div>
     </div>
-</div>
 </div>

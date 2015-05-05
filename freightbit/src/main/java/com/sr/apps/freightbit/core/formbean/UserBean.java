@@ -1,8 +1,5 @@
 package com.sr.apps.freightbit.core.formbean;
 
-/**
- * Created by JMXPSX on 3/27/14.
- */
 public class UserBean {
 
     private int userCode;
@@ -23,28 +20,32 @@ public class UserBean {
     private String userKeyword;
     private Integer customerId;
     private String customerName;
+    private String finalCompanyName;
 
     public UserBean() {
 
     }
 
-    public UserBean(int userCode, String firstName, String lastName,
-                    String companyName, String userName, String password,
-                    String title, String emailAddress, String contactNumber,
-                    String userType, String status, Integer clientId,
-                    Integer customerId) {
+    public UserBean(String finalCompanyName, int userCode, String firstName, String lastName, String companyName, String userName, String password, String reenterPassword, String title, String emailAddress, String contactNumber, String userType, String status, Integer clientId, String userId, String userSearchCriteria, String userKeyword, Integer customerId, String customerName) {
+        this.finalCompanyName = finalCompanyName;
         this.userCode = userCode;
         this.firstName = firstName;
+        this.lastName = lastName;
         this.companyName = companyName;
         this.userName = userName;
         this.password = password;
+        this.reenterPassword = reenterPassword;
         this.title = title;
         this.emailAddress = emailAddress;
         this.contactNumber = contactNumber;
         this.userType = userType;
         this.status = status;
         this.clientId = clientId;
+        this.userId = userId;
+        this.userSearchCriteria = userSearchCriteria;
+        this.userKeyword = userKeyword;
         this.customerId = customerId;
+        this.customerName = customerName;
     }
 
     public String getUserId() {
@@ -160,7 +161,6 @@ public class UserBean {
         this.status = status;
     }
 
-
     public String getUserSearchCriteria() {
         return userSearchCriteria;
     }
@@ -193,5 +193,11 @@ public class UserBean {
 		this.customerName = customerName;
 	}
 
+    public String getFinalCompanyName() {
+        return finalCompanyName;
+    }
 
+    public void setFinalCompanyName(String finalCompanyName) {
+        this.finalCompanyName = finalCompanyName;
+    }
 }
