@@ -103,11 +103,11 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="<s:url action='../reports/truckReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Trucks</a></li>
-            <%--<li><a href="<s:url action='../reports/containerReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Container</a></li>
-            <li><a href="<s:url action='../reports/cargoReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Cargo</a></li>
-            <li><a href="<s:url action='../reports/customerRelationReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Customer Relation</a></li>
-            <li><a href="<s:url action='../reports/salesReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Sales</a></li>--%>
+            <li><a href="<s:url action='../reports/customerRelations'/>"> <i class="fa fa-caret-right fa-fw"></i> Customer Relations</a></li>
+            <li><a href="<s:url action='../reports/fclOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> FCL Operations</a></li>
+            <li><a href="<s:url action='../reports/lclOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> LCL Operations</a></li>
+            <li><a href="<s:url action='../reports/rcOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> Rolling Cargo Operations</a></li>
+            <li><a href="<s:url action='../reports/lcOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> LC Operations</a></li>
         </ul>
     </li>
     <div id="footer-ver2" class="categories">
@@ -116,9 +116,9 @@
                 developed and designed by: <br />
                 <a href="http://www.solutionsresource.com" rel="license">Solutions Resource Inc.</a>
             </div>
-            <div id="svnrev2" >
+            <%--<div id="svnrev2" >
                 version 2015.ecfb401
-            </div>
+            </div>--%>
         </div>
     </div>
 </ul>

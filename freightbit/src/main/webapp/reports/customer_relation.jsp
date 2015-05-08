@@ -1,221 +1,60 @@
-<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<h1><i class="fa fa-truck"></i> Reports : Trucks</h1>
+<hr/>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Truck Reports
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <select class="form-control" style="width: 50%">
+                        <option value="YEARLY">Stats by Year</option>
+                        <option value="MONTHLY">Stats by Month</option>
+                        <option value="WEEKLY">Stats by Week</option>
+                    </select>
+                    <br/>
+                    <canvas id="canvasWeekly" height="300" width="600"></canvas>
+                </div>
+                <div class="col-md-3" style="word-wrap: break-word; overflow-y: auto; max-height: 31em;">
+                    <h3>Stats for 2015 - 2016</h3>
+                    <hr/>
+                    Lorem ipsum dolor sit amet, dicant iisque iracundia nam cu. Ei natum feugiat has, esse soluta quaeque per at, quidam singulis et mea. Quo nonumy aliquam phaedrum eu, diceret labores vis eu, eu pri dictas oportere. An vide oportere vim. At mundi prompta eam.
 
-<head>
-    <sj:head compressed='false'/>
-    <style type="text/css">
-        #reportmenu {
-            border-bottom: 3px #FFCC00 solid;
-        }
-
-        #reportmenu:hover, #transactionmenu:hover, #statisticsmenu:hover {
-            border-bottom: 3px #FFCC00 solid;
-        }
-
-    </style>
-    <script src="../main/js/jquery.js"></script>
-</head>
-
-<ul class="nav nav-tabs nav-justified">
-    <li class="active"><a id="reportmenu" href="#"><strong>Reports</strong></a></li>
-    <li class="active"><a id="transactionmenu" href="#"><strong>Transaction</strong></a></li>
-    <li class="active"><a id="statisticsmenu" href="#"><strong>Statistics</strong></a></li>
-</ul>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <!-- EDIT HERE -->
-
-    <div style="height:100%;" class="panel booking panel-info">
-        <div style="height:55px;" class="booking panel-heading">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span id="RollingCargo" class="booking panel-title"><strong>Rolling Cargo</strong></span>
-            <span id="LooseCargo" style="display:none" class="booking panel-title"><strong>Loose Cargo</strong></span>
-            <img id="containerNext" src="../includes/images/right.png" height="25" class="box-icon"
-                 style="margin-left:10px;"/>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
 
-        <div class="panel-body">
+<script>
+    $(document).ready(function(){
+        var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
+        var lineChartData = {
+            labels : ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"],
+            datasets : [
+                {
+                    label: "My First dataset",
+                    fillColor : "rgba(120,120,120,0.2)",
+                    strokeColor : "rgba(120,120,120,1)",
+                    pointColor : "rgba(120,120,120,1)",
+                    pointStrokeColor : "#fff",
+                    pointHighlightFill : "#fff",
+                    pointHighlightStroke : "rgba(220,220,220,1)",
+                    data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+                },
+//
+            ]
 
+        };
 
-            <!-- FTL REPORT -->
-            <div id="div_report">
-                <strong>Search by date : </strong><sj:datepicker/>
-                <hr>
-                <table class="table table-striped table-bordered text-center" id="groups-list">
-                    <thead>
-                    <tr class="header_center">
-
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- table -->
-                <hr>
-                <div id="chart_div" style="width: 1000px; height: 300px;"></div>
-                <hr>
-            </div>
-            <!-- FTL REPORT END -->
-            <!-- FTL TRANSACTION -->
-            <div style="display:none" id="div_transaction">
-                <strong>Search by date : </strong><sj:datepicker/>
-                <hr>
-                <table class="table table-striped table-bordered text-center" id="groups-list">
-                    <thead>
-                    <tr class="header_center">
-
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- table -->
-                <hr>
-                <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
-            </div>
-            <!--FTL TRANSACTION END -->
-            <!-- FTL STATISTICS-->
-            <div style="display:none" id="div_statistics">
-                <strong>Search by date : </strong><sj:datepicker/>
-                <hr>
-                <table class="table table-striped table-bordered text-center" id="groups-list">
-                    <thead>
-                    <tr class="header_center">
-
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- table -->
-
-                <hr>
-            </div>
-            <!--FTL STATISTICS END -->
-            <!-- END OF EDIT -->
-        </div>
-        <script src="./jquery.js"></script>
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        &lt;%&ndash;<script>
-
-            $('#transactionmenu').click(function () {
-                $('#div_report').hide('fast');
-                $('#div_statistics').hide('fast');
-                $('#div_transaction').slideDown('fast');
-                $('#reportmenu').css("border-bottom-color", "#ffffff");
-                $('#statisticsmenu').css("border-bottom-color", "#ffffff");
-                $('#transactionmenu').css("border-bottom-color", "#FFCC00");
+        window.onload = function(){
+            var ctx = document.getElementById("canvasWeekly").getContext("2d");
+            window.myLine = new Chart(ctx).Line(lineChartData, {
+                responsive: true
             });
-
-            $('#reportmenu').click(function () {
-                $('#div_transaction').hide('fast');
-                $('#div_statistics').hide('fast');
-                $('#div_report').slideDown('fast');
-                $('#transactionmenu').css("border-bottom-color", "#ffffff");
-                $('#statisticsmenu').css("border-bottom-color", "#ffffff");
-                $('#reportmenu').css("border-bottom-color", "#FFCC00");
-            });
-
-            $('#statisticsmenu').click(function () {
-                $('#div_transaction').hide('fast');
-                $('#div_report').hide('fast');
-                $('#div_statistics').slideDown('fast');
-                $('#reportmenu').css("border-bottom-color", "#ffffff");
-                $('#transactionmenu').css("border-bottom-color", "#ffffff");
-                $('#statisticsmenu').css("border-bottom-color", "#FFCC00");
-            });
-
-            $('#containerNext').click(function () {
-
-                $('#RollingCargo').toggle("slide");
-                $('#LooseCargo').toggle("slide");
-            });
-
-        </script>
-        <script type="text/javascript">
-            google.load("visualization", "1", {packages: ["corechart"]});
-            google.setOnLoadCallback(drawChart);
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                    ['Year', 'Sample1', 'Sample'],
-                    ['2004', 1000, 400],
-                    ['2005', 1170, 460],
-                    ['2006', 660, 1120],
-                    ['2007', 1030, 540]
-                ]);
-
-                var options = {
-                    title: 'Company Performance'
-                };
-
-                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-            }
-        </script>&ndash;%&gt;
---%>
+        }
+    })
+</script>

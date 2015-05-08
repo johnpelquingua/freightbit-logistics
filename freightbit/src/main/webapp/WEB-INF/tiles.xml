@@ -649,25 +649,25 @@
     <!-- ORDER module tiles End-->
 
     <!-- REPORT module tiles Begin-->
-    <definition name="report.full_truck_load.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Reports Page"/>
-        <put-attribute name="body" value="/reports/full_truck_load.jsp"/>
-    </definition>
-    <definition name="report.container_load.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Reports Page"/>
-        <put-attribute name="body" value="/reports/container_load.jsp"/>
-    </definition>
-    <definition name="report.cargo.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Reports Page"/>
-        <put-attribute name="body" value="/reports/cargo.jsp"/>
-    </definition>
     <definition name="report.customer_relation.tiles" extends="baseLayout">
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/customer_relation.jsp"/>
     </definition>
-    <definition name="report.sales.tiles" extends="baseLayout">
+    <definition name="report.fcl_operations.tiles" extends="baseLayout">
         <put-attribute name="title" value="Reports Page"/>
-        <put-attribute name="body" value="/reports/sales.jsp"/>
+        <put-attribute name="body" value="/reports/fcl_operations.jsp"/>
+    </definition>
+    <definition name="report.lcl_operations.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Reports Page"/>
+        <put-attribute name="body" value="/reports/lcl_operations.jsp"/>
+    </definition>
+    <definition name="report.rc_operations.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Reports Page"/>
+        <put-attribute name="body" value="/reports/rc_operations.jsp"/>
+    </definition>
+    <definition name="report.lc_operations.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Reports Page"/>
+        <put-attribute name="body" value="/reports/lc_operations.jsp"/>
     </definition>
     <!-- REPORT module tiles End-->
 

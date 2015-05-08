@@ -4,14 +4,14 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class ReportAction extends ActionSupport{
 
-    public String truckReport() { return SUCCESS; }
+    public String customerRelations() { return SUCCESS; }
 
-    public String containerReport() { return SUCCESS; }
+    public String fclOperations() { return SUCCESS; }
 
-    public String cargoReport() { return SUCCESS; }
+    public String lclOperations() { return SUCCESS; }
 
-    public String customerRelationReport() { return SUCCESS; }
+    public String rcOperations() { return SUCCESS; }
 
-    public String salesReport() { return SUCCESS; }
+    public String lcOperations() { return SUCCESS; }
 
 }
