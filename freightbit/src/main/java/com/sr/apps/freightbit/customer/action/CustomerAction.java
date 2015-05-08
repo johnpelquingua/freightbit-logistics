@@ -654,6 +654,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String customerList() {
         List<Customer> customerEntityList = customerService.findAllCustomer();
+        notificationService.clearNewCustomer();
         for (Customer customerElem : customerEntityList) {
             customers.add(transformToFormBean(customerElem));
         }

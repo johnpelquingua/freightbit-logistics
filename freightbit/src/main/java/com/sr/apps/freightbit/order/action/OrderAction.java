@@ -271,6 +271,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String viewOrders() {
+        notificationService.clearNewBooking();
         int customerId = 0;
         if( commonUtils.getCustomerIdFromSession()!= null ){
             customerId = commonUtils.getCustomerIdFromSession();
@@ -1568,6 +1569,18 @@ public class OrderAction extends ActionSupport implements Preparable {
             addFieldError("address.addressLine1", getText("err.addressLine1.already.exists"));
             if(orderPage.equals("EDIT")){
                 loadEditOrder();
+            }
+            User userEntity = userService.findUserByUserName(commonUtils.getUserNameFromSession());
+
+            if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+                if(userEntity.getCustomerId() != null){
+                    Customer customerEntity = customerService.findCustomerById(userEntity.getCustomerId());
+                    customerList.add(customerEntity);
+                }else{
+                    customerList = customerService.findAllCustomer();
+                }
+            }else{
+                customerList = customerService.findAllCustomer();
             }
             return INPUT;
         }

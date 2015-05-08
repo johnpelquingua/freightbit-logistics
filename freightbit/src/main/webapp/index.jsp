@@ -23,8 +23,9 @@
 <!-- /.row -->
 <%--for booking--%>
 <div class="col-lg-3 col-md-6">
-        <a href="orders/viewOrdersBookingList.action">
-<div class="panel panel-primary">
+        <%--<a href="orders/viewOrdersBookingList.action">--%>
+            <a href="orders/viewOrders.action">
+            <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
             <div class="col-xs-3">
@@ -45,8 +46,9 @@
 
 <%--Customer--%>
 <div class="col-lg-3 col-md-6 ">
-    <a href="customers/customerListNew.action">
-    <div class="panel panel-primary">
+    <%--<a href="customers/customerListNew.action">--%>
+        <a href="customers/customerList.action">
+        <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-3">
@@ -65,8 +67,9 @@
 
 <%--user--%>
 <div class="col-lg-3 col-md-6">
-    <a href="core/viewUsersNew.action">
-    <div class="panel panel-primary">
+    <%--<a href="core/viewUsersNew.action">--%>
+        <a href="core/viewUsers.action">
+        <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-3">
@@ -85,8 +88,9 @@
 
 <%--vendor--%>
 <div class="col-lg-3 col-md-6">
-    <a href="vendor/viewVendorsNew.action">
-    <div class="panel panel-primary">
+    <%--<a href="vendor/viewVendorsNew.action">--%>
+        <a href="vendor/viewVendors.action">
+        <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-3">

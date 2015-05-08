@@ -3437,7 +3437,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String viewSeaFreightItemListErrorEditInput() {
         clearErrorsAndMessages();
-        addActionError("Status must be Planning 1 to 3, On Going, Queue for Pickup, Consolidation, and Departure only.");
+//        addActionError("Status must be Planning 1 to 3, On Going, Queue for Pickup, Consolidation, and Departure only.");
+        addActionError("Status must be Planning 1 to 3 only.");
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
@@ -3459,7 +3460,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String viewInlandFreightItemListErrorInput() {
         clearErrorsAndMessages();
-        addActionError("Status must be Planning 2, 3, Queue for Pickup and Delivery only.");
+//        addActionError("Status must be Planning 2, 3, Queue for Pickup and Delivery only.");
+        addActionError("Status must be Planning 2 and 3 only.");
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 

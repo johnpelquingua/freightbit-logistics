@@ -70,6 +70,7 @@ public class UserAction extends ActionSupport implements Preparable {
     public String viewUsers() {
         String column = getColumnFilter();
         List<User> userEntityList = new ArrayList<User>();
+        notificationService.clearNewUser();
         if (StringUtils.isNotBlank(column)) {
             userEntityList = userService.findUsersByCriteria(column, user.getUserKeyword(), getClientId());
         } else {

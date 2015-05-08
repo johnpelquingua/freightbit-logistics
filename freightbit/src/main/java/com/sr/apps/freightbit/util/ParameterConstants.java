@@ -82,4 +82,10 @@ public class ParameterConstants {
 
     public final static String DOCUMENT_NAME = "DOCUMENT_NAME";
 
+    public final static String CUSTOMER_RELATIONS = "CUSTOMER_RELATIONS";
+
+    public final static String STATISTICS = "STATISTICS";
+
+    public final static String REPORTS = "REPORTS";
+
 }

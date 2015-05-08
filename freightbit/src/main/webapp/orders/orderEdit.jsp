@@ -143,7 +143,7 @@
 
         <div class="form-group">
 
-            <label class="col-lg-2 control-label">Company / Customer Name<span class="asterisk_red"></span></label>
+            <label class="col-lg-2 control-label">Company<span class="asterisk_red"></span></label>
 
             <div class="col-lg-10">
                 <s:hidden name="order.customerId" value="%{order.customerId}" />

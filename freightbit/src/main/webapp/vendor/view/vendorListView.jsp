@@ -11,7 +11,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-building"></i> Vendor Module </h1>
+               <h1><i class="fa fa-building-o"></i> Vendor Module </h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -53,7 +53,7 @@
                     </button>
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddVendorPage'">
-                        <i class="fa fa-building"></i> New Vendor
+                        <i class="fa fa-building-o"></i> New Vendor
                     </button>
                 </span>
             </div>
