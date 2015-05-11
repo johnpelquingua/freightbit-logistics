@@ -4751,6 +4751,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setAging(entity.getAging());
         formBean.setCreatedDate(entity.getCreatedDate());
 
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+        formBean.setStrCreatedDate(formatter.format(entity.getCreatedDate()));
+
         if(!entity.getVendorCode().equals("null")){
             Vendor vendorEntity = vendorService.findVendorByVendorCode(entity.getVendorCode());
 

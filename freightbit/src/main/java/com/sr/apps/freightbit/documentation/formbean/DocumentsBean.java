@@ -43,6 +43,7 @@ public class DocumentsBean {
     private Integer repContact;
     private Integer oriContact;
     private Integer desContact;
+    private String strCreatedDate;
 
     public DocumentsBean() {
     }
@@ -365,5 +366,13 @@ public class DocumentsBean {
 
     public void setDesContact(Integer desContact) {
         this.desContact = desContact;
+    }
+
+    public String getStrCreatedDate() {
+        return strCreatedDate;
+    }
+
+    public void setStrCreatedDate(String strCreatedDate) {
+        this.strCreatedDate = strCreatedDate;
     }
 }

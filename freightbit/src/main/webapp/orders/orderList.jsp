@@ -184,7 +184,7 @@
                                             </s:url>
                                             <%--<s:a class="icon-action-link" href="%{archiveOrderUrl}" rel="tooltip" title="Move to Archive" onclick="return confirm('Archive Booking?');">--%>
                                             <s:a class="icon-action-link" href="%{archiveOrderUrl}" rel="tooltip" title="Move to Archive">
-                                                <i class="fa fa-hand-o-right archiveBookingIcon"></i>
+                                                <i class="fa fa-sign-out archiveBookingIcon"></i>
                                             </s:a>
 
                                         <%--</s:if>--%>

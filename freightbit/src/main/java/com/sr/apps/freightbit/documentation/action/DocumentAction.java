@@ -3482,7 +3482,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         BufferedOutputStream responseOut = null;
 
         try{
-            final File outputFile = new File("Proforma Bill of Lading - 2GO.pdf");
+            final File outputFile = new File("Proforma Bill of Lading.pdf");
 
             MasterReport report = proformaBillOfLadingReportService.generateReport(params);
 

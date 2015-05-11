@@ -62,7 +62,7 @@
                         <td><display:column property="documentStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="createdDate" title="Date <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="strCreatedDate" title="Date <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
                         <td>
@@ -171,25 +171,25 @@
             var win = window.open('documentations/generateProformaReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
             win.onload = function () {
                 this.document.title = "Proforma Bill of Lading";
-                window.location.href = '#focusHere';
+                /*window.location.href = '#focusHere';*/
             }
         } else if (documentName == "AUTHORIZATION TO WITHDRAW") {
             var win = window.open('documentations/generateAuthorizationToWithdrawReport?documentIdParam=' + documentId, 'Authorization to Withdraw', 'width=910,height=800');
             win.onload = function () {
                 this.document.title = "Authorization to Withdraw";
-                window.location.href = '#focusHere';
+                /*window.location.href = '#focusHere';*/
             }
         } else if (documentName == "ACCEPTANCE RECEIPT") {
             var win = window.open('documentations/generateAcceptanceReceiptReport?documentIdParam=' + documentId, 'Acceptance Receipt', 'width=910,height=800');
             win.onload = function () {
                 this.document.title = " Acceptance Receipt";
-                window.location.href = '#focusHere';
+                /*window.location.href = '#focusHere';*/
             }
         } else if (documentName == "RELEASE ORDER") {
             var win = window.open('documentations/generateReleaseOrderReport?documentIdParam=' + documentId, 'Release Order', 'width=910,height=800');
             win.onload = function() {
                 this.document.title = "Release Order";
-                window.location.href = '#focusHere';
+                /*window.location.href = '#focusHere';*/
             }
         }
     }
