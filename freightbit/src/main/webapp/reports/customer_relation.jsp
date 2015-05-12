@@ -36,7 +36,7 @@
                             <hr/>
                             Lorem ipsum dolor sit amet, dicant iisque iracundia nam cu. Ei natum feugiat has, esse soluta quaeque per at, quidam singulis et mea. Quo nonumy aliquam phaedrum eu, diceret labores vis eu, eu pri dictas oportere. An vide oportere vim. At mundi prompta eam.
                         </div>--%>
-
+                    <s:form cssClass="submitForm form-horizontal" theme="bootstrap" action="viewStatistics">
                         <div class="form-group">
                             <label class="col-lg-1 control-label">Data :</label>
                             <div class="col-lg-6">
@@ -47,12 +47,11 @@
                             </div>
                             <label class="col-lg-2 control-label">Date From :</label>
                             <div class="col-lg-2">
-                                <s:textfield required="true" name="dateFromParam" cssClass="form-control" id="dateFromIdStat"/>
+                                <s:textfield required="true" name="dateFromParam" cssClass="dateFromClass form-control" id="dateFromIdStat"/>
                                 <script>
                                     $(function () {
                                         var dateFromStat = $('#dateFromIdStat');
                                         dateFromStat.datepicker({
-                                            minDate: 0
                                         });
                                     });
                                 </script>
@@ -62,7 +61,7 @@
                         <div class="form-group">
                             <label class="col-lg-9 control-label">Date To :</label>
                             <div class="col-lg-2">
-                                <s:textfield required="true" name="dateToParam" cssClass="form-control" id="dateToIdStat"/>
+                                <s:textfield required="true" name="dateToParam" cssClass="dateToClass form-control" id="dateToIdStat"/>
                                 <script>
                                     $(function () {
                                         var dateToIdStat = $('#dateToIdStat');
@@ -73,6 +72,12 @@
                                 </script>
                             </div>
                         </div>
+                    <div class="panel-footer">
+                        <div class="pull-right" style="margin-top: 15px;">
+                            <a class="viewBtnStatistics btn btn-info" title="View Statistics" href="#"> <i class="fa fa-print"></i> View Statistics</a>
+                        </div>
+                    </div>
+                    </s:form>
                     <%--</div>
                 </div>--%>
             </div>
@@ -96,7 +101,7 @@
                             <hr/>
                             Lorem ipsum dolor sit amet, dicant iisque iracundia nam cu. Ei natum feugiat has, esse soluta quaeque per at, quidam singulis et mea. Quo nonumy aliquam phaedrum eu, diceret labores vis eu, eu pri dictas oportere. An vide oportere vim. At mundi prompta eam.
                         </div>--%>
-
+                    <s:form cssClass="form-horizontal" theme="bootstrap" action="viewReports">
                         <div class="form-group">
                             <label class="col-lg-1 control-label">Data :</label>
                             <div class="col-lg-6">
@@ -107,12 +112,11 @@
                             </div>
                             <label class="col-lg-2 control-label">Date From :</label>
                             <div class="col-lg-2">
-                                <s:textfield required="true" name="dateFromParam" cssClass="form-control" id="dateFromIdReports"/>
+                                <s:textfield required="true" name="dateFromParam" cssClass="dateFromClass form-control" id="dateFromIdReports"/>
                                 <script>
                                     $(function () {
                                         var dateFromReports = $('#dateFromIdReports');
                                         dateFromReports.datepicker({
-                                            minDate: 0
                                         });
                                     });
                                 </script>
@@ -122,17 +126,22 @@
                         <div class="form-group">
                             <label class="col-lg-9 control-label">Date To :</label>
                             <div class="col-lg-2">
-                                <s:textfield required="true" name="dateToParam" cssClass="form-control" id="dateToIdReports"/>
+                                <s:textfield required="true" name="dateToParam" cssClass="dateToClass form-control" id="dateToIdReports"/>
                                 <script>
                                     $(function () {
                                         var dateToIdReports = $('#dateToIdReports');
                                         dateToIdReports.datepicker({
-                                            minDate: 0
                                         });
                                     });
                                 </script>
                             </div>
                         </div>
+                        <div class="panel-footer">
+                            <div class="pull-right" style="margin-top: 15px;">
+                                <a class="viewBtnReports btn btn-info" title="View Reports" href="#"> <i class="fa fa-print"></i> View Reports</a>
+                            </div>
+                        </div>
+                    </s:form>
                     <%--</div>
                 </div>--%>
             </div>
@@ -142,7 +151,7 @@
 
 <script>
     $(document).ready(function(){
-        var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
+        /*var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
         var lineChartData = {
             labels : ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"],
             datasets : [
@@ -166,6 +175,125 @@
             window.myLine = new Chart(ctx).Line(lineChartData, {
                 responsive: true
             });
+        }*/
+
+        $('.viewBtnStatistics').click(function(){
+            var dateFromVal = $('.dateFromClass').val(),
+                dateToVal = $('.dateToClass').val(),
+                dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
+
+            if(dateFromVal.match(dateRegEx) === null){
+                alert('ERROR! Date From input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else if(dateToVal.match(dateRegEx) === null){
+                alert('ERROR! Date To input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else{
+//                submitForm.submit();
+                generateStatistics();
+                return true;
+            }
+        });
+
+        $('.viewBtnReports').click(function(){
+            var dateFromVal = $('.dateFromClass').val(),
+                    dateToVal = $('.dateToClass').val(),
+                    dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
+
+            if(dateFromVal.match(dateRegEx) === null){
+                alert('ERROR! Date From input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else if(dateToVal.match(dateRegEx) === null){
+                alert('ERROR! Date To input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else{
+//                submitForm.submit();
+                generateReports();
+                return true;
+            }
+        });
+
+    });
+
+    //The code below is for Statistics Reports
+
+    function generateStatistics() {
+        var dataVal = $('#dataIdStat').val();
+        var dateFromVal = $('#dateFromIdStat').val();
+        var dateToVal = $('#dateToIdStat').val();
+
+        <%------------------------------------------CUSTOMER RELATIONS-----------------------------------------------%>
+        var win = window.open('reports/viewStatistics?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
+        win.onload = function () {
+            if (dataVal == "TOTAL NUMBER OF BOOKINGS") {
+                this.document.title = "Total Number of Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE") {
+                this.document.title = "Total Number of Bookings per Consignee";
+            }
+            else if (dataVal == "TOTAL NUMBER OF ACCOMPLISHED (ARCHIVED) BOOKINGS") {
+                this.document.title = "Total Number of Accomplished (Archived) Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF CANCELLED BOOKINGS") {
+                this.document.title = "Total Number of Cancelled Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER SHIPPER") {
+                this.document.title = "Total Number of Bookings per Shipper";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER SHIPPER PER PORT OF DESTINATION") {
+                this.document.title = "Total Number of Bookings per Shipper Per Port of Destination";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE PER PORT OF DESTINATION") {
+                this.document.title = "Total Number of Bookings per Consignee Per Port of Destination";
+            }
         }
-    })
+    }
+
+    // The code below is for Document Reports
+
+    function generateReports() {
+        var dataVal = $('#dataIdReports').val();
+        var dateFromVal = $('#dateFromIdReports').val();
+        var dateToVal = $('#dateToIdReports').val();
+
+        <%------------------------------------------CUSTOMER RELATIONS-----------------------------------------------%>
+        var win = window.open('reports/viewReports?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
+        win.onload = function () {
+            if (dataVal == "AVERAGE NUMBER OF BOOKINGS PER SHIPPER") {
+                this.document.title = "Average Number of Bookings per Shipper";
+            }
+            else if (dataVal == "AVERAGE NUMBER OF BOOKINGS PER CONSIGNEE") {
+                this.document.title = "Average Number of Bookings per Consignee";
+            }
+            else if (dataVal == "TOTAL CANCELLATION PERCENTAGE") {
+                this.document.title = "Total Cancellation Percentage";
+            }
+            else if (dataVal == "TOTAL CANCELLATION PERCENTAGE PER SHIPPER") {
+                this.document.title = "Total Cancellation Percentage per Shipper";
+            }
+            else if (dataVal == "AVERAGE CANCELLATION OF BOOKINGS") {
+                this.document.title = "Average Cancellation of Bookings";
+            }
+            else if (dataVal == "AVERAGE CUBIC METER (CBM) PER BOOKINGS") {
+                this.document.title = "Average Cubic Meter (CBM) per Bookings";
+            }
+            else if (dataVal == "AVERAGE CONTAINERS PER BOOKINGS") {
+                this.document.title = "Average Containers per Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF ON-TIME BOOKING") {
+                this.document.title = "Total Number of On-Time Booking";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS BEYOND RDD") {
+                this.document.title = "Total Number of Bookings Beyond RDD";
+            }
+            else if (dataVal == "ARCHIVE OF BOOKINGS") {
+                this.document.title = "Archive of Bookings";
+            }
+        }
+    }
+
 </script>

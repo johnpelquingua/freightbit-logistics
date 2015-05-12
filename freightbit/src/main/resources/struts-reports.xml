@@ -36,5 +36,12 @@
             <result name="success" type="tiles">report.inlandFreight_operations.tiles</result>
         </action>
 
+        <action name="viewStatistics" class="com.sr.apps.freightbit.core.action.ReportAction" method="viewStatistics">
+            <result name="success" type="tiles">report.customer_relation.tiles</result>
+        </action>
+
+        <action name="viewReports" class="com.sr.apps.freightbit.core.action.ReportAction" method="viewReports">
+            <result name="success" type="tiles">report.customer_relation.tiles</result>
+        </action>
     </package>
 </struts>
