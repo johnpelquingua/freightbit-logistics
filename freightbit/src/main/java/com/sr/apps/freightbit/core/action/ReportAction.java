@@ -28,6 +28,11 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalBookingsShipperDesService totalBookingsShipperDesService;
     private TotalBookingsConsigneeDesService totalBookingsConsigneeDesService;
     private List<Parameters> statisticsList = new ArrayList<Parameters>();
+    private List<Parameters> FCL_statisticsList = new ArrayList<Parameters>();
+    private List<Parameters> LCL_statisticsList = new ArrayList<Parameters>();
+    private List<Parameters> RC_statisticsList = new ArrayList<Parameters>();
+    private List<Parameters> LC_statisticsList = new ArrayList<Parameters>();
+    private List<Parameters> IFO_statisticsList = new ArrayList<Parameters>();
     private List<Parameters> reportsList = new ArrayList<Parameters>();
     private String dataParam;
     private Date dateFromParam;
@@ -216,7 +221,13 @@ public class ReportAction extends ActionSupport implements Preparable {
     @Override
     public void prepare() throws Exception {
         statisticsList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_RELATIONS, ParameterConstants.STATISTICS);
+        FCL_statisticsList = parameterService.getParameterMap(ParameterConstants.FCL_OPERATIONS, ParameterConstants.STATISTICS);
+        LCL_statisticsList = parameterService.getParameterMap(ParameterConstants.LCL_OPERATIONS, ParameterConstants.STATISTICS);
+        RC_statisticsList = parameterService.getParameterMap(ParameterConstants.RC_OPERATIONS, ParameterConstants.STATISTICS);
+        LC_statisticsList = parameterService.getParameterMap(ParameterConstants.LC_OPERATIONS, ParameterConstants.STATISTICS);
+        IFO_statisticsList = parameterService.getParameterMap(ParameterConstants.INLAND_FREIGHT, ParameterConstants.STATISTICS);
         reportsList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_RELATIONS, ParameterConstants.REPORTS);
+
     }
 
     public List<Parameters> getStatisticsList() {
@@ -225,6 +236,46 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public void setStatisticsList(List<Parameters> statisticsList) {
         this.statisticsList = statisticsList;
+    }
+
+    public List<Parameters> getFCL_statisticsList() {
+        return FCL_statisticsList;
+    }
+
+    public void setFCL_statisticsList(List<Parameters> FCL_statisticsList) {
+        this.FCL_statisticsList = FCL_statisticsList;
+    }
+
+    public List<Parameters> getLCL_statisticsList() {
+        return LCL_statisticsList;
+    }
+
+    public void setLCL_statisticsList(List<Parameters> LCL_statisticsList) {
+        this.LCL_statisticsList = LCL_statisticsList;
+    }
+
+    public List<Parameters> getLC_statisticsList() {
+        return LC_statisticsList;
+    }
+
+    public void setLC_statisticsList(List<Parameters> LC_statisticsList) {
+        this.LC_statisticsList = LC_statisticsList;
+    }
+
+    public List<Parameters> getRC_statisticsList() {
+        return RC_statisticsList;
+    }
+
+    public void setRC_statisticsList(List<Parameters> RC_statisticsList) {
+        this.RC_statisticsList = RC_statisticsList;
+    }
+
+    public List<Parameters> getIFO_statisticsList() {
+        return IFO_statisticsList;
+    }
+
+    public void setIFO_statisticsList(List<Parameters> IFO_statisticsList) {
+        this.IFO_statisticsList = IFO_statisticsList;
     }
 
     public List<Parameters> getReportsList() {

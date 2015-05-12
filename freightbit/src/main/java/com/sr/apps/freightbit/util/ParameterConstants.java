@@ -84,8 +84,18 @@ public class ParameterConstants {
 
     public final static String CUSTOMER_RELATIONS = "CUSTOMER_RELATIONS";
 
+    public final static String FCL_OPERATIONS = "FCL_OPERATIONS";
+
+    public final static String LCL_OPERATIONS = "LCL_OPERATIONS";
+
+    public final static String RC_OPERATIONS = "RC_OPERATIONS";
+
+    public final static String LC_OPERATIONS = "LC_OPERATIONS";
+
     public final static String STATISTICS = "STATISTICS";
 
     public final static String REPORTS = "REPORTS";
+
+
 
 }

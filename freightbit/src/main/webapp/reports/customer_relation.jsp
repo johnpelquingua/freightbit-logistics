@@ -1,7 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
-<h1><i class="fa fa-clipboard"></i> Reports : Customer Relations</h1>
-<hr/>
+<%--<h1><i class="fa fa-clipboard"></i> Reports : Customer Relations</h1>--%>
+<legend style="text-align: left;">
+    <span >
+       <h1><i class="fa fa-clipboard"></i> Reports : Customer Relations </h1>
+    </span>
+</legend>
+<%--<hr/>--%>
 <div class="panel panel-primary">
     <div class="panel-heading">
         Customer Relations Report
@@ -38,14 +43,14 @@
                         </div>--%>
                     <s:form cssClass="submitForm form-horizontal" theme="bootstrap" action="viewStatistics">
                         <div class="form-group">
-                            <label class="col-lg-1 control-label">Data :</label>
+                            <label class="col-lg-1 control-label" style="padding-top: 0px !important;">Data :</label>
                             <div class="col-lg-6">
                                 <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                           id="dataIdStat" list="statisticsList" listKey="key"
                                           listValue="value" name="dataParam" emptyOption="true" required="true" />
 
                             </div>
-                            <label class="col-lg-2 control-label">Date From :</label>
+                            <label class="col-lg-2 control-label" style="padding-top: 0px !important;">Date From :</label>
                             <div class="col-lg-2">
                                 <s:textfield required="true" name="dateFromParam" cssClass="dateFromClass form-control" id="dateFromIdStat"/>
                                 <script>
@@ -59,7 +64,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-9 control-label">Date To :</label>
+                            <label class="col-lg-9 control-label" style="padding-top: 0px !important;">Date To :</label>
                             <div class="col-lg-2">
                                 <s:textfield required="true" name="dateToParam" cssClass="dateToClass form-control" id="dateToIdStat"/>
                                 <script>
@@ -72,15 +77,15 @@
                                 </script>
                             </div>
                         </div>
-                    <div class="panel-footer">
-                        <div class="pull-right" style="margin-top: 15px;">
-                            <a class="viewBtnStatistics btn btn-info" title="View Statistics" href="#"> <i class="fa fa-print"></i> View Statistics</a>
-                        </div>
-                    </div>
-                    </s:form>
                     <%--</div>
                 </div>--%>
             </div>
+            <div class="panel-footer">
+                <div class="pull-right" style="margin-top: 15px;">
+                    <a class="viewBtnStatistics btn btn-info" title="View Statistics" href="#"> <i class="fa fa-print"></i> View Statistics</a>
+                </div>
+            </div>
+            </s:form>
         </div>
 
         <div class="tab-pane fade in" id="reportTab">
@@ -103,14 +108,14 @@
                         </div>--%>
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="viewReports">
                         <div class="form-group">
-                            <label class="col-lg-1 control-label">Data :</label>
+                            <label class="col-lg-1 control-label" style="padding-top: 0px !important;">Data :</label>
                             <div class="col-lg-6">
                                 <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                           id="dataIdReports" list="reportsList" listKey="key"
                                           listValue="value" name="dataParam" emptyOption="true" required="true" />
 
                             </div>
-                            <label class="col-lg-2 control-label">Date From :</label>
+                            <label class="col-lg-2 control-label" style="padding-top: 0px !important;">Date From :</label>
                             <div class="col-lg-2">
                                 <s:textfield required="true" name="dateFromParam" cssClass="dateFromClass form-control" id="dateFromIdReports"/>
                                 <script>
@@ -124,7 +129,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-9 control-label">Date To :</label>
+                            <label class="col-lg-9 control-label" style="padding-top: 0px !important;">Date To :</label>
                             <div class="col-lg-2">
                                 <s:textfield required="true" name="dateToParam" cssClass="dateToClass form-control" id="dateToIdReports"/>
                                 <script>
@@ -136,15 +141,15 @@
                                 </script>
                             </div>
                         </div>
-                        <div class="panel-footer">
-                            <div class="pull-right" style="margin-top: 15px;">
-                                <a class="viewBtnReports btn btn-info" title="View Reports" href="#"> <i class="fa fa-print"></i> View Reports</a>
-                            </div>
-                        </div>
-                    </s:form>
                     <%--</div>
                 </div>--%>
             </div>
+            <div class="panel-footer">
+                <div class="pull-right" style="margin-top: 15px;">
+                    <a class="viewBtnReports btn btn-info" title="View Reports" href="#"> <i class="fa fa-print"></i> View Reports</a>
+                </div>
+            </div>
+            </s:form>
         </div>
     </div>
 </div>
