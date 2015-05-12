@@ -32,5 +32,9 @@
             <result name="success" type="tiles">report.lc_operations.tiles</result>
         </action>
 
+        <action name="inlandFreightOperations" class="com.sr.apps.freightbit.core.action.ReportAction" method="inlandFreightOperations">
+            <result name="success" type="tiles">report.inlandFreight_operations.tiles</result>
+        </action>
+
     </package>
 </struts>

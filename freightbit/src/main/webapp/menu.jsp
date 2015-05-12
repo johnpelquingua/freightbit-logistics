@@ -107,7 +107,8 @@
             <li><a href="<s:url action='../reports/fclOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> FCL Operations</a></li>
             <li><a href="<s:url action='../reports/lclOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> LCL Operations</a></li>
             <li><a href="<s:url action='../reports/rcOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> Rolling Cargo Operations</a></li>
-            <li><a href="<s:url action='../reports/lcOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> LC Operations</a></li>
+            <li><a href="<s:url action='../reports/lcOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> Loose Cargo Operations</a></li>
+            <li><a href="<s:url action='../reports/inlandFreightOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> Inland Freight Operations</a></li>
         </ul>
     </li>
     <div id="footer-ver2" class="categories">

@@ -15,7 +15,6 @@ public class ReportAction extends ActionSupport implements Preparable {
     private List<Parameters> statisticsList = new ArrayList<Parameters>();
     private List<Parameters> reportsList = new ArrayList<Parameters>();
 
-
     public String customerRelations() {
 
         return SUCCESS;
@@ -28,6 +27,8 @@ public class ReportAction extends ActionSupport implements Preparable {
     public String rcOperations() { return SUCCESS; }
 
     public String lcOperations() { return SUCCESS; }
+
+    public String inlandFreightOperations() { return SUCCESS; }
 
     @Override
     public void prepare() throws Exception {

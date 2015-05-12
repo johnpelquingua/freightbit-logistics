@@ -669,6 +669,10 @@
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/lc_operations.jsp"/>
     </definition>
+    <definition name="report.inlandFreight_operations.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Reports Page"/>
+        <put-attribute name="body" value="/reports/inlandFreight_operations.jsp"/>
+    </definition>
     <!-- REPORT module tiles End-->
 
     <!-- FINANCE module tiles Begin-->
