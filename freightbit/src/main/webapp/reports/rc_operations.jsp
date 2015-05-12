@@ -1,452 +1,299 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<h1><i class="fa fa-clipboard"></i> Reports : Customer Relations</h1>
+<hr/>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Customer Relations Report
+    </div>
 
-<head>
-    <sj:head compressed='false'/>
-    <style type="text/css">
-        .divbox {
-            height: 150px;
-            width: 300px;
-            padding: 20px;
-            background-color: #FFFF66;
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs center-text " role="tablist" style="clear:both;" id="navTabs">
+        <li class="active col-md-6 zeroPadding" id="stat">
+            <a href="#statTab" role="tab" data-toggle="tab">Statistics</a>
+        </li>
+        <li class="col-md-6 zeroPadding" id="report">
+            <a href="#reportTab" role="tab" data-toggle="tab">Report</a>
+        </li>
+    </ul>
 
-            /* outer shadows  (note the rgba is red, green, blue, alpha) */
-            -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
-            -moz-box-shadow: 0px 1px 6px rgba(23, 69, 88, .5);
+    <div class="tab-content" tabindex="-1">
+        <div class="tab-pane fade in active" id="statTab">
+            <div class="panel-body">
+                <%--<div class="container">
+                    <div class="row">--%>
+                <%--<div class="col-md-9">
+                    <select class="form-control" style="width: 50%">
+                        <option value="YEARLY">Stats by Year</option>
+                        <option value="MONTHLY">Stats by Month</option>
+                        <option value="WEEKLY">Stats by Week</option>
+                    </select>
+                    <br/>
+                    <canvas id="canvasWeekly" height="300" width="600"></canvas>
+                </div>
+                <div class="col-md-3" style="word-wrap: break-word; overflow-y: auto; max-height: 31em;">
+                    <h3>Stats for 2015 - 2016</h3>
+                    <hr/>
+                    Lorem ipsum dolor sit amet, dicant iisque iracundia nam cu. Ei natum feugiat has, esse soluta quaeque per at, quidam singulis et mea. Quo nonumy aliquam phaedrum eu, diceret labores vis eu, eu pri dictas oportere. An vide oportere vim. At mundi prompta eam.
+                </div>--%>
+                <s:form cssClass="submitForm form-horizontal" theme="bootstrap" action="viewStatistics">
+                    <div class="form-group">
+                        <label class="col-lg-1 control-label">Data :</label>
+                        <div class="col-lg-6">
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                      id="dataIdStat" list="statisticsList" listKey="key"
+                                      listValue="value" name="dataParam" emptyOption="true" required="true" />
 
-            /* rounded corners */
-            -webkit-border-radius: 12px;
-            -moz-border-radius: 7px;
-            border-radius: 7px;
+                        </div>
+                        <label class="col-lg-2 control-label">Date From :</label>
+                        <div class="col-lg-2">
+                            <s:textfield required="true" name="dateFromParam" cssClass="dateFromClass form-control" id="dateFromIdStat"/>
+                            <script>
+                                $(function () {
+                                    var dateFromStat = $('#dateFromIdStat');
+                                    dateFromStat.datepicker({
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
 
-        }
-
-        .selection {
-            width: 300px;
-            height: 120px;
-
-            margin-top: 20px;
-            margin-bottom: 20px;
-
-            /* rounded corners */
-            -webkit-border-radius: 12px;
-            -moz-border-radius: 7px;
-            border-radius: 7px;
-
-            /* outer shadows  (note the rgba is red, green, blue, alpha) */
-            -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
-            -moz-box-shadow: 0px 1px 6px rgba(23, 69, 88, .5);
-
-        }
-
-
-    </style>
-    <script src="../main/js/jquery.js"></script>
-</head>
-
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-
-<br>
-<!-- EDIT HERE -->
-
-<div style="height:100%;" class="panel booking panel-info">
-<div class="booking panel-heading">
-    <img src="../includes/images/booking.png" class="box-icon">
-    <span class="booking panel-title">Reports</span>
-</div>
-<div class="panel-body">
-
-<div style="float:left;">
-    <div style=" width:250px;float:left;margin-left:70px; ">
-        <div id="FullTruckLoad" class="divbox" style="float:left">
-            <center style="margin-top:-10px; margin-bottom:20px;">
-                <h5><strong>Full Truck Load</strong><h5>
-            </center>
-            <img style="margin-left:75px; margin-top:-40px;" src="../includes/images/ftl.png">
-        </div>
-
-        <div id="RollingCargo" class="divbox" style="float:left; margin-bottom:20px; margin-top:20px;">
-            <div style="margin-left:70px; padding-top:30px">
-                <img src="../includes/images/booking.png" class="box-icon">
-                <span><strong>Rolling Cargo</strong></span>
+                    <div class="form-group">
+                        <label class="col-lg-9 control-label">Date To :</label>
+                        <div class="col-lg-2">
+                            <s:textfield required="true" name="dateToParam" cssClass="dateToClass form-control" id="dateToIdStat"/>
+                            <script>
+                                $(function () {
+                                    var dateToIdStat = $('#dateToIdStat');
+                                    dateToIdStat.datepicker({
+                                        minDate: 0
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="pull-right" style="margin-top: 15px;">
+                            <a class="viewBtnStatistics btn btn-info" title="View Statistics" href="#"> <i class="fa fa-print"></i> View Statistics</a>
+                        </div>
+                    </div>
+                </s:form>
+                <%--</div>
+            </div>--%>
             </div>
         </div>
 
-        <div id="LooseCargo" class="divbox" style="float:left">
-            <div style="margin-left:70px; padding-top:30px">
-                <img src="../includes/images/booking.png" class="box-icon">
-                <span><strong>Loose Cargo</strong></span>
+        <div class="tab-pane fade in" id="reportTab">
+            <div class="panel-body">
+                <%--<div class="container">
+                    <div class="row">--%>
+                <%--<div class="col-md-9">
+                    <select class="form-control" style="width: 50%">
+                        <option value="YEARLY">Stats by Year</option>
+                        <option value="MONTHLY">Stats by Month</option>
+                        <option value="WEEKLY">Stats by Week</option>
+                    </select>
+                    <br/>
+                    <canvas id="canvasWeekly" height="300" width="600"></canvas>
+                </div>
+                <div class="col-md-3" style="word-wrap: break-word; overflow-y: auto; max-height: 31em;">
+                    <h3>Stats for 2015 - 2016</h3>
+                    <hr/>
+                    Lorem ipsum dolor sit amet, dicant iisque iracundia nam cu. Ei natum feugiat has, esse soluta quaeque per at, quidam singulis et mea. Quo nonumy aliquam phaedrum eu, diceret labores vis eu, eu pri dictas oportere. An vide oportere vim. At mundi prompta eam.
+                </div>--%>
+                <s:form cssClass="form-horizontal" theme="bootstrap" action="viewReports">
+                    <div class="form-group">
+                        <label class="col-lg-1 control-label">Data :</label>
+                        <div class="col-lg-6">
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                      id="dataIdReports" list="reportsList" listKey="key"
+                                      listValue="value" name="dataParam" emptyOption="true" required="true" />
+
+                        </div>
+                        <label class="col-lg-2 control-label">Date From :</label>
+                        <div class="col-lg-2">
+                            <s:textfield required="true" name="dateFromParam" cssClass="dateFromClass form-control" id="dateFromIdReports"/>
+                            <script>
+                                $(function () {
+                                    var dateFromReports = $('#dateFromIdReports');
+                                    dateFromReports.datepicker({
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-9 control-label">Date To :</label>
+                        <div class="col-lg-2">
+                            <s:textfield required="true" name="dateToParam" cssClass="dateToClass form-control" id="dateToIdReports"/>
+                            <script>
+                                $(function () {
+                                    var dateToIdReports = $('#dateToIdReports');
+                                    dateToIdReports.datepicker({
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="pull-right" style="margin-top: 15px;">
+                            <a class="viewBtnReports btn btn-info" title="View Reports" href="#"> <i class="fa fa-print"></i> View Reports</a>
+                        </div>
+                    </div>
+                </s:form>
+                <%--</div>
+            </div>--%>
             </div>
         </div>
     </div>
 </div>
 
-<div style="float:left;">
-    <div style=" width:250px;float:left;margin-left:70px; ">
-        <div id="FullContainerLoad" class="divbox" style="float:left;">
-            <div style="margin-left:70px; padding-top:30px">
-                <img src="../includes/images/booking.png" class="box-icon">
-                <span><strong>Full Container Load</strong></span>
-            </div>
-        </div>
-
-        <div id="LessContainerLoad" class="divbox" style="float:left; margin-bottom:20px; margin-top:20px;">
-            <div style="margin-left:70px; padding-top:30px">
-                <img src="../includes/images/booking.png" class="box-icon">
-                <span><strong>Less Container Load</strong></span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div style="float:left;">
-    <div style=" width:250px;;margin-left:70px; ">
-        <div id="Sales" class="divbox" style="float:left">
-            <center style="margin-top:-15px; margin-bottom:25px;">
-                <h5><strong>Sales</strong><h5>
-            </center>
-            <img height="100" style="margin-left:80px; margin-top:-15px;" src="../includes/images/sales.png">
-        </div>
-
-        <div id="CustomerRelations" class="divbox" style="float:left; margin-bottom:20px; margin-top:20px;">
-            <center style="margin-top:-10px; margin-bottom:20px;">
-                <h5><strong>Customer Relation</strong><h5>
-            </center>
-            <img height="100" style="margin-left:80px; margin-top:-15px;" src="../includes/images/customer-relation.png">
-        </div>
-
-    </div>
-</div>
-
-<!-- report,transaction,statistics -->
-<!-- FTL -->
-<div class="menu2" id="FTL" style="display:none; height:200px; margin-top:-20px;">
-    <h2 style="margin-left:10px;">Full Truck Load</h2> <a class="btn btn-default back"
-                                                          style="float:left; margin-left:10px;" href="#">Back</a>
-    <hr>
-    <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
-        <div id="ftlsearchreport">
-            <a href="FTL_Report" class="btn-group" style="margin-left:10px"><strong>view the latest reports</strong></a>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Transactions</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Statistics</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-</div>
-<!-- RCargo -->
-<div class="menu2" id="RCargo" style="display:none; height:200px; margin-top:-20px;">
-    <h2 style="margin-left:10px;">Rolling Cargo</h2> <a class="btn btn-default back"
-                                                        style="float:left; margin-left:10px;" href="#">Back</a>
-    <hr>
-    <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Reports</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Transactions</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Statistics</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-</div>
-<!-- LCargo -->
-<div class="menu2" id="LCargo" style="display:none; height:200px; margin-top:-20px;">
-    <h2 style="margin-left:10px;">Loose Cargo</h2> <a class="btn btn-default back" style="float:left; margin-left:10px;"
-                                                      href="#">Back</a>
-    <hr>
-    <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Reports</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Transactions</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Statistics</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-</div>
-<!-- FCL -->
-<div class="menu2" id="FCL" style="display:none; height:200px; margin-top:-20px;">
-    <h2 style="margin-left:10px;">Full Container Load</h2> <a class="btn btn-default back"
-                                                              style="float:left; margin-left:10px;" href="#">Back</a>
-    <hr>
-    <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Reports</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Transactions</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Statistics</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-</div>
-<!-- LCL -->
-<div class="menu2" id="LCL" style="display:none; height:200px; margin-top:-20px;">
-    <h2 style="margin-left:10px;">Less Container Load</h2> <a class="btn btn-default back"
-                                                              style="float:left; margin-left:10px;" href="#">Back</a>
-    <hr>
-    <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Reports</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Transactions</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Statistics</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-</div>
-<!-- CR -->
-<div class="menu2" id="CR" style="display:none; height:200px; margin-top:-20px;">
-    <h2 style="margin-left:10px;">Customer Relations</h2> <a class="btn btn-default back"
-                                                             style="float:left; margin-left:10px;" href="#">Back</a>
-    <hr>
-    <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Reports</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Transactions</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Statistics</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-</div>
-<!-- Sales -->
-<div style="display:none; height:200px; margin-top:-20px;" id="Sale" class="menu2">
-    <h2 style="margin-left:10px;">Sales</h2> <a class="btn btn-default back" style="float:left; margin-left:10px;"
-                                                href="#">Back</a>
-    <hr>
-    <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Reports</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Transactions</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-    <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
-        <div style="margin-left:10px; padding-top:15px">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span><strong>Statistics</strong></span>
-            <hr>
-            <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
-            <hr>
-            <strong>Search:</strong> <sj:datepicker cssClass="input input-default"/>
-        </div>
-    </div>
-</div>
-<!-- end -->
-
-</div>
-
-</div>
-<!-- END OF EDIT -->
-
-</div>
-
-<script src="./jquery.js"></script>
 <script>
+    $(document).ready(function(){
+        /*var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
+         var lineChartData = {
+         labels : ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"],
+         datasets : [
+         {
+         label: "My First dataset",
+         fillColor : "rgba(120,120,120,0.2)",
+         strokeColor : "rgba(120,120,120,1)",
+         pointColor : "rgba(120,120,120,1)",
+         pointStrokeColor : "#fff",
+         pointHighlightFill : "#fff",
+         pointHighlightStroke : "rgba(220,220,220,1)",
+         data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+         },
+         //
+         ]
 
-    $('#FullTruckLoad').click(function () {
-        $('.divbox').slideToggle('fast', function () {
-            $('#FTL').animate({ "opacity": "show"});
+         };
+
+         window.onload = function(){
+         var ctx = document.getElementById("canvasWeekly").getContext("2d");
+         window.myLine = new Chart(ctx).Line(lineChartData, {
+         responsive: true
+         });
+         }*/
+
+        $('.viewBtnStatistics').click(function(){
+            var dateFromVal = $('.dateFromClass').val(),
+                    dateToVal = $('.dateToClass').val(),
+                    dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
+
+            if(dateFromVal.match(dateRegEx) === null){
+                alert('ERROR! Date From input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else if(dateToVal.match(dateRegEx) === null){
+                alert('ERROR! Date To input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else{
+//                submitForm.submit();
+                generateStatistics();
+                return true;
+            }
+        });
+
+        $('.viewBtnReports').click(function(){
+            var dateFromVal = $('.dateFromClass').val(),
+                    dateToVal = $('.dateToClass').val(),
+                    dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
+
+            if(dateFromVal.match(dateRegEx) === null){
+                alert('ERROR! Date From input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else if(dateToVal.match(dateRegEx) === null){
+                alert('ERROR! Date To input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else{
+//                submitForm.submit();
+                generateReports();
+                return true;
+            }
         });
 
     });
 
-    $('#RollingCargo').click(function () {
-        $('.divbox').slideToggle('fast', function () {
-            $('#RCargo').animate({ "opacity": "show"});
-        });
+    //The code below is for Statistics Reports
 
-    });
+    function generateStatistics() {
+        var dataVal = $('#dataIdStat').val();
+        var dateFromVal = $('#dateFromIdStat').val();
+        var dateToVal = $('#dateToIdStat').val();
 
-    $('#LooseCargo').click(function () {
-        $('.divbox').slideToggle('fast', function () {
-            $('#LCargo').animate({ "opacity": "show"});
-        });
+        <%------------------------------------------CUSTOMER RELATIONS-----------------------------------------------%>
+        var win = window.open('reports/viewStatistics?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
+        win.onload = function () {
+            if (dataVal == "TOTAL NUMBER OF BOOKINGS") {
+                this.document.title = "Total Number of Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE") {
+                this.document.title = "Total Number of Bookings per Consignee";
+            }
+            else if (dataVal == "TOTAL NUMBER OF ACCOMPLISHED (ARCHIVED) BOOKINGS") {
+                this.document.title = "Total Number of Accomplished (Archived) Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF CANCELLED BOOKINGS") {
+                this.document.title = "Total Number of Cancelled Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER SHIPPER") {
+                this.document.title = "Total Number of Bookings per Shipper";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER SHIPPER PER PORT OF DESTINATION") {
+                this.document.title = "Total Number of Bookings per Shipper Per Port of Destination";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE PER PORT OF DESTINATION") {
+                this.document.title = "Total Number of Bookings per Consignee Per Port of Destination";
+            }
+        }
+    }
 
-    });
+    // The code below is for Document Reports
 
-    $('#FullContainerLoad').click(function () {
-        $('.divbox').slideToggle('fast', function () {
-            $('#FCL').animate({ "opacity": "show"});
-        });
+    function generateReports() {
+        var dataVal = $('#dataIdReports').val();
+        var dateFromVal = $('#dateFromIdReports').val();
+        var dateToVal = $('#dateToIdReports').val();
 
-    });
+        <%------------------------------------------CUSTOMER RELATIONS-----------------------------------------------%>
+        var win = window.open('reports/viewReports?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
+        win.onload = function () {
+            if (dataVal == "AVERAGE NUMBER OF BOOKINGS PER SHIPPER") {
+                this.document.title = "Average Number of Bookings per Shipper";
+            }
+            else if (dataVal == "AVERAGE NUMBER OF BOOKINGS PER CONSIGNEE") {
+                this.document.title = "Average Number of Bookings per Consignee";
+            }
+            else if (dataVal == "TOTAL CANCELLATION PERCENTAGE") {
+                this.document.title = "Total Cancellation Percentage";
+            }
+            else if (dataVal == "TOTAL CANCELLATION PERCENTAGE PER SHIPPER") {
+                this.document.title = "Total Cancellation Percentage per Shipper";
+            }
+            else if (dataVal == "AVERAGE CANCELLATION OF BOOKINGS") {
+                this.document.title = "Average Cancellation of Bookings";
+            }
+            else if (dataVal == "AVERAGE CUBIC METER (CBM) PER BOOKINGS") {
+                this.document.title = "Average Cubic Meter (CBM) per Bookings";
+            }
+            else if (dataVal == "AVERAGE CONTAINERS PER BOOKINGS") {
+                this.document.title = "Average Containers per Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF ON-TIME BOOKING") {
+                this.document.title = "Total Number of On-Time Booking";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS BEYOND RDD") {
+                this.document.title = "Total Number of Bookings Beyond RDD";
+            }
+            else if (dataVal == "ARCHIVE OF BOOKINGS") {
+                this.document.title = "Archive of Bookings";
+            }
+        }
+    }
 
-
-    $('#LessContainerLoad').click(function () {
-        $('.divbox').slideToggle('fast', function () {
-            $('#LCL').animate({ "opacity": "show"});
-        });
-
-    });
-
-    $('#CustomerRelations').click(function () {
-        $('.divbox').slideToggle('fast', function () {
-            $('#CR').animate({ "opacity": "show"});
-        });
-
-    });
-
-    $('#Sales').click(function () {
-        $('.divbox').slideToggle('fast', function () {
-            $('#Sale ').animate({ "opacity": "show"});
-        });
-
-    });
-    $('.back').click(function () {
-
-        $('.menu2').slideUp('fast', function () {
-            $('.divbox').slideDown('fast');
-
-        });
-
-    });
-
-    <!-- search buttons -->
-    $('#ftlsearchreport').click(function () {
-        $('#ftlsearchreport').fadeOut('fast', function () {
-            $('#ftlreportdatepicker').slideToggle('fast');
-        });
-    });
-
-    $('#cancel').click(function () {
-        $('#ftlsearchreport').slideToggle('fast');
-        $('#ftlreportdatepicker').fadeOut('fast');
-    });
 </script>

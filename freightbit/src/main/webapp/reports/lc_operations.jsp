@@ -1,221 +1,299 @@
-<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<h1><i class="fa fa-clipboard"></i> Reports : Customer Relations</h1>
+<hr/>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Customer Relations Report
+    </div>
 
-<head>
-    <sj:head compressed='false'/>
-    <style type="text/css">
-        #reportmenu {
-            border-bottom: 3px #FFCC00 solid;
-        }
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs center-text " role="tablist" style="clear:both;" id="navTabs">
+        <li class="active col-md-6 zeroPadding" id="stat">
+            <a href="#statTab" role="tab" data-toggle="tab">Statistics</a>
+        </li>
+        <li class="col-md-6 zeroPadding" id="report">
+            <a href="#reportTab" role="tab" data-toggle="tab">Report</a>
+        </li>
+    </ul>
 
-        #reportmenu:hover, #transactionmenu:hover, #statisticsmenu:hover {
-            border-bottom: 3px #FFCC00 solid;
-        }
+    <div class="tab-content" tabindex="-1">
+        <div class="tab-pane fade in active" id="statTab">
+            <div class="panel-body">
+                <%--<div class="container">
+                    <div class="row">--%>
+                <%--<div class="col-md-9">
+                    <select class="form-control" style="width: 50%">
+                        <option value="YEARLY">Stats by Year</option>
+                        <option value="MONTHLY">Stats by Month</option>
+                        <option value="WEEKLY">Stats by Week</option>
+                    </select>
+                    <br/>
+                    <canvas id="canvasWeekly" height="300" width="600"></canvas>
+                </div>
+                <div class="col-md-3" style="word-wrap: break-word; overflow-y: auto; max-height: 31em;">
+                    <h3>Stats for 2015 - 2016</h3>
+                    <hr/>
+                    Lorem ipsum dolor sit amet, dicant iisque iracundia nam cu. Ei natum feugiat has, esse soluta quaeque per at, quidam singulis et mea. Quo nonumy aliquam phaedrum eu, diceret labores vis eu, eu pri dictas oportere. An vide oportere vim. At mundi prompta eam.
+                </div>--%>
+                <s:form cssClass="submitForm form-horizontal" theme="bootstrap" action="viewStatistics">
+                    <div class="form-group">
+                        <label class="col-lg-1 control-label">Data :</label>
+                        <div class="col-lg-6">
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                      id="dataIdStat" list="statisticsList" listKey="key"
+                                      listValue="value" name="dataParam" emptyOption="true" required="true" />
 
-    </style>
-    <script src="../main/js/jquery.js"></script>
-</head>
+                        </div>
+                        <label class="col-lg-2 control-label">Date From :</label>
+                        <div class="col-lg-2">
+                            <s:textfield required="true" name="dateFromParam" cssClass="dateFromClass form-control" id="dateFromIdStat"/>
+                            <script>
+                                $(function () {
+                                    var dateFromStat = $('#dateFromIdStat');
+                                    dateFromStat.datepicker({
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
 
-<ul class="nav nav-tabs nav-justified">
-    <li class="active"><a id="reportmenu" href="#"><strong>Reports</strong></a></li>
-    <li class="active"><a id="transactionmenu" href="#"><strong>Transaction</strong></a></li>
-    <li class="active"><a id="statisticsmenu" href="#"><strong>Statistics</strong></a></li>
-</ul>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <!-- EDIT HERE -->
-
-    <div style="height:100%;" class="panel booking panel-info">
-        <div style="height:55px;" class="booking panel-heading">
-            <img src="../includes/images/booking.png" class="box-icon">
-            <span id="RollingCargo" class="booking panel-title"><strong>Rolling Cargo</strong></span>
-            <span id="LooseCargo" style="display:none" class="booking panel-title"><strong>Loose Cargo</strong></span>
-            <img id="containerNext" src="../includes/images/right.png" height="25" class="box-icon"
-                 style="margin-left:10px;"/>
+                    <div class="form-group">
+                        <label class="col-lg-9 control-label">Date To :</label>
+                        <div class="col-lg-2">
+                            <s:textfield required="true" name="dateToParam" cssClass="dateToClass form-control" id="dateToIdStat"/>
+                            <script>
+                                $(function () {
+                                    var dateToIdStat = $('#dateToIdStat');
+                                    dateToIdStat.datepicker({
+                                        minDate: 0
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="pull-right" style="margin-top: 15px;">
+                            <a class="viewBtnStatistics btn btn-info" title="View Statistics" href="#"> <i class="fa fa-print"></i> View Statistics</a>
+                        </div>
+                    </div>
+                </s:form>
+                <%--</div>
+            </div>--%>
+            </div>
         </div>
 
-        <div class="panel-body">
+        <div class="tab-pane fade in" id="reportTab">
+            <div class="panel-body">
+                <%--<div class="container">
+                    <div class="row">--%>
+                <%--<div class="col-md-9">
+                    <select class="form-control" style="width: 50%">
+                        <option value="YEARLY">Stats by Year</option>
+                        <option value="MONTHLY">Stats by Month</option>
+                        <option value="WEEKLY">Stats by Week</option>
+                    </select>
+                    <br/>
+                    <canvas id="canvasWeekly" height="300" width="600"></canvas>
+                </div>
+                <div class="col-md-3" style="word-wrap: break-word; overflow-y: auto; max-height: 31em;">
+                    <h3>Stats for 2015 - 2016</h3>
+                    <hr/>
+                    Lorem ipsum dolor sit amet, dicant iisque iracundia nam cu. Ei natum feugiat has, esse soluta quaeque per at, quidam singulis et mea. Quo nonumy aliquam phaedrum eu, diceret labores vis eu, eu pri dictas oportere. An vide oportere vim. At mundi prompta eam.
+                </div>--%>
+                <s:form cssClass="form-horizontal" theme="bootstrap" action="viewReports">
+                    <div class="form-group">
+                        <label class="col-lg-1 control-label">Data :</label>
+                        <div class="col-lg-6">
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                      id="dataIdReports" list="reportsList" listKey="key"
+                                      listValue="value" name="dataParam" emptyOption="true" required="true" />
 
+                        </div>
+                        <label class="col-lg-2 control-label">Date From :</label>
+                        <div class="col-lg-2">
+                            <s:textfield required="true" name="dateFromParam" cssClass="dateFromClass form-control" id="dateFromIdReports"/>
+                            <script>
+                                $(function () {
+                                    var dateFromReports = $('#dateFromIdReports');
+                                    dateFromReports.datepicker({
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
 
-            <!-- FTL REPORT -->
-            <div id="div_report">
-                <strong>Search by date : </strong><sj:datepicker/>
-                <hr>
-                <table class="table table-striped table-bordered text-center" id="groups-list">
-                    <thead>
-                    <tr class="header_center">
-
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- table -->
-                <hr>
-                <div id="chart_div" style="width: 1000px; height: 300px;"></div>
-                <hr>
+                    <div class="form-group">
+                        <label class="col-lg-9 control-label">Date To :</label>
+                        <div class="col-lg-2">
+                            <s:textfield required="true" name="dateToParam" cssClass="dateToClass form-control" id="dateToIdReports"/>
+                            <script>
+                                $(function () {
+                                    var dateToIdReports = $('#dateToIdReports');
+                                    dateToIdReports.datepicker({
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="pull-right" style="margin-top: 15px;">
+                            <a class="viewBtnReports btn btn-info" title="View Reports" href="#"> <i class="fa fa-print"></i> View Reports</a>
+                        </div>
+                    </div>
+                </s:form>
+                <%--</div>
+            </div>--%>
             </div>
-            <!-- FTL REPORT END -->
-            <!-- FTL TRANSACTION -->
-            <div style="display:none" id="div_transaction">
-                <strong>Search by date : </strong><sj:datepicker/>
-                <hr>
-                <table class="table table-striped table-bordered text-center" id="groups-list">
-                    <thead>
-                    <tr class="header_center">
-
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- table -->
-                <hr>
-                <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
-            </div>
-            <!--FTL TRANSACTION END -->
-            <!-- FTL STATISTICS-->
-            <div style="display:none" id="div_statistics">
-                <strong>Search by date : </strong><sj:datepicker/>
-                <hr>
-                <table class="table table-striped table-bordered text-center" id="groups-list">
-                    <thead>
-                    <tr class="header_center">
-
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                        <th class="tb-font-black">Sample</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                        <td class="tb-font-black">Sample</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- table -->
-
-                <hr>
-            </div>
-            <!--FTL STATISTICS END -->
-            <!-- END OF EDIT -->
         </div>
-        <script src="./jquery.js"></script>
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script>
+    </div>
+</div>
 
-            $('#transactionmenu').click(function () {
-                $('#div_report').hide('fast');
-                $('#div_statistics').hide('fast');
-                $('#div_transaction').slideDown('fast');
-                $('#reportmenu').css("border-bottom-color", "#ffffff");
-                $('#statisticsmenu').css("border-bottom-color", "#ffffff");
-                $('#transactionmenu').css("border-bottom-color", "#FFCC00");
-            });
+<script>
+    $(document).ready(function(){
+        /*var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
+         var lineChartData = {
+         labels : ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"],
+         datasets : [
+         {
+         label: "My First dataset",
+         fillColor : "rgba(120,120,120,0.2)",
+         strokeColor : "rgba(120,120,120,1)",
+         pointColor : "rgba(120,120,120,1)",
+         pointStrokeColor : "#fff",
+         pointHighlightFill : "#fff",
+         pointHighlightStroke : "rgba(220,220,220,1)",
+         data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+         },
+         //
+         ]
 
-            $('#reportmenu').click(function () {
-                $('#div_transaction').hide('fast');
-                $('#div_statistics').hide('fast');
-                $('#div_report').slideDown('fast');
-                $('#transactionmenu').css("border-bottom-color", "#ffffff");
-                $('#statisticsmenu').css("border-bottom-color", "#ffffff");
-                $('#reportmenu').css("border-bottom-color", "#FFCC00");
-            });
+         };
 
-            $('#statisticsmenu').click(function () {
-                $('#div_transaction').hide('fast');
-                $('#div_report').hide('fast');
-                $('#div_statistics').slideDown('fast');
-                $('#reportmenu').css("border-bottom-color", "#ffffff");
-                $('#transactionmenu').css("border-bottom-color", "#ffffff");
-                $('#statisticsmenu').css("border-bottom-color", "#FFCC00");
-            });
+         window.onload = function(){
+         var ctx = document.getElementById("canvasWeekly").getContext("2d");
+         window.myLine = new Chart(ctx).Line(lineChartData, {
+         responsive: true
+         });
+         }*/
 
-            $('#containerNext').click(function () {
+        $('.viewBtnStatistics').click(function(){
+            var dateFromVal = $('.dateFromClass').val(),
+                    dateToVal = $('.dateToClass').val(),
+                    dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
 
-                $('#RollingCargo').toggle("slide");
-                $('#LooseCargo').toggle("slide");
-            });
-
-        </script>
-        &lt;%&ndash;<script type="text/javascript">
-            google.load("visualization", "1", {packages: ["corechart"]});
-            google.setOnLoadCallback(drawChart);
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                    ['Year', 'Sample1', 'Sample'],
-                    ['2004', 1000, 400],
-                    ['2005', 1170, 460],
-                    ['2006', 660, 1120],
-                    ['2007', 1030, 540]
-                ]);
-
-                var options = {
-                    title: 'Company Performance'
-                };
-
-                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
+            if(dateFromVal.match(dateRegEx) === null){
+                alert('ERROR! Date From input is not a valid date (MM/DD/YYYY)');
+                return false;
             }
-        </script>
-&ndash;%&gt;--%>
+            else if(dateToVal.match(dateRegEx) === null){
+                alert('ERROR! Date To input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else{
+//                submitForm.submit();
+                generateStatistics();
+                return true;
+            }
+        });
+
+        $('.viewBtnReports').click(function(){
+            var dateFromVal = $('.dateFromClass').val(),
+                    dateToVal = $('.dateToClass').val(),
+                    dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
+
+            if(dateFromVal.match(dateRegEx) === null){
+                alert('ERROR! Date From input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else if(dateToVal.match(dateRegEx) === null){
+                alert('ERROR! Date To input is not a valid date (MM/DD/YYYY)');
+                return false;
+            }
+            else{
+//                submitForm.submit();
+                generateReports();
+                return true;
+            }
+        });
+
+    });
+
+    //The code below is for Statistics Reports
+
+    function generateStatistics() {
+        var dataVal = $('#dataIdStat').val();
+        var dateFromVal = $('#dateFromIdStat').val();
+        var dateToVal = $('#dateToIdStat').val();
+
+        <%------------------------------------------CUSTOMER RELATIONS-----------------------------------------------%>
+        var win = window.open('reports/viewStatistics?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
+        win.onload = function () {
+            if (dataVal == "TOTAL NUMBER OF BOOKINGS") {
+                this.document.title = "Total Number of Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE") {
+                this.document.title = "Total Number of Bookings per Consignee";
+            }
+            else if (dataVal == "TOTAL NUMBER OF ACCOMPLISHED (ARCHIVED) BOOKINGS") {
+                this.document.title = "Total Number of Accomplished (Archived) Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF CANCELLED BOOKINGS") {
+                this.document.title = "Total Number of Cancelled Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER SHIPPER") {
+                this.document.title = "Total Number of Bookings per Shipper";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER SHIPPER PER PORT OF DESTINATION") {
+                this.document.title = "Total Number of Bookings per Shipper Per Port of Destination";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE PER PORT OF DESTINATION") {
+                this.document.title = "Total Number of Bookings per Consignee Per Port of Destination";
+            }
+        }
+    }
+
+    // The code below is for Document Reports
+
+    function generateReports() {
+        var dataVal = $('#dataIdReports').val();
+        var dateFromVal = $('#dateFromIdReports').val();
+        var dateToVal = $('#dateToIdReports').val();
+
+        <%------------------------------------------CUSTOMER RELATIONS-----------------------------------------------%>
+        var win = window.open('reports/viewReports?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
+        win.onload = function () {
+            if (dataVal == "AVERAGE NUMBER OF BOOKINGS PER SHIPPER") {
+                this.document.title = "Average Number of Bookings per Shipper";
+            }
+            else if (dataVal == "AVERAGE NUMBER OF BOOKINGS PER CONSIGNEE") {
+                this.document.title = "Average Number of Bookings per Consignee";
+            }
+            else if (dataVal == "TOTAL CANCELLATION PERCENTAGE") {
+                this.document.title = "Total Cancellation Percentage";
+            }
+            else if (dataVal == "TOTAL CANCELLATION PERCENTAGE PER SHIPPER") {
+                this.document.title = "Total Cancellation Percentage per Shipper";
+            }
+            else if (dataVal == "AVERAGE CANCELLATION OF BOOKINGS") {
+                this.document.title = "Average Cancellation of Bookings";
+            }
+            else if (dataVal == "AVERAGE CUBIC METER (CBM) PER BOOKINGS") {
+                this.document.title = "Average Cubic Meter (CBM) per Bookings";
+            }
+            else if (dataVal == "AVERAGE CONTAINERS PER BOOKINGS") {
+                this.document.title = "Average Containers per Bookings";
+            }
+            else if (dataVal == "TOTAL NUMBER OF ON-TIME BOOKING") {
+                this.document.title = "Total Number of On-Time Booking";
+            }
+            else if (dataVal == "TOTAL NUMBER OF BOOKINGS BEYOND RDD") {
+                this.document.title = "Total Number of Bookings Beyond RDD";
+            }
+            else if (dataVal == "ARCHIVE OF BOOKINGS") {
+                this.document.title = "Archive of Bookings";
+            }
+        }
+    }
+
+</script>
