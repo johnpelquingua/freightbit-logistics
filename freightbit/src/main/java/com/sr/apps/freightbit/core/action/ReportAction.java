@@ -27,6 +27,12 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalBookingsShipperService totalBookingsShipperService;
     private TotalBookingsShipperDesService totalBookingsShipperDesService;
     private TotalBookingsConsigneeDesService totalBookingsConsigneeDesService;
+    private TotalBookingsArchiveService totalBookingsArchiveService;
+    private TotalFCLBookingsService totalFCLBookingsService;
+    private TotalLCLBookingsService totalLCLBookingsService;
+    private TotalRCUBookingsService totalRCUBookingsService;
+    private TotalLCBookingsService totalLCBookingsService;
+    private TotalInlandFreightBookingService totalInlandFreightBookingService;
     private List<Parameters> statisticsList = new ArrayList<Parameters>();
     private List<Parameters> FCL_statisticsList = new ArrayList<Parameters>();
     private List<Parameters> LCL_statisticsList = new ArrayList<Parameters>();
@@ -180,6 +186,132 @@ public class ReportAction extends ActionSupport implements Preparable {
                 final File outputFile = new File("Total Number of Bookings per Consignee Per Port of Destination.pdf");
                 // Generate the report
                 MasterReport report = totalBookingsConsigneeDesService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("ARCHIVE BOOKINGS")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Archive Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalBookingsArchiveService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("TOTAL FCL BOOKINGS")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total FCL Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalFCLBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("TOTAL LCL BOOKINGS")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total LCL Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalLCLBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("TOTAL RCU BOOKINGS")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total RCU Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalRCUBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("TOTAL NUMBER OF LC BOOKINGS")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Number of LC Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalLCBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("TOTAL INLAND FREIGHT BOOKING")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Inland Freight Booking.pdf");
+                // Generate the report
+                MasterReport report = totalInlandFreightBookingService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());

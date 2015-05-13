@@ -255,6 +255,9 @@
             else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE PER PORT OF DESTINATION") {
                 this.document.title = "Total Number of Bookings per Consignee Per Port of Destination";
             }
+            else if (dataVal == "ARCHIVE BOOKINGS") {
+                this.document.title = "Archive Bookings";
+            }
         }
     }
 

@@ -235,26 +235,8 @@
         <%------------------------------------------CUSTOMER RELATIONS-----------------------------------------------%>
         var win = window.open('reports/viewStatistics?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
         win.onload = function () {
-            if (dataVal == "TOTAL NUMBER OF BOOKINGS") {
-                this.document.title = "Total Number of Bookings";
-            }
-            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE") {
-                this.document.title = "Total Number of Bookings per Consignee";
-            }
-            else if (dataVal == "TOTAL NUMBER OF ACCOMPLISHED (ARCHIVED) BOOKINGS") {
-                this.document.title = "Total Number of Accomplished (Archived) Bookings";
-            }
-            else if (dataVal == "TOTAL NUMBER OF CANCELLED BOOKINGS") {
-                this.document.title = "Total Number of Cancelled Bookings";
-            }
-            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER SHIPPER") {
-                this.document.title = "Total Number of Bookings per Shipper";
-            }
-            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER SHIPPER PER PORT OF DESTINATION") {
-                this.document.title = "Total Number of Bookings per Shipper Per Port of Destination";
-            }
-            else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE PER PORT OF DESTINATION") {
-                this.document.title = "Total Number of Bookings per Consignee Per Port of Destination";
+            if (dataVal == "TOTAL INLAND FREIGHT BOOKING") {
+                this.document.title = "Total Inland Freight Booking";
             }
         }
     }

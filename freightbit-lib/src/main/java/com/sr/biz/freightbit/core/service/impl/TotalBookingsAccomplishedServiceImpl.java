@@ -22,7 +22,7 @@ public class TotalBookingsAccomplishedServiceImpl extends ReportGeneratorService
         {
             // Get the URL to the reportDefinition file
             final Class classVar = this.getClass();
-            final URL reportDefinitionURL = classVar.getResource("/reports/CRS_Total_Number_Of_Archived.prpt");
+            final URL reportDefinitionURL = classVar.getResource("/reports/CRS_Total_Number_Of_Accomplished_Archived.prpt");
 
             // Parse the report file
             final ResourceManager resourceManager = new ResourceManager();

@@ -185,6 +185,18 @@
 
     <bean id="totalBookingsConsigneeDesService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsConsigneeDesServiceImpl"/>
 
+    <bean id="totalBookingsArchiveService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsArchiveServiceImpl"/>
+
+    <bean id="totalFCLBookingsService" class="com.sr.biz.freightbit.core.service.impl.TotalFCLBookingsServiceImpl"/>
+
+    <bean id="totalLCLBookingsService" class="com.sr.biz.freightbit.core.service.impl.TotalLCLBookingsServiceImpl"/>
+
+    <bean id="totalRCUBookingsService" class="com.sr.biz.freightbit.core.service.impl.TotalRCUBookingsServiceImpl"/>
+
+    <bean id="totalLCBookingsService" class="com.sr.biz.freightbit.core.service.impl.TotalLCBookingsServiceImpl"/>
+
+    <bean id="totalInlandFreightBookingService" class="com.sr.biz.freightbit.core.service.impl.TotalInlandFreightBookingServiceImpl"/>
+
     <bean id="calendarService" class="com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
         <property name="orderDao" ref="orderDao"/>
     </bean>

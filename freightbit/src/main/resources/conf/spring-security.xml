@@ -31,6 +31,7 @@
           <cache-control/>
           <hsts />
        </headers>
+	<intercept-url pattern="/j_spring_security_check" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
     <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/includes/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/struts/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />

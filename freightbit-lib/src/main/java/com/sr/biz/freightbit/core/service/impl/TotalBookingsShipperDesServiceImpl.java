@@ -22,7 +22,7 @@ public class TotalBookingsShipperDesServiceImpl extends ReportGeneratorService i
         {
             // Get the URL to the reportDefinition file
             final Class classVar = this.getClass();
-            final URL reportDefinitionURL = classVar.getResource("/reports/CRS_Total_Number_Of_Bookings_per_shipper_per_port_destination.prpt");
+            final URL reportDefinitionURL = classVar.getResource("/reports/CRS_Total_Number_Of_Bookings_per_shipper_per_port2.prpt");
 
             // Parse the report file
             final ResourceManager resourceManager = new ResourceManager();
