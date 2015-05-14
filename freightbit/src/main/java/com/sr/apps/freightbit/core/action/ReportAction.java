@@ -5,9 +5,8 @@ import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
-import com.sr.biz.freightbit.core.service.*;
+import com.sr.biz.freightbit.core.reports.*;
 import org.apache.struts2.ServletActionContext;
-import org.pentaho.reporting.engine.classic.core.ClassicEngineBoot;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;
 
@@ -30,6 +29,7 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalBookingsConsigneeDesService totalBookingsConsigneeDesService;
     private TotalBookingsArchiveService totalBookingsArchiveService;
     private TotalFCLBookingsService totalFCLBookingsService;
+    private TotalCancelledFCLBookingsService totalCancelledFCLBookingsService;
     private TotalLCLBookingsService totalLCLBookingsService;
     private TotalRCUBookingsService totalRCUBookingsService;
     private TotalLCBookingsService totalLCBookingsService;
@@ -131,6 +131,7 @@ public class ReportAction extends ActionSupport implements Preparable {
         ByteArrayOutputStream byteArray = null;
         BufferedOutputStream responseOut = null;
 
+/*-------------------------------- CUSTOMER RELATIONS REPORT BEGIN -------------------------------------------------------------------------*/
         if(dataParam.equals("TOTAL NUMBER OF BOOKINGS")) {
             try {
                 // Create an output filename
@@ -299,6 +300,9 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
+/*-------------------------------- CUSTOMER RELATIONS REPORT END -------------------------------------------------------------------------*/
+
+/*-------------------------------- FCL OPERATIONS REPORT BEGIN -------------------------------------------------------------------------*/
         else if(dataParam.equals("TOTAL FCL BOOKINGS")){
             try {
                 // Create an output filename
@@ -320,6 +324,31 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
+
+        else if(dataParam.equals("TOTAL CANCELLED FCL BOOKINGS")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Cancelled FCL Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalCancelledFCLBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+/*-------------------------------- FCL OPERATIONS REPORT END -------------------------------------------------------------------------*/
+
+/*-------------------------------- LCL OPERATIONS REPORT BEGIN -------------------------------------------------------------------------*/
         else if(dataParam.equals("TOTAL LCL BOOKINGS")){
             try {
                 // Create an output filename
@@ -341,6 +370,9 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
+/*-------------------------------- LCL OPERATIONS REPORT END -------------------------------------------------------------------------*/
+
+/*-------------------------------- RCU OPERATIONS REPORT BEGIN -------------------------------------------------------------------------*/
         else if(dataParam.equals("TOTAL RCU BOOKINGS")){
             try {
                 // Create an output filename
@@ -362,6 +394,9 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
+/*-------------------------------- RCU OPERATIONS REPORT END -------------------------------------------------------------------------*/
+
+/*-------------------------------- LC OPERATIONS REPORT BEGIN -------------------------------------------------------------------------*/
         else if(dataParam.equals("TOTAL NUMBER OF LC BOOKINGS")){
             try {
                 // Create an output filename
@@ -383,6 +418,9 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
+/*-------------------------------- LC OPERATIONS REPORT END -------------------------------------------------------------------------*/
+
+/*-------------------------------- INLAND FREIGHT REPORT BEGIN -------------------------------------------------------------------------*/
         else if(dataParam.equals("TOTAL INLAND FREIGHT BOOKING")){
             try {
                 // Create an output filename
@@ -404,6 +442,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
+/*-------------------------------- INLAND FREIGHT REPORT END -------------------------------------------------------------------------*/
         return null;
     }
 
@@ -634,5 +673,33 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public void setStatReportMap(Map<String, String> statReportMap) {
         this.statReportMap = statReportMap;
+    }
+
+    public void setTotalBookingsArchiveService(TotalBookingsArchiveService totalBookingsArchiveService) {
+        this.totalBookingsArchiveService = totalBookingsArchiveService;
+    }
+
+    public void setTotalFCLBookingsService(TotalFCLBookingsService totalFCLBookingsService) {
+        this.totalFCLBookingsService = totalFCLBookingsService;
+    }
+
+    public void setTotalLCLBookingsService(TotalLCLBookingsService totalLCLBookingsService) {
+        this.totalLCLBookingsService = totalLCLBookingsService;
+    }
+
+    public void setTotalRCUBookingsService(TotalRCUBookingsService totalRCUBookingsService) {
+        this.totalRCUBookingsService = totalRCUBookingsService;
+    }
+
+    public void setTotalLCBookingsService(TotalLCBookingsService totalLCBookingsService) {
+        this.totalLCBookingsService = totalLCBookingsService;
+    }
+
+    public void setTotalInlandFreightBookingService(TotalInlandFreightBookingService totalInlandFreightBookingService) {
+        this.totalInlandFreightBookingService = totalInlandFreightBookingService;
+    }
+
+    public void setTotalCancelledFCLBookingsService(TotalCancelledFCLBookingsService totalCancelledFCLBookingsService) {
+        this.totalCancelledFCLBookingsService = totalCancelledFCLBookingsService;
     }
 }

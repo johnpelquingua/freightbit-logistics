@@ -171,31 +171,45 @@
 
     <bean id="consolidationManifestReportService" class="com.sr.biz.freightbit.documentation.service.impl.ConsolidationManifestReportServiceImpl"/>
 
-    <bean id="totalBookingsService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsServiceImpl"/>
+    <!--  Customer Relations Reports -->
 
-    <bean id="totalBookingsConsigneeService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsConsigneeServiceImpl"/>
+    <bean id="totalBookingsService" class="com.sr.biz.freightbit.core.reports.impl.TotalBookingsServiceImpl"/>
 
-    <bean id="totalBookingsAccomplishedService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsAccomplishedServiceImpl"/>
+    <bean id="totalBookingsConsigneeService" class="com.sr.biz.freightbit.core.reports.impl.TotalBookingsConsigneeServiceImpl"/>
 
-    <bean id="totalBookingsCancelledService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsCancelledServiceImpl"/>
+    <bean id="totalBookingsAccomplishedService" class="com.sr.biz.freightbit.core.reports.impl.TotalBookingsAccomplishedServiceImpl"/>
 
-    <bean id="totalBookingsShipperService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsShipperServiceImpl"/>
+    <bean id="totalBookingsCancelledService" class="com.sr.biz.freightbit.core.reports.impl.TotalBookingsCancelledServiceImpl"/>
 
-    <bean id="totalBookingsShipperDesService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsShipperDesServiceImpl"/>
+    <bean id="totalBookingsShipperService" class="com.sr.biz.freightbit.core.reports.impl.TotalBookingsShipperServiceImpl"/>
 
-    <bean id="totalBookingsConsigneeDesService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsConsigneeDesServiceImpl"/>
+    <bean id="totalBookingsShipperDesService" class="com.sr.biz.freightbit.core.reports.impl.TotalBookingsShipperDesServiceImpl"/>
 
-    <bean id="totalBookingsArchiveService" class="com.sr.biz.freightbit.core.service.impl.TotalBookingsArchiveServiceImpl"/>
+    <bean id="totalBookingsConsigneeDesService" class="com.sr.biz.freightbit.core.reports.impl.TotalBookingsConsigneeDesServiceImpl"/>
 
-    <bean id="totalFCLBookingsService" class="com.sr.biz.freightbit.core.service.impl.TotalFCLBookingsServiceImpl"/>
+    <bean id="totalBookingsArchiveService" class="com.sr.biz.freightbit.core.reports.impl.TotalBookingsArchiveServiceImpl"/>
 
-    <bean id="totalLCLBookingsService" class="com.sr.biz.freightbit.core.service.impl.TotalLCLBookingsServiceImpl"/>
+    <!--  FCL Operations Reports -->
 
-    <bean id="totalRCUBookingsService" class="com.sr.biz.freightbit.core.service.impl.TotalRCUBookingsServiceImpl"/>
+    <bean id="totalFCLBookingsService" class="com.sr.biz.freightbit.core.reports.impl.TotalFCLBookingsServiceImpl"/>
 
-    <bean id="totalLCBookingsService" class="com.sr.biz.freightbit.core.service.impl.TotalLCBookingsServiceImpl"/>
+    <bean id="totalCancelledFCLBookingsService" class="com.sr.biz.freightbit.core.reports.impl.TotalCancelledFCLBookingsServiceImpl"/>
 
-    <bean id="totalInlandFreightBookingService" class="com.sr.biz.freightbit.core.service.impl.TotalInlandFreightBookingServiceImpl"/>
+    <!--  LCL Operations Reports -->
+
+    <bean id="totalLCLBookingsService" class="com.sr.biz.freightbit.core.reports.impl.TotalLCLBookingsServiceImpl"/>
+
+    <!--  RCU Operations Reports -->
+
+    <bean id="totalRCUBookingsService" class="com.sr.biz.freightbit.core.reports.impl.TotalRCUBookingsServiceImpl"/>
+
+    <!--  LC Operations Reports -->
+
+    <bean id="totalLCBookingsService" class="com.sr.biz.freightbit.core.reports.impl.TotalLCBookingsServiceImpl"/>
+
+    <!--  Inland Freight Operations Reports -->
+
+    <bean id="totalInlandFreightBookingService" class="com.sr.biz.freightbit.core.reports.impl.TotalInlandFreightBookingServiceImpl"/>
 
     <bean id="calendarService" class="com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
         <property name="orderDao" ref="orderDao"/>

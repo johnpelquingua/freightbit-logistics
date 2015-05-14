@@ -1,6 +1,6 @@
-package com.sr.biz.freightbit.core.service.impl;
+package com.sr.biz.freightbit.core.reports.impl;
 
-import com.sr.biz.freightbit.core.service.TotalLCBookingsService;
+import com.sr.biz.freightbit.core.reports.TotalLCBookingsService;
 import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;

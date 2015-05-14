@@ -1,6 +1,6 @@
-package com.sr.biz.freightbit.core.service.impl;
+package com.sr.biz.freightbit.core.reports.impl;
 
-import com.sr.biz.freightbit.core.service.TotalInlandFreightBookingService;
+import com.sr.biz.freightbit.core.reports.TotalBookingsAccomplishedService;
 import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
@@ -13,16 +13,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Kevin on 5/13/2015.
+ * Created by Kevin on 5/11/2015.
  */
-public class TotalInlandFreightBookingServiceImpl extends ReportGeneratorService implements TotalInlandFreightBookingService{
+public class TotalBookingsAccomplishedServiceImpl extends ReportGeneratorService implements TotalBookingsAccomplishedService{
     public MasterReport getReportDefinition()
     {
         try
         {
             // Get the URL to the reportDefinition file
             final Class classVar = this.getClass();
-            final URL reportDefinitionURL = classVar.getResource("/reports/TKG_Total_Number_Of_Bookings.prpt");
+            final URL reportDefinitionURL = classVar.getResource("/reports/CRS_Total_Number_Of_Accomplished_Archived.prpt");
 
             // Parse the report file
             final ResourceManager resourceManager = new ResourceManager();
@@ -37,7 +37,6 @@ public class TotalInlandFreightBookingServiceImpl extends ReportGeneratorService
         return null;
 
     }
-
 
     public DataFactory getDataFactory(Map<String, String> params)
     {

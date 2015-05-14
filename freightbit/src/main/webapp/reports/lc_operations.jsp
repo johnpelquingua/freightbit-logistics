@@ -72,7 +72,6 @@
                                 $(function () {
                                     var dateToIdStat = $('#dateToIdStat');
                                     dateToIdStat.datepicker({
-                                        minDate: 0
                                     });
                                 });
                             </script>

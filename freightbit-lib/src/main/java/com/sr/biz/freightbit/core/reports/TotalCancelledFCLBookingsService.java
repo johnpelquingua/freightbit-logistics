@@ -1,4 +1,4 @@
-package com.sr.biz.freightbit.core.service;
+package com.sr.biz.freightbit.core.reports;
 
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
@@ -6,11 +6,11 @@ import org.pentaho.reporting.engine.classic.core.MasterReport;
 import java.util.Map;
 
 /**
- * Created by Kevin on 5/11/2015.
+ * Created by Kevin on 5/13/2015.
  */
-public interface TotalBookingsConsigneeDesService {
+public interface TotalCancelledFCLBookingsService {
     public DataFactory getDataFactory(Map<String, String> params);
     public Map<String, Object> getReportParameters(Map<String, String> params);
     public MasterReport getReportDefinition();
-    public MasterReport generateReport(Map<String,String> params);
+    public MasterReport generateReport(Map<String, String> params);
 }
