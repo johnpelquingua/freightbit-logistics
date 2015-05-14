@@ -36,6 +36,10 @@
             <result name="success" type="tiles">report.inlandFreight_operations.tiles</result>
         </action>
 
+        <action name="viewStatsReports" class="com.sr.apps.freightbit.core.action.ReportAction" method="viewStatsReports">
+            <result name="success" type="tiles">report.StatsReports.tiles</result>
+        </action>
+
         <action name="viewStatistics" class="com.sr.apps.freightbit.core.action.ReportAction" method="viewStatistics">
             <result name="success" type="tiles">report.customer_relation.tiles</result>
         </action>
@@ -43,5 +47,27 @@
         <action name="viewReports" class="com.sr.apps.freightbit.core.action.ReportAction" method="viewReports">
             <result name="success" type="tiles">report.customer_relation.tiles</result>
         </action>
+
+        <action name="getReportAction" class="com.sr.apps.freightbit.core.action.ReportAction" method="getReportAction">
+            <result name="success">/reports/StatsReports.jsp</result>
+            <!--<result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>-->
+        </action>
+
     </package>
+
+    <package name="report" namespace="/reports" extends="json-default">
+
+        <action name="deptTypeDataList" class="com.sr.apps.freightbit.core.action.ReportAction" method="deptTypeDataList">
+            <result type="json">
+                <!--/reports/StatsReports.jsp-->
+            </result>
+        </action>
+
+    </package>
+
 </struts>

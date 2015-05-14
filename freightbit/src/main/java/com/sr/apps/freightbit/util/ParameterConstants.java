@@ -96,6 +96,8 @@ public class ParameterConstants {
 
     public final static String REPORTS = "REPORTS";
 
+    public final static String TYPE = "TYPE";
 
+    public final static String DEPARTMENT = "DEPARTMENT";
 
 }

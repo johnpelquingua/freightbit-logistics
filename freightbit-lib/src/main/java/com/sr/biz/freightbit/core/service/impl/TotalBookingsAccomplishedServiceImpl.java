@@ -38,7 +38,6 @@ public class TotalBookingsAccomplishedServiceImpl extends ReportGeneratorService
 
     }
 
-
     public DataFactory getDataFactory(Map<String, String> params)
     {
         return null;

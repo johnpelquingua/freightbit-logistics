@@ -90,7 +90,7 @@ public abstract class ReportGeneratorService
   {
     // Initialize the reporting engine
     ClassicEngineBoot.getInstance().start();
-	    
+
 	  final MasterReport report = getReportDefinition();
 	  final DataFactory dataFactory = getDataFactory(params);
 

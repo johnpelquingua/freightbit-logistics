@@ -7,6 +7,7 @@ import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.service.*;
 import org.apache.struts2.ServletActionContext;
+import org.pentaho.reporting.engine.classic.core.ClassicEngineBoot;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;
 
@@ -40,11 +41,87 @@ public class ReportAction extends ActionSupport implements Preparable {
     private List<Parameters> LC_statisticsList = new ArrayList<Parameters>();
     private List<Parameters> IFO_statisticsList = new ArrayList<Parameters>();
     private List<Parameters> reportsList = new ArrayList<Parameters>();
+    private List<Parameters> reportsDept = new ArrayList<Parameters>();
+    private List<Parameters> reportsType = new ArrayList<Parameters>();
+    private List<Parameters> reportsStatisticsList = new ArrayList<Parameters>();
+    private Map<String, String> statReportMap = new HashMap<String, String>();
     private String dataParam;
     private Date dateFromParam;
     private Date dateToParam;
+    private String deptNameParam;
+    private String typeNameParam;
+
+    public String deptTypeDataList() {
+
+        System.out.println(deptNameParam);
+        System.out.println(typeNameParam);
+
+        if(deptNameParam.equals("CUSTOMER RELATIONS")){
+            if(typeNameParam.equals("STATISTICS")){
+                for(int i=0; i < statisticsList.size(); i++ ){
+                    System.out.println(statisticsList.get(i).getValue());
+                    statReportMap.put(statisticsList.get(i).getKey(), statisticsList.get(i).getValue() );
+
+                }
+            }else{
+
+            }
+        }
+
+        return SUCCESS;
+    }
+
+    public String viewStatsReports() {
+
+        return SUCCESS;
+    }
+
+    public String getReportAction() {
+
+        System.out.println("REPORT ACTION" +dateFromParam);
+        System.out.println(dateToParam);
+        System.out.println(dataParam);
+
+        /*SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Map<String, String> params = new HashMap();
+        params.put("dateFrom", formatter.format(dateFromParam));
+        params.put("dateTo", formatter.format(dateToParam));
+
+        ByteArrayOutputStream byteArray = null;
+        BufferedOutputStream responseOut = null;
+
+        if(dataParam.equals("TOTAL NUMBER OF BOOKINGS")) {
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Number Of Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }*/
+
+        return SUCCESS;
+    }
 
     public String viewStatistics(){
+
+        System.out.println(dateFromParam);
+        System.out.println(dateToParam);
+        System.out.println(dataParam);
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         Map<String, String> params = new HashMap();
@@ -359,7 +436,8 @@ public class ReportAction extends ActionSupport implements Preparable {
         LC_statisticsList = parameterService.getParameterMap(ParameterConstants.LC_OPERATIONS, ParameterConstants.STATISTICS);
         IFO_statisticsList = parameterService.getParameterMap(ParameterConstants.INLAND_FREIGHT, ParameterConstants.STATISTICS);
         reportsList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_RELATIONS, ParameterConstants.REPORTS);
-
+        reportsDept = parameterService.getParameterMap(ParameterConstants.REPORTS, ParameterConstants.DEPARTMENT);
+        reportsType = parameterService.getParameterMap(ParameterConstants.REPORTS, ParameterConstants.TYPE);
     }
 
     public List<Parameters> getStatisticsList() {
@@ -418,9 +496,13 @@ public class ReportAction extends ActionSupport implements Preparable {
         this.reportsList = reportsList;
     }
 
-    public ParameterService getParameterService() {
+    /*public ParameterService getParameterService() {
         return parameterService;
     }
+
+    public void setParameterService(ParameterService parameterService) {
+        this.parameterService = parameterService;
+    }*/
 
     public void setParameterService(ParameterService parameterService) {
         this.parameterService = parameterService;
@@ -450,59 +532,107 @@ public class ReportAction extends ActionSupport implements Preparable {
         this.dateToParam = dateToParam;
     }
 
-    public TotalBookingsService getTotalBookingsService() {
+/*    public TotalBookingsService getTotalBookingsService() {
         return totalBookingsService;
-    }
+    }*/
 
     public void setTotalBookingsService(TotalBookingsService totalBookingsService) {
         this.totalBookingsService = totalBookingsService;
     }
 
-    public TotalBookingsConsigneeService getTotalBookingsConsigneeService() {
+/*    public TotalBookingsConsigneeService getTotalBookingsConsigneeService() {
         return totalBookingsConsigneeService;
-    }
+    }*/
 
     public void setTotalBookingsConsigneeService(TotalBookingsConsigneeService totalBookingsConsigneeService) {
         this.totalBookingsConsigneeService = totalBookingsConsigneeService;
     }
 
-    public TotalBookingsAccomplishedService getTotalBookingsAccomplishedService() {
+    /*public TotalBookingsAccomplishedService getTotalBookingsAccomplishedService() {
         return totalBookingsAccomplishedService;
-    }
+    }*/
 
     public void setTotalBookingsAccomplishedService(TotalBookingsAccomplishedService totalBookingsAccomplishedService) {
         this.totalBookingsAccomplishedService = totalBookingsAccomplishedService;
     }
 
-    public TotalBookingsCancelledService getTotalBookingsCancelledService() {
+/*    public TotalBookingsCancelledService getTotalBookingsCancelledService() {
         return totalBookingsCancelledService;
-    }
+    }*/
 
     public void setTotalBookingsCancelledService(TotalBookingsCancelledService totalBookingsCancelledService) {
         this.totalBookingsCancelledService = totalBookingsCancelledService;
     }
 
-    public TotalBookingsShipperService getTotalBookingsShipperService() {
+/*    public TotalBookingsShipperService getTotalBookingsShipperService() {
         return totalBookingsShipperService;
-    }
+    }*/
 
     public void setTotalBookingsShipperService(TotalBookingsShipperService totalBookingsShipperService) {
         this.totalBookingsShipperService = totalBookingsShipperService;
     }
 
-    public TotalBookingsShipperDesService getTotalBookingsShipperDesService() {
+/*    public TotalBookingsShipperDesService getTotalBookingsShipperDesService() {
         return totalBookingsShipperDesService;
-    }
+    }*/
 
     public void setTotalBookingsShipperDesService(TotalBookingsShipperDesService totalBookingsShipperDesService) {
         this.totalBookingsShipperDesService = totalBookingsShipperDesService;
-    }
+      }
 
-    public TotalBookingsConsigneeDesService getTotalBookingsConsigneeDesService() {
+    /*public TotalBookingsConsigneeDesService getTotalBookingsConsigneeDesService() {
         return totalBookingsConsigneeDesService;
-    }
+    }*/
 
     public void setTotalBookingsConsigneeDesService(TotalBookingsConsigneeDesService totalBookingsConsigneeDesService) {
         this.totalBookingsConsigneeDesService = totalBookingsConsigneeDesService;
+    }
+
+    public List<Parameters> getReportsDept() {
+        return reportsDept;
+    }
+
+    public void setReportsDept(List<Parameters> reportsDept) {
+        this.reportsDept = reportsDept;
+    }
+
+    public List<Parameters> getReportsType() {
+        return reportsType;
+    }
+
+    public void setReportsType(List<Parameters> reportsType) {
+        this.reportsType = reportsType;
+    }
+
+    public List<Parameters> getReportsStatisticsList() {
+        return reportsStatisticsList;
+    }
+
+    public void setReportsStatisticsList(List<Parameters> reportsStatisticsList) {
+        this.reportsStatisticsList = reportsStatisticsList;
+    }
+
+    public String getDeptNameParam() {
+        return deptNameParam;
+    }
+
+    public void setDeptNameParam(String deptNameParam) {
+        this.deptNameParam = deptNameParam;
+    }
+
+    public String getTypeNameParam() {
+        return typeNameParam;
+    }
+
+    public void setTypeNameParam(String typeNameParam) {
+        this.typeNameParam = typeNameParam;
+    }
+
+    public Map<String, String> getStatReportMap() {
+        return statReportMap;
+    }
+
+    public void setStatReportMap(Map<String, String> statReportMap) {
+        this.statReportMap = statReportMap;
     }
 }

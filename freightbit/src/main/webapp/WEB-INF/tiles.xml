@@ -653,6 +653,10 @@
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/customer_relation.jsp"/>
     </definition>
+    <definition name="report.StatsReports.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Reports Page"/>
+        <put-attribute name="body" value="/reports/StatsReports.jsp"/>
+    </definition>
     <definition name="report.fcl_operations.tiles" extends="baseLayout">
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/fcl_operations.jsp"/>
@@ -693,7 +697,7 @@
         <put-attribute name="body" value="/finance/edit_finance.jsp"/>
     </definition>
 
-    <definition name="operations.contaierList.tiles" extends="baseLayout">
+    <definition name="operations.containerList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Dispatch Item List"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightItemList.jsp"/>
     </definition>

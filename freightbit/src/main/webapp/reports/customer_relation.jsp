@@ -71,7 +71,6 @@
                                     $(function () {
                                         var dateToIdStat = $('#dateToIdStat');
                                         dateToIdStat.datepicker({
-                                            minDate: 0
                                         });
                                     });
                                 </script>
@@ -225,7 +224,6 @@
     });
 
     //The code below is for Statistics Reports
-
     function generateStatistics() {
         var dataVal = $('#dataIdStat').val();
         var dateFromVal = $('#dateFromIdStat').val();
@@ -235,7 +233,8 @@
         var win = window.open('reports/viewStatistics?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
         win.onload = function () {
             if (dataVal == "TOTAL NUMBER OF BOOKINGS") {
-                this.document.title = "Total Number of Bookings";
+                /*this.document.title = "Total Number of Bookings";
+                window.location.href = '#statTab';*/
             }
             else if (dataVal == "TOTAL NUMBER OF BOOKINGS PER CONSIGNEE") {
                 this.document.title = "Total Number of Bookings per Consignee";
@@ -262,7 +261,6 @@
     }
 
     // The code below is for Document Reports
-
     function generateReports() {
         var dataVal = $('#dataIdReports').val();
         var dateFromVal = $('#dateFromIdReports').val();

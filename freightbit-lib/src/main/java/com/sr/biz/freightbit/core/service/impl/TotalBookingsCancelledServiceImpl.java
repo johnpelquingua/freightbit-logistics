@@ -2,6 +2,7 @@ package com.sr.biz.freightbit.core.service.impl;
 
 import com.sr.biz.freightbit.core.service.TotalBookingsCancelledService;
 import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
+import org.pentaho.reporting.engine.classic.core.ClassicEngineBoot;
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.libraries.resourceloader.Resource;
@@ -12,10 +13,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Kevin on 5/11/2015.
- */
 public class TotalBookingsCancelledServiceImpl extends ReportGeneratorService implements TotalBookingsCancelledService{
+
     public MasterReport getReportDefinition()
     {
         try
@@ -37,7 +36,6 @@ public class TotalBookingsCancelledServiceImpl extends ReportGeneratorService im
         return null;
 
     }
-
 
     public DataFactory getDataFactory(Map<String, String> params)
     {
