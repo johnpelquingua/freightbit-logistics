@@ -199,17 +199,25 @@
 
     <bean id="totalLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalLCLBookingsServiceImpl"/>
 
+    <bean id="totalCancelledLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledLCLBookingsServiceImpl"/>
+
     <!--  RCU Operations Reports -->
 
     <bean id="totalRCUBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalRCUBookingsServiceImpl"/>
+
+    <bean id="totalCancelledRCUBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledRCUBookingsServiceImpl"/>
 
     <!--  LC Operations Reports -->
 
     <bean id="totalLCBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalLCBookingsServiceImpl"/>
 
+    <bean id="totalCancelledLCBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledLCBookingsServiceImpl"/>
+
     <!--  Inland Freight Operations Reports -->
 
     <bean id="totalInlandFreightBookingService" class="com.sr.biz.freightbit.reports.service.impl.TotalInlandFreightBookingServiceImpl"/>
+
+    <bean id="totalCancelledTKGBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledTKGBookingsServiceImpl"/>
 
     <bean id="calendarService" class="com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
         <property name="orderDao" ref="orderDao"/>

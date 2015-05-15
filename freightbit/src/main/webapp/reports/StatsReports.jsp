@@ -18,9 +18,6 @@
                           listValue="value" name="dataParam" emptyOption="true" required="true" />
 
             </div>--%>
-            <%--<div class="col-lg-12">
-                <h1 class="col-lg-8">ERNEST LOGISTICS CORPORATION</h1>
-            </div>--%>
 
             <div class="col-lg-12 container">
                 <div class="well well-lg">
@@ -66,12 +63,14 @@
                                 });
                             </script>
                         </div>
-                        <div class="pull-right" style="margin-top: 15px;">
-                            <a class="viewBtnReports btn btn-info" title="View Reports" href="#"> <i class="fa fa-print"></i> View Reports</a>
-                        </div>
 
                     </div>
                 </div>
+
+                <div class="pull-right" style="margin-top: 15px;">
+                    <a class="viewBtnReports btn btn-info" title="View Reports" href="#"> <i class="fa fa-print"></i> View Reports</a>
+                </div>
+
             </div>
 
             <%--<div class="col-lg-12 container">
@@ -152,7 +151,7 @@
                 return false;
             }
             else{
-                $.ajax({
+                /*$.ajax({
                     url: 'getReportAction',
                     async: false,
                     type: 'POST',
@@ -164,7 +163,8 @@
                     error: function(xhr, ajaxOptions, thrownError){
                         alert('An error occurred! ' + thrownError);
                     }
-                });
+                });*/
+                window.open('reports/viewStatistics?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
                 return true;
             }
         });
@@ -215,27 +215,73 @@
                 typeName = $("#reportsType").val() ;
 
             if(typeName != ''){
-                alert(deptName);
-                alert(typeName);
 
                 $.getJSON('deptTypeDataList', {
-                        deptNameParam: deptName,
-                        typeNameParam: typeName
-                    },
+                    deptNameParam: deptName,
+                    typeNameParam: typeName
+                },
 
-                    function (jsonResponse) {
-                        var reportsStatisticsList = $('#reportsStatisticsList');
+                function (jsonResponse) {
+                    var reportsStatisticsList = $('#reportsStatisticsList');
 
-                        reportsStatisticsList.find('option').remove();
+                    reportsStatisticsList.find('option').remove();
 
-                        $.each(jsonResponse.statReportMap, function (key, value) {
-                            $('<option>').val(key).text(value).appendTo(reportsStatisticsList);
-                        });
-
+                    $.each(jsonResponse.statReportMap, function (key, value) {
+                        $('<option>').val(key).text(value).appendTo(reportsStatisticsList);
                     });
+
+                    sortSelect(reportsStatisticsList, 'text', 'asc');
+
+                });
             }
 
         });
+
+        $('#reportsType').change(function () {
+            var deptName = $("#reportsDept").val(),
+                typeName = $("#reportsType").val() ;
+
+            if(deptName != ''){
+
+                $.getJSON('deptTypeDataList', {
+                    deptNameParam: deptName,
+                    typeNameParam: typeName
+                },
+
+                function (jsonResponse) {
+                    var reportsStatisticsList = $('#reportsStatisticsList');
+
+                    reportsStatisticsList.find('option').remove();
+
+                    $.each(jsonResponse.statReportMap, function (key, value) {
+                        $('<option>').val(key).text(value).appendTo(reportsStatisticsList);
+                    });
+
+                    sortSelect(reportsStatisticsList, 'text', 'asc');
+
+                });
+            }
+
+        });
+
+        var sortSelect = function (select, attr, order) {
+            if(attr === 'text'){
+                if(order === 'asc'){
+                    $(select).html($(select).children('option').sort(function (x, y) {
+                        return $(x).text().toUpperCase() < $(y).text().toUpperCase() ? -1 : 1;
+                    }));
+                    $(select).get(0).selectedIndex = 0;
+                    e.preventDefault();
+                }// end asc
+                if(order === 'desc'){
+                    $(select).html($(select).children('option').sort(function (y, x) {
+                        return $(x).text().toUpperCase() < $(y).text().toUpperCase() ? -1 : 1;
+                    }));
+                    $(select).get(0).selectedIndex = 0;
+                    e.preventDefault();
+                }// end desc
+            }
+        };
 
     });
 

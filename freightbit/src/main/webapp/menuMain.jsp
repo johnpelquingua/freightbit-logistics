@@ -110,7 +110,7 @@
         <a href="<s:url action='reports/viewStatsReports' />" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports </a>
     </li>
 
-    <li class="dropdown">
+    <%--<li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="<s:url action='reports/customerRelations'/>"> <i class="fa fa-caret-right fa-fw"></i> Customer Relations</a></li>
@@ -120,7 +120,7 @@
             <li><a href="<s:url action='reports/lcOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> Loose Cargo Operations</a></li>
             <li><a href="<s:url action='reports/inlandFreightOperations'/>"> <i class="fa fa-caret-right fa-fw"></i> Inland Freight Operations</a></li>
         </ul>
-    </li>
+    </li>--%>
 
     <div id="footer-ver2" class="categories">
         <div class="footerwrap-ver2" >

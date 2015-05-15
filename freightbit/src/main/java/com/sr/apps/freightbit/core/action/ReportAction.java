@@ -30,6 +30,10 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalBookingsArchiveService totalBookingsArchiveService;
     private TotalFCLBookingsService totalFCLBookingsService;
     private TotalCancelledFCLBookingsService totalCancelledFCLBookingsService;
+    private TotalCancelledLCLBookingsService totalCancelledLCLBookingsService;
+    private TotalCancelledLCBookingsService totalCancelledLCBookingsService;
+    private TotalCancelledRCUBookingsService totalCancelledRCUBookingsService;
+    private TotalCancelledTKGBookingsService totalCancelledTKGBookingsService;
     private TotalLCLBookingsService totalLCLBookingsService;
     private TotalRCUBookingsService totalRCUBookingsService;
     private TotalLCBookingsService totalLCBookingsService;
@@ -64,7 +68,62 @@ public class ReportAction extends ActionSupport implements Preparable {
 
                 }
             }else{
+                // FOR REPORTS CONDITION
+            }
+        }
+        else if(deptNameParam.equals("FCL OPERATIONS")){
+            if(typeNameParam.equals("STATISTICS")){
+                for(int i=0; i < FCL_statisticsList.size(); i++ ){
+                    System.out.println(FCL_statisticsList.get(i).getValue());
+                    statReportMap.put(FCL_statisticsList.get(i).getKey(), FCL_statisticsList.get(i).getValue() );
 
+                }
+            }else{
+                // FOR REPORTS CONDITION
+            }
+        }
+        else if(deptNameParam.equals("LCL OPERATIONS")){
+            if(typeNameParam.equals("STATISTICS")){
+                for(int i=0; i < LCL_statisticsList.size(); i++ ){
+                    System.out.println(LCL_statisticsList.get(i).getValue());
+                    statReportMap.put(LCL_statisticsList.get(i).getKey(), LCL_statisticsList.get(i).getValue() );
+
+                }
+            }else{
+                // FOR REPORTS CONDITION
+            }
+        }
+        else if(deptNameParam.equals("ROLLING CARGO OPERATIONS")){
+            if(typeNameParam.equals("STATISTICS")){
+                for(int i=0; i < RC_statisticsList.size(); i++ ){
+                    System.out.println(RC_statisticsList.get(i).getValue());
+                    statReportMap.put(RC_statisticsList.get(i).getKey(), RC_statisticsList.get(i).getValue() );
+
+                }
+            }else{
+                // FOR REPORTS CONDITION
+            }
+        }
+        else if(deptNameParam.equals("LOOSE CARGO OPERATIONS")){
+            if(typeNameParam.equals("STATISTICS")){
+                for(int i=0; i < LC_statisticsList.size(); i++ ){
+                    System.out.println(LC_statisticsList.get(i).getValue());
+                    statReportMap.put(LC_statisticsList.get(i).getKey(), LC_statisticsList.get(i).getValue() );
+
+                }
+            }else{
+                // FOR REPORTS CONDITION
+            }
+        }
+        else if(deptNameParam.equals("INLAND FREIGHT")){
+            if(typeNameParam.equals("STATISTICS")){
+                for(int i=0; i < IFO_statisticsList.size(); i++ ){
+                    System.out.println(IFO_statisticsList.get(i).getValue());
+                    statReportMap.put(IFO_statisticsList.get(i).getKey(), IFO_statisticsList.get(i).getValue() );
+
+                }
+            }else{
+                // FOR REPORTS CONDITION
             }
         }
 
@@ -76,45 +135,14 @@ public class ReportAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String getReportAction() {
+    /*public String getReportAction() {
 
         System.out.println("REPORT ACTION" +dateFromParam);
         System.out.println(dateToParam);
         System.out.println(dataParam);
 
-        /*SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
-        Map<String, String> params = new HashMap();
-        params.put("dateFrom", formatter.format(dateFromParam));
-        params.put("dateTo", formatter.format(dateToParam));
-
-        ByteArrayOutputStream byteArray = null;
-        BufferedOutputStream responseOut = null;
-
-        if(dataParam.equals("TOTAL NUMBER OF BOOKINGS")) {
-            try {
-                // Create an output filename
-                final File outputFile = new File("Total Number Of Bookings.pdf");
-                // Generate the report
-                MasterReport report = totalBookingsService.generateReport(params);
-
-                HttpServletResponse response = ServletActionContext.getResponse();
-                responseOut = new BufferedOutputStream(response.getOutputStream());
-                byteArray = new ByteArrayOutputStream();
-
-                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
-                byteArray.writeTo(responseOut);
-
-                byteArray.close();
-                responseOut.close();
-
-            } catch (Exception re) {
-                re.printStackTrace();
-            }
-        }*/
-
         return SUCCESS;
-    }
+    }*/
 
     public String viewStatistics(){
 
@@ -370,6 +398,27 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
+        else if(dataParam.equals("TOTAL CANCELLED LCL BOOKING")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Cancelled LCL Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalCancelledLCLBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
 /*-------------------------------- LCL OPERATIONS REPORT END -------------------------------------------------------------------------*/
 
 /*-------------------------------- RCU OPERATIONS REPORT BEGIN -------------------------------------------------------------------------*/
@@ -379,6 +428,27 @@ public class ReportAction extends ActionSupport implements Preparable {
                 final File outputFile = new File("Total RCU Bookings.pdf");
                 // Generate the report
                 MasterReport report = totalRCUBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("TOTAL NUMBER OF CANCELLED RCU BOOKING")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Cancelled RCU Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalCancelledRCUBookingsService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -418,6 +488,27 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
+        else if(dataParam.equals("TOTAL NUMBER OF CANCELLED LC BOOKING")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Cancelled LC Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalCancelledLCBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
 /*-------------------------------- LC OPERATIONS REPORT END -------------------------------------------------------------------------*/
 
 /*-------------------------------- INLAND FREIGHT REPORT BEGIN -------------------------------------------------------------------------*/
@@ -427,6 +518,27 @@ public class ReportAction extends ActionSupport implements Preparable {
                 final File outputFile = new File("Total Inland Freight Booking.pdf");
                 // Generate the report
                 MasterReport report = totalInlandFreightBookingService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("TOTAL NUMBER OF CANCELLED INLAND FREIGHT BOOKING")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Cancelled Inland Freight Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalCancelledTKGBookingsService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -701,5 +813,21 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public void setTotalCancelledFCLBookingsService(TotalCancelledFCLBookingsService totalCancelledFCLBookingsService) {
         this.totalCancelledFCLBookingsService = totalCancelledFCLBookingsService;
+    }
+
+    public void setTotalCancelledLCLBookingsService(TotalCancelledLCLBookingsService totalCancelledLCLBookingsService) {
+        this.totalCancelledLCLBookingsService = totalCancelledLCLBookingsService;
+    }
+
+    public void setTotalCancelledLCBookingsService(TotalCancelledLCBookingsService totalCancelledLCBookingsService) {
+        this.totalCancelledLCBookingsService = totalCancelledLCBookingsService;
+    }
+
+    public void setTotalCancelledRCUBookingsService(TotalCancelledRCUBookingsService totalCancelledRCUBookingsService) {
+        this.totalCancelledRCUBookingsService = totalCancelledRCUBookingsService;
+    }
+
+    public void setTotalCancelledTKGBookingsService(TotalCancelledTKGBookingsService totalCancelledTKGBookingsService) {
+        this.totalCancelledTKGBookingsService = totalCancelledTKGBookingsService;
     }
 }
