@@ -106,9 +106,9 @@
         </li>
     </sec:authorize>
 
-    <%--<li>
+    <li>
         <a href="<s:url action='reports/viewStatsReports' />" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports </a>
-    </li>--%>
+    </li>
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports <b class="caret"></b></a>

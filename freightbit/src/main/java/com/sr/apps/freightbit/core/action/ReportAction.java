@@ -5,7 +5,7 @@ import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
-import com.sr.biz.freightbit.core.reports.*;
+import com.sr.biz.freightbit.reports.service.*;
 import org.apache.struts2.ServletActionContext;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;

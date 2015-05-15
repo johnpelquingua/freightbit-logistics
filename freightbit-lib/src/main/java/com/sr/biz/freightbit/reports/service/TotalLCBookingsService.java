@@ -1,4 +1,4 @@
-package com.sr.biz.freightbit.core.reports;
+package com.sr.biz.freightbit.reports.service;
 
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;

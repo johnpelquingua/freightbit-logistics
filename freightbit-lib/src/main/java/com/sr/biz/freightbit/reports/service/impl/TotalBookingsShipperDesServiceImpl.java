@@ -1,6 +1,6 @@
-package com.sr.biz.freightbit.core.reports.impl;
+package com.sr.biz.freightbit.reports.service.impl;
 
-import com.sr.biz.freightbit.core.reports.TotalBookingsCancelledService;
+import com.sr.biz.freightbit.reports.service.TotalBookingsShipperDesService;
 import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
@@ -12,15 +12,17 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TotalBookingsCancelledServiceImpl extends ReportGeneratorService implements TotalBookingsCancelledService{
-
+/**
+ * Created by Kevin on 5/11/2015.
+ */
+public class TotalBookingsShipperDesServiceImpl extends ReportGeneratorService implements TotalBookingsShipperDesService{
     public MasterReport getReportDefinition()
     {
         try
         {
             // Get the URL to the reportDefinition file
             final Class classVar = this.getClass();
-            final URL reportDefinitionURL = classVar.getResource("/reports/CRS_Total_Number_Of_Cancelled.prpt");
+            final URL reportDefinitionURL = classVar.getResource("/reports/CRS_Total_Number_Of_Bookings_per_shipper_per_port2.prpt");
 
             // Parse the report file
             final ResourceManager resourceManager = new ResourceManager();
@@ -35,6 +37,7 @@ public class TotalBookingsCancelledServiceImpl extends ReportGeneratorService im
         return null;
 
     }
+
 
     public DataFactory getDataFactory(Map<String, String> params)
     {
