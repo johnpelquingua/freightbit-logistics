@@ -35,7 +35,7 @@
                                       listValue="value" emptyOption="true" />
                         </div>
                         <div class="col-lg-4">
-                            Data
+                            Data Result
                             <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                       id="reportsStatisticsList" list="reportsStatisticsList" listKey="key"
                                       listValue="value" name="dataParam" emptyOption="true" />

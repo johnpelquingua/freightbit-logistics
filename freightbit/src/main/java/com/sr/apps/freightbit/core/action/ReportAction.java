@@ -31,6 +31,7 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalFCLBookingsService totalFCLBookingsService;
     private TotalCancelledFCLBookingsService totalCancelledFCLBookingsService;
     private TotalCancelledLCLBookingsService totalCancelledLCLBookingsService;
+    private TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService;
     private TotalCancelledLCBookingsService totalCancelledLCBookingsService;
     private TotalCancelledRCUBookingsService totalCancelledRCUBookingsService;
     private TotalCancelledTKGBookingsService totalCancelledTKGBookingsService;
@@ -404,6 +405,27 @@ public class ReportAction extends ActionSupport implements Preparable {
                 final File outputFile = new File("Total Cancelled LCL Bookings.pdf");
                 // Generate the report
                 MasterReport report = totalCancelledLCLBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("TOTAL ITEMS") || dataParam.equals("TOTAL ITEMS PER LCL BOOKING") || dataParam.equals("AVERAGE NUMBER OF ITEMS") || dataParam.equals("AVERAGE NUMBER OF ITEMS PER SHIPPER") ){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Items Per LCL Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalItemsPerLCLBookingsService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -829,5 +851,9 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public void setTotalCancelledTKGBookingsService(TotalCancelledTKGBookingsService totalCancelledTKGBookingsService) {
         this.totalCancelledTKGBookingsService = totalCancelledTKGBookingsService;
+    }
+
+    public void setTotalItemsPerLCLBookingsService(TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService) {
+        this.totalItemsPerLCLBookingsService = totalItemsPerLCLBookingsService;
     }
 }
