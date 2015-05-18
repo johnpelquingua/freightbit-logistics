@@ -32,6 +32,7 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalCancelledFCLBookingsService totalCancelledFCLBookingsService;
     private TotalCancelledLCLBookingsService totalCancelledLCLBookingsService;
     private TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService;
+    private TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService;
     private TotalCancelledLCBookingsService totalCancelledLCBookingsService;
     private TotalCancelledRCUBookingsService totalCancelledRCUBookingsService;
     private TotalCancelledTKGBookingsService totalCancelledTKGBookingsService;
@@ -426,6 +427,27 @@ public class ReportAction extends ActionSupport implements Preparable {
                 final File outputFile = new File("Total Items Per LCL Bookings.pdf");
                 // Generate the report
                 MasterReport report = totalItemsPerLCLBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("AVERAGE CUBIC METRE (CBM)") || dataParam.equals("AVERAGE CUBIC METRE (CBM) PER SHIPPER") || dataParam.equals("TOTAL CUBIC METRE (CBM)") || dataParam.equals("TOTAL CUBIC METRE (CBM) PER LCL BOOKING") ){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Cubic Metre Per LCL Bookings.pdf");
+                // Generate the report
+                MasterReport report = totalCubicMetrePerLCLBookingsService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -855,5 +877,9 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public void setTotalItemsPerLCLBookingsService(TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService) {
         this.totalItemsPerLCLBookingsService = totalItemsPerLCLBookingsService;
+    }
+
+    public void setTotalCubicMetrePerLCLBookingsService(TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService) {
+        this.totalCubicMetrePerLCLBookingsService = totalCubicMetrePerLCLBookingsService;
     }
 }
