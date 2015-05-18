@@ -193,6 +193,10 @@
 
     <bean id="totalFCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalFCLBookingsServiceImpl"/>
 
+    <bean id="totalFCLVansService" class="com.sr.biz.freightbit.reports.service.impl.TotalFCLVansServiceImpl"/>
+
+    <bean id="totalFCLVansConsigneeService" class="com.sr.biz.freightbit.reports.service.impl.TotalFCLVansConsigneeServiceImpl"/>
+
     <bean id="totalCancelledFCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledFCLBookingsServiceImpl"/>
 
     <!--  LCL Operations Reports -->
@@ -220,6 +224,8 @@
     <!--  Inland Freight Operations Reports -->
 
     <bean id="totalInlandFreightBookingService" class="com.sr.biz.freightbit.reports.service.impl.TotalInlandFreightBookingServiceImpl"/>
+
+    <bean id="totalInlandFreightBookingConsigneeService" class="com.sr.biz.freightbit.reports.service.impl.TotalInlandFreightBookingConsigneeServiceImpl"/>
 
     <bean id="totalCancelledTKGBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledTKGBookingsServiceImpl"/>
 
