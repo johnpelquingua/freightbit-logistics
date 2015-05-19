@@ -35,6 +35,7 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalCancelledLCLBookingsService totalCancelledLCLBookingsService;
     private TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService;
     private TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService;
+    private AvgItemsPerLCLBookingsService avgItemsPerLCLBookingsService;
     private TotalCancelledLCBookingsService totalCancelledLCBookingsService;
     private TotalCancelledRCUBookingsService totalCancelledRCUBookingsService;
     private TotalCancelledTKGBookingsService totalCancelledTKGBookingsService;
@@ -510,6 +511,27 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
+        else if(dataParam.equals("AVERAGE NUMBER OF ITEMS PER SHIPPER PER PORT OF DESTINATION")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Average Number Of Items Per Shipper Per Destination .pdf");
+                // Generate the report
+                MasterReport report = avgItemsPerLCLBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
 /*-------------------------------- LCL OPERATIONS REPORT END -------------------------------------------------------------------------*/
 
 /*-------------------------------- RCU OPERATIONS REPORT BEGIN -------------------------------------------------------------------------*/
@@ -963,5 +985,9 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public void setTotalCubicMetrePerLCLBookingsService(TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService) {
         this.totalCubicMetrePerLCLBookingsService = totalCubicMetrePerLCLBookingsService;
+    }
+
+    public void setAvgItemsPerLCLBookingsService(AvgItemsPerLCLBookingsService avgItemsPerLCLBookingsService) {
+        this.avgItemsPerLCLBookingsService = avgItemsPerLCLBookingsService;
     }
 }

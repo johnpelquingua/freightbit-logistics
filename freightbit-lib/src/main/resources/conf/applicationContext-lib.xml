@@ -209,6 +209,8 @@
 
     <bean id="totalCubicMetrePerLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCubicMetrePerLCLBookingsServiceImpl"/>
 
+    <bean id="avgItemsPerLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.AvgItemsPerLCLBookingsServiceImpl"/>
+
     <!--  RCU Operations Reports -->
 
     <bean id="totalRCUBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalRCUBookingsServiceImpl"/>
