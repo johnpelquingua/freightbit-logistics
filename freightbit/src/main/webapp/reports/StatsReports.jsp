@@ -134,6 +134,48 @@
 
 <script>
 
+    var fromDate = $('#dateFromIdStat');
+    var toDate = $('#dateToIdStat');
+
+    fromDate.datepicker({
+        timeFormat: 'h:mm TT',
+        format : 'd.m.Y',
+        maxDate: "+9m +9w",
+
+        onClose: function(dateText, inst) {
+            if (toDate.val() != '') {
+                var testStartDate = fromDate.datetimepicker('getDate'),
+                        testEndDate = toDate.datetimepicker('getDate');
+
+                if (testStartDate > testEndDate)
+                    toDate.datetimepicker('setDate', testStartDate);
+            }
+        },
+
+        onSelect: function (selectedDateTime){
+            toDate.datetimepicker('option', 'minDate', fromDate.datetimepicker('getDate'));
+        }
+    });
+
+    toDate.datepicker({
+        timeFormat: 'h:mm TT',
+        minDate: 0,
+
+        onClose: function(dateText, inst) {
+            if (fromDate.val() != '') {
+                var testStartDate = fromDate.datetimepicker('getDate');
+                var testEndDate = toDate.datetimepicker('getDate');
+
+                if (testStartDate > testEndDate)
+                    fromDate.datetimepicker('setDate', testEndDate);
+            }
+        },
+
+        onSelect: function (selectedDateTime){
+            fromDate.datetimepicker('option', 'maxDate', toDate.datetimepicker('getDate') );
+        }
+    });
+
     $(document).ready(function(){
 
         $('.viewBtnReports').click(function(){
