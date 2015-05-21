@@ -70,7 +70,7 @@
 
             <div class="panel-body">
                 <div class="table-responsive table-responsive-scroll" id="no-more-tables">
-                        <display:table id="order" name="orders" requestURI="viewOrders.action" pagesize="10" class="table table-scroll table-hover table-bordered text-center tablesorter"
+                        <display:table id="order" name="orders" requestURI="viewArchivedOrders.action" pagesize="10" class="table table-scroll table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 
                             <td><display:column property="orderDate" title="Order Dates <i class='fa fa-sort' />" class="tb-font-black" scope="Order Dates"
