@@ -31,6 +31,7 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalFCLBookingsService totalFCLBookingsService;
     private TotalFCLVansService totalFCLVansService;
     private TotalFCLVansConsigneeService totalFCLVansConsigneeService;
+    private TotalFCLVansShipperPortService totalFCLVansShipperPortService;
     private TotalCancelledFCLBookingsService totalCancelledFCLBookingsService;
     private TotalCancelledLCLBookingsService totalCancelledLCLBookingsService;
     private TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService;
@@ -39,11 +40,13 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalCancelledLCBookingsService totalCancelledLCBookingsService;
     private TotalCancelledRCUBookingsService totalCancelledRCUBookingsService;
     private TotalCancelledTKGBookingsService totalCancelledTKGBookingsService;
+    private TotalCancelledTKGBookingsConsigneeService totalCancelledTKGBookingsConsigneeService;
     private TotalLCLBookingsService totalLCLBookingsService;
     private TotalRCUBookingsService totalRCUBookingsService;
     private TotalLCBookingsService totalLCBookingsService;
     private TotalInlandFreightBookingService totalInlandFreightBookingService;
     private TotalInlandFreightBookingConsigneeService totalInlandFreightBookingConsigneeService;
+    private TotalInlandFreightBookingVansService totalInlandFreightBookingVansService;
     private List<Parameters> statisticsList = new ArrayList<Parameters>();
     private List<Parameters> FCL_statisticsList = new ArrayList<Parameters>();
     private List<Parameters> LCL_statisticsList = new ArrayList<Parameters>();
@@ -403,6 +406,28 @@ public class ReportAction extends ActionSupport implements Preparable {
             }
         }
 
+        else if(dataParam.equals("TOTAL CONTAINER VANS PER SHIPPER PER PORT OF DESTINATION")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Container Vans Per Shipeer Per Port of Destination.pdf");
+                // Generate the report
+                MasterReport report = totalFCLVansShipperPortService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+
         else if(dataParam.equals("TOTAL CANCELLED FCL BOOKINGS")){
             try {
                 // Create an output filename
@@ -669,12 +694,78 @@ public class ReportAction extends ActionSupport implements Preparable {
             }
         }
 
+        else if(dataParam.equals("TOTAL CONTAINER VANS PER INLAND FREIGHT BOOKING")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Container Vans per Inland Freight Booking.pdf");
+                // Generate the report
+                MasterReport report = totalInlandFreightBookingVansService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+
+        else if(dataParam.equals("TOTAL CONTAINER VANS PER INLAND FREIGHT BOOKING PER SHIPPER")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Container Vans per Inland Freight Booking.pdf");
+                // Generate the report
+                MasterReport report = totalInlandFreightBookingVansService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+
         else if(dataParam.equals("TOTAL NUMBER OF CANCELLED INLAND FREIGHT BOOKING")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Cancelled Inland Freight Bookings.pdf");
                 // Generate the report
                 MasterReport report = totalCancelledTKGBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+
+        else if(dataParam.equals("TOTAL NUMBER OF CANCELLED INLAND FREIGHT BOOKING PER CONSIGNEE")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Cancelled Inland Freight Bookings Per Consignee.pdf");
+                // Generate the report
+                MasterReport report = totalCancelledTKGBookingsConsigneeService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -939,6 +1030,10 @@ public class ReportAction extends ActionSupport implements Preparable {
         this.totalFCLVansConsigneeService = totalFCLVansConsigneeService;
     }
 
+    public void setTotalFCLVansShipperPortService(TotalFCLVansShipperPortService totalFCLVansShipperPortService) {
+        this.totalFCLVansShipperPortService = totalFCLVansShipperPortService;
+    }
+
     public void setTotalLCLBookingsService(TotalLCLBookingsService totalLCLBookingsService) {
         this.totalLCLBookingsService = totalLCLBookingsService;
     }
@@ -977,6 +1072,14 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public void setTotalCancelledTKGBookingsService(TotalCancelledTKGBookingsService totalCancelledTKGBookingsService) {
         this.totalCancelledTKGBookingsService = totalCancelledTKGBookingsService;
+    }
+
+    public void setTotalCancelledTKGBookingsConsigneeService(TotalCancelledTKGBookingsConsigneeService totalCancelledTKGBookingsConsigneeService) {
+        this.totalCancelledTKGBookingsConsigneeService = totalCancelledTKGBookingsConsigneeService;
+    }
+
+    public void setTotalInlandFreightBookingVansService(TotalInlandFreightBookingVansService totalInlandFreightBookingVansService) {
+        this.totalInlandFreightBookingVansService = totalInlandFreightBookingVansService;
     }
 
     public void setTotalItemsPerLCLBookingsService(TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService) {

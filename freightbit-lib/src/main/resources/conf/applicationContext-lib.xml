@@ -197,6 +197,8 @@
 
     <bean id="totalFCLVansConsigneeService" class="com.sr.biz.freightbit.reports.service.impl.TotalFCLVansConsigneeServiceImpl"/>
 
+    <bean id="totalFCLVansShipperPortService" class="com.sr.biz.freightbit.reports.service.impl.TotalFCLVansShipperPortServiceImpl"/>
+
     <bean id="totalCancelledFCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledFCLBookingsServiceImpl"/>
 
     <!--  LCL Operations Reports -->
@@ -229,7 +231,11 @@
 
     <bean id="totalInlandFreightBookingConsigneeService" class="com.sr.biz.freightbit.reports.service.impl.TotalInlandFreightBookingConsigneeServiceImpl"/>
 
+    <bean id="totalInlandFreightBookingVansService" class="com.sr.biz.freightbit.reports.service.impl.TotalInlandFreightBookingVansServiceImpl"/>
+
     <bean id="totalCancelledTKGBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledTKGBookingsServiceImpl"/>
+
+    <bean id="totalCancelledTKGBookingsConsigneeService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledTKGBookingsConsigneeServiceImpl"/>
 
     <bean id="calendarService" class="com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
         <property name="orderDao" ref="orderDao"/>

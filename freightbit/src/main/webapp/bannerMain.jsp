@@ -43,7 +43,7 @@
             <li><a href="core/loadGeneralSettings"><i class="fa fa-gear"></i> General Settings</a></li>
             </sec:authorize>
             <li class="divider"></li>
-            <li><a href="<c:url value='../j_spring_security_logout'/>"> <i class="fa fa-power-off"></i> Log Out</a></li>
+            <li><a href="<c:url value='j_spring_security_logout'/>"> <i class="fa fa-power-off"></i> Log Out</a></li>
         </ul>
     </li>
 
