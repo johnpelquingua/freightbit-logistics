@@ -169,7 +169,7 @@ public class ReportAction extends ActionSupport implements Preparable {
         BufferedOutputStream responseOut = null;
 
 /*-------------------------------- CUSTOMER RELATIONS REPORT BEGIN -------------------------------------------------------------------------*/
-        if(dataParam.equals("TOTAL NUMBER OF BOOKINGS")) {
+        if(dataParam.equals("TOTAL BOOKINGS")) {
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Number Of Bookings.pdf");
@@ -190,7 +190,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL NUMBER OF BOOKINGS PER CONSIGNEE")){
+        else if(dataParam.equals("TOTAL BOOKINGS PER CONSIGNEE")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Number of Bookings per Consignee.pdf");
@@ -211,7 +211,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL NUMBER OF ACCOMPLISHED (ARCHIVED) BOOKINGS")){
+        else if(dataParam.equals("TOTAL ACCOMPLISHED (ARCHIVED) BOOKINGS")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Number of Accomplished (Archived) Bookings.pdf");
@@ -232,7 +232,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL NUMBER OF CANCELLED BOOKINGS")){
+        else if(dataParam.equals("TOTAL CANCELLED BOOKINGS")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Number of Cancelled Bookings.pdf");
@@ -253,7 +253,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL NUMBER OF BOOKINGS PER SHIPPER")){
+        else if(dataParam.equals("TOTAL BOOKINGS PER SHIPPER")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Number of Bookings per Shipper.pdf");
@@ -274,7 +274,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL NUMBER OF BOOKINGS PER SHIPPER PER PORT OF DESTINATION")){
+        else if(dataParam.equals("TOTAL BOOKINGS PER SHIPPER PER PORT OF DESTINATION")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Number of Bookings per Shipper Per Port of Destination.pdf");
@@ -295,7 +295,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL NUMBER OF BOOKINGS PER CONSIGNEE PER PORT OF DESTINATION")){
+        else if(dataParam.equals("TOTAL BOOKINGS PER CONSIGNEE PER PORT OF DESTINATION")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Number of Bookings per Consignee Per Port of Destination.pdf");
@@ -362,7 +362,7 @@ public class ReportAction extends ActionSupport implements Preparable {
             }
         }
 
-        else if(dataParam.equals("TOTAL CONTAINER VANS")){
+        else if(dataParam.equals("TOTAL CONTAINER VANS PER SHIPPER")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total FCL Container Vans.pdf");
@@ -494,7 +494,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL ITEMS") || dataParam.equals("TOTAL ITEMS PER LCL BOOKING") || dataParam.equals("AVERAGE NUMBER OF ITEMS") || dataParam.equals("AVERAGE NUMBER OF ITEMS PER SHIPPER") ){
+        else if(dataParam.equals("TOTAL ITEMS PER LCL BOOKING")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Items Per LCL Bookings.pdf");
@@ -515,7 +515,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("AVERAGE CUBIC METRE (CBM)") || dataParam.equals("AVERAGE CUBIC METRE (CBM) PER SHIPPER") || dataParam.equals("TOTAL CUBIC METRE (CBM)") || dataParam.equals("TOTAL CUBIC METRE (CBM) PER LCL BOOKING") ){
+        else if(dataParam.equals("TOTAL CUBIC METER PER SHIPPER PER PORT OF DESTINATION") || dataParam.equals("TOTAL CUBIC METER PER CONSIGNEE PER PORT OF DESTINATION")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Cubic Metre Per LCL Bookings.pdf");
@@ -536,7 +536,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("AVERAGE NUMBER OF ITEMS PER SHIPPER PER PORT OF DESTINATION")){
+        else if(dataParam.equals("TOTAL ITEMS PER SHIPPER PER PORT OF DESTINATION")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Average Number Of Items Per Shipper Per Destination .pdf");
@@ -581,7 +581,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL NUMBER OF CANCELLED RCU BOOKING")){
+        else if(dataParam.equals("TOTAL CANCELLED RCU BOOKING")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Cancelled RCU Bookings.pdf");
@@ -605,7 +605,7 @@ public class ReportAction extends ActionSupport implements Preparable {
 /*-------------------------------- RCU OPERATIONS REPORT END -------------------------------------------------------------------------*/
 
 /*-------------------------------- LC OPERATIONS REPORT BEGIN -------------------------------------------------------------------------*/
-        else if(dataParam.equals("TOTAL NUMBER OF LC BOOKINGS")){
+        else if(dataParam.equals("TOTAL LC BOOKINGS")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Number of LC Bookings.pdf");
@@ -626,7 +626,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL NUMBER OF CANCELLED LC BOOKING")){
+        else if(dataParam.equals("TOTAL CANCELLED LC BOOKING")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Cancelled LC Bookings.pdf");
@@ -738,7 +738,7 @@ public class ReportAction extends ActionSupport implements Preparable {
             }
         }
 
-        else if(dataParam.equals("TOTAL NUMBER OF CANCELLED INLAND FREIGHT BOOKING")){
+        else if(dataParam.equals("TOTAL CANCELLED INLAND FREIGHT BOOKING")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Cancelled Inland Freight Bookings.pdf");
@@ -760,7 +760,7 @@ public class ReportAction extends ActionSupport implements Preparable {
             }
         }
 
-        else if(dataParam.equals("TOTAL NUMBER OF CANCELLED INLAND FREIGHT BOOKING PER CONSIGNEE")){
+        else if(dataParam.equals("TOTAL CANCELLED INLAND FREIGHT BOOKING PER CONSIGNEE")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Cancelled Inland Freight Bookings Per Consignee.pdf");

@@ -245,19 +245,24 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
         //To check if status is either Arrived or Delivered the counter will increase by 1.
         Integer checkAllStatus = 0;
-        for (OrderItems orderItemsElem : orderItemEntityList) {
-            if(orderItemsElem.getStatus().equals("ARRIVED") || orderItemsElem.getStatus().equals("DELIVERED")){
-                checkAllStatus = checkAllStatus + 1;
-            }
-            else if(orderItemsElem.getStatus().equals("RETURNED TO ORIGIN")) {
-                orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
-                orderService.updateOrder(orderEntity);
-                return SUCCESS;
+        List<OrderItems> orderItemListing = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+        for (OrderItems orderItemsElem : orderItemListing) {
+            List<OrderStatusLogs> statusLogsEntity = orderStatusLogsService.findAllShipmentLogs(orderItemsElem.getOrderItemId());
+            for(OrderStatusLogs statusLogsElem: statusLogsEntity){
+                if (statusLogsElem.getStatus().equals("ARRIVED") || statusLogsElem.getStatus().equals("DELIVERED")){
+                    checkAllStatus = checkAllStatus + 1;
+                }
+                else if(statusLogsElem.getStatus().equals("RETURNED TO ORIGIN")) {
+                    orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
+                    orderService.updateOrder(orderEntity);
+                    return SUCCESS;
+                }
             }
         }
 
+
         //If the order items status is either Arrived or Delivered, the service can be accomplished.
-        if(orderItemEntityList.size() == checkAllStatus && orderItemEntityList.size() >= 1){
+        if(checkAllStatus >= 1){
             orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
             orderService.updateOrder(orderEntity);
             return SUCCESS;
