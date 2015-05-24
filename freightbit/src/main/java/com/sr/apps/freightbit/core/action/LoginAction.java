@@ -4,10 +4,13 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
+import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.service.UserService;
+import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
@@ -75,6 +78,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private OperationsService operationsService;
     private OrderStatusLogsService orderStatusLogsService;
     private NotificationService notificationService;
+    private CustomerService customerService;
     private OrderService orderService;
     private ParameterService parameterService;
     public BigInteger Booking, Customer , User , Vendor , AllNotification;
@@ -184,11 +188,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
         OrderBean formBean = new OrderBean();
         formBean.setOrderNumber(entity.getOrderNumber());
-        //get shipper's name
+
+        Customer shipperName = customerService.findCustomerById(entity.getCustomerId());
+
+        formBean.setCustomerId(shipperName.getCustomerId());
+        formBean.setCustomerName(shipperName.getCustomerName());
+
+        Contacts consigneeContactName = customerService.findContactById(entity.getConsigneeContactId());
+
+        formBean.setConsigneeName(consigneeContactName.getCompanyName());
+
         formBean.setServiceRequirement(entity.getServiceRequirement());
         formBean.setModeOfService(entity.getServiceMode());
-
-        //formBean.setConsigneeCode(entity.getConsigneeCode());
         formBean.setOrderId(entity.getOrderId());
 
         List <OrderItems> orderItemsVolume = orderService.findAllItemByOrderId(entity.getOrderId());
@@ -215,17 +226,59 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
         formBean.setOrderStatus(entity.getOrderStatus());
         formBean.setFreightType(entity.getServiceType());
-        formBean.setOriginationPort(entity.getOriginationPort());
+        /*formBean.setOriginationPort(entity.getOriginationPort());*/
         formBean.setModeOfPayment(entity.getPaymentMode());
         formBean.setNotifyBy(entity.getNotificationType());
         formBean.setOrderDate(entity.getOrderDate());
-        formBean.setDestinationPort(entity.getDestinationPort());
+
+        /*if(entity.getDestinationPort().equals(null)){
+            formBean.setDestinationPort("NONE");
+        }else{
+            formBean.setDestinationPort(entity.getDestinationPort());
+        }*/
+
+        if(entity.getOriginationPort() != null){
+            formBean.setOriginationPort(entity.getOriginationPort());
+        }else if(entity.getServiceMode().equals("DELIVERY")){
+            formBean.setOriginationPort("NOT APPLICABLE");
+        }else{
+            formBean.setOriginationPort("NONE");
+        }
+
+        if(entity.getDestinationPort() != null){
+            formBean.setDestinationPort(entity.getDestinationPort());
+        }else if(entity.getServiceMode().equals("PICKUP")){
+            formBean.setDestinationPort("NOT APPLICABLE");
+        }else{
+            formBean.setDestinationPort("NONE");
+        }
+
         formBean.setRates(entity.getRates());
         formBean.setComments(entity.getComments());
         formBean.setPickupDate(entity.getPickupDate());
         formBean.setDeliveryDate(entity.getDeliveryDate());
 
         return formBean;
+    }
+
+    private String getFullName(Contacts contactName) {
+        if (contactName != null) {
+            String lastName = contactName.getLastName();
+            String firstName = contactName.getFirstName();
+            String middleName = contactName.getMiddleName();
+            StringBuilder fullName = new StringBuilder("");
+            if (StringUtils.isNotBlank(lastName)) {
+                fullName.append(lastName + ", ");
+            }
+            if (StringUtils.isNotBlank(firstName)) {
+                fullName.append(firstName + " ");
+            }
+            if (StringUtils.isNotBlank(middleName)) {
+                fullName.append(middleName);
+            }
+            return fullName.toString();
+        }
+        return "";
     }
 
     public String getUsername() {
@@ -611,5 +664,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     public void setOrderStatusLogsService(OrderStatusLogsService orderStatusLogsService) {
         this.orderStatusLogsService = orderStatusLogsService;
+    }
+
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
     }
 }

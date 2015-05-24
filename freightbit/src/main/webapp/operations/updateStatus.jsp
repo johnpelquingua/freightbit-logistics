@@ -3,15 +3,6 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<s:if test="hasActionMessages()">
-    <div class="col-lg-12">
-        <div class="alert alert-success" id="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-        </div>
-    </div>
-</s:if>
-
 <div class="row">
     <div class="col-lg-12">
 
@@ -60,6 +51,15 @@
     </div>
 </div>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success" id="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
 <div class="col-lg-12">
 <div class="table-responsive list-table">
@@ -73,6 +73,7 @@
     </tr>
 </table>
 </div>
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
@@ -215,8 +216,8 @@
                               emptyOption="true"
                               required="true" />--%>
 
-                    <input list="allFreightStatusList" id="planningStatus" name="orderStatusLogsBean.status" class="statusDropdown form-control" required="true"/>
-                    <datalist id="allFreightStatusList">
+                    <input list="allFreightStatusList" id="planningStatusDataList" name="orderStatusLogsBean.status" class="form-control" required="true"/>
+                    <datalist id="allFreightStatusList" class="statusDropdown">
                         <s:iterator value="allFreightStatusList">
                             <option id="<s:property />" value="<s:property />" />
                         </s:iterator>
@@ -364,7 +365,6 @@
             for (var i = 0; i < shipTable.size(); i++) {
                 if(shipTable.eq(i).text() != 'CANCELLED' && shipTable.eq(i).text() != 'PENDING'){
                     $('.statusDropdown option[value="' + shipTable.eq(i).text() + '"]').remove();
-                    /*$('#planningStatusDataList option[value="' + shipTable.eq(i).text() + '"]').remove();*/
                 }
             }
         }

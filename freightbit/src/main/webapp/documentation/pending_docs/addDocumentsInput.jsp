@@ -83,8 +83,10 @@
             <div class="commentsField">
                 <label class="col-lg-4 control-label" style="text-align: right; clear:both;">Comments</label>
                 <div class="col-lg-8" >
-                    <s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
-                        id="document_documentComments" maxLength="255" data-toggle="tooltip" data-placement="left" title='e.g. "Change this with sample comments" <br/> "Another sample"' data-html="true"/>
+                    <%--<s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
+                        id="document_documentComments" maxLength="255" data-toggle="tooltip" data-placement="left" title='e.g. "Change this with sample comments" <br/> "Another sample"' data-html="true"/>--%>
+                        <s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
+                                    id="document_documentComments" maxLength="255" />
                 </div>
             </div>
 
@@ -232,7 +234,7 @@
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }else{
-                        if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER'){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' ||  $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }
@@ -250,7 +252,7 @@
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }else{
-                        if($('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION'){
+                        if($('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }

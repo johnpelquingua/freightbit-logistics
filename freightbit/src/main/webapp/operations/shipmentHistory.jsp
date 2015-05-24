@@ -3,15 +3,6 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<s:if test="hasActionMessages()">
-    <div class="col-lg-12">
-        <div class="alert alert-success" id="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-        </div>
-    </div>
-</s:if>
-
 <div class="row">
     <div class="col-lg-12">
 
@@ -61,20 +52,31 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
-            <div class="table-responsive list-table">
-                <table class="vendorTable table table-striped table-hover table-bordered text-center tablesorter" id="orderItems" style="display: none;">
-            <s:iterator value="orderItemListings" var="orderItem">
-                <s:hidden value="orderItemId"/>
-                <s:hidden cssClass="serviceMode" value="%{order.modeOfService}"></s:hidden>
-                <tr>
-                    <td><s:property value="vendorName"></s:property></td>
-                    <td><s:property value="vendorOriginName"></s:property></td>
-                    <td><s:property value="vendorDestinationName"></s:property></td>
-                </tr>
-            </s:iterator>
-                </table>
+
+    <s:if test="hasActionMessages()">
+        <div class="col-lg-12">
+            <div class="alert alert-success" id="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
             </div>
+        </div>
+    </s:if>
+
+    <div class="col-lg-12">
+        <div class="table-responsive list-table">
+            <table class="vendorTable table table-striped table-hover table-bordered text-center tablesorter" id="orderItems" style="display: none;">
+                <s:iterator value="orderItemListings" var="orderItem">
+                    <s:hidden value="orderItemId"/>
+                    <s:hidden cssClass="serviceMode" value="%{order.modeOfService}"></s:hidden>
+                    <tr>
+                        <td><s:property value="vendorName"></s:property></td>
+                        <td><s:property value="vendorOriginName"></s:property></td>
+                        <td><s:property value="vendorDestinationName"></s:property></td>
+                    </tr>
+                </s:iterator>
+            </table>
+        </div>
+
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
@@ -240,8 +242,8 @@
                               required="true"
                             />--%>
 
-                    <input list="allFreightStatusList" id="planningStatus" name="orderStatusLogsBean.status" class="statusDropdown form-control" required="true"/>
-                    <datalist id="allFreightStatusList">
+                    <input list="allFreightStatusList" id="planningStatus" name="orderStatusLogsBean.status" class="form-control" required="true"/>
+                    <datalist id="allFreightStatusList" class="statusDropdown">
                         <s:iterator value="allFreightStatusList">
                             <option id="<s:property />" value="<s:property />" />
                         </s:iterator>
@@ -379,27 +381,7 @@
 </div>
 </s:form>
 <script type="text/javascript">
-    /*function checkUpStatus(){
-        if($('.statusDropdown').val() == 'DELIVERED'){
-            $('#deliveryModal').modal('toggle');
-            $('#modalTrigger').click()
-        }
-        else if($('.statusDropdown').val() == 'PICKUP'){
-            $('#pickupModal').modal('toggle');
-            $('#modalTrigger').click()
-        }
-        else if($('.statusDropdown').val() == 'ARRIVED'){
-            $('#inTransitModal').modal('toggle');
-            $('#modalTrigger').click()
-        }
-        else if($('.statusDropdown').val() == 'IN-TRANSIT'){
-            $('#arrivedModal').modal('toggle');
-            $('#modalTrigger').click()
-        }
-        else{
-            $('form').submit()
-        }
-    }*/
+
     $(document).ready(function() {
         var shipTable = $('.shipmentMonitoringTable tbody tr td:nth-child(3)');
         if (shipTable.size()) {
@@ -412,7 +394,6 @@
     });
 
     $(document).ready(function(){
-//        confirmStatusMsg();
         planningWarningMsg();
         validationForm('statusDropdown','submitBtn');
     });

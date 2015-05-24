@@ -85,6 +85,29 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
+    public List<Orders> findAllOrdersDocumentsArchived() {
+
+        List<String> statusList = new ArrayList<>();
+
+        statusList.add("ON GOING");
+        statusList.add("SERVICE ACCOMPLISHED");
+        statusList.add("SERVICE ACCOMPLISHED - ARCHIVED");
+
+        log.debug("Finding orders with filter");
+        try {
+            log.debug("Finding orders succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus in(:statusList) order by createdTimestamp desc");
+            query.setParameterList("statusList", statusList);
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding orders failed");
+            throw e;
+        }
+
+    }
+
+    @Override
     public void addDocuments(Documents documents) {
         log.debug("Add Documents");
         try{

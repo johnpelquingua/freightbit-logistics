@@ -1423,7 +1423,7 @@ function lclHideVesselSchedule(){
     // THIRD STEP (OPTIONAL) - START (this steps determines if there are any schedules left in the table
     var visibleRow = $('.lclConsolidateSchedule tbody tr').size() - $('.lclConsolidateSchedule tbody tr[style="display: none;"]').size();
     if(visibleRow != 0){
-        $('.consolidateLoadingDiv').append('Pulling up Schedules. Please Wait.<br/><i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>').hide();
+        $('.consolidateLoadingDiv').append('Pulling up Schedules. Please Wait.<br/><i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-repeat fa-spin"></i>').hide();
         $('.consolidateTableDiv').fadeIn();
     }else{
         $('.consolidateLoadingDiv').empty().append('<h3><i class="fa fa-warning" style="color: #ff0000"></i> No schedules found</h3><i><span style="color: red;">*</span> Please make sure you have existing/matching schedule(s).<br/>Click <a href="/operations/loadAddVesselSchedule">here</a> to create schedule(s)</i>').show();

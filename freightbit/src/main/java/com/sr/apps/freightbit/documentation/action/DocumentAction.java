@@ -59,6 +59,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private List<DocumentsBean> archiveDocuments = new ArrayList<DocumentsBean>();
     private List<DocumentsBean> billingDocuments = new ArrayList<DocumentsBean>();
     private List<DocumentsBean> confirmDocuments = new ArrayList<DocumentsBean>();
+    private List<Parameters> orderSearchList = new ArrayList<Parameters>();
     private OrderBean order = new OrderBean();
     private DriverBean driver = new DriverBean();
     private ContactBean contact = new ContactBean();
@@ -151,6 +152,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     @Override
     public void prepare() throws Exception{
+        orderSearchList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.ORDER_SEARCH);
         documentQuantity = new ArrayList<Integer>();
         for (int i=1; i <=10; i++) {
             documentQuantity.add(i);
@@ -158,25 +160,111 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewArchivedDocuments() {
+        int customerId = 0;
+        if( commonUtils.getCustomerIdFromSession()!= null ){
+            customerId = commonUtils.getCustomerIdFromSession();
+        }else{
+            customerId = getClientId();
+        }
 
-        List<Orders> orderEntityList = new ArrayList<Orders>();
+        String column = getColumnFilter();
+        List<Documents> documentEntityList = new ArrayList<Documents>();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
-        orderEntityList = documentsService.findAllOrdersDocumentation();
+        if(StringUtils.isNotBlank(column)){
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> column " + column);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> keyword " + order.getOrderKeyword());
 
-        for(Orders orderElem : orderEntityList){
-            List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+            if(column.equals("shipperCode")){
+                List<Customer> customerEntityList = customerService.findCustomersByCriteria("customerName", order.getOrderKeyword(),getClientId());
+                List<Orders> orderEntityList = documentsService.findAllOrdersDocumentationArchived();
+                // To search for customer in booking
+                for(Customer customerElem : customerEntityList){
+                    for(Orders orderElem : orderEntityList){
+                        if(customerElem.getCustomerId().equals(orderElem.getCustomerId())){
+                            List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
 
-            Integer checkDocs = 0; // loop will count for documents with complete status
-            for (Documents documentElem : allDocs){
+                            Integer checkDocs = 0; // loop will count for documents with complete status
+                            for (Documents documentElem : allDocs){
 
-                if (documentElem.getDocumentStatus().equals("COMPLETED")){
-                    checkDocs = checkDocs + 1;
+                                if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                                    checkDocs += 1;
+                                }
+
+                            }
+
+                            if(allDocs.size() == checkDocs && allDocs.size() > 1){ // documents that is not equal to all completed documents will be added to the list
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }
+                        }
+                    }
+                }
+            }else if(column.equals("consigneeCode")){
+                List<Contacts> consigneeEntityList = customerService.findConsigneeByCriteria("companyName", order.getOrderKeyword(), getClientId());
+                List<Orders> orderEntityList = documentsService.findAllOrdersDocumentationArchived();
+                // To search for consignee in booking
+                for(Contacts consigneeElem : consigneeEntityList){
+                    for(Orders orderElem : orderEntityList){
+                        if(consigneeElem.getContactId().equals(orderElem.getConsigneeContactId())){
+                            List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+
+                            Integer checkDocs = 0; // loop will count for documents with complete status
+                            for (Documents documentElem : allDocs){
+
+                                if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                                    checkDocs += 1;
+                                }
+
+                            }
+
+                            if(allDocs.size() == checkDocs && allDocs.size() > 1){ // documents that is not equal to all completed documents will be added to the list
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }
+                        }
+                    }
+                }
+            }else{
+                List<Orders> orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+
+                for (Orders orderElem : orderEntityList) {
+                    if(orderElem.getOrderStatus().equals("ON GOING") || orderElem.getOrderStatus().equals("SERVICE ACCOMPLISHED") || orderElem.getOrderStatus().equals("SERVICE ACCOMPLISHED - ARCHIVED")){
+                        List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+
+                        Integer checkDocs = 0; // loop will count for documents with complete status
+                        for (Documents documentElem : allDocs){
+
+                            if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                                checkDocs += 1;
+                            }
+
+                        }
+
+                        if(allDocs.size() == checkDocs && allDocs.size() > 1){ // documents that is not equal to all completed documents will be added to the list
+                            orders.add(transformToOrderFormBean(orderElem));
+                        }
+                    }
+                }
+            }
+        }else{
+
+            List<Orders> orderEntityList = documentsService.findAllOrdersDocumentationArchived();
+
+            for(Orders orderElem : orderEntityList){
+                List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+
+                Integer checkDocs = 0; // loop will count for documents with complete status
+                for (Documents documentElem : allDocs){
+
+                    if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                        checkDocs = checkDocs + 1;
+                    }
+
                 }
 
-            }
+                if(allDocs.size() == checkDocs && allDocs.size() > 1){ // documents that is equal to all completed documents will be added to the list
+                    orders.add(transformToOrderFormBean(orderElem));
+                }
 
-            if(allDocs.size() == checkDocs && allDocs.size() > 1){ // documents that is equal to all completed documents will be added to the list
-                orders.add(transformOrdersToFormBean(orderElem));
             }
 
         }
@@ -185,30 +273,149 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewPendingDocuments() {
+        int customerId = 0;
+        if( commonUtils.getCustomerIdFromSession()!= null ){
+            customerId = commonUtils.getCustomerIdFromSession();
+        }else{
+            customerId = getClientId();
+        }
 
-        List<Orders> orderEntityList = new ArrayList<Orders>();
+        String column = getColumnFilter();
+        List<Documents> documentEntityList = new ArrayList<Documents>();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
-        orderEntityList = documentsService.findAllOrdersDocumentation();
+        if(StringUtils.isNotBlank(column)){
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> column " + column);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> keyword " + order.getOrderKeyword());
 
-        for(Orders orderElem : orderEntityList){
-            List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+            if(column.equals("shipperCode")){
+                List<Customer> customerEntityList = customerService.findCustomersByCriteria("customerName", order.getOrderKeyword(),getClientId());
+                List<Orders> orderEntityList = documentsService.findAllOrdersDocumentation();
+                // To search for customer in booking
+                for(Customer customerElem : customerEntityList){
+                    for(Orders orderElem : orderEntityList){
+                        if(customerElem.getCustomerId().equals(orderElem.getCustomerId())){
+                            /*String strOrig = orderElem.getOrderStatus();
+                            int intIndex = strOrig.indexOf("ARCHIVED");
 
-            Integer checkDocs = 0; // loop will count for documents with complete status
-            for (Documents documentElem : allDocs){
+                            if(intIndex == -1){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }*/
+                            List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
 
-                if (documentElem.getDocumentStatus().equals("COMPLETED")){
-                    checkDocs = checkDocs + 1;
+                            Integer checkDocs = 0; // loop will count for documents with complete status
+                            for (Documents documentElem : allDocs){
+
+                                if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                                    checkDocs += 1;
+                                }
+
+                            }
+
+                            if(allDocs.size() != checkDocs ){ // documents that is not equal to all completed documents will be added to the list
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }
+                        }
+                    }
+                }
+            }else if(column.equals("consigneeCode")){
+                List<Contacts> consigneeEntityList = customerService.findConsigneeByCriteria("companyName", order.getOrderKeyword(), getClientId());
+                List<Orders> orderEntityList = documentsService.findAllOrdersDocumentation();
+                // To search for consignee in booking
+                for(Contacts consigneeElem : consigneeEntityList){
+                    for(Orders orderElem : orderEntityList){
+                        if(consigneeElem.getContactId().equals(orderElem.getConsigneeContactId())){
+                            /*String strOrig = orderElem.getOrderStatus();
+                            int intIndex = strOrig.indexOf("ARCHIVED");
+
+                            if(intIndex == -1){
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }*/
+                            List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+
+                            Integer checkDocs = 0; // loop will count for documents with complete status
+                            for (Documents documentElem : allDocs){
+
+                                if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                                    checkDocs += 1;
+                                }
+
+                            }
+
+                            if(allDocs.size() != checkDocs ){ // documents that is not equal to all completed documents will be added to the list
+                                orders.add(transformToOrderFormBean(orderElem));
+                            }
+                        }
+                    }
+                }
+            }else{
+                List<Orders> orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+
+                for (Orders orderElem : orderEntityList) {
+                    if(orderElem.getOrderStatus().equals("ON GOING")){
+                        List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+
+                        Integer checkDocs = 0; // loop will count for documents with complete status
+                        for (Documents documentElem : allDocs){
+
+                            if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                                checkDocs += 1;
+                            }
+
+                        }
+
+                        if(allDocs.size() != checkDocs ){ // documents that is not equal to all completed documents will be added to the list
+                            orders.add(transformToOrderFormBean(orderElem));
+                        }
+                    }
+                }
+            }
+        }else{
+            List<Orders> orderEntityList = documentsService.findAllOrdersDocumentation();
+
+            for(Orders orderElem : orderEntityList){
+                List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+
+                Integer checkDocs = 0; // loop will count for documents with complete status
+                for (Documents documentElem : allDocs){
+
+                    if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                        checkDocs += 1;
+                    }
+
                 }
 
+                if(allDocs.size() != checkDocs ){ // documents that is not equal to all completed documents will be added to the list
+                    orders.add(transformToOrderFormBean(orderElem));
+                }
             }
-
-            if(allDocs.size() != checkDocs ){ // documents that is not equal to all completed documents will be added to the list
-                orders.add(transformOrdersToFormBean(orderElem));
-            }
-
         }
 
         return SUCCESS;
+    }
+
+    public String getColumnFilter() {
+
+        String column = "";
+        if (order == null) {
+            System.out.println("ok");
+            return column;
+        } else {
+            if ("BOOKING NUMBER".equals(order.getOrderSearchCriteria())) {
+                column = "orderNumber";
+            } else if ("CUSTOMER".equals(order.getOrderSearchCriteria())) {
+                column = "shipperCode";
+            } else if ("CONSIGNEE".equals(order.getOrderSearchCriteria())) {
+                column = "consigneeCode";
+            } else if ("SERVICE TYPE".equals(order.getOrderSearchCriteria())) {
+                column = "serviceType";
+            } else if ("SERVICE REQUIREMENT".equals(order.getOrderSearchCriteria())) {
+                column = "serviceRequirement";
+            } else if ("SERVICE MODE".equals(order.getOrderSearchCriteria())) {
+                column = "serviceMode";
+            }
+            return column;
+        }
     }
 
     public String documentFlag(){
@@ -794,6 +1001,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
             return SUCCESS;
     }
 
+    public String bookingSearch() {
+        return SUCCESS;
+    }
+
     public String viewOrderDocumentsArchived(){
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -1013,7 +1224,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     }else if(documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && documentIdEntity.getReferenceNumber() == null){
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
-                    }else if(documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
+                    }else if(documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") || documentIdEntity.getDocumentName().equals("AUTHORIZATION TO WITHDRAW")){
                         documentIdEntity.setDocumentProcessed(4);
                         documentIdEntity.setCompleteStage(1);
                         documentIdEntity.setDocumentStatus("RECEIVED");
@@ -3067,30 +3278,27 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         OrderBean formBean = new OrderBean();
         formBean.setOrderNumber(entity.getOrderNumber());
+        formBean.setOrderDate(entity.getOrderDate());
+
         //get shipper's name
         Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
         Customer customerName = customerService.findCustomerById(shipperContactName.getReferenceId());
         formBean.setCustomerName((customerName.getCustomerName()));
-        //formBean.setCustomerName(entity.getShipperCode());
         formBean.setServiceRequirement(entity.getServiceRequirement());
         formBean.setModeOfService(entity.getServiceMode());
+
         //get consignee name
         Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
         formBean.setConsigneeName(consigneeName.getCompanyName());
         formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
-        //formBean.setConsigneeCode(entity.getConsigneeCode());
         formBean.setOrderId(entity.getOrderId());
         formBean.setOrderStatus(entity.getOrderStatus());
         formBean.setFreightType(entity.getServiceType());
-        /*formBean.setOriginationPort(entity.getOriginationPort());*/
         formBean.setModeOfPayment(entity.getPaymentMode());
         formBean.setNotifyBy(entity.getNotificationType());
         formBean.setBookingDate(entity.getOrderDate());
-        /*formBean.setDestinationPort(entity.getDestinationPort());*/
         formBean.setRates(entity.getRates());
         formBean.setComments(entity.getComments());
-        /*formBean.setPickupDate(entity.getPickupDate());
-        formBean.setDeliveryDate(entity.getDeliveryDate());*/
         formBean.setAging(entity.getAging());
 
         if(entity.getOriginationPort() != null){
@@ -3112,7 +3320,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
         if(entity.getPickupDate() != null){
-            /*formBean.setPickupDate(entity.getPickupDate());*/
             formBean.setStrPickupDate(formatter.format(entity.getPickupDate()));
         }else if(entity.getServiceMode().equals("DELIVERY")){
             formBean.setStrPickupDate("NOT APPLICABLE");
@@ -3121,7 +3328,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
 
         if(entity.getDeliveryDate() != null){
-            /*formBean.setDeliveryDate(entity.getDeliveryDate());*/
             formBean.setStrDeliveryDate(formatter.format(entity.getDeliveryDate()));
         }else if(entity.getServiceMode().equals("PICKUP")){
             formBean.setStrDeliveryDate("NOT APPLICABLE");
@@ -3180,6 +3386,60 @@ public class DocumentAction extends ActionSupport implements Preparable{
             address = new AddressBean();
             address.setAddress("NONE");
             formBean.setConsigneeInfoAddress(address);
+        }
+
+        List <Documents> documentsList = documentsService.findDocumentsByOrderId(entity.getOrderId());
+        List <Documents> documentsComplete = documentsService.findDocumentByArchiveStageAndID(1,entity.getOrderId());
+
+        if(documentsList == documentsComplete){
+            formBean.setDocumentCheck("ARCHIVED");
+        }else{
+            formBean.setDocumentCheck("ON-GOING");
+        }
+
+        Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM", entity.getOrderId());
+
+        if(brfDocument.getFinalOutboundSent() != null){
+            String todayDate = (formatter.format(new Date()));
+            String finalOutboundDate = (formatter.format(brfDocument.getFinalOutboundSent()));
+
+            Date d1 = null;
+            Date d2 = null;
+
+            try {
+                d1 = formatter.parse(todayDate);
+                d2 = formatter.parse(finalOutboundDate);
+                System.out.println(d1 + " Date Today");
+                System.out.println(d2 + " Final Outbound Date");
+
+                long diff = d1.getTime() - d2.getTime();
+
+                long diffSeconds = diff / 1000 % 60;
+                long diffMinutes = diff / (60 * 1000) % 60;
+                long diffHours = diff / (60 * 60 * 1000) % 24;
+                long diffDays = diff / (24 * 60 * 60 * 1000);
+
+                System.out.println(diffDays + " days");
+                System.out.println(diffHours + " hours");
+                System.out.println(diffMinutes + " minutes");
+                System.out.println(diffSeconds + " seconds");
+
+                //formBean.setAging(Integer.parseInt(String.valueOf(diffDays)));
+
+                int dateDiff = Integer.parseInt(String.valueOf(diffDays));
+
+                if(dateDiff > 0){
+                    formBean.setAging(Integer.parseInt(String.valueOf(diffDays)));
+                }else{
+                    formBean.setAging(0);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            formBean.setAging(0);
         }
 
         return formBean;
@@ -3606,12 +3866,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return null;
     }
 
-    public OrderBean transformOrdersToFormBean(Orders entity) {
+    /*public OrderBean transformOrdersToFormBean(Orders entity) {
         OrderBean formBean = new OrderBean();
         formBean.setOrderId(entity.getOrderId());
         formBean.setOrderDate(entity.getOrderDate());
         formBean.setOrderNumber(entity.getOrderNumber());
-        /*formBean.setCustomerName(entity.getShipperCode());*/
+        *//*formBean.setCustomerName(entity.getShipperCode());*//*
         //get shipper's name
         Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
         Customer customerName = customerService.findCustomerById(shipperContactName.getReferenceId());
@@ -3642,7 +3902,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             formBean.setDocumentCheck("ON-GOING");
         }
         return formBean;
-    }
+    }*/
 
     public DocumentsBean transformDocumentsToFormBean(Documents entity) {
         DocumentsBean formBean = new DocumentsBean();
@@ -4468,5 +4728,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setDriver(DriverBean driver) {
         this.driver = driver;
+    }
+
+    public List<Parameters> getOrderSearchList() {
+        return orderSearchList;
+    }
+
+    public void setOrderSearchList(List<Parameters> orderSearchList) {
+        this.orderSearchList = orderSearchList;
     }
 }

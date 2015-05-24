@@ -179,7 +179,7 @@
     $(document).ready(function(){
 
         $('.viewBtnReports').click(function(){
-            var dateFromVal = $('.dateFromClass').val(),
+            var dateFromVal = $('.dateFromClass ').val(),
                 dateToVal = $('.dateToClass').val(),
                 dataVal = $('#reportsStatisticsList').val(),
                 dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;

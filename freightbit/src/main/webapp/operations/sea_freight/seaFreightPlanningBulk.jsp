@@ -316,7 +316,7 @@
         </s:if>
         <div class="loadingDiv" style="text-align: center;">
             Pulling up Schedules. Please Wait.<br/>
-            <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
+            <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-repeat fa-spin"></i>
         </div>
         <div class="tableDiv" style="display: none;">
             <display:table id="vesselSchedule" name="vesselSchedules"

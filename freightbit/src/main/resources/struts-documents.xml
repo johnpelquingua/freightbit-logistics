@@ -168,6 +168,14 @@
             <result name="success" type="tiles">documentation.releaseOrder.tiles</result>
         </action>
 
+        <action name="bookingSearch" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="bookingSearch">
+            <result name="success">/documentation/pending_docs/orderSearch.jsp</result>
+        </action>
+
+        <action name="archivedBookingSearch" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="bookingSearch">
+            <result name="success">/documentation/archived_docs/orderSearch.jsp</result>
+        </action>
+
         <action name="editDocumentInfo" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="editDocumentInfo">
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>

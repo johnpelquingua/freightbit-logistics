@@ -23,8 +23,7 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <i class="fa fa-list"></i>
-                <span class="panel-title">Freight Plan List</span>
+                <span class="panel-title" style="float:left;top: 10px;"> <i class="fa fa-list"></i> Freight Plan List</span>
                 <span class="pull-right">
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#bookingNumModal" onclick="postAjaxHtml('bookingNumSearchFreight', 'bookingNumInputDiv');">
                         <i class="fa fa-search"></i> Search Order Number
@@ -102,13 +101,15 @@
                                         <i style="color: red;" class="fa fa-ban"></i>
                                     </s:if>
                                     <s:else>
-                                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Set Vessel Schedule">
-                                            <i class="fa fa-tasks" id="status"></i>
-                                        </s:a>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
+                                            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                                <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                                                 title="Set Vessel Schedule">
+                                                <i class="fa fa-tasks" id="status"></i>
+                                            </s:a>
+                                        </sec:authorize>
 
                                         <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
@@ -129,11 +130,11 @@
                 <div class="tab-pane fade" id="lclTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive table-responsive-scroll" id="no-more-tables">
+                        <div class="table-responsive table-responsive-scroll">
                         <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
                             <div class="lclMainLoadingDiv" style="text-align: center; margin: 1.6em;">
                                 Processing LCL orders. Please Wait.<br/>
-                                <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
+                                <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-repeat fa-spin"></i>
                             </div>
                             <div class="lclMainTable" style="display: none;">
                                 <display:table id="order" name="lclTable"
@@ -143,10 +144,12 @@
 
                                     <td>
                                         <%--<display:column title="<input type='checkbox' class='lclCheckbox' id='mainCheckBox' name='mainCheckBox'/>">--%>
-                                        <display:column title="">
-                                            <s:checkbox theme="simple" name="check" cssClass="lclCheckbox"
-                                                        fieldValue="%{#attr.order.orderId}"/>
-                                        </display:column>
+                                        <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">--%>
+                                            <display:column title="">
+                                                <s:checkbox theme="simple" name="check" cssClass="lclCheckbox"
+                                                            fieldValue="%{#attr.order.orderId}"/>
+                                            </display:column>
+                                        <%--</sec:authorize>--%>
                                     </td>
 
                                     <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
@@ -173,7 +176,7 @@
                                                         style="text-align: center;"> </display:column></td>
                                     <td><display:column property="strDeliveryDate" title="DELIVERY  <i class='fa fa-sort' />" class="tb-font-black" scope="DELIVERY"
                                                         style="text-align: center;"> </display:column></td>
-                                    <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_SALES')">
+                                    <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_SALES', 'ROLE_DOCUMENT_SPECIALIST')">
                                     <td>
                                         <display:column title="Action">
                                             <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
@@ -190,7 +193,7 @@
                                                     </s:a>
                                                 </sec:authorize>
 
-                                                <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_SALES')">
+                                                <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_SALES', 'ROLE_DOCUMENT_SPECIALIST')">
                                                     <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
                                                         <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                                     </s:url>
@@ -206,7 +209,7 @@
                                                         style="text-align: center;"> </display:column></td>
                                 </display:table>
                             </div>
-
+                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
                             <div class="col-md-6 pull-right well wellDiv" style="display: none; margin-top: 20px;">
                                 <p>Total Weight (kg) : <font id="wellTotalWeight">0</font></p>
                                 <p>Total Volume  (cbm) : <font id="wellTotalVolume">0</font></p>
@@ -222,9 +225,9 @@
                                 </div>
                                 <hr/>
                                 <div class="warningMsg"><i class="fa fa-warning" style="color: #E74C3C"></i> <i style="color: #E74C3C; font-size: 0.9em;">Bookings must have the same ORIGIN and DESTINATION to initialize consolidation</i></div>
-                                <br/><button style="margin-top: 1em;" disabled type="button" class="consolidateBtn btn btn-default" data-toggle="modal" data-target="#consolidateModal"><i class="fa fa-cubes"></i> Consolidate</button>
+                                <br/><button style="margin-top: 1em;" disabled type="button" class="consolidateBtn btn btn-default" data-toggle="modal" data-target="#consolidateModal"><i class="fa fa-th-large"></i> Consolidate</button>
                             </div>
-
+                            </sec:authorize>
                         </s:form>
                         <s:hidden cssClass="consolidateModalTextfield" id="consolidatedOrders" />
                         </div>
@@ -263,13 +266,15 @@
                                         <i class="fa fa-ban"></i>
                                     </s:if>
                                     <s:else>
-                                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Set Vessel Schedule">
-                                            <i class="fa fa-tasks" id="status"></i>
-                                        </s:a>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
+                                            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                                <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                                                 title="Set Vessel Schedule">
+                                                <i class="fa fa-tasks" id="status"></i>
+                                            </s:a>
+                                        </sec:authorize>
 
                                         <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
@@ -317,13 +322,15 @@
                                         <i class="fa fa-ban"></i>
                                     </s:if>
                                     <s:else>
-                                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Set Vessel Schedule">
-                                            <i class="fa fa-tasks" id="status"></i>
-                                        </s:a>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
+                                            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                                <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                                                 title="Set Vessel Schedule">
+                                                <i class="fa fa-tasks" id="status"></i>
+                                            </s:a>
+                                        </sec:authorize>
 
                                         <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>

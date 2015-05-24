@@ -56,13 +56,14 @@
         </li>
     </sec:authorize>
 
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_DOCUMENT_SPECIALIST', 'ROLE_FREIGHT_SPECIALIST', 'ROLE_SEA_FREIGHT')">
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_DOCUMENT_SPECIALIST', 'ROLE_FREIGHT_SPECIALIST', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-file-text"></i> Documentations <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="<s:url action='../documentation/viewPendingDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Pending Documents</a></li>
-                <li><a href="<s:url action='../documentation/viewArchivedDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Archived Documents</a></li>
-                <%--<li><a href="<s:url action='../documentation/viewPlainDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Plain Documents</a></li>--%>
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DOCUMENT_SPECIALIST')">
+                    <li><a href="<s:url action='../documentation/viewArchivedDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Archived Documents</a></li>
+                </sec:authorize>
             </ul>
         </li>
     </sec:authorize>
@@ -116,15 +117,13 @@
         </ul>
     </li>--%>
 
-    <div id="footer-ver2" class="categories">
+    <%--<div id="footer-ver2" class="categories">
         <div class="footerwrap-ver2" >
             <div id="copyright-ver2" >
                 developed and designed by: <br />
                 <a href="http://www.solutionsresource.com" rel="license">Solutions Resource Inc.</a>
             </div>
-            <%--<div id="svnrev2" >
-                version 2015.ecfb401
-            </div>--%>
         </div>
-    </div>
+    </div>--%>
+
 </ul>

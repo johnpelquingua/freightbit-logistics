@@ -21,8 +21,7 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading" style="margin-bottom: 1.5em;">
-                <i class="fa fa-list"></i>
-                <span class="panel-title">Freight Plan List</span>
+                <span class="panel-title" style="float:left;top: 10px;"> <i class="fa fa-list"></i> Dispatch Plan List</span>
                 <span class="pull-right">
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#bookingNumModal" onclick="postAjaxHtml('bookingNumSearchDispatch', 'bookingNumInputDiv');">
                         <i class="fa fa-search"></i> Search Order Number

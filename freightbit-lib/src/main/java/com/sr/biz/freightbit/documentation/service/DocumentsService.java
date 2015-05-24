@@ -11,6 +11,8 @@ public interface DocumentsService {
 
     public List<Orders> findAllOrdersDocumentation();
 
+    public List<Orders> findAllOrdersDocumentationArchived();
+
     public void addDocuments(Documents documents);
 
     public List<Documents> findOrderDocumentation();

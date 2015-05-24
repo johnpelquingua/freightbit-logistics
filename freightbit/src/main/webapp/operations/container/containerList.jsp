@@ -1,11 +1,13 @@
-    <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+
 <style>
     .deleteContainerIcon {
         cursor: pointer;
     }
 </style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -161,19 +163,6 @@
                         <div class="col-lg-3">
                             <i class='fa fa-print' ></i> Print EIR forms
                         </div>
-                        <%--<table class="col-lg-12">
-                            <tr>
-                                <td><label>LEGEND:</label></td>
-                                <td><i class='fa fa-edit' ></i> Edit</td>
-                                <td><i class='fa fa-trash-o' ></i> Delete</td>
-                                <td><i class='fa fa-info-circle' ></i> Information</td>
-                                <td><i class='fa fa-print' ></i> Print EIR forms</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class="fa fa-sign-out"></i> Gate Out</td>
-                            </tr>
-                        </table>--%>
                     </div>
                 </div>
             </div>
@@ -213,6 +202,7 @@
 
 <script>
     function generateReport(documentId,documentName) {
+        alert(1);
         /*var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Booking Request Form";

@@ -128,8 +128,7 @@
             <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <i class="fa fa-list"></i>
-                <span class="panel-title">On-Going Booking List</span>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> On-Going Booking List </h3>
                 <span class="pull-right">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
@@ -156,7 +155,7 @@
                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                             style="width: 15%; text-align: center;"> </display:column></td>
 
-                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                             style="width: 25%; text-align: center;"> </display:column></td>
                         <%--ORIGIN--%>
                         <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"

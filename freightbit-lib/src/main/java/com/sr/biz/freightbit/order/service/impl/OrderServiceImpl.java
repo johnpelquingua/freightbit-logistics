@@ -26,10 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by JMXPSX on 5/27/14.
- */
-
 public class OrderServiceImpl implements OrderService {
 
     private OrderDao orderDao;
@@ -39,7 +35,6 @@ public class OrderServiceImpl implements OrderService {
     private AddressDao addressDao;
     private ItemsDao itemsDao;
     private TrucksDao trucksDao;
-
 
     public void setOrderItemsDao(OrderItemsDao orderItemsDao) {
         this.orderItemsDao = orderItemsDao;
@@ -66,7 +61,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     // Orders
-
     @Override
      @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
      public void addOrder(Orders orders) {

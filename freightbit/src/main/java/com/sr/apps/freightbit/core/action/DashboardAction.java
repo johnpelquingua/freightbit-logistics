@@ -99,33 +99,116 @@ public class DashboardAction extends ActionSupport implements SessionAware {
         System.out.println("The Number of all Notification is "+AllNotification);
 
         changeOrigin();
+        viewStatusList();
 
         return SUCCESS;
 
     }
 
+    public String viewStatusList() {
+
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        String column = getColumnFilter();
+
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
+            orderEntityList = orderStatusLogsService.findAllOrders();
+        }
+        for (Orders ordersElem : orderEntityList) {
+            orders.add(transformToOrderFormBean(ordersElem));
+        }
+        return SUCCESS;
+    }
+
+    public String getColumnFilter() {
+
+        String column = "";
+        if (order == null) {
+            System.out.println("ok");
+            return column;
+        } else {
+            if ("BOOKING NUMBER".equals(order.getOrderSearchCriteria())) {
+                column = "orderNumber";
+            }
+            return column;
+        }
+
+    }
+
+    private Integer getClientId() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer clientId = (Integer) sessionAttributes.get("clientId");
+        return clientId;
+    }
+
     public OrderBean transformToOrderFormBean(Orders entity) {
 
         OrderBean formBean = new OrderBean();
-        formBean.setOrderId(entity.getOrderId());
-        formBean.setOrderDate(entity.getOrderDate());
         formBean.setOrderNumber(entity.getOrderNumber());
-        formBean.setOriginationPort(entity.getOriginationPort());
-        formBean.setDestinationPort(entity.getDestinationPort());
-        formBean.setOrderStatus(entity.getOrderStatus());
-        /*formBean.setCustomerName(entity.getShipperCode());*/
-        //get shipper's name
-        Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
-        com.sr.biz.freightbit.customer.entity.Customer customerName = customerService.findCustomerById(shipperContactName.getReferenceId());
-        formBean.setCustomerName((customerName.getCustomerName()));
-        //get consignee name
-        Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
-        formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
+
+        Customer shipperName = customerService.findCustomerById(entity.getCustomerId());
+
+        formBean.setCustomerId(shipperName.getCustomerId());
+        formBean.setCustomerName(shipperName.getCustomerName());
+
+        Contacts consigneeContactName = customerService.findContactById(entity.getConsigneeContactId());
+
+        formBean.setConsigneeName(consigneeContactName.getCompanyName());
+
+        formBean.setServiceRequirement(entity.getServiceRequirement());
+        formBean.setModeOfService(entity.getServiceMode());
+        formBean.setOrderId(entity.getOrderId());
+
+        List <OrderItems> orderItemsVolume = orderService.findAllItemByOrderId(entity.getOrderId());
+
+        Float orderVolume = 0.F;
+
+        for(OrderItems orderItemElem : orderItemsVolume) {
+            if(orderItemElem.getVolume() != null){
+                orderVolume = orderVolume + orderItemElem.getVolume();
+            }
+        }
+
+        formBean.setOrderVolume(orderVolume); // For showing the total volume of order items inside booking
+
+        Double orderWeight = 0.0;
+
+        for(OrderItems orderItemElem : orderItemsVolume) {
+            if(orderItemElem.getWeight() != null){
+                orderWeight = orderWeight + orderItemElem.getWeight();
+            }
+        }
+
+        formBean.setOrderWeight(orderWeight); // For showing the total volume of order items inside booking
 
         formBean.setOrderStatus(entity.getOrderStatus());
         formBean.setFreightType(entity.getServiceType());
-        formBean.setModeOfService(entity.getServiceMode());
-        formBean.setServiceRequirement(entity.getServiceRequirement());
+        /*formBean.setOriginationPort(entity.getOriginationPort());*/
+        formBean.setModeOfPayment(entity.getPaymentMode());
+        formBean.setNotifyBy(entity.getNotificationType());
+        formBean.setOrderDate(entity.getOrderDate());
+
+        if(entity.getOriginationPort() != null){
+            formBean.setOriginationPort(entity.getOriginationPort());
+        }else if(entity.getServiceMode().equals("DELIVERY")){
+            formBean.setOriginationPort("NOT APPLICABLE");
+        }else{
+            formBean.setOriginationPort("NONE");
+        }
+
+        if(entity.getDestinationPort() != null){
+            formBean.setDestinationPort(entity.getDestinationPort());
+        }else if(entity.getServiceMode().equals("PICKUP")){
+            formBean.setDestinationPort("NOT APPLICABLE");
+        }else{
+            formBean.setDestinationPort("NONE");
+        }
+
+        formBean.setRates(entity.getRates());
+        formBean.setComments(entity.getComments());
+        formBean.setPickupDate(entity.getPickupDate());
+        formBean.setDeliveryDate(entity.getDeliveryDate());
 
         return formBean;
     }

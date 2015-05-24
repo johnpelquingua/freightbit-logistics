@@ -32,15 +32,18 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <i class="fa fa-list"></i>
-                <span class="panel-title">On-Going Booking List</span>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> On-Going Booking List </h3>
                 <span class="pull-right">
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">--%>
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="postAjaxHtml('loadSearchBookingPage', 'inputDiv');">
                         <i class="fa fa-search"></i> Search Booking Number
                     </button>
-                </sec:authorize>
-                <a href="viewStatusList" class="btn btn-primary" id ="groups-btn">Display All</a>
+
+                    <button type="button" class="btn btn-primary"
+                            onclick="location.href='viewStatusList'">
+                        <i class="fa fa-list"></i> Display All
+                    </button>
+                <%--</sec:authorize>--%>
                 </span>
             </div>
 
@@ -79,7 +82,7 @@
                         <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="orderItemStatus" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="orderStatus" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_SALES')">
                         <td><display:column title="Action">

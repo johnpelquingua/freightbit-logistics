@@ -774,22 +774,28 @@ public class OrderAction extends ActionSupport implements Preparable {
                     orderItemEntity.setNameSize(item.getItemCode());
                     orderService.addItem(orderItemEntity);
                 }else{
-                    //Get orderItem Item Code
-                    OrderItems oldOrderItemEntity = orderService.findOrderItemByCode(item.getItemCode());
-                    //delete the existing item under the same order Items
-                    orderService.deleteItem(oldOrderItemEntity);
+                    for (OrderItems orderItemsElem : orderItemNumberList) {
+                        if(orderItemsElem.getNameSize().equals(item.getItemCode())){
 
-                    Items itemEntity = customerService.findItemByCode(item.getItemCode());
-                    Double dblVolume = oldOrderItemEntity.getVolume() + (orderItem.getQuantity() * (itemEntity.getLength() * itemEntity.getWidth() * itemEntity.getHeight()));
-                    String strVolume = dblVolume.toString();
+                            //Get orderItem Item Code
+                            OrderItems oldOrderItemEntity = orderService.findOrderItemByOrderItemId(orderItemsElem.getOrderItemId());
 
-                    orderItemEntity.setQuantity(oldOrderItemEntity.getQuantity() + orderItem.getQuantity());
-                    orderItemEntity.setWeight(oldOrderItemEntity.getWeight() + orderItem.getWeight());
-                    orderItemEntity.setVolume(Float.parseFloat(strVolume));
-                    orderItemEntity.setDeclaredValue(oldOrderItemEntity.getDeclaredValue() + orderItem.getDeclaredValue());
-                    orderItemEntity.setNameSize(item.getItemCode());
-                    orderService.addItem(orderItemEntity);
+                            //delete the existing item under the same order Items
+                            orderService.deleteItem(oldOrderItemEntity);
 
+                            Items itemEntity = customerService.findItemByCode(item.getItemCode());
+                            Double dblVolume = oldOrderItemEntity.getVolume() + (orderItem.getQuantity() * (itemEntity.getLength() * itemEntity.getWidth() * itemEntity.getHeight()));
+                            String strVolume = dblVolume.toString();
+
+                            orderItemEntity.setQuantity(oldOrderItemEntity.getQuantity() + orderItem.getQuantity());
+                            orderItemEntity.setWeight(oldOrderItemEntity.getWeight() + orderItem.getWeight());
+                            orderItemEntity.setVolume(Float.parseFloat(strVolume));
+                            orderItemEntity.setDeclaredValue(oldOrderItemEntity.getDeclaredValue() + orderItem.getDeclaredValue());
+                            orderItemEntity.setNameSize(item.getItemCode());
+                            orderService.addItem(orderItemEntity);
+
+                        }
+                    }
                 }
 
                 String messageFlag = "OTHERS_OK";

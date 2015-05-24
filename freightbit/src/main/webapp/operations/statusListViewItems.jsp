@@ -12,7 +12,9 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
             <li class="active"> Operations</li>
-            <li class="active"><a href="<s:url action='../operations/viewStatusList' />"> On-Going Booking List </a></li>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                <li class="active"><a href="<s:url action='../operations/viewStatusList' />"> On-Going Booking List </a></li>
+            </sec:authorize>
 
             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                 <li class="active"> Booking <s:property value="bookingNumber"/> Container List</li>
@@ -114,9 +116,14 @@
                                    class="bulkItemStatus table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
                                    style="margin-top: 15px;">
                     <tr>
-                        <td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
-                            <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
-                        </display:column></td>
+
+                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                        <td>
+                            <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
+                                <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
+                            </display:column>
+                        </td>
+                        </sec:authorize>
 
                         <td>
                             <display:column property="createdTimestamp" title="Actual Date/Time <i class='fa fa-sort' />" class="tb-font-black"
@@ -154,10 +161,10 @@
                                             style="text-align: center;"> </display:column>
                         </td>
 
-                        <td>
+                        <%--<td>
                             <display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column>
-                        </td>
+                        </td>--%>
 
                         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                         <td>

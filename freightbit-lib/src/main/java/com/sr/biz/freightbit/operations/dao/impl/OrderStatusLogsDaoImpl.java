@@ -80,6 +80,8 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
 
         List<String> statusList = new ArrayList<>();
         statusList.add("ON GOING");
+        statusList.add("SERVICE ACCOMPLISHED");
+        statusList.add("SERVICE ACCOMPLISHED - ARCHIVED");
 
         log.debug("Finding orders with filter");
         try {

@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="row">
     <div class="col-lg-12">
@@ -25,9 +26,20 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i>
                     Archived Documents List
                 </h3>
+                <span class="pull-right">
+                    <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_INLAND_FREIGHT', 'ROLE_CUSTOMER')">--%>
+                        <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal1" onclick="showSearchFields();">
+                            <i class="fa fa-search"></i> Search Booking
+                        </button>
+                    <%--</sec:authorize>--%>
+                    <button type="button" class="btn btn-primary"
+                            onclick="location.href='viewArchivedDocuments'">
+                        <i class="fa fa-list"></i> Display All
+                    </button>
+                </span>
             </div>
 
             <div class="panel-body horizontal">
@@ -108,10 +120,38 @@
     </div>
 </div>
 
+<div class="modal fade" id="inputModal1" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body" style="padding: 0px;">
+                <div id="inputDiv1"> <%--Area where input fields will appear--%> </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script>
+
     $(document).ready(function(){
         tablePropClass('DESTI_ORIG', 'archivedDocumentsTable', 0,7,8,9,5,6);
     })
+
+    function showSearchFields() {
+        $.ajax({
+            url: 'archivedBookingSearch',
+            type: 'POST',
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv1').html(html);
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+    }
+
 </script>
 
 

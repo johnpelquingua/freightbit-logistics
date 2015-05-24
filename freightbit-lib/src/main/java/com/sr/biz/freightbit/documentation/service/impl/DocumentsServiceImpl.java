@@ -34,6 +34,11 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
+    public List<Orders> findAllOrdersDocumentationArchived() {
+        return documentsDao.findAllOrdersDocumentsArchived();
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addDocuments(Documents documents){
         documentsDao.addDocuments(documents);

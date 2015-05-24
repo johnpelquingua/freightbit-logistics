@@ -15,12 +15,6 @@
         margin: 0 !important;
     }
 
-    /*@media (min-width: 1200px) {*/
-        /*.container {*/
-            /*width: 910px; !important;*/
-        /*}*/
-    /*}*/
-
     @media (min-width: 1200px) and (max-width: 1360px) {
         .control-label{
             margin:0px; !important;
@@ -1087,7 +1081,7 @@
 
 <div class="overlay" style="display: none;">
     <div class="col-md-4 col-md-offset-4" style="margin-top: 15em; background-color: #ECF0F1; border-radius: 0.3em; padding: 0.9em; color: black; text-align: center">
-        <i class="fa fa-circle-o-notch fa-spin" style="color: #95A5A6; font-size: 4em;"></i><br/>
+        <i class="fa fa-repeat fa-spin" style="color: #95A5A6; font-size: 4em;"></i><br/>
         <p style="margin-top: 0.4em; margin-bottom: 0em;">Populating fields. Please wait.</p>
     </div>
 </div>

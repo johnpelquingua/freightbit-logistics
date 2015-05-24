@@ -51,6 +51,10 @@
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
                         <i class="fa fa-search"></i> Search Vendor
                     </button>
+                    <button type="button" class="btn btn-primary"
+                            onclick="location.href='viewVendors'">
+                        <i class="fa fa-list"></i> Display All
+                    </button>
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddVendorPage'">
                         <i class="fa fa-building-o"></i> New Vendor

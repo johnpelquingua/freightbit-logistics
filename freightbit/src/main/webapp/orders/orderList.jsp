@@ -2,6 +2,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <style>
     .cancelBookingIcon {
         cursor: pointer;
@@ -366,7 +367,6 @@
             dataType: 'html',
             success: function (html) {
                 $('#inputDiv1').html(html);
-                /*window.location.href = '#sixth';*/
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert('An error occurred! ' + thrownError);

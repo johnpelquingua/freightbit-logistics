@@ -8,9 +8,6 @@ import com.sr.biz.freightbit.vendor.entity.Trucks;
 
 import java.util.List;
 
-/**
- * Created by JMXPSX on 5/27/14.
- */
 public interface OrderDao {
 
     public void addOrder(Orders order);

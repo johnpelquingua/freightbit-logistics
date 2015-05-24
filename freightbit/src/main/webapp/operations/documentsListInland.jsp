@@ -70,6 +70,9 @@
                         <td><display:column property="strCreatedDate" title="Date <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
+                        <td><display:column property="documentComments" title="Comments <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
                         <%--<td><display:column property="vendorCode" title="Vendor <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>--%>
 

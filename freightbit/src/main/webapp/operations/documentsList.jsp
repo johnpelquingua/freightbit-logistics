@@ -65,6 +65,9 @@
                         <td><display:column property="strCreatedDate" title="Date <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
+                        <td><display:column property="documentComments" title="Comments <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
                         <td>
                             <display:column title="Action" class="tb-font-black" style="text-align: center;">
 

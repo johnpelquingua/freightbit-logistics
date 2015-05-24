@@ -1092,8 +1092,11 @@ function dynamicDropdown(select, index) {
 
     // If Service Type is Shipping
     if (select.options[ index ].value === 'SHIPPING'){
+        var originPortLabel = $('.originPort');
+
         $("#select1").val('');
         $("#select2").val('');
+        originPortLabel.empty().append('Origin Port');
         $('#datepicker1').val('');
         $('#datepicker2').val('');
         $('#datepicker1').prop('disabled' , false);
@@ -1131,10 +1134,13 @@ function dynamicDropdown(select, index) {
     }
     // If Service Type is Shipping and Trucking
     if (select.options[ index ].value === 'SHIPPING AND TRUCKING') {
+        var originPortLabel = $('.originPort');
+
         $("#select1").val('');
         $('#select1').prop('disabled',false);
         $("#select2").val('');
         $('#select2').prop('disabled',false);
+        originPortLabel.empty().append('Origin Port');
         $('#datepicker1').val('');
         $('#datepicker1').prop('disabled' , false);
         $('#datepicker2').val('');
