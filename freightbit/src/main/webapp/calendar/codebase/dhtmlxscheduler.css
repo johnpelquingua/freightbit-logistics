@@ -1666,6 +1666,8 @@ div.dhx_menu_head, div.dhx_menu_icon {
 /* scales, containers start */
 .dhx_cal_container {
 	background-color: white;
+	height: 100% !important;
+	width: 100% !important;
 }
 
 .dhx_cal_data {

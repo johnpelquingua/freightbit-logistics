@@ -120,7 +120,7 @@
 	                <a href="#" onclick="loadCalendar();">View Calendar <i class="fa fa-arrow-circle-right"></i></a>
 	                </div>--%>
                 </sec:authorize>
-                <iframe height="500" width="925" name="sample" seamless="seamless"></iframe>
+                <iframe height="500" width="100%" name="sample" seamless="seamless"></iframe>
             </div>
         </div>
 
