@@ -463,7 +463,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setModifiedBy(entity.getModifiedBy());
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setStatus(entity.getStatus());
-        formBean.setWeight(entity.getWeight());
+        /*formBean.setWeight(entity.getWeight());*/
         formBean.setVendorSea(entity.getVendorSea());
         formBean.setVendorOrigin(entity.getVendorOrigin());
         formBean.setVendorDestination(entity.getVendorDestination());
@@ -483,7 +483,9 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setDriverDestination(entity.getDriverDestination());
         formBean.setTruckOrigin(entity.getTruckOrigin());
         formBean.setTruckDestination(entity.getTruckDestination());
-        formBean.setVolume(entity.getVolume());
+        /*formBean.setVolume(entity.getVolume());*/
+        formBean.setVolumeInt(Math.round(entity.getVolume()));
+        formBean.setWeightInt(entity.getWeight().intValue());
 
         return formBean;
     }

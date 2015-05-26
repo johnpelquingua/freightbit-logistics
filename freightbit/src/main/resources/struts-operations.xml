@@ -304,7 +304,7 @@
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
 
-        <action name="viewSeaFreightList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
+        <action name="viewSeaFreightList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightList">
             <result name="success" type="tiles">operations.seaFreightList.tiles</result>
         </action>
 
@@ -317,7 +317,7 @@
             <result name="success" type="tiles">operations.seaFreightList.tiles</result>
         </action>
 
-        <action name="viewInlandFreightList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
+        <action name="viewInlandFreightList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInlandFreightList">
             <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
         </action>
 

@@ -197,11 +197,11 @@
                                          value="order.orderId"></s:param>
                             </s:url>
                             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
-                                    <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
-                                        <button type="button" id="Complete" class="btn btn-primary">
-                                            Set Service Complete
-                                        </button>
-                                    </s:a>
+                                <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished">
+                                    <a id="Complete" class="btn btn-primary serviceCompleteBtn">
+                                        Set Service Complete
+                                    </a>
+                                </s:a>
                             </sec:authorize>
                             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                             <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
@@ -284,9 +284,28 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="serviceCompleteModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-check" style="color: #2ECC71;"></i> Complete Booking</span>
+            </div>
+            <div class="modal-body">
+                Do you want to complete this booking? Please confirm.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-primary confirmServiceCompleteModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 </s:form>
 
 <script>
+
     $(document).ready(function() {
         $('#mainCheckBox').click(function () {
                 if ($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()) {
@@ -296,14 +315,14 @@
                 }
         })
 
-        /*var check = document.getElementById("check");
-        for (var i = 0; i < check.length; i++)
-            check[i].checked = true;*/
+        actionConfirmation($('.serviceCompleteBtn'), $('.confirmServiceCompleteModalBtn'), $('#serviceCompleteModal'));
+
     });
 
     function addText() {
         document.getElementById("edit").value = "";
     }
+
     /*$(document).ready(function(){
         $('.setStatusBtn').click(function(){
             var bulkStatus = $('.bulkItemStatus tbody tr td:nth-child(4)'),
@@ -325,4 +344,5 @@
     $( window ).load(function() {
         window.location.href = '#focusHere';
     });
+
 </script>

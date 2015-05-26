@@ -144,7 +144,8 @@ function resetBox(pageType){
 function tablePropClass(tableClass, tableName, colStatus, colType, colReq, colMode, colOrigin, colDestination){
     var tableTr = $('.'+tableName+' tbody tr');
     for(var i = 0; i < tableTr.size(); i++){
-        var statusColumn = $('.'+tableName+' tbody tr td:nth-child('+colStatus+')').eq(i).text(), typeColumn = $('.'+tableName+' tbody tr td:nth-child('+colType+')').eq(i),
+        var statusColumn = $('.'+tableName+' tbody tr td:nth-child('+colStatus+')').eq(i).text(),
+            typeColumn = $('.'+tableName+' tbody tr td:nth-child('+colType+')').eq(i),
             reqColumn = $('.'+tableName+' tbody tr td:nth-child('+colReq+')').eq(i),
             modeColumn = $('.'+tableName+' tbody tr td:nth-child('+colMode+')').eq(i),
             icon = changeIcons(typeColumn.text()),
@@ -1469,6 +1470,7 @@ function filterLclTable(){
             case 'PENDING' :
             case 'INCOMPLETE' :
             case 'CANCELLED' :
+            case 'SERVICE ACCOMPLISHED' :
                 lcl_actionColumn.eq(i).empty().append('<i style="color: red;" class="fa fa-ban"></i>');
                 lcl_checkboxColumn.eq(i).empty().append('<i style="color: red;" class="fa fa-ban"></i>');
         }

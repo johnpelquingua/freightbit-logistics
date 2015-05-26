@@ -69,9 +69,9 @@
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="orderNum" title="Order Number <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="weight" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="weightInt" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="volume" title="Volume (cbm) <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="volumeInt" title="Volume (cbm) <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="port" title="Port <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
@@ -122,9 +122,9 @@
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="orderNum" title="Order Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="weight" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="weightInt" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="volume" title="Volume (cbm) <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="volumeInt" title="Volume (cbm) <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="port" title="Port <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>

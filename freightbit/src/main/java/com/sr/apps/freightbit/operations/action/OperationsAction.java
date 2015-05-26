@@ -2985,8 +2985,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String setLCLBulkSchedule(){
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA " + vesselScheduleIdParam);
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB " + vendorIdParam);
         System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC " + checkLCL);
@@ -3030,16 +3028,36 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         // function will add a consolidated new placeholder container for the order items selected begin
-
         Vendor vendorEntity = vendorService.findVendorById(vendorIdParam);
         VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam);
         // Containers created in planning will have the vendorName and Voyage number combined as placeholder for container Number
         containerEntity.setContainerNumber(vendorEntity.getVendorName() + " - " + vesselScheduleEntity.getVoyageNumber());
         containerEntity.setContainerStatus("CONSOLIDATED");
         containerEntity.setShipping(vesselScheduleEntity.getVoyageNumber());
-        containerEntity.setEirType("NONE");
+        containerEntity.setEirType("EIR FORM 1");
         containerEntity.setPortCode(vesselScheduleEntity.getDestinationPort());
         containerService.updateContainer(containerEntity);
+
+        // Add EIR 1 DOCUMENT BEGIN
+        Documents documentEntity = new Documents();
+
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
+
+        if(containerEntity.getEirType().equals("EIR FORM 1")){
+            documentEntity.setDocumentName(DocumentsConstants.EQUIPMENT_INTERCHANGE_RECEIPT_1);
+        }else{
+            documentEntity.setDocumentName(DocumentsConstants.EQUIPMENT_INTERCHANGE_RECEIPT_2);
+        }
+        documentEntity.setReferenceId(containerEntity.getContainerId());
+        documentEntity.setReferenceTable("CONTAINERS");
+        documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("FOR PRINTING");
+        documentEntity.setVendorCode(containerEntity.getShipping());
+        documentEntity.setDocumentProcessed(0);
+
+        documentsService.addDocuments(documentEntity);
+        // Add EIR 1 DOCUMENT END
 
         for(int i=0; i<aList.size(); i++){
 
@@ -3054,13 +3072,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
 
         }
-
         // function will add a consolidated new placeholder container for the order items selected end
 
         return SUCCESS;
     }
 
-    public String viewFreightList() {
+    public String viewSeaFreightList() {
         String column = getColumnBookingFilter();
 
         // For FCL Requirement
@@ -3079,7 +3096,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             int intIndex = strOrig.indexOf("ARCHIVED");
 
             if(intIndex == -1){
-                fclTable.add(transformToOrderFormBean(orderElem));
+                if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                    fclTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3099,7 +3118,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             int intIndex = strOrig.indexOf("ARCHIVED");
 
             if(intIndex == -1){
-                lclTable.add(transformToOrderFormBean(orderElem));
+                if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())){
+                    lclTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3119,7 +3140,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             int intIndex = strOrig.indexOf("ARCHIVED");
 
             if(intIndex == -1){
-                lcuTable.add(transformToOrderFormBean(orderElem));
+                if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                    lcuTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3139,9 +3162,27 @@ public class OperationsAction extends ActionSupport implements Preparable {
             int intIndex = strOrig.indexOf("ARCHIVED");
 
             if(intIndex == -1){
-                rcuTable.add(transformToOrderFormBean(orderElem));
+                if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                    rcuTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
+
+        // Load all vessel schedules
+        // FOR IMPROVEMENT -- FILTER ALL VESSEL SCHEDULES DATES THAT WILL NOT INCLUDE CURRENT DATE
+        List<VesselSchedules> vesselSchedulesList = operationsService.findAllVesselSchedule();
+
+        if(vesselSchedulesList != null){
+            for(VesselSchedules vesselScheduleElem : vesselSchedulesList){
+                vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+            }
+        }
+
+        return SUCCESS;
+    }
+
+    public String viewInlandFreightList() {
+        String column = getColumnBookingFilter();
 
         // For FCL Trucking Origin
         List<Orders> fclTrucksOrders = new ArrayList<Orders>();
@@ -3160,7 +3201,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 int intIndex = strOrig.indexOf("ARCHIVED");
 
                 if(intIndex == -1){
-                    fclTruckTable.add(transformToOrderFormBean(orderElem));
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        fclTruckTable.add(transformToOrderFormBean(orderElem));
+                    }
                 }
             }
         }
@@ -3182,7 +3225,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 int intIndex = strOrig.indexOf("ARCHIVED");
 
                 if(intIndex == -1){
-                    lclTruckTable.add(transformToOrderFormBean(orderElem));
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        lclTruckTable.add(transformToOrderFormBean(orderElem));
+                    }
                 }
             }
         }
@@ -3204,7 +3249,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 int intIndex = strOrig.indexOf("ARCHIVED");
 
                 if(intIndex == -1){
-                    lcuTruckTable.add(transformToOrderFormBean(orderElem));
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        lcuTruckTable.add(transformToOrderFormBean(orderElem));
+                    }
                 }
             }
         }
@@ -3226,7 +3273,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 int intIndex = strOrig.indexOf("ARCHIVED");
 
                 if(intIndex == -1){
-                    rcuTruckTable.add(transformToOrderFormBean(orderElem));
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        rcuTruckTable.add(transformToOrderFormBean(orderElem));
+                    }
                 }
             }
         }
@@ -3247,7 +3296,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             int intIndex = strOrig.indexOf("ARCHIVED");
 
             if(intIndex == -1){
-                ftlTable.add(transformToOrderFormBean(orderElem));
+                if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                    ftlTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3267,7 +3318,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             int intIndex = strOrig.indexOf("ARCHIVED");
 
             if(intIndex == -1){
-                ltlTable.add(transformToOrderFormBean(orderElem));
+                if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                    ltlTable.add(transformToOrderFormBean(orderElem));
+                }
             }
         }
 
@@ -3288,7 +3341,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 int intIndex = strOrig.indexOf("ARCHIVED");
 
                 if(intIndex == -1){
-                    fclTruckTableDes.add(transformToOrderFormBean(orderElem));
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        fclTruckTableDes.add(transformToOrderFormBean(orderElem));
+                    }
                 }
             }
         }
@@ -3310,7 +3365,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 int intIndex = strOrig.indexOf("ARCHIVED");
 
                 if(intIndex == -1){
-                    lclTruckTableDes.add(transformToOrderFormBean(orderElem));
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        lclTruckTableDes.add(transformToOrderFormBean(orderElem));
+                    }
                 }
             }
         }
@@ -3332,7 +3389,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 int intIndex = strOrig.indexOf("ARCHIVED");
 
                 if(intIndex == -1){
-                    lcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        lcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+                    }
                 }
             }
         }
@@ -3354,18 +3413,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 int intIndex = strOrig.indexOf("ARCHIVED");
 
                 if(intIndex == -1){
-                    rcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        rcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+                    }
                 }
-            }
-        }
-
-        // Load all vessel schedules
-        // FOR IMPROVEMENT -- FILTER ALL VESSEL SCHEDULES DATES THAT WILL NOT INCLUDE CURRENT DATE
-        List<VesselSchedules> vesselSchedulesList = operationsService.findAllVesselSchedule();
-
-        if(vesselSchedulesList != null){
-            for(VesselSchedules vesselScheduleElem : vesselSchedulesList){
-                vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
             }
         }
 
@@ -3670,7 +3721,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }
 
-        formBean.setOrderVolume(orderVolume); // For showing the total volume of order items inside booking
+        formBean.setOrderVolumeInt(Math.round(orderVolume)); // For showing the total volume of order items inside booking
 
         Double orderWeight = 0.0;
 
@@ -3680,7 +3731,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }
 
-        formBean.setOrderWeight(orderWeight); // For showing the total volume of order items inside booking
+        formBean.setOrderWeightInt(orderWeight.intValue()); // For showing the total volume of order items inside booking
 
         formBean.setOrderStatus(entity.getOrderStatus());
         formBean.setFreightType(entity.getServiceType());
@@ -3830,7 +3881,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // Load all vessel schedules
         // FOR IMPROVEMENT -- FILTER ALL VESSEL SCHEDULES DATES THAT WILL NOT INCLUDE CURRENT DATE
-
         vesselSchedule.setOrdersLCL(checkLCL);
 
         List<VesselSchedules> vesselSchedulesList = operationsService.findAllVesselSchedule();
@@ -3893,7 +3943,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         // Vendor Origin and Destination will have N/A values if service mode does not require them
-
         if (orderCheck.getServiceMode().equals("PIER TO DOOR")){
             formBean.setVendorOrigin("N/A");
             formBean.setVendorOriginName("N/A");
@@ -4044,7 +4093,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }
 
-        viewFreightList();
+        viewSeaFreightList();
 
         return SUCCESS;
     }
@@ -5280,7 +5329,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
             notificationService.addNotification(notificationEntity);*/
 
             // Add EIR 1 DOCUMENT BEGIN
-
             Documents documentEntity = new Documents();
 
             Client client = clientService.findClientById(getClientId().toString());
@@ -5299,7 +5347,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
             documentEntity.setDocumentProcessed(0);
 
             documentsService.addDocuments(documentEntity);
-
             // Add EIR 1 DOCUMENT END
 
         }catch(ContainerAlreadyExistsException e) {

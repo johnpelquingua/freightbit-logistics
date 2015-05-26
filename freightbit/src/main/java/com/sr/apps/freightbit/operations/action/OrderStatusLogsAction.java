@@ -286,9 +286,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
                 allFreightStatusList.add("QUEUE FOR PICKUP");
-                allFreightStatusList.add("POSITIONED");
-                allFreightStatusList.add("PICKUP");
                 allFreightStatusList.add("IN-TRANSIT TO PICKUP");
+                allFreightStatusList.add("POSITIONED");
+                allFreightStatusList.add("PICKED-UP");
             }
 
             if(orderEntity.getServiceRequirement().equals("LESS CONTAINER LOAD")){
@@ -309,8 +309,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }else{
             if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
                 allFreightStatusList.add("QUEUE FOR PICKUP");
+                allFreightStatusList.add("IN-TRANSIT TO PICKUP");
                 allFreightStatusList.add("POSITIONED");
-                allFreightStatusList.add("PICKUP");
+                allFreightStatusList.add("PICKED-UP");
             }else{
                 allFreightStatusList.add("QUEUE FOR DELIVERY");
                 allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
@@ -524,9 +525,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
                     if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
                         allFreightStatusList.add("QUEUE FOR PICKUP");
-                        allFreightStatusList.add("POSITIONED");
-                        allFreightStatusList.add("PICKUP");
                         allFreightStatusList.add("IN-TRANSIT TO PICKUP");
+                        allFreightStatusList.add("POSITIONED");
+                        allFreightStatusList.add("PICKED-UP");
                     }
 
                     if(orderEntity.getServiceRequirement().equals("LESS CONTAINER LOAD")){
@@ -547,8 +548,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 }else{
                     if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
                         allFreightStatusList.add("QUEUE FOR PICKUP");
+                        allFreightStatusList.add("IN-TRANSIT TO PICKUP");
                         allFreightStatusList.add("POSITIONED");
-                        allFreightStatusList.add("PICKUP");
+                        allFreightStatusList.add("PICKED-UP");
                     }else{
                         allFreightStatusList.add("QUEUE FOR DELIVERY");
                         allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
@@ -614,9 +616,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
                 allFreightStatusList.add("QUEUE FOR PICKUP");
-                allFreightStatusList.add("POSITIONED");
-                allFreightStatusList.add("PICKUP");
                 allFreightStatusList.add("IN-TRANSIT TO PICKUP");
+                allFreightStatusList.add("POSITIONED");
+                allFreightStatusList.add("PICKED-UP");
             }
 
             if(orderEntity.getServiceRequirement().equals("LESS CONTAINER LOAD")){
@@ -637,8 +639,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }else{
             if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
                 allFreightStatusList.add("QUEUE FOR PICKUP");
+                allFreightStatusList.add("IN-TRANSIT TO PICKUP");
                 allFreightStatusList.add("POSITIONED");
-                allFreightStatusList.add("PICKUP");
+                allFreightStatusList.add("PICKED-UP");
             }else{
                 allFreightStatusList.add("QUEUE FOR DELIVERY");
                 allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
@@ -698,9 +701,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
                 allFreightStatusList.add("QUEUE FOR PICKUP");
-                allFreightStatusList.add("POSITIONED");
-                allFreightStatusList.add("PICKUP");
                 allFreightStatusList.add("IN-TRANSIT TO PICKUP");
+                allFreightStatusList.add("POSITIONED");
+                allFreightStatusList.add("PICKED-UP");
             }
 
             if(orderEntity.getServiceRequirement().equals("LESS CONTAINER LOAD")){
@@ -721,8 +724,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }else{
             if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
                 allFreightStatusList.add("QUEUE FOR PICKUP");
+                allFreightStatusList.add("IN-TRANSIT TO PICKUP");
                 allFreightStatusList.add("POSITIONED");
-                allFreightStatusList.add("PICKUP");
+                allFreightStatusList.add("PICKED-UP");
             }else{
                 allFreightStatusList.add("QUEUE FOR DELIVERY");
                 allFreightStatusList.add("IN-TRANSIT TO DELIVERY");

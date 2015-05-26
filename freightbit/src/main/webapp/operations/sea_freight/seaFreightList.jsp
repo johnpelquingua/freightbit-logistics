@@ -130,7 +130,7 @@
                 <div class="tab-pane fade" id="lclTab">
 
                     <div class="panel-body">
-                        <div class="table-responsive table-responsive-scroll">
+                        <div class="table-responsive table-responsive-scroll" id="no-more-tables">
                         <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
                             <div class="lclMainLoadingDiv" style="text-align: center; margin: 1.6em;">
                                 Processing LCL orders. Please Wait.<br/>
@@ -144,12 +144,17 @@
 
                                     <td>
                                         <%--<display:column title="<input type='checkbox' class='lclCheckbox' id='mainCheckBox' name='mainCheckBox'/>">--%>
-                                        <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">--%>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
                                             <display:column title="">
                                                 <s:checkbox theme="simple" name="check" cssClass="lclCheckbox"
                                                             fieldValue="%{#attr.order.orderId}"/>
                                             </display:column>
-                                        <%--</sec:authorize>--%>
+                                        </sec:authorize>
+                                        <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_INLAND_FREIGHT', 'ROLE_SALES', 'ROLE_DOCUMENT_SPECIALIST')">
+                                            <display:column title="">
+                                                <i class="fa fa-ban"></i>
+                                            </display:column>
+                                        </sec:authorize>
                                     </td>
 
                                     <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black" scope="Order #"
@@ -168,9 +173,9 @@
                                                         style="text-align: center;"> </display:column></td>
                                     <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black" scope="Status"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="orderWeight" title="Weight  <i class='fa fa-sort' />" class="tb-font-black" scope="Weight"
+                                    <td><display:column property="orderWeightInt" title="Weight  <i class='fa fa-sort' />" class="tb-font-black" scope="Weight"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black" scope="Volume"
+                                    <td><display:column property="orderVolumeInt" title="Volume  <i class='fa fa-sort' />" class="tb-font-black" scope="Volume"
                                                         style="text-align: center;"> </display:column></td>
                                     <td><display:column property="strPickupDate" title="PICKUP  <i class='fa fa-sort' />" class="tb-font-black" scope="PICKUP"
                                                         style="text-align: center;"> </display:column></td>
@@ -392,7 +397,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="font-size: 1.6em;">
-                <i class="fa fa-cubes"></i> Consolidate
+                <i class="fa fa-th-large"></i> Consolidate
             </div>
                 <div class="modal-body">
                     <div id="consolidatedModalDiv"> <%--Area where input fields will appear--%> </div>
@@ -472,7 +477,7 @@
             freightAction = $('#order tbody tr td:nth-child(8)');
 
         for(var i=0; i < $('#order tbody tr').size(); i++){
-            if(freightStatus.eq(i).text() == 'INCOMPLETE'){
+            if(freightStatus.eq(i).text() == 'INCOMPLETE' || freightStatus.eq(i).text() == 'PENDING' || freightStatus.eq(i).text() == 'CANCELLED' || freightStatus.eq(i).text() == 'SERVICE ACCOMPLISHED'){
                 freightAction.eq(i).empty().append('<i style="color: red;" class="fa fa-ban"></i>')
             }
         }

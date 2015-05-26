@@ -694,23 +694,27 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
 
-        Date returnedInbound = brfDocument.getInboundReturned();
-        Date sentFinalOutbound = brfDocument.getFinalOutboundSent();
-        Date returnedFinalInbound = brfDocument.getFinalInboundReturned();
+        if(brfDocument != null){
 
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+            Date returnedInbound = brfDocument.getInboundReturned();
+            Date sentFinalOutbound = brfDocument.getFinalOutboundSent();
+            Date returnedFinalInbound = brfDocument.getFinalInboundReturned();
 
-        if(returnedInbound != null){
-            strReturnedInbound = formatter.format(returnedInbound);
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+            if(returnedInbound != null){
+                strReturnedInbound = formatter.format(returnedInbound);
+            }
+            if(sentFinalOutbound != null){
+                strSentFinalOutbound = formatter.format(sentFinalOutbound);
+            }
+            if(returnedFinalInbound != null){
+                strReturnedFinalInbound = formatter.format(returnedFinalInbound);
+            }
+            finalOutboundTrackingNumber = brfDocument.getFinalOutboundLbc();
+            finalInboundTrackingNumber = brfDocument.getFinalInboundLbc();
+
         }
-        if(sentFinalOutbound != null){
-            strSentFinalOutbound = formatter.format(sentFinalOutbound);
-        }
-        if(returnedFinalInbound != null){
-            strReturnedFinalInbound = formatter.format(returnedFinalInbound);
-        }
-        finalOutboundTrackingNumber = brfDocument.getFinalOutboundLbc();
-        finalInboundTrackingNumber = brfDocument.getFinalInboundLbc();
 
         //DOCUMENT TAB OUTBOUND VALUE BEGIN================================================================================================================
 
@@ -3399,45 +3403,49 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM", entity.getOrderId());
 
-        if(brfDocument.getFinalOutboundSent() != null){
-            String todayDate = (formatter.format(new Date()));
-            String finalOutboundDate = (formatter.format(brfDocument.getFinalOutboundSent()));
+        if(brfDocument != null){
+            if(brfDocument.getFinalOutboundSent() != null){
+                String todayDate = (formatter.format(new Date()));
+                String finalOutboundDate = (formatter.format(brfDocument.getFinalOutboundSent()));
 
-            Date d1 = null;
-            Date d2 = null;
+                Date d1 = null;
+                Date d2 = null;
 
-            try {
-                d1 = formatter.parse(todayDate);
-                d2 = formatter.parse(finalOutboundDate);
-                System.out.println(d1 + " Date Today");
-                System.out.println(d2 + " Final Outbound Date");
+                try {
+                    d1 = formatter.parse(todayDate);
+                    d2 = formatter.parse(finalOutboundDate);
+                    System.out.println(d1 + " Date Today");
+                    System.out.println(d2 + " Final Outbound Date");
 
-                long diff = d1.getTime() - d2.getTime();
+                    long diff = d1.getTime() - d2.getTime();
 
-                long diffSeconds = diff / 1000 % 60;
-                long diffMinutes = diff / (60 * 1000) % 60;
-                long diffHours = diff / (60 * 60 * 1000) % 24;
-                long diffDays = diff / (24 * 60 * 60 * 1000);
+                    long diffSeconds = diff / 1000 % 60;
+                    long diffMinutes = diff / (60 * 1000) % 60;
+                    long diffHours = diff / (60 * 60 * 1000) % 24;
+                    long diffDays = diff / (24 * 60 * 60 * 1000);
 
-                System.out.println(diffDays + " days");
-                System.out.println(diffHours + " hours");
-                System.out.println(diffMinutes + " minutes");
-                System.out.println(diffSeconds + " seconds");
+                    System.out.println(diffDays + " days");
+                    System.out.println(diffHours + " hours");
+                    System.out.println(diffMinutes + " minutes");
+                    System.out.println(diffSeconds + " seconds");
 
-                //formBean.setAging(Integer.parseInt(String.valueOf(diffDays)));
+                    //formBean.setAging(Integer.parseInt(String.valueOf(diffDays)));
 
-                int dateDiff = Integer.parseInt(String.valueOf(diffDays));
+                    int dateDiff = Integer.parseInt(String.valueOf(diffDays));
 
-                if(dateDiff > 0){
-                    formBean.setAging(Integer.parseInt(String.valueOf(diffDays)));
-                }else{
-                    formBean.setAging(0);
+                    if(dateDiff > 0){
+                        formBean.setAging(Integer.parseInt(String.valueOf(diffDays)));
+                    }else{
+                        formBean.setAging(0);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
-            } catch (Exception e) {
-                e.printStackTrace();
+            }else{
+                formBean.setAging(0);
             }
-
         }else{
             formBean.setAging(0);
         }
@@ -3502,6 +3510,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
             final File outputFile = new File("Booking Request Form.pdf");
             // Generate the report
             MasterReport report = bookingRequestReportService.generateReport(params);
+
+
 
             HttpServletResponse response = ServletActionContext.getResponse();
             responseOut = new BufferedOutputStream(response.getOutputStream());

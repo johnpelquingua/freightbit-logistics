@@ -596,7 +596,7 @@
                                     <%--</div>--%>
 
                                     <div class="table-responsive inboundTableMainDiv" style="clear:both;">
-                                        <s:form name="myform" action="processDocumentsInbound">
+                                            <s:form name="myform" action="processDocumentsInbound">
                                         <s:textfield type="hidden" name="orderIdParam" value="%{#attr.document.referenceId}"   />
                                         <s:textfield type="hidden" name="document.documentItem" id="documentItemInbound" />
 

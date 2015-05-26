@@ -64,7 +64,9 @@ public class OrderBean {
     private String documentCheck;
     private Integer documentId;
     private Float orderVolume;
+    private Integer orderVolumeInt;
     private Double orderWeight;
+    private Integer orderWeightInt;
     private Integer aging;
     private String strAging;
     private String plateNumberOri;
@@ -548,5 +550,21 @@ public class OrderBean {
 
     public void setOrderCompleted(String orderCompleted) {
         this.orderCompleted = orderCompleted;
+    }
+
+    public Integer getOrderVolumeInt() {
+        return orderVolumeInt;
+    }
+
+    public void setOrderVolumeInt(Integer orderVolumeInt) {
+        this.orderVolumeInt = orderVolumeInt;
+    }
+
+    public Integer getOrderWeightInt() {
+        return orderWeightInt;
+    }
+
+    public void setOrderWeightInt(Integer orderWeightInt) {
+        this.orderWeightInt = orderWeightInt;
     }
 }

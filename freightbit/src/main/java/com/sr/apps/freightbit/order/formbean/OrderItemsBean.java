@@ -11,6 +11,7 @@ public class OrderItemsBean {
     private String description;
     private Double declaredValue;
     private Double weight;
+    private Integer weightInt;
     private String remarks;
     private Float rate;
     private Date createdTimestamp;
@@ -21,6 +22,7 @@ public class OrderItemsBean {
     private String status;
     private String shipmentStatus;
     private Float volume;
+    private Integer volumeInt;
     private Integer clientId;
     private String commodity;
     private String comments;
@@ -65,8 +67,8 @@ public class OrderItemsBean {
 
     }
 
-    public OrderItemsBean(Date modifiedTimestamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimestamp, String createdBy, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorOriginName, String vendorDestination, String vendorDestinationName, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate, String plateNumberOri, String plateNumberDes, Integer containerId, String containerNumber, String sealNumber, String bulletSeal, String shippingSeal, String containerSize, String itemCode, Double length, Double width, Double height, String itemName, String originPort, String destinationPort) {
-        this.modifiedTimestamp = modifiedTimestamp;
+    public OrderItemsBean(Float rate, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, Integer weightInt, String remarks, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer volumeInt, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorOriginName, String vendorDestination, String vendorDestinationName, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate, String plateNumberOri, String plateNumberDes, Integer containerId, String containerNumber, String sealNumber, String bulletSeal, String shippingSeal, String containerSize, String itemCode, Double length, Double width, Double height, String itemName, String originPort, String destinationPort) {
+        this.rate = rate;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -74,15 +76,17 @@ public class OrderItemsBean {
         this.description = description;
         this.declaredValue = declaredValue;
         this.weight = weight;
+        this.weightInt = weightInt;
         this.remarks = remarks;
-        this.rate = rate;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
+        this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
         this.status = status;
         this.shipmentStatus = shipmentStatus;
         this.volume = volume;
+        this.volumeInt = volumeInt;
         this.clientId = clientId;
         this.commodity = commodity;
         this.comments = comments;
@@ -570,5 +574,21 @@ public class OrderItemsBean {
 
     public void setOriginPort(String originPort) {
         this.originPort = originPort;
+    }
+
+    public Integer getWeightInt() {
+        return weightInt;
+    }
+
+    public void setWeightInt(Integer weightInt) {
+        this.weightInt = weightInt;
+    }
+
+    public Integer getVolumeInt() {
+        return volumeInt;
+    }
+
+    public void setVolumeInt(Integer volumeInt) {
+        this.volumeInt = volumeInt;
     }
 }

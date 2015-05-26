@@ -63,7 +63,7 @@
                                 <s:param name="containerStatusParam" value="%{#attr.container.containerStatus}"></s:param>
                                 <s:param name="containerPortCodeParam" value="%{#attr.container.portCode}"></s:param>
                             </s:url>
-                            <s:a href="%{viewConsolidationItemListUrl}" title="Consolidate Items" rel="tooltip"><i class="fa fa-cubes"></i></s:a>
+                            <s:a href="%{viewConsolidationItemListUrl}" title="Consolidate Items" rel="tooltip"><i class="fa fa-th-large"></i></s:a>
                             </s:if>
                             <s:url var="viewConsolidationContainerInfoUrl" action="viewConsolidationContainerInfo">
                                 <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
@@ -89,16 +89,6 @@
                         <div class="col-lg-6">
                             <i class='fa fa-cubes' ></i> Consolidate
                         </div>
-                        <%--<table class="col-lg-12">
-                            <tr>
-                                <td><label>LEGEND:</label></td>
-                                <td><i class='fa fa-info-circle' ></i> Information</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-cubes' ></i> Consolidate</td>
-                            </tr>
-                        </table>--%>
                     </div>
                 </div>
             </div>

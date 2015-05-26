@@ -110,8 +110,9 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
-                                                <i style="color: red;" class="fa fa-ban"></i>                                            </s:if>
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
+                                                <i style="color: red;" class="fa fa-ban"></i>
+                                            </s:if>
                                             <s:else>
                                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
                                                     <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
@@ -170,7 +171,7 @@
                                         <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                         <td>
                                             <display:column title="Action">
-                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
                                                     <i style="color: red;" class="fa fa-ban"></i>
                                                 </s:if>
                                                 <s:else>
@@ -234,7 +235,7 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
                                                 <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
@@ -295,7 +296,7 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
                                                 <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
@@ -378,7 +379,7 @@
                                                             style="text-align: center;width: 15%;"> </display:column></td>
                                         <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
                                                 <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
@@ -429,7 +430,7 @@
                                                             style="text-align: center;width: 15%;"> </display:column></td>
                                         <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
                                                 <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
@@ -528,7 +529,7 @@
                                                                 style="text-align: center;"> </display:column></td>
                                             <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                             <td><display:column title="Action">
-                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
                                                     <i style="color: red;" class="fa fa-ban"></i>
                                                 </s:if>
                                                 <s:else>
@@ -588,7 +589,7 @@
                                                                 style="text-align: center;"> </display:column></td>
                                             <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                             <td><display:column title="Action">
-                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
                                                     <i style="color: red;" class="fa fa-ban"></i>
                                                 </s:if>
                                                 <s:else>
@@ -650,7 +651,7 @@
                                                                 style="text-align: center;"> </display:column></td>
                                             <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                             <td><display:column title="Action">
-                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
                                                     <i style="color: red;" class="fa fa-ban"></i>
                                                 </s:if>
                                                 <s:else>
@@ -709,7 +710,7 @@
                                                                 style="text-align: center;"> </display:column></td>
                                             <sec:authorize access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                             <td><display:column title="Action">
-                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED' || #attr.order.orderStatus=='SERVICE ACCOMPLISHED'">
                                                     <i style="color: red;" class="fa fa-ban"></i>
                                                 </s:if>
                                                 <s:else>

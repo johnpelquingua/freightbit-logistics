@@ -144,16 +144,16 @@
 
             <div class="panel-body">
                 <div class="table-responsive">
-                    <display:table id="orderItemsUnderContainer" name="orderItemsBeansUnderContainer" requestURI="viewConsolidationItemList.action"
+                    <display:table id="orderItemsUnderContainer" name="orderItemsInsideContainer" requestURI="viewConsolidationItemList.action"
                                    class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <td><display:column property="nameSize" title="Item Name <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="orderNum" title="Order Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="weight" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="weightInt" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="volume" title="Volume (cbm) <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="volumeInt" title="Volume (cbm) <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="port" title="Port <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>

@@ -16,6 +16,7 @@
         cursor: pointer;
     }
 </style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -51,7 +52,6 @@
 </s:if>
 
 <!-- /.row -->
-
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">

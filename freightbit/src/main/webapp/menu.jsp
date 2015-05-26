@@ -49,7 +49,7 @@
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_INLAND_FREIGHT','ROLE_FREIGHT_SPECIALIST')">
                     <li><a href="<s:url action='../operations/viewContainerList' />"> <i class="fa fa-caret-right fa-fw"></i> Container Management</a></li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES','ROLE_FREIGHT_SPECIALIST')">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES','ROLE_FREIGHT_SPECIALIST', 'ROLE_INLAND_FREIGHT')">
                     <li><a href="<s:url action='../operations/viewConsolidationContainerList' />"> <i class="fa fa-caret-right fa-fw"></i> Consolidation</a></li>
                 </sec:authorize>
             </ul>

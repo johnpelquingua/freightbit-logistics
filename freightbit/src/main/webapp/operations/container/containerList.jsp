@@ -202,7 +202,6 @@
 
 <script>
     function generateReport(documentId,documentName) {
-        alert(1);
         /*var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Booking Request Form";
