@@ -48,6 +48,12 @@
                                 $(function () {
                                     var dateFromStat = $('#dateFromIdStat');
                                     dateFromStat.datepicker({
+                                        maxDate: '0',
+                                        setDate: new Date(),
+                                        beforeShow : function()
+                                        {
+                                            $( this ).datepicker('option','maxDate', $('#dateToIdStat').val() );
+                                        }
                                     });
                                 });
                             </script>
@@ -59,6 +65,13 @@
                                 $(function () {
                                     var dateToIdStat = $('#dateToIdStat');
                                     dateToIdStat.datepicker({
+                                        maxDate: new Date(),
+                                        beforeShow : function()
+                                        {
+                                            $( this ).datepicker('option','maxDate', $('#dateFromIdStat').val() )
+
+
+                                        }
                                     });
                                 });
                             </script>
@@ -140,39 +153,39 @@
     fromDate.datepicker({
         timeFormat: 'h:mm TT',
         format : 'd.m.Y',
-        maxDate: "+9m +9w",
+        maxDate: "0",
 
         onClose: function(dateText, inst) {
             if (toDate.val() != '') {
-                var testStartDate = fromDate.datetimepicker('getDate'),
-                        testEndDate = toDate.datetimepicker('getDate');
+                var testStartDate = fromDate.datepicker('getDate'),
+                        testEndDate = toDate.datepicker('getDate');
 
                 if (testStartDate > testEndDate)
-                    toDate.datetimepicker('setDate', testStartDate);
+                    toDate.datepicker('setDate', testStartDate);
             }
         },
 
         onSelect: function (selectedDateTime){
-            toDate.datetimepicker('option', 'minDate', fromDate.datetimepicker('getDate'));
+            toDate.datepicker('option', 'minDate', fromDate.datetimepicker('getDate'));
         }
     });
 
     toDate.datepicker({
         timeFormat: 'h:mm TT',
         minDate: 0,
-
+        maxDate: new Date(),
         onClose: function(dateText, inst) {
             if (fromDate.val() != '') {
-                var testStartDate = fromDate.datetimepicker('getDate');
-                var testEndDate = toDate.datetimepicker('getDate');
+                var testStartDate = fromDate.datepicker('getDate');
+                var testEndDate = toDate.datepicker('getDate');
 
                 if (testStartDate > testEndDate)
-                    fromDate.datetimepicker('setDate', testEndDate);
+                    fromDate.datepicker('setDate', testEndDate);
             }
         },
 
         onSelect: function (selectedDateTime){
-            fromDate.datetimepicker('option', 'maxDate', toDate.datetimepicker('getDate') );
+            fromDate.datepicker('option', 'maxDate', toDate.datetimepicker('getDate') );
         }
     });
 
