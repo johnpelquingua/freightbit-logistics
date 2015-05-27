@@ -190,7 +190,7 @@
                         </sec:authorize>
                     </tr>
                     </display:table>
-
+                            <%--<s:property value="order.orderId"></s:property>--%>
                         <div class="pull-right">
                             <s:url var="accStatus" action="serviceAccomplishedStatus">
                                 <s:param name="orderIdParam"
@@ -198,10 +198,10 @@
                             </s:url>
                             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                                 <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished">
-                                    <a id="Complete" class="btn btn-primary serviceCompleteBtn">
-                                        Set Service Complete
-                                    </a>
-                                </s:a>
+                                <a id="Complete" class="btn btn-primary serviceCompleteBtn">
+                                    Set Service Complete
+                                </a>
+                            </s:a>
                             </sec:authorize>
                             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                             <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>

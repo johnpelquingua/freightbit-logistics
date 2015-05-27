@@ -977,7 +977,7 @@
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 <%--Print Document--%>
-                                                <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='RELEASE ORDER' ">
+                                                <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='PROFORMA BILL OF LADING' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='RELEASE ORDER' ">
                                                     <a id="print-icon" href="#focusHere" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                         <i class="fa fa-print"></i>
                                                     </a>
@@ -1190,7 +1190,7 @@
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <%--Print Document--%>
-                                                    <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' ">
+                                                    <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='PROFORMA BILL OF LADING' || #attr.document.documentName=='ACCEPTANCE RECEIPT' ">
                                                         <a id="print-icon" href="#focusHere" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                             <i class="fa fa-print"></i>
                                                         </a>
