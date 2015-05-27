@@ -209,7 +209,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }
 
         clearErrorsAndMessages();
-        addActionError("Statuses of all items must be Arrived/Delivered or one Returned to Origin.");
+        addActionError("Statuses of all items must be \"Arrived\"/\"Delivered\", \"Picked-Up\" in Pick-Up Service Mode or \"Returned to Origin.\"");
         return SUCCESS;
     }
 
@@ -225,7 +225,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             List <OrderStatusLogs> orderStatusEntityList = orderStatusLogsService.findAllShipmentLogs(orderItemsElem.getOrderItemId());
 
                 for(OrderStatusLogs orderStatusLogsElem : orderStatusEntityList){
-                    if(orderStatusLogsElem.getStatus().equals("ARRIVED") || orderStatusLogsElem.getStatus().equals("DELIVERED")){
+
+                    if(orderStatusLogsElem.getStatus().equals("ARRIVED") || orderStatusLogsElem.getStatus().equals("DELIVERED")
+                    || (orderEntity.getServiceMode().equals("PICKUP") && orderStatusLogsElem.getStatus().equals("PICKED-UP"))){
                         checkAllStatus += 1;
                     }
                     else if(orderStatusLogsElem.getStatus().equals("RETURNED TO ORIGIN")) {
