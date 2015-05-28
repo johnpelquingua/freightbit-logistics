@@ -149,12 +149,22 @@
 
     var fromDate = $('#dateFromIdStat');
     var toDate = $('#dateToIdStat');
+    fromDate.keyup(function(){
+        fromDate.val("");
+        fromDate.datePicker("show");
 
+    });
+    // START: MAYDOTIMAS: Prevent user from entering invalid date range
+    toDate.keyup(function(){
+        toDate.val("");
+        toDate.datePicker("show");
+
+    });
     fromDate.datepicker({
         timeFormat: 'h:mm TT',
         format : 'd.m.Y',
         maxDate: "0",
-
+    // END: MAYDOTIMAS: Prevent user from entering invalid date range
         onClose: function(dateText, inst) {
             if (toDate.val() != '') {
                 var testStartDate = fromDate.datepicker('getDate'),
