@@ -639,12 +639,20 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             }
 
         }else{
-            if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+            if(orderEntity.getServiceMode().equals("PICKUP") /*|| orderEntity.getServiceMode().equals("INTER-WAREHOUSE")*/){
                 allFreightStatusList.add("QUEUE FOR PICKUP");
                 allFreightStatusList.add("IN-TRANSIT TO PICKUP");
                 allFreightStatusList.add("POSITIONED");
                 allFreightStatusList.add("PICKED-UP");
+            }else if (orderEntity.getServiceMode().equals("DELIVERY")){
+                allFreightStatusList.add("QUEUE FOR DELIVERY");
+                allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
+                allFreightStatusList.add("DELIVERED");
             }else{
+                allFreightStatusList.add("QUEUE FOR PICKUP");
+                allFreightStatusList.add("IN-TRANSIT TO PICKUP");
+                allFreightStatusList.add("POSITIONED");
+                allFreightStatusList.add("PICKED-UP");
                 allFreightStatusList.add("QUEUE FOR DELIVERY");
                 allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
                 allFreightStatusList.add("DELIVERED");
@@ -724,12 +732,20 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             }
 
         }else{
-            if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+            if(orderEntity.getServiceMode().equals("PICKUP")/* || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")*/){
                 allFreightStatusList.add("QUEUE FOR PICKUP");
                 allFreightStatusList.add("IN-TRANSIT TO PICKUP");
                 allFreightStatusList.add("POSITIONED");
                 allFreightStatusList.add("PICKED-UP");
+            }else if (orderEntity.getServiceMode().equals("DELIVERY")){
+                allFreightStatusList.add("QUEUE FOR DELIVERY");
+                allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
+                allFreightStatusList.add("DELIVERED");
             }else{
+                allFreightStatusList.add("QUEUE FOR PICKUP");
+                allFreightStatusList.add("IN-TRANSIT TO PICKUP");
+                allFreightStatusList.add("POSITIONED");
+                allFreightStatusList.add("PICKED-UP");
                 allFreightStatusList.add("QUEUE FOR DELIVERY");
                 allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
                 allFreightStatusList.add("DELIVERED");
@@ -750,11 +766,21 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         try {
+
+            if(orderStatusLogsBean.getStatus().equals("")){
+
+                sessionAttributes.put("orderItemIdParam", orderStatusLogsBean.getOrderItemId());
+                return "INPUT_NULL";
+
+            }else{
+
                 OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
                 sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
                 orderStatusLogsEntity.setCreatedTimestamp(new Date());
                 orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 orderStatusLogsService.addStatus(orderStatusLogsEntity);
+
+            }
 
                 /*//Status in OrderStatusLogs will be passed into OrderItems table
                 OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
@@ -762,9 +788,12 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 orderStatusLogsService.updateStatusOrderItem(orderItemEntity);*/
 
         } catch (Exception e) {
-                addActionError("Update Failed");
-                return INPUT;
-            }
+
+            addActionError("Update Failed");
+            sessionAttributes.put("orderItemIdParam", orderItemIdParam);
+
+            return INPUT;
+        }
         return SUCCESS;
     }
 

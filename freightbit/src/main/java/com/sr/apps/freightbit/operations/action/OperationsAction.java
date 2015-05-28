@@ -2550,7 +2550,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         order = transformToOrderFormBean(orderEntity);
 
-        if(orderItem.getVesselScheduleId() != null ){
+        System.out.print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + entity.getVesselScheduleId());
+
+        if(entity.getVesselScheduleId()!=null){
             VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
             vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
         }
@@ -2561,6 +2563,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         nameSizeList = (List) sessionAttributes.get("nameSizeList");
         orderItems = (List) sessionAttributes.get("orderItems");
+
+        orderItemOriginVendor.add(transformToOrderItemFormBean(entity));
+        orderItemDestinationVendor.add(transformToOrderItemFormBean(entity));
 
         clearErrorsAndMessages();
         addActionMessage("Vendor Added Successfully!");
@@ -2619,7 +2624,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         order = transformToOrderFormBean(orderEntity);
 
-        if(orderItem.getVesselScheduleId() != null ){
+        System.out.print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + entity.getVesselScheduleId());
+
+        if(entity.getVesselScheduleId()!=null){
             VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
             vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
         }
@@ -2630,6 +2637,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         nameSizeList = (List) sessionAttributes.get("nameSizeList");
         orderItems = (List) sessionAttributes.get("orderItems");
+
+        orderItemOriginVendor.add(transformToOrderItemFormBean(entity));
+        orderItemDestinationVendor.add(transformToOrderItemFormBean(entity));
 
         clearErrorsAndMessages();
         addActionMessage("Vendor Already Exists!");

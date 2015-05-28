@@ -216,8 +216,8 @@
                               emptyOption="true"
                               required="true" />--%>
 
-                    <input list="allFreightStatusList" id="planningStatusDataList" name="orderStatusLogsBean.status" class="form-control" required="true"/>
-                    <datalist id="allFreightStatusList" class="statusDropdown">
+                    <input list="allFreightStatusList" id="planningStatusDataList" name="orderStatusLogsBean.status" class="statusDropdown form-control" required="true"/>
+                    <datalist id="allFreightStatusList" class="statusDropdown" aria-required="true">
                         <s:iterator value="allFreightStatusList">
                             <option id="<s:property />" value="<s:property />" />
                         </s:iterator>
@@ -372,8 +372,8 @@
 
     $(document).ready(function(){
 //        confirmStatusMsg();
-        planningWarningMsg();
-        validationForm('statusDropdown','submitBtn');
+            planningWarningMsg();
+            validationForm('statusDropdown', 'submitBtn');
     });
 
     $(document).ready(function () {
