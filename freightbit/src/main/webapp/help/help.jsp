@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 <!-- EDIT HERE -->
@@ -11,8 +12,8 @@
 <div class="container">
     <h2>Booking Module</h2>
     <div class="panel-group" id="accordion-booking">
-
-        <div class="panel panel-info">
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
+        <div class="panel panel-info" id="booking_search">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-search">Searching for a Booking</a>
@@ -21,15 +22,15 @@
             <div id="collapse-booking-search" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
-                        1.	To search for a booking, click Booking on Main menu. <br>
-                        2.	Click Search Booking. <br>
-                        3.	Fill up all necessary information. <br>
+                        1.	To search for a booking, click Booking > Active Bookings on Main menu. <br>
+                        2.	Click the Search Booking button. <br>
+                        3.	Fill up all criteria and keyword to search. <br>
                         4. Click Search.
                     </p>
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" id="booking_add">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-create">Create a Booking</a>
@@ -38,129 +39,18 @@
             <div id="collapse-booking-create" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>
-                        1.	To create a new booking, click Booking on Main Menu. <br>
-                        2.	Click new booking. <br>
+                        1.	To create a new booking, click Booking > Active Bookings on Main Menu. <br>
+                        2.	Click on New booking button. <br>
                         3.	Fill out all necessary information to create a new booking. All required fields are marked with an asterisk (*). <br>
                         4.	Click Next to proceed. <br>
                         5.	The booking summary page will be displayed.  From there, you can add items. <br>
-                        6.	Click Save Booking to create a new booking.
+                        6.	Add container/items then click the Save Booking button.<br>
+                        7.  The Confirm Booking Details prompt will appear. Click Save to create booking.
                     </p>
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-editContactInfo">Edit Contact Information</a>
-                </h4>
-            </div>
-            <div id="collapse-booking-editContactInfo" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>
-                        1.	On creating a new booking or editing an existing booking, you can edit the contact info by clicking the Edit Contact Info button. <br>
-                        2.	A modal containing all the current contact information of the customer will appear. User shall fill up all necessary changes. <br>
-                        3.	Click Save to finalize the changes.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addContactPerson">Add Contact Person</a>
-                </h4>
-            </div>
-            <div id="collapse-booking-addContactPerson" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>
-                        1.	In creating a new or editing an existing booking, user can add Contact Person by clicking the Add Contact Person button. <br>
-                        2.	On the modal, the user needs to fill out all the necessary information to add a new Contact person. All required fields are marked with an asterisk (*) . <br>
-                        3.	Click Save to create a new contact person.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addAddress">Add Address</a>
-                </h4>
-            </div>
-            <div id="collapse-booking-addAddress" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>
-                        1.	On creating a new or editing an existing booking, you can add a new Address by clicking the Add Address button. <br>
-                        2.	On the modal, the user needs to fill out all the necessary information to add a new Address. All required fields are marked with an asterisk (*). <br>
-                        3.	Click Save to create a new address.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addConsignee">Add Consignee</a>
-                </h4>
-            </div>
-            <div id="collapse-booking-addConsignee" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>
-                        1.	On creating a new or editing an existing booking, user can add a new Consignee by clicking the Add Consignee button. <br>
-                        2.	On the modal, user needs to fill out all the necessary information to add a new Consignee. All required fields are marked with an asterisk (*). <br>
-                        3.	Click Save to create a new Consignee.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addConsigneeContact">Add Contact person for Consignee</a>
-                </h4>
-            </div>
-            <div id="collapse-booking-addConsigneeContact" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>
-                        1.	On creating a new or editing an existing booking, user can add a new Contact Person for Consignee by clicking the Add Contact Person button. <br>
-                        2.	On the modal, a user needs to fill out all the necessary information to add a new Consignee. All required fields are marked with an asterisk (*). <br>
-                        3.	Click Save to create a new Contact Person for Consignee.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addContainerFCL">Add Container (Full Container Load)</a>
-                </h4>
-            </div>
-            <div id="collapse-booking-addContainerFCL" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>
-                        1.	On second page of creating or editing a booking, you can add container to the list. <br>
-                        2.	Fill up all necessary information to add container to the list. Required fields are marked with an asterisk (*). <br>
-                        3.	Click Add Container to the List to finalize.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addItemLCL">Add Item (Less Container Load)</a>
-                </h4>
-            </div>
-            <div id="collapse-booking-addItemLCL" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>
-                        1.	On the second page of creating or editing a booking, user can add an item to the list. <br>
-                        2.	Fill up all necessary information to add container to the list. Required field are marked with an asterisk (*). <br>
-                        3.	Click Add Item to List to finalize.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" id="booking_edit">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-edit">Edit Booking</a>
@@ -173,12 +63,14 @@
                         2.	Click the Pencil Icon on Actions Column. <br>
                         3.	Fill up all necessary changes on first page. <br>
                         4.	Click Next to proceed to next page. <br>
-                        5.	Click Save to finalize the changes.
+                        5.	The booking summary page will be displayed.  From there, you can add items. <br>
+                        6.	Edit container/items then click the Save Booking button.<br>
+                        7.  The Confirm Booking Details prompt will appear. Click Save to create booking.
                     </p>
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" id="booking_delete">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-delete">Delete Booking</a>
@@ -195,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" id="booking_view">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-view">View Booking Information</a>
@@ -211,7 +103,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" id="booking_print">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-printForm">Print Booking Form</a>
@@ -222,12 +114,13 @@
                     <p>
                         1.	To print booking form, Click Booking on Main Menu. <br>
                         2.	Click the Printer icon on Actions Column. <br>
-                        3.	A new window will open to proceed with the printing.
+                        3.	A new window will open to proceed with the  <br>
+                        4.  Find the Printer icon in the bottom right toolbar to print the booking form.
                     </p>
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" id="booking_approve">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-approve">Approve Booking</a>
@@ -239,12 +132,12 @@
                         1.	To approve booking, Click Booking on Main Menu. <br>
                         2.	Click the Check icon on Actions Column. <br>
                         3.	A prompt will appear to confirm the process. <br>
-                        4.	Click OK to approve booking.
+                        4.	Click OK to approve booking. The status of the booking will be updated to "APPROVED".
                     </p>
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" id="booking_cancel">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-cancel">Cancel Booking</a>
@@ -261,7 +154,119 @@
                 </div>
             </div>
         </div>
-
+        <div class="panel panel-info" id="booking_editContactInfo">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-editContactInfo">Edit Contact Information</a>
+                </h4>
+            </div>
+            <div id="collapse-booking-editContactInfo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>
+                        1.	On creating a new booking or editing an existing booking, you can edit the contact info by clicking the Edit Contact Info button. <br>
+                        2.	A modal containing all the current contact information of the customer will appear. User shall fill up all necessary changes. <br>
+                        3.	Click Save to finalize the changes.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info" id="booking_addContactPerson">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addContactPerson">Add Contact Person</a>
+                </h4>
+            </div>
+            <div id="collapse-booking-addContactPerson" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>
+                        1.	In creating a new or editing an existing booking, user can add Contact Person by clicking the Add Contact Person button. <br>
+                        2.	On the modal, the user needs to fill out all the necessary information to add a new Contact person. All required fields are marked with an asterisk (*) . <br>
+                        3.	Click Save to create a new contact person.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info" id="booking_addAddress">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addAddress">Add Address</a>
+                </h4>
+            </div>
+            <div id="collapse-booking-addAddress" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>
+                        1.	On creating a new or editing an existing booking, you can add a new Address by clicking the Add Address button. <br>
+                        2.	On the modal, the user needs to fill out all the necessary information to add a new Address. All required fields are marked with an asterisk (*). <br>
+                        3.	Click Save to create a new address.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info" id="booking_addConsignee">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addConsignee">Add Consignee</a>
+                </h4>
+            </div>
+            <div id="collapse-booking-addConsignee" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>
+                        1.	On creating a new or editing an existing booking, user can add a new Consignee by clicking the Add Consignee button. <br>
+                        2.	On the modal, user needs to fill out all the necessary information to add a new Consignee. All required fields are marked with an asterisk (*). <br>
+                        3.	Click Save to create a new Consignee.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info" id="booking_addConsigneeContactPerson">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addConsigneeContact">Add Contact person for Consignee</a>
+                </h4>
+            </div>
+            <div id="collapse-booking-addConsigneeContact" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>
+                        1.	On creating a new or editing an existing booking, user can add a new Contact Person for Consignee by clicking the Add Contact Person button. <br>
+                        2.	On the modal, a user needs to fill out all the necessary information to add a new Consignee. All required fields are marked with an asterisk (*). <br>
+                        3.	Click Save to create a new Contact Person for Consignee.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info" id="booking_addContainer">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addContainerFCL">Add Container (Full Container Load)</a>
+                </h4>
+            </div>
+            <div id="collapse-booking-addContainerFCL" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>
+                        1.	On second page of creating or editing a booking, you can add container to the list. <br>
+                        2.	Fill up all necessary information to add container to the list. Required fields are marked with an asterisk (*). <br>
+                        3.	Click Add Container to the List to finalize.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info" id="booking_addItems">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-addItemLCL">Add Item (Less Container Load)</a>
+                </h4>
+            </div>
+            <div id="collapse-booking-addItemLCL" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>
+                        1.	On the second page of creating or editing a booking, user can add an item to the list. <br>
+                        2.	Fill up all necessary information to add container to the list. Required field are marked with an asterisk (*). <br>
+                        3.	Click Add Item to List to finalize.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </sec:authorize>
     </div>
 </div>
 <hr>
@@ -1420,6 +1425,9 @@
 
     </div>
 </div>
+<script>
+
+</script>
 
 
 <%--

@@ -12,7 +12,6 @@ import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.apps.freightbit.vendor.formbean.DriverBean;
-import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
@@ -30,8 +29,6 @@ import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.vendor.entity.Driver;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.service.VendorService;
-import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
-import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -40,7 +37,6 @@ import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.Pdf
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -1526,7 +1522,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
 
         if ("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null ) {
-//            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
             documentflag = 1; // Series number must be entered error
             sessionAttributes.put("documentflag", documentflag);
         }else {
@@ -1549,7 +1544,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
 
         if ("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null ) {
-//            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
             documentflag = 1; // Series number must be entered error
             sessionAttributes.put("documentflag", documentflag);
         }else {
@@ -1572,7 +1566,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
 
         if ("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null ) {
-//            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
             documentflag = 1; // Series number must be entered error
             sessionAttributes.put("documentflag", documentflag);
         }else {
@@ -2777,44 +2770,49 @@ public class DocumentAction extends ActionSupport implements Preparable{
             for(String seaVendor : vendorSea){
                 if(seaVendor != null){
 
-                    Documents documentEntity = new Documents();
-                    Client client = clientService.findClientById(getClientId().toString());
+                    for(OrderItems orderItemElem : orderItemsList){
 
-                    documentEntity.setClient(client);
-                    documentEntity.setDocumentName(documentName);
-                    documentEntity.setReferenceId(document.getReferenceId());
-                    documentEntity.setReferenceTable("ORDERS");
-                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-                    documentEntity.setCreatedDate(new Date());
-                    documentEntity.setVendorCode(seaVendor);
+                        Documents documentEntity = new Documents();
+                        Client client = clientService.findClientById(getClientId().toString());
 
-                    if (documentStageParam.equals("OUTBOUND")) {
-                        documentEntity.setOutboundStage(1);
-                        documentEntity.setDocumentProcessed(0);
-                        documentEntity.setDocumentStatus("OUTBOUND");
-                    } else if (documentStageParam.equals("INBOUND")) {
-                        documentEntity.setInboundStage(1);
-                        documentEntity.setDocumentProcessed(1);
-                        documentEntity.setDocumentStatus("INBOUND");
-                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
-                        documentEntity.setDocumentProcessed(2);
-                        documentEntity.setFinalOutboundStage(1);
-                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
-                    } else {
-                        documentEntity.setFinalInboundStage(1);
-                        documentEntity.setDocumentProcessed(3);
-                        documentEntity.setDocumentStatus("FINAL INBOUND");
+                        documentEntity.setClient(client);
+                        documentEntity.setDocumentName(documentName);
+                        documentEntity.setReferenceId(document.getReferenceId());
+                        documentEntity.setReferenceTable("ORDERS");
+                        documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                        documentEntity.setCreatedDate(new Date());
+                        documentEntity.setVendorCode(seaVendor);
+
+                        if (documentStageParam.equals("OUTBOUND")) {
+                            documentEntity.setOutboundStage(1);
+                            documentEntity.setDocumentProcessed(0);
+                            documentEntity.setDocumentStatus("OUTBOUND");
+                        } else if (documentStageParam.equals("INBOUND")) {
+                            documentEntity.setInboundStage(1);
+                            documentEntity.setDocumentProcessed(1);
+                            documentEntity.setDocumentStatus("INBOUND");
+                        } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                            documentEntity.setDocumentProcessed(2);
+                            documentEntity.setFinalOutboundStage(1);
+                            documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                        } else {
+                            documentEntity.setFinalInboundStage(1);
+                            documentEntity.setDocumentProcessed(3);
+                            documentEntity.setDocumentStatus("FINAL INBOUND");
+                        }
+
+                        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                        documentEntity.setReferenceNumber(document.getReferenceNumber());
+                        documentEntity.setDocumentComments(document.getDocumentComments());
+                        documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
+                        String documentCode = documentsService.findNextControlNo(getClientId(), "ARF"); // ARF for Acceptance Receipt Form Document Code
+                        documentEntity.setControlNumber(documentCode);
+
+                        documentEntity.setReferenceNumber(documentCode.replace("ARF-",""));
+
+                        documentsService.addDocuments(documentEntity);
+
                     }
-
-                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                    documentEntity.setReferenceNumber(document.getReferenceNumber());
-                    documentEntity.setDocumentComments(document.getDocumentComments());
-                    String documentCode = documentsService.findNextControlNo(getClientId(), "ARF"); // ARF for Acceptance Receipt Form Document Code
-                    documentEntity.setControlNumber(documentCode);
-
-                    documentEntity.setReferenceNumber(documentCode.replace("ARF-",""));
-
-                    documentsService.addDocuments(documentEntity);
 
                 }else{
                     clearErrorsAndMessages();
@@ -2838,44 +2836,49 @@ public class DocumentAction extends ActionSupport implements Preparable{
             for(String seaVendor : vendorSea){
                 if(seaVendor != null){
 
-                    Documents documentEntity = new Documents();
-                    Client client = clientService.findClientById(getClientId().toString());
+                    for(OrderItems orderItemElem : orderItemsList){
 
-                    documentEntity.setClient(client);
-                    documentEntity.setDocumentName(documentName);
-                    documentEntity.setReferenceId(document.getReferenceId());
-                    documentEntity.setReferenceTable("ORDERS");
-                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-                    documentEntity.setCreatedDate(new Date());
-                    documentEntity.setVendorCode(seaVendor);
+                        Documents documentEntity = new Documents();
+                        Client client = clientService.findClientById(getClientId().toString());
 
-                    if (documentStageParam.equals("OUTBOUND")) {
-                        documentEntity.setOutboundStage(1);
-                        documentEntity.setDocumentProcessed(0);
-                        documentEntity.setDocumentStatus("OUTBOUND");
-                    } else if (documentStageParam.equals("INBOUND")) {
-                        documentEntity.setInboundStage(1);
-                        documentEntity.setDocumentProcessed(1);
-                        documentEntity.setDocumentStatus("INBOUND");
-                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
-                        documentEntity.setDocumentProcessed(2);
-                        documentEntity.setFinalOutboundStage(1);
-                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
-                    } else {
-                        documentEntity.setFinalInboundStage(1);
-                        documentEntity.setDocumentProcessed(3);
-                        documentEntity.setDocumentStatus("FINAL INBOUND");
+                        documentEntity.setClient(client);
+                        documentEntity.setDocumentName(documentName);
+                        documentEntity.setReferenceId(document.getReferenceId());
+                        documentEntity.setReferenceTable("ORDERS");
+                        documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                        documentEntity.setCreatedDate(new Date());
+                        documentEntity.setVendorCode(seaVendor);
+
+                        if (documentStageParam.equals("OUTBOUND")) {
+                            documentEntity.setOutboundStage(1);
+                            documentEntity.setDocumentProcessed(0);
+                            documentEntity.setDocumentStatus("OUTBOUND");
+                        } else if (documentStageParam.equals("INBOUND")) {
+                            documentEntity.setInboundStage(1);
+                            documentEntity.setDocumentProcessed(1);
+                            documentEntity.setDocumentStatus("INBOUND");
+                        } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                            documentEntity.setDocumentProcessed(2);
+                            documentEntity.setFinalOutboundStage(1);
+                            documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                        } else {
+                            documentEntity.setFinalInboundStage(1);
+                            documentEntity.setDocumentProcessed(3);
+                            documentEntity.setDocumentStatus("FINAL INBOUND");
+                        }
+
+                        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                        documentEntity.setReferenceNumber(document.getReferenceNumber());
+                        documentEntity.setDocumentComments(document.getDocumentComments());
+                        documentEntity.setOrderItemId(orderItemElem.getOrderItemId());
+                        String documentCode = documentsService.findNextControlNo(getClientId(), "ROF"); // ROF for Release Order Form Document Code
+                        documentEntity.setControlNumber(documentCode);
+
+                        documentEntity.setReferenceNumber(documentCode.replace("ROF-",""));
+
+                        documentsService.addDocuments(documentEntity);
+
                     }
-
-                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                    documentEntity.setReferenceNumber(document.getReferenceNumber());
-                    documentEntity.setDocumentComments(document.getDocumentComments());
-                    String documentCode = documentsService.findNextControlNo(getClientId(), "ROF"); // ROF for Release Order Form Document Code
-                    documentEntity.setControlNumber(documentCode);
-
-                    documentEntity.setReferenceNumber(documentCode.replace("ROF-",""));
-
-                    documentsService.addDocuments(documentEntity);
 
                 }else{
                     clearErrorsAndMessages();
@@ -2922,7 +2925,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentsService.addDocuments(documentEntity);
         }
 
-        sessionAttributes.put("orderIdParam",  document.getReferenceId());
+        sessionAttributes.put("orderIdParam", document.getReferenceId());
 
         return SUCCESS;
     }
@@ -3429,8 +3432,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     System.out.println(diffMinutes + " minutes");
                     System.out.println(diffSeconds + " seconds");
 
-                    //formBean.setAging(Integer.parseInt(String.valueOf(diffDays)));
-
                     int dateDiff = Integer.parseInt(String.valueOf(diffDays));
 
                     if(dateDiff > 0){
@@ -3491,7 +3492,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String viewReleaseOrder() {
         return SUCCESS;
     }
-    // Booking Request Form
+
     public String generateBookingRequestReport() {
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + documentIdParam);
@@ -3510,8 +3511,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             final File outputFile = new File("Booking Request Form.pdf");
             // Generate the report
             MasterReport report = bookingRequestReportService.generateReport(params);
-
-
 
             HttpServletResponse response = ServletActionContext.getResponse();
             responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -3562,6 +3561,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
         return null;
     }
+
     // House Waybill Origin
     public String generateHouseWayBillReport() {
 
@@ -3597,6 +3597,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
         return null;
     }
+
     // House Waybill Destination
     public String generateHouseWayBillDestinationReport() {
 
@@ -3632,14 +3633,17 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
         return null;
     }
+
     // Acceptance Receipt
     public String generateAcceptanceReceiptReport() {
 
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
+        String documentId = (documentEntity.getDocumentId().toString());
 
         Map<String, String> params = new HashMap();
         params.put("orderId", orderId);
+        params.put("documentId", documentId);
 
         ByteArrayOutputStream byteArray = null;
         BufferedOutputStream responseOut = null;
@@ -3665,15 +3669,16 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
         return null;
     }
+
     // Release Order
     public String generateReleaseOrderReport() {
-        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-        String orderId = (documentEntity.getReferenceId()).toString();
-//        	String orderId = "26";
-//          String orderItemId = "1";
-        	Map<String, String> params = new HashMap();
-        	params.put("orderId", orderId);
-//        	params.put("orderItemId", orderItemId);
+            Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+            String orderId = (documentEntity.getReferenceId()).toString();
+            String documentId = (documentEntity.getDocumentId().toString());
+
+            Map<String, String> params = new HashMap();
+            params.put("orderId", orderId);
+            params.put("documentId", documentId);
         	
         	ByteArrayOutputStream byteArray = null;
         	BufferedOutputStream responseOut = null;
@@ -3700,6 +3705,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     		
     	return null;
     }
+
     // Authorization to Withdraw
     public String generateAuthorizationToWithdrawReport() {
 
@@ -3737,7 +3743,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return null;
     }
 
-    /*2GO Proforma Bill of Lading*/
+    /*Proforma Bill of Lading*/
     public String generateProformaReport(){
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>orderIdParam " + orderIdParam);
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + documentIdParam);
@@ -3875,44 +3881,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
         return null;
     }
-
-    /*public OrderBean transformOrdersToFormBean(Orders entity) {
-        OrderBean formBean = new OrderBean();
-        formBean.setOrderId(entity.getOrderId());
-        formBean.setOrderDate(entity.getOrderDate());
-        formBean.setOrderNumber(entity.getOrderNumber());
-        *//*formBean.setCustomerName(entity.getShipperCode());*//*
-        //get shipper's name
-        Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
-        Customer customerName = customerService.findCustomerById(shipperContactName.getReferenceId());
-        formBean.setCustomerName((customerName.getCustomerName()));
-        //get consignee name
-        Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
-        formBean.setConsigneeName(consigneeName.getCompanyName());
-        formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
-        if(orderService.findOrdersById(entity.getOrderId()).getServiceType().equals("TRUCKING")){
-            formBean.setOriginationPort("N/A");
-            formBean.setDestinationPort("N/A");
-        }else{
-            formBean.setOriginationPort(entity.getOriginationPort());
-            formBean.setDestinationPort(entity.getDestinationPort());
-        }
-        formBean.setOrderStatus(entity.getOrderStatus());
-        formBean.setFreightType(entity.getServiceType());
-        formBean.setModeOfService(entity.getServiceMode());
-        formBean.setServiceRequirement(entity.getServiceRequirement());
-        formBean.setAging(0);
-
-        List <Documents> documentsList = documentsService.findDocumentsByOrderId(entity.getOrderId());
-        List <Documents> documentsComplete = documentsService.findDocumentByArchiveStageAndID(1,entity.getOrderId());
-
-        if(documentsList == documentsComplete){
-            formBean.setDocumentCheck("ARCHIVED");
-        }else{
-            formBean.setDocumentCheck("ON-GOING");
-        }
-        return formBean;
-    }*/
 
     public DocumentsBean transformDocumentsToFormBean(Documents entity) {
         DocumentsBean formBean = new DocumentsBean();
@@ -4295,10 +4263,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public void setCheck(String[] check) {
         this.check = check;
     }
-
-    /*public void setVesselSchedulesService(VesselSchedulesService vesselSchedulesService) {
-        this.vesselSchedulesService = vesselSchedulesService;
-    }*/
 
     public void setVendorService(VendorService vendorService) {
         this.vendorService = vendorService;

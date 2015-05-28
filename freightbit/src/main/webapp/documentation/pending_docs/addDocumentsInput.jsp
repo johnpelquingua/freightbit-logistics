@@ -152,6 +152,22 @@
                 commentsBox.prop('disabled', true);
                 break;
 
+            case 'ACCEPTANCE RECEIPT' :
+                recipientField.hide();
+                seriesField.hide();
+                commentsField.hide();
+                referenceNumber.prop('disabled', true);
+                commentsBox.prop('disabled', true);
+                break;
+
+            case 'RELEASE ORDER' :
+                recipientField.hide();
+                seriesField.hide();
+                commentsField.hide();
+                referenceNumber.prop('disabled', true);
+                commentsBox.prop('disabled', true);
+                break;
+
             default :
                 recipientField.hide();
                 seriesField.show();
