@@ -121,7 +121,7 @@
 	                </div>--%>
                 </sec:authorize>
                 <iframe height="500" width="100%" name="sample" seamless="seamless"></iframe>
-            </div>
+        </div>
         </div>
 
             <sec:authorize access="hasAnyRole('ROLE_CUSTOMER_RELATIONS')">

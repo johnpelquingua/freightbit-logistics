@@ -199,7 +199,11 @@
 
     <bean id="totalFCLVansShipperPortService" class="com.sr.biz.freightbit.reports.service.impl.TotalFCLVansShipperPortServiceImpl"/>
 
+    <bean id="totalFCLVansConsigneePortService" class="com.sr.biz.freightbit.reports.service.impl.TotalFCLVansConsigneePortServiceImpl"/>
+
     <bean id="totalCancelledFCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledFCLBookingsServiceImpl"/>
+
+    <bean id="totalOnTimeDelayedFCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalOnTimeDelayedFCLBookingsServiceImpl"/>
 
     <!--  LCL Operations Reports -->
 

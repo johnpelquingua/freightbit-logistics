@@ -32,7 +32,9 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalFCLVansService totalFCLVansService;
     private TotalFCLVansConsigneeService totalFCLVansConsigneeService;
     private TotalFCLVansShipperPortService totalFCLVansShipperPortService;
+    private TotalFCLVansConsigneePortService totalFCLVansConsigneePortService;
     private TotalCancelledFCLBookingsService totalCancelledFCLBookingsService;
+    private TotalOnTimeDelayedFCLBookingsService totalOnTimeDelayedFCLBookingsService;
     private TotalCancelledLCLBookingsService totalCancelledLCLBookingsService;
     private TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService;
     private TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService;
@@ -409,9 +411,31 @@ public class ReportAction extends ActionSupport implements Preparable {
         else if(dataParam.equals("TOTAL CONTAINER VANS PER SHIPPER PER PORT OF DESTINATION")){
             try {
                 // Create an output filename
-                final File outputFile = new File("Total Container Vans Per Shipeer Per Port of Destination.pdf");
+                final File outputFile = new File("Total Container Vans Per Shiper Per Port of Destination.pdf");
                 // Generate the report
                 MasterReport report = totalFCLVansShipperPortService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+
+        else if(dataParam.equals("TOTAL CONTAINER VANS PER CONSIGNEE PER PORT OF DESTINATION")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Container Vans Per Consignee Per Port of Destination.pdf");
+                // Generate the report
+                MasterReport report = totalFCLVansConsigneePortService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -434,6 +458,28 @@ public class ReportAction extends ActionSupport implements Preparable {
                 final File outputFile = new File("Total Cancelled FCL Bookings.pdf");
                 // Generate the report
                 MasterReport report = totalCancelledFCLBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+
+        else if(dataParam.equals("TOTAL ON-TIME / DELAYED CONTAINER VANS PER VENDOR / SUB-CONTRACTOR")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total On-Time / Delayed Container Vans per Vendor/Sub-Contractor.pdf");
+                // Generate the report
+                MasterReport report = totalOnTimeDelayedFCLBookingsService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -1032,6 +1078,14 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public void setTotalFCLVansShipperPortService(TotalFCLVansShipperPortService totalFCLVansShipperPortService) {
         this.totalFCLVansShipperPortService = totalFCLVansShipperPortService;
+    }
+
+    public void setTotalFCLVansConsigneePortService(TotalFCLVansConsigneePortService totalFCLVansConsigneePortService) {
+        this.totalFCLVansConsigneePortService = totalFCLVansConsigneePortService;
+    }
+
+    public void setTotalOnTimeDelayedFCLBookingsService(TotalOnTimeDelayedFCLBookingsService totalOnTimeDelayedFCLBookingsService) {
+        this.totalOnTimeDelayedFCLBookingsService = totalOnTimeDelayedFCLBookingsService;
     }
 
     public void setTotalLCLBookingsService(TotalLCLBookingsService totalLCLBookingsService) {
