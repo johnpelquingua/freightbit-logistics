@@ -80,7 +80,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="fclTruckTable"
-                                                   requestURI="/viewFreightList.action" pagesize="10"
+                                                   requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                    class="fclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
@@ -140,7 +140,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="lclTruckTable"
-                                                   requestURI="/viewFreightList.action" pagesize="10"
+                                                   requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                    class="lclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
@@ -205,7 +205,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="lcuTruckTable"
-                                                   requestURI="/viewFreightList.action" pagesize="10"
+                                                   requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                    class="lcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
@@ -266,7 +266,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="rcuTruckTable"
-                                                   requestURI="/viewFreightList.action" pagesize="10"
+                                                   requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                    class="rcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
@@ -359,7 +359,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="ftlTable"
-                                                   requestURI="viewSeaFreightList.action" pagesize="10"
+                                                   requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                    class="ftlTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells: hide;">
 
@@ -410,7 +410,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="ltlTable"
-                                                   requestURI="viewSeaFreightList.action" pagesize="10"
+                                                   requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                    class="ltlTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells: hide;">
 
@@ -499,7 +499,7 @@
                                 <div class="panel-body">
                                     <div class="table-responsive table-responsive-scroll">
                                         <display:table id="order" name="fclTruckTableDes"
-                                                       requestURI="/viewFreightList.action" pagesize="10"
+                                                       requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                        class="fclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                        style="margin-top: 15px;empty-cells:hide !important">
 
@@ -559,7 +559,7 @@
                                 <div class="panel-body">
                                     <div class="table-responsive table-responsive-scroll">
                                         <display:table id="order" name="lclTruckTableDes"
-                                                       requestURI="/viewFreightList.action" pagesize="10"
+                                                       requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                        class="lclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                        style="margin-top: 15px;empty-cells:hide !important">
 
@@ -621,7 +621,7 @@
                                 <div class="panel-body">
                                     <div class="table-responsive table-responsive-scroll">
                                         <display:table id="order" name="lcuTruckTableDes"
-                                                       requestURI="/viewFreightList.action" pagesize="10"
+                                                       requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                        class="lcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                        style="margin-top: 15px;empty-cells:hide !important">
 
@@ -680,7 +680,7 @@
                                 <div class="panel-body">
                                     <div class="table-responsive table-responsive-scroll">
                                         <display:table id="order" name="rcuTruckTableDes"
-                                                       requestURI="/viewFreightList.action" pagesize="10"
+                                                       requestURI="/operations/viewInlandFreightList.action" pagesize="10"
                                                        class="rcuTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                        style="margin-top: 15px;empty-cells:hide !important">
 
