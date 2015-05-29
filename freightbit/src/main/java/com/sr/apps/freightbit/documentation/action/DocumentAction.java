@@ -16,7 +16,9 @@ import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.service.ClientService;
+import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
@@ -73,6 +75,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private List<Contacts> consigneeContacts = new ArrayList<Contacts>();
 
     private VendorService vendorService;
+    private UserService userService;
     private DocumentsService documentsService;
     private ReleaseOrderReportService releaseOrderReportService;
     private BookingRequestReportService bookingRequestReportService;
@@ -456,8 +459,20 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     /*OUTBOUND DOCUMENTS VIEW*/
     public String viewOrderDocuments() {
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>> " + commonUtils.getUserNameFromSession());
+
         clearErrorsAndMessages();
         Map sessionAttributes = ActionContext.getContext().getSession();
+
+        /*int customerId = 0;
+        if( commonUtils.getCustomerIdFromSession()!= null ){
+            customerId = commonUtils.getCustomerIdFromSession();
+        }else{
+            customerId = getClientId();
+        }*/
+
+        User userEntity = userService.findUserByUserName(commonUtils.getUserNameFromSession());
 
         // Order ID param pass value
         if (orderIdParam == null) {
@@ -662,31 +677,115 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         /*OUTBOUND DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : outboundEntityList) {
-                outboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+                    if(documentElem.getDocumentName().equals("HOUSE BILL OF LADING") ||
+                       documentElem.getDocumentName().equals("BOOKING REQUEST FORM") ||
+                       documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ||
+                       documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ||
+                       documentElem.getDocumentName().equals("SALES INVOICE") ||
+                       documentElem.getDocumentName().equals("DELIVERY RECEIPT")){
+
+                       outboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                    }
+                }else{
+                    outboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                }
             }
         /*INBOUND DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : inboundEntityList) {
-                inboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+                    if(documentElem.getDocumentName().equals("HOUSE BILL OF LADING") ||
+                            documentElem.getDocumentName().equals("BOOKING REQUEST FORM") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ||
+                            documentElem.getDocumentName().equals("SALES INVOICE") ||
+                            documentElem.getDocumentName().equals("DELIVERY RECEIPT")){
+
+                        inboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                    }
+                }else{
+                    inboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                }
             }
         /*FINAL OUTBOUND DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : finalOutboundEntityList) {
-                finalOutboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+                    if(documentElem.getDocumentName().equals("HOUSE BILL OF LADING") ||
+                            documentElem.getDocumentName().equals("BOOKING REQUEST FORM") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ||
+                            documentElem.getDocumentName().equals("SALES INVOICE") ||
+                            documentElem.getDocumentName().equals("DELIVERY RECEIPT")){
+
+                        finalOutboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                    }
+                }else{
+                    finalOutboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                }
             }
         /*FINAL INBOUND DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : finalInboundEntityList) {
-                finalInboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+                    if(documentElem.getDocumentName().equals("HOUSE BILL OF LADING") ||
+                            documentElem.getDocumentName().equals("BOOKING REQUEST FORM") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ||
+                            documentElem.getDocumentName().equals("SALES INVOICE") ||
+                            documentElem.getDocumentName().equals("DELIVERY RECEIPT")){
+
+                        finalInboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                    }
+                }else{
+                    finalInboundDocuments.add(transformDocumentsToFormBean(documentElem));
+                }
             }
         /*COMPLETE DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : completeEntityList) {
-                completeDocuments.add(transformDocumentsToFormBean(documentElem));
+                if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+                    if(documentElem.getDocumentName().equals("HOUSE BILL OF LADING") ||
+                            documentElem.getDocumentName().equals("BOOKING REQUEST FORM") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ||
+                            documentElem.getDocumentName().equals("SALES INVOICE") ||
+                            documentElem.getDocumentName().equals("DELIVERY RECEIPT")){
+
+                        completeDocuments.add(transformDocumentsToFormBean(documentElem));
+                    }
+                }else{
+                    completeDocuments.add(transformDocumentsToFormBean(documentElem));
+                }
             }
         /*ARCHIVE DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : archiveEntityList) {
-                archiveDocuments.add(transformDocumentsToFormBean(documentElem));
+                if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+                    if(documentElem.getDocumentName().equals("HOUSE BILL OF LADING") ||
+                            documentElem.getDocumentName().equals("BOOKING REQUEST FORM") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ||
+                            documentElem.getDocumentName().equals("SALES INVOICE") ||
+                            documentElem.getDocumentName().equals("DELIVERY RECEIPT")){
+
+                        archiveDocuments.add(transformDocumentsToFormBean(documentElem));
+                    }
+                }else{
+                    archiveDocuments.add(transformDocumentsToFormBean(documentElem));
+                }
             }
         /*BILLING DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : finalInboundEntityList) {
-                billingDocuments.add(transformDocumentsToFormBean(documentElem));
+                if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
+                    if(documentElem.getDocumentName().equals("HOUSE BILL OF LADING") ||
+                            documentElem.getDocumentName().equals("BOOKING REQUEST FORM") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ||
+                            documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ||
+                            documentElem.getDocumentName().equals("SALES INVOICE") ||
+                            documentElem.getDocumentName().equals("DELIVERY RECEIPT")){
+
+                        billingDocuments.add(transformDocumentsToFormBean(documentElem));
+                    }
+                }else{
+                    billingDocuments.add(transformDocumentsToFormBean(documentElem));
+                }
             }
 
         /*Booking Request Form data view*/
@@ -4713,5 +4812,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setOrderSearchList(List<Parameters> orderSearchList) {
         this.orderSearchList = orderSearchList;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }

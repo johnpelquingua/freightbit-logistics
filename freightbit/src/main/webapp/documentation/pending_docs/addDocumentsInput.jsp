@@ -267,8 +267,12 @@
                         if($('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
-                    }else{
+                    }else if ($('.serviceMode').val() == 'PIER TO PIER' ){
                         if($('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT'){
+                            $('.datalistDocuments option').eq(i).remove();
+                        }
+                    }else{
+                        if($('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'AUTHORIZATION TO WITHDRAW' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT'){
                             $('.datalistDocuments option').eq(i).remove();
                         }
                     }

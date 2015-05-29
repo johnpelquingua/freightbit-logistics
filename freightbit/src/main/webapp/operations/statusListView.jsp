@@ -34,16 +34,16 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> On-Going Booking List </h3>
                 <span class="pull-right">
-                <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">--%>
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_INLAND_FREIGHT')">
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="postAjaxHtml('loadSearchBookingPage', 'inputDiv');">
                         <i class="fa fa-search"></i> Search Booking Number
                     </button>
-
+                </sec:authorize>
                     <button type="button" class="btn btn-primary"
                             onclick="location.href='viewStatusList'">
                         <i class="fa fa-list"></i> Display All
                     </button>
-                <%--</sec:authorize>--%>
+
                 </span>
             </div>
 
