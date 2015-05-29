@@ -217,6 +217,8 @@
 
     <bean id="avgItemsPerLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.AvgItemsPerLCLBookingsServiceImpl"/>
 
+    <bean id="totalSchedulePerVendorPerDestinationService" class="com.sr.biz.freightbit.reports.service.impl.TotalSchedulePerVendorPerDestinationServiceImpl"/>
+
     <!--  RCU Operations Reports -->
 
     <bean id="totalRCUBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalRCUBookingsServiceImpl"/>

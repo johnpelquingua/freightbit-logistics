@@ -39,6 +39,7 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService;
     private TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService;
     private AvgItemsPerLCLBookingsService avgItemsPerLCLBookingsService;
+    private TotalSchedulePerVendorPerDestinationService totalSchedulePerVendorPerDestinationService;
     private TotalCancelledLCBookingsService totalCancelledLCBookingsService;
     private TotalCancelledRCUBookingsService totalCancelledRCUBookingsService;
     private TotalCancelledTKGBookingsService totalCancelledTKGBookingsService;
@@ -561,7 +562,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL CUBIC METER PER SHIPPER PER PORT OF DESTINATION") || dataParam.equals("TOTAL CUBIC METER PER CONSIGNEE PER PORT OF DESTINATION")){
+        else if(dataParam.equals("TOTAL CUBIC METER PER LCL BOOKINGS")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Cubic Metre Per LCL Bookings.pdf");
@@ -588,6 +589,27 @@ public class ReportAction extends ActionSupport implements Preparable {
                 final File outputFile = new File("Average Number Of Items Per Shipper Per Destination .pdf");
                 // Generate the report
                 MasterReport report = avgItemsPerLCLBookingsService.generateReport(params);
+
+                HttpServletResponse response = ServletActionContext.getResponse();
+                responseOut = new BufferedOutputStream(response.getOutputStream());
+                byteArray = new ByteArrayOutputStream();
+
+                boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+                byteArray.writeTo(responseOut);
+
+                byteArray.close();
+                responseOut.close();
+
+            } catch (Exception re) {
+                re.printStackTrace();
+            }
+        }
+        else if(dataParam.equals("TOTAL SCHEDULE PER VENDOR PER PORT OF DESTINATION")){
+            try {
+                // Create an output filename
+                final File outputFile = new File("Total Schedule Per Vendor Per Destination.pdf");
+                // Generate the report
+                MasterReport report = totalSchedulePerVendorPerDestinationService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -1146,5 +1168,9 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public void setAvgItemsPerLCLBookingsService(AvgItemsPerLCLBookingsService avgItemsPerLCLBookingsService) {
         this.avgItemsPerLCLBookingsService = avgItemsPerLCLBookingsService;
+    }
+
+    public void setTotalSchedulePerVendorPerDestinationService(TotalSchedulePerVendorPerDestinationService totalSchedulePerVendorPerDestinationService) {
+        this.totalSchedulePerVendorPerDestinationService = totalSchedulePerVendorPerDestinationService;
     }
 }
