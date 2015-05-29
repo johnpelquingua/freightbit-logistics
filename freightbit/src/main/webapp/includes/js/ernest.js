@@ -1520,8 +1520,19 @@ function lclCheckboxFilter(item){
 
 function actionConfirmation(icon, confirmBtn, modal){
     icon.click(function(){
-        confirmBtn.attr('href', $(this).prev().attr('href'));
+        // added this to prevent losing the tooltip for cancel and approve
+        if($(this).parent().attr('href') != undefined){
+            $(this).parent().click(function(event){
+                event.preventDefault();
+            });
+            confirmBtn.attr('href', $(this).parent().attr('href'));
+        }
+        else{
+            confirmBtn.attr('href', $(this).prev().attr('href'));
+
+        }
         modal.modal('show');
+
     });
 }
 

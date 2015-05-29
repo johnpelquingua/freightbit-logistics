@@ -149,22 +149,36 @@
 
     var fromDate = $('#dateFromIdStat');
     var toDate = $('#dateToIdStat');
+
+    // START: MAYDOTIMAS: Prevent user from entering invalid date range
     fromDate.keyup(function(){
         fromDate.val("");
         fromDate.datePicker("show");
-
     });
-    // START: MAYDOTIMAS: Prevent user from entering invalid date range
+
     toDate.keyup(function(){
         toDate.val("");
         toDate.datePicker("show");
-
     });
+
+    fromDate.blur(function(){
+        if(fromDate.val().trim()==""){
+            toDate.datepicker('option', 'minDate', new Date() );
+        }
+    });
+
+    toDate.blur(function(){
+        if(toDate.val().trim()==""){
+            fromDate.datepicker('option', 'maxDate', new Date() );
+        }
+    });
+    // END: MAYDOTIMAS: Prevent user from entering invalid date range
+
     fromDate.datepicker({
         timeFormat: 'h:mm TT',
         format : 'd.m.Y',
         maxDate: "0",
-    // END: MAYDOTIMAS: Prevent user from entering invalid date range
+
         onClose: function(dateText, inst) {
             if (toDate.val() != '') {
                 var testStartDate = fromDate.datepicker('getDate'),
