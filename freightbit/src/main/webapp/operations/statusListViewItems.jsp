@@ -196,7 +196,8 @@
                                 <s:param name="orderIdParam"
                                          value="order.orderId"></s:param>
                             </s:url>
-                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                           <%-- 'ROLE_CUSTOMER_RELATIONS'--%>
+                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                                 <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished">
                                 <a id="Complete" class="btn btn-primary serviceCompleteBtn">
                                     Set Service Complete

@@ -271,6 +271,7 @@
 
         <action name="editOrderItemsSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsSea">
             <result name="success" type="redirect">updateCompleteSeaPlanning</result>
+            <result name="errorStat" type="tiles">operations.seaFreightItemList.tiles</result>
             <!--<result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>-->
         </action>
 
@@ -323,15 +324,15 @@
             <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
         </action>
 
-        <action name="changeOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
+        <action name="changeOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightList">
             <result name="success" type="tiles">operations.seaFreightList.tiles</result>
         </action>
 
-        <action name="changeTruckOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
+        <action name="changeTruckOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightList">
             <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
         </action>
 
-        <action name="changeTruckDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
+        <action name="changeTruckDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightList">
             <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
         </action>
 

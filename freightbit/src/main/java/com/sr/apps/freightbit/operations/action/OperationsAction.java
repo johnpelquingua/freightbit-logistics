@@ -1258,10 +1258,23 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String editOrderItemsSea() {
         Map sessionAttributes = ActionContext.getContext().getSession();
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         if(orderItemIdParam != null){
 
             OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
+            Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
+            if(orderEntity.getOrderStatus().equals("CANCELLED")) {
+                clearErrorsAndMessages();
+                addActionError("Status must be Planning 1 only.");
+                order = transformToOrderFormBean(orderEntity);
+
+                for (OrderItems orderItemsElem : orderItemsList) {
+                    orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                    return "errorStat";
+                }
+            }
+
             entity.setVendorSea(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVendorCode());
             entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
             operationsService.updateOrderItem(entity);
@@ -1321,7 +1334,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 Integer orderItemId = Integer.parseInt(check[i]);
                 OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemId);
+                Orders orderEntity = orderService.findOrdersById(orderItemEntity.getOrderId());
+                if(orderEntity.getOrderStatus().equals("CANCELLED")){
+                    order = transformToOrderFormBean(orderEntity);
 
+                    for(OrderItems orderItemsElem : orderItemsList) {
+                        orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                    }
+                    clearErrorsAndMessages();
+                    addActionError("Status must be Planning 1 only.");
+                    return "errorStat";
+                }
                 OrderItems newEntity = new OrderItems();
 
                 Client client = clientService.findClientById(getClientId().toString());
