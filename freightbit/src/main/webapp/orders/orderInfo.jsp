@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-info">
-                    <table class="table leftAlign table-user-information" style="table-layout: fixed">
+                    <table class="table table-responsive leftAlign table-user-information">
                         <th style="font-size: 20px; border-top: none; width: 250px;">
                             <i class="fa fa-book"></i> Booking Number
                             <%--<s:property value="order.orderId"/>--%>
@@ -110,7 +110,7 @@
             </div>
             <div class="col-md-6">
                 <div class="panel panel-info">
-                    <table class="table leftAlign table-user-information">
+                    <table class="table table-responsive leftAlign table-user-information">
                         <th style="font-size: 20px; border-top: none; width: 300px;">
                             <i class="fa fa-user"></i> Customer Information
                         </th>
@@ -151,7 +151,7 @@
                     </table>
                 </div>
                 <div class="panel panel-info">
-                    <table class="table leftAlign table-user-information">
+                    <table class="table table-responsive leftAlign table-user-information">
                         <th style="font-size: 20px; border-top: none; width: 300px;">
                             <i class="fa fa-user"></i> Consignee Information</th>
                         <tr>
