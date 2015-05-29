@@ -52,7 +52,9 @@
     <!--<intercept-url pattern="/operations/**" access="ROLE_CUSTOMER, ROLE_ADMIN, ROLE_SEA_FREIGHT, ROLE_SALES, ROLE_INLAND_FREIGHT, ROLE_CUSTOMER_RELATIONS, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST" />-->
 	<intercept-url pattern="/operations/viewContainerList.action" access="ROLE_ADMIN, ROLE_SALES, ROLE_SEA_FREIGHT, ROLE_INLAND_FREIGHT" />
 	<intercept-url pattern="/operations/viewConsolidationContainerList.action" access="ROLE_ADMIN, ROLE_SALES, ROLE_SEA_FREIGHT, ROLE_INLAND_FREIGHT" />
+	<intercept-url pattern="/operations/viewSeaFreightList" access="ROLE_ADMIN, ROLE_SALES, ROLE_SEA_FREIGHT, ROLE_INLAND_FREIGHT, ROLE_DOCUMENT_SPECIALIST" />
 	<intercept-url pattern="/operations/viewSeaFreightList.action" access="ROLE_ADMIN, ROLE_SALES, ROLE_SEA_FREIGHT, ROLE_INLAND_FREIGHT, ROLE_DOCUMENT_SPECIALIST" />
+	<intercept-url pattern="/operations/viewInlandFreightList" access="ROLE_ADMIN, ROLE_SALES, ROLE_INLAND_FREIGHT, ROLE_SEA_FREIGHT, ROLE_DOCUMENT_SPECIALIST"/>
 	<intercept-url pattern="/operations/viewInlandFreightList.action" access="ROLE_ADMIN, ROLE_SALES, ROLE_INLAND_FREIGHT, ROLE_SEA_FREIGHT, ROLE_DOCUMENT_SPECIALIST"/>
 	<intercept-url pattern="/operations/consolidation/**" access="ROLE_CUSTOMER, ROLE_ADMIN, ROLE_SEA_FREIGHT, ROLE_SALES" />
     <intercept-url pattern="/operations/container/**" access="ROLE_ADMIN, ROLE_SALES, ROLE_SEA_FREIGHT" />
