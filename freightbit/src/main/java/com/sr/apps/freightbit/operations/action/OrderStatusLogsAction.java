@@ -17,6 +17,8 @@ import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
+import com.sr.biz.freightbit.documentation.entity.Documents;
+import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.operations.entity.Container;
 import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
 import com.sr.biz.freightbit.operations.service.ContainerService;
@@ -55,6 +57,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private VendorService vendorService;
     private ParameterService parameterService;
     private NotificationService notificationService;
+    private DocumentsService documentsService;
     private OperationsService operationsService;
     private CustomerService customerService;
     private OrderService orderService;
@@ -85,6 +88,12 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String viewStatusList() {
+        int customerId = 0;
+        if( commonUtils.getCustomerIdFromSession()!= null ){
+            customerId = commonUtils.getCustomerIdFromSession();
+        }else{
+            customerId = getClientId();
+        }
 
         List<Orders> orderEntityList = new ArrayList<Orders>();
         String column = getColumnFilter();
@@ -96,6 +105,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders ordersElem : orderEntityList) {
+            if(ordersElem.getCustomerId() != customerId && customerId != getClientId()) {
+                continue;
+            }
             orders.add(transformToOrderFormBean(ordersElem));
         }
 
@@ -209,7 +221,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }
 
         clearErrorsAndMessages();
-        addActionError("Statuses of all items must be \"Arrived\"/\"Delivered\", \"Picked-Up\" in Pick-Up Service Mode or \"Returned to Origin.\"");
+        addActionError("Statuses of all items must be \"Arrived\"/\"Delivered\", \"Picked-Up\" in Pick-Up Service Mode or \"Returned to Origin.\" All Freight Documents must be completed as well.");
         return SUCCESS;
     }
 
@@ -218,29 +230,42 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
 
         List<OrderItems> orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);
+        List<Documents> allDocuments = documentsService.findDocumentsByOrderId(orderIdParam);
 
         //To check if status is either Arrived or Delivered the counter will increase by 1.
         Integer checkAllStatus = 0;
         for (OrderItems orderItemsElem : orderItemEntityList) {
             List <OrderStatusLogs> orderStatusEntityList = orderStatusLogsService.findAllShipmentLogs(orderItemsElem.getOrderItemId());
 
-                for(OrderStatusLogs orderStatusLogsElem : orderStatusEntityList){
+            for(OrderStatusLogs orderStatusLogsElem : orderStatusEntityList){
 
-                    if(orderStatusLogsElem.getStatus().equals("ARRIVED") || orderStatusLogsElem.getStatus().equals("DELIVERED")
-                    || (orderEntity.getServiceMode().equals("PICKUP") && orderStatusLogsElem.getStatus().equals("PICKED-UP"))){
-                        checkAllStatus += 1;
-                    }
-                    else if(orderStatusLogsElem.getStatus().equals("RETURNED TO ORIGIN")) {
-                        orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
-                        orderService.updateOrder(orderEntity);
-                        return SUCCESS;
+                if(orderStatusLogsElem.getStatus().equals("ARRIVED") || orderStatusLogsElem.getStatus().equals("DELIVERED")
+                || (orderEntity.getServiceMode().equals("PICKUP") && orderStatusLogsElem.getStatus().equals("PICKED-UP"))){
+                    checkAllStatus += 1;
+                }
+                else if(orderStatusLogsElem.getStatus().equals("RETURNED TO ORIGIN")) {
+                    orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
+                    orderService.updateOrder(orderEntity);
+                    return SUCCESS;
+                }
+            }
+
+        }
+        Integer documentCheck = 0;
+
+        if(allDocuments != null){
+            for (Documents documentElem : allDocuments) {
+                if(documentElem.getDocumentProcessed() != null){
+                    if(documentElem.getDocumentProcessed() == 5){
+                        documentCheck += 1;
                     }
                 }
-
+            }
         }
 
         //If the order items status is either Arrived or Delivered, the service can be accomplished.
-        if(checkAllStatus >= orderItemEntityList.size() && orderItemEntityList.size() >= 1){
+        // will also check if all documents are completed before it allows the service to be completed
+        if(checkAllStatus >= orderItemEntityList.size() && orderItemEntityList.size() >= 1 && allDocuments.size() == documentCheck){
             orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
             orderService.updateOrder(orderEntity);
             return SUCCESS;
@@ -1347,5 +1372,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setOrderItemListings(List<OrderItemsBean> orderItemListings) {
         this.orderItemListings = orderItemListings;
+    }
+
+    public void setDocumentsService(DocumentsService documentsService) {
+        this.documentsService = documentsService;
     }
 }

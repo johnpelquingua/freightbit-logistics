@@ -370,6 +370,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
             List<Orders> orderEntityList = documentsService.findAllOrdersDocumentation();
 
             for(Orders orderElem : orderEntityList){
+                if(orderElem.getCustomerId() != customerId && customerId != getClientId()) {
+                    continue;
+                }
                 List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
 
                 Integer checkDocs = 0; // loop will count for documents with complete status

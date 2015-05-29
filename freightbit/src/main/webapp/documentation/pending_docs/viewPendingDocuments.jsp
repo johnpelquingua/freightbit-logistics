@@ -30,11 +30,11 @@
                     Pending Documents List
                 </h3>
                 <span class="pull-right">
-                    <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_INLAND_FREIGHT', 'ROLE_CUSTOMER')">--%>
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_INLAND_FREIGHT')">
                         <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal1" onclick="showSearchFields();">
-                            <i class="fa fa-search"></i> Search Booking
+                            <i class="fa fa-search"></i> Search Booking Number
                         </button>
-                    <%--</sec:authorize>--%>
+                    </sec:authorize>
                     <button type="button" class="btn btn-primary"
                             onclick="location.href='viewPendingDocuments'">
                         <i class="fa fa-list"></i> Display All

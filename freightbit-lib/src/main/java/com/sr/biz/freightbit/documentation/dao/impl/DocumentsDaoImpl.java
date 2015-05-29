@@ -69,6 +69,7 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
         List<String> statusList = new ArrayList<>();
 
         statusList.add("ON GOING");
+        statusList.add("SERVICE ACCOMPLISHED");
 
         log.debug("Finding orders with filter");
         try {

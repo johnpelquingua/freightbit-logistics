@@ -101,9 +101,11 @@
         </li>
     </sec:authorize>
 
-    <li>
-        <a href="<s:url action='../reports/viewStatsReports' />" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports </a>
-    </li>
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_SEA_FREIGHT', 'ROLE_SALES')">
+        <li>
+            <a href="<s:url action='../reports/viewStatsReports' />" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports </a>
+        </li>
+    </sec:authorize>
 
     <%--<li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports <b class="caret"></b></a>

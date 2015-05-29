@@ -20,92 +20,87 @@
 
     </div>
 </div>
-<!-- /.row -->
+
+<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_SEA_FREIGHT', 'ROLE_SALES')">
 <%--for booking--%>
 <div class="col-lg-3 col-md-6">
-        <%--<a href="orders/viewOrdersBookingList.action">--%>
-            <a href="orders/viewOrders.action">
-            <div class="panel panel-primary">
-    <div class="panel-heading">
-        <div class="row">
-            <div class="col-xs-3">
-                <i class="fa fa-book fa-5x"></i>
-            </div>
-            <div class="col-xs-9 text-right">
 
-                <div class="huge-dashboard"  id="booking"><s:property value="%{Booking}"></s:property></div>
-                <div id="ajaxResponse"></div>
-                <div>New Booking</div>
+    <a href="orders/viewOrders.action">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-book fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge-dashboard"  id="booking"><s:property value="%{Booking}"></s:property></div>
+                        <div id="ajaxResponse"></div>
+                        <div>New Booking</div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
+    </a>
 
-</div>
-        </a>
 </div>
 
 <%--Customer--%>
 <div class="col-lg-3 col-md-6 ">
-    <%--<a href="customers/customerListNew.action">--%>
-        <a href="customers/customerList.action">
+    <a href="customers/customerList.action">
         <div class="panel panel-primary">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-xs-3">
-                    <i class="fa fa-male fa-5x"></i>
-                </div>
-                <div class="col-xs-9 text-right">
-                    <div class="huge-dashboard" id="customer"><s:property value="%{Customer}"></s:property></div>
-                    <div>New Customer</div>
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-male fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge-dashboard" id="customer"><s:property value="%{Customer}"></s:property></div>
+                        <div>New Customer</div>
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
     </a>
 </div>
 
 <%--user--%>
 <div class="col-lg-3 col-md-6">
-    <%--<a href="core/viewUsersNew.action">--%>
-        <a href="core/viewUsers.action">
+    <a href="core/viewUsers.action">
         <div class="panel panel-primary">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-xs-3">
-                    <i class="fa fa-user fa-5x"></i>
-                </div>
-                <div class="col-xs-9 text-right">
-                    <div class="huge-dashboard" id="user"><s:property value="%{User}"></s:property></div>
-                    <div>New User</div>
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge-dashboard" id="user"><s:property value="%{User}"></s:property></div>
+                        <div>New User</div>
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
     </a>
 </div>
 
 <%--vendor--%>
 <div class="col-lg-3 col-md-6">
-    <%--<a href="vendor/viewVendorsNew.action">--%>
-        <a href="vendor/viewVendors.action">
+    <a href="vendor/viewVendors.action">
         <div class="panel panel-primary">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-xs-3">
-                    <i class="fa fa-building-o fa-5x"></i>
-                </div>
-                <div class="col-xs-9 text-right">
-                    <div class="huge-dashboard" id="vendor"><s:property value="%{Vendor}"></s:property></div>
-                    <div>New Vendor</div>
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-building-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge-dashboard" id="vendor"><s:property value="%{Vendor}"></s:property></div>
+                        <div>New Vendor</div>
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
     </a>
 </div>
+</sec:authorize>
 
 <div class="row">
 
