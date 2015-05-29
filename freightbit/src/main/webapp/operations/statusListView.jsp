@@ -49,7 +49,7 @@
 
             <div class="panel-body">
 
-                <div class="table-responsive">
+                <div class="table-responsive table-responsive-scroll list-table">
                     <display:table id="order" name="orders"
                                    requestURI="viewStatusList.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"

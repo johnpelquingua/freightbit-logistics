@@ -69,7 +69,7 @@
             </div>
 
             <div class="panel-body">
-                <div class="table-responsive table-responsive-scroll" id="no-more-tables">
+                <div class="table-responsive table-responsive-scroll list-table" id="no-more-tables">
                         <display:table id="order" name="orders" requestURI="viewArchivedOrders.action" pagesize="10" class="table table-scroll table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 

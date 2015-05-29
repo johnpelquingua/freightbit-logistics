@@ -80,7 +80,7 @@
                 <div class="tab-pane fade in active" id="shippingTab">
                     <div class="panel-body">
 
-                        <div class="table-responsive list-table">
+                        <div class="table-responsive table-responsive-scroll list-table">
                             <tbody>
                             <table>
                                 <tr>
@@ -144,7 +144,7 @@
                 <div class="tab-pane fade" id="truckingTab">
                     <div class="panel-body">
 
-                        <div class="table-responsive list-table">
+                        <div class="table-responsive table-responsive-scroll list-table">
                             <tbody>
                             <table>
                                 <tr>

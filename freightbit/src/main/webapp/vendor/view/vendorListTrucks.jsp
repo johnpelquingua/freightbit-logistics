@@ -197,7 +197,7 @@
                 <div class="row">
                     <div class="col-lg-12">
 
-                        <div class="table-responsive list-table">
+                        <div class="table-responsive table-responsive-scroll list-table">
 
                             <tbody>
                             <table>

@@ -333,12 +333,20 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             }
 
         }else{
-            if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+            if(orderEntity.getServiceMode().equals("PICKUP") /*|| orderEntity.getServiceMode().equals("INTER-WAREHOUSE")*/){
                 allFreightStatusList.add("QUEUE FOR PICKUP");
                 allFreightStatusList.add("IN-TRANSIT TO PICKUP");
                 allFreightStatusList.add("POSITIONED");
                 allFreightStatusList.add("PICKED-UP");
+            }else if (orderEntity.getServiceMode().equals("DELIVERY")) {
+                allFreightStatusList.add("QUEUE FOR DELIVERY");
+                allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
+                allFreightStatusList.add("DELIVERED");
             }else{
+                allFreightStatusList.add("QUEUE FOR PICKUP");
+                allFreightStatusList.add("IN-TRANSIT TO PICKUP");
+                allFreightStatusList.add("POSITIONED");
+                allFreightStatusList.add("PICKED-UP");
                 allFreightStatusList.add("QUEUE FOR DELIVERY");
                 allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
                 allFreightStatusList.add("DELIVERED");
@@ -572,12 +580,20 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                     }
 
                 }else{
-                    if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+                    if(orderEntity.getServiceMode().equals("PICKUP") /*|| orderEntity.getServiceMode().equals("INTER-WAREHOUSE")*/){
                         allFreightStatusList.add("QUEUE FOR PICKUP");
                         allFreightStatusList.add("IN-TRANSIT TO PICKUP");
                         allFreightStatusList.add("POSITIONED");
                         allFreightStatusList.add("PICKED-UP");
+                    }else if(orderEntity.getServiceMode().equals("DELIVERY")){
+                        allFreightStatusList.add("QUEUE FOR DELIVERY");
+                        allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
+                        allFreightStatusList.add("DELIVERED");
                     }else{
+                        allFreightStatusList.add("QUEUE FOR PICKUP");
+                        allFreightStatusList.add("IN-TRANSIT TO PICKUP");
+                        allFreightStatusList.add("POSITIONED");
+                        allFreightStatusList.add("PICKED-UP");
                         allFreightStatusList.add("QUEUE FOR DELIVERY");
                         allFreightStatusList.add("IN-TRANSIT TO DELIVERY");
                         allFreightStatusList.add("DELIVERED");
