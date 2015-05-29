@@ -403,6 +403,13 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String viewArchivedOrders() {
+        int customerId = 0;
+        if( commonUtils.getCustomerIdFromSession()!= null ){
+            customerId = commonUtils.getCustomerIdFromSession();
+        }else{
+            customerId = getClientId();
+        }
+
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
 
@@ -461,6 +468,9 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderEntityList = orderService.findAllOrders();
 
             for (Orders orderElem : orderEntityList) {
+                if(orderElem.getCustomerId() != customerId && customerId != getClientId()) {
+                    continue;
+                }
 
                 // will only show bookings that is not archived
                 String strOrig = orderElem.getOrderStatus();

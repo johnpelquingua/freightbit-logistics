@@ -95,12 +95,12 @@
                         <div class="form-group">
                             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Pickup Date</label>
                             <div class="col-lg-4">
-                                <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                                <s:textfield cssClass="form-control" value="%{order.strPickupDate}"
                                              disabled="true"></s:textfield>
                             </div>
                             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Delivery Date</label>
                             <div class="col-lg-4">
-                                <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                                <s:textfield cssClass="form-control" value="%{order.strDeliveryDate}"
                                              disabled="true"></s:textfield>
                             </div>
                         </div>
@@ -162,8 +162,8 @@
                                         <td class="tb-font-black"><s:property value="vendorDestination"/></td>
                                         <td class="tb-font-black"><s:property value="quantity"/></td>
                                         <td class="tb-font-black"><s:property value="nameSize"/></td>
-                                        <td class="tb-font-black"><s:property value="weight"/></td>
-                                        <td class="tb-font-black"><s:property value="volume"/></td>
+                                        <td class="tb-font-black"><s:property value="getText('format.number',{weight})"/></td>
+                                        <td class="tb-font-black"><s:property value="getText('format.number',{volume})"/></td>
                                         <td class="tb-font-black"><s:property value="description"/></td>
                                     </tr>
                                 </s:iterator>
@@ -209,7 +209,7 @@
                                 </display:column>
                                 </td>
 
-                                <td>
+                                <%--<td>
 
                                     <display:column title="Action" class="tb-font-black" style="text-align: center;" >
 
@@ -217,7 +217,7 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        <%--Print Document--%>
+                                        &lt;%&ndash;Print Document&ndash;%&gt;
                                         <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='PROFORMA BILL OF LADING' ">
                                             <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                 <i class="fa fa-print"></i>
@@ -230,7 +230,7 @@
 
                                     </display:column>
 
-                                </td>
+                                </td>--%>
 
                             </display:table>
                         </div>
@@ -260,17 +260,27 @@
                 </div>
             </div>
 
-                <s:if test="hasActionMessages()">
-                    <div class="col-lg-12" id="successDiv">
-                        <div id="alert" class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-                        </div>
+            <div class="panel panel-footer" style="margin-bottom: 0em;">
+
+                <div class="pull-right">
+                    <a href="viewArchivedDocuments" class="btn btn-danger" id="groups-btn">
+                        <i class="fa fa-chevron-left"></i>
+                        Back to Archived Documents List
+                    </a>
+                </div>
+
+            </div>
+
+            <%--<s:if test="hasActionMessages()">
+                <div class="col-lg-12" id="successDiv">
+                    <div id="alert" class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                        <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
                     </div>
-                </s:if>
+                </div>
+            </s:if>--%>
 
 <%------------------------------------------COMPLETE DOCUMENTS BEGIN-----------------------------------------------%>
-
 
         </div>
     </div>
