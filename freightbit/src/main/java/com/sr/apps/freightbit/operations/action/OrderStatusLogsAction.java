@@ -88,13 +88,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String viewStatusList() {
-        int customerId = 0;
-        if( commonUtils.getCustomerIdFromSession()!= null ){
-            customerId = commonUtils.getCustomerIdFromSession();
-        }else{
-            customerId = getClientId();
-        }
-
         List<Orders> orderEntityList = new ArrayList<Orders>();
         int customerId = 0;
         if( commonUtils.getCustomerIdFromSession()!= null ){
