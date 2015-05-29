@@ -96,6 +96,12 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }
 
         List<Orders> orderEntityList = new ArrayList<Orders>();
+        int customerId = 0;
+        if( commonUtils.getCustomerIdFromSession()!= null ){
+            customerId = commonUtils.getCustomerIdFromSession();
+        }else{
+            customerId = getClientId();
+        }
         String column = getColumnFilter();
 
         if (StringUtils.isNotBlank(column)) {
