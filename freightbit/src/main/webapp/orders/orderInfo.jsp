@@ -261,7 +261,7 @@
                         <s:iterator value="orderItems" var="orderItem">
                             <tr>
                                 <td class="tb-font-black"><s:property value="quantity"/></td>
-                                <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                <td class="tb-font-black"><s:property value="itemName"/></td>
                                 <td class="tb-font-black"><s:property value="weight"/></td>
                                 <td class="tb-font-black"><s:property value="volume"/></td>
                                 <td class="tb-font-black"><s:property value="description"/></td>
