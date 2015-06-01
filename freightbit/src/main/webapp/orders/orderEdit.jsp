@@ -257,7 +257,7 @@
 </div>
 
 <legend style="text-align: left;">
-    <span >
+    <span>
         Booking Information
     </span>
 </legend>
@@ -331,7 +331,7 @@
 
 </div>
 
-<div id="2ndPartOnLoad" style="clear:both;">
+<div style="clear:both;">
 
     <legend style="text-align: left;">
         <span >
@@ -376,8 +376,12 @@
 
     </div>
 
+</div>
+
+<div style="clear:both;">
+
     <legend style="text-align: left;">
-        <span >
+        <span>
             Consignee Information
         </span>
     </legend>
@@ -438,10 +442,6 @@
 
     </div>
 
-    <div style="clear: both;">
-
-    </div>
-
 </div>
 
 </div>
@@ -457,11 +457,11 @@
 
     <div class="pull-right">
         <button type="button" id="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
-            Cancel
+            Back to Booking List
         </button>
 
         <%--<s:submit name="submit" cssClass="btn btn-primary" value="Next" />--%>
-        <button class="btn btn-primary nextBtnDateVal" type="button" disabled>Next</button>
+        <button class="btn btn-primary nextBtnDateVal" type="button" disabled>Save Booking And Next</button>
 
     </s:form>
     </div>
@@ -597,7 +597,6 @@
 <%--end add contact person---%>
 
 <%--START OF MODAL ADD ADDRESS--%>
-
 <div class="modal fade" id="createAddress" role="form" aria-labelledby="myModalLabel2" >
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -667,11 +666,9 @@
         </div>
     </div>
 </div>
-
 <%--END OF MODAL ADD ADDRESS--%>
 
 <%--START OF Third modal Consignee--%>
-
 <div class="modal fade" id="createConsignee" role="form" aria-labelledby="myModalLabel3" >
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -816,7 +813,6 @@
 <%--END OF Third modal Consignee--%>
 
 <%--START OF EDIT CUSTOMER CONTACT INFO--%>
-
 <div class="modal fade" id="editContactInfo" role="form" aria-labelledby="myModalLabel4" >
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -877,11 +873,9 @@
         </div>
     </div>
 </div>
-
 <%--END OF EDIT CUSTOMER CONTACT INFO--%>
 
 <%--START OF ADD CONSIGNEE CONTACT PERSON--%>
-
 <div class="modal fade" id="createConsigneeContact" role="form" aria-labelledby="myModalLabel5" >
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -978,7 +972,6 @@
         </div>
     </div>
 </div>
-
 <%--END OF ADD CONSIGNEE CONTACT PERSON--%>
 
 <%-- MODAL FOR DATE SAME WARNING  -- START --%>

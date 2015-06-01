@@ -639,12 +639,12 @@
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
                         <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                             <span>
-                                <s:submit name="submit" cssClass="addContainerToList btn btn-primary" id="submit_button" value="Add Container to List"/>
+                                <s:submit name="submit" cssClass="addContainerToList btn btn-primary" id="submit_button" value="Save Container to List"/>
                             </span>
                         </s:if>
                         <s:else>
                             <span>
-                                <s:submit name="submit" cssClass="addItemToList btn btn-primary" id="submit_button" value="Add Item to List" />
+                                <s:submit name="submit" cssClass="addItemToList btn btn-primary" id="submit_button" value="Save Item(s) to List" />
                             </span>
                         </s:else>
                     </div>
@@ -808,11 +808,11 @@
     <div class="pull-right">
         <!-- Button trigger modal -->
         <button class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
-            Cancel
+            Back To Booking List
         </button>
 
         <button class="btn btn-primary" data-toggle="modal" data-target="#saveBooking">
-            Save Booking
+            View Booking Summary
         </button>
     </div>
 
@@ -1187,8 +1187,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close Booking Summary</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Done</button>
             </div>
         </div>
     </div>
