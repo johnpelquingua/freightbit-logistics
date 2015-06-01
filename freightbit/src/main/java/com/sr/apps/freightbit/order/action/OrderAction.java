@@ -1809,7 +1809,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setCreatedTimestamp(order.getCreatedTimestamp());
 
         User userEntity = userService.findUserByUserName(order.getCreatedBy());
-        orderBean.setCreatedBy(userEntity.getFirstName() + " " + userEntity.getLastName());
+        if(userEntity != null){
+            orderBean.setCreatedBy(userEntity.getFirstName() + " " + userEntity.getLastName());
+        }else{
+            orderBean.setCreatedBy(order.getCreatedBy());
+        }
 
         orderBean.setModifiedTimestamp(order.getModifiedTimestamp());
         orderBean.setModifiedBy(order.getModifiedBy());

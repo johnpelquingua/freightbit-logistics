@@ -1148,7 +1148,7 @@
                             <thead>
                             <tr class="header_center" style="background-color: #fff;">
                                 <th class="tb-font-black">Quantity</th>
-                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' || order.serviceRequirement=='FULL TRUCK LOAD' || order.serviceRequirement=='FTL' ">
                             <span>
                                 <th class="tb-font-black">Size</th>
                             </span>
@@ -1170,7 +1170,7 @@
                             <s:iterator value="orderItems" var="orderItem">
                                 <tr>
                                     <td class="tb-font-black"><s:property value="quantity"/></td>
-                                    <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                    <td class="tb-font-black"><s:property value="itemName"/></td>
                                     <td class="tb-font-black"><s:property value="weight"/></td>
                                     <td class="tb-font-black"><s:property value="volume"/></td>
                                     <td class="tb-font-black"><s:property value="description"/></td>
