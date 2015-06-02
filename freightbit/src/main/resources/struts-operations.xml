@@ -195,21 +195,18 @@
                 method="loadSuccessSetStatus">
             <result name="success" type="tiles">operations.itemShipmentHistory.tiles</result>
         </action>
-
         <!--Status ends here-->
 
         <!--Operations starts here-->
-
         <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>
-            <!--<result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
-            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>-->
+            <result name="input" type="redirect">reloadSeaFreightItemList</result>
         </action>
 
         <action name="viewFreightPlanningInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanningInland">
-            <!--<result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>-->
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+            <result name="input" type="redirect">reloadInlandFreightItemList</result>
         </action>
 
         <action name="bookingNumSearchFreight" class="com.sr.apps.freightbit.order.action.OrderAction" method="bookingNumSearch">
@@ -221,19 +218,16 @@
         </action>
 
         <action name="checkItemStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkItemStatus">
-            <!--<result name="PLANNING 1" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
-            <!--<result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
-            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>-->
             <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
             <result name="EDIT" type="tiles">operations.freightBulkEdit.tiles</result>
             <result name="NULL_INPUT" type="redirect">viewSeaFreightItemListNullError</result>
             <result name="errorEditInput" type="redirect">viewSeaFreightItemListErrorEditInput</result>
             <result name="errorInput" type="redirect">viewSeaFreightItemListErrorInput</result>
             <result name="input" type="redirect">viewSeaFreightItemListError</result>
+            <result name="id_deleted" type="redirect">reloadSeaFreightItemList</result>
         </action>
 
         <action name="checkItemStatusInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkItemStatusInland">
-            <!--<result name="PLANNING 1" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
             <result name="EDIT" type="tiles">operations.freightBulkEditInland.tiles</result>
@@ -242,7 +236,7 @@
             <result name="errorEditInput" type="redirect">viewInlandFreightItemListErrorEditInput</result>
             <result name="errorInput" type="redirect">viewInlandFreightItemListErrorInput</result>
             <result name="input" type="redirect">viewInlandFreightItemListError</result>
-
+            <result name="id_deleted" type="redirect">reloadInlandFreightItemList</result>
         </action>
 
         <action name="viewEditSeaFreight" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewEditSeaFreight">
@@ -263,10 +257,12 @@
 
         <action name="editBulkItemsInlandOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkItemsInlandOrigin">
             <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+            <result name="input" type="redirect">reloadInlandPlanning</result>
         </action>
 
         <action name="editBulkItemsInlandDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkItemsInlandDestination">
             <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+            <result name="input" type="redirect">reloadInlandPlanning</result>
         </action>
 
         <action name="editOrderItemsSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsSea">
@@ -277,13 +273,9 @@
 
         <action name="editOrderItemsOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsOrigin">
             <result name="success" type="redirect">updateCompleteInlandPlanning</result>
-            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+            <!--<result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>-->
+            <result name="input" type="redirect">reloadInlandPlanning</result>
         </action>
-
-        <!--<action name="editOrderItemsDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsDestination">
-            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
-            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
-        </action>-->
 
         <action name="editOrderItemsOriginModal" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsOriginModal">
             <result name="success" type="redirect">updateCompleteInlandPlanning</result>
@@ -296,10 +288,15 @@
 
         <action name="editOrderItemsDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsDestination">
             <result name="success" type="redirect">updateCompleteInlandPlanning</result>
-            <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+            <!--<result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>-->
+            <result name="input" type="redirect">reloadInlandPlanning</result>
         </action>
 
         <action name="updateCompleteInlandPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="updateCompleteInlandPlanning">
+            <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
+        </action>
+
+        <action name="reloadInlandPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadInlandPlanning">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
         </action>
 
@@ -384,6 +381,15 @@
         <!--Inland Freight (Dispatch Plan) Validation Errors-->
         <action name="viewInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
+            <result name="input" type="redirect">reloadInlandFreightItemList</result>
+        </action>
+
+        <action name="reloadSeaFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadFreightItemList">
+            <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
+        </action>
+
+        <action name="reloadInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadFreightItemList">
+            <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
         </action>
 
         <action name="viewInlandFreightItemListError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListError">
@@ -458,10 +464,12 @@
 
         <action name="viewInlandFreightInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfo">
             <result name="success" type="tiles">operations.viewInlandFreightInfo.tiles</result>
+            <result name="input" type="redirect">reloadInlandFreightItemList</result>
         </action>
 
         <action name="viewSeaFreightInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfo">
             <result name="success" type="tiles">operations.viewSeaFreightInfo.tiles</result>
+            <result name="input" type="redirect">reloadSeaFreightItemList</result>
         </action>
 
         <action name="viewInfoOrderInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfoOrderInland">
@@ -485,7 +493,6 @@
         </action>
 
         <!--SHIPMENT MONITORING BEGIN-->
-
         <action name="viewShipmentMonitoringList" class="com.sr.apps.freightbit.operations.action.ShipmentLogsAction" method="viewShipmentMonitoringList">
             <result name="success" type="tiles">operations.shipmentMonitoringList.tiles</result>
         </action>
@@ -499,7 +506,6 @@
         </action>
 
         <!--Modal-->
-
         <action name="addVendorSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
             <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
             <result name="success" type="redirect">addSeaFreightVendorInPlanning</result>
@@ -551,7 +557,7 @@
                 method="addVesselSchedule">
             <!--<result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>-->
             <result name="input" type="redirect">addVesselScheduleInPlanningAlreadyExists</result>
-            <result name="success" type="redirect">addSeaFreightScheduleInPlanningBulk</result>
+            <result name="success" type="redirect">addSeaFreightScheduleInPlanning</result>
         </action>
 
         <action name="addDriverInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addDriver">
@@ -593,7 +599,6 @@
             <result name="success" type="redirect">addInlandFreightVendorInPlanningBulk</result>
             <result name="input" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
         </action>
-
         <!--SHIPMENT MONITORING END-->
 
         <action name="reloadEditPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadEditPage">
@@ -622,18 +627,15 @@
         <action name="addVesselScheduleEdit" class="com.sr.apps.freightbit.operations.action.OperationsAction"
                 method="addVesselSchedule">
             <result name="input" type="redirect">addVesselScheduleInPlanningBulkEditAlreadyExists</result>
-            <!--<result name="input" type="tiles">operations.freightBulkEdit.tiles</result>-->
             <result name="success" type="redirect">reloadEditPage</result>
         </action>
 
         <!--YardLogs START-->
-
         <action name="viewYardLogs" class="com.sr.apps.freightbit.operations.action.YardLogsAction" method="viewYardList">
             <result name="success" type="tiles">operations.viewYardLogs.tiles</result>
         </action>
 
         <!--CONTAINER-->
-
         <action name="viewContainerList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewContainerList">
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
@@ -697,11 +699,9 @@
         <action name="loadCheckoutFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadCheckoutFormPage">
             <result name="success">/operations/container/checkoutForm.jsp</result>
         </action>
-
         <!--CONTAINER-->
 
         <!--CONSOLIDATION-->
-
         <action name="viewConsolidationContainerList" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="viewConsolidationContainerList">
             <result name="success" type="tiles">operations.consolidationContainerList.tiles</result>
         </action>
@@ -758,11 +758,9 @@
             <result name="success" type="tiles">operations.consolidationItemList.tiles</result>
             <result name="CONSOLIDATED" type="tiles">operations.consolidationItemListEdit.tiles</result>
         </action>
-
         <!--CONSOLIDATION-->
 
         <!--DOCUMENTS PAGE-->
-
         <action name="viewDocumentList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewDocumentList">
             <result name="success" type="tiles">operations.documentsList.tiles</result>
         </action>

@@ -168,6 +168,7 @@
                     <div class="table-responsive">
                         <s:form name="myform" action="checkItemStatus" theme="bootstrap">
 
+                        <s:hidden name="orderIdParam" value="%{order.orderId}"></s:hidden>
                         <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
                         <display:table id="orderItem" name="orderItems"
                                        requestURI="/viewSeaFreightItemList.action"
@@ -225,15 +226,15 @@
                                                     style="text-align: center;"> </display:column></td>
 
                                 <td><display:column title="Action">
-
+                                    <%--<s:property value="order.orderId" />--%>
                                     <s:if test="#attr.orderItem.status=='ON GOING'">
                                         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
                                             </s:param>
-                                            <s:param name="orderNoParam"
-                                                     value="orderNoParam">
+                                            <s:param name="orderIdParam"
+                                                     value="#attr.order.orderId">
                                             </s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
@@ -249,6 +250,9 @@
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
                                             </s:param>
+                                            <s:param name="orderIdParam"
+                                                     value="#attr.order.orderId">
+                                            </s:param>
                                             <s:param name="nameSizeParam"
                                                      value="#attr.orderItem.nameSizeParam">
                                             </s:param>
@@ -262,8 +266,8 @@
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
                                             </s:param>
-                                            <s:param name="orderNoParam"
-                                                     value="orderNoParam">
+                                            <s:param name="orderIdParam"
+                                                     value="#attr.order.orderId">
                                             </s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
@@ -274,20 +278,18 @@
                                     </s:elseif>
 
                                     <s:else>
-
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
                                             </s:param>
-                                            <s:param name="orderNoParam"
-                                                     value="orderNoParam">
+                                            <s:param name="orderIdParam"
+                                                     value="#attr.order.orderId">
                                             </s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
                                              title="Show Information">
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
-
                                     </s:else>
 
                                 </display:column></td>
