@@ -2,12 +2,29 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
-<!-- EDIT HERE -->
+<%--<!-- EDIT HERE -->
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>--%>
 
+<style>
+    .panel-heading {
+        color: white !important;
+        text-shadow: 0 1px 1px #000;
+        border-color: #eee;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
+        -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
+        background: -moz-linear-gradient(top, #5d6167 0%, #393939 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5d6167), color-stop(100%, #393939));
+        background: -webkit-linear-gradient(top, #5d6167 0%, #393939 100%);
+        background: -o-linear-gradient(top, #5d6167 0%, #393939 100%);
+        background: -ms-linear-gradient(top, #5d6167 0%, #393939 100%);
+    }
+</style>
 <title>Help Center</title>
 <div class="container">
     <h2>Booking Module</h2>

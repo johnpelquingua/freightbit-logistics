@@ -8,6 +8,18 @@
     }
 </style>
 
+<script>
+    $( window ).load(function(){
+        var tableTr = $('.contacts tbody tr');
+
+        if (tableTr.size()>0){
+            $('.btnAddNewConPerson').prop('disabled',true);
+        }else{
+            $('.btnAddNewConPerson').prop('disabled',false);
+        }
+    })
+</script>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -165,7 +177,7 @@
                         <div class="panel panel-primary">
 
                             <div class="panel-heading">
-                                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Contact
+                                <h3 class="panel-title responsiveTitle" style="float:left; margin-top:10px;"><i class="fa fa-list"></i> Contact
                                     Person List</h3>
                                 <span class="pull-right">
                                     <s:url var="loadConsigneeAddContactUrl" action="loadConsigneeAddContact">
@@ -173,7 +185,7 @@
                                         <s:param name="addressIdParam" value="addressIdParam"> </s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{loadConsigneeAddContactUrl}" rel="tooltip" title="Add Contact">
-                                        <button type="button" class="btn btn-primary">
+                                        <button type="button" class="btn btn-primary btnAddNewConPerson">
                                             <i class="fa fa-group"> </i> New Contact Person
                                         </button>
                                     </s:a>
@@ -189,7 +201,7 @@
                                                     <tr>
                                                         <display:table id="contact" name="contacts" requestURI="consigneeInfo.action"
                                                                        pagesize="10"
-                                                                       class="table table-striped table-hover table-bordered text-center tablesorter"
+                                                                       class="table table-striped table-hover table-bordered text-center tablesorter contacts"
                                                                        style="margin-top: 15px;">
                                                             <td><display:column property="lastName" title="Last Name <i class='fa fa-sort' />" class="tb-font-black"
                                                                                 style="text-align: center;"> </display:column></td>

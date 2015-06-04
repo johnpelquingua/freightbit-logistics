@@ -31,6 +31,7 @@ import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.*;
 
@@ -128,7 +129,11 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String viewStatusListItems() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
 
+        if (orderIdParam == null){
+            orderIdParam = (Integer) sessionAttributes.get(orderIdParam);
+        }
         List<OrderItems> orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);
 
         // Display correct Order Number in breadcrumb
@@ -728,6 +733,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }
 
         Map sessionAttributes = ActionContext.getContext().getSession();
+
         sessionAttributes.put("orderItemIdParam", orderItemIdParam);
 
         return SUCCESS;
@@ -796,6 +802,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         orderItemListings.add(transformToOrderItemFormBean(orderItemsListing));
 
         Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", orderIdParam);
         sessionAttributes.put("orderItemIdParam", orderItemIdParam);
         return SUCCESS;
     }

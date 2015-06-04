@@ -91,7 +91,7 @@
                            class="bulkItemStatus table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
                            style="margin-top: 15px;">
             <tr>
-                <td>
+                    <td>
                     <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                         <display:column property="nameSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
                                         style="text-align: center;"> </display:column>
@@ -224,7 +224,7 @@
                     </datalist>
 
                 </div>
-
+                    <s:property value="order.orderId" />
                     <div class="pull-right" style="margin-top: 15px;">
                         <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                             <s:param name="orderIdParam"

@@ -155,7 +155,6 @@
 
         <action name="updateStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="updateStatus">
-            <!--<result name="input" type="tiles">operations.updateStatus.tiles</result>-->
             <result name="input" type="redirect">loadUpdateStatusComplete</result>
             <result name="INPUT_NULL" type="redirect">loadUpdateStatusComplete</result>
             <result name="success" type="redirect">loadUpdateStatusComplete</result>
@@ -207,6 +206,7 @@
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
             <result name="input" type="redirect">reloadInlandFreightItemList</result>
+            <result name="ORDERED_CANCELLED" type="redirect">viewInlandFreightList</result>
         </action>
 
         <action name="bookingNumSearchFreight" class="com.sr.apps.freightbit.order.action.OrderAction" method="bookingNumSearch">

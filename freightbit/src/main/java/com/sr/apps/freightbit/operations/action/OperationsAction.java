@@ -2532,6 +2532,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         /*Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));*/
         Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
+        if (!orderEntity.getOrderStatus().equals("ON GOING")){
+            return "ORDERED_CANCELLED";
+        }
         order = transformToOrderFormBean(orderEntity);
 
         // if Vessel Schedule Id is null and populates field with none value
