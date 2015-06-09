@@ -180,6 +180,7 @@
                     </tbody>
                 </div>
 
+
                 <s:form cssClass="form-horizontal statusForm" theme="bootstrap" action="updateStatus" >
                 <s:if test="orderItemIdParam != null">
                     <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
@@ -187,7 +188,7 @@
                 <s:else>
                     <s:hidden value="%{orderStatusLogsBean.orderItemId}" name="orderStatusLogsBean.orderItemId"/>
                 </s:else>
-
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                 <div class="col-lg-3" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time <span class="asterisk_red"></span></label>
                     <%--<s:textfield name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp">
@@ -224,7 +225,8 @@
                     </datalist>
 
                 </div>
-                    <s:property value="order.orderId" />
+                </sec:authorize>
+                    <%--<s:property value="order.orderId" />--%>
                     <div class="pull-right" style="margin-top: 15px;">
                         <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                             <s:param name="orderIdParam"
@@ -243,7 +245,8 @@
                             <%--<button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
                                     <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
                     </div>
-            </div>
+                    </div>
+
                     <div class="panel-footer">
                         <div class="table-responsive" >
                             <div class="col-lg-12">

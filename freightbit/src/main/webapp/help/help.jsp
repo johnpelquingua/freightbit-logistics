@@ -37,6 +37,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-search" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\001_SearchForBooking.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To search for a booking, click Booking > Active Bookings on Main menu. <br>
@@ -54,6 +59,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-create" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\002_CreateABooking.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To create a new booking, click Booking > Active Bookings on Main Menu. <br>
@@ -74,10 +84,15 @@
                 </h4>
             </div>
             <div id="collapse-booking-edit" class="panel-collapse collapse">
+               <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\003_EditBooking.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit booking, click Booking on Main Menu. <br>
-                        2.	Click the Pencil Icon on Actions Column. <br>
+                        2.	Click the Pencilfa Icon on Actions Column. <br>
                         3.	Fill up all necessary changes on first page. <br>
                         4.	Click Next to proceed to next page. <br>
                         5.	The booking summary page will be displayed.  From there, you can add items. <br>
@@ -93,7 +108,13 @@
                     <a data-toggle="collapse" data-parent="#accordion-booking" href="#collapse-booking-delete">Delete Booking</a>
                 </h4>
             </div>
+
             <div id="collapse-booking-delete" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\004_DeleteBooking.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To delete booking, click Booking on Main Menu <br>
@@ -111,6 +132,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-view" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\005_ViewBookingInformation.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To view booking information, Click Booking on Main Menu. <br>
@@ -127,6 +153,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-printForm" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\006_PrintBookingForm.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To print booking form, Click Booking on Main Menu. <br>
@@ -144,6 +175,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-approve" class="panel-collapse collapse">
+               <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\007_ApproveBooking.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To approve booking, Click Booking on Main Menu. <br>
@@ -161,6 +197,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-cancel" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\008_CancelBooking.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p><p>
                     1.	To cancel booking, Click Booking on Main Menu. <br>
@@ -178,6 +219,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-editContactInfo" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\009_EditContactInformation.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	On creating a new booking or editing an existing booking, you can edit the contact info by clicking the Edit Contact Info button. <br>

@@ -166,7 +166,7 @@
                                             style="text-align: center;"> </display:column>
                         </td>--%>
 
-                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_CUSTOMER')">
                         <td>
                             <display:column title="Action">
                                 <%--<s:if test="#attr.orderItem.status != 'PLANNING 1' && #attr.orderItem.status != 'PLANNING 2' && #attr.orderItem.status != 'PLANNING 3'">--%>
@@ -181,10 +181,11 @@
                                 <s:else>
                                     <i style="color: red;" class="fa fa-ban"></i>
                                 </s:else>
-
-                                <a data-toggle="modal" data-target="#updateContainerDetails" id="createContainer" href="#" rel="tooltip" title="Set container details" onclick="showContainerDetails(${orderItem.orderItemId});">
-                                    <i class="fa fa-clipboard"></i>
-                                </a>
+                                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                                    <a data-toggle="modal" data-target="#updateContainerDetails" id="createContainer" href="#" rel="tooltip" title="Set container details" onclick="showContainerDetails(${orderItem.orderItemId});">
+                                        <i class="fa fa-clipboard"></i>
+                                    </a>
+                                </sec:authorize>
                             </display:column>
                         </td>
                         </sec:authorize>

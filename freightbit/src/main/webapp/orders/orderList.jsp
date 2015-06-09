@@ -121,7 +121,7 @@
                                         <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
                                         <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' || #attr.order.orderStatus == 'INCOMPLETE' ">
                                             <%--delete booking--%>
-                                            | <%--separator--%>
+                                            <%--|--%> <%--separator--%>
                                             <s:url var="deleteOrderUrl" action="deleteOrder">
                                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                             </s:url>
@@ -133,7 +133,7 @@
                                     </sec:authorize>
 
                                         <%--info booking--%>
-                                        | <%--separator--%>
+                                        <%--|--%> <%--separator--%>
                                         <s:url var="viewInfoOrderUrl" action="viewInfoOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
@@ -143,7 +143,7 @@
 
                                     <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
                                         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
-                                            | <%--separator--%>
+                                            <%--|--%> <%--separator--%>
                                             <a id="print-icon" title="Print Booking Form" rel="tooltip" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM');">
                                                 <i class="fa fa-print table-action-icons"></i>
                                             </a>
@@ -154,7 +154,7 @@
                                     <%--<s:property value="%{#attr.order.orderId}"/>--%>
                                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES')">
                                     <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING'">
-                                        | <%--separator--%>
+                                        <%--|--%> <%--separator--%>
                                         <s:url var="approveOrderUrl" action="approveOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
@@ -165,7 +165,7 @@
 
                                     </s:if>
                                     <s:if test=" #attr.order.orderStatus == 'APPROVED' || #attr.order.orderStatus == 'INCOMPLETE' || #attr.order.orderStatus == 'ON GOING'">
-                                        | <%--separator--%>
+                                        <%--|--%> <%--separator--%>
                                         <%--cancel booking--%>
                                         <s:url var="cancelOrderUrl" action="cancelOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
@@ -179,7 +179,7 @@
                                     </sec:authorize>
                                     <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
                                         <%--<s:if test=" #attr.order.orderStatus == 'SERVICE ACCOMPLISHED' ">--%>
-                                            | <%--separator--%>
+                                            <%--|--%> <%--separator--%>
                                             <s:url var="archiveOrderUrl" action="archiveOrder">
                                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                             </s:url>
