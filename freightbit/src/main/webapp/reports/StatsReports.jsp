@@ -8,9 +8,10 @@
 </legend>
 
 <div class="panel panel-primary">
-
+    <s:hidden cssClass="reportGenerator" value="%{reportGenerator}" />
     <div class="panel-body">
         <div class="form-group">
+
             <%--<label class="col-lg-1 control-label" style="padding-top: 0px !important;">Data :</label>
             <div class="col-lg-6">
                 <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
@@ -219,6 +220,7 @@
             var dateFromVal = $('.dateFromClass ').val(),
                 dateToVal = $('.dateToClass').val(),
                 dataVal = $('#reportsStatisticsList').val(),
+                reportGenerator = $('.reportGenerator').val(),
                 dateRegEx = /^(0[1-9]|1[012]|[1-9])[- /.](0[1-9]|[12][0-9]|3[01]|[1-9])[- /.](19|20)\d\d$/;
 
             if(dateFromVal.match(dateRegEx) === null){
@@ -243,7 +245,7 @@
                         alert('An error occurred! ' + thrownError);
                     }
                 });*/
-                window.open('reports/viewStatistics?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal, 'totalBookings', 'width=910,height=800');
+                window.open('reports/viewStatistics?dateFromParam=' + dateFromVal + '&dateToParam=' + dateToVal + '&dataParam=' + dataVal + '&reportGeneratorParam=' + reportGenerator, 'totalBookings', 'width=910,height=800');
                 return true;
             }
         });

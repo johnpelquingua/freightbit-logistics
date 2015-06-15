@@ -13,7 +13,7 @@
             <%--<li class="message-preview">--%>
                 <%--<a href="/help/help.jsp">--%>
                     <%--&lt;%&ndash;<li><a href="/help/help.jsp"><i class="fa fa-question-circle"></i> Help Center</a></li>&ndash;%&gt;--%>
-                    <%--<li><a href="<s:url action='default/showHelp' />"><i class="fa fa-question-circle"></i> Help Center</a></li>--%>
+                    <%--<li><a href="<s:url action='help/showHelp' />"><i class="fa fa-question-circle"></i> Help Center</a></li>--%>
 
 
                 <%--</a>--%>

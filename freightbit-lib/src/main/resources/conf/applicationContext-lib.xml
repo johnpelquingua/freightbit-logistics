@@ -203,7 +203,7 @@
 
     <bean id="totalCancelledFCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledFCLBookingsServiceImpl"/>
 
-    <bean id="totalOnTimeDelayedFCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalOnTimeDelayedFCLBookingsServiceImpl"/>
+    <bean id="totalOnTimeFCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalOnTimeFCLBookingsServiceImpl"/>
 
     <!--  LCL Operations Reports -->
 
@@ -211,9 +211,9 @@
 
     <bean id="totalCancelledLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCancelledLCLBookingsServiceImpl"/>
 
-    <bean id="totalItemsPerLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalItemsPerLCLBookingsServiceImpl"/>
+    <bean id="totalItemsAndCBMPerLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalItemsAndCBMPerLCLBookingsServiceImpl"/>
 
-    <bean id="totalCubicMetrePerLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCubicMetrePerLCLBookingsServiceImpl"/>
+    <!--<bean id="totalCubicMetrePerLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.TotalCubicMetrePerLCLBookingsServiceImpl"/>-->
 
     <bean id="avgItemsPerLCLBookingsService" class="com.sr.biz.freightbit.reports.service.impl.AvgItemsPerLCLBookingsServiceImpl"/>
 

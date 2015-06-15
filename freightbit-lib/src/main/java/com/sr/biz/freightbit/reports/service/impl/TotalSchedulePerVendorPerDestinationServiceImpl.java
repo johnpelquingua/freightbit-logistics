@@ -52,6 +52,7 @@ public class TotalSchedulePerVendorPerDestinationServiceImpl extends ReportGener
         final Map parameters = new HashMap<String, Object>();
         parameters.put("dateFrom", params.get("dateFrom"));
         parameters.put("dateTo", params.get("dateTo"));
+        parameters.put("reportGenerator", params.get("reportGenerator"));
         return parameters;
     }
 }

@@ -1,7 +1,7 @@
 package com.sr.biz.freightbit.reports.service.impl;
 
 import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
-import com.sr.biz.freightbit.reports.service.TotalOnTimeDelayedFCLBookingsService;
+import com.sr.biz.freightbit.reports.service.TotalItemsAndCBMPerLCLBookingsService;
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.libraries.resourceloader.Resource;
@@ -12,17 +12,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Kevin on 5/27/2015.
- */
-public class TotalOnTimeDelayedFCLBookingsServiceImpl extends ReportGeneratorService implements TotalOnTimeDelayedFCLBookingsService{
+public class TotalItemsAndCBMPerLCLBookingsServiceImpl extends ReportGeneratorService implements TotalItemsAndCBMPerLCLBookingsService{
     public MasterReport getReportDefinition()
     {
         try
         {
             // Get the URL to the reportDefinition file
             final Class classVar = this.getClass();
-            final URL reportDefinitionURL = classVar.getResource("/reports/FCL_OnTimeContainers.prpt");
+            final URL reportDefinitionURL = classVar.getResource("/reports/LCL_Total_Items_And_CBM_Per_Booking.prpt");
 
             // Parse the report file
             final ResourceManager resourceManager = new ResourceManager();
@@ -55,6 +52,7 @@ public class TotalOnTimeDelayedFCLBookingsServiceImpl extends ReportGeneratorSer
         final Map parameters = new HashMap<String, Object>();
         parameters.put("dateFrom", params.get("dateFrom"));
         parameters.put("dateTo", params.get("dateTo"));
+        parameters.put("reportGenerator", params.get("reportGenerator"));
         return parameters;
     }
 }

@@ -1,7 +1,8 @@
 package com.sr.biz.freightbit.reports.service.impl;
 
+import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
-import com.sr.biz.freightbit.reports.service.TotalItemsPerLCLBookingsService;
+import com.sr.biz.freightbit.reports.service.TotalOnTimeFCLBookingsService;
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.libraries.resourceloader.Resource;
@@ -12,14 +13,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TotalItemsPerLCLBookingsServiceImpl extends ReportGeneratorService implements TotalItemsPerLCLBookingsService{
+public class TotalOnTimeFCLBookingsServiceImpl extends ReportGeneratorService implements TotalOnTimeFCLBookingsService{
     public MasterReport getReportDefinition()
     {
         try
         {
             // Get the URL to the reportDefinition file
             final Class classVar = this.getClass();
-            final URL reportDefinitionURL = classVar.getResource("/reports/LCL_Total_Number_Of_Items.prpt");
+            final URL reportDefinitionURL = classVar.getResource("/reports/FCL_OnTimeContainers.prpt");
 
             // Parse the report file
             final ResourceManager resourceManager = new ResourceManager();
@@ -52,6 +53,7 @@ public class TotalItemsPerLCLBookingsServiceImpl extends ReportGeneratorService 
         final Map parameters = new HashMap<String, Object>();
         parameters.put("dateFrom", params.get("dateFrom"));
         parameters.put("dateTo", params.get("dateTo"));
+        parameters.put("reportGenerator", params.get("reportGenerator"));
         return parameters;
     }
 }

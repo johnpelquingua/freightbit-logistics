@@ -2,9 +2,12 @@ package com.sr.apps.freightbit.core.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.core.entity.User;
+import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.reports.service.*;
 import org.apache.struts2.ServletActionContext;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
@@ -19,6 +22,7 @@ import java.util.*;
 
 public class ReportAction extends ActionSupport implements Preparable {
 
+    private UserService userService;
     private ParameterService parameterService;
     private TotalBookingsService totalBookingsService;
     private TotalBookingsConsigneeService totalBookingsConsigneeService;
@@ -34,10 +38,10 @@ public class ReportAction extends ActionSupport implements Preparable {
     private TotalFCLVansShipperPortService totalFCLVansShipperPortService;
     private TotalFCLVansConsigneePortService totalFCLVansConsigneePortService;
     private TotalCancelledFCLBookingsService totalCancelledFCLBookingsService;
-    private TotalOnTimeDelayedFCLBookingsService totalOnTimeDelayedFCLBookingsService;
+    private TotalOnTimeFCLBookingsService totalOnTimeFCLBookingsService;
     private TotalCancelledLCLBookingsService totalCancelledLCLBookingsService;
-    private TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService;
-    private TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService;
+    private TotalItemsAndCBMPerLCLBookingsService totalItemsAndCBMPerLCLBookingsService;
+    /*private TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService;*/
     private AvgItemsPerLCLBookingsService avgItemsPerLCLBookingsService;
     private TotalSchedulePerVendorPerDestinationService totalSchedulePerVendorPerDestinationService;
     private TotalCancelledLCBookingsService totalCancelledLCBookingsService;
@@ -66,6 +70,9 @@ public class ReportAction extends ActionSupport implements Preparable {
     private Date dateToParam;
     private String deptNameParam;
     private String typeNameParam;
+    private String reportGenerator;
+    private String reportGeneratorParam;
+    private CommonUtils commonUtils = new CommonUtils();
 
     public String deptTypeDataList() {
 
@@ -144,6 +151,10 @@ public class ReportAction extends ActionSupport implements Preparable {
 
     public String viewStatsReports() {
 
+        User userEntity = userService.findUserByUserName(commonUtils.getUserNameFromSession());
+
+        reportGenerator = userEntity.getFirstName() + " " + userEntity.getLastName();
+
         return SUCCESS;
     }
 
@@ -161,12 +172,14 @@ public class ReportAction extends ActionSupport implements Preparable {
         System.out.println(dateFromParam);
         System.out.println(dateToParam);
         System.out.println(dataParam);
+        System.out.println(reportGeneratorParam);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         Map<String, String> params = new HashMap();
         params.put("dateFrom", formatter.format(dateFromParam));
         params.put("dateTo", formatter.format(dateToParam));
+        params.put("reportGenerator", reportGeneratorParam);
 
         ByteArrayOutputStream byteArray = null;
         BufferedOutputStream responseOut = null;
@@ -475,12 +488,12 @@ public class ReportAction extends ActionSupport implements Preparable {
             }
         }
 
-        else if(dataParam.equals("TOTAL ON-TIME / DELAYED CONTAINER VANS PER VENDOR / SUB-CONTRACTOR")){
+        else if(dataParam.equals("TOTAL ON-TIME CONTAINER VANS PER VENDOR / SUB-CONTRACTOR")){
             try {
                 // Create an output filename
-                final File outputFile = new File("Total On-Time / Delayed Container Vans per Vendor/Sub-Contractor.pdf");
+                final File outputFile = new File("Total On-Time Container Vans per Vendor / Sub-Contractor.pdf");
                 // Generate the report
-                MasterReport report = totalOnTimeDelayedFCLBookingsService.generateReport(params);
+                MasterReport report = totalOnTimeFCLBookingsService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -541,12 +554,12 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL ITEMS PER LCL BOOKING")){
+        else if(dataParam.equals("TOTAL ITEMS AND CBM PER LCL BOOKING")){
             try {
                 // Create an output filename
-                final File outputFile = new File("Total Items Per LCL Bookings.pdf");
+                final File outputFile = new File("Total Items And CBM Per LCL Bookings.pdf");
                 // Generate the report
-                MasterReport report = totalItemsPerLCLBookingsService.generateReport(params);
+                MasterReport report = totalItemsAndCBMPerLCLBookingsService.generateReport(params);
 
                 HttpServletResponse response = ServletActionContext.getResponse();
                 responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -562,7 +575,7 @@ public class ReportAction extends ActionSupport implements Preparable {
                 re.printStackTrace();
             }
         }
-        else if(dataParam.equals("TOTAL CUBIC METER PER LCL BOOKINGS")){
+        /*else if(dataParam.equals("TOTAL CUBIC METER PER LCL BOOKINGS")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Cubic Metre Per LCL Bookings.pdf");
@@ -582,7 +595,7 @@ public class ReportAction extends ActionSupport implements Preparable {
             } catch (Exception re) {
                 re.printStackTrace();
             }
-        }
+        }*/
         else if(dataParam.equals("TOTAL ITEMS PER SHIPPER PER PORT OF DESTINATION")){
             try {
                 // Create an output filename
@@ -784,7 +797,7 @@ public class ReportAction extends ActionSupport implements Preparable {
             }
         }
 
-        else if(dataParam.equals("TOTAL CONTAINER VANS PER INLAND FREIGHT BOOKING PER SHIPPER")){
+        /*else if(dataParam.equals("TOTAL CONTAINER VANS PER INLAND FREIGHT BOOKING PER SHIPPER")){
             try {
                 // Create an output filename
                 final File outputFile = new File("Total Container Vans per Inland Freight Booking.pdf");
@@ -804,7 +817,7 @@ public class ReportAction extends ActionSupport implements Preparable {
             } catch (Exception re) {
                 re.printStackTrace();
             }
-        }
+        }*/
 
         else if(dataParam.equals("TOTAL CANCELLED INLAND FREIGHT BOOKING")){
             try {
@@ -884,6 +897,26 @@ public class ReportAction extends ActionSupport implements Preparable {
         reportsList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_RELATIONS, ParameterConstants.REPORTS);
         reportsDept = parameterService.getParameterMap(ParameterConstants.REPORTS, ParameterConstants.DEPARTMENT);
         reportsType = parameterService.getParameterMap(ParameterConstants.REPORTS, ParameterConstants.TYPE);
+    }
+
+    public String getReportGenerator() {
+        return reportGenerator;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public void setReportGenerator(String reportGenerator) {
+        this.reportGenerator = reportGenerator;
+    }
+
+    public String getReportGeneratorParam() {
+        return reportGeneratorParam;
+    }
+
+    public void setReportGeneratorParam(String reportGeneratorParam) {
+        this.reportGeneratorParam = reportGeneratorParam;
     }
 
     public List<Parameters> getStatisticsList() {
@@ -1106,8 +1139,8 @@ public class ReportAction extends ActionSupport implements Preparable {
         this.totalFCLVansConsigneePortService = totalFCLVansConsigneePortService;
     }
 
-    public void setTotalOnTimeDelayedFCLBookingsService(TotalOnTimeDelayedFCLBookingsService totalOnTimeDelayedFCLBookingsService) {
-        this.totalOnTimeDelayedFCLBookingsService = totalOnTimeDelayedFCLBookingsService;
+    public void setTotalOnTimeFCLBookingsService(TotalOnTimeFCLBookingsService totalOnTimeFCLBookingsService) {
+        this.totalOnTimeFCLBookingsService = totalOnTimeFCLBookingsService;
     }
 
     public void setTotalLCLBookingsService(TotalLCLBookingsService totalLCLBookingsService) {
@@ -1158,13 +1191,13 @@ public class ReportAction extends ActionSupport implements Preparable {
         this.totalInlandFreightBookingVansService = totalInlandFreightBookingVansService;
     }
 
-    public void setTotalItemsPerLCLBookingsService(TotalItemsPerLCLBookingsService totalItemsPerLCLBookingsService) {
-        this.totalItemsPerLCLBookingsService = totalItemsPerLCLBookingsService;
+    public void setTotalItemsAndCBMPerLCLBookingsService(TotalItemsAndCBMPerLCLBookingsService totalItemsAndCBMPerLCLBookingsService) {
+        this.totalItemsAndCBMPerLCLBookingsService = totalItemsAndCBMPerLCLBookingsService;
     }
 
-    public void setTotalCubicMetrePerLCLBookingsService(TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService) {
+    /*public void setTotalCubicMetrePerLCLBookingsService(TotalCubicMetrePerLCLBookingsService totalCubicMetrePerLCLBookingsService) {
         this.totalCubicMetrePerLCLBookingsService = totalCubicMetrePerLCLBookingsService;
-    }
+    }*/
 
     public void setAvgItemsPerLCLBookingsService(AvgItemsPerLCLBookingsService avgItemsPerLCLBookingsService) {
         this.avgItemsPerLCLBookingsService = avgItemsPerLCLBookingsService;
@@ -1173,4 +1206,6 @@ public class ReportAction extends ActionSupport implements Preparable {
     public void setTotalSchedulePerVendorPerDestinationService(TotalSchedulePerVendorPerDestinationService totalSchedulePerVendorPerDestinationService) {
         this.totalSchedulePerVendorPerDestinationService = totalSchedulePerVendorPerDestinationService;
     }
+
+
 }
