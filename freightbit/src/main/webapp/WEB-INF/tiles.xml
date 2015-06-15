@@ -712,9 +712,32 @@
         <put-attribute name="title" value="Permission Page"/>
         <put-attribute name="body" value="/core/permissions/permissions-edit.jsp"/>
     </definition>
-    <definition name="help.tiles" extends="baseLayout">
+
+    <!--<definition name="help.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Help Page"/>-->
+        <!--<put-attribute name="body" value="/help/help.jsp"/>-->
+    <!--</definition>-->
+
+    <definition name="helpBooking.tiles" extends="baseLayout">
         <put-attribute name="title" value="Help Page"/>
-        <put-attribute name="body" value="/help/help.jsp"/>
+        <put-attribute name="body" value="/help/helpBooking.jsp"/>
     </definition>
+
+    <definition name="helpOperations.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Help Page"/>
+        <put-attribute name="body" value="/help/helpOperations.jsp"/>
+    </definition>
+
+    <definition name="helpCustomer.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Help Page"/>
+        <put-attribute name="body" value="/help/helpCustomer.jsp"/>
+    </definition>
+
+    <definition name="helpVendor.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Help Page"/>
+        <put-attribute name="body" value="/help/helpVendor.jsp"/>
+    </definition>
+
+
 
 </tiles-definitions>

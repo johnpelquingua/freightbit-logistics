@@ -253,13 +253,13 @@
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="Net Weight" name="truck.netWeight" onkeypress="return isNumberKey(event)"
                                                          id="truck_netWeight" required="true" pattern="^[0-9]*$" maxLength="9"
-                                                         title="Gross Weight will not accept letters or special characters."/>
+                                                         title="Net Weight will not accept letters or special characters." />
                                         </div>
                                     </div>
 
 
 
-                                        <%--Net Capacity = netCapacity--%>
+                                    <%--Net Capacity = netCapacity--%>
                                     <div class="form-group">
                                         <label class="col-lg-4 control-label" style="padding-top:0px;">Net Capacity<span class="asterisk_red"></span></label>
 
@@ -278,7 +278,7 @@
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewTrucks" class="btn btn-danger" id ="groups-btn">Cancel</a>
-                    <s:submit cssClass="btn btn-primary vendorAddTruckBtn" name="submit" value="Save" disabled="true"/>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                     <%--<button type="button" name="submit" value="Save" disabled="true" class="btn btn-primary vendorAddTruckBtn">Save</button>--%>
                 </div>
             </div>

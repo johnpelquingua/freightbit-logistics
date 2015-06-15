@@ -113,6 +113,26 @@
         </li>
     </sec:authorize>
 
+    <%--HELP HERE--%>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle"></i> Help Center <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <%--BOOKING MODULE--%>
+            <li><a href="<s:url action='../default/showBookingHelp' />"><i class="fa fa-caret-right fa-fw"></i> Booking Module </a>
+            </li>
+            <%--OPERATIONS MODULE--%>
+            <li><a href="<s:url action='../default/showOperationsHelp' />"><i class="fa fa-caret-right fa-fw"></i> Operations Module </a>
+            </li>
+            <%--CUSTOMER MODULE--%>
+            <li><a href="<s:url action='../default/showCustomerHelp' />"><i class="fa fa-caret-right fa-fw"></i> Customer Module </a>
+            </li>
+            <%--VENDOR MODULE--%>
+            <li><a href="<s:url action='../default/showVendorHelp' />"><i class="fa fa-caret-right fa-fw"></i> Vendor Module </a>
+            </li>
+        </ul>
+    </li>
+    <%--END OF HELP--%>
+
     <%--<li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports <b class="caret"></b></a>
         <ul class="dropdown-menu">

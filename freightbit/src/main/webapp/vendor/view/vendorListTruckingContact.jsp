@@ -206,12 +206,13 @@
                                                     <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{deleteContactsUrl}" rel="tooltip"
-                                                     title="Delete this Contact Person"
-                                                     onclick="return confirm('Do you really want to delete?');">
+                                                     title="Delete this Contact Person">
+                                                     <%--onclick="return confirm('Do you really want to delete?');">--%>
                                                     <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
 
                                                 </s:a>
-                                                <i class="fa fa-trash-o"></i>
+                                                <i class="fa fa-trash-o deleteVendorTruckingContactIcon"></i>
+
                                                 <%--<s:url var="viewInfoContactUrl" action="viewVendorTruckingContactsInfo">
                                                     <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
                                                 </s:url>

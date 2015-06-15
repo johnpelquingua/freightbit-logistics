@@ -65,8 +65,24 @@
             </result>
         </action>
 
-        <action name="showHelp" method="execute" class="com.sr.apps.freightbit.core.action.HelpAction">
-            <result name="success" type="tiles">help.tiles</result>
+        <!--<action name="showHelp" method="execute" class="com.sr.apps.freightbit.core.action.HelpAction">-->
+            <!--<result name="success" type="tiles">help.tiles</result>-->
+        <!--</action>-->
+
+        <action name="showBookingHelp" method="execute" class="com.sr.apps.freightbit.core.action.HelpAction">
+            <result name="success" type="tiles">helpBooking.tiles</result>
+        </action>
+
+        <action name="showOperationsHelp" method="execute" class="com.sr.apps.freightbit.core.action.HelpAction">
+            <result name="success" type="tiles">helpOperations.tiles</result>
+        </action>
+
+        <action name="showCustomerHelp" method="execute" class="com.sr.apps.freightbit.core.action.HelpAction">
+            <result name="success" type="tiles">helpCustomer.tiles</result>
+        </action>
+
+        <action name="showVendorHelp" method="execute" class="com.sr.apps.freightbit.core.action.HelpAction">
+            <result name="success" type="tiles">helpVendor.tiles</result>
         </action>
 
     </package>

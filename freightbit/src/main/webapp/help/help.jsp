@@ -240,6 +240,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-addContactPerson" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\010_AddContactPerson.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	In creating a new or editing an existing booking, user can add Contact Person by clicking the Add Contact Person button. <br>
@@ -256,6 +261,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-addAddress" class="panel-collapse collapse">
+            <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\011_AddAddress.gif"/>
+                </div>
+            <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	On creating a new or editing an existing booking, you can add a new Address by clicking the Add Address button. <br>
@@ -272,6 +282,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-addConsignee" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\012_AddConsignee.gif"/>
+                </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	On creating a new or editing an existing booking, user can add a new Consignee by clicking the Add Consignee button. <br>
@@ -288,6 +303,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-addConsigneeContact" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\013_AddContactPersonConsignee.gif"/>
+                </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	On creating a new or editing an existing booking, user can add a new Contact Person for Consignee by clicking the Add Contact Person button. <br>
@@ -304,6 +324,11 @@
                 </h4>
             </div>
             <div id="collapse-booking-addContainerFCL" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\014_AddContainerFCL.gif"/>
+                </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	On second page of creating or editing a booking, you can add container to the list. <br>
@@ -320,6 +345,12 @@
                 </h4>
             </div>
             <div id="collapse-booking-addItemLCL" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\015_AddItemLCL.gif"/>
+                </div>
+                    <%-- END OF IMAGE HELP HERE--%>
+
                 <div class="panel-body">
                     <p>
                         1.	On the second page of creating or editing a booking, user can add an item to the list. <br>
@@ -345,6 +376,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-sortingOrders" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\016_SortingOrders.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To sort for the order by its origin and destination, choose the name of the place under the Sort by Origin and Sort by Destination boxes then click sort. Note: sort by origin and sport by destination must be filled up in order to continue. <br>
@@ -360,6 +396,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-settingVesselSchedule" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\017_SettingVesselSchedule.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To set a vessel schedule, click the Set Vessel Schedule action under the actions column of the freight plan list. <br>
@@ -377,6 +418,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-creatingFreightDocuments" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\018_CreateFreightDocument.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To create freight document/s, click the Set Vessel Schedule action under the actions column of the freight plan list (see Figure 6). <br>
@@ -427,6 +473,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-viewBoookingInformation" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\021_ViewBookingInformation.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To view booking information, click on the view booking information button under the actions column. <br>
@@ -446,6 +497,7 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-sortingViaServicePorts" class="panel-collapse collapse">
+
                     <div class="panel-body">
                         <p>
                             1.	To sort via service ports, choose the port under the sort by origin, sort by destination or sort by location (see Figure 3). <br>
@@ -461,6 +513,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-sortingViaRequirements" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\023_SortingViaServiceRequirements.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To sort via service requirements, click on the tab of your desired service requirement. <br>
@@ -477,6 +534,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-sortingViaTrucking" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\024_SortingViaTrucking.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To sort via trucking, click on the trucking tab (see Figure 4). <br>
@@ -494,6 +556,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-viewBookingInformation" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\025_ViewBookingInformation.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To view a booking information, click on the view booking information button under the actions column (see Figure 13). <br>
@@ -509,6 +576,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-settingVendorSingleItem" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\026_SettingAVendorSingleItem.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To set a vendor for a single item, click on the item&#39;s checkbox then click the set vendor button (see Figure 22). <br>
@@ -526,6 +598,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-settingVendorMultipleItem" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\027_SettingAVendorMultpleItem.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To set a vendor for multiple item, click on the item&#39;s checkbox then click the set vendor button (see Figure 22). <br>
@@ -543,6 +620,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-addingVendor" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\028_AddingAVendor.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	Navigate to the dispatch plan page (follow Setting a Vendor). <br>
@@ -560,6 +642,12 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-addDriver" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\029_AddingADriver.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
+
                     <div class="panel-body">
                         <p>
                             1.	Navigate to the dispatch plan page (follow Setting a Vendor). <br>
@@ -577,6 +665,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-addingTruck" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\030_AddingATruck.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	Navigate to the dispatch plan page (follow Setting a Vendor). <br>
@@ -594,6 +687,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-dispatchPlan-creatingInlandDocuments" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\031_CreateInlandDocuments.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To create inland document/s, navigate to the dispatch plan page (follow Setting a Vendor). <br>
@@ -614,6 +712,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-vesselSchedule-search" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\032_SearchingAVessleSchedule.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To search for a vessel schedule, click on the search schedule button. <br>
@@ -630,6 +733,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-vesselSchedule-add" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\033_AddingAVesselSchedule.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To add a new vessel schedule, click on the new schedule button. <br>
@@ -646,6 +754,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-vesselSchedule-edit" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\034_EditingAVesselSchedule.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To edit a vessel schedule, click the edit this vessel schedule button under the action column. <br>
@@ -662,6 +775,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-vesselSchedule-delete" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\035_DeletingAVesselSchedule.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To delete a vessel schedule, click on delete this vessel schedule under the actions column. <br>
@@ -682,6 +800,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-shipmentMonitoring-searchBookingNumber" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\036_SearchingForBookingNumber.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To search for a particular booking number, click on the search booking number button. <br>
@@ -698,6 +821,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-shipmentMonitoring-setServiceComplete" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\037_SetServiceComplete.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To update an on-going booking to set service status, click the update status button of the booking under its actions column. <br>
@@ -713,6 +841,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-shipmentMonitoring-setStatus" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\038_SetStatus.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To update an on-going booking to specific status, click the update status button of the booking under its actions column. <br>
@@ -738,6 +871,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-add" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\039_AddNewCustomer.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To create a new customer, click Customer on the Main Menu. <br>
@@ -755,6 +893,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-editCustomer" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\040_EditCustomer.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit a customer, click Customer on the Main Menu. <br>
@@ -772,6 +915,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-deleteCustomer" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\041_DeleteACustomer.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To delete a customer, click Customer on the Main Menu. <br>
@@ -789,6 +937,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-viewCustomerInformation" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\042_ViewingCustomerInfo.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To view customer information, click Customer on the Main Menu. <br>
@@ -805,6 +958,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-addCustomerAddress" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\043_AddAddressToCustomer.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To add a new address to a customer, click Customer on the Main Menu. <br>
@@ -825,6 +983,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-editAddress" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\044_EditCustomerAddress.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit customer address, click Customer on the Main Menu. <br>
@@ -845,6 +1008,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-deleteAddress" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\045_DeletingCustomerAddress.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To delete customer address, click Customer on the Main Menu. <br>
@@ -865,6 +1033,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-addingCustomerContactPerson" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\046_AddingAContactPersonToCustomer.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To add new contact person to customer, click Customer on the Main Menu. <br>
@@ -885,6 +1058,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-editCustomerContactPerson" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\047_EditingContactPerson.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit customer contact person, click Customer on the Main Menu. <br>
@@ -905,6 +1083,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-deleteCustomerContactPerson" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\047_DeletingCustomerContactPerson.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To delete customer contact person, click Customer on the Main Menu.<br>
@@ -925,6 +1108,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-addingCustomerItems" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\048_AddingItemsToCustomer.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To add new Item to a customer, click Customer on the Main Menu <br>
@@ -945,6 +1133,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-editCustomerItem" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\049_EditingCustomerItems.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit a customer item, click Customer on the Main Menu <br>
@@ -965,6 +1158,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-deleteCustomerItem" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\050_DeletingCustomerItems.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To delete a customer item, click Customer on the Main Menu <br>
@@ -985,6 +1183,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-addingCustomerConsignee" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\051_AddCustomerConsignee.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To add new consignee to customer, click Customer on the Main Menu <br>
@@ -1005,6 +1208,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-editCustomerConsignee" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\052_EditCustomerConsignee.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit customer consignee, click Customer on the Main Menu <br>
@@ -1025,6 +1233,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-deleteCustomerConsignee" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\053_DeleteCustomerConsignee.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To delete customer consignee, click Customer on the Main Menu <br>
@@ -1045,6 +1258,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-viewConsigneeInformation" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\054_ViewConsigneeInfo.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To view consignee information of a customer, click Customer on the Main Menu <br>
@@ -1064,6 +1282,11 @@
                 </h4>
             </div>
             <div id="collapse-customer-search" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\055_SearchCustomer.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To search for a customer, click Customer on Main Menu. <br>
@@ -1088,6 +1311,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-add" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\056_AddVendor.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To add a new vendor, click on new vendor in the vendor page. <br>
@@ -1104,6 +1332,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-edit" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\057_EditVendor.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit a vendor&#39;s details, click on edit this vendor under the Actions. <br>
@@ -1120,6 +1353,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-delete" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\058_DeleteVendor.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To delete a vendor, click on delete this vendor under Actions.<br>
@@ -1136,6 +1374,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-search" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\059_SearchVendor.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To search for a vendor, click on the search vendor button in the vendor page.<br>
@@ -1152,11 +1395,15 @@
                 </h4>
             </div>
             <div id="collapse-vendor-view" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\060_ViewVendorDetails.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To view a vendor&#39;s details, click on a vendor&#39;s corresponding view vendor info button under the actions column.<br>
                         2.	You&#39;ll be redirected to the vendor profile where you&#39;ll see the basic information of the vendor. <br>
-                        3.	You will be redirected to a page containing the list of results matching your search.
                     </p>
                 </div>
             </div>
@@ -1168,11 +1415,15 @@
                 </h4>
             </div>
             <div id="collapse-vendor-viewVendorAddress" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\061_ViewVendorAddress.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To view the list of vendor addresses, navigate to the vendor profile and click address from the sidebar.<br>
                         2.	You&#39;ll be redirected to the address list page where you&#39;ll see the list of addresses a vendor has.<br>
-                        3.	You will be redirected to a page containing the list of results matching your search.
                     </p>
                 </div>
             </div>
@@ -1184,6 +1435,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-addVendorAddress" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\077_AddVendorAddress.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	Navigate to the address list page (see Viewing Vendor Addresses).<br>
@@ -1201,6 +1457,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-editVendorAddress" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\062_EditVendorAddress.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	Navigate to the address list page (see Viewing Vendor Addresses).<br>
@@ -1218,6 +1479,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-deleteVendorAddress" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\063_DeleteVendorAddress.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	Navigate to the address list page (see Viewing Vendor Addresses).<br>
@@ -1235,6 +1501,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-viewContactPerson" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\064_ViewListContactPerson.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To view the list of contact persons a vendor has, navigate to the vendor profile page (see Viewing Vendor Details) then click contacts from the sidebar.<br>
@@ -1250,11 +1521,15 @@
                 </h4>
             </div>
             <div id="collapse-vendor-addContactPerson" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\078_AddContactPerson.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To add a contact person, navigate to the contact person list page (see Viewing list of Contact Persons) and click new contact person button. <br>
                         2.	You&#39;ll be redirected to the add contact person page. Fill in the required fields then click save. Note: Adding will not proceed until all required fields are filled up. <br>
-                        3.	You&#39;ll be redirected to the updated contact person list page and a success message will be displayed on top of the list.
                     </p>
                 </div>
             </div>
@@ -1266,6 +1541,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-editContactPerson" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\065_EditContactPerson.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit a contact person&#39;s details, navigate to the contact persons list page (see Viewing list of Contact Persons) then click edit this contact person button under the action column. <br>
@@ -1282,6 +1562,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-deleteContactPerson" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\079_DeleteContactPerson.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	Navigate to the contact persons list page (see Viewing list of Contact Persons). <br>
@@ -1299,6 +1584,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-viewDrivers" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\067_ViewDriverList.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To view the list of drivers a vendor has, navigate to the vendor profile page (see Viewing Vendor Details) then click drivers from the sidebar. <br>
@@ -1314,6 +1604,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-addDriver" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\068_AddDriver.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To add a driver, navigate to the driver list page (see Viewing list of Drivers) and click new driver button. <br>
@@ -1330,6 +1625,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-editDriver" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\069_EditDriver.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit a driver&#39;s details, navigate to the driver list page (see Viewing list of Drivers) then click edit this driver button under the action column. <br>
@@ -1346,6 +1646,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-deleteDriver" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\070_DeleteDriver.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	Navigate to the driver list page (see Viewing list of Drivers). <br>
@@ -1380,6 +1685,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-addingTruck" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\071_AddTruck.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To add a truck, navigate to the trucks list page (see Viewing Truck Details, step 1-2) and click new truck button. <br>
@@ -1396,6 +1706,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-editTruck" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\072_EditTruck.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit a truck&#39;s details, navigate to the trucks list page (see Viewing Truck Details, step 1-2) then click edit truck button under the action column. <br>
@@ -1412,6 +1727,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-deleteTruck" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\073_DeleteTruck.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	Navigate to the trucks list page (see Viewing Truck Details, step 1-2). <br>
@@ -1429,6 +1749,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-viewVesselList" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\074_ViewVesselList.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To view the list of vessels a vendor has, navigate to the vendor profile page (see Viewing Vendor Details) then click vessels from the sidebar. <br>
@@ -1460,6 +1785,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-editVessel" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\075_EditVessel.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To edit a vessel&#39;s details, navigate to the vessel list page (see Viewing list of Contact Persons) then click edit this vessel button under the action column. <br>
@@ -1476,6 +1806,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-deleteVessel" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\076_DeleteVessel.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To delete a vessel&#39;s details, navigate to the vessel list page (see Viewing list of Contact Persons) then click delete this vessel button under the action column. <br>

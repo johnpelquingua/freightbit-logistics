@@ -4,22 +4,24 @@
 <%@ page session="true" %>
 
 <ul class="nav navbar-nav navbar-right navbar-user">
+    <%--OLD HELP--%>
 
-    <li class="dropdown messages-dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle"></i> Help
-            <b class="caret"></b></a>
-        <ul class="dropdown-menu" style="min-width: 130px;">
+    <%--<li class="dropdown messages-dropdown">--%>
+        <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle"></i> Help--%>
+            <%--<b class="caret"></b></a>--%>
+        <%--<ul class="dropdown-menu" style="min-width: 130px;">--%>
 
-            <li class="message-preview">
-                <a href="/help/help.jsp">
-                    <li><a href="<s:url action='../default/showHelp' />"><i class="fa fa-question-circle"></i> Help Center</a></li>
+            <%--<li class="message-preview">--%>
+                <%--<a href="/help/help.jsp">--%>
+                    <%--<li><a href="<s:url action='../default/showHelp' />"><i class="fa fa-question-circle"></i> Help Center</a></li>--%>
 
-                </a>
-            </li>
+                <%--</a>--%>
+            <%--</li>--%>
 
-        </ul>
+        <%--</ul>--%>
 
-    </li>
+    <%--</li>--%>
+    <%--END OF OLD HELP--%>
 
     <li class="dropdown messages-dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><div class="noti_bubble" id="n1" style="visibility: hidden;"><s:property value="%{AllNotification}"></s:property></div><i class="fa fa-exclamation-circle"></i> Notifications
