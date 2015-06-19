@@ -121,11 +121,11 @@ public class CustomerServiceImpl implements CustomerService {
         return contacts;
     }
 
-    /*@Override
-    public List<Contacts> findContactsByCustomerId(Integer customerId) {
-        List<Contacts> contacts = contactsDao.findContactsByCustomerId(customerId);
+    @Override
+    public List<Contacts> findContactsByCustomer(Integer customerId) {
+        List<Contacts> contacts = contactsDao.findContactsByCustomer(customerId);
         return contacts;
-    }*/
+    }
 
     @Override
     public List<Contacts> findContactByRefIdAndType(String contactType, Integer customerId) {

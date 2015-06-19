@@ -126,7 +126,7 @@
         </div>
     </div>
 </s:if>
-
+<s:hidden value="%{userType}" cssClass="userType"/>
 <div class="row">
 <div class="col-lg-12">
 <div class="panel panel-primary">
@@ -414,7 +414,7 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-7">
-                            <s:select cssClass="bookingInput form-control addAddressItems" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
+                            <s:select cssClass="bookingInput form-control " style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
                                       list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" required="true"/>
                         </div>
 
@@ -508,7 +508,6 @@
         <button type="button" id="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
             Back To Booking List
         </button>
-
         <%--<s:submit name="submit" cssClass="btn btn-primary nextBtnDateVal" value="Next" />--%>
         <button class="btn btn-primary nextBtnDateVal" type="button" disabled>Save Booking And Next</button>
 

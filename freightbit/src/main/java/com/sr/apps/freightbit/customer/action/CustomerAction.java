@@ -695,12 +695,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(customerBean.getCustomerName())) {
             addFieldError("customer.customerName", getText("err.customerName.required"));
         }
-        if (StringUtils.isBlank(customerBean.getPhone())) {
+        /*if (StringUtils.isBlank(customerBean.getPhone())) {
             addFieldError("customer.phone", getText("err.phone.required"));
         }
         if (StringUtils.isBlank(customerBean.getMobile())) {
             addFieldError("customer.mobile", getText("err.mobile.required"));
-        }
+        }*/
         if (StringUtils.isBlank(customerBean.getEmail())) {
             addFieldError("customer.email", getText("err.email.required"));
         }
@@ -1271,7 +1271,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String viewContacts() {
         Integer customerId = getCustomerSessionId();
-        List<Contacts> contactEntityList = customerService.findContactByRefIdAndType("shipper",customerId);
+        /*List<Contacts> contactEntityList = customerService.findContactByRefIdAndType("shipper",customerId);*/
+        List<Contacts> contactEntityList = customerService.findContactsByCustomer(customerId);
         /*contactEntityList = customerService.findContactByReferenceId(customerId);*/
         for (Contacts contactElem : contactEntityList) {
             contacts.add(transformToFormBeanContacts(contactElem));

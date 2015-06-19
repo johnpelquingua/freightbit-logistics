@@ -92,6 +92,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Documents> outboundEntityList = new ArrayList<Documents>();
     private Integer orderIdParam;
     private Integer orderItemIdParam;
+    private String userType;
     private OperationsService operationsService;
     private OrderStatusLogsService orderStatusLogsService;
     private OrderService orderService;
@@ -182,7 +183,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String customerAction() {
 
         if(customerID != null) {
-            List<Contacts> shipperContacts = customerService.findContactByRefIdAndType("shipper", customerID);
+            List<Contacts> shipperContacts = customerService.findContactsByCustomer(customerID);
 
             for (int i = 0; i < shipperContacts.size(); i++) {
                 customerContactsMap.put(shipperContacts.get(i).getContactId(), shipperContacts.get(i).getFirstName() + ' ' + shipperContacts.get(i).getMiddleName() + ' ' + shipperContacts.get(i).getLastName());
@@ -542,6 +543,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         System.out.println("USERNAME " + commonUtils.getUserNameFromSession());
 
         User userEntity = userService.findUserByUserName(commonUtils.getUserNameFromSession());
+
+        userType = userEntity.getUserType();
 
         if(userEntity.getUserType().equals("REGULAR CUSTOMER")){
             if(userEntity.getCustomerId() != null){
@@ -3142,6 +3145,14 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setOrderStatusLogsService(OrderStatusLogsService orderStatusLogsService) {
         this.orderStatusLogsService = orderStatusLogsService;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }
 

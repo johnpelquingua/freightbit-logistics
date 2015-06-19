@@ -34,7 +34,7 @@ public interface CustomerService {
 
     public List<Contacts> findAllContacts();
 
-    /*public List<Contacts> findContactsByCustomerId(Integer customerId);*/
+    public List<Contacts> findContactsByCustomer(Integer customerId);
 
     public List<Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
 

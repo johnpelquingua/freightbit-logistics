@@ -53,7 +53,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Phone Number</label>
                                     <div class="col-lg-7" >
-                                        <s:textfield name="customer.phone" cssClass="customerInput form-control" id="customer_phone" maxLength="14" pattern=".{14,}"
+                                        <s:textfield name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14" pattern=".{14,}"
                                                      placeholder="(XXX) XXX-XXXX" title="Phone number should contain 10 digits including local city code."/>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                                      <%--placeholder="Email Address" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"--%>
                                                      <%--title="Example: example@domain.com" />--%>
                                             <s:textfield type="email" required="true" name="customer.email" cssClass="customerInput form-control" id="customer.email" maxLength="50"
-                                                         placeholder="Email Address" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"
+                                                         placeholder="Email Address" pattern=".+\@.+\..+"
                                                          title="Example: example@domain.com" />
                                     </div>
                                 </div>
@@ -107,8 +107,8 @@
 
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Mobile</label>
-                                    <div class="col-lg-7" >
-                                        <s:textfield name="customer.mobile" cssClass="customerInput form-control" id="customer_mobile" maxLength="14"
+                                    <div class="col-lg-7">
+                                        <s:textfield name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="14"
                                                      placeholder="(XXX) XXX-XXXX" pattern=".{14,}"
                                                      title="Mobile number should contain 10 digits."/>
                                     </div>
@@ -116,7 +116,7 @@
 
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Fax  Number</label>
-                                    <div class="col-lg-7" >
+                                    <div class="col-lg-7">
                                         <s:textfield   name="customer.fax" cssClass="form-control" id="customer_fax" maxLength="14" pattern=".{14,}"
                                                        title="Fax number should contain 10 digits including local city codes." placeholder="(XXX) XXX-XXXX"/>
                                     </div>
@@ -124,7 +124,7 @@
 
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Mayor's Permit Number</label>
-                                    <div class="col-lg-7" >
+                                    <div class="col-lg-7">
                                         <s:textfield name="customer.mayorsPermit" cssClass="form-control" id="customer_mayorsPermit" pattern="^(\s*[\#a-zA-Z0-9\.\,\-\&]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\-\&\#]*)\s*)+$" maxlength="30"/>
                                     </div>
                                 </div>

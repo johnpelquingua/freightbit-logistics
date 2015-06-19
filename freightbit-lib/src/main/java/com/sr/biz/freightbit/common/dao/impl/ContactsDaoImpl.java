@@ -6,6 +6,7 @@ import com.sr.biz.freightbit.core.dao.impl.UserDaoImpl;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.pentaho.reporting.engine.classic.core.util.BulkArrayList;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -128,6 +129,34 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
         query.setParameter("referenceId", referenceId);
         query.setParameter("contactType", contactType);
         return query.list();
+    }
+
+    @Override
+    public List<Contacts> findContactsByCustomer(Integer referenceId) {
+
+        List<String> typeList = new ArrayList<>();
+        typeList.add("shipper");
+        typeList.add("billTo");
+        typeList.add("solicitor");
+
+        log.debug("Finding contacts with filter");
+        try{
+            log.debug("Finding contacts success");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts c where c.referenceTable = 'CUSTOMERS' and c.referenceId = :referenceId and c.contactType in(:typeList)");
+            query.setParameterList("typeList", typeList);
+            query.setParameter("referenceId", referenceId);
+            List<Contacts> results = (List<Contacts>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding contacts failed");
+            throw e;
+        }
+
+        /*String stringQuery = "from Contacts c where c.referenceTable = :referenceTable and c.referenceId = :customerId";
+        Query query = getSessionFactory().getCurrentSession().createQuery(stringQuery);
+        query.setParameter("referenceTable", referenceTable);
+        query.setParameter("referenceId", referenceId);
+        return query.list();*/
     }
 
     @Override
