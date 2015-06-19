@@ -92,7 +92,7 @@
                 <div class="panel-body">
                     <p>
                         1.	To edit booking, click Booking on Main Menu. <br>
-                        2.	Click the Pencilfa Icon on Actions Column. <br>
+                        2.	Click the Pencil Icon on Actions Column. <br>
                         3.	Fill up all necessary changes on first page. <br>
                         4.	Click Next to proceed to next page. <br>
                         5.	The booking summary page will be displayed.  From there, you can add items. <br>

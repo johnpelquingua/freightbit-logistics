@@ -108,23 +108,33 @@
     </sec:authorize>
 
     <%--HELP HERE--%>
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT')">
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle"></i> Help Center <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <%--BOOKING MODULE--%>
-            <li><a href="<s:url action='../help/showBookingHelp' />"><i class="fa fa-caret-right fa-fw"></i> Booking Module </a>
-            </li>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS')">
+                <li><a href="<s:url action='../help/showBookingHelp' />"><i class="fa fa-caret-right fa-fw"></i> Booking Module </a>
+                </li>
+            </sec:authorize>
             <%--OPERATIONS MODULE--%>
-            <li><a href="<s:url action='../help/showOperationsHelp' />"><i class="fa fa-caret-right fa-fw"></i> Operations Module </a>
-            </li>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT')">
+                <li><a href="<s:url action='../help/showOperationsHelp' />"><i class="fa fa-caret-right fa-fw"></i> Operations Module </a>
+                </li>
+            </sec:authorize>
             <%--CUSTOMER MODULE--%>
-            <li><a href="<s:url action='../help/showCustomerHelp' />"><i class="fa fa-caret-right fa-fw"></i> Customer Module </a>
-            </li>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS')">
+                <li><a href="<s:url action='../help/showCustomerHelp' />"><i class="fa fa-caret-right fa-fw"></i> Customer Module </a>
+                </li>
+            </sec:authorize>
             <%--VENDOR MODULE--%>
-            <li><a href="<s:url action='../help/showVendorHelp' />"><i class="fa fa-caret-right fa-fw"></i> Vendor Module </a>
-            </li>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SEA_FREIGHT')">
+                <li><a href="<s:url action='../help/showVendorHelp' />"><i class="fa fa-caret-right fa-fw"></i> Vendor Module </a>
+                </li>
+            </sec:authorize>
         </ul>
     </li>
+    </sec:authorize>
     <%--END OF HELP--%>
 
     <%--<li class="dropdown">
