@@ -51,6 +51,28 @@
                     </div>
                 </div>
             </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-sortingViaServicePorts">Sorting via Service Ports</a>
+                    </h4>
+                </div>
+                <div id="collapse-operations-dispatchPlan-sortingViaServicePorts" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\082_SortingViaServicePorts.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
+                    <div class="panel-body">
+                        <p>
+                            1.	To sort via service ports, choose the port under the sort by origin, sort by destination or sort by location (see Figure 3). <br>
+                            2.	The list you&#39;re currently in will be updated accordingly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -101,6 +123,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-consolidatingItems" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\080_ConsolidatingItems.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To consolidate items, navigate to the LCL by clicking the LCL tab. <br>
@@ -118,6 +145,11 @@
                     </h4>
                 </div>
                 <div id="collapse-operations-freightPlan-directLoad" class="panel-collapse collapse">
+                    <%-- IMAGE HELP HERE--%>
+                    <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                        <img src="..\help\images\081_DirectLoad.gif"/>
+                    </div>
+                    <%-- END OF IMAGE HELP HERE--%>
                     <div class="panel-body">
                         <p>
                             1.	To direct load an item, navigate to the LCL by clicking the LCL tab (see Figure 4). <br>
@@ -152,22 +184,6 @@
         </div>
         <h3>Dispatch Plan</h3>
         <div class="panel-group" id="accordion-dispatchPlan">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion-dispatchPlan" href="#collapse-operations-dispatchPlan-sortingViaServicePorts">Sorting via Service Ports</a>
-                    </h4>
-                </div>
-                <div id="collapse-operations-dispatchPlan-sortingViaServicePorts" class="panel-collapse collapse">
-
-                    <div class="panel-body">
-                        <p>
-                            1.	To sort via service ports, choose the port under the sort by origin, sort by destination or sort by location (see Figure 3). <br>
-                            2.	The list you&#39;re currently in will be updated accordingly.
-                        </p>
-                    </div>
-                </div>
-            </div>
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">

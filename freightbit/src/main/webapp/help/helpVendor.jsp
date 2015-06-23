@@ -393,6 +393,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-viewTruckInformation" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\083_ViewingTruckDetails.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To view the list of trucks a vendor has, navigate to the vendor profile page (see Viewing Vendor Details) then click trucks from the sidebar. <br>
@@ -494,6 +499,11 @@
                 </h4>
             </div>
             <div id="collapse-vendor-addingVessel" class="panel-collapse collapse">
+                <%-- IMAGE HELP HERE--%>
+                <div class="panel-body" style="background-color: #ff0000; width: 640px; height: 480px; margin:auto; padding:0px; !important">
+                    <img src="..\help\images\084_AddVessel.gif"/>
+                </div>
+                <%-- END OF IMAGE HELP HERE--%>
                 <div class="panel-body">
                     <p>
                         1.	To add a vessels, navigate to the vessels list page (see Viewing list of Vessels) and click new vessel button. <br>
