@@ -14,7 +14,7 @@ fromDatePickUp.datepicker({
     // on 5:00pm
     timeFormat: 'h:mm TT',
     format : 'd.m.Y',
-    minDate : 0,
+   //  minDate : 0,
     maxDate: "+9m +9w",
 
     onClose: function(dateText, inst) {
@@ -25,8 +25,8 @@ fromDatePickUp.datepicker({
                 var testStartDate = fromDatePickUp.datetimepicker('getDate'),
                 testEndDate = toDateDelivery.datetimepicker('getDate');
 
-            if (testStartDate > testEndDate)
-                toDateDelivery.datetimepicker('setDate', testStartDate);
+                if (testStartDate > testEndDate)
+                    toDateDelivery.datetimepicker('setDate', testStartDate);
             }
 
         }
@@ -56,7 +56,7 @@ fromDatePickUp.datepicker({
 toDateDelivery.datepicker({
     // on 6:00pm
     timeFormat: 'h:mm TT',
-    minDate: 0,
+    // minDate: 0,
 
     onClose: function(dateText, inst) {
         if(ServiceValue.val() !='DELIVERY'){

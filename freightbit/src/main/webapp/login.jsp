@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>ERNEST Logistics Corporation</title>
-    <link rel='stylesheet' href='includes/css/bootstraps.css'>
+    <link rel='stylesheet' href='includes/css/bootstraps-new.min.css'>
     <link rel='stylesheet' href='includes/css/mains.css'>
     <link rel="shortcut icon" href="http://www.ernest.com.ph/sites/default/files/favicon.ico"/>
 

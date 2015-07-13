@@ -182,8 +182,11 @@
 
                                         <%--<s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email" type="email" id="emailfield" />--%>
 
+                                    <%--<s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email" maxLength="50" required="true"--%>
+                                                 <%--pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"--%>
+                                                 <%--title="Example: example@domain.com"/>--%>
                                     <s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email" maxLength="50" required="true"
-                                                 pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                                                 pattern="^[\w\.=-]+@[\w\.-]+\.[\w]{2,3}$"
                                                  title="Example: example@domain.com"/>
 
                                 </div>

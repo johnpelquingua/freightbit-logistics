@@ -85,7 +85,7 @@
                         <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
                             <s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email" title="Example: example@domain.com" maxLength="50"
-                                         required="true" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$" />
+                                         required="true" pattern="^[\w\.=-]+@[\w\.-]+\.[\w]{2,3}$" />
                         </div>
                     </div>
 

@@ -182,7 +182,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">E-mail<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control addTruckingContactInput" placeholder="E-mail" name="contact.email" maxLength="50" required="true"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$" title="Example: example@domain.com" />
+                                         pattern="^[\w\.=-]+@[\w\.-]+\.[\w]{2,3}$" title="Example: example@domain.com" />
                             </div>
                         </div>
 

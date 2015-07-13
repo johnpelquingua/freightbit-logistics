@@ -92,7 +92,7 @@
 
                             <s:textfield name="consignee.email" cssClass="addConsigneeInput form-control" id="consignee.email" style="width:95%"
                                          placeholder="Email Address" required="true" maxLength="50" title="Example: example@domain.com"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"
+                                         pattern="^[\w\.=-]+@[\w\.-]+\.[\w]{2,3}$"
                                     />
                         </div>
                     </div>

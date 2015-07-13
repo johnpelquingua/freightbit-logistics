@@ -20,19 +20,28 @@
     <!-- Add custom CSS here -->
     <link rel="stylesheet" href="../includes/css/mains.css">
     <link rel="stylesheet" href="../includes/css/sb-admin.css">
-    <link rel="stylesheet" href="../includes/css/datepicker.css">
+    <%--<link rel="stylesheet" href="../includes/css/datepicker.css">
     <link rel="stylesheet" href="../includes/css/bootstrap-datetimepicker.min.css">
+    --%>
     <%--<link rel="stylesheet" href="../includes/font-awesome/css/font-awesome.css">--%>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <%--<link rel="stylesheet" href="../includes/font-awesome/css/font-awesome.min.css">--%>
 
-    <%--<link rel="stylesheet" href="../includes/css/jquery-ui.css">--%>
+<%--
+    <link rel="stylesheet" href="../includes/css/jquery-ui.css">
+--%>
     <link rel="stylesheet" href="../includes/css/jquery-ui.min.css">
-    <%--<link rel="stylesheet" href="../includes/css/jquery-ui.structure.css">--%>
+<%--
+    <link rel="stylesheet" href="../includes/css/jquery-ui.structure.css">
+--%>
     <link rel="stylesheet" href="../includes/css/jquery-ui.structure.min.css">
-    <%--<link rel="stylesheet" href="../includes/css/jquery-ui.theme.css">--%>
+<%--
+    <link rel="stylesheet" href="../includes/css/jquery-ui.theme.css">
+--%>
     <link rel="stylesheet" href="../includes/css/jquery-ui.theme.min.css">
+<%--
     <link rel="stylesheet" href="../includes/css/jquery.autocomplete.css">
+--%>
 
     <!--Javascript here -->
     <%--<script type='text/javascript' src='../includes/js/jquery-1.11.1.js'></script>--%>
@@ -40,11 +49,11 @@
     <script type='text/javascript' src='../includes/js/bootstrap-new.min.js'></script>
 
     <script type='text/javascript' src='../includes/js/jquery-ui.min.js'></script>
-    <script type='text/javascript' src='../includes/js/jquery-ui-timepicker-addon.min.js'></script>
+    <%--<script type='text/javascript' src='../includes/js/jquery-ui-timepicker-addon.min.js'></script>
     <script type='text/javascript' src='../includes/js/jquery.autocomplete.min.js'></script>
-    <%--<script type='text/javascript' src='../includes/js/Chart.min.js'></script>--%>
+    <script type='text/javascript' src='../includes/js/Chart.min.js'></script>--%>
     <script type='text/javascript' src='../includes/js/bootstrap-tooltip.min.js'></script>
-    <%--<script type='text/javascript' src='../includes/js/bootstrap-tooltip.min.js'></script>--%>
+    <script type='text/javascript' src='../includes/js/bootstrap-tooltip.min.js'></script>
     <script type='text/javascript' src='../includes/js/bootstrap-tabcollapse.min.js'></script>
 
     <%--<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>--%>
@@ -101,8 +110,8 @@
 
 <script src="../includes/js/jquery.tablesorter.min.js"></script>
 <script src="../includes/js/tables.js"></script>
-<script src="../includes/js/mask.js"></script>
-<script src="../includes/js/jquery.maskMoney.min.js"></script>
+<%--<script src="../includes/js/mask.js"></script>
+<script src="../includes/js/jquery.maskMoney.min.js"></script>--%>
 <script src="../includes/js/pdfobject.js"></script>
 </body>
 </html>

@@ -215,7 +215,7 @@
                                                 <div class="col-lg-10" >
                                                     <s:textfield cssClass="form-control" placeholder="E-mail" name="consigneeContact.email"
                                                                  required="true" maxLength="50" title="Example: example@domain.com"
-                                                                 pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"/>
+                                                                 pattern="^[\w\.=-]+@[\w\.-]+\.[\w]{2,3}$"/>
 
                                                 </div>
                                             </div>

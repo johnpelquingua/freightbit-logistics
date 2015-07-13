@@ -63,7 +63,7 @@
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
                                 <div class="col-lg-7">
                                     <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" maxLength="50"
-                                                 placeholder="Email Address" pattern=".+\@.+\..+"
+                                                 placeholder="Email Address" pattern="^[\w\.=-]+@[\w\.-]+\.[\w]{2,3}$"
                                                  title="Example: example@domain.com"/>
                                 </div>
                             </div>

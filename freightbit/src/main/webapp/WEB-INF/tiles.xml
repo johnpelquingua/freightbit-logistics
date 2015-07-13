@@ -5,7 +5,18 @@
         "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-
+    <definition name="baseLayoutDashboard" template="/baseLayoutDashboard.jsp">
+        <put-attribute name="title" value="Template"/>
+        <put-attribute name="banner" value="/bannerMain.jsp"/>
+        <put-attribute name="menu" value="/menuMain.jsp"/>
+        <put-attribute name="footer" value="/footer.jsp"/>
+    </definition>
+    <definition name="baseLayoutOrder" template="/baseLayoutViewOrder.jsp">
+        <put-attribute name="title" value="Main Dashboard"/>
+        <put-attribute name="banner" value="/banner.jsp"/>
+        <put-attribute name="menu" value="/menu.jsp"/>
+        <put-attribute name="footer" value="/footer.jsp"/>
+    </definition>
     <definition name="baseLayoutMain" template="/baseLayoutMain.jsp">
         <put-attribute name="title" value="Template"/>
         <put-attribute name="banner" value="/bannerMain.jsp"/>
@@ -18,7 +29,7 @@
         <put-attribute name="menu" value="/menu.jsp"/>
         <put-attribute name="footer" value="/footer.jsp"/>
     </definition>
-    <definition name="index.tiles" extends="baseLayoutMain">
+    <definition name="index.tiles" extends="baseLayoutDashboard">
         <put-attribute name="title" value="Main Dashboard"/>
         <put-attribute name="body" value="/index.jsp"/>
         <put-attribute name="footer" value="/footer.jsp"/>
@@ -610,7 +621,7 @@
     <!-- CUSTOMER module tiles END -->
 
     <!-- ORDER module tiles Begin-->
-    <definition name="orders.booking-list.tiles" extends="baseLayout">
+    <definition name="orders.booking-list.tiles" extends="baseLayoutOrder">
         <put-attribute name="title" value="Booking List"/>
         <put-attribute name="body" value="/orders/orderList.jsp"/>
     </definition>

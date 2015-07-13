@@ -741,7 +741,7 @@
                             <div class="col-lg-8" style="width: 74%;">
                                 <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
                                              placeholder="Email Address" required="true" maxLength="50"
-                                             pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                                             pattern="^[\w\.=-]+@[\w\.-]+\.[\w]{2,3}$"
                                              title="Example: example@domain.com"/>
                             </div>
                         </div>
@@ -848,7 +848,7 @@
                         <label class="col-lg-3">Email Address<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield name="customer.email" id="customer_email" cssClass="form-control" required="true"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"
+                                         pattern="^[\w\.=-]+@[\w\.-]+\.[\w]{2,3}$"
                                          placeholder="Email Address" maxLength="50" title="Example: example@domain.com"/>
                         </div>
                     </div>
@@ -947,7 +947,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Email Address" name="contact.email" id="consignee_contact_email"
                                          required="true" maxLength="50" title="Example: example@domain.com"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$" />
+                                         pattern="^[\w\.=-]+@[\w\.-]+\.[\w]{2,3}$" />
                         </div>
                     </div>
                     <div class="form-group">

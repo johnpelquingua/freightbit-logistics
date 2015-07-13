@@ -446,7 +446,7 @@
 
 	function loadCalendar(){
 		var win = window.open('calendar/loadCalendar','sample','width=1500,height=800');
-		win.onload = function() { this.document.title = "Booking Calendar"; }
+		//win.onload = function() { this.document.title = "Booking Calendar"; }
 	}
 
 	//will go to URL /getNotifications.action defined in struts config file

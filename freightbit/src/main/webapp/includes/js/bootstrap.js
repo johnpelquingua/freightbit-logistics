@@ -1502,7 +1502,7 @@ if (!jQuery) {
     })
 
 
-    // NOTE: POPOVER EXTENDS tooltip.js
+    // NOTE: POPOVER EXTENDS tooltip.min.js
     // ================================
 
     Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
