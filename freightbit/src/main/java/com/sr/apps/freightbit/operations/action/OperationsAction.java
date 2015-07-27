@@ -264,6 +264,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             driverEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             driverEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             driverEntity.setCreatedTimestamp(new Date());
+            driverEntity.setModifiedTimestamp(new Date());
             vendorService.addDriver(driverEntity);
         }catch (DriverAlreadyExistsException e) {
             addFieldError("driver.licenseNumber", getText("err.driver.already.exists"));
@@ -281,6 +282,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             truckEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             truckEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             truckEntity.setCreatedTimestamp(new Date());
+            truckEntity.setModifiedTimestamp(new Date());
             vendorService.addTrucks(truckEntity);
         }catch (TrucksAlreadyExistsException e) {
             addFieldError("truck.truckCode", getText("err.truck.already.exists"));
@@ -297,6 +299,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             Vendor vendorEntity = transformVendorToEntityBean(vendor);
             vendorEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             vendorEntity.setCreatedTimeStamp(new Date());
+            vendorEntity.setModifiedTimeStamp(new Date());
             vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
             vendorService.addVendor(vendorEntity);
 
@@ -327,6 +330,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setServiceArea(vendorBean.getServiceArea());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimeStamp(new Date());
+        entity.setModifiedTimeStamp(new Date());
         entity.setVendorStatus("ACTIVE");
 
         return entity;
@@ -350,7 +354,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setStatus(driverBean.getStatus());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimestamp(driverBean.getCreatedTimeStamp());
-
+        entity.setModifiedTimestamp(new Date());
         return entity;
 
     }
@@ -374,6 +378,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setGrossWeight(truckBean.getGrossWeight());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimestamp(new Date());
+        entity.setModifiedTimestamp(new Date());
         entity.setMotorVehicleNumber(truckBean.getMotorVehicleNumber());
         entity.setIssueDate(truckBean.getIssueDate());
         entity.setNetWeight(truckBean.getNetWeight());
@@ -3161,6 +3166,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // For FCL Requirement
         List<Orders> fclOrders = new ArrayList<Orders>();
+
         if (StringUtils.isNotBlank(column)) {
             fclOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId(), "FULL CONTAINER LOAD");
         }else if(originCity != null && destinationCity != null){
@@ -3501,6 +3507,62 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
+    public String viewInlandFreightList_FCL(){
+        String column = getColumnBookingFilter();
+
+        // For FCL Trucking Origin
+        List<Orders> fclTrucksOrders = new ArrayList<Orders>();
+        if (StringUtils.isNotBlank(column)) {
+            fclTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId(), "FULL CONTAINER LOAD");
+        }else if(originCityTruck != null){
+            fclTrucksOrders = operationsService.findOrdersByFCLTrucksOrigin(originCityTruck);
+        }else{
+            fclTrucksOrders = operationsService.findOrdersByFCLTrucks();
+        }
+
+        for (Orders orderElem : fclTrucksOrders){
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER")){
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        fclTruckTable.add(transformToOrderFormBean(orderElem));
+                    }
+                }
+            }
+        }
+        return SUCCESS;
+    }
+    public String viewInlandFreightList_LCL(){
+        String column = getColumnBookingFilter();
+
+        // For LCL Trucking Origin
+        List<Orders> lclTrucksOrders = new ArrayList<Orders>();
+        if (StringUtils.isNotBlank(column)) {
+            lclTrucksOrders = orderService.findOrdersByBookingNumber(column, order.getOrderKeyword(), getClientId(), "LESS CONTAINER LOAD");
+        }else if(originCityTruck != null){
+            lclTrucksOrders = operationsService.findOrdersByLCLTrucksOrigin(originCityTruck);
+        }else{
+            lclTrucksOrders = operationsService.findOrdersByLCLTrucks();
+        }
+
+        for (Orders orderElem : lclTrucksOrders){
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER") ) {
+                // will only show bookings that is not archived
+                String strOrig = orderElem.getOrderStatus();
+                int intIndex = strOrig.indexOf("ARCHIVED");
+
+                if(intIndex == -1){
+                    if(!"SERVICE ACCOMPLISHED".equals(orderElem.getOrderStatus())) {
+                        lclTruckTable.add(transformToOrderFormBean(orderElem));
+                    }
+                }
+            }
+        }
+        return SUCCESS;
+    }
 
     public String viewFreightItemList() {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
@@ -3778,6 +3840,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setVendorId(entity.getVendorId());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
+        formBean.setModifiedTimeStamp(new Date());
         formBean.setMotorVehicleNumber(entity.getMotorVehicleNumber());
         formBean.setIssueDate(entity.getIssueDate());
         formBean.setNetWeight(entity.getNetWeight());
@@ -5410,6 +5473,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             Container containerEntity = transformContainerToEntityBean(container);
             containerEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             containerEntity.setCreatedTimestamp(new Date());
+            containerEntity.setModifiedTimestamp(new Date());
             containerEntity.setContainerStatus("OPEN");
             containerService.addContainer(containerEntity);
 

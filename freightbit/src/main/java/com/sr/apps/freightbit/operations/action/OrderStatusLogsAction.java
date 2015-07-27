@@ -862,6 +862,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         entity.setOrderId(orderStatusLogsEntity.getOrderId());
         entity.setCreatedBy(orderStatusLogsEntity.getCreatedBy());
         entity.setCreatedTimestamp(orderStatusLogsEntity.getCreatedTimestamp());
+
         entity.setActualDate(orderStatusLogsBean.getActualDate());
 
         orderStatusLogsService.updateOrderStatusLogs(entity);
@@ -1093,6 +1094,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         else {
             formBean.setCreatedTimestamp(orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId()).getActualDate());
         }
+        formBean.setModifiedTimestamp(new Date());
         formBean.setNameSize(entity.getNameSize());
         Vendor vendorEntity = vendorService.findVendorByVendorCode(entity.getVendorSea());
         if(vendorEntity == null || vendorEntity.equals("")) {

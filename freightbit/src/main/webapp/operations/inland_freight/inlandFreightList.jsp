@@ -80,7 +80,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive table-responsive-scroll">
                                     <display:table id="order" name="fclTruckTable"
-                                                   requestURI="/operations/viewInlandFreightList.action" pagesize="10"
+                                                   requestURI="/operations/viewInlandFreightListFCL.action" pagesize="10"
                                                    class="fclTable table table-scroll table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 

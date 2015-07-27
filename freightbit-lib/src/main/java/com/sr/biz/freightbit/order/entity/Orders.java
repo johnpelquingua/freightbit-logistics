@@ -53,6 +53,7 @@ public class Orders implements java.io.Serializable {
     private Integer customerId;
     private Integer consigneeContactPersonId;
     private Integer aging;
+    private Integer limit = 10;
 
 
     public Orders() {
@@ -96,6 +97,7 @@ public class Orders implements java.io.Serializable {
         this.customerId = customerId;
         this.consigneeContactPersonId = consigneeContactPersonId;
         this.aging = aging;
+        this.limit = 10;
 
     }
 

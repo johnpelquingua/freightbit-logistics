@@ -625,6 +625,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedTimestamp(new Date());
+            contactEntity.setModifiedTimestamp(new Date());
             customerService.addContact(contactEntity);
         } catch (ContactAlreadyExistsException e) {
             /*addFieldError("contact.lastName", getText("err.contact.already.exists"));
@@ -713,6 +714,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                 itemEntity.setModifiedBy(commonUtils.getUserNameFromSession());
                 itemEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 itemEntity.setCreatedTimeStamp(new Date());
+                itemEntity.setModifiedTimeStamp(new Date());
                 customerService.addItem(itemEntity);
             }
 
@@ -1143,7 +1145,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         Orders orderEntityForm = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdPass"));
-        // Display Order Data to form
+        Orders a = orderEntityForm;
+        // Display Order Data to form aaa
         order = transformToOrderFormBean(orderEntityForm);
         // get contact id from shipper
         Integer contactIdParam = orderEntityForm.getShipperContactId();
@@ -1530,6 +1533,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedTimestamp(new Date());
+            contactEntity.setModifiedTimestamp(new Date());
             customerService.addContact(contactEntity);
         } catch (ContactAlreadyExistsException e) {
             addFieldError("contact.lastName", getText("err.contact.already.exists"));
@@ -1564,6 +1568,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setEmail(contactBean.getEmail());
         entity.setCreatedBy(contactBean.getCreatedBy());
         entity.setCreatedTimestamp(contactBean.getCreatedTimestamp());
+        entity.setModifiedTimestamp(new Date());
         entity.setPosition(contactBean.getPosition());
 
         return entity;
@@ -1583,6 +1588,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             addressEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             addressEntity.setCreatedTimestamp(new Date());
+            addressEntity.setModifiedTimestamp(new Date());
             customerService.addAddress(addressEntity);
         }catch (AddressAlreadyExistsException e) {
             addFieldError("address.addressLine1", getText("err.addressLine1.already.exists"));
@@ -1625,6 +1631,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setState(formBean.getState());
         entity.setZip(formBean.getZip());
         entity.setCreatedTimestamp(formBean.getCreatedTimeStamp());
+        entity.setModifiedTimestamp(new Date());
         entity.setCreatedBy(formBean.getCreatedBy());
 
         return entity;
@@ -1641,11 +1648,13 @@ public class OrderAction extends ActionSupport implements Preparable {
         consigneeEntity1.setModifiedBy(commonUtils.getUserNameFromSession());
         consigneeEntity1.setCreatedBy(commonUtils.getUserNameFromSession());
         consigneeEntity1.setCreatedTimestamp(new Date());
+        consigneeEntity1.setModifiedTimestamp(new Date());
 
         Address consigneeEntity2 = transformAddressToEntityBean(consignee);
         consigneeEntity2.setModifiedBy(commonUtils.getUserNameFromSession());
         consigneeEntity2.setCreatedBy(commonUtils.getUserNameFromSession());
         consigneeEntity2.setCreatedTimestamp(new Date());
+        consigneeEntity2.setModifiedTimestamp(new Date());
 
         customerService.addConsignee(consigneeEntity1, consigneeEntity2);
 
@@ -1672,6 +1681,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setEmail(formBean.getEmail());
         entity.setFax(formBean.getFax());
         entity.setCreatedTimestamp(formBean.getCreatedTimeStamp1());
+        entity.setModifiedTimestamp(new Date());
         entity.setCreatedBy(formBean.getCreatedBy1());
         entity.setCompanyName(formBean.getCompanyName());
 
@@ -1696,6 +1706,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setState(formBean.getState());
         entity.setZip(formBean.getZip());
         entity.setCreatedTimestamp(formBean.getCreatedTimeStamp2());
+        entity.setModifiedTimestamp(new Date());
         entity.setCreatedBy(formBean.getCreatedBy2());
 
         return entity;
@@ -2106,7 +2117,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         // To get Customer Code from Customer ID
         custCode = customerEntity.getCustomerCode();
         // To get Order Number and show it to form
-        orderNum = orderService.findNextBookingNo(getClientId(), custCode);
+        // orderNum = orderService.findNextBookingNo(getClientId(), custCode);
+        orderNum = formBean.getOrderNumber();
+        System.out.println("ORder Num is "+orderNum);
+
         // Order Number will get information on Order edit
         if (formBean.getOrderNumber() != null) {
             entity.setOrderNumber(new String(formBean.getOrderNumber()));
@@ -2156,6 +2170,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
 
         entity.setCustomerId(shipperName.getCustomerId());
+        entity.setOrderNumber(formBean.getOrderNumber());
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("f_Type", formBean.getFreightType());
@@ -2248,6 +2263,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         itemEntity.setModifiedBy(commonUtils.getUserNameFromSession());
         itemEntity.setCreatedBy(commonUtils.getUserNameFromSession());
         itemEntity.setCreatedTimeStamp(new Date());
+        itemEntity.setModifiedTimeStamp(new Date());
         customerService.addItem(itemEntity);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -2306,6 +2322,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setDescription(orderItem.getDescription());
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimeStamp(formBean.getCreatedTimeStamp());
+        entity.setModifiedTimeStamp(new Date());
 
         return entity;
     }

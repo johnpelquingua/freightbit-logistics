@@ -231,6 +231,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         entity.setVesselName(formBean.getVesselName());
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        entity.setModifiedTimestamp(new Date());
         entity.setVendorName(vendorService.findVendorById(formBean.getVendorId()).getVendorName());
 
         return entity;
