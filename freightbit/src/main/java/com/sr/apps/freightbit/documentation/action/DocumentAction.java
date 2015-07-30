@@ -2242,6 +2242,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                                 formBean.setStatus(driverElem.getStatus());
                                 formBean.setCreatedBy(driverElem.getCreatedBy());
                                 formBean.setCreatedTimeStamp(driverElem.getCreatedTimestamp());
+                                formBean.setModifiedTimeStamp(new Date());
                                 Vendor insideEntity = vendorService.findVendorById(driverElem.getVendorId());
                                 formBean.setAuthorizedAgent(insideEntity.getVendorName() + " - " + driverElem.getFirstName() + " " + driverElem.getLastName() + " (Driver) ");
 

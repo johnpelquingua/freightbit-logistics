@@ -142,6 +142,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
+
             Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'FULL CONTAINER LOAD' and o.serviceType in (:typeList) order by createdTimestamp desc ");
             query.setParameterList("typeList", typeList);
             List<Orders> results = (List<Orders>) query.list();
@@ -151,6 +152,27 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
             throw e;
         }
     }
+
+    @Override
+    public List<Orders> findOrdersByFCLTrucksActive(){
+        List<String> typeList = new ArrayList<>();
+        typeList.add("TRUCKING");
+        typeList.add("SHIPPING AND TRUCKING");
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+
+            //Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'FULL CONTAINER LOAD' and o.serviceType in (:typeList)  order by createdTimestamp desc ");
+            Query query = getSessionFactory().getCurrentSession().createSQLQuery("Select * from orders o where o.serviceRequirement = 'FULL CONTAINER LOAD' and o.serviceType in (:typeList) order by createdTimeStamp desc");
+            query.setParameterList("typeList", typeList);
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+    }
+
 
     @Override
     public List<Orders> findOrdersByFCLTrucksOrigin(String originationPort){

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_freightbits-logistics" default="compile.module.freightbits-logistics">
+  <dirname property="module.freightbits-logistics.basedir" file="${ant.file.module_freightbits-logistics}"/>
+  
+  <property name="module.jdk.home.freightbits-logistics" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.freightbits-logistics" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.freightbits-logistics" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.freightbits-logistics" value="${compiler.args}"/>
+  
+  <property name="freightbits-logistics.output.dir" value="${module.freightbits-logistics.basedir}/target/classes"/>
+  <property name="freightbits-logistics.testoutput.dir" value="${module.freightbits-logistics.basedir}/target/test-classes"/>
+  
+  <path id="freightbits-logistics.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="freightbits-logistics.module.production.classpath">
+    <path refid="${module.jdk.classpath.freightbits-logistics}"/>
+  </path>
+  
+  <path id="freightbits-logistics.runtime.production.module.classpath">
+    <pathelement location="${freightbits-logistics.output.dir}"/>
+  </path>
+  
+  <path id="freightbits-logistics.module.classpath">
+    <path refid="${module.jdk.classpath.freightbits-logistics}"/>
+    <pathelement location="${freightbits-logistics.output.dir}"/>
+  </path>
+  
+  <path id="freightbits-logistics.runtime.module.classpath">
+    <pathelement location="${freightbits-logistics.testoutput.dir}"/>
+    <pathelement location="${freightbits-logistics.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.freightbits-logistics">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.freightbits-logistics">
+    <patternset refid="excluded.from.module.freightbits-logistics"/>
+  </patternset>
+  
+  
+  <target name="compile.module.freightbits-logistics" depends="compile.module.freightbits-logistics.production,compile.module.freightbits-logistics.tests" description="Compile module freightbits-logistics"/>
+  
+  <target name="compile.module.freightbits-logistics.production" depends="register.custom.compilers" description="Compile module freightbits-logistics; production classes"/>
+  
+  <target name="compile.module.freightbits-logistics.tests" depends="register.custom.compilers,compile.module.freightbits-logistics.production" description="compile module freightbits-logistics; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.freightbits-logistics" description="cleanup module">
+    <delete dir="${freightbits-logistics.output.dir}"/>
+    <delete dir="${freightbits-logistics.testoutput.dir}"/>
+  </target>
+</project>

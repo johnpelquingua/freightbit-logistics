@@ -55,6 +55,7 @@
 
                 <%--<s:set name="vendorId" value="%{vendor.vendorId}" scope="session"/>--%>
                 <s:hidden value="%{vendor.vendorId}"></s:hidden>
+
                 <div class="row">
 
                     <div class=" col-lg-6 col-lg-offset-2">

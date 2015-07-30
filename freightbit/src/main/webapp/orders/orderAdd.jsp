@@ -152,7 +152,21 @@
                         </legend>
                         <%--<s:form action="addOrder" theme="bootstrap" cssClass="addOrderForm" onsubmit="return validate_form()">--%>
                         <s:form action="addOrder" theme="bootstrap" cssClass="addOrderForm">
+
                         <div class="form-group">
+                            <label class="col-lg-2 control-label">Order Number<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-10">
+
+                                <s:textfield cssClass="form-control"
+                                             id="orderNumber"
+                                            name="order.orderNumber"
+                                            placeholder="XXX-XXXX" pattern="/[a-zA-Z]{3}-[0-9]{4}$/"/>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group" style="margin-top: 15px;">
                             <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
@@ -1078,4 +1092,15 @@
 <%-- MODAL FOR DATE SAME WARNING  -- END --%>
 
 <script type="text/javascript" src="../includes/js/booking.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#orderNumber").mask("AAA-9999"
+
+
+        );
+        $("#orderNumber").keyup(function(){
+            $("#orderNumber").val($("#orderNumber").val().toUpperCase());
+        });
+    });
+</script>
 <%--<script type="text/javascript" src="../includes/js/booking.min.js"></script>--%>

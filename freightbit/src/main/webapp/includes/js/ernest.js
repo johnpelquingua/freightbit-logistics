@@ -1529,7 +1529,6 @@ function actionConfirmation(icon, confirmBtn, modal){
         }
         else{
             confirmBtn.attr('href', $(this).prev().attr('href'));
-
         }
         modal.modal('show');
 

@@ -196,6 +196,7 @@ public class VendorAction extends ActionSupport implements Preparable {
                 Vendor vendorEntity = transformToEntityBean(vendor);
                 vendorEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 vendorEntity.setCreatedTimeStamp(new Date());
+                vendorEntity.setModifiedTimeStamp(new Date());
                 vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
                 vendorService.addVendor(vendorEntity);
 
@@ -222,6 +223,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             }else{
                 vendorEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 vendorEntity.setCreatedTimeStamp(new Date());
+                vendorEntity.setModifiedTimeStamp(new Date());
                 vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
                 vendorService.addVendor(vendorEntity);
             }
@@ -248,6 +250,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public String loadEditVendorPage() {
         Vendor vendorEntity = vendorService.findVendorById(vendorIdParam);
+        this.setVendorId(vendorIdParam);
         vendor = transformToFormBean(vendorEntity);
         return SUCCESS;
     }
@@ -273,6 +276,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
             vendorEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             vendorEntity.setCreatedTimeStamp(new Date());
+            vendorEntity.setModifiedTimeStamp(new Date());
             vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
             vendorService.updateErnestVendor(vendorEntity);
         }
@@ -292,6 +296,11 @@ public class VendorAction extends ActionSupport implements Preparable {
         sessionAttributes.put("vendorId", vendor.getVendorId());
         sessionAttributes.put("vendorCode", vendor.getVendorCode());
         return SUCCESS;
+    }
+
+    public void setVendorId(int _vendorId){
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("vendorId", _vendorId);
     }
 
     public String viewInfoVendor() {
@@ -436,7 +445,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setVendorType(vendorBean.getVendorType());
         entity.setCreatedBy(vendorBean.getCreatedBy());
         entity.setCreatedTimeStamp(vendorBean.getCreatedTimeStamp());
-
+        entity.setModifiedTimeStamp(new Date());
         return entity;
     }
 
@@ -505,6 +514,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             truckEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             truckEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             truckEntity.setCreatedTimestamp(new Date());
+            truckEntity.setModifiedTimestamp(new Date());
             vendorService.addTrucks(truckEntity);
         }catch (TrucksAlreadyExistsException e) {
             addFieldError("truck.truckCode", getText("err.truck.already.exists"));
@@ -666,6 +676,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setGrossWeight(truckBean.getGrossWeight());
         entity.setCreatedBy(truckBean.getCreatedBy());
         entity.setCreatedTimestamp(truckBean.getCreatedTimeStamp());
+        entity.setModifiedTimestamp(new Date());
         entity.setMotorVehicleNumber(truckBean.getMotorVehicleNumber());
         entity.setIssueDate(truckBean.getIssueDate());
         entity.setNetWeight(truckBean.getNetWeight());
@@ -692,6 +703,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setVendorId(entity.getVendorId());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
+        formBean.setModifiedTimeStamp(new Date());
         formBean.setMotorVehicleNumber(entity.getMotorVehicleNumber());
         formBean.setIssueDate(entity.getIssueDate());
         formBean.setNetWeight(entity.getNetWeight());
@@ -889,6 +901,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             driverEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             driverEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             driverEntity.setCreatedTimestamp(new Date());
+            driverEntity.setModifiedTimestamp(new Date());
             vendorService.addDriver(driverEntity);
         }catch (DriverAlreadyExistsException e) {
             addFieldError("driver.licenseNumber", getText("err.driver.already.exists"));
@@ -946,7 +959,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setStatus(driverBean.getStatus());
         entity.setCreatedBy(driverBean.getCreatedBy());
         entity.setCreatedTimestamp(driverBean.getCreatedTimeStamp());
-
+        entity.setModifiedTimestamp(new Date());
         return entity;
 
     }
@@ -964,7 +977,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setStatus(entity.getStatus());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
-
+        formBean.setModifiedTimeStamp(new Date());
         return formBean;
     }
 
@@ -1074,6 +1087,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             vesselEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             vesselEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             vesselEntity.setCreatedTimestamp(new Date());
+            vesselEntity.setModifiedTimestamp(new Date());
             vendorService.addVessel(vesselEntity);
         } catch(VesselAlreadyExistsException e) {
             addFieldError("vessel.vesselName", getText("err.vessel.already.exists"));
@@ -1201,7 +1215,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setVesselType(vesselBean.getVesselType());
         entity.setCreatedBy(vesselBean.getCreatedBy());
         entity.setCreatedTimestamp(vesselBean.getCreatedTimeStamp());
-
+        entity.setModifiedTimestamp(new Date());
         return entity;
     }
 
@@ -1214,7 +1228,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setVesselId(entity.getVesselId());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
-
+        formBean.setModifiedTimeStamp(new Date());
         return formBean;
     }
 
@@ -1360,6 +1374,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             contactEntity.setCreatedTimestamp(new Date());
+            contactEntity.setModifiedTimestamp(new Date());
             vendorService.addContact(contactEntity);
         }catch (ContactAlreadyExistsException e) {
             addFieldError("contact.lastName", getText("err.contact.already.exists"));
@@ -1419,6 +1434,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setEmail(contactBean.getEmail());
         entity.setCreatedBy(contactBean.getCreatedBy());
         entity.setCreatedTimestamp(contactBean.getCreatedTimestamp());
+        entity.setModifiedTimestamp(new Date());
         entity.setPosition(contactBean.getPosition());
         return entity;
     }
@@ -1439,6 +1455,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setEmail(entity.getEmail());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setModifiedTimestamp(new Date());
         formBean.setPosition(entity.getPosition());
         return formBean;
     }
@@ -1476,6 +1493,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
         addressEntity.setCreatedBy(commonUtils.getUserNameFromSession());
         addressEntity.setCreatedTimestamp(new Date());
+        addressEntity.setModifiedTimestamp(new Date());
         vendorService.addAddress(addressEntity);
 
         return SUCCESS;
@@ -1671,6 +1689,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setState(addressBean.getState());
         entity.setZip(addressBean.getZip());
         entity.setCreatedTimestamp(addressBean.getCreatedTimeStamp());
+        entity.setModifiedTimestamp(new Date());
         entity.setCreatedBy(addressBean.getCreatedBy());
 
         return entity;
@@ -1690,6 +1709,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setZip(entity.getZip());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
+        formBean.setModifiedTimeStamp(new Date());
         return formBean;
     }
 

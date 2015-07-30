@@ -260,7 +260,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                <a href="" class="btn btn-danger confirmCancelModalBtn">Yes</a>
+                <button href="" id="cancelBooking" class="btn btn-danger confirmCancelModalBtn">Yes</button>
             </div>
         </div>
     </div>
@@ -277,7 +277,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                <a href="" class="btn btn-primary confirmApproveModalBtn">Yes</a>
+                <button href="" id="approveBooking" class="btn btn-primary confirmApproveModalBtn">Yes</button>
             </div>
         </div>
     </div>
@@ -373,6 +373,47 @@
             }
         });
     }
+
+
+    $("#cancelBooking").click(
+        function(){
+            var a = $("#cancelBooking").attr('href');
+            $("a[href='"+a+"']").parents("tr").css("background-color","rgb(242, 222, 222)");
+            $("a[href='"+a+"']").parents("tr").children("td[scope='Status']").text("CANCELLED");
+            $("a[href='"+a+"']").html("<i class='fa fa-check approveBookingIcon'></i>");
+            $("#cancelBookingModal").modal("hide");
+            $.ajax({
+                url: $("#cancelBooking").attr('href'),
+                type: 'GET',
+                success:function (data){
+                    $("a[href='"+a+"']").attr("href", a.replace("cancelOrder","approveOrder"));
+                },
+                error:function(xhr, ajaxOptions, thrownError){
+                    alert('An error occurred! ' + thrownError);
+                }
+            });
+        }
+    );
+
+    $("#approveBooking").click(
+            function(){
+                var b = $("#approveBooking").attr('href');
+                $("a[href='"+b+"']").parents("tr").css("background-color","rgb(223, 240, 216)");
+                $("a[href='"+b+"']").parents("tr").children("td[scope='Status']").text("APPROVED");
+                $("a[href='"+b+"']").html("<i class='fa fa-times cancelBookingIcon'></i>");
+                $("#approveBookingModal").modal("hide");
+                $.ajax({
+                    url: $("#approveBooking").attr('href'),
+                    type: 'GET',
+                    success:function (data){
+                        $("a[href='"+b+"']").attr("href", b.replace("approveOrder","cancelOrder"));
+                    },
+                    error:function(xhr, ajaxOptions, thrownError){
+                        alert('An error occurred! ' + thrownError);
+                    }
+                });
+            }
+    );
 
 </script>
 

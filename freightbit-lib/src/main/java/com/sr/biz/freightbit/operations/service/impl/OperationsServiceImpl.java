@@ -97,6 +97,11 @@ public class OperationsServiceImpl implements OperationsService{
     }
 
     @Override
+    public List<Orders> findOrdersByFCLTrucksActive() {
+        return operationsDao.findOrdersByFCLTrucksActive();
+    }
+
+    @Override
     public List<Orders> findOrdersByFCLTrucksOrigin(String originationPort) {
         return operationsDao.findOrdersByFCLTrucksOrigin(originationPort);
     }
