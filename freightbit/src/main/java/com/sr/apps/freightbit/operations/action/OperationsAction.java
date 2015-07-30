@@ -3277,6 +3277,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             fclTrucksOrders = operationsService.findOrdersByFCLTrucksOrigin(originCityTruck);
         }else{
             fclTrucksOrders = operationsService.findOrdersByFCLTrucks();
+
         }
 
         for (Orders orderElem : fclTrucksOrders){
@@ -3517,7 +3518,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }else if(originCityTruck != null){
             fclTrucksOrders = operationsService.findOrdersByFCLTrucksOrigin(originCityTruck);
         }else{
-            fclTrucksOrders = operationsService.findOrdersByFCLTrucks();
+            System.out.println("Test");
+            fclTrucksOrders = operationsService.findOrdersByFCLTrucksActive();
         }
 
         for (Orders orderElem : fclTrucksOrders){

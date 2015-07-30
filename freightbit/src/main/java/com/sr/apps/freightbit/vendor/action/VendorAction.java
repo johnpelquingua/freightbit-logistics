@@ -250,6 +250,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public String loadEditVendorPage() {
         Vendor vendorEntity = vendorService.findVendorById(vendorIdParam);
+        this.setVendorId(vendorIdParam);
         vendor = transformToFormBean(vendorEntity);
         return SUCCESS;
     }
@@ -295,6 +296,11 @@ public class VendorAction extends ActionSupport implements Preparable {
         sessionAttributes.put("vendorId", vendor.getVendorId());
         sessionAttributes.put("vendorCode", vendor.getVendorCode());
         return SUCCESS;
+    }
+
+    public void setVendorId(int _vendorId){
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("vendorId", _vendorId);
     }
 
     public String viewInfoVendor() {

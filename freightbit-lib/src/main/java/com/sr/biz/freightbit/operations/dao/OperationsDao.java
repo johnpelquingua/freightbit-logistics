@@ -40,6 +40,8 @@ public interface OperationsDao {
 
     public List<Orders> findOrdersByFCLTrucks();
 
+    public List<Orders> findOrdersByFCLTrucksActive();
+
     public List<Orders> findOrdersByFCLTrucksOrigin(String originationPort);
 
     public List<Orders> findOrdersByFCLTrucksDestination(String destinationPort);
